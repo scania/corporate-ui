@@ -1,0 +1,338 @@
+// SCANIA BOOTSTRAP THEME
+// NAVIGATION
+
+// NAV TABS
+ul.nav-tabs {
+  border-bottom: 2px solid @framework-red;
+
+  > li {
+    margin-bottom: 0;
+
+    > a {
+      padding: 5px 15px;
+      text-transform: none;
+      font-weight: normal;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      margin-right: 0;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      position: relative;
+      top: 7px;
+      background-color: #fafafa;
+      color: @main-font-color;
+      font-size: 12px;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+
+    &.active {
+
+      > a,
+      > a:hover,
+      > a:focus {
+        padding: 8px 15px;
+        border-top: 2px solid @framework-red;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        top: 2px;
+        background-color: #FFF;
+        border-radius: 0;
+      }
+    }
+
+    &:first-child a,
+    &.active:first-child a {
+      border-left: 0; 
+    }
+  }
+}
+
+// ul.nav.nav-tabs > li + li a {
+//   border-left: 0;
+// }
+
+// ul.nav-tabs.nav-justified > li.active > a,
+// ul.nav-tabs.nav-justified > li.active > a:hover,
+// ul.nav-tabs.nav-justified > li.active > a:focus {
+//   position: relative;
+//   top: 0px;
+// }
+
+// ul.nav-tabs.nav-justified > li > a {
+//   margin-right: 0;
+//   border-bottom: 1px solid @framework-red;
+// }
+
+// Style for 
+.nav {
+
+  .dropdown.megamenu {
+    position: static;
+
+    .dropdown-menu {
+      width: 100%;
+      left: 0;
+      padding: 15px;
+      font-size: 12px;
+      border: 1px solid #dddddd;
+
+      h4 {
+        margin-top: 0;
+
+        a {
+          color: inherit;
+        }
+      }
+      ul {
+        margin: 0 0 20px;
+
+        li {
+          padding-bottom: 8px;
+          line-height: 14px;
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+        ul {
+          padding-left: 10px;
+          border-left: 2px solid #ccc;
+          margin: 10px 0 0 5px;
+        }
+      }
+      > .row {
+        // This cancles out the ul bottom margin
+        margin-bottom: -20px;
+      }
+    }
+  }
+}
+.navbar.megamenu {
+
+  .nav .dropdown .dropdown-menu li > a {
+    font-size: 12px;
+    color: #428bca;
+  }
+}
+
+.container-fluid {
+
+  // If navbar do not have a .navbar-header then cancel out left padding
+  .navbar-collapse:first-child {
+
+    .navbar-nav:first-child {
+      margin-left: -15px;
+    }
+  }
+}
+
+
+// PORTAL NAVIGATION
+&.scania {
+
+  .navbar-top {
+    min-height: 0;
+    z-index: 1010;
+    margin-bottom: 10px;
+
+    .navbar-toggle {
+      display: none;
+    }
+
+    .navbar-brand {
+      padding: 0;
+
+      .logotype {
+        display: inline-block;
+        background: url('/resources/images/compressed/logotypes/logo_symbol_small.png');
+        background-repeat: no-repeat;
+        width: 42px;
+        height: 42px;
+        vertical-align: middle;
+      }
+      .brand-name {
+        border-left: 1px solid #bbb;
+        padding-left: 15px;
+        margin-left: 15px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #555;
+        font-weight: 300;
+      }
+    }
+    .navbar-right {
+      margin-top: 10px;
+
+      > li {
+        padding: 0 15px;
+        border-left: 1px solid #ddd;
+
+        &:first-child {
+          border-left: 0;
+        }
+
+        > a {
+          font-size: 12px;
+          padding: 0;
+
+          &:hover,
+          &:focus {
+            text-decoration: underline;
+            background-color: transparent;
+          }
+        }
+
+        &.dropdown {
+
+          &.open {
+
+            > a {
+              text-decoration: underline;
+              background-color: transparent;
+            }
+            > ul {
+              background: #fff;
+              border: 1px solid #e8e8e8;
+            }
+          }
+        }
+      } 
+    }
+  }
+  .navbar-default {
+    background-color: @tab-bg-inactive;
+    border-radius: 0;
+    border: 0px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ebebeb;
+
+    min-height: 10px;
+    //border-left: 1px solid @tab-border;
+    margin-bottom: 15px;
+
+    .navbar-collapse {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .navbar-nav {
+
+      > li {
+
+        > a {
+          color: #777;
+          font-weight: 700;
+          border-right: 1px solid @tab-border;
+          line-height: 8px;
+          font-size: 12px;
+        }
+
+        &.active > a,
+        &.open > a {
+          background-color: #ebebeb;
+          border-color: #dddddd;
+          border-top-color: @framework-red;
+          border-top-width: 2px;
+          border-top-style: solid;
+          margin-top: -2px;
+
+          &:hover,
+          &:focus {
+            background-color: #ebebeb;
+          }
+        }
+      }
+
+      &:hover{
+        //background-color: lighten(#eee, 3%);
+      }
+    }
+
+    .nav > li > a {
+      padding: 14px 10px;
+    }
+
+    // Tier Two
+    .portal-nav-level-two {
+      background-color: #f3f3f3;
+
+      .nav > li {
+
+        > a {
+          padding: 10px 10px;
+          font-size: 11px;
+        }
+
+        &.active > a {
+          border-top: 0;
+          margin-top: 0;
+          background-color: #d9d9d9;
+        }
+      }
+    }
+  }
+  .breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Open sans', arial sans-serif;
+
+    > .active {
+      color: #999;
+    }
+    > li + li:before {
+      &:extend([class^="icon-"]);
+      &:extend(.icon-angle-right:before);
+
+      color: #aaa;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  &.scania {
+
+    .navbar-top {
+
+      .navbar-toggle {
+        display: block;
+        margin-right: 0;
+      }
+      .navbar-right {
+        margin: 10px -15px 0;
+        text-align: right;
+
+        > li {
+          padding: 0;
+        }
+      }
+    }
+    .navbar-nav {
+      margin: 0;
+
+       > li {
+
+        > a {
+          line-height: 18px;
+          border-bottom: 1px solid #eee;
+        }
+
+        &.active > a {
+          border-top: 0;
+          border-left: 4px solid #7c1c1d;
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+}
+.navbar.portal-navigation,
+.navbar.navbar-scania {
+  &:extend(.bootstrap.scania .navbar-default all);
+}

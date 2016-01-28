@@ -1,0 +1,18 @@
+@import url("/resources/fonts/external_fonts.css");
+@import url("/resources/fonts/font-awesome/font-awesome.css");
+@import url("/vendors/frameworks/bootstrap/3.2.0/css/bootstrap.css");
+@import url("bootstrap/scania-bootstrap-overrides.css");
+@import url("/vendors/frameworks/dbootstrap/0.1.0/css/dbootstrap.css");
+@import url("/vendors/components/dojo/chosen/1.8/css/chosen.css");
+@import url("/vendors/components/dojo/dgrid/0.3.12/css/dgrid.css");
+@import url("/vendors/components/dojo/dgrid/0.3.12/css/extensions/ColumnHider.css");
+@import url("/vendors/components/dojo/dgrid/0.3.12/css/extensions/ColumnReorder.css");
+@import url("/vendors/components/dojo/dgrid/0.3.12/css/extensions/ColumnResizer.css");
+@import url("dbootstrap/scania-dbootstrap-overrides.css");
+/*!
+ * Scania Bootstrap
+ * Maintained and Developed by CDS (Common Design Service)
+ */
+.compiled_at {
+  content: "Thu Dec 03 2015 13:22:26 GMT+0100 (W. Europe Standard Time)";
+}

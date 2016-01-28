@@ -1,0 +1,86 @@
+/*** MAXIMIZE FUNCTION ***/
+#maximize-button {
+  color: #418BCA; //Bootstrap primary-color
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+body.maximized {
+  margin-top: 0px !important;
+}
+
+
+body.maximized .container.portal-main-container {
+  margin-top: 0px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 15px;
+  padding-top: 15px;
+}
+
+body.maximized .container {
+  max-width: 100%;
+}
+
+body.maximized #prototype-header{
+  display: none;
+}
+
+body.maximized .main-header {
+  display: none;
+}
+
+body.maximized nav {
+    display: none;
+}
+
+body.maximized .main-navigation {
+    display: none;
+}
+
+body.maximized .portal-footer {
+    display: none;
+}
+
+body.maximized #restore-button {
+    display: block;
+    position: fixed;
+    padding: 0;
+    right: -4px;
+    top: 50px;
+    border-radius: 5px;
+    height: 60px;
+    outline: 0;
+}
+
+body.maximized .small-menu {
+    position: relative;
+    top: -7px;
+    right: -12px;
+}
+
+body.maximized #restore-button i.icon-reorder {
+    position: relative;
+    top: 0;
+    right: 11px;
+    font-size: 20px;
+    color: #418BCA;
+}
+
+body.maximized #restore-button i.icon-cog {
+    position: relative;
+    top: 9px;
+    right: 12px;
+    font-size: 15px;
+    color: #bfbdbd;
+}
+
+body.show-menu nav.navbar.navbar-default {
+    display: block;
+}
+
+@media (max-width: 991px) {
+  #maximize-button {
+    display: none;
+  }
+}

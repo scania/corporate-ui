@@ -1,0 +1,169 @@
+@albacolor: #d0ad53;
+@albatross-primary-color: #539ED0;
+@albatross-success-color: #7CA750;
+@albatross-dark-color: #555;
+
+.bootstrap.albatross {
+
+	.btn, .btn-sm, .btn-lg {
+		border-radius: 0;
+		border: 0;
+	}
+
+	.btn-primary { 
+		color: #fff; 
+		background-color: @albatross-primary-color;
+		&:hover, &:focus {
+			background-color: lighten(@albatross-primary-color, 10%);
+		}
+	}
+	.btn-success { 
+		color: #fff;
+		background-color: @albatross-success-color;
+		&:hover, &:focus {
+			background-color: lighten(@albatross-success-color, 10%);
+		}	
+	}
+
+
+	.btn-danger { color: #fff; }
+	.btn-info { color: #fff; }
+	.btn-default { 
+		color: #666; 
+		background-color: #eee;
+		&:hover, &:focus {
+			background-color: lighten(#eee, 5%);
+		}
+	}
+	.btn-link { color: @albacolor; }
+
+	a {
+		color: @albacolor;
+	}
+
+	.dropdown-menu {
+		border-radius: 0;
+	}
+	.dropdown-menu > li > a:hover, 
+	.dropdown-menu > li > a:focus {
+	 	background-color: @albacolor;
+	 	color: #fff;
+	 }
+
+	 .popover {
+	 	border: 0;
+	 	padding: 0;
+	 	border-radius: 0;
+	 	.popover-title {
+		 	border-radius: 0;
+			background-color: @albatross-dark-color;
+			color: white;
+		}
+	 }
+
+	 .modal-content {
+	 	border-radius: 0;
+	 }
+
+
+	h1, h2 {
+		border-bottom: 4px solid @albacolor;
+		text-transform: uppercase;
+	}
+
+	h3, h4 {
+		border-bottom: 2px solid @albacolor;
+		text-transform: uppercase;
+	}
+
+	h5, h6 {
+		border-bottom: 1px solid @albacolor;
+		text-transform: uppercase;
+	}
+	.panel-heading,
+	.modal-header {
+		h1,h2,h3,h4,h5,h6 { border: 0; }
+	}
+
+	ul.nav-tabs {
+		border-bottom: 2px solid @albacolor;
+
+		> li.active > a {
+			background-color: @albacolor;
+			border-top: 2px solid @albacolor;
+			top: 3px;
+			color: #fff;
+			border-left: 0;
+			border-right: 0;
+		}
+
+	}
+
+	.label {
+		border-radius: 0;
+	}
+
+	.row-selected, .row-selected td {
+		background-color: lighten(@albacolor, 20%) !important;
+	}
+
+	.table-clickable > tbody > tr:hover > td, 
+	.table-clickable > tbody > tr:hover > th, 
+	.well .table-clickable > tbody > tr:hover > td, 
+	.well .table-clickable > tbody > tr:hover > th {
+		background-color: lighten(@albacolor, 30%);
+	}
+
+
+	#maximize-button {
+		color: @albacolor;
+		background-color: transparent;
+		border: 0;
+	}
+
+
+	// PORTAL NAVIGATION
+	.navbar.navbar-default {
+		background-color: @albatross-dark-color;
+
+		li:hover {
+			background-color: #666;
+		}
+
+		 li.active > a {
+		 	background-color: @albacolor;
+		 	border-top: 0;
+		 	margin-top: 0;
+		 }
+
+		.navbar-nav > li > a {
+			color: #fff;
+			font-family: 'open sans', arial, sans-serif;
+			font-weight: bold;
+			text-transform: uppercase;
+			border-right: 1px solid #757575;
+
+			&:hover, &:focus {
+				color: #fff
+			}
+		}
+
+		.portal-nav-level-two {
+			background-color: #aaa;
+			border-top: 0;
+			.nav > li > a {
+				background-color: #aaa;
+			}
+
+			.navbar-nav > li.active > a {
+				background-color: @albacolor;
+			}
+		}
+	}
+
+	.portal-heading {
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 28px;
+	}
+}

@@ -1,0 +1,41 @@
+body[data-env]:before {
+  background-color: #ddd;
+  display: inline-block;
+  padding: 52px 50px 2px;
+  content: attr(data-env);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1070;
+  -ms-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -moz-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -webkit-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -o-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  text-transform: uppercase;
+  font-size: 14px;
+  border: 2px solid #fafafa;
+}
+
+body[data-env=dev]:before,
+body[data-env=proj]:before,
+body[data-env=demo]:before,
+body[data-env=proto]:before {
+  background-color: #418bca;
+  color: #fff;
+}
+
+body[data-env=sys]:before {
+  background-color: #458744;
+  color: #fff;
+}
+
+body[data-env=acc]:before,
+body[data-env=pre]:before {
+  background-color: #FFCE35;
+  color: #fff;
+}
+
+body[data-env=proto]:before {
+  font-size: 10px;
+}

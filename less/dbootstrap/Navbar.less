@@ -1,0 +1,56 @@
+.navbar-status {
+	background: #fff;
+	border-radius: 0;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+
+	.caret,
+	a:hover .caret {
+		border-top-color: #777;
+		border-bottom-color: #777;
+	}
+
+	.navbar-brand {
+		color: #333;
+		padding-right: 0;
+	}
+	.navbar-nav {
+		font-weight: bold;
+		font-size: 12px;
+
+		a,
+		p {
+			color: #333;
+		}
+		.label {
+			display: inline-block;
+			line-height: 12px;
+		}
+		> li {
+			> p {
+				padding: 15px 0;
+				line-height: 20px;
+				margin: 0;
+
+				span {
+					line-height: inherit;
+				}
+			}
+			> .dropdown-menu {
+				border-radius: 4px;
+			}
+			.dijitPopup,
+			.popover {
+				top: 50px !important;
+				right: auto !important;
+				left: 0 !important;
+				font-weight: normal;
+
+				&.foldToLeft {
+					right: 0 !important;
+					left: auto !important;
+				}
+			}
+		}
+	}
+}

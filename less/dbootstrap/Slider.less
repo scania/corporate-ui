@@ -1,0 +1,110 @@
+.dijitSlider {
+	width: 100%;
+	padding: 0 10px;
+	table-layout: fixed;
+
+	.dijitSliderProgressBar,
+	.dijitSliderBumperH.dijitSliderLeftBumper {
+		background-color: #149dbf;
+		background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0, #149bdf), color-stop(1, #0480be));
+		background-image: -webkit-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+		background-image: -moz-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+		background-image: -o-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+		background-image: -ms-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+	}
+
+	.dijitSliderDecoration .dijitRuleLabelsContainer {
+		height: 23px;
+	}
+
+	&.frequencySlider {
+
+		.dijitSliderDecoration {
+
+			.dijitRuleLabelsContainer {
+				margin: 0 8%;
+				line-height: 20px;
+				height: 20px;
+
+				.active .dijitRuleLabel {
+					font-weight: bold;
+					font-size: 14px;
+					font-family: "Arial Black";
+					letter-spacing: -0.1em;
+					margin-top: 5px;
+				}
+			}
+
+			&.dijitSliderDecorationT .dijitRuleLabelsContainer{
+				color: #000;
+
+				.active .dijitRuleLabel {
+					margin-top: -5px;
+				}
+			}
+		}
+
+		.dijitSliderProgressBar,
+		.dijitSliderBumperH.dijitSliderLeftBumper {
+			position: relative !important;
+			background: none;
+			box-shadow: none;
+
+			.dijitSliderMoveableH {
+				right: auto;
+				left: 100%;
+				margin-left: -4px;
+			}
+		}
+		.dijitSliderBumper {
+			display: none;
+		}
+
+		.dijitSliderDecorationB .dijitRuleLabelContainerH {
+			border-right: 1px solid #dfdfdf;
+			top: -30px;
+			padding-top: 30px;
+			height: 45px;
+			width: 13%;
+
+			&:last-child {
+				border: 0;
+			}
+		}
+
+		.dijitSliderBarContainerH {
+			background-image: linear-gradient(to bottom right, #000 0%, #000 45%, white 50%, #bbb 55%, #bbb 100%);
+		    height: 14px;
+		    padding: 0 8%;
+
+			.dijitSliderRemainingBar {
+				position: relative;
+				top: -11px;
+				box-shadow: none;
+			}
+
+			.dijitSliderImageHandle {
+			    position: absolute;
+			    top: -3px;
+			    left: 50%;
+			    width: 18px;
+			    height: 18px;
+			    margin-left: -9px;
+			    background: #fefefe;
+			    z-index: 1;
+			    border: 1px solid #aaa;
+			    border-radius: 10px;
+			    box-shadow: 0 2px 3px #555;
+			    line-height: 13px;
+			    text-align: center;
+
+				&:before {
+				    content: "||";
+				    color: #aaa;
+				    font-size: 11px;
+				    font-weight: bold;
+				}
+			}
+		}
+	}
+}

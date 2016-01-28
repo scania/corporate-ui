@@ -1,0 +1,81 @@
+/////////////////////////////////////////////////////////////////////
+// This file adds box model 'flex-box' to bootstrap grid by adding //
+// class 'container-flex' to the element with class 'container'    //
+/////////////////////////////////////////////////////////////////////
+
+// Bootstrap flex mixins
+.display-flex() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+}
+.flex-basis(@width) {
+    -webkit-flex-basis: @width;
+    flex-basis:         @width;
+}
+.generate-columns(@total: 12, @size: xs, @i: 1) when (@i =< @total) {
+    .col-@{size}-@{i} {
+        .flex-basis(@i * 100% / @total);
+    }
+    .generate-columns(@total, @size, (@i + 1));
+}
+
+// Bootstrap flex rules
+.display-flex {
+    .display-flex;
+
+    > * {
+        flex: 1;
+    }
+}
+.container-flex {
+
+    div[class^="col"] {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .row {
+        .display-flex;
+        -webkit-box-lines: multiple;
+        -moz-box-lines: multiple;
+        -o-box-lines: multiple;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        &:before {
+            display: initial;
+        }
+
+        > .col-auto {
+            .display-flex;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -o-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex: 1 1 0;
+            -ms-flex: 1 1 0;
+            flex: 1 1 0;
+
+            > * {
+                flex: 1;
+            }
+        }
+    }
+    [class^="col"] {
+        .flex-basis(100%);
+    }
+    .generate-columns();
+    @media (min-width: 768px) {
+        .generate-columns(@size: sm);
+    }
+    @media (min-width: 992px) {
+        .generate-columns(@size: md);
+    }
+    @media (min-width: 1200px) {
+        .generate-columns(@size: lg);
+    }
+}

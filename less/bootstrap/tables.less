@@ -1,0 +1,292 @@
+// SCANIA BOOTSTRAP THEME
+// TABLES
+
+
+table { //This is to override the Boostrap standard of "collapse" on all table elements
+  border-collapse: separate;
+}
+
+.table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
+  border-collapse: collapse;
+
+  thead>tr>th, 
+  tbody>tr>th, 
+  tfoot>tr>th, 
+  thead>tr>td, 
+  tbody>tr>td, 
+  tfoot>tr>td {
+    padding: @table-cell-padding;
+  }
+  thead > tr > th {
+    font-size: 12px;
+	font-weight: normal;
+	color: #898989;  	
+    vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+  }
+  tbody > tr > td {
+    vertical-align: middle;
+  }
+  i {
+    white-space: nowrap;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    text-transform: none;
+  }
+
+  &.table-striped thead>tr>th, 
+  &.table-striped tbody>tr>th, 
+  &.table-striped tfoot>tr>th, 
+  &.table-striped thead>tr>td, 
+  &.table-striped tbody>tr>td, 
+  &.table-striped tfoot>tr>td {
+    border-top: 0;
+  }
+
+  &.table-striped>tbody>tr:nth-child(odd)>td,
+  .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: @dark-content-block;
+  }
+  &.table-clickable {
+
+    > tbody > tr {
+
+      &:hover {
+
+        > td,
+        > th {
+          background-color: @framework-skyblue;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  &.table-selectable {
+
+    > tbody > tr {
+
+      &:hover > td {
+        background-color: @framework-skyblue;
+        cursor: default;
+      }
+      &.active > td,
+      &.selected > td,
+      &.expanded > td {
+        background-color: darken(@framework-skyblue, 10%);
+        cursor: default;
+      }
+      &.expandable {
+
+        > td:first-child:before {
+          &:extend([class^="icon-"]);
+          &:extend(.icon-caret-right:before);
+
+          display: inline-block;
+          width: 10px;
+          margin-right: 2px;
+        }
+        + tr > td {
+          background-color: darken(@framework-skyblue, 10%);
+          padding: 0;
+
+          > div {
+            background-color: #fff;
+            overflow: hidden;
+            margin: 0 5px 5px;
+
+            > .content {
+              padding: 10px;
+            }
+          }
+        }
+
+        &.expanded {
+
+          > td {
+
+            &:first-child:before {
+              &:extend(.icon-caret-down:before);
+            }
+          }
+          // Add some space between two expanded rows
+          + .expand-child + .expand-child + .expanded {
+
+            > td {
+              border-top: 3px solid #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-condenced {
+  &:extend(.table-condenced);
+}
+
+// Striped table inside well
+.well .table-striped > tbody > tr:nth-child(odd) > td,
+.well .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #fdfdfd;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th,
+.well .table-hover > tbody > tr:hover > td,
+.well .table-hover > tbody > tr:hover > th {
+  background-color: #e3e3e3;
+}
+
+// Data table table-layout: 
+.table-data tbody tr {
+  &:first-child {
+    th,
+    td {
+      border-top: 0;
+    }
+  }
+
+  > td {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Open Sans';
+    text-align: center;
+    padding: 0 20px;
+    line-height: 22px;
+        
+    small {
+      font-weight: normal;
+    }
+
+    &.divider-right {
+      border-right: 2px solid #fff;
+    }
+    &.divider-left {
+      border-left: 2px solid #fff;
+    }
+  }
+}
+
+.table {
+
+  &.table-calculation {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 10px 6px;
+
+    .form-control[readonly] {
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+      box-shadow: none;
+      cursor: text;
+      height: inherit;
+    }
+    .input-group {
+      border-collapse: collapse;
+    }
+    > thead > tr > th {
+      border: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+    }
+    > tbody > tr > th,
+    > tbody > tr > td {
+      border: 0;
+      padding: 5px;
+      background-color: #eee;
+    }
+    > tbody > tr > td,
+    > tbody > tr > td input {
+      text-align: right;
+    }
+    tbody {
+
+      tr.total td {
+        background-color: transparent;
+      }
+      tr.selectable {
+
+         > td:first-child:before {
+          &:extend([class^="icon-"]);
+          &:extend(.icon-caret-right:before);
+
+          padding-right: 6px;
+        }
+        &:hover > td {
+          background-color: @framework-skyblue;
+          cursor: default;
+        }
+        &.selected > td:first-child:before {
+          &:extend(.icon-caret-down:before);
+        }
+      }
+      tr.child > td {
+        background-color: #f6f6f6;
+
+        &:first-child {
+          border-left: 15px solid #fff !important; // Need important to work if readonly
+        }
+      }
+      tr.divider > td {
+        vertical-align: top;
+        border-top: 1px solid #eee !important; // Need important to work if readonly
+        border-bottom: 1px solid #eee !important; // Need important to work if readonly
+      }
+    }
+    td,
+    input,
+    span {
+      font-size: 12px;
+    }
+    td {
+
+      &:first-child {
+        text-align: left;
+      }
+      &.configurable {
+        // Some elements are readonly but should still be interactive, thats why we need !important
+        border: 1px solid darken(@framework-skyblue, 20%) !important;
+        position: relative;
+
+        &:before {
+          &:extend([class^="icon-"]);
+          &:extend(.icon-table:before);
+
+          position: absolute;
+          left: 15px;
+          top: 50%;
+          margin-top: -6px;
+          color: @brand-primary;
+        }
+        &:hover,
+        &:hover span,
+        input:hover {
+          cursor: pointer;
+        }
+        &:hover {
+          background-color: #d1e8f2;
+        }
+
+        span {
+          position: relative;
+          display: block;
+          margin: -5px;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+@import 'list-table';

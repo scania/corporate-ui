@@ -1,0 +1,10 @@
+v1.8.1:
+  date: 2016-01-18
+  changes:
+    - Changed layout for list-table
+    - Due to compiling issues we changed less reference path (TEMP)
+    - Remove old table style causing issues
+    - Changed contrast for dark content blocks
+    - Fix for dbootstrap menuitems hover color
+    - Added table-striped for dGrid
+    - Support for newer version of dGrid

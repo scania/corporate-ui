@@ -1,0 +1,535 @@
+/* dGrid related stlye */
+.dgrid {
+    border: 0;
+    //min-height: 100px;
+    height: auto;
+    overflow: visible;
+
+    .dgrid-header {
+        height: auto !important;
+        background: none;
+        box-shadow: none;
+        overflow: visible;
+        position: relative;
+        padding-right: 17px;
+        border-bottom: 2px solid #ddd;
+
+        .dgrid-cell {
+            &:extend(.bootstrap .control-label);
+
+            padding: 8px;
+            overflow: visible;
+
+            label {
+                color: #999;
+            }
+            .dgrid-resize-header-container {
+                height: inherit;
+            }
+            ::-webkit-input-placeholder {
+                font-family: corporate-icons;
+                text-align: right;
+            }
+            :-moz-placeholder {
+                font-family: corporate-icons;
+                text-align: right;
+            }
+            ::-moz-placeholder {
+                font-family: corporate-icons;
+                text-align: right;
+            }
+            :-ms-input-placeholder {
+                font-family: corporate-icons;
+                text-align: right;
+            }
+        }
+    }
+    .dgrid-header-scroll {
+        padding: 6px;
+        box-shadow: none;
+
+        .dgrid-hider-toggle {
+            background: transparent;
+            color: transparent;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            width: auto;
+            top: 10px;
+            right: 8px;
+            font-size: 0;
+
+            &:before {
+                &:extend([class*=" icon-"]:before);
+                &:extend(.icon-columns:before);
+
+                color: #428bca;
+                font-size: 14px;
+            }
+        }
+    }
+    .dgrid-hider-toggle.ui-icon:after {
+        padding-left: 2px;
+        &:extend(.icon-caret-down:before);
+    }
+    .dgrid-hider-menu {
+        background: #fff;
+        top: 12px;
+        right: 24px;
+        border-radius: 3px;
+        border-color: #ddd;
+        padding: 12px 8px;
+    }
+
+    .dgrid-scroller {
+        max-height: 350px;
+        width: auto;
+        position: relative;
+        overflow-y: visible;
+        margin-top: 0 !important;
+        -webkit-user-select: auto !important;
+        -moz-user-select: auto !important;
+        -ms-user-select: auto !important;
+        -o-user-select: auto !important;
+        user-select: auto !important; 
+
+        .dgrid-content {
+            width: 100% !important;
+        }
+        .dgrid-cell {
+            vertical-align: middle;
+            text-shadow: none;
+
+            a > i,
+            a[class^=icon-] {
+                font-size: 14px;
+                text-decoration: none;
+            }
+            .dijitButton,
+            .dijitDropDownButton {
+                margin: -8px 4px -8px 0;
+            }
+
+            &:focus {
+                outline: 0;
+            }
+        }
+        .dgrid-no-data,
+        .dgrid-loading {
+            text-align: center;
+        }
+    }
+    .dgrid-footer {
+        margin: 15px 0 0;
+        width: auto;
+        position: relative;
+        padding: 8px;
+        background: #f5f5f5;
+        border-radius: 4px;
+    }
+    .dgrid-row {
+        width: 100%;
+        border: 0;
+
+        /*.badge {
+            height: 20px;
+            min-width: 35px;
+            border-radius: 4px;
+            margin-left: 1px;
+            margin-top: 1px;
+            padding: 4px;
+
+            &.badge-xs {
+                width: 6px;
+                min-width: 6px;
+                padding: 4px 0px;
+                color: transparent;
+            }
+        }*/
+
+        .showOnHover {
+            visibility: hidden;
+        }
+
+        &:hover {
+
+            > .dgrid-row-table .dgrid-cell,
+            > div > .dgrid-row-table .dgrid-cell {
+
+                .showOnHover {
+                    visibility: visible;
+                }
+            }
+        }
+        &.has-danger:hover tr > td.dgrid-cell,
+        &.has-danger tr > td.dgrid-cell {
+            border-color: #b94a48;
+            background: #f8eeee;
+            color: #a94442;
+        }
+        &.has-danger + .has-danger tr > td.dgrid-cell{
+            border-top: 1px solid #d9aeae;
+        }
+    }
+    .dgrid-cell {
+        border: 0;
+        padding: 8px;
+        font-weight: normal;
+        position: relative;
+
+        .dijitTextBox,
+        .dijitButton,
+        .dijitDropDownButton {
+            //@extend .dbootstrap span.btn-sm;
+
+            .dijitButtonNode {
+                padding: 5px 8px;
+            }
+
+            // TODO - We shouldnt have the following rule like this, it should be done in a better way
+            &.btn-xs {
+
+                .dijitButtonNode {
+                    padding: 3px 6px;
+                }
+            }
+        }
+        .dijitSelectBox {
+
+            .dijitButtonContents {
+                padding-right: 27px;
+            }
+        }
+        input {
+            font-weight: normal;
+        }
+
+        &.nowrap {
+            white-space: nowrap;
+        }
+    }
+    .dgrid-sort-arrow {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .dgrid-pagination {
+        text-align: center;
+        line-height: 0.7;
+
+        .dgrid-page-size {
+            &:extend(.bootstrap .form-control all);
+            &:extend(.bootstrap .form-inline .form-control);
+        }
+
+        .dgrid-status {
+            float: left;
+            padding: 8px 0;
+            line-height: 1.42857143;
+        }
+
+        .dgrid-navigation {
+            display: inline-block;
+            float: none;
+
+            a,
+            span.dgrid-page-link {
+                &:extend(.bootstrap .pagination > li > a);
+                &:hover {
+                    background-color: #ddd;
+                }
+                &.dgrid-first {
+                    border-radius: 4px 0 0 4px;
+                }
+                &.dgrid-last {
+                    border-radius: 0 4px 4px 0;
+                }
+                &.dgrid-page-disabled {
+                    background-color: #eaeaea;
+                    color: #808080;
+                    opacity: 0.4;
+                }
+
+                background-color: #eaeaea;
+                border: 1px solid #ddd;
+                height: 34px;
+            }
+            > a,
+            > span.dgrid-page-link {
+                line-height: 1.2;
+            }
+            input {
+                &:extend(.bootstrap .form-control all);
+
+                float: left;
+                width: 40px;
+                border-radius: 0;
+                padding: 4px;
+                margin: 0 -1px;
+                position: relative;
+                z-index: 1;
+
+                + a,
+                + span {
+                    margin-left: 0;
+                }
+            }
+
+            .dgrid-pagination-links {
+                float: left;
+                display: inline-block;
+
+                .dgrid-page-link {
+                    padding: 8px 12px;
+                }
+            }
+            .dgrid-page-skip {
+                float: left;
+                height: 34px;
+                padding: 7px;
+                line-height: 1.42857143;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .dgrid-row-even,
+    .dgrid-row-even:hover,
+    .dgrid-row-even .dgrid-cell,
+    .dgrid-row-even:hover .dgrid-cell {
+        background-color: @dark-content-block;
+    }
+    .dgrid-row-odd,
+    .dgrid-row-odd:hover,
+    .dgrid-row-odd .dgrid-cell,
+    .dgrid-row-odd:hover .dgrid-cell {
+        background-color: #fff;
+    }
+    .dgrid-row,
+    .dgrid-row .dgrid-cell,
+    .dgrid-row:hover,
+    .dgrid-row:hover .dgrid-cell,
+    .row-selected,
+    .row-selected .dgrid-cell {
+        color: inherit;
+        text-shadow: none;
+    }
+    .dgrid-row:hover > .dgrid-row-table,
+    .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+    .row-selected > .dgrid-row-table,
+    .row-selected > .dgrid-row-table .dgrid-cell {
+        background-color: #d1e8f2;
+    }
+
+    &.table:not(.table-striped) {
+
+        .dgrid-row .dgrid-cell {
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+    }
+    // &.table-striped {
+
+    //     .dgrid-row {
+
+    //         &.dgrid-row-even {
+    //             &:extend(.dbootstrap .dgrid .dgrid-row-odd);
+    //         }
+
+    //         .dgrid-cell {
+    //             border-top: 0;
+    //         }
+    //     }
+    // }
+    &.table-striped-reveresed {
+
+        .dgrid-row-even,
+        .dgrid-row-even:hover,
+        .dgrid-row-even .dgrid-cell,
+        .dgrid-row-even:hover .dgrid-cell {
+            &:extend(.dbootstrap .dgrid .dgrid-row-odd);
+        }
+        .dgrid-row-odd,
+        .dgrid-row-odd:hover,
+        .dgrid-row-odd .dgrid-cell,
+        .dgrid-row-odd:hover .dgrid-cell {
+            &:extend(.dbootstrap .dgrid .dgrid-row-even);
+        }
+    }
+    &.table-selectable,
+    &.table-clickable,
+    &.clickable-table {
+
+        .dgrid-selected .dgrid-cell {
+            background-color: transparent;
+        }
+        .collapsable {
+
+            .content {
+                background: #f8f8f8;
+            }
+
+            > .dgrid-row-table .dgrid-cell:first-child,
+            > div > .dgrid-row-table .dgrid-cell:first-child {
+                white-space: nowrap;
+
+                &:before {
+                    &:extend([class^="icon-"]:before);
+                    &:extend(.icon-caret-right:before);
+
+                    //float: left;
+                    display: inline-block;
+                    margin-right: 6px;
+                    width: 6px;
+                }
+            }
+
+            &.expanded > .dgrid-row-table .dgrid-cell:first-child:before,
+            &.expanded > div > .dgrid-row-table .dgrid-cell:first-child:before {
+                &:extend(.icon-caret-down:before);
+            }
+            &.collapsed > .dgrid-row-table .dgrid-cell,
+            &.collapsed > div > .dgrid-row-table .dgrid-cell {
+                background-color: transparent;
+            }
+        }
+    }
+    &.table-selectable > .dgrid-scroller > .dgrid-content {
+
+        > .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+        > .dgrid-row:hover > div > .dgrid-row-table .dgrid-cell,
+        > .dgrid-tree-container .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+        > .dgrid-selected > .dgrid-row-table .dgrid-cell,
+        > .dgrid-selected > div > .dgrid-row-table .dgrid-cell {
+            background-color: #d1e8f2;
+            cursor: default;
+        }
+    }
+    &.table-clickable > .dgrid-scroller > .dgrid-content ,
+    &.clickable-table > .dgrid-scroller > .dgrid-content {
+
+        > .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+        > .dgrid-row:hover > div > .dgrid-row-table .dgrid-cell {
+            background-color: #d1e8f2;
+            cursor: pointer;
+        }
+    }
+    &.table-scrollable {
+
+        .dgrid-scroller {
+            max-height: 222px;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            .dgrid-cell:last-child {
+                padding-right: 24px;
+            }
+        }
+    }
+    &.table-noscroll {
+
+        .dgrid-header {
+            padding-right: 0;
+        }
+        .dgrid-scroller {
+            max-height: none !important;
+            overflow-y: auto !important;
+            margin-bottom: 0 !important;
+        }
+    }
+    &.table-sm,
+    &.table-md,
+    &.table-lg {
+        max-height: none;
+
+        .dgrid-header {
+            min-height: 0;
+        }
+        .dgrid-scroller {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    }
+    &.table-sm .dgrid-scroller,
+    .dgrid-scroller.table-sm {
+        max-height: 200px;
+    }
+    &.table-md .dgrid-scroller,
+    .dgrid-scroller.table-md {
+        max-height: 350px;
+    }
+    &.table-lg .dgrid-scroller,
+    .dgrid-scroller.table-lg {
+        max-height: 500px;
+    }
+    .dgrid-scroller.table-sm,
+    .dgrid-scroller.table-md,
+    .dgrid-scroller.table-lg {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    &.table-hs {
+
+        .dgrid-header {
+            overflow: hidden;
+            margin-right: 17px;
+            padding-right: 0;
+        }
+        .dgrid-scroller {
+            overflow-x: scroll !important;
+        }
+        .dgrid-cell {
+            width: 110px;
+        }
+    }
+    &.table-data {
+
+        .dgrid-header {
+
+            th {
+                padding-bottom: 0;
+
+                h1, h2, h3, h4, h5, h6 {
+                    padding: 0;
+                    border: 0;
+                    text-transform: none;
+                }
+            }
+        }
+        .dgrid-row {
+
+            &:last-child,
+            &:last-child:hover {
+
+                td.dgrid-cell {
+                    border-bottom: 0;
+                }
+            }
+            &:hover td.dgrid-cell,
+            td.dgrid-cell {
+                padding: 8px;
+                border-bottom: 1px solid #dddddd;
+
+                &:extend(.bootstrap .table-data tbody tr > td);
+        
+                small {
+                  font-weight: normal;
+                }
+
+                &:first-child,
+                &.th {
+                    background-color: #fff;
+                    text-align: left;
+
+                    &:extend(.bootstrap .table-data tbody tr > th);
+                }
+                &.divider-right {
+                  border-right: 2px solid #fff;
+                }
+                &.divider-left {
+                  border-left: 2px solid #fff;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+.mixin-opacity(@opacityValue: 100) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@{opacityValue})";
+  filter: alpha(opacity=@opacityValue);
+  -moz-opacity: @opacityValue * 0.01;
+  -khtml-opacity: @opacityValue * 0.01;
+  opacity: @opacityValue * 0.01;
+}

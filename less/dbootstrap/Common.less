@@ -1,0 +1,798 @@
+a:focus,
+div:focus,
+span:focus,
+input:focus,
+button:focus,
+hr:focus,
+p:focus,
+span:focus,
+select:focus,
+ul:focus {
+	outline: 0 !important;
+}
+
+h1 > *,
+h2 > *,
+h3 > *,
+h4 > *,
+h5 > *,
+h6 > * {
+	vertical-align: baseline;
+}
+
+.navbar {
+	z-index: 900;
+}
+
+.modal-title {
+	font-size: 14px;
+}
+
+.alert {
+	padding: 15px; // Overriding dbootstrap strange default padding
+
+	&.alert-dismissable,
+	&.alert-dismissible {
+		padding-right: 35px;
+	}
+}
+
+/* This should probably be set more globaly and not only for portlet-application as today... */
+.panel-body {
+	font-size: 12px;
+}
+
+.list-unstyled {
+	margin: 0;
+
+	.list-unstyled {
+		padding-left: 20px;
+	}
+}
+
+.popover ul li {
+	line-height: 30px;
+}
+
+.well {
+	background-color: @dark-content-block;
+	padding: 15px;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.well-xs {
+	padding: 5px;
+	border-radius: 3px;
+	margin-bottom: 3px;
+}
+
+.icon-small {
+	font-size: 0.4em;
+	vertical-align: middle;
+	line-height: 0.2em;
+}
+
+.text-sm {
+	font-size: 0.7em;
+}
+
+.border-default {
+	border-color: #ccc;
+}
+
+.select-sm.dijitSelect {
+    margin: 0;
+    border-radius: 3px;
+    height: 28px;
+    font-weight: normal;
+    text-transform: none;
+
+    .dijitButtonText {
+    	//line-height: 17px;
+    }
+    .dijitInputField {
+    	padding: 0 6px;
+    }
+    .dijitArrowButton {
+    	padding: 3px 8px;
+    	line-height: 1;
+    }
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.inactive {
+	opacity: 0.5;
+}
+
+.dijitTreeExpandoLoading {
+	&:extend(.icon-spin);
+
+	&:before {
+		&:extend(.icon-spinner:before);
+	}
+}
+
+// Thise is used for login page
+.content {
+
+	h1 {
+		margin-top: 0;
+		font-size: 32px;
+		font-weight: 100;
+	}
+}
+
+.divider-top,
+.divider-bottom,
+.divider-left,
+.divider-right {
+	border-width: 0;
+	border-color: #ddd !important;
+	border-style: solid !important;
+}
+.divider-top {
+	border-top-width: 2px;
+}
+.divider-bottom {
+	border-bottom-width: 2px;
+}
+.divider-left {
+	border-left-width: 2px;
+}
+.divider-right {
+	border-right-width: 2px;
+}
+
+/* Add FontAwesome spinning loader icon */
+.dijitContentPaneLoading {
+    background: none;
+    padding: 0;
+}
+.dijitIconLoading:before {
+    &:extend(.icon-spinner:before);
+    &:extend(.icon-spin);
+}
+
+.readonly,
+.readOnly,
+form .readonly,
+form .readOnly,
+.dgrid .dgrid-cell .readonly,
+.dijitTextBox.readonly {
+	border: 0 !important;
+	padding: 0;
+	box-shadow: none;
+	background: transparent;
+    resize: none;
+    height: auto;
+
+    span {
+    	cursor: text;
+    	line-height: normal;
+    }
+	div.dijitInputField {
+		padding: 0;
+
+		input {
+			cursor: text;
+		}
+		> span {
+			//line-height: 34px;
+		}
+	}
+    .dijitInputContainer {
+    	padding: 0;
+    }
+    .dijitArrowButton {
+        display: none;
+    }
+    .dgrid .dgrid-row.collapsable {
+
+	    .dgrid-cell:first-child:before {
+    		content: "" !important;
+		}
+    	&:hover .dgrid-cell {
+			background-color: transparent !important;
+    	}
+	}
+	.input-group,
+	&.input-group {
+
+		.input-group-btn {
+			background: transparent;
+
+			&:hover {
+				border: 0;
+				background-color: transparent;
+			}
+			&:first-child {
+
+				.dijitButtonText:after {
+					content: ":";
+					margin-right: 3px;
+				}
+			}
+
+			.dijitTextBox {
+				height: auto;
+				cursor: default;
+
+				.dijitInputField {
+					padding: 0;
+					margin: 0;
+
+					.dijitButtonText {
+						padding: 0;
+
+						.dijitSelectLabel:after {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		.form-control + .input-group-btn .dijitSelectLabel:after {
+			content: ":";
+			margin-right: 4px;
+		}
+	}
+}
+
+.display-table {
+	display: table;
+}
+.display-tablecell {
+	display: table-cell;
+}
+.valign-m {
+	vertical-align: middle;
+}
+
+.hide {
+	display: none;
+}
+.badge {
+	-webkit-filter: brightness(100%) contrast(100%);
+
+	-webkit-transition: -webkit-filter 0 linear 0.5s;
+}
+.badge-highlighted {
+	-webkit-filter: brightness(70%) contrast(300%);
+}
+
+.dijitPopup {
+	z-index: 1060 !important;
+	max-width: 400px;
+
+	.dijitTooltipContainer {
+		color: inherit;
+		font-size: inherit;
+
+		.arrow {
+			&:extend(.bootstrap .popover > .arrow all);
+		}
+	}
+	.top .dijitTooltipContainer .arrow { &:extend(.bootstrap .popover.top > .arrow all); }
+	.right .dijitTooltipContainer .arrow { &:extend(.bootstrap .popover.right > .arrow all); }
+	.bottom .dijitTooltipContainer .arrow { &:extend(.bootstrap .popover.bottom > .arrow all); }
+	.left .dijitTooltipContainer .arrow { &:extend(.bootstrap .popover.left > .arrow all); }
+	.dgrid .dgrid-scroller {
+		min-height: 0;
+	}
+}
+
+.no-label {
+	margin-top: 21px;
+}
+
+.block-center {
+	float: none;
+	margin: 0 auto;
+}
+
+.table {
+	table-layout: fixed;
+
+	th {
+		vertical-align: top !important;
+	}
+
+	.dijitTextBox,
+	.dijitButton {
+	    padding: 0;
+
+	    .dijitButtonNode {
+	        padding: 5px 8px;
+	        margin: 0;
+	        border-radius: 3px;
+	        line-height: normal;
+
+	        .dijitButtonText {
+	        	line-height: 1.5;
+	        	padding: 0;
+	        }
+	    }
+	    &.form-control {
+	    	padding: 4px 12px;
+	    }
+	}
+	.dijitTextBox {
+        &:extend(.dbootstrap .select-sm.dijitSelect);
+
+        .dijitInputField {
+        	&:extend(.dbootstrap .select-sm.dijitSelect .dijitInputField);
+        }
+	}
+	div.chzn-container {
+		height: 28px;
+
+		&.chzn-container-single {
+			
+			a {
+
+				span {
+					line-height: 17px;
+				}
+				div {
+					line-height: 15px;
+				}
+			}
+		}
+	}
+	.form-group {
+		margin-bottom: 0;
+	}
+	tr.nested-table-level-1 td {
+		background-color: #ddd;
+
+		&:first-child {
+			font-weight: bold;
+		}
+	}
+	tr.nested-table-level-2 td {
+		background-color: #f5f5f5;
+
+		&:first-child {
+			padding-left: 20px;
+			font-weight: bold;
+		}
+	}
+
+	.showOnHover {
+		visibility: hidden;
+	}
+
+	tr:hover,
+	tr.active {
+
+		.showOnHover {
+			visibility: visible;
+		}
+	}
+
+	&.table-unstyled {
+
+		thead > tr > th {
+			border-bottom: 0;
+			padding-top: 0;
+			padding-bottom: 4px;
+		}
+		tbody > tr > td {
+			border-top: 0;
+			padding-top: 4px;
+			padding-bottom: 4px;
+		}
+	}
+}
+
+.tooltip {
+	margin-top: -10px !important;
+	z-index: 1060;
+}
+
+.pageIdNode {
+	position: relative;
+
+	.tooltip {
+		position: absolute;
+		left: -50%;
+		top: -20px;
+		margin-left: 7px;
+	}
+}
+
+.panel-sub-header {
+	border-bottom: 1px solid #eee;
+	padding: 8px 15px;
+	margin: -15px -15px 15px;
+}
+
+.multiselect {
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	overflow: auto;
+	height: 200px;
+	max-height: 200px;
+
+	.dijitTree {
+		overflow: visible;
+
+		.dijitTreeContainer .dijitTreeRow .dijitTreeExpandoLeaf {
+			padding: 0;
+			margin-right: 10px;
+
+			&:before {
+				display: none;
+			}
+		}
+	}
+
+	> li {
+		padding: 4px 7px;
+
+		&:nth-child(even) {
+			background-color: #f9f8f8;
+		}
+	}
+
+	> ul,
+	> ol {
+		padding: 8px;
+		margin: 0;
+
+		li {
+
+			h5 {
+				margin: 0 0 4px;
+
+				.form-group {
+					margin: 0;
+
+					label {
+						display: inline-block;
+						vertical-align: top;
+						padding: .3em .6em .3em;
+
+						.dijitCheckBox {
+							border-color: inherit;
+						}
+
+						input {
+							position: relative;
+							top: 4px;
+							margin: -2px 0 4px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.dojoDndTarget {
+
+	.dojoDndItem {
+
+		&.dojoDndItemAnchor,
+		&.dojoDndItemSelected {
+			background-color: #d9edf7;
+		}
+	}
+}
+
+.statusbar .panel-body > * {
+	margin-right: 10px;
+}
+
+.modulesGridWorkItem {
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	padding: 8px;
+	margin-right: 2px;
+}
+
+.inpsectionModuleCode {
+	background-color: #666 !important;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	padding: 2px 5px;
+	margin-right: 2px;
+	border-radius: 4px;
+	width: 32px;
+	display: inline-block;
+}
+.inpsectionModuleLabelText {
+	margin-left: 4px;
+}
+.inspectionDetailsTableDescriptionHeader {
+	vertical-align: top;
+}
+.dijitCalendarMonthLabel.dijitCalendarCurrentMonthLabel {
+	display: inline;
+}
+.portlet-border {
+	border-color: #7c1c1d;
+	border-width: 2px;
+}
+.rightContent .portlet-application .dijitTitlePaneTitleFocus {
+	/*padding-top: 15px;*/
+}
+.authorityLabel {
+    background-color: #f2dede;
+}
+
+.optionalLabel {
+    background-color: #fcf8e3;
+}
+
+.otherLabel {
+    background-color: #d9edf7;
+}
+
+.dijitMenuItem {
+	padding: 4px 20px;
+	line-height: 18px;
+
+	&.dijitDisabled {
+		color: #949494;
+
+		&:hover {
+			background-color: transparent;
+		}
+	}
+	&.dijitMenuDivider {
+		color: #bbb;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 8px;
+	}
+	&.dijitMenuItemHover,
+	&.dijitMenuItemSelected {
+
+		.dijitMenuItemLabel a {
+			color: #fff;
+		}
+	}
+}
+
+.dgrid .dgrid-row .dgrid-cell.variantMainHeader,
+.dgrid .dgrid-row:hover .dgrid-cell.variantMainHeader {
+	background-color: #999;
+	color: #fff;
+}
+.dgrid .dgrid-row .dgrid-cell.variantSubHeader,
+.dgrid .dgrid-row:hover .dgrid-cell.variantSubHeader {
+	background-color: #ddd;
+}
+#leftContainer > .panel,
+#rightContainer > .panel {
+
+	&:hover {
+		cursor: pointer;
+
+		.btn-default {
+			color: #333333;
+			background-color: #e1e1e1;
+			border-color: #b3b3b3;
+		}
+	}
+
+	> div {
+		min-height: 350px;
+	}
+}
+
+
+.alert[style='opacity: 0;'] {
+	display: none;
+}
+
+h3 div .pageIdNode {
+	margin-top: 10px;
+}
+
+ul.list-clickable {
+	margin-bottom: 0;
+
+	> li {
+		cursor: pointer;
+		margin-top: 0;
+		line-height: 50px;
+
+		a {
+			color: #aaa;
+			text-decoration: none;
+		}
+		.showOnHover {
+			visibility: hidden;
+			margin: 12px 0;
+		}
+
+		&:hover,
+		&.active {
+			background-color: #d1e8f2;
+
+			a {
+				color: #000;
+			}
+			.showOnHover {
+				visibility: visible;
+			}
+		}
+		&.disabled {
+			background-color: #fff;
+			cursor: default;
+			opacity: 0.4;
+
+			a {
+				cursor: default;
+			}
+		}
+		&.header:hover,
+		&.header.active {
+			background-color: transparent;
+			border-color: transparent;
+			cursor: default;
+		}
+	}
+}
+ul.list-tree {
+	min-width: 220px;
+	padding-left: 15px;
+
+	.well {
+		background-color: #fff;
+		border: 1px solid #eee;
+	}
+	.form-group {
+
+		.dijitSelectBox {
+
+			.dijitButtonContents {
+				padding-right: 27px;
+			}
+		}
+	}
+
+	> li {
+		position: relative;
+		line-height: 22px;
+		font-size: 12px;
+		height: 44px;
+		margin-top: 3px;
+		margin-bottom: 2px;
+		padding: 6px 8px;
+
+		a {
+			color: #555;
+			text-decoration: none;
+		}
+		h4 {
+			color: #888;
+		}
+
+		&:hover,
+		&.active {
+			background-color: #f5f5f5;
+			border-color: #e4e4e4;
+
+			h4 {
+				color: black;
+			}
+		}
+		&:before,
+		&:after {
+			content: " ";
+			border: 0 dotted #ccc;
+			position: absolute;
+			left: -15px;
+		}
+		&:before {
+			border-left-width: 1px;
+			top: -56%;
+			height: 105%;
+		}
+		&:first-child:before {
+			border: 0;
+		}
+		&:after {
+			border-bottom-width: 1px;
+			width: 10px;
+			top: 50%;
+		}
+		&.disabled {
+			border: 1px solid #eee;
+
+			&:after {
+				border-color: #666;
+			}
+		}
+	}
+}
+
+.dijitMenuPopup {
+
+    .dijitMenuItem {
+
+	    td {
+
+	    	a {
+	    		color: #666;
+
+	    		&:hover {
+	    			text-decoration: none;
+	    		}
+	    	}
+
+		    &:first-child {
+		        padding-left: 2px;
+		    }
+		}
+
+		&.dijitFocused,
+		&:hover {
+
+    		a {
+    			color: #fff;
+    		}
+		}
+	}
+
+    .list-dotted .dijitMenuItem {
+
+    	&:not(.empty) {
+
+		    .dijitMenuItemIconCell {
+				width: 40px;
+				text-align: center;
+				font-size: 12px;
+				color: #c1c1c1;
+				position: relative;
+
+				+ td {
+					padding-left: 0;
+				}
+
+			    &:before {
+					&:extend([class^="icon-"]:before);
+					&:extend(.icon-circle:before);
+
+					position: relative;
+					z-index: 2;
+				}
+				&:after {
+					border-left: 1px dotted #c1c1c1;
+					content: " ";
+					position: absolute;
+					left: 20px;
+					top: 10px;
+					display: block;
+					height: 100%;
+				}
+			}
+
+			&:nth-child(odd) {
+
+				.dijitMenuItemIconCell {
+					color: #878787;
+				}
+			}
+			&:last-child {
+
+				.dijitMenuItemIconCell:after {
+					border: 0;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,4115 @@
+@import url("//static.scania.com/resources/fonts/corporate-icons/style.css");
+@import url("//static.scania.com/resources/fonts/corporate-icons/style.css");
+@import url('/vendors/frameworks/dojo/1.7.4/dijit/themes/dijit.css');
+.compiled_at {
+  content: "Tue Jan 26 2016 12:02:05 GMT+0100 (Västeuropa, normaltid)";
+}
+.dbootstrap .dijitComboButton.dijitSearchTextBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox.dijitSearchTextBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect.dijitSearchTextBox .dijitButtonNode.dijitArrowButton:before {
+  content: "\e602";
+}
+.dbootstrap .dijitComboButton.dijitDateTextBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox.dijitDateTextBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect.dijitDateTextBox .dijitButtonNode.dijitArrowButton:before {
+  content: "\e66c";
+}
+.dbootstrap .dijitComboButton .dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitArrowButton:before,
+.dbootstrap .dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .input-group .input-group-btn .dijitSelectBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dgrid .dgrid-hider-toggle.ui-icon:after,
+.dbootstrap .dgrid.table-selectable .collapsable.expanded > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable.expanded > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable.expanded > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-selectable .collapsable.expanded > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable.expanded > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable.expanded > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent > *:before,
+.dbootstrap .chzn-container .chzn-single div b:before,
+.dbootstrap .chzn-container .chzn-single div b:before {
+  content: "\e6be";
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitA11ySideArrow:before,
+.dbootstrap .popover .dijitCalendar .dijitA11ySideArrow:before {
+  content: "\e6c0";
+}
+.dbootstrap .dgrid.table-selectable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-selectable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarIncrementControl.dijitCalendarIncrease + .dijitA11ySideArrow:before,
+.dbootstrap .popover .dijitCalendar .dijitCalendarIncrementControl.dijitCalendarIncrease + .dijitA11ySideArrow:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitClosed .dijitTitlePaneTextNode:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitFixedClosed .dijitTitlePaneTextNode:before,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitClosed .dijitTitlePaneTextNodeParent > *:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitFixedClosed .dijitTitlePaneTextNodeParent > *:before {
+  content: "\e6c1";
+}
+.dbootstrap .dgrid .dgrid-header-scroll .dgrid-hider-toggle:before {
+  content: "\e6c2";
+}
+.dbootstrap .dijitButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitDropDownButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitComboButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoOpened:before {
+  content: "\e6c4";
+}
+.dbootstrap .dijitMenuTable .dijitMenuItem .dijitSelectedMenuItemIconChar:before {
+  content: "\e6f0";
+}
+.dbootstrap .dijitTreeExpandoLoading:before,
+.dbootstrap .dijitIconLoading:before,
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap .sport-standby:after,
+.dbootstrap .mpp-standby:after,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText:before {
+  content: "\e6f3";
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell:before,
+.dbootstrap .dijitMenuTable .dijitMenuItem.factorsMenuItemSelected .dijitSelectedMenuItemIconChar:before,
+.dbootstrap .dijitRadio.dijitRadioChecked:before {
+  content: "\e6f4";
+}
+.dbootstrap .dijitCheckBox.indeterminate:before,
+.dbootstrap .dijitRadio.indeterminate:before {
+  content: "\e662";
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell:before,
+.dbootstrap .dijitComboButton .dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitArrowButton:before,
+.dbootstrap .dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitMenuTable .dijitMenuItem .dijitSelectedMenuItemIconChar:before,
+.dbootstrap .input-group .input-group-btn .dijitSelectBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dijitButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitDropDownButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitComboButton .dijitArrowButtonChar:before,
+.dbootstrap .dgrid .dgrid-header-scroll .dgrid-hider-toggle:before,
+.dbootstrap .dgrid.table-selectable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-selectable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dijitPopup .dijitCalendar .dijitA11ySideArrow:before,
+.dbootstrap .popover .dijitCalendar .dijitA11ySideArrow:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode:before,
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap .sport-standby:after,
+.dbootstrap .mpp-standby:after,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando:before,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent > *:before,
+.dbootstrap .chzn-container .chzn-single div b:before,
+.dbootstrap .chzn-container .chzn-single div b:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+.dbootstrap .dijitTreeExpandoLoading,
+.dbootstrap .dijitIconLoading:before,
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap .sport-standby:after,
+.dbootstrap .mpp-standby:after,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText {
+  display: inline-block;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size:focus,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size::-moz-placeholder,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input::-moz-placeholder {
+  color: #777;
+  opacity: 1;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size:-ms-input-placeholder,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input:-ms-input-placeholder {
+  color: #777;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size::-webkit-input-placeholder,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input::-webkit-input-placeholder {
+  color: #777;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size[disabled],
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size[readonly],
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input[disabled],
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input[readonly] {
+  cursor: not-allowed;
+  background-color: #eee;
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .dbootstrap .dgrid .dgrid-pagination .dgrid-page-size {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+}
+.dbootstrap .dijitButton.active .dijitButtonNode:focus,
+.dbootstrap .dijitDropDownButton.active .dijitButtonNode:focus,
+.dbootstrap .dijitComboButton.active .dijitButtonNode:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.dbootstrap .dijitButton.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.active .dijitButtonNode {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.dbootstrap .dijitButton.default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.default.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-default.active .dijitButtonNode {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.dbootstrap .dijitButton.default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.default.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-default.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dijitButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-primary.active .dijitButtonNode {
+  color: #fff;
+  background-color: #3071a9;
+  border-color: #285e8e;
+}
+.dbootstrap .dijitButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-primary.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dijitButton.success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.success.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-success.active .dijitButtonNode {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.dbootstrap .dijitButton.success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.success.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-success.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dijitButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-danger.active .dijitButtonNode {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+.dbootstrap .dijitButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-danger.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .input-group .dijitButton > .dijitButtonNode {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.dbootstrap .input-group .dijitButton > .dijitButtonNode {
+  margin-left: -1px;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation a,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation span.dgrid-page-link {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #428bca;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.dbootstrap .dijitPopup .dijitTooltipContainer .arrow,
+.dbootstrap .dijitPopup .dijitTooltipContainer .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.dbootstrap .dijitPopup .dijitTooltipContainer .arrow {
+  border-width: 11px;
+}
+.dbootstrap .dijitPopup .dijitTooltipContainer .arrow:after {
+  content: "";
+  border-width: 10px;
+}
+.dbootstrap .dijitPopup .top .dijitTooltipContainer .arrow {
+  bottom: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-color: #999;
+  border-top-color: rgba(0, 0, 0, 0.25);
+  border-bottom-width: 0;
+}
+.dbootstrap .dijitPopup .top .dijitTooltipContainer .arrow:after {
+  bottom: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-color: #fff;
+  border-bottom-width: 0;
+}
+.dbootstrap .dijitPopup .right .dijitTooltipContainer .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-right-color: #999;
+  border-right-color: rgba(0, 0, 0, 0.25);
+  border-left-width: 0;
+}
+.dbootstrap .dijitPopup .right .dijitTooltipContainer .arrow:after {
+  bottom: -10px;
+  left: 1px;
+  content: " ";
+  border-right-color: #fff;
+  border-left-width: 0;
+}
+.dbootstrap .dijitPopup .bottom .dijitTooltipContainer .arrow {
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: #999;
+  border-bottom-color: rgba(0, 0, 0, 0.25);
+}
+.dbootstrap .dijitPopup .bottom .dijitTooltipContainer .arrow:after {
+  top: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-width: 0;
+  border-bottom-color: #fff;
+}
+.dbootstrap .dijitPopup .left .dijitTooltipContainer .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-right-width: 0;
+  border-left-color: #999;
+  border-left-color: rgba(0, 0, 0, 0.25);
+}
+.dbootstrap .dijitPopup .left .dijitTooltipContainer .arrow:after {
+  right: 1px;
+  bottom: -10px;
+  content: " ";
+  border-right-width: 0;
+  border-left-color: #fff;
+}
+.dbootstrap .dijitButton.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.active .dijitButtonNode {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.dbootstrap .dijitButton.default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.default.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-default.active .dijitButtonNode {
+  color: #333333;
+  background-color: #e1e1e1;
+  border-color: #b3b3b3;
+}
+.dbootstrap .dijitButton.default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.default.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-default.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-default.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dijitButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-primary.active .dijitButtonNode {
+  color: #ffffff;
+  background-color: #69a3d5;
+  border-color: #5597d0;
+}
+.dbootstrap .dijitButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.primary.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-primary.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-primary.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dijitButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-danger.active .dijitButtonNode {
+  color: #ffffff;
+  background-color: #c8362b;
+  border-color: #b33127;
+}
+.dbootstrap .dijitButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.danger.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-danger.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-danger.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dijitButton.success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.success.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-success.active .dijitButtonNode {
+  color: #ffffff;
+  background-color: #56a955;
+  border-color: #4e984d;
+}
+.dbootstrap .dijitButton.success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.success.active .dijitButtonNode,
+.dbootstrap .dijitButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-success.active .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-success.active .dijitButtonNode {
+  background-image: none;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 'Open Sans';
+  text-align: center;
+  padding: 0 20px;
+  line-height: 22px;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input {
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-page-size:focus,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input:focus {
+  background-color: #d1e8f2;
+  box-shadow: none;
+  border-color: #ccc;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell {
+  font-weight: 500;
+}
+.dbootstrap .dijitTreeExpandoLoading,
+.dbootstrap .dijitIconLoading:before,
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap .sport-standby:after,
+.dbootstrap .mpp-standby:after,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText {
+  display: inline-block;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell:before,
+.dbootstrap .dijitComboButton .dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitArrowButton:before,
+.dbootstrap .dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitComboBox .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitSelect .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap .dijitMenuTable .dijitMenuItem .dijitSelectedMenuItemIconChar:before,
+.dbootstrap .input-group .input-group-btn .dijitSelectBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dijitButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitDropDownButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitComboButton .dijitArrowButtonChar:before,
+.dbootstrap .dgrid .dgrid-header-scroll .dgrid-hider-toggle:before,
+.dbootstrap .dgrid.table-selectable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-selectable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dijitPopup .dijitCalendar .dijitA11ySideArrow:before,
+.dbootstrap .popover .dijitCalendar .dijitA11ySideArrow:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode:before,
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap .sport-standby:after,
+.dbootstrap .mpp-standby:after,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando:before,
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent > *:before,
+.dbootstrap .chzn-container .chzn-single div b:before,
+.dbootstrap .chzn-container .chzn-single div b:before {
+  font-family: 'corporate-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.dbootstrap .dijitButton.primary .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.primary .dijitButtonNode,
+.dbootstrap .dijitComboButton.primary .dijitButtonNode,
+.dbootstrap .dijitButton.btn-primary .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-primary .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-primary .dijitButtonNode {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #0044cc;
+  background-image: linear-gradient(top, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fade-in(rgba(0, 0, 0, 0.1), 15%);
+}
+.dbootstrap .dijitButton.danger .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.danger .dijitButtonNode,
+.dbootstrap .dijitComboButton.danger .dijitButtonNode,
+.dbootstrap .dijitButton.btn-danger .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-danger .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-danger .dijitButtonNode {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #bd362f;
+  background-image: linear-gradient(top, #ee5f5b, #bd362f);
+  background-repeat: repeat-x;
+  border-color: #bd362f #bd362f #802420;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fade-in(rgba(0, 0, 0, 0.1), 15%);
+}
+.dbootstrap .dijitButton.success .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.success .dijitButtonNode,
+.dbootstrap .dijitComboButton.success .dijitButtonNode,
+.dbootstrap .dijitButton.btn-success .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-success .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-success .dijitButtonNode {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #51a351;
+  background-image: linear-gradient(top, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fade-in(rgba(0, 0, 0, 0.1), 15%);
+}
+.dbootstrap .chzn-container .chzn-single > span {
+  padding: 0 0.3em;
+  text-align: center;
+}
+.dbootstrap .dojoxCheckedMultiSelect,
+.dbootstrap .chzn-container .chzn-drop .chzn-search input {
+  display: inline-block;
+  font-size: 14px;
+  color: #555555;
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+.dbootstrap .input-group .dijitTextBox:not(.dijitTextBoxError).dijitTextBoxFocused + .input-group-addon,
+.dbootstrap .input-group .dijitTextBox:not(.dijitTextBoxError).dijitTextBoxFocused.form-control,
+.dbootstrap .dijitSelect.dijitFocused {
+  outline: none;
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+.dbootstrap .chzn-container .chzn-single {
+  padding: 4px 4px;
+}
+.dbootstrap .input-group .dijitTextBox.dijitTextBoxError + .input-group-addon {
+  color: #b94a48;
+  border-color: #b94a48;
+}
+.dbootstrap .chzn-container .chzn-single,
+.dbootstrap .chzn-container .chzn-drop {
+  border: none;
+  color: #555555;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarDayLabelTemplate,
+.dbootstrap .popover .dijitCalendar .dijitCalendarDayLabelTemplate {
+  padding: 3px 7px;
+  background-color: #ffffff;
+}
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd:hover,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd .dgrid-cell,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd:hover .dgrid-cell {
+  background-color: #ffffff;
+}
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even:hover,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even .dgrid-cell,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even:hover .dgrid-cell {
+  background-color: #eeeeee;
+}
+/*ul,
+ol {
+	margin: 0 0 10px 0;
+	padding-left: 40px;
+}*/
+.dbootstrap {
+  /*.wpthemeControlBody,
+.wpthemeMainContent,
+.wpthemeFrame,
+.wpthemeBanner,
+.wpthemeWrapper { background-color: transparent !important; }
+
+.container .wpthemeMainContent .wpthemeControlBody {
+	margin: 0 !important;
+	width: 100%;
+	overflow: visible;
+}
+.wpthemeControl,
+.wpthemeLayoutContainers,
+.wptheme1Col .wpthemeCol {
+	width: 100%;
+}
+.wpthemeLayoutContainers {
+	padding: 0;
+}*/
+  /* This should probably be set more globaly and not only for portlet-application as today... */
+  /* Add FontAwesome spinning loader icon */
+  /* Adds the down arrow to the parent element because input elements do not support :before */
+  /* Fix for a bug in internet explorer, making it not possible pressing enter in a form to submit it */
+  /* Checkbox fix for displaying then in middle */
+  /* Change standard boostrap radio button */
+  /* Add styling for segmented inputs and selectboxes */
+  /* Button related style */
+  /* Added scania theme based stuff, this should be picked from bootstrap theme later on */
+  /* Comented out by Andreas 2015-01-28 */
+  /* input-addon */
+  /* dGrid related stlye */
+}
+.dbootstrap.bootstrap .wpthemeLayoutContainers {
+  width: 100% !important;
+  padding: 0 !important;
+  margin-top: 10px;
+}
+.dbootstrap.bootstrap .wpthemeControlBody {
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 0;
+}
+.dbootstrap.bootstrap .wpthemeTemplateLoading {
+  display: none;
+}
+.dbootstrap.bootstrap .wpthemeMainContent .wpthemeControlBody,
+.dbootstrap.bootstrap .wpthemeMainContent .wpthemeCrumbTrail {
+  padding: 0;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions {
+  /* For logo part */
+  /* User navigation */
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions > li {
+  padding: 0;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions > li > a {
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: auto;
+  border: 0;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions > li > a:hover {
+  text-decoration: none;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions > li > a .wpthemeBranding {
+  background: transparent url("/resources/images/compressed/logotypes/logo_symbol_small.png") no-repeat;
+  width: auto;
+  padding: 5px 0 0 50px;
+  margin: 15px 0 0 0;
+  line-height: normal;
+  float: none;
+  height: 40px;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions > li > a .wpthemeBranding .wpthemeAltText {
+  margin: 0;
+  display: block;
+  border: 0;
+  font-size: 20px;
+  font-weight: 300;
+  margin-left: 8px;
+  border-left: 1px solid #bbb;
+  text-transform: none;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions {
+  margin: 25px 0 0;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > * {
+  color: #428bca;
+  border: 0;
+  background: none;
+  padding: 0 20px;
+  border-left: 1px solid #ddd;
+  font-size: 12px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  /*&#logoutlink {
+					margin-right: 0;
+					padding-right: 0;
+				}*/
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > * i {
+  margin-right: 3px;
+  text-shadow: none;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > * i,
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > * #wpContextMenu {
+  color: #428bca;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > *:first-child {
+  border-left: 0;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > *:hover,
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > * #wpContextMenu:hover {
+  color: #2a6496;
+  text-decoration: underline;
+}
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > *:hover i,
+.dbootstrap.bootstrap .wpthemeBanner .wpthemeCommonActions .commonActions > * #wpContextMenu:hover i {
+  color: #2a6496;
+  text-decoration: none;
+}
+.dbootstrap a:focus,
+.dbootstrap div:focus,
+.dbootstrap span:focus,
+.dbootstrap input:focus,
+.dbootstrap button:focus,
+.dbootstrap hr:focus,
+.dbootstrap p:focus,
+.dbootstrap span:focus,
+.dbootstrap select:focus,
+.dbootstrap ul:focus {
+  outline: 0 !important;
+}
+.dbootstrap h1 > *,
+.dbootstrap h2 > *,
+.dbootstrap h3 > *,
+.dbootstrap h4 > *,
+.dbootstrap h5 > *,
+.dbootstrap h6 > * {
+  vertical-align: baseline;
+}
+.dbootstrap .navbar {
+  z-index: 900;
+}
+.dbootstrap .modal-title {
+  font-size: 14px;
+}
+.dbootstrap .alert {
+  padding: 15px;
+}
+.dbootstrap .alert.alert-dismissable,
+.dbootstrap .alert.alert-dismissible {
+  padding-right: 35px;
+}
+.dbootstrap .panel-body {
+  font-size: 12px;
+}
+.dbootstrap .list-unstyled {
+  margin: 0;
+}
+.dbootstrap .list-unstyled .list-unstyled {
+  padding-left: 20px;
+}
+.dbootstrap .popover ul li {
+  line-height: 30px;
+}
+.dbootstrap .well,
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter {
+  background-color: #ebeef0;
+  padding: 15px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.dbootstrap .well-xs {
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+.dbootstrap .icon-small {
+  font-size: 0.4em;
+  vertical-align: middle;
+  line-height: 0.2em;
+}
+.dbootstrap .text-sm {
+  font-size: 0.7em;
+}
+.dbootstrap .border-default {
+  border-color: #ccc;
+}
+.dbootstrap .select-sm.dijitSelect,
+.dbootstrap .table .dijitTextBox,
+.dbootstrap .dijitTextBox.input-sm,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm,
+.dbootstrap .form-group-sm > .dijitTextBox,
+.dbootstrap .form-condensed .dijitTextBox,
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton {
+  margin: 0;
+  border-radius: 3px;
+  height: 28px;
+  font-weight: normal;
+  text-transform: none;
+}
+.dbootstrap .select-sm.dijitSelect .dijitInputField,
+.dbootstrap .table .dijitTextBox .dijitInputField {
+  padding: 0 6px;
+}
+.dbootstrap .select-sm.dijitSelect .dijitArrowButton,
+.dbootstrap .dijitTextBox.input-sm .dijitButtonNode .dijitArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm .dijitButtonNode .dijitArrowButton,
+.dbootstrap .form-group-sm > .dijitTextBox .dijitButtonNode .dijitArrowButton,
+.dbootstrap .form-condensed .dijitTextBox .dijitButtonNode .dijitArrowButton {
+  padding: 3px 8px;
+  line-height: 1;
+}
+.dbootstrap .disabled {
+  pointer-events: none;
+}
+.dbootstrap .inactive {
+  opacity: 0.5;
+}
+.dbootstrap .content h1 {
+  margin-top: 0;
+  font-size: 32px;
+  font-weight: 100;
+}
+.dbootstrap .divider-top,
+.dbootstrap .divider-bottom,
+.dbootstrap .divider-left,
+.dbootstrap .divider-right {
+  border-width: 0;
+  border-color: #ddd !important;
+  border-style: solid !important;
+}
+.dbootstrap .divider-top {
+  border-top-width: 2px;
+}
+.dbootstrap .divider-bottom {
+  border-bottom-width: 2px;
+}
+.dbootstrap .divider-left {
+  border-left-width: 2px;
+}
+.dbootstrap .divider-right {
+  border-right-width: 2px;
+}
+.dbootstrap .dijitContentPaneLoading {
+  background: none;
+  padding: 0;
+}
+.dbootstrap .readonly,
+.dbootstrap .readOnly,
+.dbootstrap form .readonly,
+.dbootstrap form .readOnly,
+.dbootstrap .dgrid .dgrid-cell .readonly,
+.dbootstrap .dijitTextBox.readonly,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly.dijitTextBoxDisabled,
+.dbootstrap .dojoxCheckedMultiSelect.readonly,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly.dijitTextBoxDisabled {
+  border: 0 !important;
+  padding: 0;
+  box-shadow: none;
+  background: transparent;
+  resize: none;
+  height: auto;
+}
+.dbootstrap .readonly span,
+.dbootstrap .readOnly span,
+.dbootstrap form .readonly span,
+.dbootstrap form .readOnly span,
+.dbootstrap .dgrid .dgrid-cell .readonly span,
+.dbootstrap .dijitTextBox.readonly span,
+.dbootstrap .dojoxCheckedMultiSelect.readonly span {
+  cursor: text;
+  line-height: normal;
+}
+.dbootstrap .readonly div.dijitInputField,
+.dbootstrap .readOnly div.dijitInputField,
+.dbootstrap form .readonly div.dijitInputField,
+.dbootstrap form .readOnly div.dijitInputField,
+.dbootstrap .dgrid .dgrid-cell .readonly div.dijitInputField,
+.dbootstrap .dijitTextBox.readonly div.dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect.readonly div.dijitInputField {
+  padding: 0;
+}
+.dbootstrap .readonly div.dijitInputField input,
+.dbootstrap .readOnly div.dijitInputField input,
+.dbootstrap form .readonly div.dijitInputField input,
+.dbootstrap form .readOnly div.dijitInputField input,
+.dbootstrap .dgrid .dgrid-cell .readonly div.dijitInputField input,
+.dbootstrap .dijitTextBox.readonly div.dijitInputField input,
+.dbootstrap .dojoxCheckedMultiSelect.readonly div.dijitInputField input {
+  cursor: text;
+}
+.dbootstrap .readonly .dijitInputContainer,
+.dbootstrap .readOnly .dijitInputContainer,
+.dbootstrap form .readonly .dijitInputContainer,
+.dbootstrap form .readOnly .dijitInputContainer,
+.dbootstrap .dgrid .dgrid-cell .readonly .dijitInputContainer,
+.dbootstrap .dijitTextBox.readonly .dijitInputContainer,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .dijitInputContainer {
+  padding: 0;
+}
+.dbootstrap .readonly .dijitArrowButton,
+.dbootstrap .readOnly .dijitArrowButton,
+.dbootstrap form .readonly .dijitArrowButton,
+.dbootstrap form .readOnly .dijitArrowButton,
+.dbootstrap .dgrid .dgrid-cell .readonly .dijitArrowButton,
+.dbootstrap .dijitTextBox.readonly .dijitArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .dijitArrowButton {
+  display: none;
+}
+.dbootstrap .readonly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before,
+.dbootstrap .readOnly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before,
+.dbootstrap form .readonly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before,
+.dbootstrap form .readOnly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before,
+.dbootstrap .dgrid .dgrid-cell .readonly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before,
+.dbootstrap .dijitTextBox.readonly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before {
+  content: "" !important;
+}
+.dbootstrap .readonly .dgrid .dgrid-row.collapsable:hover .dgrid-cell,
+.dbootstrap .readOnly .dgrid .dgrid-row.collapsable:hover .dgrid-cell,
+.dbootstrap form .readonly .dgrid .dgrid-row.collapsable:hover .dgrid-cell,
+.dbootstrap form .readOnly .dgrid .dgrid-row.collapsable:hover .dgrid-cell,
+.dbootstrap .dgrid .dgrid-cell .readonly .dgrid .dgrid-row.collapsable:hover .dgrid-cell,
+.dbootstrap .dijitTextBox.readonly .dgrid .dgrid-row.collapsable:hover .dgrid-cell,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .dgrid .dgrid-row.collapsable:hover .dgrid-cell {
+  background-color: transparent !important;
+}
+.dbootstrap .readonly .input-group .input-group-btn,
+.dbootstrap .readOnly .input-group .input-group-btn,
+.dbootstrap form .readonly .input-group .input-group-btn,
+.dbootstrap form .readOnly .input-group .input-group-btn,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn,
+.dbootstrap .readonly.input-group .input-group-btn,
+.dbootstrap .readOnly.input-group .input-group-btn,
+.dbootstrap form .readonly.input-group .input-group-btn,
+.dbootstrap form .readOnly.input-group .input-group-btn,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn {
+  background: transparent;
+}
+.dbootstrap .readonly .input-group .input-group-btn:hover,
+.dbootstrap .readOnly .input-group .input-group-btn:hover,
+.dbootstrap form .readonly .input-group .input-group-btn:hover,
+.dbootstrap form .readOnly .input-group .input-group-btn:hover,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn:hover,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn:hover,
+.dbootstrap .readonly.input-group .input-group-btn:hover,
+.dbootstrap .readOnly.input-group .input-group-btn:hover,
+.dbootstrap form .readonly.input-group .input-group-btn:hover,
+.dbootstrap form .readOnly.input-group .input-group-btn:hover,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn:hover,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn:hover,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn:hover,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn:hover {
+  border: 0;
+  background-color: transparent;
+}
+.dbootstrap .readonly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .readOnly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap form .readonly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap form .readOnly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .readonly.input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .readOnly.input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap form .readonly.input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap form .readOnly.input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn:first-child .dijitButtonText:after,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn:first-child .dijitButtonText:after {
+  content: ":";
+  margin-right: 3px;
+}
+.dbootstrap .readonly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap .readOnly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap form .readonly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap form .readOnly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap .readonly.input-group .input-group-btn .dijitTextBox,
+.dbootstrap .readOnly.input-group .input-group-btn .dijitTextBox,
+.dbootstrap form .readonly.input-group .input-group-btn .dijitTextBox,
+.dbootstrap form .readOnly.input-group .input-group-btn .dijitTextBox,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn .dijitTextBox,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn .dijitTextBox,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn .dijitTextBox,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn .dijitTextBox {
+  height: auto;
+  cursor: default;
+}
+.dbootstrap .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .readOnly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap form .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap form .readOnly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .readOnly.input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap form .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap form .readOnly.input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn .dijitTextBox .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn .dijitTextBox .dijitInputField {
+  padding: 0;
+  margin: 0;
+}
+.dbootstrap .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .readOnly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap form .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap form .readOnly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .readOnly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap form .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap form .readOnly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText {
+  padding: 0;
+}
+.dbootstrap .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .readOnly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap form .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap form .readOnly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dijitTextBox.readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .readOnly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap form .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap form .readOnly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dijitTextBox.readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after {
+  display: none;
+}
+.dbootstrap .readonly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .readOnly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap form .readonly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap form .readOnly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .dgrid .dgrid-cell .readonly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .dijitTextBox.readonly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .readonly.input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .readOnly.input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap form .readonly.input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap form .readOnly.input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .dgrid .dgrid-cell .readonly.input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .dijitTextBox.readonly.input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .dojoxCheckedMultiSelect.readonly .input-group .form-control + .input-group-btn .dijitSelectLabel:after,
+.dbootstrap .dojoxCheckedMultiSelect.readonly.input-group .form-control + .input-group-btn .dijitSelectLabel:after {
+  content: ":";
+  margin-right: 4px;
+}
+.dbootstrap .display-table {
+  display: table;
+}
+.dbootstrap .display-tablecell {
+  display: table-cell;
+}
+.dbootstrap .valign-m {
+  vertical-align: middle;
+}
+.dbootstrap .hide {
+  display: none;
+}
+.dbootstrap .badge {
+  -webkit-filter: brightness(100%) contrast(100%);
+  -webkit-transition: -webkit-filter 0 linear 0.5s;
+}
+.dbootstrap .badge-highlighted {
+  -webkit-filter: brightness(70%) contrast(300%);
+}
+.dbootstrap .dijitPopup {
+  z-index: 1060 !important;
+  max-width: 400px;
+}
+.dbootstrap .dijitPopup .dijitTooltipContainer {
+  color: inherit;
+  font-size: inherit;
+}
+.dbootstrap .dijitPopup .dgrid .dgrid-scroller {
+  min-height: 0;
+}
+.dbootstrap .no-label {
+  margin-top: 21px;
+}
+.dbootstrap .block-center {
+  float: none;
+  margin: 0 auto;
+}
+.dbootstrap .table {
+  table-layout: fixed;
+}
+.dbootstrap .table th {
+  vertical-align: top !important;
+}
+.dbootstrap .table .dijitTextBox,
+.dbootstrap .table .dijitButton,
+.dbootstrap .dijitTextBox.input-sm,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm,
+.dbootstrap .form-group-sm > .dijitTextBox,
+.dbootstrap .form-condensed .dijitTextBox,
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton {
+  padding: 0;
+}
+.dbootstrap .table .dijitTextBox .dijitButtonNode,
+.dbootstrap .table .dijitButton .dijitButtonNode {
+  padding: 5px 8px;
+  margin: 0;
+  border-radius: 3px;
+  line-height: normal;
+}
+.dbootstrap .table .dijitTextBox .dijitButtonNode .dijitButtonText,
+.dbootstrap .table .dijitButton .dijitButtonNode .dijitButtonText {
+  line-height: 1.5;
+  padding: 0;
+}
+.dbootstrap .table .dijitTextBox.form-control,
+.dbootstrap .table .dijitButton.form-control {
+  padding: 4px 12px;
+}
+.dbootstrap .table div.chzn-container {
+  height: 28px;
+}
+.dbootstrap .table div.chzn-container.chzn-container-single a span {
+  line-height: 17px;
+}
+.dbootstrap .table div.chzn-container.chzn-container-single a div {
+  line-height: 15px;
+}
+.dbootstrap .table .form-group {
+  margin-bottom: 0;
+}
+.dbootstrap .table tr.nested-table-level-1 td {
+  background-color: #ddd;
+}
+.dbootstrap .table tr.nested-table-level-1 td:first-child {
+  font-weight: bold;
+}
+.dbootstrap .table tr.nested-table-level-2 td {
+  background-color: #f5f5f5;
+}
+.dbootstrap .table tr.nested-table-level-2 td:first-child {
+  padding-left: 20px;
+  font-weight: bold;
+}
+.dbootstrap .table .showOnHover {
+  visibility: hidden;
+}
+.dbootstrap .table tr:hover .showOnHover,
+.dbootstrap .table tr.active .showOnHover {
+  visibility: visible;
+}
+.dbootstrap .table.table-unstyled thead > tr > th {
+  border-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 4px;
+}
+.dbootstrap .table.table-unstyled tbody > tr > td {
+  border-top: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.dbootstrap .tooltip {
+  margin-top: -10px !important;
+  z-index: 1060;
+}
+.dbootstrap .pageIdNode {
+  position: relative;
+}
+.dbootstrap .pageIdNode .tooltip {
+  position: absolute;
+  left: -50%;
+  top: -20px;
+  margin-left: 7px;
+}
+.dbootstrap .panel-sub-header {
+  border-bottom: 1px solid #eee;
+  padding: 8px 15px;
+  margin: -15px -15px 15px;
+}
+.dbootstrap .multiselect {
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  overflow: auto;
+  height: 200px;
+  max-height: 200px;
+}
+.dbootstrap .multiselect .dijitTree {
+  overflow: visible;
+}
+.dbootstrap .multiselect .dijitTree .dijitTreeContainer .dijitTreeRow .dijitTreeExpandoLeaf {
+  padding: 0;
+  margin-right: 10px;
+}
+.dbootstrap .multiselect .dijitTree .dijitTreeContainer .dijitTreeRow .dijitTreeExpandoLeaf:before {
+  display: none;
+}
+.dbootstrap .multiselect > li {
+  padding: 4px 7px;
+}
+.dbootstrap .multiselect > li:nth-child(even) {
+  background-color: #f9f8f8;
+}
+.dbootstrap .multiselect > ul,
+.dbootstrap .multiselect > ol {
+  padding: 8px;
+  margin: 0;
+}
+.dbootstrap .multiselect > ul li h5,
+.dbootstrap .multiselect > ol li h5 {
+  margin: 0 0 4px;
+}
+.dbootstrap .multiselect > ul li h5 .form-group,
+.dbootstrap .multiselect > ol li h5 .form-group {
+  margin: 0;
+}
+.dbootstrap .multiselect > ul li h5 .form-group label,
+.dbootstrap .multiselect > ol li h5 .form-group label,
+.dbootstrap .popover-content .form-group .label {
+  display: inline-block;
+  vertical-align: top;
+  padding: .3em .6em .3em;
+}
+.dbootstrap .multiselect > ul li h5 .form-group label .dijitCheckBox,
+.dbootstrap .multiselect > ol li h5 .form-group label .dijitCheckBox {
+  border-color: inherit;
+}
+.dbootstrap .multiselect > ul li h5 .form-group label input,
+.dbootstrap .multiselect > ol li h5 .form-group label input,
+.dbootstrap .popover-content .form-group .label > input {
+  position: relative;
+  top: 4px;
+  margin: -2px 0 4px;
+}
+.dbootstrap .dojoDndTarget .dojoDndItem.dojoDndItemAnchor,
+.dbootstrap .dojoDndTarget .dojoDndItem.dojoDndItemSelected {
+  background-color: #d9edf7;
+}
+.dbootstrap .statusbar .panel-body > * {
+  margin-right: 10px;
+}
+.dbootstrap .modulesGridWorkItem {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  margin-right: 2px;
+}
+.dbootstrap .inpsectionModuleCode {
+  background-color: #666 !important;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 2px 5px;
+  margin-right: 2px;
+  border-radius: 4px;
+  width: 32px;
+  display: inline-block;
+}
+.dbootstrap .inpsectionModuleLabelText {
+  margin-left: 4px;
+}
+.dbootstrap .inspectionDetailsTableDescriptionHeader {
+  vertical-align: top;
+}
+.dbootstrap .dijitCalendarMonthLabel.dijitCalendarCurrentMonthLabel {
+  display: inline;
+}
+.dbootstrap .portlet-border {
+  border-color: #7c1c1d;
+  border-width: 2px;
+}
+.dbootstrap .rightContent .portlet-application .dijitTitlePaneTitleFocus {
+  /*padding-top: 15px;*/
+}
+.dbootstrap .authorityLabel {
+  background-color: #f2dede;
+}
+.dbootstrap .optionalLabel {
+  background-color: #fcf8e3;
+}
+.dbootstrap .otherLabel {
+  background-color: #d9edf7;
+}
+.dbootstrap .dijitMenuItem {
+  padding: 4px 20px;
+  line-height: 18px;
+}
+.dbootstrap .dijitMenuItem.dijitDisabled {
+  color: #949494;
+}
+.dbootstrap .dijitMenuItem.dijitDisabled:hover {
+  background-color: transparent;
+}
+.dbootstrap .dijitMenuItem.dijitMenuDivider {
+  color: #bbb;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+.dbootstrap .dijitMenuItem.dijitMenuItemHover .dijitMenuItemLabel a,
+.dbootstrap .dijitMenuItem.dijitMenuItemSelected .dijitMenuItemLabel a {
+  color: #fff;
+}
+.dbootstrap .dgrid .dgrid-row .dgrid-cell.variantMainHeader,
+.dbootstrap .dgrid .dgrid-row:hover .dgrid-cell.variantMainHeader {
+  background-color: #999;
+  color: #fff;
+}
+.dbootstrap .dgrid .dgrid-row .dgrid-cell.variantSubHeader,
+.dbootstrap .dgrid .dgrid-row:hover .dgrid-cell.variantSubHeader {
+  background-color: #ddd;
+}
+.dbootstrap #leftContainer > .panel:hover,
+.dbootstrap #rightContainer > .panel:hover {
+  cursor: pointer;
+}
+.dbootstrap #leftContainer > .panel:hover .btn-default,
+.dbootstrap #rightContainer > .panel:hover .btn-default {
+  color: #333333;
+  background-color: #e1e1e1;
+  border-color: #b3b3b3;
+}
+.dbootstrap #leftContainer > .panel > div,
+.dbootstrap #rightContainer > .panel > div {
+  min-height: 350px;
+}
+.dbootstrap .alert[style='opacity: 0;'] {
+  display: none;
+}
+.dbootstrap h3 div .pageIdNode {
+  margin-top: 10px;
+}
+.dbootstrap ul.list-clickable {
+  margin-bottom: 0;
+}
+.dbootstrap ul.list-clickable > li {
+  cursor: pointer;
+  margin-top: 0;
+  line-height: 50px;
+}
+.dbootstrap ul.list-clickable > li a {
+  color: #aaa;
+  text-decoration: none;
+}
+.dbootstrap ul.list-clickable > li .showOnHover {
+  visibility: hidden;
+  margin: 12px 0;
+}
+.dbootstrap ul.list-clickable > li:hover,
+.dbootstrap ul.list-clickable > li.active {
+  background-color: #d1e8f2;
+}
+.dbootstrap ul.list-clickable > li:hover a,
+.dbootstrap ul.list-clickable > li.active a {
+  color: #000;
+}
+.dbootstrap ul.list-clickable > li:hover .showOnHover,
+.dbootstrap ul.list-clickable > li.active .showOnHover {
+  visibility: visible;
+}
+.dbootstrap ul.list-clickable > li.disabled {
+  background-color: #fff;
+  cursor: default;
+  opacity: 0.4;
+}
+.dbootstrap ul.list-clickable > li.disabled a {
+  cursor: default;
+}
+.dbootstrap ul.list-clickable > li.header:hover,
+.dbootstrap ul.list-clickable > li.header.active {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: default;
+}
+.dbootstrap ul.list-tree {
+  min-width: 220px;
+  padding-left: 15px;
+}
+.dbootstrap ul.list-tree .well {
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+.dbootstrap ul.list-tree .form-group .dijitSelectBox .dijitButtonContents {
+  padding-right: 27px;
+}
+.dbootstrap ul.list-tree > li {
+  position: relative;
+  line-height: 22px;
+  font-size: 12px;
+  height: 44px;
+  margin-top: 3px;
+  margin-bottom: 2px;
+  padding: 6px 8px;
+}
+.dbootstrap ul.list-tree > li a {
+  color: #555;
+  text-decoration: none;
+}
+.dbootstrap ul.list-tree > li h4 {
+  color: #888;
+}
+.dbootstrap ul.list-tree > li:hover,
+.dbootstrap ul.list-tree > li.active {
+  background-color: #f5f5f5;
+  border-color: #e4e4e4;
+}
+.dbootstrap ul.list-tree > li:hover h4,
+.dbootstrap ul.list-tree > li.active h4 {
+  color: black;
+}
+.dbootstrap ul.list-tree > li:before,
+.dbootstrap ul.list-tree > li:after {
+  content: " ";
+  border: 0 dotted #ccc;
+  position: absolute;
+  left: -15px;
+}
+.dbootstrap ul.list-tree > li:before {
+  border-left-width: 1px;
+  top: -56%;
+  height: 105%;
+}
+.dbootstrap ul.list-tree > li:first-child:before {
+  border: 0;
+}
+.dbootstrap ul.list-tree > li:after {
+  border-bottom-width: 1px;
+  width: 10px;
+  top: 50%;
+}
+.dbootstrap ul.list-tree > li.disabled {
+  border: 1px solid #eee;
+}
+.dbootstrap ul.list-tree > li.disabled:after {
+  border-color: #666;
+}
+.dbootstrap .dijitMenuPopup .dijitMenuItem td a {
+  color: #666;
+}
+.dbootstrap .dijitMenuPopup .dijitMenuItem td a:hover {
+  text-decoration: none;
+}
+.dbootstrap .dijitMenuPopup .dijitMenuItem td:first-child {
+  padding-left: 2px;
+}
+.dbootstrap .dijitMenuPopup .dijitMenuItem.dijitFocused a,
+.dbootstrap .dijitMenuPopup .dijitMenuItem:hover a {
+  color: #fff;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell {
+  width: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: #c1c1c1;
+  position: relative;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell + td {
+  padding-left: 0;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell:before {
+  position: relative;
+  z-index: 2;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty) .dijitMenuItemIconCell:after {
+  border-left: 1px dotted #c1c1c1;
+  content: " ";
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  display: block;
+  height: 100%;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty):nth-child(odd) .dijitMenuItemIconCell {
+  color: #878787;
+}
+.dbootstrap .dijitMenuPopup .list-dotted .dijitMenuItem:not(.empty):last-child .dijitMenuItemIconCell:after {
+  border: 0;
+}
+.dbootstrap .dijitComboButton,
+.dbootstrap .dijitComboBox,
+.dbootstrap .dijitSelect,
+.dbootstrap .chzn-container .chzn-single,
+.dbootstrap .chzn-container .chzn-drop {
+  margin: 0;
+  /* Change standard bootstrap date combo box icon */
+}
+.dbootstrap .dijitComboButton.dijitDateTextBox .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dijitComboBox.dijitDateTextBox .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dijitSelect.dijitDateTextBox .dijitButtonNode.dijitArrowButton {
+  cursor: text;
+}
+.dbootstrap .dijitComboButton.dijitSearchTextBox .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dijitComboBox.dijitSearchTextBox .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dijitSelect.dijitSearchTextBox .dijitButtonNode.dijitArrowButton {
+  cursor: text;
+}
+.dbootstrap .dijitArrowButtonInner {
+  display: none;
+}
+.dbootstrap .dijitOffScreen {
+  visibility: visible;
+}
+.dbootstrap .dijitCheckBox,
+.dbootstrap .dijitRadio {
+  line-height: normal;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  width: 14px;
+  height: 14px;
+  border-color: #ddd;
+  background-color: #f0f0f0;
+  color: #418bca;
+}
+.dbootstrap .dijitCheckBox input,
+.dbootstrap .dijitRadio input {
+  height: auto;
+  margin: 0;
+}
+.dbootstrap .dijitCheckBox:hover,
+.dbootstrap .dijitRadio:hover {
+  background-color: #d9edf7;
+}
+.dbootstrap .dijitCheckBox.dijitChecked,
+.dbootstrap .dijitRadio.dijitChecked,
+.dbootstrap .dijitCheckBox.indeterminate,
+.dbootstrap .dijitRadio.indeterminate {
+  background-color: #d9edf7;
+  color: #31708f;
+  border-color: #bce8f1;
+}
+.dbootstrap .dijitCheckBox.indeterminate:before,
+.dbootstrap .dijitRadio.indeterminate:before {
+  vertical-align: baseline;
+}
+.dbootstrap .dijitCheckBox:before,
+.dbootstrap .dijitRadio:before {
+  line-height: 12px;
+  font-size: 10px;
+}
+.dbootstrap .dijitCheckBox.dijitCheckBoxDisabled,
+.dbootstrap .dijitRadio.dijitCheckBoxDisabled,
+.dbootstrap .dijitCheckBox.dijitRadioDisabled,
+.dbootstrap .dijitRadio.dijitRadioDisabled {
+  opacity: .50;
+}
+.dbootstrap .dijitRadio {
+  border-radius: 6px;
+}
+.dbootstrap .dijitRadio.dijitRadioChecked:before {
+  font-size: 8px;
+}
+.dbootstrap div.checkbox label {
+  line-height: 20px;
+}
+.dbootstrap div.checkbox label .dijitCheckBox {
+  display: inline-block;
+  min-height: 0;
+  margin-top: -2px;
+  margin-left: -20px;
+  margin-right: 3px;
+}
+.dbootstrap div.checkbox label .dijitCheckBox input {
+  margin: 0;
+}
+.dbootstrap div.checkbox label .dijitCheckBox:before {
+  line-height: 14px;
+}
+.dbootstrap .form-inline div.checkbox label .dijitCheckBox {
+  margin-left: 0;
+}
+.dbootstrap .label > input {
+  position: relative;
+  top: 4px;
+  margin: 0;
+}
+.dbootstrap .label > .dijitCheckBox {
+  border-color: inherit;
+  position: relative;
+  top: -1px;
+  left: -2px;
+  width: 12px;
+  height: 12px;
+}
+.dbootstrap .label > .dijitCheckBox input {
+  top: -2px;
+}
+.dbootstrap .dijitMenu {
+  overflow-y: auto !important;
+  max-height: 350px;
+}
+.dbootstrap .segment .dijitTextBox {
+  border-radius: 0 3px 3px 0;
+}
+.dbootstrap .segment label + .dijitTextBox {
+  border-radius: 3px 0 0 3px;
+  border-right: 0;
+}
+.dbootstrap .dijitTextBox,
+.dbootstrap .dojoxCheckedMultiSelect,
+.dbootstrap .chzn-container .chzn-drop .chzn-search input {
+  width: auto;
+  height: 34px;
+  border-radius: 3px;
+  cursor: text;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  padding: 4px 12px;
+  position: relative;
+  /*&.dijitSearchEmpty .dijitInputField {
+        text-align: right;
+        padding-right: 20px;
+
+        &:before {
+            &:extend([class*=" icon-"]:before);
+            &:extend(.icon-search:before);
+
+            margin-right: -15px;
+            color: #999;
+            line-height: 24px;
+        }
+    }*/
+}
+.dbootstrap .dijitTextBox > .dijitReset,
+.dbootstrap .dojoxCheckedMultiSelect > .dijitReset {
+  padding: 0 !important;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxDisabled,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxDisabled {
+  background-color: #eee;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxDisabled.readonly,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxDisabled.readonly {
+  background-color: transparent;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly .dijitDownArrowButton,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly.dijitTextBoxDisabled .dijitDownArrowButton,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly .dijitButtonNode,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly.dijitTextBoxDisabled .dijitButtonNode,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly .dijitDownArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly.dijitTextBoxDisabled .dijitDownArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly .dijitButtonNode,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly.dijitTextBoxDisabled .dijitButtonNode {
+  display: none;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly + .input-group-addon,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly.dijitTextBoxDisabled + .input-group-addon,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly + .input-group-addon,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly.dijitTextBoxDisabled + .input-group-addon {
+  background-color: transparent;
+  border: 0;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly .dijitInputField,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly.dijitTextBoxDisabled .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly.dijitTextBoxDisabled .dijitInputField {
+  padding: 0;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly *,
+.dbootstrap .dijitTextBox.dijitTextBoxReadOnly.dijitTextBoxDisabled *,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly *,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxReadOnly.dijitTextBoxDisabled * {
+  cursor: text;
+}
+.dbootstrap .dijitTextBox.dijitTextBoxError .dijitValidationContainer,
+.dbootstrap .dojoxCheckedMultiSelect.dijitTextBoxError .dijitValidationContainer {
+  display: none;
+}
+.dbootstrap .dijitTextBox .dijitButtonNode,
+.dbootstrap .dijitTextBox .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect .dijitButtonNode,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField,
+.dbootstrap .chzn-container .chzn-single div {
+  background: transparent !important;
+}
+.dbootstrap .dijitTextBox .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dijitTextBox .dijitInputField,
+.dbootstrap .dijitTextBox .dijitInputField > input,
+.dbootstrap .dojoxCheckedMultiSelect .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField > input,
+.dbootstrap .chzn-container .chzn-single div {
+  box-shadow: none;
+  height: 100%;
+  border: 0;
+}
+.dbootstrap .dijitTextBox .dijitInputField > input,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField > input {
+  width: 100%;
+  background-color: transparent;
+}
+.dbootstrap .dijitTextBox.dijitSpinner,
+.dbootstrap .dojoxCheckedMultiSelect.dijitSpinner {
+  padding-right: 4px;
+}
+.dbootstrap .dijitTextBox.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer,
+.dbootstrap .dojoxCheckedMultiSelect.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer {
+  background: none;
+  border: 1px solid #aaa !important;
+  padding: 0 !important;
+  border-radius: 7px;
+  margin: -1px 0;
+  min-width: 17px;
+}
+.dbootstrap .dijitTextBox.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer input,
+.dbootstrap .dojoxCheckedMultiSelect.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer input {
+  display: none;
+}
+.dbootstrap .dijitTextBox.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer .dijitArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer .dijitArrowButton {
+  position: relative !important;
+  padding: 0;
+  font-size: 12px;
+  min-height: 0;
+}
+.dbootstrap .dijitTextBox.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer .dijitArrowButton .dijitArrowButtonInner,
+.dbootstrap .dojoxCheckedMultiSelect.dijitSpinner .dijitButtonNode.dijitSpinnerButtonContainer .dijitArrowButton .dijitArrowButtonInner {
+  line-height: 13px;
+}
+.dbootstrap .dijitTextBox.dijitSelectDisabled .dijitButtonNode.dijitArrowButton,
+.dbootstrap .dojoxCheckedMultiSelect.dijitSelectDisabled .dijitButtonNode.dijitArrowButton {
+  background-color: #ddd;
+}
+.dbootstrap .dijitTextBox .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField {
+  width: auto;
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.dbootstrap .dijitTextBox .dijitInputField .dijitInputInner.dijitReset,
+.dbootstrap .dijitTextBox .dijitInputField .dijitPlaceHolder,
+.dbootstrap .dijitTextBox .dijitArrowButton.dijitReset,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField .dijitInputInner.dijitReset,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField .dijitPlaceHolder,
+.dbootstrap .dojoxCheckedMultiSelect .dijitArrowButton.dijitReset {
+  position: relative;
+  font-weight: normal;
+  min-height: 24px;
+  line-height: 24px;
+}
+.dbootstrap .dijitTextBox .dijitArrowButton.dijitReset,
+.dbootstrap .dojoxCheckedMultiSelect .dijitArrowButton.dijitReset {
+  box-shadow: none;
+  text-shadow: none;
+}
+.dbootstrap .dijitTextBox.input-sm .dijitButtonNode,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm .dijitButtonNode,
+.dbootstrap .form-group-sm > .dijitTextBox .dijitButtonNode,
+.dbootstrap .form-condensed .dijitTextBox .dijitButtonNode,
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton .dijitButtonNode,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton .dijitButtonNode {
+  padding: 3px 8px;
+}
+.dbootstrap .dijitTextBox.input-sm .dijitInputField .dijitPlaceHolder,
+.dbootstrap .dijitTextBox.input-sm .dijitInputField .dijitInputInner.dijitReset,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm .dijitInputField .dijitPlaceHolder,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm .dijitInputField .dijitInputInner.dijitReset,
+.dbootstrap .form-group-sm > .dijitTextBox .dijitInputField .dijitPlaceHolder,
+.dbootstrap .form-group-sm > .dijitTextBox .dijitInputField .dijitInputInner.dijitReset,
+.dbootstrap .form-condensed .dijitTextBox .dijitInputField .dijitPlaceHolder,
+.dbootstrap .form-condensed .dijitTextBox .dijitInputField .dijitInputInner.dijitReset {
+  min-height: 0;
+  line-height: inherit;
+}
+.dbootstrap .dijitTextBox .dijitInputField .dijitPlaceHolder,
+.dbootstrap .dojoxCheckedMultiSelect .dijitInputField .dijitPlaceHolder {
+  line-height: 24px;
+  width: 100%;
+  padding: 0;
+  position: absolute;
+}
+.dbootstrap .dijitTextBox.form-control .dijitInputField,
+.dbootstrap .dojoxCheckedMultiSelect.form-control .dijitInputField {
+  padding: 0;
+}
+.dbootstrap .dojoxCheckedMultiSelect {
+  font-size: 12px;
+  padding: 0;
+  height: auto;
+  width: 100%;
+  vertical-align: top;
+}
+.dbootstrap .dojoxCheckedMultiSelect > .dojoxCheckedMultiSelectWrapper {
+  display: none;
+}
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton {
+  padding: 4px 12px !important;
+  height: 32px;
+  width: 100%;
+}
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitButtonContents,
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitButtonText {
+  text-align: left;
+}
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitButtonContents .dijitButtonText,
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitButtonText .dijitButtonText {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  overflow: hidden;
+  max-height: 18px;
+  padding: 0 4px 0 0;
+}
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitArrowButton {
+  position: static;
+}
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitArrowButton .dijitArrowButtonInner {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.dbootstrap .dojoxCheckedMultiSelect .dojoxCheckedMultiSelectButton .dijitArrowButton .dijitArrowButtonInner:before {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  margin-top: -6px;
+}
+.dbootstrap .dojoxCheckedMultiSelect.dijitInline.input-sm {
+  padding: 0;
+  height: auto;
+  vertical-align: top;
+}
+.dbootstrap .dojoxCheckedMultiSelect.dijitInline.input-sm .dojoxCheckedMultiSelectButton {
+  padding: 0 !important;
+  height: auto;
+}
+.dbootstrap .dojoxCheckedMultiSelect.dijitInline.input-sm .dojoxCheckedMultiSelectButton .dijitButtonContents .dijitButtonText {
+  max-height: none;
+}
+.dbootstrap .dojoxCheckedMultiSelectMenu {
+  padding-left: 6px;
+  overflow: hidden;
+}
+.dbootstrap .form-condensed .dijitTextBox.dijitTextBoxReadOnly {
+  padding: 0;
+}
+.dbootstrap .table .dijitTextBox,
+.dbootstrap .dijitTextBox.input-sm,
+.dbootstrap .dojoxCheckedMultiSelect.input-sm,
+.dbootstrap .form-group-sm > .dijitTextBox,
+.dbootstrap .form-condensed .dijitTextBox,
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton {
+  padding: 4px 12px;
+}
+.dbootstrap .table .dijitTextBox .dijitInputInner.dijitReset,
+.dbootstrap .table .dijitTextBox .dijitPlaceHolder {
+  line-height: 18px;
+  min-height: 18px;
+}
+.dbootstrap .table .dijitTextBox .dijitPlaceHolder {
+  position: absolute;
+}
+.dbootstrap table tr td > .btn.btn-sm {
+  padding: 0;
+}
+.dbootstrap .form-horizontal .dijitTextBox.dijitTextBoxReadOnly {
+  padding-top: 7px;
+}
+.dbootstrap .form-group .dijitTextBox,
+.dbootstrap .chzn-container .chzn-drop .chzn-search input {
+  width: 100%;
+  position: relative;
+  /*.dijitArrowButton {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }*/
+}
+.dbootstrap .dijitComboBox.dijitTextBox .dijitArrowButton {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+  text-align: right;
+  margin-top: -4px;
+  cursor: text;
+}
+.dbootstrap .dijitComboBox.dijitTextBox .dijitArrowButton:before {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -8px;
+}
+.dbootstrap .input-group .dijitTextBox {
+  display: block;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  box-shadow: none;
+  line-height: inherit;
+}
+.dbootstrap .input-group .dijitTextBox:not(.dijitTextBoxError).dijitTextBoxFocused + .input-group-addon,
+.dbootstrap .input-group .dijitTextBox:not(.dijitTextBoxError).dijitTextBoxFocused.form-control {
+  box-shadow: none;
+}
+.dbootstrap .input-group .dijitTextBox .input-group-addon {
+  padding: 6px;
+}
+.dbootstrap .input-group .dijitTextBox .dijitSpinnerButtonContainer {
+  z-index: auto;
+  padding: 7px 12px !important;
+}
+.dbootstrap .input-group .input-group-addon,
+.dbootstrap .input-group .input-group-btn {
+  display: table-cell;
+  width: 1%;
+}
+.dbootstrap .input-group .input-group-addon .dijitInputField .dijitInputInner,
+.dbootstrap .input-group .input-group-btn .dijitInputField .dijitInputInner {
+  width: auto !important;
+}
+.dbootstrap .input-group .input-group-addon:last-child > .dijitTextBox,
+.dbootstrap .input-group .input-group-btn:last-child > .dijitTextBox {
+  margin-left: -1px;
+}
+.dbootstrap .input-group .input-group-btn {
+  cursor: pointer;
+  background-color: #fafafa;
+}
+.dbootstrap .input-group .input-group-btn:first-child .dijitTextBox,
+.dbootstrap .input-group .input-group-btn:first-child.dijitTextBox {
+  border-radius: 3px 0 0 3px;
+  border-left-width: 1px;
+  margin: 0;
+}
+.dbootstrap .input-group .input-group-btn:last-child .dijitTextBox,
+.dbootstrap .input-group .input-group-btn:last-child.dijitTextBox {
+  border-radius: 0 3px 3px 0;
+  border-right-width: 1px;
+}
+.dbootstrap .input-group .input-group-btn:hover {
+  background-color: #e1e1e1;
+  border-color: #b3b3b3;
+}
+.dbootstrap .input-group .input-group-btn .dijitSelectBox {
+  background-color: transparent;
+}
+.dbootstrap .input-group .input-group-btn .dijitSelectBox .dijitArrowButtonContainer {
+  display: none;
+}
+.dbootstrap .input-group .input-group-btn .dijitSelectBox .dijitInputField {
+  padding: 6px 12px;
+  position: relative;
+}
+.dbootstrap .input-group .input-group-btn .dijitSelectBox .dijitInputField .dijitButtonText .dijitSelectLabel {
+  font-size: 13px;
+  line-height: 20px;
+}
+.dbootstrap .input-group > .dijitTextBox:last-child {
+  border-right-width: 1px;
+}
+.dbootstrap .editInPlace .input-group .dijitTextBox,
+.dbootstrap .editInPlace .input-group .dijitTextBox:first-child,
+.dbootstrap .editInPlace .input-group .input-group-addon,
+.dbootstrap .editInPlace .dijitTextBox {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.dbootstrap .editInPlace .input-group .dijitTextBox input,
+.dbootstrap .editInPlace .input-group .dijitTextBox:first-child input,
+.dbootstrap .editInPlace .input-group .input-group-addon input,
+.dbootstrap .editInPlace .dijitTextBox input {
+  text-overflow: ellipsis;
+}
+.dbootstrap .editInPlace .input-group .dijitTextBox .dijitArrowButton:before,
+.dbootstrap .editInPlace .input-group .dijitTextBox:first-child .dijitArrowButton:before,
+.dbootstrap .editInPlace .input-group .input-group-addon .dijitArrowButton:before,
+.dbootstrap .editInPlace .dijitTextBox .dijitArrowButton:before {
+  color: transparent;
+}
+.dbootstrap .editInPlace .input-group .input-group-addon {
+  color: transparent;
+}
+.dbootstrap .editInPlace .input-group .dijitTextBoxFocused + .input-group-addon {
+  border-color: transparent;
+}
+.dbootstrap .editInPlace .input-group:hover .dijitTextBox,
+.dbootstrap .editInPlace .input-group:hover .input-group-addon,
+.dbootstrap .editInPlace .dijitTextBox:hover,
+.dbootstrap .editInPlace .input-group .dijitTextBox.dijitTextBoxFocused,
+.dbootstrap .editInPlace .dijitTextBox.dijitFocused {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.dbootstrap .editInPlace .input-group:hover .dijitTextBox input,
+.dbootstrap .editInPlace .input-group:hover .input-group-addon input,
+.dbootstrap .editInPlace .dijitTextBox:hover input,
+.dbootstrap .editInPlace .input-group .dijitTextBox.dijitTextBoxFocused input,
+.dbootstrap .editInPlace .dijitTextBox.dijitFocused input {
+  text-overflow: inherit;
+}
+.dbootstrap .editInPlace .input-group:hover .dijitTextBox .dijitArrowButton:before,
+.dbootstrap .editInPlace .input-group:hover .input-group-addon .dijitArrowButton:before,
+.dbootstrap .editInPlace .dijitTextBox:hover .dijitArrowButton:before,
+.dbootstrap .editInPlace .input-group .dijitTextBox.dijitTextBoxFocused .dijitArrowButton:before,
+.dbootstrap .editInPlace .dijitTextBox.dijitFocused .dijitArrowButton:before {
+  color: inherit;
+}
+.dbootstrap .editInPlace .input-group:hover .dijitTextBox.dijitDisabled,
+.dbootstrap .editInPlace .input-group:hover .input-group-addon.dijitDisabled,
+.dbootstrap .editInPlace .dijitTextBox:hover.dijitDisabled,
+.dbootstrap .editInPlace .input-group .dijitTextBox.dijitTextBoxFocused.dijitDisabled,
+.dbootstrap .editInPlace .dijitTextBox.dijitFocused.dijitDisabled {
+  background-color: #eee;
+}
+.dbootstrap .editInPlace .input-group:hover .dijitTextBox.readonly,
+.dbootstrap .editInPlace .input-group:hover .input-group-addon.readonly,
+.dbootstrap .editInPlace .dijitTextBox:hover.readonly,
+.dbootstrap .editInPlace .input-group .dijitTextBox.dijitTextBoxFocused.readonly,
+.dbootstrap .editInPlace .dijitTextBox.dijitFocused.readonly,
+.dbootstrap .editInPlace .input-group:hover .dijitTextBox.dijitReadOnly,
+.dbootstrap .editInPlace .input-group:hover .input-group-addon.dijitReadOnly,
+.dbootstrap .editInPlace .dijitTextBox:hover.dijitReadOnly,
+.dbootstrap .editInPlace .input-group .dijitTextBox.dijitTextBoxFocused.dijitReadOnly,
+.dbootstrap .editInPlace .dijitTextBox.dijitFocused.dijitReadOnly {
+  background-color: transparent;
+  border-color: transparent;
+}
+.dbootstrap .editInPlace .input-group:hover .input-group-addon {
+  color: inherit;
+}
+.dbootstrap .editInPlace .input-group .dijitTextBoxFocused.dijitHover + .input-group-addon,
+.dbootstrap .editInPlace .input-group .dijitTextBoxFocused.dijitTextBox + .input-group-addon {
+  border-color: #ccc;
+}
+.dbootstrap .dijitButton,
+.dbootstrap .dijitDropDownButton,
+.dbootstrap .dijitComboButton {
+  margin: 0;
+  border: 0;
+  min-width: 34px;
+}
+.dbootstrap .dijitButton.btn,
+.dbootstrap .dijitDropDownButton.btn,
+.dbootstrap .dijitComboButton.btn,
+.dbootstrap .dijitButton.btn:hover,
+.dbootstrap .dijitDropDownButton.btn:hover,
+.dbootstrap .dijitComboButton.btn:hover,
+.dbootstrap .dijitButton.btn-danger,
+.dbootstrap .dijitDropDownButton.btn-danger,
+.dbootstrap .dijitComboButton.btn-danger,
+.dbootstrap .dijitButton.btn-danger:hover,
+.dbootstrap .dijitDropDownButton.btn-danger:hover,
+.dbootstrap .dijitComboButton.btn-danger:hover,
+.dbootstrap .dijitButton.btn-primary,
+.dbootstrap .dijitDropDownButton.btn-primary,
+.dbootstrap .dijitComboButton.btn-primary,
+.dbootstrap .dijitButton.btn-primary:hover,
+.dbootstrap .dijitDropDownButton.btn-primary:hover,
+.dbootstrap .dijitComboButton.btn-primary:hover,
+.dbootstrap .dijitButton.btn-success,
+.dbootstrap .dijitDropDownButton.btn-success,
+.dbootstrap .dijitComboButton.btn-success,
+.dbootstrap .dijitButton.btn-success:hover,
+.dbootstrap .dijitDropDownButton.btn-success:hover,
+.dbootstrap .dijitComboButton.btn-success:hover {
+  background-color: transparent;
+  border: 0;
+}
+.dbootstrap .dijitButton.danger .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.danger .dijitButtonNode,
+.dbootstrap .dijitComboButton.danger .dijitButtonNode,
+.dbootstrap .dijitButton.btn-danger .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-danger .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-danger .dijitButtonNode {
+  background-color: #9e2b22;
+  border-color: #89251d;
+}
+.dbootstrap .dijitButton.danger .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.danger .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.danger .dijitButtonNode:hover,
+.dbootstrap .dijitButton.btn-danger .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.btn-danger .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.btn-danger .dijitButtonNode:hover {
+  background-color: #c8362b;
+  border-color: #b33127;
+}
+.dbootstrap .dijitButton.primary .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.primary .dijitButtonNode,
+.dbootstrap .dijitComboButton.primary .dijitButtonNode,
+.dbootstrap .dijitButton.btn-primary .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-primary .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-primary .dijitButtonNode {
+  background-color: #418bca;
+  border-color: #357ebd;
+}
+.dbootstrap .dijitButton.primary .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.primary .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.primary .dijitButtonNode:hover,
+.dbootstrap .dijitButton.btn-primary .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.btn-primary .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.btn-primary .dijitButtonNode:hover {
+  background-color: #69a3d5;
+  border-color: #5597d0;
+}
+.dbootstrap .dijitButton.success .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.success .dijitButtonNode,
+.dbootstrap .dijitComboButton.success .dijitButtonNode,
+.dbootstrap .dijitButton.btn-success .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-success .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-success .dijitButtonNode {
+  background-color: #458744;
+  border-color: #3c763b;
+}
+.dbootstrap .dijitButton.success .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.success .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.success .dijitButtonNode:hover,
+.dbootstrap .dijitButton.btn-success .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.btn-success .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.btn-success .dijitButtonNode:hover {
+  background-color: #56a955;
+  border-color: #4e984d;
+}
+.dbootstrap .dijitButton.link .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.link .dijitButtonNode,
+.dbootstrap .dijitComboButton.link .dijitButtonNode,
+.dbootstrap .dijitButton.btn-link .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.btn-link .dijitButtonNode,
+.dbootstrap .dijitComboButton.btn-link .dijitButtonNode {
+  border-color: transparent;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #418bca;
+  cursor: pointer;
+}
+.dbootstrap .dijitButton.link .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.link .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.link .dijitButtonNode:hover,
+.dbootstrap .dijitButton.btn-link .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton.btn-link .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton.btn-link .dijitButtonNode:hover {
+  color: #2a6496;
+  text-decoration: underline;
+  border-color: transparent;
+  background-color: transparent;
+}
+.dbootstrap .dijitButton.text-left .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.text-left .dijitButtonNode,
+.dbootstrap .dijitComboButton.text-left .dijitButtonNode {
+  text-align: left;
+}
+.dbootstrap .dijitButton.text-right .dijitButtonNode,
+.dbootstrap .dijitDropDownButton.text-right .dijitButtonNode,
+.dbootstrap .dijitComboButton.text-right .dijitButtonNode {
+  text-align: right;
+}
+.dbootstrap .dijitButton .dijitButtonText,
+.dbootstrap .dijitDropDownButton .dijitButtonText,
+.dbootstrap .dijitComboButton .dijitButtonText {
+  display: inline-block;
+  padding: 0;
+  line-height: inherit;
+  vertical-align: middle;
+  white-space: normal;
+}
+.dbootstrap .dijitButton .dijitButtonText [class^="icon-"]:before,
+.dbootstrap .dijitDropDownButton .dijitButtonText [class^="icon-"]:before,
+.dbootstrap .dijitComboButton .dijitButtonText [class^="icon-"]:before,
+.dbootstrap .dijitButton .dijitButtonText [class*=" icon-"]:before,
+.dbootstrap .dijitDropDownButton .dijitButtonText [class*=" icon-"]:before,
+.dbootstrap .dijitComboButton .dijitButtonText [class*=" icon-"]:before {
+  display: inline;
+}
+.dbootstrap .dijitButton .dijitButtonNode,
+.dbootstrap .dijitDropDownButton .dijitButtonNode,
+.dbootstrap .dijitComboButton .dijitButtonNode {
+  text-transform: none;
+  line-height: inherit;
+  box-shadow: none;
+  text-shdow: none !important;
+  background-color: #fafafa;
+  border-color: #ccc;
+  min-width: 27px;
+}
+.dbootstrap .dijitButton .dijitButtonNode:hover,
+.dbootstrap .dijitDropDownButton .dijitButtonNode:hover,
+.dbootstrap .dijitComboButton .dijitButtonNode:hover {
+  background-color: #e1e1e1;
+  border-color: #b3b3b3;
+}
+.dbootstrap .dijitButton .dijitArrowButtonChar,
+.dbootstrap .dijitDropDownButton .dijitArrowButtonChar,
+.dbootstrap .dijitComboButton .dijitArrowButtonChar {
+  display: inline !important;
+  float: none;
+  vertical-align: inherit;
+  font-size: 0;
+  line-height: 1;
+}
+.dbootstrap .dijitButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitDropDownButton .dijitArrowButtonChar:before,
+.dbootstrap .dijitComboButton .dijitArrowButtonChar:before {
+  font-size: 14px;
+  text-align: right;
+  line-height: 1px;
+  padding-left: 3px;
+}
+.dbootstrap table.dijitComboButton,
+.dbootstrap table.dijitComboButton:hover {
+  border: 0;
+  padding: 0 !important;
+  background-color: transparent;
+}
+.dbootstrap table.dijitComboButton .dijitButtonNode .dijitArrowButtonChar:before,
+.dbootstrap table.dijitComboButton:hover .dijitButtonNode .dijitArrowButtonChar:before {
+  padding-left: 0;
+}
+.dbootstrap table.dijitComboButton .dijitButtonNode.dijitArrowButton:before,
+.dbootstrap table.dijitComboButton:hover .dijitButtonNode.dijitArrowButton:before {
+  display: none !important;
+}
+.dbootstrap table.dijitComboButton.btn-sm .dijitButtonNode,
+.dbootstrap table.dijitComboButton:hover.btn-sm .dijitButtonNode {
+  height: 28px;
+}
+.dbootstrap span.btn .dijitButtonNode {
+  padding: 6px 12px;
+}
+.dbootstrap span.btn-sm,
+.dbootstrap span.btn-xs,
+.dbootstrap table.btn-sm,
+.dbootstrap table.btn-xs {
+  min-width: 0;
+}
+.dbootstrap span.btn-sm .dijitButtonNode,
+.dbootstrap span.btn-xs .dijitButtonNode,
+.dbootstrap table.btn-sm .dijitButtonNode,
+.dbootstrap table.btn-xs .dijitButtonNode,
+.dbootstrap span.btn-sm.dijitComboButton,
+.dbootstrap span.btn-xs.dijitComboButton,
+.dbootstrap table.btn-sm.dijitComboButton,
+.dbootstrap table.btn-xs.dijitComboButton {
+  line-height: normal;
+}
+.dbootstrap span.btn-sm .dijitButtonNode .dijitButtonText,
+.dbootstrap span.btn-xs .dijitButtonNode .dijitButtonText,
+.dbootstrap table.btn-sm .dijitButtonNode .dijitButtonText,
+.dbootstrap table.btn-xs .dijitButtonNode .dijitButtonText,
+.dbootstrap span.btn-sm.dijitComboButton .dijitButtonText,
+.dbootstrap span.btn-xs.dijitComboButton .dijitButtonText,
+.dbootstrap table.btn-sm.dijitComboButton .dijitButtonText,
+.dbootstrap table.btn-xs.dijitComboButton .dijitButtonText,
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton .dijitButtonNode .dijitButtonText,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton .dijitButtonNode .dijitButtonText {
+  font-size: 11px;
+}
+.dbootstrap span.btn-sm .dijitButtonNode,
+.dbootstrap span.btn-xs .dijitButtonNode,
+.dbootstrap table.btn-sm .dijitButtonNode,
+.dbootstrap table.btn-xs .dijitButtonNode {
+  line-height: inherit;
+  vertical-align: inherit;
+  min-height: inherit;
+  padding: 5px 8px;
+}
+.dbootstrap span.btn,
+.dbootstrap span.btn-sm,
+.dbootstrap span.btn-xs {
+  padding: 0;
+}
+.dbootstrap span.btn .dijitButtonNode,
+.dbootstrap span.btn-sm .dijitButtonNode,
+.dbootstrap span.btn-xs .dijitButtonNode {
+  margin: 0;
+  border-radius: 3px;
+}
+.dbootstrap .btn-sm {
+  min-height: 28px;
+}
+.dbootstrap span.btn-xs .dijitButtonNode {
+  padding: 1px 5px;
+}
+.dbootstrap .btn-group > .dijitButton {
+  position: relative;
+  float: left;
+}
+.dbootstrap .btn-group > .dijitButton + .dijitButton {
+  margin-left: -1px;
+}
+.dbootstrap .btn-group > .dijitButton:first-child:not(:last-child):not(.dropdown-toggle) .dijitButtonNode {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.dbootstrap .btn-group > .dijitButton:last-child:not(:first-child) .dijitButtonNode {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.dbootstrap .input-addon {
+  position: relative;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.dbootstrap .input-addon .form-control {
+  position: absolute;
+  z-index: 1;
+  background-color: transparent;
+}
+.dbootstrap .input-addon .input-addon-unit {
+  font-size: 12px;
+  line-height: 35px;
+}
+.dbootstrap .dijitSelect,
+.dbootstrap .chzn-container .chzn-single,
+.dbootstrap .chzn-container .chzn-drop {
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #fff;
+  /* Adds correct display to buttons that are of type table cell */
+}
+.dbootstrap .dijitSelect td.dijitButtonNode {
+  display: table-cell;
+}
+.dbootstrap .dijitSelect .dijitButtonNode.dijitButtonContents {
+  position: absolute;
+  width: 100%;
+  padding: 4px 24px 4px 12px !important;
+  margin: -4px -12px;
+}
+.dbootstrap .dijitSelect .dijitButtonText,
+.dbootstrap .chzn-container .chzn-single,
+.dbootstrap .chzn-container .chzn-single > span {
+  float: none;
+  display: block;
+  height: inherit;
+  vertical-align: middle;
+  text-align: left;
+  line-height: 24px;
+  padding: 0;
+  overflow: hidden;
+}
+.dbootstrap .dijitSelect.readonly .dijitButtonContents {
+  position: relative;
+}
+.dbootstrap .dijitSelect.readonly .dijitButtonContents .dijitSelectLabel {
+  white-space: normal;
+  line-height: 18px;
+}
+.dbootstrap .file-input {
+  height: 34px;
+  overflow: hidden;
+  position: relative;
+}
+.dbootstrap .file-input input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.dbootstrap .file-input input[type="file"] {
+  opacity: 0;
+  z-index: 10;
+  cursor: text;
+}
+.dbootstrap .file-input i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 14px;
+  z-index: 20;
+}
+.dbootstrap .file-input .file-input-replacement:not(:first-child):not(:last-child) {
+  border-right: 1px solid #CCC;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.dbootstrap .dgrid {
+  border: 0;
+  height: auto;
+  overflow: visible;
+}
+.dbootstrap .dgrid .dgrid-header {
+  height: auto !important;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+  position: relative;
+  padding-right: 17px;
+  border-bottom: 2px solid #ddd;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell {
+  padding: 8px;
+  overflow: visible;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell label {
+  color: #999;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell .dgrid-resize-header-container {
+  height: inherit;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell ::-webkit-input-placeholder {
+  font-family: corporate-icons;
+  text-align: right;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell :-moz-placeholder {
+  font-family: corporate-icons;
+  text-align: right;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell ::-moz-placeholder {
+  font-family: corporate-icons;
+  text-align: right;
+}
+.dbootstrap .dgrid .dgrid-header .dgrid-cell :-ms-input-placeholder {
+  font-family: corporate-icons;
+  text-align: right;
+}
+.dbootstrap .dgrid .dgrid-header-scroll {
+  padding: 6px;
+  box-shadow: none;
+}
+.dbootstrap .dgrid .dgrid-header-scroll .dgrid-hider-toggle {
+  background: transparent;
+  color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  top: 10px;
+  right: 8px;
+  font-size: 0;
+}
+.dbootstrap .dgrid .dgrid-header-scroll .dgrid-hider-toggle:before {
+  color: #428bca;
+  font-size: 14px;
+}
+.dbootstrap .dgrid .dgrid-hider-toggle.ui-icon:after {
+  padding-left: 2px;
+}
+.dbootstrap .dgrid .dgrid-hider-menu {
+  background: #fff;
+  top: 12px;
+  right: 24px;
+  border-radius: 3px;
+  border-color: #ddd;
+  padding: 12px 8px;
+}
+.dbootstrap .dgrid .dgrid-scroller {
+  max-height: 350px;
+  width: auto;
+  position: relative;
+  overflow-y: visible;
+  margin-top: 0 !important;
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  -o-user-select: auto !important;
+  user-select: auto !important;
+}
+.dbootstrap .dgrid .dgrid-scroller .dgrid-content {
+  width: 100% !important;
+}
+.dbootstrap .dgrid .dgrid-scroller .dgrid-cell {
+  vertical-align: middle;
+  text-shadow: none;
+}
+.dbootstrap .dgrid .dgrid-scroller .dgrid-cell a > i,
+.dbootstrap .dgrid .dgrid-scroller .dgrid-cell a[class^=icon-] {
+  font-size: 14px;
+  text-decoration: none;
+}
+.dbootstrap .dgrid .dgrid-scroller .dgrid-cell .dijitButton,
+.dbootstrap .dgrid .dgrid-scroller .dgrid-cell .dijitDropDownButton {
+  margin: -8px 4px -8px 0;
+}
+.dbootstrap .dgrid .dgrid-scroller .dgrid-cell:focus {
+  outline: 0;
+}
+.dbootstrap .dgrid .dgrid-scroller .dgrid-no-data,
+.dbootstrap .dgrid .dgrid-scroller .dgrid-loading {
+  text-align: center;
+}
+.dbootstrap .dgrid .dgrid-footer {
+  margin: 15px 0 0;
+  width: auto;
+  position: relative;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+.dbootstrap .dgrid .dgrid-row {
+  width: 100%;
+  border: 0;
+  /*.badge {
+            height: 20px;
+            min-width: 35px;
+            border-radius: 4px;
+            margin-left: 1px;
+            margin-top: 1px;
+            padding: 4px;
+
+            &.badge-xs {
+                width: 6px;
+                min-width: 6px;
+                padding: 4px 0px;
+                color: transparent;
+            }
+        }*/
+}
+.dbootstrap .dgrid .dgrid-row .showOnHover {
+  visibility: hidden;
+}
+.dbootstrap .dgrid .dgrid-row:hover > .dgrid-row-table .dgrid-cell .showOnHover,
+.dbootstrap .dgrid .dgrid-row:hover > div > .dgrid-row-table .dgrid-cell .showOnHover {
+  visibility: visible;
+}
+.dbootstrap .dgrid .dgrid-row.has-danger:hover tr > td.dgrid-cell,
+.dbootstrap .dgrid .dgrid-row.has-danger tr > td.dgrid-cell {
+  border-color: #b94a48;
+  background: #f8eeee;
+  color: #a94442;
+}
+.dbootstrap .dgrid .dgrid-row.has-danger + .has-danger tr > td.dgrid-cell {
+  border-top: 1px solid #d9aeae;
+}
+.dbootstrap .dgrid .dgrid-cell {
+  border: 0;
+  padding: 8px;
+  font-weight: normal;
+  position: relative;
+}
+.dbootstrap .dgrid .dgrid-cell .dijitTextBox .dijitButtonNode,
+.dbootstrap .dgrid .dgrid-cell .dijitButton .dijitButtonNode,
+.dbootstrap .dgrid .dgrid-cell .dijitDropDownButton .dijitButtonNode {
+  padding: 5px 8px;
+}
+.dbootstrap .dgrid .dgrid-cell .dijitTextBox.btn-xs .dijitButtonNode,
+.dbootstrap .dgrid .dgrid-cell .dijitButton.btn-xs .dijitButtonNode,
+.dbootstrap .dgrid .dgrid-cell .dijitDropDownButton.btn-xs .dijitButtonNode {
+  padding: 3px 6px;
+}
+.dbootstrap .dgrid .dgrid-cell .dijitSelectBox .dijitButtonContents {
+  padding-right: 27px;
+}
+.dbootstrap .dgrid .dgrid-cell input {
+  font-weight: normal;
+}
+.dbootstrap .dgrid .dgrid-cell.nowrap {
+  white-space: nowrap;
+}
+.dbootstrap .dgrid .dgrid-sort-arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.dbootstrap .dgrid .dgrid-pagination {
+  text-align: center;
+  line-height: 0.7;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-status {
+  float: left;
+  padding: 8px 0;
+  line-height: 1.42857143;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation {
+  display: inline-block;
+  float: none;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation a,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation span.dgrid-page-link {
+  background-color: #eaeaea;
+  border: 1px solid #ddd;
+  height: 34px;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation a:hover,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation span.dgrid-page-link:hover {
+  background-color: #ddd;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation a.dgrid-first,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation span.dgrid-page-link.dgrid-first {
+  border-radius: 4px 0 0 4px;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation a.dgrid-last,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation span.dgrid-page-link.dgrid-last {
+  border-radius: 0 4px 4px 0;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation a.dgrid-page-disabled,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation span.dgrid-page-link.dgrid-page-disabled {
+  background-color: #eaeaea;
+  color: #808080;
+  opacity: 0.4;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation > a,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation > span.dgrid-page-link {
+  line-height: 1.2;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input {
+  float: left;
+  width: 40px;
+  border-radius: 0;
+  padding: 4px;
+  margin: 0 -1px;
+  position: relative;
+  z-index: 1;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input + a,
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation input + span {
+  margin-left: 0;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation .dgrid-pagination-links {
+  float: left;
+  display: inline-block;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation .dgrid-pagination-links .dgrid-page-link {
+  padding: 8px 12px;
+}
+.dbootstrap .dgrid .dgrid-pagination .dgrid-navigation .dgrid-page-skip {
+  float: left;
+  height: 34px;
+  padding: 7px;
+  line-height: 1.42857143;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.dbootstrap .dgrid .dgrid-row-even,
+.dbootstrap .dgrid .dgrid-row-even:hover,
+.dbootstrap .dgrid .dgrid-row-even .dgrid-cell,
+.dbootstrap .dgrid .dgrid-row-even:hover .dgrid-cell,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd:hover,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd .dgrid-cell,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-odd:hover .dgrid-cell {
+  background-color: #ebeef0;
+}
+.dbootstrap .dgrid .dgrid-row-odd,
+.dbootstrap .dgrid .dgrid-row-odd:hover,
+.dbootstrap .dgrid .dgrid-row-odd .dgrid-cell,
+.dbootstrap .dgrid .dgrid-row-odd:hover .dgrid-cell,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even:hover,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even .dgrid-cell,
+.dbootstrap .dgrid.table-striped-reveresed .dgrid-row-even:hover .dgrid-cell {
+  background-color: #fff;
+}
+.dbootstrap .dgrid .dgrid-row,
+.dbootstrap .dgrid .dgrid-row .dgrid-cell,
+.dbootstrap .dgrid .dgrid-row:hover,
+.dbootstrap .dgrid .dgrid-row:hover .dgrid-cell,
+.dbootstrap .dgrid .row-selected,
+.dbootstrap .dgrid .row-selected .dgrid-cell {
+  color: inherit;
+  text-shadow: none;
+}
+.dbootstrap .dgrid .dgrid-row:hover > .dgrid-row-table,
+.dbootstrap .dgrid .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid .row-selected > .dgrid-row-table,
+.dbootstrap .dgrid .row-selected > .dgrid-row-table .dgrid-cell {
+  background-color: #d1e8f2;
+}
+.dbootstrap .dgrid.table:not(.table-striped) .dgrid-row .dgrid-cell {
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+.dbootstrap .dgrid.table-selectable .dgrid-selected .dgrid-cell,
+.dbootstrap .dgrid.table-clickable .dgrid-selected .dgrid-cell,
+.dbootstrap .dgrid.clickable-table .dgrid-selected .dgrid-cell {
+  background-color: transparent;
+}
+.dbootstrap .dgrid.table-selectable .collapsable .content,
+.dbootstrap .dgrid.table-clickable .collapsable .content,
+.dbootstrap .dgrid.clickable-table .collapsable .content {
+  background: #f8f8f8;
+}
+.dbootstrap .dgrid.table-selectable .collapsable > .dgrid-row-table .dgrid-cell:first-child,
+.dbootstrap .dgrid.table-clickable .collapsable > .dgrid-row-table .dgrid-cell:first-child,
+.dbootstrap .dgrid.clickable-table .collapsable > .dgrid-row-table .dgrid-cell:first-child,
+.dbootstrap .dgrid.table-selectable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child,
+.dbootstrap .dgrid.table-clickable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child,
+.dbootstrap .dgrid.clickable-table .collapsable > div > .dgrid-row-table .dgrid-cell:first-child {
+  white-space: nowrap;
+}
+.dbootstrap .dgrid.table-selectable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-selectable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.table-clickable .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before,
+.dbootstrap .dgrid.clickable-table .collapsable > div > .dgrid-row-table .dgrid-cell:first-child:before {
+  display: inline-block;
+  margin-right: 6px;
+  width: 6px;
+}
+.dbootstrap .dgrid.table-selectable .collapsable.collapsed > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-clickable .collapsable.collapsed > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.clickable-table .collapsable.collapsed > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-selectable .collapsable.collapsed > div > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-clickable .collapsable.collapsed > div > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.clickable-table .collapsable.collapsed > div > .dgrid-row-table .dgrid-cell {
+  background-color: transparent;
+}
+.dbootstrap .dgrid.table-selectable > .dgrid-scroller > .dgrid-content > .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-selectable > .dgrid-scroller > .dgrid-content > .dgrid-row:hover > div > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-selectable > .dgrid-scroller > .dgrid-content > .dgrid-tree-container .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-selectable > .dgrid-scroller > .dgrid-content > .dgrid-selected > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-selectable > .dgrid-scroller > .dgrid-content > .dgrid-selected > div > .dgrid-row-table .dgrid-cell {
+  background-color: #d1e8f2;
+  cursor: default;
+}
+.dbootstrap .dgrid.table-clickable > .dgrid-scroller > .dgrid-content > .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.clickable-table > .dgrid-scroller > .dgrid-content > .dgrid-row:hover > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.table-clickable > .dgrid-scroller > .dgrid-content > .dgrid-row:hover > div > .dgrid-row-table .dgrid-cell,
+.dbootstrap .dgrid.clickable-table > .dgrid-scroller > .dgrid-content > .dgrid-row:hover > div > .dgrid-row-table .dgrid-cell {
+  background-color: #d1e8f2;
+  cursor: pointer;
+}
+.dbootstrap .dgrid.table-scrollable .dgrid-scroller,
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogPaneContent .dgrid .dgrid-scroller {
+  max-height: 222px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.dbootstrap .dgrid.table-scrollable .dgrid-scroller .dgrid-cell:last-child {
+  padding-right: 24px;
+}
+.dbootstrap .dgrid.table-noscroll .dgrid-header {
+  padding-right: 0;
+}
+.dbootstrap .dgrid.table-noscroll .dgrid-scroller {
+  max-height: none !important;
+  overflow-y: auto !important;
+  margin-bottom: 0 !important;
+}
+.dbootstrap .dgrid.table-sm,
+.dbootstrap .dgrid.table-md,
+.dbootstrap .dgrid.table-lg {
+  max-height: none;
+}
+.dbootstrap .dgrid.table-sm .dgrid-header,
+.dbootstrap .dgrid.table-md .dgrid-header,
+.dbootstrap .dgrid.table-lg .dgrid-header {
+  min-height: 0;
+}
+.dbootstrap .dgrid.table-sm .dgrid-scroller,
+.dbootstrap .dgrid.table-md .dgrid-scroller,
+.dbootstrap .dgrid.table-lg .dgrid-scroller {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.dbootstrap .dgrid.table-sm .dgrid-scroller,
+.dbootstrap .dgrid .dgrid-scroller.table-sm {
+  max-height: 200px;
+}
+.dbootstrap .dgrid.table-md .dgrid-scroller,
+.dbootstrap .dgrid .dgrid-scroller.table-md {
+  max-height: 350px;
+}
+.dbootstrap .dgrid.table-lg .dgrid-scroller,
+.dbootstrap .dgrid .dgrid-scroller.table-lg {
+  max-height: 500px;
+}
+.dbootstrap .dgrid .dgrid-scroller.table-sm,
+.dbootstrap .dgrid .dgrid-scroller.table-md,
+.dbootstrap .dgrid .dgrid-scroller.table-lg {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.dbootstrap .dgrid.table-hs .dgrid-header {
+  overflow: hidden;
+  margin-right: 17px;
+  padding-right: 0;
+}
+.dbootstrap .dgrid.table-hs .dgrid-scroller {
+  overflow-x: scroll !important;
+}
+.dbootstrap .dgrid.table-hs .dgrid-cell {
+  width: 110px;
+}
+.dbootstrap .dgrid.table-data .dgrid-header th {
+  padding-bottom: 0;
+}
+.dbootstrap .dgrid.table-data .dgrid-header th h1,
+.dbootstrap .dgrid.table-data .dgrid-header th h2,
+.dbootstrap .dgrid.table-data .dgrid-header th h3,
+.dbootstrap .dgrid.table-data .dgrid-header th h4,
+.dbootstrap .dgrid.table-data .dgrid-header th h5,
+.dbootstrap .dgrid.table-data .dgrid-header th h6 {
+  padding: 0;
+  border: 0;
+  text-transform: none;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:last-child td.dgrid-cell,
+.dbootstrap .dgrid.table-data .dgrid-row:last-child:hover td.dgrid-cell {
+  border-bottom: 0;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell {
+  padding: 8px;
+  border-bottom: 1px solid #dddddd;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell small,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell small {
+  font-weight: normal;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell:first-child,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell:first-child,
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell.th,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell.th {
+  background-color: #fff;
+  text-align: left;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell.divider-right,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell.divider-right {
+  border-right: 2px solid #fff;
+}
+.dbootstrap .dgrid.table-data .dgrid-row:hover td.dgrid-cell.divider-left,
+.dbootstrap .dgrid.table-data .dgrid-row td.dgrid-cell.divider-left {
+  border-left: 2px solid #fff;
+}
+.dbootstrap .dijitPopup .dateFilterArea .dijitCalendar,
+.dbootstrap .popover .dateFilterArea .dijitCalendar {
+  border: 0;
+  box-shadow: none;
+}
+.dbootstrap .dijitPopup .dijitCalendar,
+.dbootstrap .popover .dijitCalendar {
+  background: #fff;
+  width: 260px !important;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton {
+  width: 100%;
+  padding: 0;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton .dijitButtonNode,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton .dijitButtonNode {
+  height: 27px;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton .dijitButtonNode .dijitButtonText,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton .dijitButtonNode .dijitButtonText {
+  letter-spacing: -0.01em;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitDropDownButton .dijitButtonNode .dijitArrowButtonChar,
+.dbootstrap .popover .dijitCalendar .dijitDropDownButton .dijitButtonNode .dijitArrowButtonChar {
+  padding: 0;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarIncrementControl,
+.dbootstrap .popover .dijitCalendar .dijitCalendarIncrementControl {
+  display: none;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarIncrementControl.dijitCalendarIncrease + .dijitA11ySideArrow,
+.dbootstrap .popover .dijitCalendar .dijitCalendarIncrementControl.dijitCalendarIncrease + .dijitA11ySideArrow {
+  margin-right: 0;
+  margin-left: 5px;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitA11ySideArrow,
+.dbootstrap .popover .dijitCalendar .dijitA11ySideArrow {
+  display: block;
+  font-size: 0;
+  color: transparent;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  border-radius: 4px;
+  margin-right: 5px;
+  text-align: center;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitA11ySideArrow:hover,
+.dbootstrap .popover .dijitCalendar .dijitA11ySideArrow:hover {
+  background-color: #e1e1e1;
+  border-color: #b3b3b3;
+  cursor: pointer;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitA11ySideArrow:before,
+.dbootstrap .popover .dijitCalendar .dijitA11ySideArrow:before {
+  font-size: 14px;
+  color: #000;
+  line-height: 25px;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarDayLabelTemplate,
+.dbootstrap .popover .dijitCalendar .dijitCalendarDayLabelTemplate {
+  font-weight: bold;
+  text-align: center;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarPreviousMonth,
+.dbootstrap .popover .dijitCalendar .dijitCalendarPreviousMonth,
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarNextMonth,
+.dbootstrap .popover .dijitCalendar .dijitCalendarNextMonth {
+  background: none;
+  color: #999;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarSelectedDate,
+.dbootstrap .popover .dijitCalendar .dijitCalendarSelectedDate {
+  border-radius: 4px;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarSelectedDate,
+.dbootstrap .popover .dijitCalendar .dijitCalendarSelectedDate,
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarSelectedDate:active,
+.dbootstrap .popover .dijitCalendar .dijitCalendarSelectedDate:active {
+  outline: 0;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarCurrentDate,
+.dbootstrap .popover .dijitCalendar .dijitCalendarCurrentDate {
+  background-color: #d1e8f2;
+  border-radius: 4px;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarCurrentDate .dijitCalendarDateLabel,
+.dbootstrap .popover .dijitCalendar .dijitCalendarCurrentDate .dijitCalendarDateLabel {
+  text-decoration: none;
+}
+.dbootstrap .dijitPopup .dijitCalendar .dijitCalendarSelectedDate,
+.dbootstrap .popover .dijitCalendar .dijitCalendarSelectedDate {
+  background-color: #418bca;
+  border-color: #357ebd;
+}
+.dbootstrap .popover .dijitCalendar {
+  border: 0;
+  padding: 0;
+}
+.dbootstrap .dijitTitlePane {
+  border: 0;
+  overflow: visible;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle {
+  padding: 0;
+  color: inherit;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle img {
+  display: none;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode {
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid #cccccc;
+  padding: 5px 0;
+  margin: 5px 0 0;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent > *:before {
+  display: inline-block;
+  margin-right: 4px;
+  min-width: 7px;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode > .pull-right {
+  line-height: 13px;
+  margin: -3px 0;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitClosed .dijitTitlePaneTextNodeParent:before,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitFixedClosed .dijitTitlePaneTextNodeParent:before {
+  display: none;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitClosed,
+.dbootstrap .dijitTitlePane .dijitTitlePaneTitle.dijitFixedClosed {
+  cursor: pointer;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner {
+  padding: 0;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner .well,
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner .panel-body {
+  padding: 8px;
+  margin: 0;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner .table-unstyled tr > th:first-child,
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner .table-unstyled tr > td:first-child {
+  padding-left: 0;
+}
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner .table-unstyled tr > th:last-child,
+.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter .dijitTitlePaneContentInner .table-unstyled tr > td:last-child {
+  padding-right: 0;
+}
+.dbootstrap .dijitTitlePane.disabled .dijitTitlePaneTitle .dijitTitlePaneTextNode:before,
+.dbootstrap .dijitTitlePane.disabled .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent:before,
+.dbootstrap .dijitTitlePane.disabled .dijitTitlePaneTitle .dijitTitlePaneTextNodeParent > *:before {
+  display: none;
+}
+.dbootstrap .dijitContentPane {
+  padding: 0;
+  overflow: visible;
+}
+.dbootstrap .dijitDialogUnderlayWrapper {
+  position: fixed;
+  top: 0 !important;
+  bottom: 0;
+  left: 0 !important;
+  right: 0;
+  z-index: 1050 !important;
+}
+.dbootstrap .dijitDialogUnderlayWrapper .dijitDialogUnderlay {
+  opacity: 0.5;
+  width: 100% !important;
+  height: 100% !important;
+}
+.dbootstrap .lotusDialogBorder.lotusui30,
+.dbootstrap .lotusui30 .lotusDialogBorder {
+  z-index: 1060 !important;
+}
+.dbootstrap .dijitDialog {
+  z-index: 1051 !important;
+}
+.dbootstrap .dijitDialog .dijitDialogTitleBar .dijitDialogTitle {
+  font-size: 14px;
+  color: #666;
+}
+.dbootstrap .dijitDialog .dijitDialogPaneContent > .modal-dialog,
+.dbootstrap .dijitDialog .dijitDialogPaneContent .portlet-application {
+  padding: 0;
+}
+.dbootstrap .dijitDialog .dijitDialogCloseIcon .closeText {
+  line-height: 1;
+  margin: 0;
+  color: transparent !important;
+}
+.dbootstrap .dijitDialog .dijitDialogCloseIcon .closeText:after {
+  color: #000;
+  content: "\00D7";
+}
+.dbootstrap .dijitDialog .sticky.stuck {
+  background: #fff;
+}
+.dbootstrap .dijitDialogContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1051 !important;
+  overflow: auto;
+  overflow-y: scroll;
+  display: none;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog {
+  position: static !important;
+  width: 80%;
+  max-width: 600px;
+  margin: 30px auto;
+  font-size: 12px;
+  overflow: visible;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog.modal-sm {
+  max-width: 400px;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog.modal-md {
+  max-width: 600px;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog.modal-lg,
+.dbootstrap .dijitDialogContainer .dijitDialog.modal-large {
+  max-width: 900px;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog.modal-xl {
+  width: 99%;
+  max-width: 1440px;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogTitleBar {
+  cursor: default;
+  position: relative;
+  /* Temp fix - we should move the element instead */
+}
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogTitleBar .pageIdNode {
+  position: absolute;
+  right: 40px;
+  top: 11px;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogPaneContent {
+  padding: 20px;
+  overflow: hidden !important;
+  height: auto !important;
+  width: auto !important;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogPaneContent > form {
+  height: auto !important;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogPaneContent .dijitContentPane {
+  padding: 0;
+  height: auto !important;
+  min-height: 100px;
+}
+.dbootstrap .dijitDialogContainer .dijitDialog .dijitDialogPaneContent .modal-footer {
+  margin: 15px -21px -21px;
+}
+.dbootstrap .modal-footer {
+  margin-top: 0;
+}
+.dbootstrap .modal-footer .dijitButton .dijitButtonNode,
+.dbootstrap .modal-footer .dijitButton.dijitComboButton {
+  line-height: normal;
+}
+.dbootstrap .modal-footer .dijitButton .dijitButtonNode .dijitButtonText,
+.dbootstrap .modal-footer .dijitButton.dijitComboButton .dijitButtonText {
+  font-size: 11px;
+  line-height: 15px;
+}
+.dbootstrap .modal-footer .dijitButton .dijitButtonNode {
+  padding: 5px 8px;
+}
+.dbootstrap .modal-footer .btn {
+  font-size: 11px;
+  line-height: 15px;
+}
+.dbootstrap .modal-footer button.btn {
+  line-height: normal;
+  padding: 5px 8px;
+}
+.dbootstrap .modal-footer button.btn .dijitButtonText {
+  font-size: 11px;
+  line-height: 15px;
+}
+.dbootstrap .modal-footer span.btn .dijitButtonNode {
+  line-height: normal;
+  padding: 5px 8px;
+}
+.dbootstrap .modal-footer span.btn .dijitButtonNode .dijitButtonText {
+  font-size: 11px;
+  line-height: 15px;
+}
+.dbootstrap .dijitTooltipContainer .dijitTooltipContents > .popover-inner {
+  margin: -10px -15px;
+}
+.dbootstrap .dijitTooltipContainer .dijitTooltipContents > .popover-inner .popover-footer {
+  margin: 15px 0 0;
+}
+.dbootstrap .dijitTooltipContainer .dijitTooltipContents > .popover-inner > .popover-footer {
+  padding: 0 15px 15px 15px;
+}
+.dbootstrap .popover-content {
+  padding: 15px;
+}
+.dbootstrap .popover-content .popover-footer {
+  margin: 15px -15px -15px;
+  text-align: right;
+}
+.dbootstrap .modal-open .sticky {
+  z-index: 1020 !important;
+}
+.dbootstrap .dijitTabContainer {
+  overflow: visible;
+}
+.dbootstrap .dijitTabContainer .dijitTabController {
+  position: relative !important;
+  top: -1px !important;
+  left: 0 !important;
+  height: auto !important;
+  width: auto !important;
+  border: 0;
+  z-index: 1;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper {
+  position: relative !important;
+  height: auto !important;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs {
+  border-bottom: 2px solid #7c1c1d;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab {
+  top: 2px;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #555;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab [class*="icon-"] {
+  margin-left: 5px;
+  margin-right: -10px;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab .dijitTabContent,
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitTabContent {
+  padding: 6px 20px 5px 14px;
+  border-width: 1px 0 0 1px;
+  border-style: solid;
+  border-color: #ccc;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab:last-child .dijitTabContent,
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab:last-child.dijitTabContent {
+  border-right-width: 1px;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked {
+  top: auto;
+  bottom: -2px;
+  background-color: #fff;
+  font-weight: bold;
+  color: #7c1c1d;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: #7c1c1d;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked .dijitTabContent,
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked.dijitTabContent {
+  padding: 8px 20px 7px 14px;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked:first-child .dijitTabContent,
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked:first-child.dijitTabContent {
+  border-left-width: 0;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.tabDisabled {
+  background-color: #efefef;
+  color: #aaa;
+}
+.dbootstrap .dijitTabContainer .dijitTabController .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab .dijitTabButtonIcon {
+  display: none;
+}
+.dbootstrap .dijitTabContainer .dijitTabController.tabs-top-level .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked {
+  background-color: #f8f8f8;
+}
+.dbootstrap .dijitTabContainer .dijitTabController.tabs-top-level .dijitTabListWrapper .dijitTabContainerTop-tabs .dijitTab.dijitChecked:first-child .dijitTabContent {
+  border-left-width: 1px;
+}
+.dbootstrap .dijitTabContainer .dijitTabPaneWrapper {
+  position: relative !important;
+  height: auto !important;
+  width: auto !important;
+  top: auto !important;
+  overflow: visible;
+  border: 0;
+}
+.dbootstrap .dijitTabContainer .dijitAlignClient {
+  overflow: visible;
+}
+.dbootstrap .dijitTabContainer .tabStripButton {
+  display: none;
+}
+.dbootstrap .dijitTabContainer .dijitContentPane {
+  padding: 0;
+  overflow: visible;
+  height: auto !important;
+  width: auto !important;
+}
+.dbootstrap .form-group .chzn-container {
+  width: 100% !important;
+  margin-left: 0;
+  min-height: 34px;
+}
+.dbootstrap .chzn-container {
+  vertical-align: middle;
+  text-shadow: none;
+  font-weight: normal;
+}
+.dbootstrap .chzn-container .chzn-single {
+  background: #fff none;
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.dbootstrap .chzn-container .chzn-single:hover {
+  text-decoration: none;
+}
+.dbootstrap .chzn-container .chzn-single > span {
+  text-transform: none;
+  line-height: inherit;
+  height: 100%;
+}
+.dbootstrap .chzn-container .chzn-single div {
+  width: auto;
+  line-height: 21px;
+  top: 50%;
+  margin-top: -8px;
+  right: 12px;
+}
+.dbootstrap .chzn-container .chzn-single div b {
+  font-size: 14px;
+  background: none;
+}
+.dbootstrap .chzn-container .chzn-choices {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: none;
+  min-height: 34px;
+  padding: 5px 6px;
+}
+.dbootstrap .chzn-container .chzn-choices .search-choice {
+  float: none;
+  display: inline-block;
+  margin: 0 6px 0 0;
+  padding: 2px 6px;
+  white-space: nowrap;
+  line-height: initial;
+}
+.dbootstrap .chzn-container .chzn-choices .search-choice .search-choice-close {
+  position: relative;
+  display: inline-block;
+  top: 0;
+  right: 0;
+  float: left;
+  width: auto;
+  height: auto;
+  font-size: inherit;
+  background: none;
+  padding-right: 4px;
+  color: #808080;
+}
+.dbootstrap .chzn-container .chzn-choices .search-choice .search-choice-close:hover {
+  text-decoration: none;
+}
+.dbootstrap .chzn-container .chzn-choices .search-choice .search-choice-close:before {
+  content: "x";
+}
+.dbootstrap .chzn-container .chzn-choices .search-field {
+  float: none;
+  display: none;
+}
+.dbootstrap .chzn-container .chzn-choices .search-field:first-child,
+.dbootstrap .chzn-container .chzn-choices .search-field:first-child input {
+  width: 100% !important;
+  line-height: 22px;
+}
+.dbootstrap .chzn-container .chzn-choices input {
+  margin: 0;
+  width: 75px !important;
+  padding: 0;
+}
+.dbootstrap .chzn-container .chzn-choices .search-field:first-child,
+.dbootstrap .chzn-container .chzn-choices:hover .search-field {
+  display: inline-block;
+}
+.dbootstrap .chzn-container .chzn-drop {
+  margin-top: 2px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.dbootstrap .chzn-container .chzn-drop:after {
+  content: " ";
+  position: absolute;
+  padding: 10px;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-search:after {
+  margin-left: -20px;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-search input {
+  box-shadow: none;
+  background: none;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-extra {
+  margin: 0;
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-results {
+  padding: 5px 0;
+  margin: 5px 0;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-results li {
+  text-transform: none;
+  line-height: inherit;
+  padding: 4px 6px;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-results li em {
+  background: #f3ee6f;
+}
+.dbootstrap .chzn-container .chzn-drop .chzn-results li.group-option {
+  padding-left: 20px;
+}
+.dbootstrap .chzn-container.chzn-container-active .chzn-choices,
+.dbootstrap .chzn-container.chzn-container-active .chzn-single {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-color: #66AFE9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.dbootstrap .chzn-container.chzn-container-active .chzn-choices .search-field,
+.dbootstrap .chzn-container.chzn-container-active .chzn-single .search-field {
+  display: inline-block;
+}
+.dbootstrap .chzn-container.chzn-container-active .chzn-choices.chzn-single-with-drop,
+.dbootstrap .chzn-container.chzn-container-active .chzn-single.chzn-single-with-drop {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #ccc;
+}
+.dbootstrap .chzn-container.chzn-container-active .chzn-drop .chzn-search input {
+  border-color: #66AFE9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.dbootstrap .chzn-done.readonly + .chzn-container {
+  opacity: 1 !important;
+  height: auto;
+  min-height: initial;
+}
+.dbootstrap .chzn-done.readonly + .chzn-container > *:first-child {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  cursor: text;
+  outline: none;
+  text-decoration: none;
+}
+.dbootstrap .chzn-done.readonly + .chzn-container > *:first-child > div {
+  display: none;
+}
+.dbootstrap .chzn-done.readonly + .chzn-container > *:first-child .search-choice-close {
+  display: none;
+}
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode],
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode],
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode] {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1 !important;
+  text-align: center;
+}
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode]:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -14px;
+  color: #555;
+  font-size: 32px;
+}
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_underlayNode] + img,
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_underlayNode] + img,
+.dbootstrap div.standby div[dojoattachpoint=_underlayNode] + img {
+  display: none !important;
+}
+.dbootstrap div[id^=dojox_widget_Standby_] div[dojoattachpoint=_textNode],
+.dbootstrap div[id^=_basicStandby] div[dojoattachpoint=_textNode],
+.dbootstrap div.standby div[dojoattachpoint=_textNode] {
+  display: none !important;
+}
+.dbootstrap div[id^=dojox_widget_Standby_].standby-small div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div[id^=_basicStandby].standby-small div[dojoattachpoint=_underlayNode]:before,
+.dbootstrap div.standby.standby-small div[dojoattachpoint=_underlayNode]:before {
+  font-size: 18px;
+  margin-top: -10px;
+}
+.dbootstrap div[id^=dojox_widget_Standby_].dijitDialogStandby > div,
+.dbootstrap div[id^=_basicStandby].dijitDialogStandby > div,
+.dbootstrap div.standby.dijitDialogStandby > div {
+  z-index: 1041 !important;
+}
+.dbootstrap .sport-standby,
+.dbootstrap .mpp-standby {
+  position: relative;
+}
+.dbootstrap .sport-standby:before,
+.dbootstrap .mpp-standby:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: wait;
+}
+.dbootstrap .sport-standby:after,
+.dbootstrap .mpp-standby:after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  z-index: 1000;
+}
+.dbootstrap .dijitSlider {
+  width: 100%;
+  padding: 0 10px;
+  table-layout: fixed;
+}
+.dbootstrap .dijitSlider .dijitSliderProgressBar,
+.dbootstrap .dijitSlider .dijitSliderBumperH.dijitSliderLeftBumper {
+  background-color: #149dbf;
+  background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0, #149bdf), color-stop(1, #0480be));
+  background-image: -webkit-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+  background-image: -moz-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+  background-image: -o-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+  background-image: -ms-linear-gradient(center top, #149bdf 0%, #0480be 100%);
+}
+.dbootstrap .dijitSlider .dijitSliderDecoration .dijitRuleLabelsContainer {
+  height: 23px;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderDecoration .dijitRuleLabelsContainer {
+  margin: 0 8%;
+  line-height: 20px;
+  height: 20px;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderDecoration .dijitRuleLabelsContainer .active .dijitRuleLabel {
+  font-weight: bold;
+  font-size: 14px;
+  font-family: "Arial Black";
+  letter-spacing: -0.1em;
+  margin-top: 5px;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderDecoration.dijitSliderDecorationT .dijitRuleLabelsContainer {
+  color: #000;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderDecoration.dijitSliderDecorationT .dijitRuleLabelsContainer .active .dijitRuleLabel {
+  margin-top: -5px;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderProgressBar,
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBumperH.dijitSliderLeftBumper {
+  position: relative !important;
+  background: none;
+  box-shadow: none;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderProgressBar .dijitSliderMoveableH,
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBumperH.dijitSliderLeftBumper .dijitSliderMoveableH {
+  right: auto;
+  left: 100%;
+  margin-left: -4px;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBumper {
+  display: none;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderDecorationB .dijitRuleLabelContainerH {
+  border-right: 1px solid #dfdfdf;
+  top: -30px;
+  padding-top: 30px;
+  height: 45px;
+  width: 13%;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderDecorationB .dijitRuleLabelContainerH:last-child {
+  border: 0;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBarContainerH {
+  background-image: linear-gradient(to bottom right, #000000 0%, #000000 45%, #ffffff 50%, #bbbbbb 55%, #bbbbbb 100%);
+  height: 14px;
+  padding: 0 8%;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBarContainerH .dijitSliderRemainingBar {
+  position: relative;
+  top: -11px;
+  box-shadow: none;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBarContainerH .dijitSliderImageHandle {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  background: #fefefe;
+  z-index: 1;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px #555;
+  line-height: 13px;
+  text-align: center;
+}
+.dbootstrap .dijitSlider.frequencySlider .dijitSliderBarContainerH .dijitSliderImageHandle:before {
+  content: "||";
+  color: #aaa;
+  font-size: 11px;
+  font-weight: bold;
+}
+.dbootstrap .navbar-status {
+  background: #fff;
+  border-radius: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.dbootstrap .navbar-status .caret,
+.dbootstrap .navbar-status a:hover .caret {
+  border-top-color: #777;
+  border-bottom-color: #777;
+}
+.dbootstrap .navbar-status .navbar-brand {
+  color: #333;
+  padding-right: 0;
+}
+.dbootstrap .navbar-status .navbar-nav {
+  font-weight: bold;
+  font-size: 12px;
+}
+.dbootstrap .navbar-status .navbar-nav a,
+.dbootstrap .navbar-status .navbar-nav p {
+  color: #333;
+}
+.dbootstrap .navbar-status .navbar-nav .label {
+  display: inline-block;
+  line-height: 12px;
+}
+.dbootstrap .navbar-status .navbar-nav > li > p {
+  padding: 15px 0;
+  line-height: 20px;
+  margin: 0;
+}
+.dbootstrap .navbar-status .navbar-nav > li > p span {
+  line-height: inherit;
+}
+.dbootstrap .navbar-status .navbar-nav > li > .dropdown-menu {
+  border-radius: 4px;
+}
+.dbootstrap .navbar-status .navbar-nav > li .dijitPopup,
+.dbootstrap .navbar-status .navbar-nav > li .popover {
+  top: 50px !important;
+  right: auto !important;
+  left: 0 !important;
+  font-weight: normal;
+}
+.dbootstrap .navbar-status .navbar-nav > li .dijitPopup.foldToLeft,
+.dbootstrap .navbar-status .navbar-nav > li .popover.foldToLeft {
+  right: 0 !important;
+  left: auto !important;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow {
+  position: relative;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow .dijitTreeIcon {
+  display: none;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch {
+  overflow: visible;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando {
+  padding: 6px;
+  -moz-animation: none;
+  -o-animation: none;
+  -webkit-animation: none;
+  animation: none;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando:before {
+  color: #555;
+  opacity: 1;
+  font-size: 14px;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText {
+  display: inline-block;
+  font-size: 0;
+  color: transparent;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch .dijitTreeExpando.dijitTreeExpandoLoading + .dijitExpandoText:before {
+  color: #555;
+  font-size: 14px;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.branch + div .dijitTreeRow:before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-left: 1px dotted #bbb;
+  border-bottom: 1px dotted #bbb;
+  position: absolute;
+  left: -7px;
+  top: 5px;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.leaf {
+  padding: 0;
+  margin-left: 10px;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.leaf .dijitTreeExpando {
+  display: none;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.leaf .dijitTreeLabel {
+  margin: 0 8px;
+}
+.dbootstrap .dijitTreeContainer .dijitTreeRow.dijitTreeRowSelected {
+  background-color: #d9edf7;
+  color: inherit;
+}
+.dbootstrap .panel-tree {
+  min-height: 250px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer {
+  margin-bottom: 20px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode .dijitTreeRow {
+  overflow: hidden;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode.readRoleTreeNode > .dijitTreeRow {
+  color: #bbb;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode.readRoleTreeNode > .dijitTreeRow .label {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  /* IE 8 */
+  -moz-opacity: 0.5;
+  /* Netscape */
+  -khtml-opacity: 0.5;
+  /* Safari 1.x */
+  opacity: 0.5;
+  /* "Good browsers" */
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode.readRoleTreeNode > .dijitTreeRow small {
+  font-style: italic;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.dijitTreeRowHover {
+  background-color: transparent;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch {
+  background: #f4f4f4;
+  margin-bottom: 10px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch a:hover {
+  text-decoration: none;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch > .pull-right {
+  line-height: 24px;
+  font-size: 16px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch > .pull-right a {
+  vertical-align: middle;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch:hover,
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch.dijitTreeRowSelected {
+  background-color: #d9edf7;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch + div .dijitTreeRow.branch:before {
+  width: 10px;
+  height: 10px;
+  left: -18px;
+  top: 8px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.branch + div .dijitTreeRow.branch + div .branch + .dijitTreeContainer {
+  margin-bottom: 10px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow.leaf {
+  border-top: 1px solid #ddd;
+  padding: 5px 0;
+  width: auto;
+  height: auto;
+  border: 0;
+  position: static;
+  left: 0;
+  top: 0;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode > .dijitTreeRow .dijitTreeLabel {
+  line-height: 26px;
+}
+.dbootstrap .panel-tree .dijitTreeContainer .dijitTreeNode:first-child > .dijitTreeRow.leaf {
+  border: 0;
+  margin-top: -10px;
+}
+@media print {
+  body.dbootstrap {
+    /*counter-reset: page 0;*/
+    background-color: #fff !important;
+    /*
+		#pageHeader{
+			position: running(pageHeader);
+		}
+		*/
+    /* Temporary hide manualy added print headers */
+  }
+  @page {
+    /*margin-top: 0;
+			margin-bottom: 0;*/
+    /*
+			@top-center {
+				content: counter(page) "/" counter(pages);
+			}
+
+			@top-center {
+				content: element(pageHeader);
+			}
+			*/
+  }
+  body.dbootstrap h3,
+  body.dbootstrap h4,
+  body.dbootstrap h5 {
+    margin-top: 0;
+  }
+  body.dbootstrap header,
+  body.dbootstrap div[id^=dojox_widget_Standby_] {
+    display: none;
+  }
+  body.dbootstrap th,
+  body.dbootstrap label,
+  body.dbootstrap .control-label {
+    color: #949494 !important;
+    font-weight: normal;
+  }
+  body.dbootstrap .wpthemeLayoutContainers {
+    margin-top: 0;
+  }
+  body.dbootstrap .panel-body,
+  body.dbootstrap .portlet-application,
+  body.dbootstrap .avoid-page-break {
+    page-break-inside: avoid;
+    padding: 0 !important;
+    margin-bottom: 10px;
+  }
+  body.dbootstrap .dijitContentPane,
+  body.dbootstrap .rightContent,
+  body.dbootstrap .print-page {
+    page-break-after: always;
+    position: relative;
+  }
+  body.dbootstrap .dijitContentPane:before,
+  body.dbootstrap .rightContent:before {
+    content: attr(rel);
+    font-size: 14px;
+    border-bottom: 2px solid #7c1c1d;
+    padding-bottom: 5px;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-weight: bold;
+    line-height: 1.1;
+    color: #555;
+    text-transform: capitalize;
+    display: block;
+  }
+  body.dbootstrap .dijitContentPane.printSelectionPlan,
+  body.dbootstrap .rightContent.printSelectionPlan {
+    min-height: 0 !important;
+  }
+  body.dbootstrap .dijitContentPane.printSelectionPlan:before,
+  body.dbootstrap .rightContent.printSelectionPlan:before {
+    content: "";
+    display: inline;
+  }
+  body.dbootstrap .table-unstyled tr > td,
+  body.dbootstrap .table-unstyled tr > td,
+  body.dbootstrap .table-unstyled tr > th,
+  body.dbootstrap .table-unstyled tr > th {
+    padding: 4px 8px !important;
+  }
+  body.dbootstrap .table-unstyled > tbody > tr:nth-child(odd) > td,
+  body.dbootstrap .table-unstyled > tbody > tr:nth-child(odd) > td,
+  body.dbootstrap .table-unstyled > tbody > tr:nth-child(odd) > th,
+  body.dbootstrap .table-unstyled > tbody > tr:nth-child(odd) > th {
+    background-color: #f6f6f6 !important;
+  }
+  body.dbootstrap .page-print-header {
+    height: 75px;
+    margin: 0 15px;
+  }
+  body.dbootstrap .page-print-header img {
+    margin-top: 5px;
+    margin-right: 10px;
+  }
+  body.dbootstrap .page-print-header h1 {
+    font-size: 24px;
+    font-weight: 100;
+    padding-left: 10px;
+    border-left: 1px solid #555;
+    line-height: 18px;
+  }
+  body.dbootstrap .page-print-footer {
+    background-color: #eee !important;
+    border-top: 1px solid #ddd;
+    height: 30px;
+    line-height: 27px;
+    padding: 0 15px;
+    margin: 0 15px;
+    /*.page-number:before {
+				counter-increment: page;
+				content: counter(page);
+			}*/
+  }
+  body.dbootstrap div > .page-print-header,
+  body.dbootstrap div > .page-print-footer {
+    display: none !important;
+  }
+  body.dbootstrap .form-horizontal .dijitTextBox,
+  body.dbootstrap .chzn-container .dijitTextBox {
+    width: auto !important;
+  }
+  body.dbootstrap .form-horizontal .chzn-single,
+  body.dbootstrap .chzn-container .chzn-single {
+    border: 0;
+    padding: 4px 0;
+  }
+  body.dbootstrap .chzn-container {
+    margin-left: 4px;
+    padding: 4px 0;
+  }
+  body.dbootstrap .chzn-container .chzn-choices {
+    border: 0;
+  }
+  body.dbootstrap .chzn-container .chzn-choices .search-choice {
+    margin: 0;
+  }
+  body.dbootstrap .chzn-container .chzn-single {
+    cursor: default;
+  }
+  body.dbootstrap .chzn-container .chzn-single > span {
+    white-space: normal;
+  }
+  body.dbootstrap .chzn-container .chzn-single > div {
+    display: none;
+  }
+  body.dbootstrap .visible-print-always {
+    display: block !important;
+  }
+  body.dbootstrap span.visible-print-always {
+    display: inline !important;
+  }
+  body.dbootstrap td.visible-print-always,
+  body.dbootstrap th.visible-print-always {
+    display: table-cell !important;
+  }
+  body.dbootstrap .form .dijitTextBox,
+  body.dbootstrap .form-group .dijitTextBox {
+    border: 0 !important;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    resize: none;
+    cursor: default;
+    vertical-align: middle;
+  }
+  body.dbootstrap .form .dijitTextBox .dijitInputContainer,
+  body.dbootstrap .form-group .dijitTextBox .dijitInputContainer {
+    padding: 4px 0;
+  }
+  body.dbootstrap .form .dijitTextBox .dijitInputContainer .dijitPlaceHolder,
+  body.dbootstrap .form-group .dijitTextBox .dijitInputContainer .dijitPlaceHolder {
+    padding: 4px 0;
+  }
+  body.dbootstrap .form .dijitTextBox .dijitArrowButton,
+  body.dbootstrap .form-group .dijitTextBox .dijitArrowButton {
+    display: none;
+  }
+  body.dbootstrap .form .dijitTextBox + .input-group-addon,
+  body.dbootstrap .form-group .dijitTextBox + .input-group-addon {
+    background-color: transparent;
+    border: 0;
+  }
+  body.dbootstrap .form .dijitTextBox .dijitSelectLabel,
+  body.dbootstrap .form-group .dijitTextBox .dijitSelectLabel {
+    line-height: 28px;
+    vertical-align: top;
+  }
+  body.dbootstrap .form .input-group,
+  body.dbootstrap .form-group .input-group {
+    border: 0 !important;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    resize: none;
+  }
+  body.dbootstrap .form .input-group .input-group-btn,
+  body.dbootstrap .form-group .input-group .input-group-btn,
+  body.dbootstrap .form .input-group .input-group-addon,
+  body.dbootstrap .form-group .input-group .input-group-addon {
+    display: none;
+  }
+  body.dbootstrap .form .input-group span,
+  body.dbootstrap .form-group .input-group span {
+    cursor: text;
+  }
+  body.dbootstrap .form .input-group div.dijitInputField input,
+  body.dbootstrap .form-group .input-group div.dijitInputField input {
+    cursor: text;
+  }
+  body.dbootstrap .form .input-group .dijitArrowButton,
+  body.dbootstrap .form-group .input-group .dijitArrowButton {
+    display: none;
+  }
+  body.dbootstrap .form .input-group .dijitSelectLabel,
+  body.dbootstrap .form-group .input-group .dijitSelectLabel {
+    line-height: 34px;
+  }
+  body.dbootstrap .form .input-group.input-group .input-group-btn,
+  body.dbootstrap .form-group .input-group.input-group .input-group-btn {
+    background: transparent;
+  }
+  body.dbootstrap .form .input-group.input-group .input-group-btn:hover,
+  body.dbootstrap .form-group .input-group.input-group .input-group-btn:hover {
+    border: 0;
+    background-color: transparent;
+  }
+  body.dbootstrap .form .input-group.input-group .input-group-btn .dijitTextBox,
+  body.dbootstrap .form-group .input-group.input-group .input-group-btn .dijitTextBox {
+    height: auto;
+    cursor: default;
+  }
+  body.dbootstrap .form .input-group.input-group .input-group-btn .dijitTextBox .dijitInputField,
+  body.dbootstrap .form-group .input-group.input-group .input-group-btn .dijitTextBox .dijitInputField {
+    padding: 0;
+    margin: 0;
+  }
+  body.dbootstrap .form .input-group.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText,
+  body.dbootstrap .form-group .input-group.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText {
+    padding: 0;
+  }
+  body.dbootstrap .form .input-group.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after,
+  body.dbootstrap .form-group .input-group.input-group .input-group-btn .dijitTextBox .dijitInputField .dijitButtonText .dijitSelectLabel:after {
+    content: ":";
+    margin-right: 4px;
+  }
+  body.dbootstrap .dgrid {
+    page-break-inside: avoid;
+  }
+  body.dbootstrap .dgrid .dgrid-header-row {
+    padding: 0;
+  }
+  body.dbootstrap .dgrid .dgrid-row {
+    background-color: transparent !important;
+    page-break-inside: avoid;
+  }
+  body.dbootstrap .dgrid .dgrid-row.dgrid-row-even {
+    background-color: #f8f8f8 !important;
+  }
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox {
+    height: auto;
+  }
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox .dijitButtonNode,
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox .dijitInputField {
+    padding: 0;
+  }
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox .dijitButtonNode .dijitButtonText,
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox .dijitInputField .dijitButtonText,
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox .dijitButtonNode .dijitSelectLabel,
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox .dijitInputField .dijitSelectLabel {
+    line-height: normal;
+  }
+  body.dbootstrap .dgrid .dgrid-row .dgrid-cell .dijitTextBox.dijitSpinner .dijitButtonNode {
+    border: 0 !important;
+  }
+  body.dbootstrap .dgrid .dgrid-row.collapsable .dgrid-cell:first-child:before {
+    display: none;
+  }
+  body.dbootstrap .dgrid .dgrid-row.collapsable:hover .dgrid-cell {
+    background-color: transparent;
+  }
+  body.dbootstrap .dijitTitlePane {
+    page-break-inside: avoid;
+  }
+  body.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode,
+  body.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode > * {
+    cursor: text;
+  }
+  body.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode:before,
+  body.dbootstrap .dijitTitlePane .dijitTitlePaneTitle .dijitTitlePaneTextNode > *:before {
+    display: none;
+  }
+  body.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter {
+    display: block !important;
+  }
+  body.dbootstrap .dijitTitlePane .dijitTitlePaneContentOuter > div {
+    display: block !important;
+  }
+  body.dbootstrap .alert,
+  body.dbootstrap .validationIcon,
+  body.dbootstrap .mpp-information-icon {
+    display: none !important;
+  }
+}
+/*# sourceMappingURL=scania-dbootstrap-overrides.css.map */

@@ -1,0 +1,130 @@
+/*.wpthemeControlBody,
+.wpthemeMainContent,
+.wpthemeFrame,
+.wpthemeBanner,
+.wpthemeWrapper { background-color: transparent !important; }
+
+.container .wpthemeMainContent .wpthemeControlBody {
+	margin: 0 !important;
+	width: 100%;
+	overflow: visible;
+}
+.wpthemeControl,
+.wpthemeLayoutContainers,
+.wptheme1Col .wpthemeCol {
+	width: 100%;
+}
+.wpthemeLayoutContainers {
+	padding: 0;
+}*/
+
+&.bootstrap {
+
+	.wpthemeLayoutContainers {
+		width: 100% !important;
+		padding: 0 !important;
+		margin-top: 10px;
+	}
+
+	.wpthemeControlBody {
+		font-size: 12px;
+		line-height: 1.5;
+		padding: 0;
+	}
+
+	.wpthemeTemplateLoading {
+		display: none;
+	}
+	.wpthemeMainContent {
+
+		.wpthemeControlBody,
+		.wpthemeCrumbTrail {
+			padding: 0;
+		}
+	}
+
+	.wpthemeBanner .wpthemeCommonActions {
+
+		/* For logo part */
+		> li {
+			padding: 0;
+
+			> a {
+				margin: 0;
+				padding: 0;
+				display: block;
+				height: auto;
+				border: 0;
+
+				&:hover {
+					text-decoration: none;
+				}
+
+				.wpthemeBranding {
+					background: transparent url("/resources/images/compressed/logotypes/logo_symbol_small.png") no-repeat;
+					width: auto;
+					padding: 5px 0 0 50px;
+					margin: 15px 0 0 0;
+					line-height: normal;
+					float: none;
+					height: 40px;
+
+					.wpthemeAltText {
+						margin: 0;
+						display: block;
+						border: 0;
+						font-size: 20px;
+						font-weight: 300;
+						margin-left: 8px;
+						border-left: 1px solid #bbb;
+						text-transform: none;
+					}
+				}
+			}
+		}
+
+		/* User navigation */
+		.commonActions {
+			margin: 25px 0 0;
+
+			> * {
+				color: #428bca;
+				border: 0;
+				background: none;
+				padding: 0 20px;
+				border-left: 1px solid #ddd;
+				font-size: 12px;
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				box-shadow: none;
+
+				i {
+					margin-right: 3px;
+					text-shadow: none;
+				}
+				i,
+				#wpContextMenu {
+					color: #428bca;
+				}
+
+				&:first-child {
+					border-left: 0;
+				}
+				&:hover,
+				#wpContextMenu:hover {
+					color: #2a6496;
+					text-decoration: underline;
+
+					i {
+						color: #2a6496;
+						text-decoration: none;
+					}
+				}
+				/*&#logoutlink {
+					margin-right: 0;
+					padding-right: 0;
+				}*/
+			}
+		}
+	}
+}

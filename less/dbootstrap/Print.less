@@ -1,0 +1,354 @@
+body.dbootstrap {
+
+	@media print {
+		/*counter-reset: page 0;*/
+
+		background-color: #fff !important;
+
+		@page {
+			/*margin-top: 0;
+			margin-bottom: 0;*/
+
+			// This is not supported in chrome yet...
+			/*
+			@top-center {
+				content: counter(page) "/" counter(pages);
+			}
+
+			@top-center {
+				content: element(pageHeader);
+			}
+			*/
+		}
+		/*
+		#pageHeader{
+			position: running(pageHeader);
+		}
+		*/
+
+		h3,
+		h4,
+		h5 {
+			margin-top: 0;
+		}
+		header,
+		div[id^=dojox_widget_Standby_] {
+			display: none;
+		}
+		th,
+		label,
+		.control-label {
+			color: #949494 !important;
+			font-weight: normal;
+		}
+
+		// This resets some portal related stuff
+		.wpthemeLayoutContainers {
+			margin-top: 0;
+		}
+		.wpthemeLeft {
+			//float: none;
+		}
+
+		.panel-body,
+		.portlet-application,
+		.avoid-page-break {
+			page-break-inside: avoid;
+			padding: 0 !important;
+			margin-bottom: 10px;
+		}
+		.dijitContentPane,
+		.rightContent,
+		.print-page {
+			page-break-after: always;
+			position: relative;
+			//margin-top: 80px;
+			//margin-bottom: 40px;
+			//min-height: 249mm !important;
+		}
+		.dijitContentPane,
+		.rightContent {
+
+			&:before {
+				content: attr(rel);
+				font-size: 14px;
+				border-bottom: 2px solid #7c1c1d;
+				padding-bottom: 5px;
+				font-family: "Open Sans",Arial,sans-serif;
+				font-weight: bold;
+				line-height: 1.1;
+				color: #555;
+				text-transform: capitalize;
+				display: block;
+			}
+			&.printSelectionPlan {
+				min-height: 0 !important;
+
+				&:before {
+					content: "";
+					display: inline;
+				}
+			}
+		}
+
+		.table-unstyled,
+		.table-unstyled {
+
+			tr > td,
+			tr > th {
+				padding: 4px 8px !important;
+			}
+
+			& > tbody > tr:nth-child(odd) > td,
+			& > tbody > tr:nth-child(odd) > th {
+				background-color: #f6f6f6 !important;
+			}
+		}
+
+		.page-print-header {
+			height: 75px;
+			margin: 0 15px;
+
+			img {
+				margin-top: 5px;
+				margin-right: 10px;
+			}
+			h1 {
+				font-size: 24px;
+				font-weight: 100;
+				padding-left: 10px;
+				border-left: 1px solid #555;
+				line-height: 18px;
+			}
+		}
+		.page-print-footer {
+			background-color: #eee !important;
+			border-top: 1px solid #ddd;
+			height: 30px;
+			line-height: 27px;
+			padding: 0 15px;
+			margin: 0 15px;
+
+			/*.page-number:before {
+				counter-increment: page;
+				content: counter(page);
+			}*/
+		}
+		/* Temporary hide manualy added print headers */
+		div > .page-print-header,
+		div > .page-print-footer {
+			display: none !important;
+		}
+
+		.form-horizontal,
+		.chzn-container {
+
+			.dijitTextBox {
+				width: auto !important;
+			}
+			.chzn-single {
+				border: 0;
+				padding: 4px 0;
+			}
+		}
+
+		.chzn-container {
+			margin-left: 4px;
+			padding: 4px 0;
+
+			.chzn-choices {
+				border: 0;
+
+				.search-choice {
+					margin: 0;
+				}
+			}
+			.chzn-single {
+				cursor: default;
+
+				> span {
+					white-space: normal;
+				}
+				> div {
+					display: none;
+				}
+			}
+		}
+
+		.visible-print-always {
+			display: block !important;
+		}
+		span.visible-print-always {
+			display: inline !important;
+		}
+		td.visible-print-always,
+		th.visible-print-always {
+			display: table-cell !important;
+		}
+		
+		.form,
+		.form-group {
+
+			.dijitTextBox {
+				border: 0 !important;
+				padding: 0;
+				box-shadow: none;
+				background: transparent;
+			    resize: none;
+			    cursor: default;
+			    vertical-align: middle;
+
+			    .dijitInputContainer {
+			    	padding: 4px 0;
+
+			    	.dijitPlaceHolder {
+			    		padding: 4px 0;
+			    	}
+			    }
+
+		        .dijitArrowButton {
+		            display: none;
+		        }
+		        + .input-group-addon {
+		            background-color: transparent;
+		            border: 0;
+		        }
+
+				.dijitSelectLabel {
+					line-height: 28px;
+					vertical-align: top;
+				}
+			}
+
+			.input-group {
+				border: 0 !important;
+				padding: 0;
+				box-shadow: none;
+				background: transparent;
+			    resize: none;
+
+			    .input-group-btn,
+			    .input-group-addon {
+			    	display: none;
+			    }
+			    span {
+			    	cursor: text;
+			    }
+				div.dijitInputField {
+
+					input {
+						cursor: text;
+					}
+				}
+			    .dijitArrowButton {
+			        display: none;
+			    }
+			    .dijitSelectLabel {
+			        line-height: 34px;
+			    }
+
+				&.input-group {
+
+					.input-group-btn {
+						background: transparent;
+
+						&:hover {
+							border: 0;
+							background-color: transparent;
+						}
+
+						.dijitTextBox {
+							height: auto;
+							cursor: default;
+
+							.dijitInputField {
+								padding: 0;
+								margin: 0;
+
+								.dijitButtonText {
+									padding: 0;
+
+									.dijitSelectLabel:after {
+										content: ":";
+										margin-right: 4px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+	    .dgrid {
+	    	page-break-inside: avoid;
+
+	    	.dgrid-header-row {
+	    		padding: 0;
+	    	}
+	    	.dgrid-row {
+	    		background-color: transparent !important;
+				page-break-inside: avoid;
+
+	    		&.dgrid-row-even {
+					background-color: #f8f8f8 !important;
+				}
+
+				.dgrid-cell .dijitTextBox {
+					height: auto;
+
+					.dijitButtonNode,
+					.dijitInputField {
+						padding: 0;
+
+						.dijitButtonText,
+						.dijitSelectLabel {
+							line-height: normal;
+						}
+					}
+					&.dijitSpinner {
+
+						.dijitButtonNode {
+							border: 0 !important;
+						}
+					}
+				}
+			}
+		    .dgrid-row.collapsable {
+
+			    .dgrid-cell:first-child:before {
+		    		display: none;
+				}
+		    	&:hover .dgrid-cell {
+					background-color: transparent;
+		    	}
+			}
+		}
+
+		.dijitTitlePane {
+	    	page-break-inside: avoid;
+
+			.dijitTitlePaneTitle .dijitTitlePaneTextNode,
+			.dijitTitlePaneTitle .dijitTitlePaneTextNode > * {
+				cursor: text;
+
+				&:before {
+					display: none;
+				}
+			}
+			.dijitTitlePaneContentOuter {
+				display: block !important;
+
+				> div {
+					display: block !important;
+				}
+			}
+		}
+
+		.alert,
+		.validationIcon,
+		.mpp-information-icon {
+			display: none !important;
+		}
+	}
+}

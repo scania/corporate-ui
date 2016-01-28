@@ -1,0 +1,59 @@
+.loading,
+.bootstrap .loading,
+.locked,
+.bootstrap .locked {
+  position: relative;
+
+  &:before {
+    display: block !important;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250, 250, 250, 0.6);
+  }
+  &:after {
+    display: block !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
+    z-index: 1051;
+
+    &:extend([class^="icon-"]);
+    &:extend(.icon-spinner:before);
+    &:extend(.icon-spin);
+  }
+  &.full:before,
+  &.full:after {
+    position: fixed;
+  }
+}
+.bootstrap .loading,
+.bootstrap .locked {
+  overflow: hidden;
+}
+.locked:after,
+.bootstrap .locked:after {
+  content: "";
+}
+.loadingContainer,
+.bootstrap .loadingContainer {
+  position: relative !important;
+  overflow: hidden;
+}
+.loadingContainer > .loading,
+.bootstrap .loadingContainer > .loading {
+  position: static;
+}
+.loadingContainer > .loading:before,
+.bootstrap .loadingContainer > .loading:before {
+  width: inherit;
+  top: inherit;
+  left: inherit;
+}

@@ -1,0 +1,48 @@
+// SCANIA BOOTSTRAP THEME
+// PAGE-ID Icon (SPORT only - probably temporary - 2013-12-11 Jernberg)
+
+.pageIdNode,
+.pageIdNode:link,
+.pageIdNode:hover {
+  float: right;
+  display: inline;
+  width: auto;
+  height: auto;
+
+  font-size: 14px;
+  color: #ccc;
+  line-height: normal;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+.pageIdNode:hover {
+  color: @brand-primary;
+}
+
+.pageIdNode:before {
+  content: "\F0FA";
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+.modal-header .pageIdNode { //Special case for modal-headers
+  margin-right: 10px;
+}
+
+.nav-tabs .pageIdNode { //Special case for in tab-navigation-menus
+  position: relative;
+  top: 19px;
+}

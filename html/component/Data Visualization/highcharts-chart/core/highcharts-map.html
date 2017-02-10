@@ -1,0 +1,23 @@
+<link rel="import" href="highcharts-behavior.html">
+<link rel="import" href="highcharts-shared-styles.html">
+<script src="../highcharts/modules/map.js"></script>
+<script src="../highcharts/modules/data.js"></script>
+
+<dom-module id="highcharts-map">
+    <template>
+        <style include="highcharts-shared-styles"></style>
+        <div id="Chart" width="100%"></div>
+        <content></content>
+    </template>
+    <script>
+        'use strict';
+        Polymer({
+            is: "highcharts-map",
+            behaviors: [Highcharts.Polymer_BaseBehavior],
+            properties: {
+                type: {type: String, value: 'map', observer: '_updateType'},
+                title: {type: String, value: "", observer: "_titleUpdate"}},
+            ready: function() {this.__createChart("Map")},
+        });
+    </script>
+</dom-module>

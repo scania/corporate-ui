@@ -1,0 +1,44 @@
+
+<!--
+___
+
+#### Variation-1
+
+Place anywhere within body. `c-sticky-item`'s is placed within the element to specify icons and links. Demo is displayed in the top-right, with social links.
+
+<demo>
+  <c-sticky-toolbar icon="icon-wrench">
+    <c-sticky-item url="/scania/engine" icon="icon-engine"></c-sticky-item>
+    <c-sticky-item url="/scania/truck" icon="icon-truck-cabin"></c-sticky-item>
+    <c-sticky-item url="/scania/bus" icon="icon-bus-scania"></c-sticky-item>
+    <c-sticky-item url="/scania/factory" icon="icon-factory"></c-sticky-item>
+  </c-sticky-toolbar>
+</demo>
+___
+
+If attribute `social` is used it will auto-generate social icons/links:
+
+<demo>
+  <c-sticky-toolbar social>
+  </c-sticky-toolbar>
+</demo>
+___
+
+-->
+<dom-module id="c-sticky-toolbar-variation-1">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <content></content>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-sticky-toolbar-variation-1'
+    }); 
+  </script>
+</dom-module>

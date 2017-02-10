@@ -1,0 +1,72 @@
+<!--
+
+#### Demo
+
+Items are added as `news-and-events-item` and headlines as `headline-label`. 
+To insert a filtration, simply add `filter-menu`. Different filtration categories can be added as `filter-item` and their options set in attribute `options`.
+
+<demo>
+  <c-news-and-events-listing>
+    <filter-menu>
+      <filter-item label="GlobalLabel" options="Global, #, Local, #"></filter-item>
+      <filter-item label="CategoriesLabel" options="News, #, Events, #, Publications, #"></filter-item>
+      <filter-item label="DateLabel" options="January 2016, #, Frebruary 2016, #"></filter-item>
+    </filter-menu>
+
+    <headline-label>Jan 2016</headline-label>
+
+    <news-and-events-item date="Jan 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Jan 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Jan 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Jan 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Jan 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Jan 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+
+    <headline-label>Dec 2016</headline-label>
+
+    <news-and-events-item date="Dec 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Dec 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Dec 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Dec 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Dec 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+    <news-and-events-item date="Dec 19" ctalabel="cta label" link="#" image="http://scania-noe-ux.sapient-lab.com/images/tiledDisplay/C025_Tiled_Display_03.jpg">Dutch company achieves its goals with scania driver services</news-and-events-item>
+
+    <lm-button>load more</lm-button>
+
+  </c-news-and-events-listing>
+</demo>
+
+___
+
+-->
+
+<dom-module id="c-news-and-events-listing-variation-1">
+  <template>
+    <style>
+      :host {
+        .wrapping {
+          margin: 55px auto 55px auto;
+
+          .ne-container {
+
+            @media (min-width: 767px) {
+              padding: 20px 40px 4px 40px !important;
+            }
+          
+            .ne-content {
+              padding: 20px 0 0 0;
+            } 
+          }
+        }
+      }
+    </style>
+
+    <content></content>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-news-and-events-listing-variation-1'
+    });
+  </script>
+</dom-module>

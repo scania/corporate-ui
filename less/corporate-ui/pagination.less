@@ -1,0 +1,23 @@
+.pagination {
+  border-radius: 0;
+  background-color: #fff;
+
+  > li {
+
+    &:first-child > a,
+    &:last-child > a {
+      border-radius: 0;
+    }
+    &.active {
+
+      > a,
+      > a:hover {
+        &:extend(.btn-primary);
+      }
+    }
+
+    > a {
+      color: inherit;
+    }
+  }
+}

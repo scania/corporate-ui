@@ -1,0 +1,150 @@
+<!--
+
+`c-corporate-header` displays logotype together with application name as well top links.
+
+@dev
+
+
+-->
+
+<dom-module id="c-corporate-header">
+  <template>
+    <style>
+      /* Corporate header */
+
+      :host-context(.header-is-sticky) {
+
+        .symbol.fixed {
+          top: 9px;
+        }
+      }
+
+      :host {
+        display: block;
+        z-index: 1150;
+        position: relative;
+        background: #fff;
+
+        header {
+          border-bottom: 1px solid #e2e2e2;
+        }
+
+        .symbol {
+          position: absolute;
+          top: -8px;
+          right: 17px;
+          z-index: 1020;
+          width: 48px;
+          height: 48px;
+          transition: top 100ms ease-in-out;
+
+          &.fixed {
+            position: fixed;
+            top: 21px;
+            right: 32px;
+          }
+        }
+        .wordmark {
+          width: 169px;
+          height: 28px;
+        }
+        nav {
+          margin-top: 27px;
+          margin-bottom: 22px;
+          padding-top: 3px;
+        }
+        .site-name {
+          font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
+          font-size: 18px;
+          font-weight: 300;
+          color: #747472;
+          border-left: 1px solid #e2e2e2;
+          display: inline-block;
+          margin-top: 5px;
+          margin-left: 15px;
+          padding-left: 18px;
+          line-height: 20px;
+        }
+        .navbar-right {
+          margin-top: 0;
+        }
+        .navbar-user {
+          margin-top: 7px;
+          margin-right: 114px;
+
+          ::content {
+
+            nav-item {
+              border: 0;
+              padding: 0 10px;
+              line-height: 20px; // Is needed when only one item is available for some strange reason? :O
+
+              &:first-child {
+                border-left: 0;
+              }
+
+              a {
+                font-family: "Scania Sans", Helvetica, Arial, sans-serif;
+                font-weight: normal;
+                font-size: 12px;
+                color: #747472;
+                text-transform: uppercase;
+                letter-spacing: 0.01rem;
+              }
+              a span:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+        ::content a {
+          color: #041e42;
+          text-transform: uppercase;
+        }
+      }
+
+      @media (max-width: 991px) {
+        :host {
+          display: none;
+        }
+      }
+    </style>
+
+    <header class="container-fluid">
+      <nav class="navbar navbar-top">
+        <div class="navbar-header">
+          <a href="{{siteUrl}}" class="navbar-brand wordmark"></a>
+          <span class="site-name">{{siteName}}</span>
+          <a href="{{siteUrl}}" class="symbol"></a>
+        </div>
+
+        <bs-navbar class="navbar-right navbar-user">
+          <content></content>
+          <!-- <nav-item location="#/">Scania global</nav-item>
+          <nav-item location="#/">My Scania</nav-item> -->
+        </bs-navbar>
+      </nav>
+    </header>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-corporate-header',
+      properties: {
+        siteName: String,
+        variation: 0,
+        siteUrl: {
+          type: String,
+          value: '/'
+        },
+        fullbleed: {
+          type: Boolean,
+          value: true
+        }
+      }
+    });
+  </script>
+</dom-module>
+
+<link rel="import" href="variation-1.html">

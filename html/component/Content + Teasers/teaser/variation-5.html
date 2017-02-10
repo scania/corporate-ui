@@ -1,0 +1,95 @@
+
+<!--
+___
+
+### Variation-5
+
+Variation 5
+
+<demo>
+  <c-teaser variation="5">
+    <c-teaser-item headline="Sustainability" image="https://static.scania.com/resources/images/demo/sneaky-road.jpg" link="#test" link-text="Learn more">
+      By leveraging customer profitability as our starting point, we want to be the leading provider of sustainable transport. This means integrating sustainability fully into the business and working with others to tackle impacts, transform our industry and create lasting value.
+    </c-teaser-item>
+  </c-teaser>
+</demo>
+
+___
+-->
+
+<dom-module id="c-teaser-variation-5">
+  <template>
+    <style>
+      /* Teaser variation5 */
+
+      @import (reference) 'https://static.scania.com/development/global/less/corporate-ui/buttons.less';
+
+      :host {
+        display: block;
+
+        c-teaser[fullbleed] {
+
+          ::content c-teaser-item {
+            margin-left: 0;
+            margin-right: 0;
+            padding-right: 0;
+            padding-left: 0;
+          }
+        }
+
+        ::content {
+
+          h2 {
+            font-size: 2.5em;
+          }
+          c-teaser-item {
+            font-size: 0;
+            width: auto;
+            margin-left: -15px;
+            margin-right: -15px;
+          }
+          .teaser-info > .btn {
+            &:extend(.btn-primary all);
+          }
+          .teaser-items {
+            margin-left: 0;
+            margin-right: 0;
+
+            c-teaser-item {
+
+              &:nth-child(odd) {
+                direction: rtl;
+              }
+
+              > div.c-teaser-item {
+                direction: ltr;
+                width: 50%;
+                padding-left: 15px;
+                padding-right: 15px;
+                display: inline-block;
+                float: none;
+                font-size: small;
+                vertical-align: middle;
+                text-align: left;
+
+                h2,
+                p {
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
+      }
+    </style>
+
+    <content></content>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-teaser-variation-5'
+    });
+  </script>
+</dom-module>

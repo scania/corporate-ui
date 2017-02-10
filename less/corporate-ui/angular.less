@@ -1,0 +1,42 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.bootstrap {
+
+    input.ng-invalid,
+    select.ng-invalid, {
+
+        &.ng-touched,
+        &.ng-dirty {
+            &:extend(.bootstrap .has-error .form-control all);
+        }
+        &:focus + [ng-messages] {
+            display: block;
+        }
+
+        + [ng-messages] {
+            &:before {
+                &:extend(.bootstrap .tooltip-arrow);
+                &:extend(.bootstrap .tooltip.right .tooltip-arrow);
+
+                content: "";
+                left: -6px;
+                border-right-color: rgba(0, 0, 0, 0.25);
+            }
+
+            display: none;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 6px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            padding: 9px 14px;
+            min-width: 150px;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            z-index: 1;
+            transform: translate(0, -50%);
+        }
+    }
+}

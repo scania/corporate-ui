@@ -1,0 +1,166 @@
+// SCANIA BOOTSTRAP THEME
+// TYPOGRAPHY
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Scania Sans", Helvetica, Arial, sans-serif;
+  line-height: 1.428571429;
+  color: @main-font-color;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Scania Sans Headline Bold";
+  line-height: 1.15;
+  color: #041e42;
+  text-align: center;
+
+  small {
+    font-family: "Scania Sans Headline";
+    font-size: 0.5em;
+    font-weight: normal;
+    color: #8089a0;
+  }
+}
+h1 {
+  font-size: @h1-font-size;
+  line-height: 0.98;
+}
+h2 {
+  //font-family: "Scania Sans Headline";
+  font-size: @h2-font-size;
+  line-height: 1.05;
+}
+h5 {
+  font-family: "Scania Sans Bold";
+}
+h6 {
+  font-family: "Scania Sans Italic";
+}
+h3 { font-size: @h3-font-size; }
+h4 { font-size: @h4-font-size; }
+h5 { font-size: @h5-font-size; }
+h6 { font-size: @h6-font-size; }
+p { font-size: @p-font-size; }
+td, th { font-size: @td-font-size; }
+p {
+  text-align: center;
+}
+// Added by Jesper
+p:last-child {
+  margin-bottom: 40px;
+}
+a,
+strong,
+button {
+  font-family: "Scania Sans Bold";
+  color: #041e42;
+}
+button {
+  font-size: 0.9em;
+}
+label,
+caption {
+  font-family: "Scania Sans Bold";
+  font-weight: normal;
+}
+legend {
+  font-family: "Scania Sans Headline Bold";
+}
+blockquote {
+  font-family: "Scania Sans";
+  font-weight: 400;
+}
+article {
+  text-align: left;
+
+  h1 { font-size: @h1-font-size * 0.8; }
+  h2 { font-size: @h2-font-size * 0.8; }
+  h3 { font-size: @h3-font-size * 0.8; }
+  h4 { font-size: @h4-font-size * 0.8; }
+  h5 { font-size: @h5-font-size * 0.8; }
+  h6 { font-size: @h6-font-size * 0.8; }
+}
+
+.app {
+
+  h1 { font-size: @h1-font-size-app; }
+  h2 { font-size: @h2-font-size-app; }
+  h3 { font-size: @h3-font-size-app; }
+  h4 { font-size: @h4-font-size-app; }
+  h5 { font-size: @h5-font-size-app; }
+  h6 { font-size: @h6-font-size-app; }
+  p { font-size: @p-font-size-app; }
+  td, th { font-size: @td-font-size-app; }
+
+  h1, h2, h3, h4, h5, h6, legend {
+    font-family: "Scania Sans Bold";
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  h1, h2, h3 {
+    letter-spacing: -0.03em;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+  p {
+    text-align: left;
+  }
+  label {
+    font-family: "Scania Sans";
+  }
+  article {
+
+    h1 { &:extend(article h1); }
+    h2 { &:extend(article h2); }
+    h3 { &:extend(article h3); }
+    h4 { &:extend(article h4); }
+    h5 { &:extend(article h5); }
+    h6 { &:extend(article h6); }
+  }
+}
+.public,
+.app .public {
+
+  /*h1, h2, h3, h4, h5, h6 {
+    &:extend(h6);
+  }*/
+  h1 { &:extend(h1); }
+  h2 { &:extend(h2); }
+  h3 { &:extend(h3); }
+  h4 { &:extend(h4); }
+  h5 { &:extend(h5); }
+  h6 { &:extend(h6); }
+  p { &:extend(p); }
+}
+nav a,
+.btn {
+  font-family: "Scania Sans Bold";
+  text-transform: uppercase;
+}
+.text-muted {
+  color: @text-muted-color;
+}
+.breadcrumbs,
+.lead {
+  font-family: "Scania Sans";
+}
+.lead {
+  font-size: 1.6em;
+  font-weight: 200;
+  line-height: 1.4;
+}
+
+
+@media (max-width: 768px) {
+
+  h1 { font-size: @h1-font-size * 0.5; }
+  h2 { font-size: @h2-font-size * 0.5; }
+  h3 { font-size: @h3-font-size * 0.5; }
+  p { font-size: @h3-font-size * 0.85; }
+
+}

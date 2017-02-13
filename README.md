@@ -1,5 +1,5 @@
 <h1>The Corporate UI Framework</h1>
-<p>In this repository you'll find all components described in the UX Library <a href="https://www.scania.com/ux-library/developer">UX Library</a>.</p>
+<p>In this repository you'll find all components described in <a href="https://www.scania.com/ux-library/developer">the UX Library</a>.</p>
 <p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository.</p> 
 <ul>
 	<li>Something broken in a existing component? Help fixing it!</li>
@@ -7,7 +7,7 @@
 	<li>Missing out on a component? Develop it!</li>
 </ul>
 
-<h2>Corporate UI Development Process</h2>
+<h2>The Corporate UI Development Process</h2>
 <p>There are many stakeholders that has interest in this library. Normally, new needs and improvements are filtered from business and end users via UX designers and product owners.</p>
 <ul>
 	<li>Once project requirements are defined: Is there any component that we can re-use?</li>
@@ -19,3 +19,6 @@
 <p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at [the Corporate UI Librarians] (mailto:corporate-ui@scania.com).</p>
 
 <p>Full Corporate UI documentation <a href="https://www.scania.com/ux-library">available here</a>.</p>
+
+<h2>Licens</h2>
+<p>The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.</p>

@@ -1,0 +1,35 @@
+
+<link rel="import" href="variation-1.html">
+
+<dom-module id="bs-alert">
+  <template>
+    <style>
+      /* Alert */
+      @import (reference) 'https://static.scania.com/development/global/less/corporate-ui/alerts.less';
+
+      :host {
+        display: block;
+
+        ::content {
+
+        }
+      }
+    </style>
+
+    <div class="alert-{{type}}">
+      <content></content>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bs-alert',
+      properties: {
+        type: {
+          type: String,
+          value: "info"
+        }
+      }
+    });
+  </script>
+</dom-module>

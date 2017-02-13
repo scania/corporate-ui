@@ -208,8 +208,11 @@ CorporateUi = (function() {
   }
 
   function setGlobals() {
-    var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src;
-    window.static_root = 'https://' + urlInfo(scriptUrl).hostname;
+    var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src,
+        port = urlInfo(scriptUrl).port ? ':' + urlInfo(scriptUrl).port : '',
+        localhost = urlInfo(scriptUrl).hostname === 'localhost';
+
+    window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
     window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
     window.vendors_root = window.static_root + '/vendors/';
     window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
@@ -220,6 +223,10 @@ CorporateUi = (function() {
       appName: 'Application name',
       company: 'Scania'
     };
+    if (localhost) {
+      window.vendors_root = 'https://static.scania.com/vendors/';
+      window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
+    }
     window.waitFor = window.waitFor || ['c-corporate-header', 'c-corporate-footer', 'c-main-content'];
   }
 

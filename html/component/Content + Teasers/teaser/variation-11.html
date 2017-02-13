@@ -1,0 +1,78 @@
+
+<!--
+___
+
+### Variation-1
+
+Variation 1
+
+<demo>
+  <c-teaser variation="11" headline="Increase Productivity" description="Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et.">
+    <c-teaser-item headline="Life at Scania" image="https://static.scania.com/resources/images/demo/truck-tires-mud.png">
+      Scania’s spirit of leadership is built upon shared and inclusive core values. This creates a unique climate where our employees enjoy taking on responsibility – and the chance to develop and realise their potential.
+    </c-teaser-item>
+    <c-teaser-item headline="Tackle Fuel Efficiency" image="https://static.scania.com/resources/images/demo/highway-interchange.png" link="#test" link-text="Learn more">
+      Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et.
+    </c-teaser-item>
+  </c-teaser>
+</demo>
+
+___
+-->
+
+<dom-module id="c-teaser-variation-11">
+  <template>
+    <style>
+      /* Teaser variation1 */
+
+      :host {
+        display: block;
+
+        ::content {
+
+          .teaser-items {
+            display: table;
+            margin-left: -15px;
+            margin-right: -15px;
+          }
+          c-teaser-item {
+            display: table-cell;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            p {
+              font-size: 1.6em;
+            }
+            .teaser-info {
+              padding: 0 10%;
+            }
+            .image {
+              position: relative;
+              padding-top: 100%;
+              background-color: #E0E0E0;
+              margin-bottom: 30px;
+
+              img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+              }
+            }
+          }
+        }
+      }
+    </style>
+
+    <content></content>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-teaser-variation-11'
+    });
+  </script>
+</dom-module>

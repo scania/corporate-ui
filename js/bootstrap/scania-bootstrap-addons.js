@@ -1,6 +1,11 @@
+
 /*!
  * Javascript Add Ons to Scania Bootstrap
  */
+
+console = console || {};
+
+console.log("You are linking to a development version of the Scania Bootstrap JavaScript, if you are using this in your production environment, please change your reference to https://static.scania.com/build/global/1.8.1/js/scania-bootstrap.js");
 
 function setMaximizeCookie(i, e, a) {
     if (a) {
@@ -29,10 +34,41 @@ function chartResize() {
     }
 }
 
+/*!
+ * Shortcuts M for Maxize
+ */    
+function bindCtrlM(){
+
+    $(document).on('keydown', function(e) {
+        if ((e.metaKey || e.ctrlKey) && ( String.fromCharCode(e.which).toLowerCase() === 'm') ) {
+            $('body').toggleClass('maximized');
+            $('#restore-button').removeClass('hidden');
+
+            chartResize();
+
+            $('body').hasClass('maximized') ? setMaximizeCookie('scaniaBootstrap_maximize', 'maximized', 90000) : setMaximizeCookie('scaniaBootstrap_maximize', 'minimized', 90000);
+        }
+    });
+}
+
 function init() {
+
+
+    $("body").append("<button class='btn btn-sm btn-default hidden' type='button' id='restore-button'><span class='small-menu'><i class='icon-menu-svg'></i><span class='menu-text'>MAIN MENU</span></span></button>");
+
+    // Emphasizing the main menu restor button
+
+
+    function mainMenuSlideOut(){
+       $( "#restore-button" ).addClass( "slide-out-right" );
+    }
+        setTimeout(mainMenuSlideOut, 700);
+       
+    // End emphasizing 
+
+
     var cookie_scaniaBootstrap_maximize = getMaximizeCookie("scaniaBootstrap_maximize");
 
-    $("body").append("<button class='btn btn-sm btn-default hidden' type='button' id='restore-button'><span class='small-menu'><i class='icon-reorder'></i><br/><i class='icon-cog'></i></span></button>")
 
     if(cookie_scaniaBootstrap_maximize === "maximized"){
         $("body").addClass("maximized");
@@ -46,7 +82,8 @@ function init() {
         chartResize();
 
         $("body").hasClass("maximized") ? setMaximizeCookie("scaniaBootstrap_maximize", "maximized", 90000) : setMaximizeCookie("scaniaBootstrap_maximize", "minimized", 90000)
-    });      
+     });   
+
 
     $("#restore-button").click(function() {
         $("body").removeClass("maximized");
@@ -56,6 +93,17 @@ function init() {
 
         $("body").hasClass("maximized") ? setMaximizeCookie("scaniaBootstrap_maximize", "maximized", 90000) : setMaximizeCookie("scaniaBootstrap_maximize", "minimized", 90000)
     }); 
+
+
+    $('.teaser-title').each(function() {
+        if($(this).text().length > 50) {
+            $(this).css({'font-family': 'ScaniaSansBold', 'text-transform': 'initial'}) }
+        else if ($(this).text().length > 30) {
+            $(this).css({'font-family': 'ScaniaSansHeadlineRegular'})
+        }   
+    })
+
+    bindCtrlM();
 }
 
 $(function() {

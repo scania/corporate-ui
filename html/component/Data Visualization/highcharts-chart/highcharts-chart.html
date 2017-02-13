@@ -1,0 +1,21 @@
+<link rel="import" href="https://static.scania.com/development/global/html/component/Data%20Visualization/highcharts-chart/core/highcharts-behavior.html">
+<link rel="import" href="https://static.scania.com/development/global/html/component/Data%20Visualization/highcharts-chart/core/highcharts-shared-styles.html">
+
+<link rel="import" href="variation-1.html">
+
+<dom-module id="highcharts-chart">
+    <template>
+        <style include="highcharts-shared-styles"></style>
+        <div id="Chart" width="100%" on-click="_checkSelected"></div>
+        <content></content>
+    </template>
+    <script>
+        'use strict';
+        Polymer({
+            is: "highcharts-chart",
+            behaviors: [Highcharts.Polymer_BaseBehavior, Highcharts.Polymer_ChartBehavior],
+            properties: {type: {type: String, value: 'spline', observer: '_updateType'}},
+            ready: function() {this.__createChart()},
+        });
+    </script>
+</dom-module>

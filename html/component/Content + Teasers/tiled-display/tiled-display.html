@@ -1,0 +1,109 @@
+<script src="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick.min.js"></script>
+
+<link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick.css">
+<link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick-theme.css">
+
+<!--
+
+`c-tiled-display` adds the framework for a tiled display. Useful for showcasing and promoting features visually.
+Variation 1 offers any even amount of tiles and optional title. text and button. Responsively designed with slick functionality for smaller screens to avoid cluttering of tiles.
+Variation 2 offers title,text and button in tiles. This for further explanation of its image counterpart. For each row, the image and text tiles switch position. If screen size is small, the tiles go on top of eachother. 
+
+### Variations:
+
+@dev
+
+variations: tiled display, tiled display with text counterpart
+
+### Todo
+  - Responsive design, mobile support not optimal in its current iteration.
+
+-->
+<dom-module id="c-tiled-display">
+  <template>
+    <style>
+      ::content .slick-dots li button:before {
+        content: '•';
+      }
+    </style>
+    <div class$="{{variation}}">
+      <content></content>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'c-tiled-display',
+      properties: {
+        headline: {
+          type: String,
+          value: 'Some Title'
+        },
+        description: {
+          type: String,
+          value: 'some text'
+        },
+        'btn-text': {
+          type: String,
+          value: 'button text'
+        }
+      },
+      // These conditionals takes the images paths and puts into an array. This array is then used as source when building template dom-repeat.
+      ready: function() {
+        if (this.getAttribute('img1') == null && this.getAttribute('img2') == null) {
+          this.imgarray = [
+            {first: 'https://static.scania.com/resources/images/demo/Tile1.jpg'},
+            {first: 'https://static.scania.com/resources/images/demo/Tile2.jpg'}
+          ];
+        }
+        else if (this.getAttribute('img3') == null && this.getAttribute('img4') == null) {
+          this.imgarray = [
+            {first: this.getAttribute('img1')},
+            {first: this.getAttribute('img2')}
+          ];   
+        }
+        else if (this.getAttribute('img3') != null && this.getAttribute('img4') != null) {  
+          this.imgarray = [
+            {first: this.getAttribute('img1'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn1')},
+            {first: this.getAttribute('img2'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn2')},
+            {first: this.getAttribute('img3'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn3')},
+            {first: this.getAttribute('img4'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn4')}
+          ];
+        }
+
+        this.parentNode.setAttribute('imgarray', JSON.stringify(this.imgarray))
+      },
+      // function for checking variation, builds corresponding dom-if template.
+      checkVariation: function(variation) {
+        return variation === this.getAttribute('variation');
+      },
+      //function not used as of this moment, can perhaps add further optimization.
+      info: function(headline, description) {
+        return headline || description;
+      }
+    });
+    //function for Slick. Initializes Slick functionality if window size is below 480.  
+    function createSlick(){
+      var windowWidth = $(window).width();
+      if(windowWidth < 480){  
+        $(".slick-scroll").not('.slick-initialized').slick({
+          infinite:true, //these settings are configurable with additional functionality such as autoplay.
+          dots:true
+        })
+        $('.slick-scroll').slick('slickFilter',function(index){ //help function for removing dom-repeat template, as slick considers this its own div element.
+          return index < 4;
+        })
+      }
+      else {
+        if ($(".slick-scroll").hasClass('slick-initialized')) { //removes slick, but only if it have been initialized before. This conditional removes errors.
+          $('.slick-scroll').slick('unslick');
+        }
+      } 
+    }
+         
+    $(window).on( 'load resize', createSlick );
+    createSlick();
+  </script>
+</dom-module>
+<link rel="import" href="variation-1.html">
+
+<link rel="import" href="variation-2.html">

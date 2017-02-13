@@ -1,0 +1,793 @@
+<!--
+
+`c-main-navigation` Is used for setting the primary navigation.
+
+@dev
+
+
+-->
+
+<style>
+  body.navigation-open {
+    overflow: hidden;
+    -ms-overflow-style: none;
+  }
+</style>
+
+<dom-module id="c-main-navigation">
+  <template>
+    <style>
+      /* Main navigation */
+
+      :host-context(.header-is-sticky) {
+
+        ::content {
+          nav-item .scania-icon-find-a-dealer + span {
+            // opacity: 0; // What was this used for?
+          }
+        }
+      }
+
+
+      :host-context(.app) {
+        bs-navbar {
+
+          nav-item {
+            a {
+              letter-spacing: .03rem;
+              line-height: 28px;
+              padding-top: 16px;
+              padding-bottom: 12px;
+            }
+          }
+        }
+      }
+      
+      :host {
+        display: block;
+        position: relative;
+        z-index: 1100;
+        letter-spacing: 0.03rem; 
+
+        nav {
+          margin-bottom: 0;
+          word-break: normal;
+
+          .navbar-left {
+
+            &:hover ::content {
+
+              nav-item a,
+              ~ bs-navbar nav-item a,
+              ~ sub-navigation nav-item a {
+                color: #d4d4d3;
+              }
+            }
+            ::content nav-item {
+
+              &:hover a {
+                color: #041e42;
+              }
+
+              a:focus {
+                color: #041e42;
+              }
+            }
+          }
+        }
+        a {
+          text-decoration: none;
+        }
+
+        .symbol {
+          display: none;
+        }
+        .sticky {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+        .navbar-right .explainatory-text {
+          display: none;
+        }
+        .navbar-right span {
+          display: inline-block;
+          padding: 0;
+          margin: 0;
+          line-height: 1;
+          vertical-align: middle;
+        }
+        .navbar-left {
+          float: none !important;
+
+          a {
+            padding: 0 15px;
+          }
+        }
+        .navbar-footer {
+          display: none;
+        }
+        .navbar-default.navbar {
+          min-height: 0;
+          position: static;
+          border-top: none;
+        }
+        .top-level {
+          position: relative;
+          z-index: 1;
+          line-height: 0; // Temporary fix, investigate why top-level becomes so high...
+        }
+
+        ::content {
+
+          nav-item {
+
+            &:first-child {
+              margin-left: 2px;
+            }
+
+            span,
+            i {
+
+              &[class*="scania-icon-"] {
+                width: 30px;
+                height: 30px;
+                margin-top: -2px;
+                margin-bottom: -2px;
+              }
+            }
+
+            a {
+              font-size: 14px;
+              line-height: 26px;
+              letter-spacing: 0.03rem;
+              padding-top: 20px;
+              padding-bottom: 20px;
+
+              &:hover {
+                text-decoration: none;
+              }
+
+              > span {
+                display: inline-block;
+                border-left: 1px solid #e2e2e2;
+                padding-left: 2.7rem;
+                padding-right: 2.7rem;
+              }
+            }
+
+            /*.scania-icon-find-a-dealer + span {
+              opacity: 1;
+              transition: opacity 200ms ease-in-out;
+            }*/
+          }
+          primary-items {
+            display: block;
+
+            nav-item {
+              position: relative;
+              display: inline-block;
+              padding: 0;
+              line-height: 21px;
+
+              &:first-child > span {
+                border-left: none;
+              }
+              &.active,
+              &.active a {
+                position: static;
+              }
+
+              a.sub-nav-item {
+                display: none;
+                float: left;
+              }
+            }
+          }
+          secondary-items {
+            display: block;
+
+            nav-item {
+              display: inline-block;
+              padding: 0 25px;
+
+              [class*="icon-"] {
+                font-size: 26px;
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 991px) {
+        :host {
+
+          .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+          }
+          .site-name {
+            font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #747472;
+            display: inline-block;
+            margin-top: 25px;
+            padding: 0 5px;
+            line-height: 20px;
+          }
+          .symbol {
+            position: fixed;
+            z-index: 1020;
+            transition: top 200ms ease-in-out;
+            width: 40px;
+            height: 40px;
+            top: 13px !important;
+            right: 13px;
+            background-size: 40px;
+            display: block;
+          }
+          nav .navbar-left {
+            display: block;
+            padding: 0;
+            float: none !important;
+
+            &:hover ::content {
+
+              nav-item a,
+              ~ bs-navbar nav-item a,
+              ~ sub-navigation nav-item a {
+                color: inherit;
+              }
+            }
+          }
+          .navbar-right {
+            display: none;
+          }
+          .top-level {
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+          }
+          /*  Changed by Jesper - new attributes below
+            .extra-level {
+            overflow: hidden;
+            text-align: center;
+            -moz-box-shadow: 0px 0px 4px #e2e2e2;
+            -webkit-box-shadow: 0px 0px 4px #e2e2e2;
+            box-shadow: 0px 0px 4px #e2e2e2;
+          }*/
+          .extra-level {
+            overflow: hidden;
+            text-align: center;
+            margin-right: 44px;
+          }
+          .navbar-footer {
+            height: 55px;
+
+            ::content nav-item {
+              padding-left: 0;
+              padding-right: 0;
+              margin: 0;
+
+              a {
+                padding-top: 15px;
+                padding-bottom: 15px;
+              }
+            }
+          }
+          .navbar-toggle {
+            display: inline-block;
+            float: left;
+            border: 1px solid #e2e2e2;
+            padding: 0;
+            margin: 0 0 -1px;
+            border-radius: 0;
+
+            &:hover {
+              background-color: transparent;
+            }
+
+            ::content {
+
+              a {
+                padding: 21px;
+                font-size: 1.4em;
+
+                &:hover,
+                &:focus {
+                  color: inherit;
+                  outline: none;
+                }
+                &.collapsed .icon-expander:before {
+                  content: "\e6b1";
+                }
+
+                > span {
+                  padding: 0;
+                  border-left: 0;
+                }
+                .icon-expander {
+                  display: inline-block;
+                  width: 18px;
+
+                  &:before {
+                    content: "\e60d";
+                  }
+                }
+              }
+            }
+          }
+          nav .navbar-collapse {
+
+            &.collapsing {
+              overflow-y: hidden !important;
+
+              + .navbar-footer {
+                display: block;
+              }
+            }
+            &.collapse {
+              display: none !important;
+
+              &.in {
+                display: block !important;
+
+                + .navbar-footer {
+                  display: block;
+                }
+              }
+            }
+            &.in {
+              height: 100vh !important;
+            }
+          }
+
+          ::content {
+
+            nav-item {
+
+              &.active {
+
+                .sub-nav-item {
+                  display: block;
+                  border-right: 1px solid #e2e2e2;
+
+                  &:hover span {
+                    text-decoration: none;
+                  }
+                }
+              }
+
+              a {
+                padding-top: 25px;
+                padding-bottom: 25px;
+
+                &:focus {
+                  color: inherit;
+                }
+
+                > span {
+                  border-left: 0;
+                  padding-left: 2rem;
+                  padding-right: 2rem;
+
+                  &[class^="icon-"] {
+                    line-height: inherit;
+                  }
+                }
+              }
+            }
+            primary-items {
+
+              > nav-item {
+                display: block;
+
+                > a:hover span {
+                  text-decoration: underline;
+                }
+              }
+            }
+            secondary-items {
+
+              > nav-item {
+                display: none; // We might wanna show these in some way
+                padding: 0;
+
+                a {
+                  padding: 10px 0;
+                  margin: 0 15px;
+
+                  span {
+                    padding: 0;
+                  }
+                }
+              }
+            }
+
+            .top-level {
+
+              &:not(.active) {
+
+                primary-items > nav-item:not(.active) {
+                  display: none;
+                }
+              }
+            }
+            .nav {
+              float: none;
+            }
+            .navbar-left {
+
+              &:hover ::content {
+
+                nav-item a,
+                ~ bs-navbar nav-item a,
+                ~ sub-navigation nav-item a {
+                  color: #041e42;
+                }
+              }
+            }
+            .nav-collapse-container {
+              height: 100%;
+              background-color: #f5f5f5;
+              overflow-y: auto;
+              -ms-overflow-style: auto;
+            }
+          }
+
+          /*.navbar-header {
+            display: none;
+          }
+          .navbar-top.navbar {
+            margin: 0;
+            border: 0;
+          }
+          .navbar-top.navbar .navbar-toggle {
+            display: block;
+          }
+          .navbar-top .navbar-right.navbar-user {
+            text-align: center;
+            margin: 0 -15px;
+            float: none !important;
+
+            .nav {
+              float: none;
+            }
+          }
+          .navbar-user nav-item {
+            display: none;
+
+            &.navbar-toggle {
+              float: left;
+              border: 1px solid #e2e2e2;
+              padding: 0;
+              margin: 0 0 -1px;
+              border-radius: 0;
+
+              ::content a {
+                padding: 20px;
+                font-size: 1.4em;
+              }
+            }
+          }
+          .symbol {
+            margin-left: 0;
+          }*/
+        }
+      }
+    </style>
+
+    <div class="nav-container">
+      <nav class="navbar navbar-default">
+        <div class="extra-level">
+          <nav-item location="#main-nav" class="navbar-toggle collapsed" data-toggle="collapse"><span class="icon-expander"></span></nav-item>
+          <span class="site-name hidden-md hidden-lg">{{siteName}}</span>
+          <a href="{{siteUrl}}" class="symbol"></a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="main-nav">
+          <div class="nav-collapse-container">
+
+            <div class="top-level">
+              <bs-navbar class="navbar-left">
+                <content select="primary-items"></content>
+              </bs-navbar>
+
+              <bs-navbar class="navbar-right">
+                <!-- <template is="dom-if" if="{{showSearch}}">
+                  <nav-item>
+                    <span class="icon-search"></span>
+                  </nav-item>
+                </template>
+
+                <template is="dom-if" if="{{dealerLocator}}">
+                  <nav-item class="dealer-locator">
+                    <a href="https://www.scania.com/global/en/home/dealer-locator.html">
+                      <span class="scania-icon-find-a-dealer"></span> 
+                      <span>Återförsäljare</span>
+                    </a>
+                  </nav-item>
+                </template> -->
+
+                <!-- <secondary-nav-item>
+                  <span id="maximize-button">
+                    <span class="icon-close-svg"></span>
+                    <span class="explainatory-text">Hide</span>
+                  </span>
+                </secondary-nav-item> -->
+
+                <content select="secondary-items"></content>
+              </bs-navbar>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-footer">
+          <content select="mobile-footer-items"></content>
+        </div>
+      </nav>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-main-navigation',
+      properties: {
+        siteName: String,
+        siteUrl: String,
+        showSearch: false,
+        dealerLocator: false,
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        }
+      },
+      attached: function() {
+        var self = this;
+
+        this.siteName = $('c-corporate-header')[0].siteName;
+        this.siteUrl = $('c-corporate-header')[0].siteUrl;
+
+        // We should come up with a better solution for checking when a child has been attached.
+        this.addEventListener('childAttached', function(event) {
+          setTimeout(function() {
+            self.sticky();
+          }, 20);
+        });
+
+        // and run it again every time you scroll
+        $(window).on('scroll resize', function() {
+          self.sticky();
+        });
+
+        // Set start collapse value - couldnt get this to work in a better way...
+        $('.navbar-toggle > a', this).addClass('collapsed');
+
+        // Handling for navigation scoll in mobile mode
+        $('#main-nav', this).on('shown.bs.collapse hide.bs.collapse', function(event) {
+          $('body').toggleClass('navigation-open');
+        });
+
+        // Add possibility for logotype to be fixed if main-navigation exists
+        $('c-corporate-header .symbol').addClass('fixed');
+
+        // If no nav-item is selected set top-level as selected
+        if( !$('nav-item.active', this).length ) {
+          $('.top-level').addClass('active');
+        }
+
+        // This have been moved to css section, should work
+        /*$('main-navigation .nav-item').bind("mouseover", function(){
+            var color  = $(this).css("color");
+            $('primary-items .nav-item').css("color", "#d4d4d3");
+            $('primary-items .nav-item:hover').css("color", "#041e42");
+
+            $(this).bind("mouseout", function(){
+                $('primary-items .nav-item').css("color", "#041e42");
+            })
+        });*/
+      },
+      // if we've scrolled more than the navigation, change its position to fixed making it stick to the top,
+      // otherwise change it back to relative
+      sticky: function() {
+        var body = $('body'),
+            navContainer = $('.nav-container', this),
+            stickyNavTop = $(this).offset().top,
+            scrollTop = $(window).scrollTop(), // our current vertical position from the top
+            headerHeight = $('.navbar-toggle:visible', this).height() || $('#main-nav .top-level', this).height() + $('c-sub-navigation:visible', this).height() || 'auto',// On desktop mode it will use #main-nav on mobile .navbar-toggle
+            footerHeight = $('.navbar-footer', this).height() || 'auto';
+
+        $(this).height( headerHeight );
+        $('.navbar-collapse.c-main-navigation', this).removeAttr('style');
+
+        // Used in mobile mode
+        if (window.innerWidth <= 991) {
+          $('.navbar-collapse.c-main-navigation', this).css({
+            'padding-top'     : headerHeight,
+            'margin-top'      : headerHeight * -1,
+            'padding-bottom'  : footerHeight,
+            'margin-bottom'   : footerHeight * -1
+          });
+        }
+
+        navContainer.addClass('sticky');
+        body.addClass('header-is-sticky');
+
+        if (scrollTop <= Math.max(stickyNavTop - 15, 0)) {
+          body.removeClass('header-is-sticky');
+        }
+
+        if (scrollTop <= stickyNavTop) {
+          navContainer.removeClass('sticky');
+        }
+      }
+    });
+  </script>  
+</dom-module>
+
+
+<dom-module id="c-sub-navigation">
+  <template>
+    <style>
+      /* Sub navigation */
+
+      :host-context(.app) {
+        bs-navbar {
+
+          nav-item {
+            a {
+              letter-spacing: .03rem;
+              line-height: 18px;
+              padding-top: 14px;
+              padding-bottom: 12px;
+            }
+          }
+        }
+      }
+
+      :host-context(nav-item.active) {
+        display: block;
+      }
+
+      :host {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        .navbar-default {
+          background: #f5f5f5;
+          margin-bottom: 0;
+          min-height: 0;
+        }
+        .caption {
+          font-family: "Scania Sans Bold";
+          color: #041e42;
+          letter-spacing: .03rem;
+          text-transform: uppercase;
+          border-right: 1px solid #e2e2e2;
+          padding-left: 2.7rem;
+          padding-right: 4.5rem;
+        }
+
+        ::content {
+
+          bs-navbar {
+
+            nav-item {
+
+              &:first-child {
+                padding-left: 2.5rem;
+              }
+
+              a {
+                background-color: transparent !important;
+              }              
+
+              &.active a > span {
+                border-bottom-color: #c50918 !important;
+              }
+
+              a {
+                font-family: "Scania Sans";
+                letter-spacing: .03rem;
+                line-height: 18px;
+                padding-top: 16px;
+                padding-bottom: 12px;
+                padding-right: 1.3rem;
+                padding-left: 1.3rem;
+
+                &:hover > span, &:active > span {
+                  border-bottom-color: #c50918;
+                }
+
+                > span {
+                  border-left: 0;
+                  padding: 0;
+                  border-bottom: 2px solid transparent;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media (max-width: 991px) {
+
+        :host {
+
+          .caption {
+            display: block;
+            padding: 25px 2rem;
+            background-color: #fff;
+            border-right: 0;
+          }
+
+          ::content {
+
+            bs-navbar {
+              display: block;
+
+              .nav {
+                float: none;
+
+                nav-item {
+                  display: block;
+                  padding-left: 0;
+                  border-bottom: 1px solid #e2e2e2;
+
+                  a {
+                    padding: 25px 2rem;
+                    font-size: 12px;
+                    letter-spacing: 0.2rem;
+                    line-height: 20px;
+
+                    &:hover span {
+                      border-bottom: 0;
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    </style>
+
+    <nav class="navbar navbar-default">
+      <div class="navbar-collapse collapse" id="sub-nav">
+        <span class="caption">{{caption}}</span>
+        <bs-navbar class="navbar-left">
+          <content></content>
+        </bs-navbar>
+      </div>
+    </nav>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'c-sub-navigation',
+      properties: {
+        showSearch: Boolean,
+        caption: String,
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        }
+      },
+      attached: function() {
+        this.fire('childAttached');
+      }
+    });
+  </script>
+</dom-module>
+
+<link rel="import" href="variation-1.html">

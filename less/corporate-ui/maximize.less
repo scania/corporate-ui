@@ -1,0 +1,58 @@
+/*** MAXIMIZE FUNCTION ***/
+#maximize-button {
+  color: #418BCA; //Bootstrap primary-color
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+body.maximized {
+  margin-top: 0px !important;
+}
+
+
+body.maximized .container.portal-main-container {
+  margin-top: 0px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 15px;
+  padding-top: 15px;
+}
+
+body.maximized .container {
+  max-width: 100%;
+}
+
+body.maximized #prototype-header{
+  display: none;
+}
+
+body.maximized .application-info {
+  display: none;
+}
+
+body.maximized .main-header {
+  display: none;
+}
+
+body.maximized nav {
+    display: none;
+}
+
+body.maximized .main-navigation {
+    display: none;
+}
+
+body.maximized .portal-footer {
+    display: none;
+}
+
+
+@media (max-width: 991px) {
+  #maximize-button {
+    display: none;
+  }
+}
+
+body.maximized #restore-button {
+    display: none;
+}

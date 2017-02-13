@@ -9,7 +9,3 @@ Do you want to have an introduction to Web Component development at Scania? Plea
 Librarians] (mailto:corporate-ui@scania.com).
 
 Full Corporate UI documentation [available here] (https://www.scania.com/ux-library).
- 
-
-
-

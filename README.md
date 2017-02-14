@@ -16,7 +16,7 @@
 	<li>Push your code for review and then enjoy the limelight once your component is merged and released!</li>	
 </ul>
 
-<p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at [the Corporate UI Librarians] (mailto:corporate-ui@scania.com).</p>
+<p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at <a href="mailto:corporate-ui@scania.com">the Corporate UI Librarians</a>.</p>
 
 <p>Full Corporate UI documentation <a href="https://www.scania.com/ux-library">available here</a>.</p>
 

@@ -20,5 +20,15 @@
 
 <p>Full Corporate UI documentation <a href="https://www.scania.com/ux-library">available here</a>.</p>
 
+<h2>Set up your local server</h2>
+<ul>
+<li>Clone the Corporate UI repo</li>
+<li>CONFIGURE SCANIA PROXY: In environment variables (on computer) as well as in Git config. PROXY IS: http://PROXYSESO.SCANIA.COM:8080
+<li>INSTALL GULP: npm install gulp-cli -g</li>
+<li>INSTALLING DEPENDENCIES: npm install from the corporate-ui folder.</li>
+<li>Start Gulp</li>
+<li>Open your browser and go to http://localhost:1337</li>
+</ul>
+
 <h2>Licens</h2>
 <p>The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.</p>

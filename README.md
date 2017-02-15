@@ -23,10 +23,11 @@
 <h2>Set up your local server</h2>
 <ul>
 <li>Clone the Corporate UI repo</li>
+<li>Download and install node.js: https://nodejs.org/en/</li>
 <li>CONFIGURE SCANIA PROXY: In environment variables (on computer) as well as in Git config. PROXY IS: http://PROXYSESO.SCANIA.COM:8080
-<li>INSTALL GULP: npm install gulp-cli -g</li>
-<li>INSTALLING DEPENDENCIES: npm install from the corporate-ui folder.</li>
-<li>Start Gulp</li>
+<li>INSTALL GULP (from command line): <b>npm install gulp-cli -g</b></li>
+<li>INSTALLING DEPENDENCIES (from command line): <b>npm install</b> from the corporate-ui folder.</li>
+<li>Start Gulp (from command line): <b>gulp</b></li>
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
 

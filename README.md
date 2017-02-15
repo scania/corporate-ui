@@ -31,8 +31,8 @@
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
 <h2>Starter Kit</h2>
-<p>The starter kit might be the fastest way to get you into the architecture of the Corporate UI
-<a href="https://github.scania.com/Scania/corporate-ui/tree/master/starter-kit">ready more about it here</a>.
+<p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components. 
+<a href="https://github.scania.com/Scania/corporate-ui/tree/master/starter-kit">Read more...</a>.
 
 
 

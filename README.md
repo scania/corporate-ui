@@ -1,5 +1,5 @@
 <h1>The Corporate UI Framework</h1>
-<p>In this repository you'll find all components described in <a href="https://www.scania.com/ux-library/developer">the UX Library</a>.</p>
+<p>In this repository you'll find all components described in <a href="https://static.scania.com/ux-library/developer">the UX Library</a>.</p>
 <p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository.</p> 
 <ul>
 	<li>Something broken in a existing component? Help fixing it!</li>

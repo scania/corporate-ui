@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>UX Library</title>
+  
+  <script src="/js/corporate-ui.js"></script>
+
+  <link rel="stylesheet" href="https://static.scania.com/ux-library/ux-lib.css">
+</head>
+<body class="scania ux-lib" ng-app="CorporateUI" ng-controller="Components as components" data-env="dev">
+    
+  <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
+    <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+
+    <c-main-navigation show-search>
+      <primary-items>
+        <nav-item location="../">Home</nav-item>
+        <nav-item location="../styleguide/">Style Guide</nav-item>            
+        <nav-item location="../developer/" class="active">
+          Web Applications
+          <c-sub-navigation caption="Web Applications">
+            <nav-item location="/ux-library/developer/">Corporate UI</nav-item>
+            <nav-item location="/ux-library/component/">Available Components</nav-item>
+            <nav-item location="/ux-library/template/">Templates</nav-item>
+            <nav-item location="/ux-library/developer/caching.html">Caching</nav-item>
+            <nav-item location="/ux-library/developer/scania-bootstrap.html">Scania Bootstrap</nav-item>
+            <nav-item location="/ux-library/developer/support.html">Support</nav-item>
+          </c-sub-navigation>
+        </nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <h2>{{components.folders.name}}´s</h2>
+
+        <!-- Temporary hiding Carousels until they are working -->
+        <div ng-repeat="mainItem in components.folders.children" class="main-item">
+          <h5>
+            <i ng-class="'icon-' + mainItem.name" class="outline md"></i>
+            {{mainItem.name}}
+          </h5>
+          <div class="row">
+            <!-- We block listing of main-content -->
+            <div ng-repeat="subItem in mainItem.children" class="col-sm-3 col-xs-6 component" ng-if="subItem.name !== 'main-content' && !subItem.extension">
+              <a href="/component/?t={{mainItem.name}}&c={{subItem.name}}">{{subItem.name}}</a>
+              <span>{{subItem.children.length - 1}} variations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+  <script src="//static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+  <script>
+    angular.module("CorporateUI", [])
+      .controller("Components", ["$http", Components]);
+
+    function Components($http) {
+      var vm = this;
+
+      vm.folders = [];
+
+      $http.get('data/component').then(
+        function(response) {
+          vm.folders = response.data;
+        }, function(response) {
+          console.error('wooops: ', response);
+        });
+    }
+  </script>
+</body>
+</html>

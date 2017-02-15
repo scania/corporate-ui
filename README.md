@@ -16,9 +16,19 @@
 	<li>Push your code for review and then enjoy the limelight once your component is merged and released!</li>	
 </ul>
 
-<p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at [the Corporate UI Librarians] (mailto:corporate-ui@scania.com).</p>
+<p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at <a href="mailto:corporate-ui@scania.com">the Corporate UI Librarians</a>.</p>
 
 <p>Full Corporate UI documentation <a href="https://www.scania.com/ux-library">available here</a>.</p>
+
+<h2>Set up your local server</h2>
+<ul>
+<li>Clone the Corporate UI repo</li>
+<li>CONFIGURE SCANIA PROXY: In environment variables (on computer) as well as in Git config. PROXY IS: http://PROXYSESO.SCANIA.COM:8080
+<li>INSTALL GULP: npm install gulp-cli -g</li>
+<li>INSTALLING DEPENDENCIES: npm install from the corporate-ui folder.</li>
+<li>Start Gulp</li>
+<li>Open your browser and go to http://localhost:1337</li>
+</ul>
 
 <h2>Licens</h2>
 <p>The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.</p>

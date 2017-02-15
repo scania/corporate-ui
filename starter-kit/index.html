@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+
+  <!-- Handling for browsers that are JS disabled -->
+  <noscript><meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html"></noscript>
+
+  <title>Scania</title>
+
+  <!-- corporate-ui.js includes Bootstrap, handling for old browsers, corporate header, main menu and footer as well as Web Components polyfills, if needed -->
+  <script src="https://static.scania.com/build/global/2.0.0/js/corporate-ui.js"></script>
+
+</head>
+
+  <!-- In the body you'll applying the brand identity for Scania as well as UX adjustment for either a public web or an internal app. The app appearance are in develpement and might be shakey --> 
+
+<body class="scania public">
+
+
+  <!-- The header main menu and footer we hope are quite self explainatory :-) --> 
+    
+  <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
+    <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+    
+  <!-- c-main-content tag should be placed here, it is setting the layout meassures of the page -->     
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items>
+        <nav-item location="https://static.scania.com/ux-library/index.html">Home</nav-item>
+        <nav-item location="https://static.scania.com/ux-library/logotype/">Logotype</nav-item>
+        <nav-item location="https://static.scania.com/ux-library/icons/">Icons</nav-item>
+        <nav-item location="https://static.scania.com/ux-library/typography/">Typography</nav-item>
+        <nav-item location="https://static.scania.com/ux-library/developer/" class="active">Web Applications
+          <c-sub-navigation caption="Web Applications">
+            <nav-item location="https://static.scania.com/ux-library/developer/">Corporate UI</nav-item>          
+            <nav-item location="https://static.scania.com/ux-library/component/">Available Components</nav-item>
+            <nav-item location="https://static.scania.com/ux-library/template/">Templates</nav-item>
+            <nav-item location="https://static.scania.com/ux-library/developer/caching.html">Caching stategies</nav-item>
+            <nav-item location="https://static.scania.com/ux-library/developer/support.html">Request support</nav-item>            
+          </c-sub-navigation>
+        </nav-item>
+      </primary-items>
+
+    </c-main-navigation>
+
+
+
+    <!-- And here is the attached component that you can play with from localhost.
+    Yes, components HTML files needs to be included from a web server -->
+    <link rel="import" href="new-component.html">    
+    <c-new-component image="https://static.scania.com/resources/images/demo/c-quote-full.jpg">
+      <h2>1337</h2>
+      <p>Leet (or "1337"), also known as eleet or leetspeak, is an alternative alphabet for many languages that is used primarily on the Internet. For example, leet spellings of the word leet include 1337 and l33t; eleet may be spelled 31337 or 3l33t.<br> 
+      <b>The term leet is derived from the word elite.</b></p>
+    </c-new-component>    
+
+
+    <!-- When using other components than corporate header, main menu and footer we need to import those components individually, in this case main hero --> 
+    <link rel="import" href="https://static.scania.com/build/global/2.0.0/html/component/Navigation/main-hero/main-hero.html">
+    <!-- And now we can use the c-main-hero element stored centrally at static --> 
+    <c-main-hero image="https://static.scania.com/resources/images/demo/default-image.jpg">
+      <h1>Your headline</h1>
+      <p>Thanks for a good day yesterday!</p>
+    </c-main-hero>
+
+    <!-- You can mix in your own HTML anywhere -->
+    <section class="light">
+      <div class="container">
+          <h2>Here goes your application</h2>
+          <p>Using Standard Bootstrap.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- The main content ends right before the footer starts -->     
+  </c-main-content>
+
+    <!-- Complex footer described below, minimalistic footer looks like this: 
+    <c-corporate-footer></c-corporate-footer> -->  
+
+  <c-corporate-footer>
+    <c-social-share>
+      <nav-item location="https://www.facebook.com/search/top/?q=%23scania" icon="facebook"></nav-item>
+      <nav-item location="https://twitter.com/search?q=%23scania&src=typd" icon="twitter"></nav-item>
+      <nav-item location="https://twitter.com/search?q=%23scania&src=typd" icon="linkedin"></nav-item>
+      <nav-item location="https://www.instagram.com/explore/tags/scania/" icon="instagram"></nav-item>
+      <nav-item location="https://twitter.com/search?q=%23scania&src=typd" icon="vk"></nav-item>
+      <nav-item location="https://twitter.com/search?q=%23scania&src=typd" icon="weibo"></nav-item>
+    </c-social-share>
+
+    <nav-item location="https://www.scania.com/global/en/global/misc/legal.html">Legal</nav-item>
+    <nav-item location="https://www.scania.com/global/en/home/misc/PrivacyStatement.html">Privacy Statement</nav-item>
+    <nav-item location="https://www.scania.com/global/en/home/misc/Cookies.html">Cookies</nav-item>
+    <nav-item location="https://www.scania.com/global/en/home/experience-scania/about-us/contact-us.html">Contact Us</nav-item>
+  </c-corporate-footer>
+
+</body>
+</html>

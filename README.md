@@ -30,6 +30,11 @@
 <li>Start Gulp (from command line): <b>gulp</b></li>
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
+<h2>Starter Kit</h2>
+<p>The starter kit might be the fastest way to get you into the architecture of the Corporate UI
+<a href="https://github.scania.com/Scania/corporate-ui/tree/master/starter-kit">ready more about it here</a>.
+
+
 
 <h2>Licens</h2>
 <p>The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.</p>

@@ -1,0 +1,63 @@
+<dom-module id="c-new-component">
+  <template>
+
+    <style>
+      /* Edit this section to suite your styling needs. Not mandatory. */
+
+      :host {
+
+        .no-gutter {
+          margin:0;
+          padding:0;
+        }
+        .text-container {
+          ::content h2 {
+            font-family: 'Scania Sans Headline Bold';         
+            line-height: 41px;
+            letter-spacing: 0;
+            text-align: center;
+            line-height: 1.4;
+          }
+          ::content h3 {
+            font-family: 'Scania Sans Bold';
+            line-height: 15px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top:0;
+            font-size:1em;
+          }
+          ::content p {
+            font-family: 'Scania Sans';
+            font-size: 28px;
+            text-align: center;
+          }
+        }
+      }
+    </style>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 no-gutter">
+          <div class="img-container">
+            <img src$="{{image}}" title$="{{title}}" alt$="{{title}}">
+          </div>
+          <div class="col-md-12 text-container">
+            <content></content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'c-new-component',
+      properties: {
+        /* url to the image */
+        image: String,
+        title: {
+          type: String,
+          value: 'The default title of the quote'
+        }, 
+      },
+    });
+  </script>
+</dom-module>

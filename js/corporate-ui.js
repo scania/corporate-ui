@@ -63,7 +63,13 @@ CorporateUi = (function() {
   }
 
   function ready() {
-    document.body.className += ' done-loading';
+    var event = document.createEvent('Event');
+
+    // Define that the event name is 'build'.
+    event.initEvent('corporate-ui-loaded', true, true);
+
+    // target can be any Element or other EventTarget.
+    document.dispatchEvent(event);
   }
 
   // Taken from: http://stackoverflow.com/a/979997

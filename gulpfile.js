@@ -14,7 +14,7 @@ function _default() {
   require('./server')
 }
 function _less() {
-  gulp.src(['less/corporate-ui.less', 'less/ie-media-rules.less'])
+  gulp.src(['less/corporate-ui.less', 'less/ie-media-rules.less', 'less/ux-library.less'])
     .pipe(less())
     .pipe(gulp.dest('css'))
 

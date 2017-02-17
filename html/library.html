@@ -13,32 +13,20 @@
   
   <script src="/js/corporate-ui.js"></script>
 
-  <link rel="stylesheet" href="https://static.scania.com/ux-library/ux-lib.css">
+  <link rel="stylesheet" href="css/ux-library.css">
 </head>
 <body class="scania ux-lib" ng-app="CorporateUI" ng-controller="Components as components" data-env="dev">
     
-  <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
+  <c-corporate-header site-name="UX Library" site-url="/">
     <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
     <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
   </c-corporate-header>
     
   <c-main-content>
 
-    <c-main-navigation show-search>
+    <c-main-navigation>
       <primary-items>
-        <nav-item location="../">Home</nav-item>
-        <nav-item location="../styleguide/">Style Guide</nav-item>            
-        <nav-item location="../developer/" class="active">
-          Web Applications
-          <c-sub-navigation caption="Web Applications">
-            <nav-item location="/ux-library/developer/">Corporate UI</nav-item>
-            <nav-item location="/ux-library/component/">Available Components</nav-item>
-            <nav-item location="/ux-library/template/">Templates</nav-item>
-            <nav-item location="/ux-library/developer/caching.html">Caching</nav-item>
-            <nav-item location="/ux-library/developer/scania-bootstrap.html">Scania Bootstrap</nav-item>
-            <nav-item location="/ux-library/developer/support.html">Support</nav-item>
-          </c-sub-navigation>
-        </nav-item>
+        <nav-item location="/">Components</nav-item>
       </primary-items>
     </c-main-navigation>
 
@@ -68,8 +56,8 @@
   <c-corporate-footer></c-corporate-footer>
   <script src="//static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
   <script>
-    angular.module("CorporateUI", [])
-      .controller("Components", ["$http", Components]);
+    angular.module('CorporateUI', [])
+      .controller('Components', ['$http', Components]);
 
     function Components($http) {
       var vm = this;
@@ -84,5 +72,7 @@
         });
     }
   </script>
+
+  <script src="js/ux-library.js"></script>
 </body>
 </html>

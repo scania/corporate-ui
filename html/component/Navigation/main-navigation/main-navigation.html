@@ -46,7 +46,7 @@
       :host {
         display: block;
         position: relative;
-        z-index: 1100;
+        z-index: 1000;
         letter-spacing: 0.03rem; 
 
         nav {
@@ -79,9 +79,6 @@
           text-decoration: none;
         }
 
-        .symbol {
-          display: none;
-        }
         .sticky {
           position: fixed;
           top: 0;
@@ -202,12 +199,12 @@
 
       @media (max-width: 991px) {
         :host {
+          z-index: 1100;
 
-          .nav-container {
+          .extra-level nav-item {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
           }
           .site-name {
             font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
@@ -218,17 +215,6 @@
             margin-top: 25px;
             padding: 0 5px;
             line-height: 20px;
-          }
-          .symbol {
-            position: fixed;
-            z-index: 1020;
-            transition: top 200ms ease-in-out;
-            width: 40px;
-            height: 40px;
-            top: 13px !important;
-            right: 13px;
-            background-size: 40px;
-            display: block;
           }
           nav .navbar-left {
             display: block;
@@ -294,7 +280,7 @@
             ::content {
 
               a {
-                padding: 21px;
+                padding: 19px;
                 font-size: 1.4em;
 
                 &:hover,
@@ -438,45 +424,6 @@
               -ms-overflow-style: auto;
             }
           }
-
-          /*.navbar-header {
-            display: none;
-          }
-          .navbar-top.navbar {
-            margin: 0;
-            border: 0;
-          }
-          .navbar-top.navbar .navbar-toggle {
-            display: block;
-          }
-          .navbar-top .navbar-right.navbar-user {
-            text-align: center;
-            margin: 0 -15px;
-            float: none !important;
-
-            .nav {
-              float: none;
-            }
-          }
-          .navbar-user nav-item {
-            display: none;
-
-            &.navbar-toggle {
-              float: left;
-              border: 1px solid #e2e2e2;
-              padding: 0;
-              margin: 0 0 -1px;
-              border-radius: 0;
-
-              ::content a {
-                padding: 20px;
-                font-size: 1.4em;
-              }
-            }
-          }
-          .symbol {
-            margin-left: 0;
-          }*/
         }
       }
     </style>
@@ -485,8 +432,6 @@
       <nav class="navbar navbar-default">
         <div class="extra-level">
           <nav-item location="#main-nav" class="navbar-toggle collapsed" data-toggle="collapse"><span class="icon-expander"></span></nav-item>
-          <span class="site-name hidden-md hidden-lg">{{siteName}}</span>
-          <a href="{{siteUrl}}" class="symbol"></a>
         </div>
 
         <div class="navbar-collapse collapse" id="main-nav">
@@ -583,13 +528,13 @@
 
         // This have been moved to css section, should work
         /*$('main-navigation .nav-item').bind("mouseover", function(){
-            var color  = $(this).css("color");
-            $('primary-items .nav-item').css("color", "#d4d4d3");
-            $('primary-items .nav-item:hover').css("color", "#041e42");
+          var color  = $(this).css("color");
+          $('primary-items .nav-item').css("color", "#d4d4d3");
+          $('primary-items .nav-item:hover').css("color", "#041e42");
 
-            $(this).bind("mouseout", function(){
-                $('primary-items .nav-item').css("color", "#041e42");
-            })
+          $(this).bind("mouseout", function(){
+            $('primary-items .nav-item').css("color", "#041e42");
+          })
         });*/
       },
       // if we've scrolled more than the navigation, change its position to fixed making it stick to the top,
@@ -613,6 +558,8 @@
             'padding-bottom'  : footerHeight,
             'margin-bottom'   : footerHeight * -1
           });
+
+          $('.sticky', this).css({ top: headerHeight });
         }
 
         navContainer.addClass('sticky');

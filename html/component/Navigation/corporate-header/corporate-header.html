@@ -21,8 +21,6 @@
 
       :host {
         display: block;
-        z-index: 1150;
-        position: relative;
         background: #fff;
 
         header {
@@ -31,7 +29,7 @@
 
         .symbol {
           position: absolute;
-          top: -8px;
+          top: 0;
           right: 17px;
           z-index: 1020;
           width: 48px;
@@ -49,9 +47,9 @@
           height: 28px;
         }
         nav {
-          margin-top: 27px;
-          margin-bottom: 22px;
-          padding-top: 3px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          padding-top: 11px;
         }
         .site-name {
           font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
@@ -106,7 +104,33 @@
 
       @media (max-width: 991px) {
         :host {
-          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1100;
+
+          .navbar-header {
+            float: none;
+            text-align: center;
+
+            .symbol {
+              top: 13px;
+              right: 13px;
+              width: 40px;
+              height: 40px;
+              background-size: 40px;
+            }
+          }
+          .wordmark,
+          .navbar-user {
+            display: none;
+          }
+          .site-name {
+            margin: 0;
+            padding: 0;
+            border: 0;
+          }
         }
       }
     </style>

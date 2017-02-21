@@ -333,16 +333,15 @@ CorporateUi = (function() {
 
           /* Automatically wrapping component inside a container */
           var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : false);
-          var apa = this.nodeName;
 
           if(fullbleed !== true) {
             var container = document.createElement('div'),
-                parent = this.properties.variation === 0 ? this.parentNode : this.parentNode.parentNode;
+                element = this.properties.variation === 0 ? this : this.parentNode;
 
             container.setAttribute('class', 'container');
 
-            parent.insertBefore(container, this.parentNode);
-            container.appendChild(this.parentNode);
+            element.parentNode.insertBefore(container, element);
+            container.appendChild(element);
           }
         }
 

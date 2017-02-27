@@ -3,47 +3,34 @@ var gulp = require('gulp'),
     clean = require('gulp-clean'),
     less = require('gulp-less'),
     sourcemaps = require('gulp-sourcemaps'),
-    symlink = require('gulp-symlink')
+    symlink = require('gulp-symlink'),
+    server = require('./server')
 
 /* Available tasks */
-gulp.task('default', ['clean'], _default)
-gulp.task('start', ['less', 'symlink', 'staticModules'], _start)
 gulp.task('clean', _clean)
 gulp.task('less', _less)
 gulp.task('symlink', _symlink)
 gulp.task('staticModules', _staticModules)
+gulp.task('default', gulp.series(['clean', 'less', 'symlink', 'staticModules'], server))
 
-gulp.watch('src/less/**/*', ['less'])
+/* File watches */
+gulp.watch('src/less/**/*',  gulp.series(['less']))
 
-
-/* Private methods */
-function _default() {
-  gulp.start('start')
-}
-function _start() {
-  require('./server')
-}
+/* Methods */
 function _clean() {
-  // We use return here to make gulp aware that _clean has actually finnished
-  return gulp.src(['dist','static_modules'], {read: false})
+  return gulp.src(['dist', 'static_modules'], {read: false})
     .pipe(clean())
 }
 function _less() {
-  gulp.src(['src/less/corporate-ui.less', 'src/less/ie-media-rules.less', 'src/less/ux-library.less'])
-    .pipe(less())
-    .pipe(gulp.dest('dist/css'))
-
-  gulp.src('src/less/corporate-ui/corporate-ui-bootstrap.less')
+  return gulp.src(['src/less/corporate-ui.less', 'src/less/ie-media-rules.less', 'src/less/ux-library.less', 'src/less/corporate-ui/core.less'])
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist/css/corporate-ui'))
+    .pipe(gulp.dest('dist/css'))
 }
 function _symlink() {
   return gulp.src('src/{html,images,js,less,starter-kit}')
-    .pipe(symlink(function(folder) {
-      return folder.path.replace('\\src', '\\dist')
-    }))
+    .pipe(gulp.symlink('dist'))
 }
 function _staticModules() {
   var package = require('./package.json'),
@@ -51,7 +38,5 @@ function _staticModules() {
       folders = dependencies.length === 1 ? dependencies[0] : '{' + dependencies.join(',') + '}'
 
   return gulp.src('node_modules/' + folders)
-    .pipe(symlink(function(folder) {
-      return folder.path.replace('\\node_modules', '\\static_modules')
-    }))
+    .pipe(gulp.symlink('static_modules'))
 }

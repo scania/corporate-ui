@@ -18,11 +18,11 @@ gulp.watch('src/less/**/*',  gulp.series(['less']))
 
 /* Methods */
 function _clean() {
-  return gulp.src(['dist', 'static_modules'], {read: false})
+  return gulp.src('{dist,static_modules}', {read: false})
     .pipe(clean())
 }
 function _less() {
-  return gulp.src(['src/less/corporate-ui.less', 'src/less/ie-media-rules.less', 'src/less/ux-library.less', 'src/less/corporate-ui/core.less'])
+  return gulp.src(['src/less/*', 'src/less/corporate-ui/core.less'])
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(sourcemaps.write())

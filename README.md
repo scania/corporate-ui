@@ -33,7 +33,7 @@
 <h2>Starter Kit</h2>
 <p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components. 
 <br>
-<a href="https://github.scania.com/Scania/corporate-ui/tree/master/starter-kit">Learn more...</a>
+<a href="https://github.scania.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
 
 
 

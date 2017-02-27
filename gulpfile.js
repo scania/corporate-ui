@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     clean = require('gulp-clean'),
     less = require('gulp-less'),
     sourcemaps = require('gulp-sourcemaps'),
-    symlink = require('gulp-symlink'),
     server = require('./server')
 
 /* Available tasks */

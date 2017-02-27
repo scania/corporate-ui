@@ -219,7 +219,7 @@ CorporateUi = (function() {
         localhost = urlInfo(scriptUrl).hostname === 'localhost';
 
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
-    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
+    window.version_root = window.static_root + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
     window.vendors_root = window.static_root + '/vendors/';
     window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
     window.protocol = urlInfo(scriptUrl).protocol;
@@ -450,6 +450,8 @@ CorporateUi = (function() {
     CorporateUi.require(['bootstrap', 'hotkeys'], function() {
 
       appendFavicon();
+
+      generateMeta('google', 'notranslate');
 
       window.preLoadedComponents = [
         window.version_root + 'html/component/Bootstrap/bootstrap.html',

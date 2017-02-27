@@ -1,17 +1,22 @@
 
 var express = require('express'),
-    app = express(),
     dirTree = require('directory-tree'),
-    port = 1337;
+    app = express()
 
-app.use(express.static(__dirname + '/dist'))
-app.use('/', express.static(__dirname + '/src/app'))
-app.use('/libs', express.static(__dirname + '/node_modules'))
+module.exports = server
 
-app.get('/data', function(req, res) {
-  res.json( dirTree('dist/' + (req.query.path || 'html')) )
-})
+function server() {
+  app.use(express.static(__dirname + '/dist'))
+  app.use('/', express.static(__dirname + '/src/app'))
+  app.use('/libs', express.static(__dirname + '/static_modules'))
 
-app.listen(port, function () {
-  console.log('UX-library is now running at http://localhost:%d', port)
-})
+  app.set('port', process.env.PORT || 1337);
+
+  app.get('/data', function(req, res) {
+    res.json( dirTree('dist/' + (req.query.path || 'html')) )
+  })
+
+  app.listen(app.get('port'), function () {
+    console.log('UX-library is now running at http://localhost:%d', app.get('port'))
+  })
+};

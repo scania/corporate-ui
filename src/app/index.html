@@ -10,9 +10,7 @@
   </noscript>
 
   <title>UX Library</title>
-  
-  <script src="//static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
-  <script src="/libs/ng-polymer-elements/ng-polymer-elements.js"></script>
+
   <script src="/js/corporate-ui.js"></script>
 
   <link rel="stylesheet" href="css/ux-library.css">
@@ -56,8 +54,11 @@
   </c-main-content>
 
   <c-corporate-footer></c-corporate-footer>
+
+  <script src="/libs/angular/angular.min.js"></script>
+
   <script>
-    angular.module('CorporateUI', ['ng-polymer-elements'])
+    angular.module('CorporateUI', [])
       .controller('UxLib', ['$http', UxLib]);
 
     function UxLib($http) {

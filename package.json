@@ -12,8 +12,7 @@
     "gulp": "gulpjs/gulp#4.0",
     "gulp-clean": "0.3.2",
     "gulp-less": "3.3.0",
-    "gulp-sourcemaps": "2.4.1",
-    "gulp-symlink": "2.1.4"
+    "gulp-sourcemaps": "2.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>UX Library</title>
+
+  <script src="/js/corporate-ui.js"></script>
+
+  <link rel="stylesheet" href="/css/ux-library.css">
+</head>
+<body class="scania ux-lib app" data-env="dev" ng-controller="UxLib as uxlib">
+    
+  <c-corporate-header site-name="UX Library" site-url="/">
+    <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items>
+        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
+        <nav-item location="/">Components</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <h2>Binding test</h2>
+
+        <form class="form-inline" ng-submit="uxlib.addPerson()">
+          <label>
+            <input type="text" name="name" class="form-control" placeholder="Name">
+          </label>
+          <label>
+            <input type="number" name="age" class="form-control" placeholder="Age">
+          </label>
+          <button class="btn btn-primary" type="submit">Add person</button>
+        </form>
+
+        <div class="row">
+          <div class="col-xs-4">
+            <h4>Polymer</h4>
+            <polymer-table data="[{id:1,name:'andreas',age:31}]"></polymer-table>
+          </div>
+          <div class="col-xs-4">
+            <h4>Angular</h4>
+            <angular-table data="[{id:1,name:'andreas',age:31}]"></angular-table>
+          </div>
+          <div class="col-xs-4">
+            <h4>React</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/libs/angular/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('UxLib', ['$http', UxLib]);
+
+    function UxLib($http) {
+      var vm = this;
+
+      vm.addPerson = function(person) {
+        $http.post('addPerson').then(
+          function(response) {
+            
+          }, function(response) {
+            console.error(response);
+          });
+      }
+    }
+  </script>
+
+  <!-- Polymer component -->
+  <dom-module id="polymer-table">
+    <template>
+      <style>
+        /* Teaser component */
+
+        :host {
+          display: block;
+
+          label {
+            display: block;
+          }
+        }
+      </style>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>andreas</td>
+            <td>31</td>
+          </tr>
+          <template is="dom-repeat" items="{{data}}">
+            <tr>
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.age}}</td>
+            </tr>
+          </template>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-center">Footer</td>
+          </tr>
+        </tfoot>
+      </table>
+
+    </template>
+
+    <script>
+      Polymer({
+        is: 'polymer-table',
+        properties: {
+          fullbleed: {
+            type: Boolean,
+            value: true
+          },
+          data: {
+            type: Array
+          }
+        }
+      });
+    </script>
+  </dom-module>
+
+  <!-- Angular component -->
+  <script type="text/ng-template" id="angular-table.html">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in data">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-center">Footer</td>
+        </tr>
+      </tfoot>
+    </table>
+  </script>
+  <script>
+    angular.module('CorporateUI')
+      .directive('angularTable', angularTable);
+
+    function angularTable() {
+      return {
+        restrict: 'E',
+        scope: {
+          data: '=data'
+        },
+        templateUrl: 'angular-table.html'
+      };
+    }
+  </script>
+
+  <script src="js/ux-library.js"></script>
+</body>
+</html>

@@ -21,7 +21,7 @@ function _clean() {
     .pipe(clean())
 }
 function _less() {
-  return gulp.src(['src/less/*', 'src/less/corporate-ui/core.less'])
+  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/core.less'])
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(sourcemaps.write())

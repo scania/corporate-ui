@@ -38,9 +38,6 @@ CorporateUi = (function() {
     // Special handling for page containing only script element (no html, head, body).
     initMiniHtml();
 
-    document.documentElement.className += ' polymer-loading';
-    document.documentElement.style.opacity = 0;
-
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
     // Adds support for webcomponents if non exist
@@ -48,16 +45,19 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
     }
 
-    // Add and configure requireJs as well as adding all other dependencies.
-    importScript(window.vendors_root + 'frameworks/require/2.3.2/require.js', appendExternals);
-
     importLink(window.vendors_root + 'frameworks/polymer/latest/polymer.html', 'import', polymerInject);
 
-    // Preload jquery
-    importScript(window.vendors_root + public.vendorPaths.jquery + '.js');
+    importScript(window.vendors_root + public.vendorPaths.less + '.js', appendExternals);
+
+    importScript(window.vendors_root + public.vendorPaths.jquery + '.js', function() {
+      importScript(window.vendors_root + public.vendorPaths.hotkeys + '.js');
+    });
 
     // System messages
     sysMessages();
+
+    /*document.documentElement.className += ' polymer-loading';
+    document.documentElement.style.opacity = 0;*/
 
     window.onload = ready;
   }
@@ -237,20 +237,6 @@ CorporateUi = (function() {
   }
 
   function polymerInject() {
-
-    PolymerOrg = Polymer;
-    window.Polymer = function(prototype) {
-      var dependencies = (prototype.dependencies || []).concat(['less']);
-
-      hideUntilDone(prototype.is);
-
-      //console.log(prototype);
-      requirejs(dependencies, function() {
-        return PolymerOrg(prototype);
-      })
-    }
-    PolymerOrg.Base.chainObject(Polymer, PolymerOrg);
-
     window.customelements = [];
 
     function hideUntilDone(customelement) {
@@ -280,15 +266,6 @@ CorporateUi = (function() {
       }
 
       component = component || this.__lastHeadApplyNode.textContent.trim().split('for ')[1];
-
-      /*if(!less.render) {
-        style.timeout = setTimeout(function() {
-          return Polymer.StyleUtil.rulesForStyle(style, component);
-        }, 500);
-        return style.timeout;
-      }
-
-      clearTimeout(style.timeout);*/
 
       style.rendered = true;
 
@@ -344,31 +321,11 @@ CorporateUi = (function() {
             container.appendChild(element);
           }
         }
-
-      //  /* Automatically unwrapping container if component should be fullbleed */
-      //  if(this.properties.fullbleed || this.attributes.fullbleed) {
-      //    //var fullbleed = (this.properties.fullbleed || this.attributes.fullbleed).name;
-      //    var container = $(this).closest('.container');
-      //    $('> *', container).first().unwrap('<div class="container" />');
-      //  }
       }
 
       /* Execute the origional function and apply current this to it */
       Polymer.Base._orgReady.call(this);
     }
-
-    // Fix for url pointing relative to component instead of current page url
-    /*Polymer.ResolveUrl.orgResolveAttrs = Polymer.ResolveUrl.resolveAttrs;
-    Polymer.ResolveUrl.resolveAttrs = function(element, ownerDocument) {
-      Polymer.ResolveUrl.orgResolveAttrs(element, document);
-    }*/
-
-    /*window.PolymerOrg = Polymer;
-    Polymer = function(prototype) {
-      require([vendors_root + 'components/pure-js/less.js/2.5.1/dist/less.js'], function() {
-        PolymerOrg(PolymerOrg.prototype);
-      });
-    };*/
   }
 
   function initMiniHtml() {
@@ -424,85 +381,21 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-    CorporateUi.require = (function () { return require; }());
+    appendFavicon();
 
-    CorporateUi.require.config({
-      baseUrl     : window.vendors_root,
-      paths: {
-        requireLib: 'require'
-      },
-      namespace   : 'CorporateUi',
-      modules: [
-        {
-          name: 'CorporateUi',
-          include: ['requireLib'],
-          create: true
-        }
-      ],
-      waitSeconds : 500,
-      paths       : public.vendorPaths,
-      shim        : {
-        bootstrap       : ['jquery'],
-        hotkeys         : ['jquery']
-      }
-    });
+    generateMeta('google', 'notranslate');
 
-    CorporateUi.require(['bootstrap', 'hotkeys'], function() {
+    window.preLoadedComponents = [
+      window.version_root + 'html/component/Bootstrap/bootstrap.html',
+      window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+      window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+      window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+      window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
+    ];
 
-      appendFavicon();
-
-      generateMeta('google', 'notranslate');
-
-      window.preLoadedComponents = [
-        window.version_root + 'html/component/Bootstrap/bootstrap.html',
-        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
-      ];
-
-      for (var i = 0; i < window.preLoadedComponents.length; i++) {
-        importLink(window.preLoadedComponents[i], 'import');
-      }
-    });
-
-    /*importScript(PATH.jQuery, function() {
-      $.getScript(PATH.bootstrap);
-      $.getScript(PATH.hotkeys);
-      $.getScript(window.version_root + "js/bootstrap/scania-bootstrap-addons.js");
-
-      if (!('import' in document.createElement('link'))) {
-        $.getScript(PATH.webcomponents);
-      }
-
-      $.getScript(PATH.browserReject);
-
-      appendFavicon();
-
-      importLink(PATH.polymer, 'import', function() {
-
-        window.preLoadedComponents = [
-          window.version_root + 'html/component/Bootstrap/bootstrap.html',
-          window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-          window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-          window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-          window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
-        ];
-
-        $.getScript(PATH.less, function(data, textStatus, jqxhr) {
-          for (var i = 0; i < window.preLoadedComponents.length; i++) {
-            importLink(window.preLoadedComponents[i], 'import' );
-          }
-
-          polymerInject();
-        });
-      });
-   
-      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet', function() {
-        // This is a test for moving corporate-ui.css infront of polymer shady dom style nodes
-        document.documentElement.insertBefore(this, this.parentNode);
-      });
-    });*/
+    for (var i = 0; i < window.preLoadedComponents.length; i++) {
+      importLink(window.preLoadedComponents[i], 'import');
+    }
   }
 
   function sysMessages() {
@@ -514,28 +407,4 @@ CorporateUi = (function() {
       console.warn('Remeber that you are pointing to our development environment and due to this you might experience some techical difficulties.');
     }
   }
-
-  // TODO - This shoudld be move to a more slick specific place, its kept here for now...
-  // It needs to be run durring polymer event atached and the slick init needs be 
-  // executed durring create for it to work as intended...
-  /*function preSlick(elm) {
-    elm.before_transformed = [];
-
-    $('> *', elm).each(function(key, value) {
-      elm.before_transformed.push( elm.children[key] );
-    })
-
-    $(elm).on('init', function(event, slick) {
-      if(slick.options.infinite) {
-        $('.slick-cloned', event.target).each(function() {
-          var node = this.nodeName.replace(/-VARIATION-\d+/g, ''),
-              elm = $(node, this).length ? $(node, this) : $(this),
-              html = $(node, this).length ? elm.attr('outerhtml'): elm.attr('innerhtml');
-
-          //$(this).html(html);
-          //elm.unwrap();
-        });
-      }
-    });
-  }*/
 }());

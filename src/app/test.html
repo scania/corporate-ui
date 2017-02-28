@@ -13,6 +13,11 @@
 
   <script src="/js/corporate-ui.js"></script>
 
+  <script src="/libs/angular/angular.min.js"></script>
+  <script src="/libs/react/dist/react.js"></script>
+  <script src="/libs/react-dom/dist/react-dom.js"></script>
+  <script src="/libs/babel-standalone/babel.min.js"></script>
+
   <link rel="stylesheet" href="/css/ux-library.css">
 </head>
 <body class="scania ux-lib app" data-env="dev" ng-controller="UxLib as uxlib">
@@ -35,12 +40,12 @@
       <div class="container">
         <h2>Binding test</h2>
 
-        <form class="form-inline" ng-submit="uxlib.addPerson()">
+        <form class="form-inline" ng-submit="uxlib.addPerson(this)">
           <label>
-            <input type="text" name="name" class="form-control" placeholder="Name">
+            <input type="text" ng-model="uxlib.person.name" class="form-control" placeholder="Name">
           </label>
           <label>
-            <input type="number" name="age" class="form-control" placeholder="Age">
+            <input type="number" ng-model="uxlib.person.age" class="form-control" placeholder="Age">
           </label>
           <button class="btn btn-primary" type="submit">Add person</button>
         </form>
@@ -48,14 +53,15 @@
         <div class="row">
           <div class="col-xs-4">
             <h4>Polymer</h4>
-            <polymer-table data="[{id:1,name:'andreas',age:31}]"></polymer-table>
+            <polymer-table persons="{{uxlib.persons}}"></polymer-table>
           </div>
           <div class="col-xs-4">
             <h4>Angular</h4>
-            <angular-table data="[{id:1,name:'andreas',age:31}]"></angular-table>
+            <angular-table persons="uxlib.persons"></angular-table>
           </div>
           <div class="col-xs-4">
             <h4>React</h4>
+            <react-table data-persons="{{uxlib.persons}}"></react-table>
           </div>
         </div>
       </div>
@@ -65,8 +71,6 @@
 
   <c-corporate-footer></c-corporate-footer>
 
-  <script src="/libs/angular/angular.min.js"></script>
-
   <script>
     angular.module('CorporateUI', [])
       .controller('UxLib', ['$http', UxLib]);
@@ -74,13 +78,17 @@
     function UxLib($http) {
       var vm = this;
 
-      vm.addPerson = function(person) {
-        $http.post('addPerson').then(
-          function(response) {
-            
-          }, function(response) {
-            console.error(response);
-          });
+      vm.person = {};
+      vm.persons = [{"id":1, "name":"andreas", "age":31}];
+
+      vm.addPerson = function() {
+        if (vm.person.name && vm.person.age) {
+          vm.persons.push({
+            id: vm.persons.length + 1,
+            name: vm.person.name,
+            age: vm.person.age
+          })
+        }
       }
     }
   </script>
@@ -89,8 +97,6 @@
   <dom-module id="polymer-table">
     <template>
       <style>
-        /* Teaser component */
-
         :host {
           display: block;
 
@@ -109,12 +115,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>andreas</td>
-            <td>31</td>
-          </tr>
-          <template is="dom-repeat" items="{{data}}">
+          <template is="dom-repeat" items="{{persons}}">
             <tr>
               <td>{{item.id}}</td>
               <td>{{item.name}}</td>
@@ -139,8 +140,9 @@
             type: Boolean,
             value: true
           },
-          data: {
-            type: Array
+          persons: {
+            type: Array,
+            value: function () { return []; }
           }
         }
       });
@@ -179,11 +181,47 @@
       return {
         restrict: 'E',
         scope: {
-          data: '=data'
+          data: '=persons'
         },
         templateUrl: 'angular-table.html'
       };
     }
+  </script>
+
+  <!-- React component -->
+  <script type="text/babel">
+    var ReactTable = React.createClass({
+      render: function() {
+        return <table className="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>age</th>
+            </tr>
+          </thead>
+          <tbody>
+          {
+            this.props.data.map(function(item) {
+              return <tr key="{item.id}"><td>{item.id}</td><td>{item.name}</td><td>{item.age}</td></tr>
+            })
+          }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="3" className="text-center">Footer</td>
+            </tr>
+          </tfoot>
+        </table>
+      }
+    });
+
+    var root = document.querySelector('react-table'),
+        data = JSON.parse(root.dataset.persons);
+    ReactDOM.render(
+      <ReactTable data={data} />,
+      root
+    );
   </script>
 
   <script src="js/ux-library.js"></script>

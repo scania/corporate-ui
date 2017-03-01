@@ -1,0 +1,46 @@
+
+<dom-module id="web-component">
+  <template>
+    <content></content>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'web-component',
+      properties: {
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        },
+        path: {
+          type: String
+        }
+      },
+      loadSuccess: function(event) {
+        var app = event.target.import.body.querySelector('[ng-app]').getAttribute('ng-app'),
+            $injector = angular.injector(['ng', app]),
+            $targetDom = angular.element(this),
+            htmlToCompile = event.target.import.head.innerHTML + event.target.import.body.innerHTML;
+
+        $injector.invoke(['$compile', function($compile) {
+          setTimeout(function() {
+            var $scope = $targetDom.html(htmlToCompile).scope();
+            $compile($targetDom)($scope);
+          }, 1);
+        }]);
+        /*var app = event.target.import.querySelector('div').id;
+        this.innerHTML = event.target.import.head.innerHTML + event.target.import.body.innerHTML;
+        angular.bootstrap(this.querySelector('div'), [app]);*/
+      },
+      loadFail: function() {
+        console.log("error");
+      },
+      created: function() {
+        if (this.attributes.path.value) {
+          this.importHref(this.attributes.path.value, this.loadSuccess, this.loadFail);
+        }
+      }
+    });
+  </script>
+</dom-module>

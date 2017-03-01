@@ -1,0 +1,45 @@
+
+<dom-module id="polymer-table">
+  <template>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template is="dom-repeat" items="{{persons}}">
+          <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+          </tr>
+        </template>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-center">Footer</td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'polymer-table',
+      properties: {
+        fullbleed: {
+          type: Boolean,
+          value: true
+        },
+        persons: {
+          type: Array,
+          value: function () { return []; }
+        }
+      }
+    });
+  </script>
+</dom-module>

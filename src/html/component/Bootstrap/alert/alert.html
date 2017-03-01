@@ -9,14 +9,10 @@
 
       :host {
         display: block;
-
-        ::content {
-
-        }
       }
     </style>
 
-    <div class="alert-{{type}}">
+    <div class$="alert alert-{{type}}">
       <content></content>
     </div>
   </template>
@@ -25,6 +21,8 @@
     Polymer({
       is: 'bs-alert',
       properties: {
+        fullbleed: true,
+        variation: 0,
         type: {
           type: String,
           value: "info"

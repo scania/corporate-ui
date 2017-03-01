@@ -1,26 +1,41 @@
+
 var gulp = require('gulp'),
+    clean = require('gulp-clean'),
     less = require('gulp-less'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    server = require('./server')
 
 /* Available tasks */
-gulp.task('default', ['less'], _default)
+gulp.task('clean', _clean)
 gulp.task('less', _less)
+gulp.task('symlink', _symlink)
+gulp.task('staticModules', _staticModules)
+gulp.task('default', gulp.series(['clean', 'less', 'symlink', 'staticModules'], server))
 
-gulp.watch('less/**/*', ['less']);
+/* File watches */
+gulp.watch('src/less/**/*',  gulp.series(['less']))
 
-
-/* Private methods */
-function _default() {
-  require('./server')
+/* Methods */
+function _clean() {
+  return gulp.src('{dist,static_modules}', {read: false})
+    .pipe(clean())
 }
 function _less() {
-  gulp.src(['less/corporate-ui.less', 'less/ie-media-rules.less'])
-    .pipe(less())
-    .pipe(gulp.dest('css'))
-
-  gulp.src('less/corporate-ui/corporate-ui-bootstrap.less')
+  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/core.less'])
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('css/corporate-ui'))
+    .pipe(gulp.dest('dist/css'))
+}
+function _symlink() {
+  return gulp.src('src/{html,images,js,less,starter-kit}')
+    .pipe(gulp.symlink('dist'))
+}
+function _staticModules() {
+  var package = require('./package.json'),
+      dependencies = Object.keys(package.dependencies),
+      folders = dependencies.length === 1 ? dependencies[0] : '{' + dependencies.join(',') + '}'
+
+  return gulp.src('node_modules/' + folders)
+    .pipe(gulp.symlink('static_modules'))
 }

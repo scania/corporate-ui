@@ -31,7 +31,7 @@
   });
 
   var root = document.querySelector('react-table'),
-      data = JSON.parse(root.dataset.persons);
+      data = '{{demo.persons}}';
 
   ReactDOM.render(
     <ReactTable data={data} />,

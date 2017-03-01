@@ -20,10 +20,13 @@
   <link rel="import" href="partials/polymer-table.html">
 
   <!-- Angular component -->
-  <link rel="import" href="partials/angular-table.html">
+  <!-- <link rel="import" href="partials/angular-table.html"> -->
 
   <!-- React component -->
   <link rel="import" href="partials/react-table.html">
+
+
+  <link rel="import" href="partials/web-component.html">
 </head>
 <body class="app" ng-controller="Demo as demo">
   <section>
@@ -47,18 +50,20 @@
         </div>
         <div class="col-xs-4">
           <h4>Angular</h4>
-          <angular-table data-persons="demo.persons"></angular-table>
+          <!-- <angular-table data-persons="demo.persons"></angular-table> -->
+          <web-component path="partials/angular-table.html"></web-component>
         </div>
         <div class="col-xs-4">
           <h4>React</h4>
-          <react-table data-persons="{{demo.persons}}"></react-table>
+          <!-- <react-table data-persons="{{demo.persons}}"></react-table> -->
+          <!-- <web-component path="partials/react-table.html" data-persons="{{demo.persons}}"></web-component> -->
         </div>
       </div>
     </div>
   </section>
 
   <script>
-    angular.module('CorporateUI', ['angular.table'])
+    angular.module('CorporateUI', [])
       .controller('Demo', [Demo]);
 
     function Demo() {

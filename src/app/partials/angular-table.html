@@ -1,39 +1,55 @@
 
-<div ng-app="angular.table">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>age</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in persons">
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.age}}</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3" class="text-center">Footer</td>
-      </tr>
-    </tfoot>
-  </table>
+<script src="/libs/angular/angular.min.js"></script>
 
-  <script>
-    angular.module('angular.table', [])
-      .directive('angularTable', angularTable);
-
-    function angularTable() {
-      return {
-        restrict: 'E',
-        scope: {
-          persons: '=persons'
-        },
-        templateUrl: 'partials/angular-table.html'
-      };
-    }
+<div ng-app="test">
+  <script type="text/ng-template" id="angular-table-template.html">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in persons">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+          <td><a href ng-click="remove(item.id)">x</a></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="text-center">Footer</td>
+        </tr>
+      </tfoot>
+    </table>
   </script>
+
+  <angular-table persons="demo.persons"></angular-table>
 </div>
+<script>
+  angular.module('test', [])
+    .directive('angularTable', angularTable);
+
+  function angularTable() {
+    return {
+      restrict: 'E',
+      scope: {
+        persons: '='
+      },
+      templateUrl: 'angular-table-template.html',
+      controller: function($scope) {
+        $scope.remove = function(id) {
+          $scope.persons.filter(function(item, index) {
+            if(item.id === id) {
+              $scope.persons.splice(index, 1);
+            }
+          });
+        }
+      }
+    };
+  }
+</script>

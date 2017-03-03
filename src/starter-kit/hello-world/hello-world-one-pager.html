@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>hello-world web component</title>
+
+    <!-- Import standard polyfill to make it work in all browsers, not needed for the latest versions -->
+    <script src="https://static.scania.com/vendors/frameworks/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+</head>
+<body>
+
+    <!-- The new element is created further down the code, now you can just call it as you would call any other HTML element -->
+    <hello-world>
+    	<span>The world is yours!</span>
+    </hello-world>
+
+<!-- The code defining the custom element is usally saved in an HTML file of its own, but you can have the code within the very same page  -->
+
+<!-- Import standard Polymer  -->
+<link rel="import" href="https://static.scania.com/vendors/frameworks/polymer/1.4.0/polymer.html">
+
+<!-- Define the Custom Element and it's markup -->
+
+<dom-module id="hello-world">
+    <template>
+		<style>
+			h1 {color:pink;}
+		</style>
+        <h1><content></content></h1>
+    </template>
+</dom-module>
+
+<!-- Register custom element -->
+<script>
+Polymer({
+    is: 'hello-world'
+});
+</script>
+
+
+</body>
+</html>

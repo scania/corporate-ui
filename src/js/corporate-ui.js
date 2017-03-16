@@ -447,7 +447,7 @@ CorporateUi = (function() {
       }
     });
 
-    CorporateUi.require(['bootstrap', 'hotkeys'], function() {
+    CorporateUi.require(['bootstrap', 'hotkeys','browserReject'], function() {
 
       appendFavicon();
 

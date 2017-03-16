@@ -63,7 +63,13 @@ CorporateUi = (function() {
   }
 
   function ready() {
-    document.body.className += ' done-loading';
+    var event = document.createEvent('Event');
+
+    // Define that the event name is 'build'.
+    event.initEvent('corporate-ui-loaded', true, true);
+
+    // target can be any Element or other EventTarget.
+    document.dispatchEvent(event);
   }
 
   // Taken from: http://stackoverflow.com/a/979997
@@ -208,9 +214,12 @@ CorporateUi = (function() {
   }
 
   function setGlobals() {
-    var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src;
-    window.static_root = 'https://' + urlInfo(scriptUrl).hostname;
-    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
+    var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src,
+        port = urlInfo(scriptUrl).port ? ':' + urlInfo(scriptUrl).port : '',
+        localhost = urlInfo(scriptUrl).hostname === 'localhost';
+
+    window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
+    window.version_root = window.static_root + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
     window.vendors_root = window.static_root + '/vendors/';
     window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
     window.protocol = urlInfo(scriptUrl).protocol;
@@ -220,6 +229,10 @@ CorporateUi = (function() {
       appName: 'Application name',
       company: 'Scania'
     };
+    if (localhost) {
+      window.vendors_root = 'https://static.scania.com/vendors/';
+      window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
+    }
     window.waitFor = window.waitFor || ['c-corporate-header', 'c-corporate-footer', 'c-main-content'];
   }
 
@@ -320,16 +333,15 @@ CorporateUi = (function() {
 
           /* Automatically wrapping component inside a container */
           var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : false);
-          var apa = this.nodeName;
 
           if(fullbleed !== true) {
             var container = document.createElement('div'),
-                parent = this.properties.variation === 0 ? this.parentNode : this.parentNode.parentNode;
+                element = this.properties.variation === 0 ? this : this.parentNode;
 
             container.setAttribute('class', 'container');
 
-            parent.insertBefore(container, this.parentNode);
-            container.appendChild(this.parentNode);
+            element.parentNode.insertBefore(container, element);
+            container.appendChild(element);
           }
         }
 
@@ -438,6 +450,8 @@ CorporateUi = (function() {
     CorporateUi.require(['bootstrap', 'hotkeys','browserReject'], function() {
 
       appendFavicon();
+
+      generateMeta('google', 'notranslate');
 
       window.preLoadedComponents = [
         window.version_root + 'html/component/Bootstrap/bootstrap.html',

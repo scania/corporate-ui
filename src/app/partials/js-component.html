@@ -1,0 +1,66 @@
+
+<link rel="import" href="form-field.html">
+
+<script>
+  // Represents a ordinary javascript component
+
+  document.addEventListener('date.change', setDate, false);
+
+  document.addEventListener('input', function(event) {
+    var _event = document.createEvent('Event');
+    _event.initEvent('date.change', true, true);
+    _event.date = {};
+
+    var input = event.target;
+    _event[input.name] = input.value;
+
+    if (new Date(window.date).getTime() !== new Date(_event.date).getTime()) {
+      document.dispatchEvent(_event);
+    }
+  }, false);
+
+  function setDate(event) {
+    document.querySelector('input').valueAsDate = window.date;
+  }
+</script>
+
+<dom-module id="js-component">
+  <template>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Javascript
+      </div>
+      <div class="panel-body">
+        <label class="form-group">
+          Javascript
+          <input type="date" name="date" class="form-control">
+        </label>
+        <label class="form-group">
+          Polymer
+          <form-field type="date" name="date" value="2017-03-22"></form-field>
+        </label>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    // Represents a ordinary polymer component
+
+    Polymer({
+      is: 'js-component',
+      properties: {
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        },
+        date: {
+          type: String
+        }
+      },
+      ready: function() {
+        setDate();
+      }
+    });
+  </script>
+</dom-module>

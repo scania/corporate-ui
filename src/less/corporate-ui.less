@@ -4,23 +4,26 @@
  */
 
  //Insert Compile Date
-@compiled_at: `new Date()`;
-.compiled_at {content: "@{compiled_at}";}
+.css_compiled_at:before {content: "`new Date()`";}
 
-//Import Logotype
+// Import Logotype
 @import url("https://static.scania.com/resources/logotype/scania/logotype-stylesheet/scania-logotype.css");
 
-//Import Fonts
+// Import Fonts
 @import url("https://static.scania.com/resources/fonts/external_fonts.css");
 @import url("https://static.scania.com/resources/fonts/scania-sans/scania-fonts.css");
+//@import url("/css/fonts.css");
 
-//Import Icons
+// Import Icons
 @import url("https://static.scania.com/resources/fonts/font-awesome/font-awesome.css");
 @import url("https://static.scania.com/resources/icons/scania/icons.css");
+//@import url("/css/icons.css");
+
+@import url("/css/brands.css");
 
 // This includes core bootstrap
-@import url("https://static.scania.com/vendors/frameworks/bootstrap/3.2.0/css/bootstrap-org.css");
+@import url("/libs/bootstrap/dist/css/bootstrap.css");
 
 // Bootstrap related stuff
-@import url("core.css");
+@import url("/css/core.css");
 

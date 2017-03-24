@@ -1,0 +1,64 @@
+
+<script src="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<link href="/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+<dom-module id="form-field">
+  <style>
+    input::-webkit-inner-spin-button,
+    input::-webkit-calendar-picker-indicator,
+    input::-webkit-clear-button {
+      display: none;
+      -webkit-appearance: none;
+    }
+  </style>
+  <template>
+    <input type="{{type}}" value="{{value}}" name="{{name}}" class="form-control">
+  </template>
+  <script>
+    Polymer({
+      is: 'form-field',
+      properties: {
+        fullbleed: {
+          type: Boolean,
+          value: true
+        },
+        variation: 0,
+        type: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        value: {
+          type: String
+        }
+      },
+      ready: function() {
+        var that = this;  
+        //if (this.type === 'date') {
+          $('input', this)
+            .datepicker({ format: 'yyyy-mm-dd' })
+            .on('changeDate', function(event) {
+              var date = event.date.toLocaleDateString();
+              that.updateDate(date);
+            });
+        //}
+
+        document.addEventListener('date.change', function(event) {
+          that.setDate(event, that);
+        }, false);
+      },
+      updateDate: function(date) {
+        var event = document.createEvent('Event');
+        event.initEvent('date.change', true, true);
+        event.date = date;
+        document.dispatchEvent(event);
+      },
+      setDate: function(event, that) {
+        that.querySelector('input').valueAsDate = new Date(window.date);
+        //that.value = window.date;
+      }
+    })
+  </script>
+</dom-module>

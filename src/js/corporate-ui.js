@@ -17,11 +17,11 @@ CorporateUi = (function() {
 
     /* Public constants */
     vendorPaths     : {
-      jquery          : 'frameworks/jQuery/2.2.2/jquery.min',
-      bootstrap       : 'frameworks/bootstrap/3.2.0/js/bootstrap.min',
+      jquery          : 'jquery/dist/jquery.min',
+      bootstrap       : 'bootstrap/dist/js/bootstrap.min',
 
-      less            : 'components/pure-js/less.js/2.5.1/dist/less.min',
-      hotkeys         : 'components/jQuery/hotkeys/0.1.0/js/jquery.hotkeys',
+      less            : 'less/dist/less.min',
+      hotkeys         : 'jquery.hotkeys/jquery.hotkeys',
       browserReject   : 'components/pure-js/browser-reject/1.0.0/js/browser-reject'
     }
   };
@@ -45,7 +45,7 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
     }
 
-    importLink(window.vendors_root + 'frameworks/polymer/latest/polymer.html', 'import', polymerInject);
+    importLink(window.vendors_root + 'polymer/polymer.html', 'import', polymerInject);
 
     importScript(window.vendors_root + public.vendorPaths.less + '.js', appendExternals);
 
@@ -64,11 +64,7 @@ CorporateUi = (function() {
 
   function ready() {
     var event = document.createEvent('Event');
-
-    // Define that the event name is 'build'.
     event.initEvent('corporate-ui-loaded', true, true);
-
-    // target can be any Element or other EventTarget.
     document.dispatchEvent(event);
   }
 
@@ -230,8 +226,8 @@ CorporateUi = (function() {
       company: 'Scania'
     };
     if (localhost) {
-      window.vendors_root = 'https://static.scania.com/vendors/';
-      window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
+      window.vendors_root = window.static_root + '/libs/';
+      window.favicon_root = window.vendors_root + '/favicon/';
     }
     window.waitFor = window.waitFor || ['c-corporate-header', 'c-corporate-footer', 'c-main-content'];
   }
@@ -299,11 +295,15 @@ CorporateUi = (function() {
             /* Automatically wrapping component variation */
             var variation = (this.attributes.variation ? this.attributes.variation.value : undefined) || (this.properties.variation ? this.properties.variation.value : 1);
             var variation_container = document.createElement(this.localName + '-variation-' + variation);
+            var attributes = this.attributes;
 
-            // Why does this happen sometimes?
-            if (!this.parentNode) {
-              return;
+            for (var prop in attributes) {
+              // skip loop if the property is from prototype
+              if(!attributes.hasOwnProperty(prop) || attributes[prop].name === 'variation') continue;
+
+              variation_container.setAttribute(attributes[prop].name, attributes[prop].value);
             }
+
             this.parentNode.insertBefore(variation_container, this);
             variation_container.appendChild(this);
           }

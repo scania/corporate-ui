@@ -7,35 +7,26 @@ var gulp = require('gulp'),
 
 /* Available tasks */
 gulp.task('clean', _clean)
-gulp.task('less', _less)
 gulp.task('symlink', _symlink)
-gulp.task('staticModules', _staticModules)
-gulp.task('default', gulp.series(['clean', 'less', 'symlink', 'staticModules'], server))
+gulp.task('less', _less)
+gulp.task('default', gulp.series(['clean', 'symlink', 'less'], server))
 
 /* File watches */
-gulp.watch('src/less/**/*',  gulp.series(['less']))
+gulp.watch('src/less/**/*', gulp.series(['less']))
 
 /* Methods */
 function _clean() {
-  return gulp.src('{dist,static_modules}', {read: false})
+  return gulp.src('dist', {read: false})
     .pipe(clean())
-}
-function _less() {
-  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/core.less'])
-    .pipe(sourcemaps.init())
-    .pipe(less())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist/css'))
 }
 function _symlink() {
   return gulp.src('src/{html,images,js,less,starter-kit}')
     .pipe(gulp.symlink('dist'))
 }
-function _staticModules() {
-  var package = require('./package.json'),
-      dependencies = Object.keys(package.dependencies),
-      folders = dependencies.length === 1 ? dependencies[0] : '{' + dependencies.join(',') + '}'
-
-  return gulp.src('node_modules/' + folders)
-    .pipe(gulp.symlink('static_modules'))
+function _less() {
+  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less'])
+    .pipe(sourcemaps.init())
+    .pipe(less())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist/css'))
 }

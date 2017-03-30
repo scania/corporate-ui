@@ -35,9 +35,6 @@ CorporateUi = (function() {
   function init() {
     setGlobals();
 
-    // Special handling for page containing only script element (no html, head, body).
-    initMiniHtml();
-
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
     // Adds support for webcomponents if non exist
@@ -45,9 +42,12 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
     }
 
-    importLink(window.vendors_root + 'polymer/polymer.html', 'import', polymerInject);
+    importLink(window.vendors_root + 'polymer/polymer.html', 'import', function(event) {
+      polymerInject(event);
+      appendExternals(event);
+    });
 
-    importScript(window.vendors_root + public.vendorPaths.less + '.js', appendExternals);
+    //importScript(window.vendors_root + public.vendorPaths.less + '.js', appendExternals);
 
     importScript(window.vendors_root + public.vendorPaths.jquery + '.js', function() {
       importScript(window.vendors_root + public.vendorPaths.hotkeys + '.js');
@@ -254,32 +254,32 @@ CorporateUi = (function() {
     }
 
     /* Extending Polymer rulesForStyle method */
-    Polymer.StyleUtil.orgRulesForStyle = Polymer.StyleUtil.rulesForStyle;
-    Polymer.StyleUtil.rulesForStyle = function(style, component) {
+    // Polymer.StyleUtil.orgRulesForStyle = Polymer.StyleUtil.rulesForStyle;
+    // Polymer.StyleUtil.rulesForStyle = function(style, component) {
 
-      if(style.rendered) {
-        return;
-      }
+    //   if(style.rendered) {
+    //     return;
+    //   }
 
-      component = component || this.__lastHeadApplyNode.textContent.trim().split('for ')[1];
+    //   component = component || this.__lastHeadApplyNode.textContent.trim().split('for ')[1];
 
-      style.rendered = true;
+    //   style.rendered = true;
 
-      var variables = '@import (reference) "' + window.version_root + 'less/corporate-ui/variables.less";';
-      style.textContent = variables + style.textContent;
+    //   var variables = '@import (reference) "' + window.version_root + 'less/corporate-ui/variables.less";';
+    //   style.textContent = variables + style.textContent;
 
-      /* Adding less support to polymer */
-      less.render(style.textContent, undefined, function(error, output) {
-        if (error) {
-          return console.error(error);
-        }
-        style.textContent = output.css;
-      });
+    //   /* Adding less support to polymer */
+    //   less.render(style.textContent, undefined, function(error, output) {
+    //     if (error) {
+    //       return console.error(error);
+    //     }
+    //     style.textContent = output.css;
+    //   });
 
-      // console.log('Rendering component: ', component, style);
+    //   // console.log('Rendering component: ', component, style);
 
-      return Polymer.StyleUtil.orgRulesForStyle(style);
-    }
+    //   return Polymer.StyleUtil.orgRulesForStyle(style);
+    // }
 
     /* Extending Polymer _ready method */
     /* We extend _ready and not ready because ready will be overridden when used in a component */
@@ -326,58 +326,6 @@ CorporateUi = (function() {
       /* Execute the origional function and apply current this to it */
       Polymer.Base._orgReady.call(this);
     }
-  }
-
-  function initMiniHtml() {
-    if (document.head.children.length === 1) {
-
-      if (navigator.userAgent.indexOf('MSIE') > -1) {
-        document.onreadystatechange = isMiniHtmlReady;
-      } else {
-        document.addEventListener('DOMContentLoaded', isMiniHtmlReady, false);
-      }
-
-      window.onload = isMiniHtmlRender;
-    }
-  }
-
-  function isMiniHtmlReady() {
-    var html = document.documentElement,
-        body = document.body,
-        // Used to make sure we handle the content as UTF-8 even if the file is any other encodeing
-        // Used instead of adding charset meta element
-        //innerHtml = document.charset === 'UTF-8' ? body.innerHTML : decodeURIComponent(escape( body.innerHTML ));
-        innerHtml = body.innerHTML;
-
-    window.bodyContainer = document.createElement('div');
-    window.bodyContainer.innerHTML = innerHtml;
-
-    html.className = 'corporate-ui';
-    body.innerHTML = '';
-  }
-
-  function isMiniHtmlRender() {
-    var head    = document.head,
-        body    = document.body,
-        doctype = document.implementation.createDocumentType('html', '', ''),
-        script  = document.querySelector('[src*="corporate-ui.js"]'),
-        title   = document.createElement('title'),
-        header  = window.bodyContainer.querySelector('c-corporate-header')    || document.createElement('c-corporate-header'),
-        main    = window.bodyContainer.querySelector('c-main-content')        || document.createElement('c-main-content'),
-        footer  = window.bodyContainer.querySelector('c-corporate-footer')    || document.createElement('c-corporate-footer'),
-        company = script.getAttribute('company') || window.defaults.company;
-
-    header.siteName = header.siteName || script.getAttribute('name') || window.defaults.appName;
-    title.innerHTML = script.getAttribute('title') || header.siteName + ' | ' + company;
-    body.className = body.className.replace(' polymer-loading', '');
-    body.className += ' ' + company.toLowerCase();
-
-    // Add elements to the page
-    document.insertBefore(doctype, document.childNodes[0]);
-    head.appendChild(title);
-    body.appendChild(header);
-    body.appendChild(main);
-    body.appendChild(footer);
   }
 
   function appendExternals() {

@@ -3,6 +3,7 @@
 <script src="/libs/react-dom/dist/react-dom.js"></script>
 <script src="/libs/moment/moment.js"></script>
 <script src="/libs/react-datetime/dist/react-datetime.js"></script>
+<script src="/js/DateRangePicker.js"></script>
 
 <link href="/libs/react-datetime/css/react-datetime.css" rel="stylesheet">
 
@@ -21,44 +22,34 @@
   var Datepicker = React.createClass({
     getInitialState: function() {
       return {
-        date: window.date
+        date: ''
       }
     },
     componentDidMount: function() {
       document.addEventListener('date.change', this.setDate, false);
     },
     render: function() {
-      var that = this;
-      return React.createElement(Datetime /* DateRangePicker */, {
+      return React.createElement(Datetime /*DateRangePicker*/, {
         value: this.state.date,
         dateFormat: 'YYYY-MM-DD',
         timeFormat: false,
-        onChange: function(date) {
-          that.updateDate( date.toDate().toLocaleDateString() );
-        }
+        onChange: this.updateDate
       })
     },
-    updateDate: function(date) {
-      var event = document.createEvent('Event');
-      event.initEvent('date.change', true, true);
-      event.date = date;
-      document.dispatchEvent(event);
+    updateDate: function(event) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('date.change', true, true);
+      _event.data.date = event._d;
+      document.dispatchEvent(_event);
     },
-    setDate: function() {
-      this.setState({ date: window.date });
+    setDate: function(event) {
+      this.setState({ date: event.data.date });
     }
   });
 
   var ReactPanel = React.createClass({
-    getInitialState: function() {
-      return {
-        date: window.date
-      }
-    },
     render: function() {
-      var that = this
-          e = React.createElement,
-          date = moment(this.state.date).toDate().toLocaleDateString();
+      var e = React.createElement;
 
       return e(
         'div', { className: 'panel panel-info' }, null, e(
@@ -70,7 +61,7 @@
             )
           ), e(
             'label', { className : 'form-group', key: 1 }, null, 'Polymer', e(
-              'form-field', { type: 'date', name: 'date', value: date }, null
+              'form-field', { type: 'date', name: 'date', value: '' }, null
             )
           )
         )

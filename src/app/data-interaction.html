@@ -50,6 +50,8 @@
         orgDispatchEvent.call(this, _event);
       }
     }
+
+    Event.prototype.data = {};
   </script>
 
   <script>
@@ -67,21 +69,20 @@
   <script>
     // Represents application use of business data
 
-    document.addEventListener('DOMContentLoaded', function(event) {
-      window.date = apiGet();
-    }, false);
+    window.onload = function(event) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('date.change', true, true);
+      _event.data.date = apiGet();
+      document.dispatchEvent(_event);
+    }
 
     document.addEventListener('date.change', function(event) {
-      window.date = apiPost(event.date);
+      event.data.date = apiPost(event.data.date);
     }, false);
   </script>
 
   <script>
     // Represent application interaction
-
-    document.addEventListener('DOMContentLoaded', function(event) {
-      console.log('Dashboard loaded');
-    }, false);
 
     document.addEventListener('date.change', function(event) {
       resetColorChanged();

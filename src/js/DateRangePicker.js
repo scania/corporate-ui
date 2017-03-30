@@ -28045,4 +28045,7 @@ DateRangePicker.defaultProps = defaultProps;
 
 exports.default = (0, _reactOnclickoutside2.default)(DateRangePicker);
 exports.DateRangePickerPure = DateRangePicker;
-},{"./DatePicker":270,"babel-runtime/helpers/classCallCheck":7,"babel-runtime/helpers/createClass":8,"babel-runtime/helpers/inherits":9,"babel-runtime/helpers/possibleConstructorReturn":10,"babel-runtime/helpers/typeof":11,"moment":107,"react":269,"react-onclickoutside":243}]},{},[271]);
+},{"./DatePicker":270,"babel-runtime/helpers/classCallCheck":7,"babel-runtime/helpers/createClass":8,"babel-runtime/helpers/inherits":9,"babel-runtime/helpers/possibleConstructorReturn":10,"babel-runtime/helpers/typeof":11,"moment":107,"react":269,"react-onclickoutside":243}],272:[function(require,module,exports){
+const DateRangePicker = require('../../node_modules/rio-uikit/lib/common/components/datepicker/DateRangePicker.js');
+window.DateRangePicker = DateRangePicker.default;
+},{"../../node_modules/rio-uikit/lib/common/components/datepicker/DateRangePicker.js":271}]},{},[272]);

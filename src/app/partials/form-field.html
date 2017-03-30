@@ -35,29 +35,38 @@
         }
       },
       ready: function() {
-        var that = this;  
+        var that = this;
         //if (this.type === 'date') {
           $('input', this)
             .datepicker({ format: 'yyyy-mm-dd' })
             .on('changeDate', function(event) {
-              var date = event.date.toLocaleDateString();
-              that.updateDate(date);
+              var _event = Event.prototype;
+              _event.data = { date: event.date };
+              that.updateDate(_event);
+            })
+            // Why does the value reset on hide... If it didnt we wouldt need the hide action
+            .on('hide', function(event) {
+              that.hide.call(that, event);
             });
         //}
 
         document.addEventListener('date.change', function(event) {
-          that.setDate(event, that);
+          that.setDate.call(that, event);
         }, false);
       },
-      updateDate: function(date) {
-        var event = document.createEvent('Event');
-        event.initEvent('date.change', true, true);
-        event.date = date;
-        document.dispatchEvent(event);
+      hide: function(event) {
+        if(!event.date) {
+          this.querySelector('input').valueAsDate = new Date(this.value);
+        }
       },
-      setDate: function(event, that) {
-        that.querySelector('input').valueAsDate = new Date(window.date);
-        //that.value = window.date;
+      updateDate: function(event) {
+        var _event = document.createEvent('Event');
+        _event.initEvent('date.change', true, true);
+        _event.data.date = event.data.date/*this.value*/;
+        document.dispatchEvent(_event);
+      },
+      setDate: function(event) {
+        this.value = event.data.date.toLocaleDateString();
       }
     })
   </script>

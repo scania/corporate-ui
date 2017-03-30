@@ -6,21 +6,15 @@
 
   document.addEventListener('date.change', setDate, false);
 
-  document.addEventListener('input', function(event) {
+  document.querySelector('js-component').addEventListener('input', function(event) {
     var _event = document.createEvent('Event');
     _event.initEvent('date.change', true, true);
-    _event.date = {};
-
-    var input = event.target;
-    _event[input.name] = input.value;
-
-    if (new Date(window.date).getTime() !== new Date(_event.date).getTime()) {
-      document.dispatchEvent(_event);
-    }
+    _event.data.date = event.target.value;
+    document.dispatchEvent(_event);
   }, false);
 
   function setDate(event) {
-    document.querySelector('input').valueAsDate = window.date;
+    document.querySelector('js-component input').value = event.data.date.toLocaleDateString();
   }
 </script>
 
@@ -37,7 +31,7 @@
         </label>
         <label class="form-group">
           Polymer
-          <form-field type="date" name="date" value="2017-03-22"></form-field>
+          <form-field type="date" name="date" value=""></form-field>
         </label>
       </div>
     </div>
@@ -53,13 +47,7 @@
         fullbleed: {
           type: Boolean,
           value: true
-        },
-        date: {
-          type: String
         }
-      },
-      ready: function() {
-        setDate();
       }
     });
   </script>

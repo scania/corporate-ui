@@ -1,0 +1,83 @@
+
+<link rel="import" href="variation-1.html">
+
+<dom-module id="bs-modal">
+  <template>
+    <style>
+      /* Modal */
+
+      @import (reference) 'https://static.scania.com/development/global/less/corporate-ui/buttons.less';
+
+      :host {
+        display: block;
+
+        ::content {
+
+          .modal-title {
+            text-align: left;
+          }
+          .modal-body {
+
+            > * {
+              text-align: left;
+            }
+          }
+          .modal-footer {
+
+            .btn {
+              &:extend(.btn-sm);
+            }
+          }
+        }
+      }
+    </style>
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">{{title}}</h4>
+        </div>
+        <div class="modal-body">
+          <content select="*:not(footer)"></content>
+        </div>
+
+        <template is="dom-if" if="{{footer}}">
+          <div class="modal-footer">
+            <content select="footer"></content>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bs-modal',
+      properties: {
+        title: {
+          type: String
+        },
+        footer: {
+          type: Boolean,
+          value: function(params) {
+            return this.querySelectorAll('footer').length;
+          }
+        },
+        id: String
+      },
+      class: 'test',
+      attached: function() {
+        /*this.className += ' modal fade';
+        this.id = this.id;*/
+
+        $(this)
+          .addClass('modal fade in')
+          .attr('id', this.id)
+          .show();
+      }
+    });
+  </script>
+</dom-module>

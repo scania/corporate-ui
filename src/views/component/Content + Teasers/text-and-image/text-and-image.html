@@ -1,0 +1,76 @@
+<link rel="import" href="variation-1.html">
+
+<!--
+
+`c-text-and-image` is o be used as a pull-out quote from a page or editorial content. Draws attention to key fact or message of story.
+
+@dev
+
+### Todo ###
+
+-->
+
+<dom-module id="c-text-and-image">
+  <template>
+    <style>
+      /* Text and image */
+
+      :host {
+        display: block;
+
+        .upper-margin {
+          margin: 55px auto;
+          padding: 0;
+
+          .no-gutter {
+            padding: 0;
+            float: none;
+            vertical-align: middle;
+
+            @media (min-width: 768px) {
+              display: table-cell;
+            }
+
+            p.text {
+              color: @brand-primary; 
+              font-family: "Scania Sans", Helvetica, Arial, sans-serif;
+              padding: 0 100px;
+              float: none;
+
+              @media (min-width: 768px) {
+                font-size: 32px;
+                line-height: 42px ;
+                padding: 0 100px;
+              }
+
+              @media (max-width: 767px) {
+                font-size: 16px;
+                line-height: 26px;
+                padding: 54px 52px 74px;
+              }
+            }
+          }
+        }
+      }
+    </style>
+
+    <div class="upper-margin row">
+      <div class="col-sm-6 no-gutter">
+        <img src$="{{image}}" class="img img-responsive">
+      </div>
+      <div class="col-sm-6 no-gutter">
+        <p class="text">
+          <content></content>    
+        </p>
+      </div>
+    </div>
+	</template>
+  <script>
+    Polymer({
+      is: 'c-text-and-image',
+      properties: {
+        image: String
+      }
+    });
+  </script>
+</dom-module>

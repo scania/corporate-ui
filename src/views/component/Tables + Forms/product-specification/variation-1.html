@@ -1,0 +1,35 @@
+<!--
+___
+
+#### Demo
+
+In the component tag attributes like `headline` and `image` can be set. The `p` tag sets the description below the headline and The attributes `cta` and `link` sets the CTA below the description. The subitem `info-box` with attribute `title` inserts the box where additional informtaion can be added.
+
+<demo>
+<c-product-specification headline="Setting the standard. Again." image="http://scania-noe-ux.sapient-lab.com/images/tab-product.jpg" cta="See full specifications" link="#">
+	<p>Scania Euro 6 sets the standard for how the toughest emission levels in the world can be reached with an efficient and compact, customer-friendly solution.</p>
+	<info-box title="13 litre">A new vertical theme beginning at the window line.</info-box>
+</c-product-specification>
+</demo>
+
+___
+
+-->
+
+<dom-module id="c-product-specification-variation-1">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+		</style>
+
+		<content></content>
+	</template>
+
+	<script>
+		Polymer({
+	      is: 'c-product-specification-variation-1'
+	    });	
+	</script>
+</dom-module>

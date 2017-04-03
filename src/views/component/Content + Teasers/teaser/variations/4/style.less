@@ -1,0 +1,33 @@
+
+:host {
+  display: block;
+
+  ::content .teaser-items {
+    margin-left: -10px;
+    margin-right: -10px;
+
+    c-teaser-item {
+      width: 25%;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      &:first-child {
+        width: 50%;
+      }
+      .teaser-info {
+
+        h2 {
+          margin-top: 30px;
+          margin-bottom: 15px;
+        }
+        h2,
+        p {
+          text-align: left;
+        }
+        .btn {
+          padding: 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+<link rel="import" href="variation-1.html">
+
+<!--
+
+`c-product-specification` showcases key features of individual series/range. The head and intro messaging conveys brand promise (i.e. Premium). Intro allows expansion on that promise as well as introducing the users to the functionality and proof points/content offered in the content specs. CTA guides users to configurator or full specifications document (pdf).
+
+@dev
+
+### Todo ###
+
+-->
+
+<dom-module id="c-product-specification">
+	<template>
+		<style>
+			:host {
+				display: block;
+
+				.row.spec-box {
+					margin: 70px auto 50px auto;
+					@media (max-width: 991px) {
+						text-align: center;	
+					}
+					.btn-holder-1 {
+						margin-top: 70px;
+					}
+					.btn-holder-2 {
+						text-align: center;
+
+						.btn.btn-primary.visible-sm.visible-xs {
+							@media (max-width: 991px) {
+								display: inline-block !important;		
+							}
+						}
+					}	
+				}
+			}	
+		</style>
+
+		<div class="container"> 
+			<div class="spec-box row">
+				<div class="col-md-6 col-md-push-6">
+					<h1>{{headline}}</h1>
+					<content select="p"></content>
+					<div class="btn-holder-1">
+						<button class="btn btn-primary hidden-sm hidden-xs" href$="{{link}}">{{cta}}</button>
+					</div>
+				</div> 
+				<div class="col-md-6 col-md-pull-6">
+					<img class="img-responsive" src$="{{image}}">
+					<content select="info-box"></content>			
+					<div class="btn-holder-2">
+						<button class="btn btn-primary visible-sm visible-xs" href$="{{link}}">{{cta}}</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'c-product-specification',
+			properties: {
+				headline: String,
+				image: String,
+				/* label for cta */
+				cta: String,
+				/* link for cta */
+				link: String
+			},
+			haslink: function() {  	
+				return this.getAttribute('link') != null;
+			},
+			attached: function() {
+				if(!this.haslink()) {
+					//$('.btn', this).remove();
+				}
+			}
+		});	
+	</script>
+</dom-module>
+
+<!---->
+
+<dom-module id="info-box">
+	<template>
+		<style>
+			:host {
+				.product-info {
+					background-color: @framework-grey2;
+					padding: 20px 40px 30px 40px;
+					margin: 30px 0;
+					@media (min-width: 992px) {
+						margin: 50px;
+					}
+				}
+			}
+		</style>
+
+		<div class="product-info">
+			<h4>{{title}}</h4>
+			<p><content></content></p>
+		</div>
+	</template>
+
+	<script>
+		Polymer({
+	      is: 'info-box',
+	      properties: {
+	      	title: String
+	      }
+	    });	
+	</script>
+</dom-module>

@@ -1,0 +1,98 @@
+
+<script src="/libs/react/dist/react.js"></script>
+<script src="/libs/react-dom/dist/react-dom.js"></script>
+<script src="/libs/moment/moment.js"></script>
+<script src="/libs/react-datetime/dist/react-datetime.js"></script>
+<script src="/js/DateRangePicker.js"></script>
+
+<link href="/libs/react-datetime/css/react-datetime.css" rel="stylesheet">
+
+<link rel="import" href="form-field.html">
+
+<style>
+  .rdtPicker td.rdtActive,
+  .rdtPicker td.rdtActive:hover {
+    background: #75658B;
+  }
+</style>
+
+<script>
+  // Represents a ordinary react component
+
+  var Datepicker = React.createClass({
+    getInitialState: function() {
+      return {
+        date: ''
+      }
+    },
+    componentDidMount: function() {
+      document.addEventListener('date.change', this.setDate, false);
+    },
+    render: function() {
+      return React.createElement(Datetime /*DateRangePicker*/, {
+        value: this.state.date,
+        dateFormat: 'YYYY-MM-DD',
+        timeFormat: false,
+        onChange: this.updateDate
+      })
+    },
+    updateDate: function(event) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('date.change', true, true);
+      _event.data.date = event._d;
+      document.dispatchEvent(_event);
+    },
+    setDate: function(event) {
+      this.setState({ date: event.data.date });
+    }
+  });
+
+  var ReactPanel = React.createClass({
+    render: function() {
+      var e = React.createElement;
+
+      return e(
+        'div', { className: 'panel panel-info' }, null, e(
+          'div', { className: 'panel-heading' }, null, 'React'
+        ), e(
+          'div', { className: 'panel-body' }, null, e(
+            'label', { className : 'form-group', key: '0' }, null, 'React', e(
+              Datepicker, { key: 0 }, null
+            )
+          ), e(
+            'label', { className : 'form-group', key: 1 }, null, 'Polymer', e(
+              'form-field', { type: 'date', name: 'date', value: '' }, null
+            )
+          )
+        )
+      );
+    }
+  });
+</script>
+
+<dom-module id="react-component">
+  <template>
+    <!-- The component will be rendered here -->
+  </template>
+
+  <script>
+    // Represents a ordinary polymer component
+
+    Polymer({
+      is: 'react-component',
+      properties: {
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        }
+      },
+      ready: function() {
+        var container = this,
+            panel = React.createElement(ReactPanel, null);
+
+        ReactDOM.render(panel, container);
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,73 @@
+
+<script src="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<link href="/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+<dom-module id="form-field">
+  <style>
+    input::-webkit-inner-spin-button,
+    input::-webkit-calendar-picker-indicator,
+    input::-webkit-clear-button {
+      display: none;
+      -webkit-appearance: none;
+    }
+  </style>
+  <template>
+    <input type="{{type}}" value="{{value}}" name="{{name}}" class="form-control">
+  </template>
+  <script>
+    Polymer({
+      is: 'form-field',
+      properties: {
+        fullbleed: {
+          type: Boolean,
+          value: true
+        },
+        variation: 0,
+        type: {
+          type: String
+        },
+        name: {
+          type: String
+        },
+        value: {
+          type: String
+        }
+      },
+      ready: function() {
+        var that = this;
+        //if (this.type === 'date') {
+          $('input', this)
+            .datepicker({ format: 'yyyy-mm-dd' })
+            .on('changeDate', function(event) {
+              var _event = Event.prototype;
+              _event.data = { date: event.date };
+              that.updateDate(_event);
+            })
+            // Why does the value reset on hide... If it didnt we wouldt need the hide action
+            .on('hide', function(event) {
+              that.hide.call(that, event);
+            });
+        //}
+
+        document.addEventListener('date.change', function(event) {
+          that.setDate.call(that, event);
+        }, false);
+      },
+      hide: function(event) {
+        if(!event.date) {
+          this.querySelector('input').valueAsDate = new Date(this.value);
+        }
+      },
+      updateDate: function(event) {
+        var _event = document.createEvent('Event');
+        _event.initEvent('date.change', true, true);
+        _event.data.date = event.data.date/*this.value*/;
+        document.dispatchEvent(_event);
+      },
+      setDate: function(event) {
+        this.value = event.data.date.toLocaleDateString();
+      }
+    })
+  </script>
+</dom-module>

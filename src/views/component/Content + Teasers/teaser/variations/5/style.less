@@ -1,0 +1,60 @@
+
+@import (reference) '../../../../../../less/corporate-ui/buttons.less';
+
+:host {
+  display: block;
+
+  c-teaser[fullbleed] {
+
+    ::content c-teaser-item {
+      margin-left: 0;
+      margin-right: 0;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  ::content {
+
+    h2 {
+      font-size: 2.5em;
+    }
+    c-teaser-item {
+      font-size: 0;
+      width: auto;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+    .teaser-info > .btn {
+      &:extend(.btn-primary all);
+    }
+    .teaser-items {
+      margin-left: 0;
+      margin-right: 0;
+
+      c-teaser-item {
+
+        &:nth-child(odd) {
+          direction: rtl;
+        }
+
+        > div.c-teaser-item {
+          direction: ltr;
+          width: 50%;
+          padding-left: 15px;
+          padding-right: 15px;
+          display: inline-block;
+          float: none;
+          font-size: small;
+          vertical-align: middle;
+          text-align: left;
+
+          h2,
+          p {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}

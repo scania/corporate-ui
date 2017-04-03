@@ -1,0 +1,19 @@
+
+block dependencies
+
+| !{demo ? '\n<!--\n___' : ''}
+block comment
+  if demo
+    demo
+      block demo
+| !{demo ? '\n___\n-->' : ''}
+
+block root
+  dom-module(id=name)
+    template
+      block template
+        style
+          block style
+
+    script
+      block script

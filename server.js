@@ -10,7 +10,7 @@ function server() {
   app.set('port', process.env.PORT || 1337);
 
   app.use(express.static(__dirname + '/dist'))
-  app.use('/', express.static(__dirname + '/src/app'))
+  app.use('/', express.static(__dirname + '/src/views'))
 
   Object.keys(package.dependencies).map(function(dependency) {
     app.use('/libs/' + dependency, express.static(__dirname + '/node_modules/' + dependency) )

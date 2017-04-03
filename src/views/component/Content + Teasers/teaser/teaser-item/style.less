@@ -1,0 +1,34 @@
+
+:host {
+  display: inline-block;
+  font-size: medium;
+  vertical-align: top;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+
+  &.light .teaser-info {
+    background-color: #fff;
+  }
+  &.dark .teaser-info {
+    background-color: #eee;
+  }
+
+  .teaser-info {
+    text-align: center;
+    font-size: 0.8em;
+  }
+  h2 {
+    font-size: 1.9em;
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  p + .btn {
+    margin-top: 30px;
+  }
+  c-main-hero ::content h1 {
+    font-size: 2em;
+  }
+}

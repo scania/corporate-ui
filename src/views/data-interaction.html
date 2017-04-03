@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Dashboard</title>
+
+  <script src="/js/corporate-ui.js"></script>
+
+  <style>
+    label {
+      display: block;
+    }
+    input {
+      transition: border-color 500ms ease;
+      transition: color 500ms ease;
+    }
+    .date-changed input,
+    .date-changed input:focus {
+      border: 2px solid #09f;
+      color: #09f;
+    }
+    .panel-heading {
+      font-family: "Scania Sans Bold";
+      font-size: 16px;
+    }
+  </style>
+
+  <script>
+    // Extend built in javascript event to support namespacing
+
+    var orgDispatchEvent = Element.prototype.dispatchEvent;
+    Element.prototype.dispatchEvent = function(event) {
+      var types = event.type.split('.');
+
+      if (types.length > 1) {
+        orgDispatchEvent.call(this, event);
+      }
+
+      for(index in types) {
+        var _event = document.createEvent('Event');
+        _event.initEvent(types[index], true, true);
+        for (var attrname in event) { _event[attrname] = event[attrname]; }
+        orgDispatchEvent.call(this, _event);
+      }
+    }
+
+    Event.prototype.data = {};
+  </script>
+
+  <script>
+    // Represents API call from/to business layer
+
+    function apiGet() {
+      return new Date();
+    }
+
+    function apiPost(date) {
+      return new Date(date);
+    }
+  </script>
+
+  <script>
+    // Represents application use of business data
+
+    window.onload = function(event) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('date.change', true, true);
+      _event.data.date = apiGet();
+      document.dispatchEvent(_event);
+    }
+
+    document.addEventListener('date.change', function(event) {
+      event.data.date = apiPost(event.data.date);
+    }, false);
+  </script>
+
+  <script>
+    // Represent application interaction
+
+    document.addEventListener('date.change', function(event) {
+      resetColorChanged();
+      clearInterval(window.changeClass);
+
+      document.body.className += ' date-changed';
+
+      window.changeClass = setTimeout(resetColorChanged, 1000);
+    }, false);
+
+    function resetColorChanged() {
+      document.body.className = document.body.className.replace(' date-changed', '');
+    }
+  </script>
+
+  <link rel="import" href="partials/js-component.html">
+  <link rel="import" href="partials/react-component.html">
+  <link rel="import" href="partials/angular-component.html">
+</head>
+<body class="scania app">
+  <section class="container">
+    <h3>Framework & Library data interaction.</h3>
+    <p>This illustrates how components built in different libraries could interact with each other, using either external component or our global custom elements built in Polymer.</p>
+    <div class="row">
+      <div class="col-xs-4">
+        <js-component></js-component>
+      </div>
+      <div class="col-xs-4">
+        <react-component></react-component>
+      </div>
+      <div class="col-xs-4">
+        <angular-component></angular-component>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

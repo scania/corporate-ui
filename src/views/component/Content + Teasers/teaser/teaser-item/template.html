@@ -1,0 +1,27 @@
+<template is="dom-if" if="{{image}}">
+  <template is="dom-if" if="{{!imageText}}">
+    <div class="image">
+      <img src="{{image}}" alt="{{headline}}" title="{{headline}}">
+    </div>
+  </template>
+
+  <template is="dom-if" if="{{imageText}}">
+    <c-main-hero image="{{image}}">
+      <h2>{{imageText}}</h2>
+    </c-main-hero>
+  </template>
+</template>
+
+<div class="teaser-info">
+  <template is="dom-if" if="{{headline}}">
+    <h2 class="item-headline">{{headline}}</h2>
+  </template>
+
+  <p class="item-text">
+    <content></content>
+  </p>
+
+  <template is="dom-if" if="{{link}}">
+    <a href="{{link}}" class="btn">{{linkText}}</a>
+  </template>
+</div>

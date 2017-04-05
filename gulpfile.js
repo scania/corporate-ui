@@ -15,12 +15,12 @@ var fs = require('fs'),
 gulp.task('clean', _clean)
 gulp.task('symlink', _symlink)
 gulp.task('less', _less)
-gulp.task('cleanComponent', _cleanComponent)
 gulp.task('lessComponent', _lessComponent)
 gulp.task('tsComponent', _tsComponent)
 gulp.task('jadeComponent', _jadeComponent)
+gulp.task('fullComponent', _fullComponent)
 
-gulp.task('component', gulp.series(['cleanComponent', 'lessComponent', 'tsComponent', 'jadeComponent'], component))
+gulp.task('component', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
 gulp.task('default', gulp.series(['clean', 'symlink', 'less', 'component'], server))
 
 /* File watches */
@@ -29,7 +29,7 @@ gulp.watch('src/views/component/**/*', gulp.series(['component']))
 
 /* Methods */
 function _clean() {
-  return gulp.src(['dist'], {read: false})
+  return gulp.src('dist', {read: false})
     .pipe(clean())
 }
 function _symlink() {
@@ -43,8 +43,8 @@ function _less() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }
-function _cleanComponent() {
-  return gulp.src(['tmp'], {read: false})
+function cleanComponent() {
+  return gulp.src('tmp', {read: false})
     .pipe(clean())
 }
 function _lessComponent() {
@@ -61,12 +61,11 @@ function _jadeComponent() {
   return gulp.src('src/views/component/**/*.{jade,html,md}')
     .pipe(gulp.dest('tmp/component'))
 }
-function component() {
+function _fullComponent() {
   return gulp.src('tmp/**/**/index.jade')
     .pipe(data(function(file) {
       var index = path.dirname(file.path).lastIndexOf(path.sep) + 1,
-          name = path.dirname(file.path).substring(index),
-          demo = false;
+          name = path.dirname(file.path).substring(index);
 
       if ( !isNaN( parseFloat(name) ) ) {
         var parentPath = path.dirname(file.path).split('\\variations')[0],
@@ -75,10 +74,8 @@ function component() {
 
         name = parentName + '-variation-' + name;
       }
-      if (fs.existsSync( path.dirname(file.path) + '\\demo.html' )) {
-        demo = true;
-      }
-      return { name: 'c-' + name || 'test', demo: demo };
+
+      return { name: 'c-' + name || 'test' };
     }))
     .pipe(jade({ pretty: true }))
     .pipe(rename(function(path) {

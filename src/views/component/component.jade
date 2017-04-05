@@ -1,12 +1,11 @@
 
 block dependencies
 
-| !{demo ? '\n<!--\n___' : ''}
+| <!--
 block comment
-  if demo
-    demo
-      block demo
-| !{demo ? '\n___\n-->' : ''}
+  demo
+    block demo
+| -->
 
 block root
   dom-module(id=name)

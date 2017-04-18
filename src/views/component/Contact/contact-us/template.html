@@ -1,0 +1,12 @@
+
+<div class="container contact-box">
+      <h4>{{title}}</h4>
+      <p class="contact-description"><content></content></p>
+      <h6>{{action}}</h6>
+      <h3>{{number}}</h3>
+      <div class="btn-container">
+        <template is="dom-if" if$="{{haslink()}}"> 
+          <button class="btn btn-primary" href$="{{link}}">{{cta}}</button>
+        </template> 
+      </div>
+    </div>

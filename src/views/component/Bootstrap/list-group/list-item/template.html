@@ -1,0 +1,12 @@
+
+
+    <template is="dom-if" if="{{isLinks(location)}}">
+      <a href="{{location}}" class="list-group-item">
+        <span class="marker icon-angle-right"></span>
+        <content></content>
+      </a>
+    </template>
+
+    <template is="dom-if" if="{{!isLinks(location)}}">
+      <li class="list-group-item"><content></content></li>
+    </template>

@@ -1,16 +1,4 @@
-<!--
-
-`c-corporate-header` displays logotype together with application name as well top links.
-
-@dev
-
-
--->
-
-<dom-module id="c-corporate-header">
-  <template>
-    <style>
-      /* Corporate header */
+/* Corporate header */
 
       :host-context(.header-is-sticky) {
 
@@ -133,42 +121,3 @@
           }
         }
       }
-    </style>
-
-    <header class="container-fluid">
-      <nav class="navbar navbar-top">
-        <div class="navbar-header">
-          <a href="{{siteUrl}}" class="navbar-brand wordmark"></a>
-          <span class="site-name">{{siteName}}</span>
-          <a href="{{siteUrl}}" class="symbol"></a>
-        </div>
-
-        <bs-navbar class="navbar-right navbar-user">
-          <content></content>
-          <!-- <nav-item location="#/">Scania global</nav-item>
-          <nav-item location="#/">My Scania</nav-item> -->
-        </bs-navbar>
-      </nav>
-    </header>
-  </template>
-
-  <script>
-    Polymer({
-      is: 'c-corporate-header',
-      properties: {
-        siteName: String,
-        variation: 0,
-        siteUrl: {
-          type: String,
-          value: '/'
-        },
-        fullbleed: {
-          type: Boolean,
-          value: true
-        }
-      }
-    });
-  </script>
-</dom-module>
-
-<link rel="import" href="variation-1.html">

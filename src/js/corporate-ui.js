@@ -333,8 +333,8 @@ CorporateUi = (function() {
 
     generateMeta('google', 'notranslate');
 
-    window.preLoadedComponents = [
-      window.version_root + 'html/component/Bootstrap/bootstrap.html',
+    window.preLoadedComponents = [/*
+      window.version_root + 'html/component/Bootstrap/bootstrap.html',*/
       window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
       window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
       window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',

@@ -17,11 +17,11 @@ CorporateUi = (function() {
 
     /* Public constants */
     vendorPaths     : {
-      jquery          : 'jquery/dist/jquery.min',
-      bootstrap       : 'bootstrap/dist/js/bootstrap.min',
+      jquery          : 'frameworks/jQuery/2.2.2/jquery.min',
+      bootstrap       : 'frameworks/bootstrap/3.2.0/js/bootstrap.min',
 
-      less            : 'less/dist/less.min',
-      hotkeys         : 'jquery.hotkeys/jquery.hotkeys',
+      less            : 'components/pure-js/less.js/2.5.1/dist/less.min',
+      hotkeys         : 'components/jQuery/hotkeys/0.1.0/js/jquery.hotkeys',
       browserReject   : 'components/pure-js/browser-reject/1.0.0/js/browser-reject'
     }
   };
@@ -35,6 +35,8 @@ CorporateUi = (function() {
   function init() {
     setGlobals();
 
+    AppEventStore = new EventStore();
+
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
     // Adds support for webcomponents if non exist
@@ -42,30 +44,49 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
     }
 
-    importLink(window.vendors_root + 'polymer/polymer.html', 'import', function(event) {
-      polymerInject(event);
-      appendExternals(event);
-    });
+    // Add and configure requireJs as well as adding all other dependencies.
+    if (!window.require) {
+      importScript(window.vendors_root + 'frameworks/require/2.3.2/require.js', appendExternals);
+    } else {
+      appendExternals();
+    }
 
-    //importScript(window.vendors_root + public.vendorPaths.less + '.js', appendExternals);
+    importLink(window.vendors_root + 'frameworks/polymer/latest/polymer.html', 'import', polymerInject);
 
-    importScript(window.vendors_root + public.vendorPaths.jquery + '.js', function() {
-      importScript(window.vendors_root + public.vendorPaths.hotkeys + '.js');
-    });
+    // Preload jquery
+    importScript(window.vendors_root + public.vendorPaths.jquery + '.js');
 
     // System messages
     sysMessages();
-
-    /*document.documentElement.className += ' polymer-loading';
-    document.documentElement.style.opacity = 0;*/
 
     window.onload = ready;
   }
 
   function ready() {
-    var event = document.createEvent('Event');
-    event.initEvent('corporate-ui-loaded', true, true);
-    document.dispatchEvent(event);
+    AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
+  }
+
+  function EventStore() {
+    this.store = {};
+    this.__proto__.apply = apply;
+    //this.__proto__.revert = revert;
+
+    function apply(event) {
+      this.store[event.name] = this.store[event.name] || [];
+      event.id = this.store[event.name].length + 1; // Just for testing
+      this.store[event.name].push(event);
+      dispatch(event);
+    }
+    /*function revert(event) {
+      var prevEvent = this.store[event.name].filter(function(item) { return item.id === event.id })[0];
+      this.apply(prevEvent);
+    }*/
+    function dispatch(event) {
+      var newEvent = document.createEvent('Event');
+      newEvent.initEvent(event.action, true, true);
+      newEvent.data = event.data;
+      document.dispatchEvent(newEvent);
+    }
   }
 
   // Taken from: http://stackoverflow.com/a/979997
@@ -215,7 +236,7 @@ CorporateUi = (function() {
         localhost = urlInfo(scriptUrl).hostname === 'localhost';
 
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
-    window.version_root = window.static_root + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
+    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
     window.vendors_root = window.static_root + '/vendors/';
     window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
     window.protocol = urlInfo(scriptUrl).protocol;
@@ -226,13 +247,29 @@ CorporateUi = (function() {
       company: 'Scania'
     };
     if (localhost) {
-      window.vendors_root = window.static_root + '/libs/';
-      window.favicon_root = window.vendors_root + '/favicon/';
+      window.vendors_root = 'https://static.scania.com/vendors/';
+      window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
     }
     window.waitFor = window.waitFor || ['c-corporate-header', 'c-corporate-footer', 'c-main-content'];
   }
 
   function polymerInject() {
+
+    PolymerOrg = Polymer;
+    window.Polymer = function(prototype) {
+      var dependencies = (prototype.dependencies || []).concat(['less']);
+
+      //hideUntilDone(prototype.is);
+
+      //console.log(prototype);
+      if (window.require) {
+        require(dependencies, function() {
+          return PolymerOrg(prototype);
+        })
+      }
+    }
+    PolymerOrg.Base.chainObject(Polymer, PolymerOrg);
+
     window.customelements = [];
 
     function hideUntilDone(customelement) {
@@ -253,34 +290,6 @@ CorporateUi = (function() {
       }
     }
 
-    /* Extending Polymer rulesForStyle method */
-    // Polymer.StyleUtil.orgRulesForStyle = Polymer.StyleUtil.rulesForStyle;
-    // Polymer.StyleUtil.rulesForStyle = function(style, component) {
-
-    //   if(style.rendered) {
-    //     return;
-    //   }
-
-    //   component = component || this.__lastHeadApplyNode.textContent.trim().split('for ')[1];
-
-    //   style.rendered = true;
-
-    //   var variables = '@import (reference) "' + window.version_root + 'less/corporate-ui/variables.less";';
-    //   style.textContent = variables + style.textContent;
-
-    //   /* Adding less support to polymer */
-    //   less.render(style.textContent, undefined, function(error, output) {
-    //     if (error) {
-    //       return console.error(error);
-    //     }
-    //     style.textContent = output.css;
-    //   });
-
-    //   // console.log('Rendering component: ', component, style);
-
-    //   return Polymer.StyleUtil.orgRulesForStyle(style);
-    // }
-
     /* Extending Polymer _ready method */
     /* We extend _ready and not ready because ready will be overridden when used in a component */
     Polymer.Base._orgReady = Polymer.Base._ready;
@@ -295,30 +304,27 @@ CorporateUi = (function() {
             /* Automatically wrapping component variation */
             var variation = (this.attributes.variation ? this.attributes.variation.value : undefined) || (this.properties.variation ? this.properties.variation.value : 1);
             var variation_container = document.createElement(this.localName + '-variation-' + variation);
-            var attributes = this.attributes;
 
-            for (var prop in attributes) {
-              // skip loop if the property is from prototype
-              if(!attributes.hasOwnProperty(prop) || attributes[prop].name === 'variation') continue;
-
-              variation_container.setAttribute(attributes[prop].name, attributes[prop].value);
+            // Why does this happen sometimes?
+            if (!this.parentNode) {
+              return;
             }
-
             this.parentNode.insertBefore(variation_container, this);
             variation_container.appendChild(this);
           }
 
           /* Automatically wrapping component inside a container */
           var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : false);
+          var apa = this.nodeName;
 
           if(fullbleed !== true) {
             var container = document.createElement('div'),
-                element = this.properties.variation === 0 ? this : this.parentNode;
+                parent = this.properties.variation === 0 ? this.parentNode : this.parentNode.parentNode;
 
             container.setAttribute('class', 'container');
 
-            element.parentNode.insertBefore(container, element);
-            container.appendChild(element);
+            parent.insertBefore(container, this.parentNode);
+            container.appendChild(this.parentNode);
           }
         }
       }
@@ -329,21 +335,43 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-    appendFavicon();
+    require.config({
+      baseUrl     : window.vendors_root,
+      paths: {
+        requireLib: 'require'
+      },
+      namespace   : 'CorporateUi',
+      modules: [
+        {
+          name: 'CorporateUi',
+          include: ['requireLib'],
+          create: true
+        }
+      ],
+      waitSeconds : 500,
+      paths       : public.vendorPaths,
+      shim        : {
+        bootstrap       : ['jquery'],
+        hotkeys         : ['jquery']
+      }
+    });
 
-    generateMeta('google', 'notranslate');
+    require(['bootstrap', 'hotkeys'], function() {
 
-    window.preLoadedComponents = [
-      window.version_root + 'html/component/Bootstrap/bootstrap.html',
-      window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-      window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-      window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-      window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
-    ];
+      appendFavicon();
 
-    for (var i = 0; i < window.preLoadedComponents.length; i++) {
-      importLink(window.preLoadedComponents[i], 'import');
-    }
+      window.preLoadedComponents = [
+        window.version_root + 'html/component/Bootstrap/bootstrap.html',
+        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
+      ];
+
+      for (var i = 0; i < window.preLoadedComponents.length; i++) {
+        //importLink(window.preLoadedComponents[i], 'import');
+      }
+    });
   }
 
   function sysMessages() {

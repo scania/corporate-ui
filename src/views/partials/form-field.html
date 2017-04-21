@@ -4,15 +4,15 @@
 <link href="/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 <dom-module id="form-field">
-  <style>
-    input::-webkit-inner-spin-button,
-    input::-webkit-calendar-picker-indicator,
-    input::-webkit-clear-button {
-      display: none;
-      -webkit-appearance: none;
-    }
-  </style>
   <template>
+    <style>
+      input::-webkit-inner-spin-button,
+      input::-webkit-calendar-picker-indicator,
+      input::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+      }
+    </style>
     <input type="{{type}}" value="{{value}}" name="{{name}}" class="form-control">
   </template>
   <script>
@@ -60,10 +60,7 @@
         }
       },
       updateDate: function(event) {
-        var _event = document.createEvent('Event');
-        _event.initEvent('date.change', true, true);
-        _event.data.date = event.data.date/*this.value*/;
-        document.dispatchEvent(_event);
+        DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.data.date } });
       },
       setDate: function(event) {
         this.value = event.data.date.toLocaleDateString();

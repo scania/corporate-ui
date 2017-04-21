@@ -357,7 +357,6 @@ CorporateUi = (function() {
     });
 
     require(['bootstrap', 'hotkeys'], function() {
-
       appendFavicon();
 
       window.preLoadedComponents = [
@@ -369,7 +368,7 @@ CorporateUi = (function() {
       ];
 
       for (var i = 0; i < window.preLoadedComponents.length; i++) {
-        //importLink(window.preLoadedComponents[i], 'import');
+        importLink(window.preLoadedComponents[i], 'import');
       }
     });
   }

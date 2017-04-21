@@ -37,5 +37,5 @@
 
 
 
-<h2>Licens</h2>
+<h2>License</h2>
 <p>The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.</p>

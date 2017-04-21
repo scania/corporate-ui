@@ -5,8 +5,6 @@
   "main": "gulpfile.js",
   "dependencies": {
     "Polymer": "1.4.0",
-    "allenfang-react-bootstrap-table": "3.0.0",
-    "allenfang-react-toastr": "2.8.2",
     "angular": "1.5.5",
     "angular-ui-bootstrap": "2.5.0",
     "bootstrap": "3.2.0",
@@ -16,14 +14,15 @@
     "less": "2.7.2",
     "moment": "2.18.0",
     "react": "15.4.2",
+    "react-bootstrap-table": "^3.1.6",
     "react-datetime": "2.8.8",
-    "react-dom": "15.4.2",
-    "rio-uikit": "0.0.49"
+    "react-dom": "15.4.2"
   },
   "devDependencies": {
+    "@types/node": "^7.0.12",
     "directory-tree": "1.2.0",
     "express": "4.14.1",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean": "0.3.2",
     "gulp-data": "1.2.1",
     "gulp-jade": "1.1.0",

@@ -1,0 +1,23 @@
+ /* Nav item */
+
+      :host {
+        display: inline-block;
+        padding: 0 15px;
+
+        a {
+          position: relative;
+          display: block;
+        }
+      }
+      :host-context(.nav-pills):first-child {
+        padding-left: 0;
+      }
+      :host-context(.nav-tabs) {
+        border: 0;
+        display: inline-block;
+        border-right: 1px solid #e2e2e2;
+
+        &:first-child {
+          border-left: 1px solid #e2e2e2;
+        }
+      }

@@ -1,0 +1,21 @@
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">{{title}}</h4>
+        </div>
+        <div class="modal-body">
+          <content select="*:not(footer)"></content>
+        </div>
+
+        <template is="dom-if" if="{{footer}}">
+          <div class="modal-footer">
+            <content select="footer"></content>
+          </div>
+        </template>
+      </div>
+    </div>
+

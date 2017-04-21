@@ -13,17 +13,14 @@
       controller: ['$timeout', function($timeout) {
         var vm = this;
 
-        vm.date = ''/*Event.prototype.data.date*/;
+        vm.date = '';
         vm.opened = false;
         vm.updateDate = updateDate;
 
         document.addEventListener('date.change', setDate, false);
 
         function updateDate(event) {
-          var event = document.createEvent('Event');
-          event.initEvent('date.change', true, true);
-          event.data.date = vm.date;
-          document.dispatchEvent(event);
+          DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: vm.date } });
         }
         function setDate(event) {
           $timeout(function() {

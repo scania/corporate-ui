@@ -33,9 +33,55 @@
   </style>
 
   <script>
+    function EventStore() {
+      this.store = {};
+      this.__proto__.apply = apply;
+      //this.__proto__.revert = revert;
+
+      function apply(event) {
+        this.store[event.name] = this.store[event.name] || [];
+        event.id = this.store[event.name].length + 1; // Just for testing
+        this.store[event.name].push(event);
+        dispatch(event);
+      }
+      /*function revert(event) {
+        var prevEvent = this.store[event.name].filter(function(item) { return item.id === event.id })[0];
+        this.apply(prevEvent);
+      }*/
+      function dispatch(event) {
+        var newEvent = document.createEvent('Event');
+        newEvent.initEvent(event.action, true, true);
+        newEvent.data = event.data;
+        document.dispatchEvent(newEvent);
+      }
+    }
+
+
+    /* 
+      Create
+      Read
+      Update
+      Delate
+
+      Post
+      Get
+      Put
+      Delete
+
+      Add
+      Remove
+      Modify
+    */
+
+    /*eventStore.apply({ name: 'datepicker', action: 'changeDate', data: new Date() });
+    eventStore.apply({ name: 'datepicker', action: 'changeDate', data: new Date('2011-02-11') });
+    eventStore.revert({ name: 'datepicker', id: 1 });*/
+  </script>
+
+  <script>
     // Extend built in javascript event to support namespacing
 
-    var orgDispatchEvent = Element.prototype.dispatchEvent;
+    /*var orgDispatchEvent = Element.prototype.dispatchEvent;
     Element.prototype.dispatchEvent = function(event) {
       var types = event.type.split('.');
 
@@ -51,7 +97,7 @@
       }
     }
 
-    Event.prototype.data = {};
+    Event.prototype.data = {};*/
   </script>
 
   <script>
@@ -70,10 +116,12 @@
     // Represents application use of business data
 
     window.onload = function(event) {
-      var _event = document.createEvent('Event');
+      /*var _event = document.createEvent('Event');
       _event.initEvent('date.change', true, true);
       _event.data.date = apiGet();
-      document.dispatchEvent(_event);
+      document.dispatchEvent(_event);*/
+      DashboardEventStore = new EventStore();
+      DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: apiGet() } });
     }
 
     document.addEventListener('date.change', function(event) {

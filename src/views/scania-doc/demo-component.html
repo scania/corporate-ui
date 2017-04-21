@@ -80,6 +80,8 @@
         	                   $this = this;
 	
         	    $(elements).wrap('<div class="prewrapper"></div>');
+
+        	    $('code', elements)[0].textContent = '  <link rel="import" href="' + path + '">\n' + $('code', elements)[0].textContent;
 	
         	    $(this.querySelectorAll('.prewrapper'))
         	      .prepend('<div class="codeheader"><h5>Code <i class="icon-chevron-sign-down"></i></h5></div>')

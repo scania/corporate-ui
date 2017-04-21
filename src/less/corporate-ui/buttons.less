@@ -106,23 +106,28 @@ fieldset[disabled] .btn-default.active {
   color: #aaa;
 }
 
-.btn-primary {
-  color: @btn-primary-color;
-  background-color: @btn-primary-bg;
-  border-color: @btn-primary-border;
-}
-
+.btn-primary,
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
+  color: @btn-primary-color;
+  background-color: @btn-primary-bg;
+  border-color: @btn-primary-border;
+}
+
+/*.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
   color: @btn-primary-bg;
-  /*background-color: lighten(@btn-primary-bg, 10%);
-  border-color: lighten(@btn-primary-border, 10%);*/
+  //background-color: lighten(@btn-primary-bg, 10%);
+  //border-color: lighten(@btn-primary-border, 10%);
   background-color: #f5f5f5;
   border-color: #f5f5f5;
-}
+}*/
 
 .btn-primary:active,
 .btn-primary.active,
@@ -319,7 +324,7 @@ fieldset[disabled] .btn-info.active {
 
 .btn-link {
   font-weight: normal;
-  color: #418bca;
+  color: #041e42;
   cursor: pointer;
   border-radius: 0;
 }
@@ -342,7 +347,6 @@ fieldset[disabled] .btn-link {
 
 .btn-link:hover,
 .btn-link:focus {
-  color: #2a6496;
   text-decoration: underline;
   background-color: transparent;
 }

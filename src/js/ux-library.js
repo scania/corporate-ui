@@ -5,7 +5,7 @@ $('body.porsche :not(script)').contents().filter(function() {
 });
 
 // Triggers when corporate-ui has finnised loading
-document.addEventListener('corporate-ui-loaded', function(e) {
+document.addEventListener('corporate-ui.loaded', function(e) {
 
   document.body.className += ' done-loading';
 

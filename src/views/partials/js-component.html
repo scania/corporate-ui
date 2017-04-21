@@ -8,10 +8,7 @@
   document.querySelector('js-component').addEventListener('input', updateDate, false);
 
   function updateDate(event) {
-    var _event = document.createEvent('Event');
-    _event.initEvent('date.change', true, true);
-    _event.data.date = event.target.value;
-    document.dispatchEvent(_event);
+    DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.target.value } });
   }
   function setDate(event) {
     document.querySelector('js-component input').value = event.data.date.toLocaleDateString();
@@ -20,6 +17,12 @@
 
 <dom-module id="js-component">
   <template>
+    <style>
+      input::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+      }
+    </style>
     <div class="panel panel-info">
       <div class="panel-heading">
         Javascript

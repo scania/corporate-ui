@@ -37,10 +37,7 @@
       })
     },
     updateDate: function(event) {
-      var _event = document.createEvent('Event');
-      _event.initEvent('date.change', true, true);
-      _event.data.date = event._d;
-      document.dispatchEvent(_event);
+      DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event._d } });
     },
     setDate: function(event) {
       this.setState({ date: event.data.date });

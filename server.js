@@ -18,7 +18,9 @@ function server() {
   app.use('/', express.static(__dirname + '/src/views'))
 
   Object.keys(package.dependencies).map(function(dependency) {
-    app.use('/libs/' + dependency, express.static(__dirname + '/node_modules/' + dependency) )
+    var version = package.dependencies[dependency];
+    //console.log('/frameworks/' + dependency + '/' + version + '/');
+    app.use('/vendors/frameworks/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
   })
 
   app.get('/data', function(req, res) {

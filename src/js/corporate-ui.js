@@ -13,17 +13,7 @@ CorporateUi = (function() {
     importScript    : importScript,
     importLink      : importLink,
     generateMeta    : generateMeta,
-    urlInfo         : urlInfo,
-
-    /* Public constants */
-    vendorPaths     : {
-      jquery          : 'frameworks/jQuery/2.2.2/jquery.min',
-      bootstrap       : 'frameworks/bootstrap/3.2.0/js/bootstrap.min',
-
-      less            : 'components/pure-js/less.js/2.5.1/dist/less.min',
-      hotkeys         : 'components/jQuery/hotkeys/0.1.0/js/jquery.hotkeys',
-      browserReject   : 'components/pure-js/browser-reject/1.0.0/js/browser-reject'
-    }
+    urlInfo         : urlInfo
   };
 
   /*** This starts everything ***/
@@ -33,28 +23,14 @@ CorporateUi = (function() {
 
 
   function init() {
-    setGlobals();
-
     AppEventStore = new EventStore();
 
-    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
+    setGlobals();
 
-    // Adds support for webcomponents if non exist
-    if (!('import' in document.createElement('link'))) {
-      importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
-    }
+    // Add dependencies.
+    appendExternals();
 
-    // Add and configure requireJs as well as adding all other dependencies.
-    if (!window.require) {
-      importScript(window.vendors_root + 'frameworks/require/2.3.2/require.js', appendExternals);
-    } else {
-      appendExternals();
-    }
-
-    importLink(window.vendors_root + 'frameworks/polymer/latest/polymer.html', 'import', polymerInject);
-
-    // Preload jquery
-    importScript(window.vendors_root + public.vendorPaths.jquery + '.js');
+    appendFavicon();
 
     // System messages
     sysMessages();
@@ -250,46 +226,9 @@ CorporateUi = (function() {
       window.vendors_root = 'https://static.scania.com/vendors/';
       window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
     }
-    window.waitFor = window.waitFor || ['c-corporate-header', 'c-corporate-footer', 'c-main-content'];
   }
 
   function polymerInject() {
-
-    PolymerOrg = Polymer;
-    window.Polymer = function(prototype) {
-      var dependencies = (prototype.dependencies || []).concat(['less']);
-
-      //hideUntilDone(prototype.is);
-
-      //console.log(prototype);
-      if (window.require) {
-        require(dependencies, function() {
-          return PolymerOrg(prototype);
-        })
-      }
-    }
-    PolymerOrg.Base.chainObject(Polymer, PolymerOrg);
-
-    window.customelements = [];
-
-    function hideUntilDone(customelement) {
-      window.customelements.push(customelement);
-
-      var mainElements = window.waitFor,
-          elementsLoaded = mainElements.every(function(val) {
-            return window.customelements.indexOf(val) !== -1;
-          }),
-          corporateStyle = document.head.querySelector('link[href$="corporate-ui.css"]');
-
-      if (!mainElements.length || elementsLoaded) {
-        document.head.insertBefore(corporateStyle, document.head.childNodes[0]);
-        document.documentElement.removeAttribute('style')
-        setTimeout(function() {
-          document.documentElement.className = document.documentElement.className.replace(' polymer-loading', '');
-        }, 100);
-      }
-    }
-
     /* Extending Polymer _ready method */
     /* We extend _ready and not ready because ready will be overridden when used in a component */
     Polymer.Base._orgReady = Polymer.Base._ready;
@@ -335,42 +274,31 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-    require.config({
-      baseUrl     : window.vendors_root,
-      paths: {
-        requireLib: 'require'
-      },
-      namespace   : 'CorporateUi',
-      modules: [
-        {
-          name: 'CorporateUi',
-          include: ['requireLib'],
-          create: true
-        }
-      ],
-      waitSeconds : 500,
-      paths       : public.vendorPaths,
-      shim        : {
-        bootstrap       : ['jquery'],
-        hotkeys         : ['jquery']
-      }
-    });
+    importLink(window.vendors_root + 'frameworks/polymer/latest/polymer.html', 'import', polymerInject);
 
-    require(['bootstrap', 'hotkeys'], function() {
-      appendFavicon();
+    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
-      window.preLoadedComponents = [
-        window.version_root + 'html/component/Bootstrap/bootstrap.html',
-        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
-      ];
+    // Adds support for webcomponents if non exist
+    if (!('import' in document.createElement('link'))) {
+      importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
+    }
 
-      for (var i = 0; i < window.preLoadedComponents.length; i++) {
-        importLink(window.preLoadedComponents[i], 'import');
-      }
-    });
+    // Adds support for Promise if non exist
+    if (!Promise) {
+      importScript(window.vendors_root + 'es6-promise/dist/es6-promise.js');
+    }
+
+    window.preLoadedComponents = [
+      //window.version_root + 'html/component/Bootstrap/bootstrap.html',
+      window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+      window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+      window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+      window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
+    ];
+
+    for (var i = 0; i < window.preLoadedComponents.length; i++) {
+      importLink(window.preLoadedComponents[i], 'import');
+    }
   }
 
   function sysMessages() {

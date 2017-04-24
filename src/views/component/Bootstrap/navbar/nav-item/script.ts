@@ -6,7 +6,6 @@ Polymer({
           value: false
         },
         dataToggle: '',
-        variation: 0,
         fullbleed: {
           type: Boolean,
           value: true

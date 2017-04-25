@@ -43,7 +43,9 @@
         component = CorporateUi.getUrlParameter('c'),
         path = [html_root, category, component, component].join('/') + '.html';
 
-    CorporateUi.importLink(path, 'import');
+    if ($('link[href$="' + component + '.html"]').length === 0) {
+      CorporateUi.importLink(path, 'import');
+    }
 
     $('scania-doc').attr('for', CorporateUi.getUrlParameter('c'));
     $('scania-doc').attr('src', path);

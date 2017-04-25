@@ -1,7 +1,7 @@
 
-<script src="/libs/angular/angular.min.js"></script>
-<script src="/libs/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-<link href="/libs/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
+<script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+<script src="/vendors/components/angular/angular-ui-bootstrap/2.5.0/dist/ui-bootstrap-tpls.js"></script>
+<link href="/vendors/components/angular/angular-ui-bootstrap/2.5.0/dist/ui-bootstrap-csp.css" rel="stylesheet">
 
 <link rel="import" href="form-field.html">
 
@@ -20,7 +20,7 @@
         document.addEventListener('date.change', setDate, false);
 
         function updateDate(event) {
-          DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: vm.date } });
+          AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: vm.date } });
         }
         function setDate(event) {
           $timeout(function() {

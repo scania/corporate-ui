@@ -1,7 +1,6 @@
 
-<script src="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<link href="/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<script src="/vendors/components/bootstrap/bootstrap-datepicker/1.6.4/dist/js/bootstrap-datepicker.min.js"></script>
+<link href="/vendors/components/bootstrap/bootstrap-datepicker/1.6.4/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 <dom-module id="form-field">
   <template>
@@ -60,7 +59,7 @@
         }
       },
       updateDate: function(event) {
-        DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.data.date } });
+        AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.data.date } });
       },
       setDate: function(event) {
         this.value = event.data.date.toLocaleDateString();

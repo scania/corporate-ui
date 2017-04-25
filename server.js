@@ -21,6 +21,7 @@ function server() {
     var version = package.dependencies[dependency];
     //console.log('/frameworks/' + dependency + '/' + version + '/');
     app.use('/vendors/frameworks/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
+    app.use('/vendors/components/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
   })
 
   app.get('/data', function(req, res) {

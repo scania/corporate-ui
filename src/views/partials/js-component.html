@@ -8,7 +8,7 @@
   document.querySelector('js-component').addEventListener('input', updateDate, false);
 
   function updateDate(event) {
-    DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.target.value } });
+    AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.target.value } });
   }
   function setDate(event) {
     document.querySelector('js-component input').value = event.data.date.toLocaleDateString();

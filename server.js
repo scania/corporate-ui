@@ -17,12 +17,12 @@ function server() {
   app.use(express.static(__dirname + '/dist'))
   app.use('/', express.static(__dirname + '/src/views'))
 
-  Object.keys(package.dependencies).map(function(dependency) {
-    var version = package.dependencies[dependency];
-    //console.log('/frameworks/' + dependency + '/' + version + '/');
-    app.use('/vendors/frameworks/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
-    app.use('/vendors/components/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
+  var dependencies = Object.keys(package.dependencies)
+  dependencies.map(function(dependency) {
+    var version = package.dependencies[dependency]
+    app.use('/vendors/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
   })
+  console.log('FE-Dependencies: ', dependencies)
 
   app.get('/data', function(req, res) {
     res.json( dirTree('dist/' + (req.query.path || 'html')) )

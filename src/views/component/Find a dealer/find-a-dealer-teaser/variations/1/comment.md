@@ -1,1 +1,1 @@
-### Used with component contact-us.
+Used with component contact-us.

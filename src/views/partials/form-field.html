@@ -1,7 +1,6 @@
 
-<script src="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<link href="/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<script src="/vendors/components/bootstrap/bootstrap-datepicker/1.6.4/dist/js/bootstrap-datepicker.min.js"></script>
+<link href="/vendors/components/bootstrap/bootstrap-datepicker/1.6.4/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 <dom-module id="form-field">
   <template>
@@ -38,15 +37,11 @@
         var that = this;
         //if (this.type === 'date') {
           $('input', this)
-            .datepicker({ format: 'yyyy-mm-dd' })
+            .datepicker({ format: 'yyyy-mm-dd', forceParse: false})
             .on('changeDate', function(event) {
               var _event = Event.prototype;
               _event.data = { date: event.date };
               that.updateDate(_event);
-            })
-            // Why does the value reset on hide... If it didnt we wouldt need the hide action
-            .on('hide', function(event) {
-              that.hide.call(that, event);
             });
         //}
 
@@ -54,16 +49,11 @@
           that.setDate.call(that, event);
         }, false);
       },
-      hide: function(event) {
-        if(!event.date) {
-          this.querySelector('input').valueAsDate = new Date(this.value);
-        }
-      },
       updateDate: function(event) {
-        DashboardEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.data.date } });
+        AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.data.date } });
       },
       setDate: function(event) {
-        this.value = event.data.date.toLocaleDateString();
+        $('input', this).datepicker('update', event.data.date);
       }
     })
   </script>

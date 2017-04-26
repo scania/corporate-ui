@@ -48,7 +48,7 @@
     // Represents application use of business data
 
     window.onload = function(event) {
-      AppEventStore = AppEventStore || new EventStore();
+      AppEventStore = AppEventStore || new CorporateUi.EventStore();
       AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: apiGet() } });
     }
 

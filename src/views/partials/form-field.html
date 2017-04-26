@@ -37,15 +37,11 @@
         var that = this;
         //if (this.type === 'date') {
           $('input', this)
-            .datepicker({ format: 'yyyy-mm-dd' })
+            .datepicker({ format: 'yyyy-mm-dd', forceParse: false})
             .on('changeDate', function(event) {
               var _event = Event.prototype;
               _event.data = { date: event.date };
               that.updateDate(_event);
-            })
-            // Why does the value reset on hide... If it didnt we wouldt need the hide action
-            .on('hide', function(event) {
-              that.hide.call(that, event);
             });
         //}
 
@@ -53,16 +49,11 @@
           that.setDate.call(that, event);
         }, false);
       },
-      hide: function(event) {
-        if(!event.date) {
-          this.querySelector('input').valueAsDate = new Date(this.value);
-        }
-      },
       updateDate: function(event) {
         AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.data.date } });
       },
       setDate: function(event) {
-        this.value = event.data.date.toLocaleDateString();
+        $('input', this).datepicker('update', event.data.date);
       }
     })
   </script>

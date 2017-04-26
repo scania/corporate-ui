@@ -29,6 +29,6 @@ function server() {
   })
 
   app.listen(app.get('port'), function() {
-    console.log('UX-library is now running at http://localhost:%d.', app.get('port'))
+    console.log('UX-library is now running at http://%s:%d.', process.env.COMPUTERNAME, app.get('port'))
   })
 }

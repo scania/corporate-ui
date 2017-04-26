@@ -13,7 +13,8 @@ CorporateUi = (function() {
     importScript    : importScript,
     importLink      : importLink,
     generateMeta    : generateMeta,
-    urlInfo         : urlInfo
+    urlInfo         : urlInfo,
+    EventStore      : EventStore
   };
 
   /*** This starts everything ***/
@@ -209,7 +210,7 @@ CorporateUi = (function() {
   function setGlobals() {
     var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src,
         port = urlInfo(scriptUrl).port ? ':' + urlInfo(scriptUrl).port : '',
-        localhost = urlInfo(scriptUrl).hostname === 'localhost';
+        localhost = urlInfo(scriptUrl).hostname === 'localhost' || urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
     window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');

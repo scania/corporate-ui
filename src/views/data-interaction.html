@@ -79,20 +79,39 @@
   <link rel="import" href="partials/angular-component.html">
 </head>
 <body class="scania app">
-  <section class="container">
-    <h3>Framework & Library data interaction.</h3>
-    <p>This illustrates how components built in different libraries could interact with each other, using either external component or our global custom elements built in Polymer.</p>
-    <div class="row">
-      <div class="col-xs-4">
-        <js-component></js-component>
+
+  <c-corporate-header site-name="UX Library" site-url="/">
+    <c-nav-item location="https://www.scania.com/world/#/">World Entry</c-nav-item>
+    <c-nav-item location="https://www.scania.com/group/en/">Scania Group</c-nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items>
+        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
+        <c-nav-item location="/data-interaction.html">Data interaction</c-nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="container">
+      <h3>Framework & Library data interaction.</h3>
+      <p>This illustrates how components built in different libraries could interact with each other, using either external component or our global custom elements built in Polymer.</p>
+      <div class="row">
+        <div class="col-xs-4">
+          <js-component></js-component>
+        </div>
+        <div class="col-xs-4">
+          <react-component></react-component>
+        </div>
+        <div class="col-xs-4">
+          <angular-component></angular-component>
+        </div>
       </div>
-      <div class="col-xs-4">
-        <react-component></react-component>
-      </div>
-      <div class="col-xs-4">
-        <angular-component></angular-component>
-      </div>
-    </div>
-  </section>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
 </body>
 </html>

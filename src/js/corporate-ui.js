@@ -224,7 +224,6 @@ CorporateUi = (function() {
       company: 'Scania'
     };
     if (localhost) {
-      window.vendors_root = 'https://static.scania.com/vendors/';
       window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
     }
   }
@@ -275,7 +274,7 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-    importLink(window.vendors_root + 'frameworks/polymer/latest/polymer.html', 'import', polymerInject);
+    importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
 
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 

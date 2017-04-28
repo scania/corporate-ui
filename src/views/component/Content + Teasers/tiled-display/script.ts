@@ -1,37 +1,4 @@
-<script src="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick.min.js"></script>
-
-<link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick.css">
-<link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick-theme.css">
-
-<!--
-
-`c-tiled-display` adds the framework for a tiled display. Useful for showcasing and promoting features visually.
-Variation 1 offers any even amount of tiles and optional title. text and button. Responsively designed with slick functionality for smaller screens to avoid cluttering of tiles.
-Variation 2 offers title,text and button in tiles. This for further explanation of its image counterpart. For each row, the image and text tiles switch position. If screen size is small, the tiles go on top of eachother. 
-
-### Variations:
-
-@dev
-
-variations: tiled display, tiled display with text counterpart
-
-### Todo
-  - Responsive design, mobile support not optimal in its current iteration.
-
--->
-<dom-module id="c-tiled-display">
-  <template>
-    <style>
-      ::content .slick-dots li button:before {
-        content: '•';
-      }
-    </style>
-    <div class$="{{variation}}">
-      <content></content>
-    </div>
-  </template>
-  <script>
-    Polymer({
+Polymer({
       is: 'c-tiled-display',
       properties: {
         headline: {
@@ -54,6 +21,7 @@ variations: tiled display, tiled display with text counterpart
             {first: 'https://static.scania.com/resources/images/demo/Tile1.jpg'},
             {first: 'https://static.scania.com/resources/images/demo/Tile2.jpg'}
           ];
+
         }
         else if (this.getAttribute('img3') == null && this.getAttribute('img4') == null) {
           this.imgarray = [
@@ -102,8 +70,3 @@ variations: tiled display, tiled display with text counterpart
          
     $(window).on( 'load resize', createSlick );
     createSlick();
-  </script>
-</dom-module>
-<link rel="import" href="variation-1.html">
-
-<link rel="import" href="variation-2.html">

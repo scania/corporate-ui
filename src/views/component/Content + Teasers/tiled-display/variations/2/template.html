@@ -1,0 +1,17 @@
+<template is="dom-repeat" items="{{imgarray}}">
+  <div class = "row-variation2">
+    <div class = "col-sm-6 col-xs-12">
+      <img src = {{item.first}}>
+    </div>
+    <div class ="col-sm-6 col-xs-12">
+      <h3 class = "h3-variation2"> {{item.title}} </h3>
+      <p class = "p-variation2"> {{item.text}}</p>
+      <content></content>
+      <template is="dom-if" if ="{{item.btn}}">
+        <div class = "button-div">
+          <a href = "somewhere" class = "btn btn-primary btn-sm btn-var2">{{item.btn}}</a>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>

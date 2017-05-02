@@ -1,0 +1,23 @@
+
+<c-google-map-api id="api"
+        api-key="[[apiKey]]"
+        client-id="[[clientId]]"
+        version="[[version]]"
+        signed-in="[[_signedIn]]"
+        language="[[_language]]"
+        on-api-load="_mapApiLoaded"
+        maps-url="[[_mapsUrl]]"></c-google-map-api>
+
+    <div class="container">
+  <div class="row map-container">
+      <div class="col-sm-12 col-md-12 box no-gutter">
+        <div class="col-md-6 col-sm-12 no-gutter vcenter">
+          <div id="map">
+          </div>
+        </div><!--
+       --><div class="col-md-6 col-sm-12 vcenter text-container">
+          <content></content>
+        </div>
+      </div>
+    </div>
+    </div>

@@ -1,91 +1,13 @@
-<link rel="import" href="extras/google-maps-api.html">
-
-<!--
-
-`c-map-card` displays a map besides a info-card. Specify apiKey and coordinates.
-
-@dev
-
-Dep: google-maps-api.html, iron-jsonp-library.html,
-   map-pin, zoom buttons.
-
-
-### change defaults. ###
-
-Make more robust.
-
--->
-<dom-module id="c-map-card">
-
-  <template>
-
-    <style>
-      :host {
-        .map-container {
-          padding:60px 45px 80px 45px;
-        }
-
-        #map {
-          height: 490px;
-          width: 100%;
-        }
-        .extra-gutter {
-           margin-top: 50px;
-           margin-bottom: 50px;
-        }
-        .no-gutter {
-          margin:0;
-          padding:0;
-        }
-        .text-container {
-          padding:40px;
-        }
-    
-        .vcenter {
-          display:inline-block;
-          float:none;
-          vertical-align: middle;
-        }
-
-      }
-    </style>
-
-    <google-maps-api id="api"
-        api-key="[[apiKey]]"
-        client-id="[[clientId]]"
-        version="[[version]]"
-        signed-in="[[_signedIn]]"
-        language="[[_language]]"
-        on-api-load="_mapApiLoaded"
-        maps-url="[[_mapsUrl]]"></google-maps-api>
-
-    <div class="container">
-  <div class="row map-container">
-      <div class="col-sm-12 col-md-12 box no-gutter">
-        <div class="col-md-6 col-sm-12 no-gutter vcenter">
-          <div id="map">
-          </div>
-        </div><!--
-       --><div class="col-md-6 col-sm-12 vcenter text-container">
-          <content></content>
-        </div>
-      </div>
-    </div>
-    </div>
-
-  </template>
-
-  <script>
-    Polymer({
+  Polymer({
       is: 'c-map-card',
       properties: {
         latitude: {
           type: String,
-          value: '59.404269'
+          value: '52.323902'
         },
         longitude: {
           type: String,
-          value: '18.329223'
+          value: '9.803858'
         },
         apiKey: {
           type: String,
@@ -144,7 +66,7 @@ Make more robust.
         var marker = new google.maps.Marker({
           position: LatLng,
           title: 'Marker',
-          icon: 'https://static.scania.com/development/global/html/Contact/map-card/extras/map-pin.png'
+          icon: 'https://static.scania.com/development/global/html/component/Contact/map-card/extras/map-pin.png'
         });
 
         this._map = new google.maps.Map(this.$.map, this._getMapOptions());
@@ -178,7 +100,7 @@ Make more robust.
                   zoomInButton.style.width = '40px';
                   zoomInButton.style.height = '40px';
                   /* Change this to be the .png image you want to use */
-                  zoomInButton.style.backgroundImage = 'url("https://static.scania.com/development/global/html/Contact/map-card/extras/map-button-zoom-in.png")';
+                  zoomInButton.style.backgroundImage = 'url("https://static.scania.com/development/global/html/component/Contact/map-card/extras/map-button-zoom-in.png")';
                   zoomInButton.style.margin = '4px';
                   controlWrapper.appendChild(zoomInButton);
 
@@ -188,7 +110,7 @@ Make more robust.
                   zoomOutButton.style.height = '40px';
                   zoomOutButton.style.margin = '4px';
                   /* Change this to be the .png image you want to use */
-                  zoomOutButton.style.backgroundImage = 'url("https://static.scania.com/development/global/html/Contact/map-card/extras/map-button-zoom-out.png")';
+                  zoomOutButton.style.backgroundImage = 'url("https://static.scania.com/development/global/html/component/Contact/map-card/extras/map-button-zoom-out.png")';
                   controlWrapper.appendChild(zoomOutButton);
 
                   // Setup the click event listener - zoomIn
@@ -272,8 +194,3 @@ Make more robust.
         return mapOptions;
       }
     })
-  </script>
-
-</dom-module>
-
-<link rel="import" href="variation-1.html">

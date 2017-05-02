@@ -9,7 +9,7 @@ Polymer({
           type: String,
           value: 'some text'
         },
-        'btn-text': {
+        btnText: {
           type: String,
           value: 'button text'
         }

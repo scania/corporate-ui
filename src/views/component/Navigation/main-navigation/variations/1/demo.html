@@ -1,18 +1,19 @@
 
 <c-main-navigation show-search>
-    <primary-items>
-      <c-nav-item location="#/">solutions</c-nav-item>
-      <c-nav-item location="#/branding">products and services</c-nav-item>
-      <c-nav-item location="#/contact">experience scania</c-nav-item>
-    </primary-items>
+  <primary-items>
+    <c-nav-item location="#/" class="active">
+      solutions
+      <c-sub-navigation caption="apa">
+        <c-nav-item location="#/news">news</c-nav-item>
+        <c-nav-item location="#/popular">popular</c-nav-item>
+        <c-nav-item location="#/related">related</c-nav-item>
+      </c-sub-navigation>
+    </c-nav-item>
+    <c-nav-item location="#/branding">products and services</c-nav-item>
+    <c-nav-item location="#/contact">experience scania</c-nav-item>
+  </primary-items>
 
-    <secondary-item>
-      <c-nav-item location="#/profile"><span class="icon-user"></span></c-nav-item>
-    </secondary-item>
-
-    <c-sub-navigation>
-      <c-nav-item location="#/news">news</c-nav-item>
-      <c-nav-item location="#/popular">popular</c-nav-item>
-      <c-nav-item location="#/related">related</c-nav-item>
-    </c-sub-navigation>
-  </c-main-navigation>
+  <secondary-items>
+    <c-nav-item location="#/profile"><span class="icon-user"></span></c-nav-item>
+  </secondary-items>
+</c-main-navigation>

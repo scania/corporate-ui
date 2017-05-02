@@ -110,6 +110,9 @@
               margin-left: 2px;
             }
 
+            + c-nav-item a > span {
+              border-left: 1px solid #e2e2e2;
+            }
             span,
             i {
 
@@ -120,7 +123,6 @@
                 margin-bottom: -2px;
               }
             }
-
             a {
               font-size: 14px;
               line-height: 26px;
@@ -134,7 +136,6 @@
 
               > span {
                 display: inline-block;
-                border-left: 1px solid #e2e2e2;
                 padding-left: 2.7rem;
                 padding-right: 2.7rem;
               }
@@ -162,7 +163,7 @@
                 position: static;
               }
 
-              a.sub-c-nav-item {
+              a.sub-nav-item {
                 display: none;
                 float: left;
               }
@@ -173,7 +174,8 @@
 
             c-nav-item {
               display: inline-block;
-              padding: 0 25px;
+              //padding: 0 25px;
+              padding: 0;
 
               [class*="icon-"] {
                 font-size: 26px;
@@ -324,7 +326,7 @@
 
               &.active {
 
-                .sub-c-nav-item {
+                .sub-nav-item {
                   display: block;
                   border-right: 1px solid #e2e2e2;
 

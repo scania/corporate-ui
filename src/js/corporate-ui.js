@@ -285,7 +285,7 @@ CorporateUi = (function() {
     }
 
     // Adds support for Promise if non exist
-    if (!Promise) {
+    if (typeof(Promise) === 'undefined') {
       importScript(window.vendors_root + 'es6-promise/dist/es6-promise.js');
     }
 

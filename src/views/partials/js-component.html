@@ -11,7 +11,7 @@
     AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.target.value } });
   }
   function setDate(event) {
-    document.querySelector('js-component input').value = event.data.date.toLocaleDateString();
+    document.querySelector('js-component input').value = event.data.date.toLocaleDateString('SV-se');
   }
 </script>
 

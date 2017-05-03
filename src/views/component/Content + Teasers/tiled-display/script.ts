@@ -37,8 +37,11 @@ Polymer({
             {first: this.getAttribute('img4'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn4')}
           ];
         }
-
+        this.parentNode.setAttribute('headline', this.attributes.headline.value)
+        this.parentNode.setAttribute('description', this.attributes.description.value)
+        this.parentNode.setAttribute('btntext', this.attributes.btnText.value)
         this.parentNode.setAttribute('imgarray', JSON.stringify(this.imgarray))
+        
       },
       // function for checking variation, builds corresponding dom-if template.
       checkVariation: function(variation) {

@@ -5,7 +5,6 @@
           type: Boolean,
           value: true
         },
-        variation: 0,
         location: {
           type: String,
           value: ''

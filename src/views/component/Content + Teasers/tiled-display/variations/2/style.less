@@ -1,0 +1,61 @@
+ :host {
+
+        ::content {
+
+          .btn-var2 {
+            margin-top: 20px;
+            margin-bottom:30px;
+            font-size:14px;
+            padding:10px;
+          }
+          .button-div {
+            text-align: center;
+          }       
+          .variation-2 {  
+            background-color: #F7F7F7;
+            border: 1px solid #dadada;
+            max-width:800px;
+            padding:30px;
+          }
+          .p-variation2 {
+            font-size: 12px;
+            margin-left:10px;
+            padding-left:20px;
+            padding-right:50px;
+          }
+          .h3-variation2 {
+            margin-left: 10px;
+            padding-left:20px;
+          }      
+          .row-variation2 {
+            display: block; 
+          }
+          .row-variation2 > div {
+            display: inline-block;
+            float: none;
+            vertical-align: middle;
+            font-size: medium;
+            padding-left: 0;
+            padding-right: 0;
+          }
+          .row-variation2 {
+            font-size: 0;
+            background-color: #fff;
+            border: 1px solid #dadada;
+            margin-bottom: -1px;
+          } 
+          @media screen and (max-width:2000px) and (min-width: 500px) {
+            .row-variation2:nth-child(even) {
+              direction: rtl;
+            }
+            .row-variation2:nth-child(even) > div {
+              direction: ltr;
+            }
+          }
+          @media screen and (max-width: 767px) {
+            .variation-2 {
+              max-width: 600px;
+            }
+          }
+        }
+      }

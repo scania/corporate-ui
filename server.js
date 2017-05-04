@@ -22,6 +22,8 @@ function server() {
     var version = package.dependencies[dependency]
     app.use('/vendors/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
   })
+  //https://static.scania.com/vendors/frameworks/bootstrap/3.2.0/css/bootstrap-org.css
+  app.use('/vendors/frameworks/bootstrap/3.2.0/css/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
   console.log('FE-Dependencies: ', dependencies)
 
   app.get('/data', function(req, res) {

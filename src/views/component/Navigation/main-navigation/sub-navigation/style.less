@@ -1,0 +1,123 @@
+:host-context(.app) {
+  c-navbar {
+
+    c-nav-item {
+      a {
+        letter-spacing: .03rem;
+        line-height: 18px;
+        padding-top: 14px;
+        padding-bottom: 12px;
+      }
+    }
+  }
+}
+
+:host-context(c-nav-item.active) {
+  display: block;
+}
+
+:host {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  .navbar-default {
+    background: #f5f5f5;
+    margin-bottom: 0;
+    min-height: 0;
+  }
+  .caption {
+    font-family: "Scania Sans Bold";
+    color: #041e42;
+    letter-spacing: .03rem;
+    text-transform: uppercase;
+    border-right: 1px solid #e2e2e2;
+    padding-left: 2.7rem;
+    padding-right: 4.5rem;
+  }
+
+  ::content {
+
+    c-navbar {
+
+      nav-item {
+
+        &:first-child {
+          padding-left: 2.5rem;
+        }
+
+        a {
+          background-color: transparent !important;
+        }              
+
+        &.active a > span {
+          border-bottom-color: #c50918 !important;
+        }
+
+        a {
+          font-family: "Scania Sans";
+          letter-spacing: .03rem;
+          line-height: 18px;
+          padding-top: 16px;
+          padding-bottom: 12px;
+          padding-right: 1.3rem;
+          padding-left: 1.3rem;
+
+          &:hover > span, &:active > span {
+            border-bottom-color: #c50918;
+          }
+
+          > span {
+            border-left: 0;
+            padding: 0;
+            border-bottom: 2px solid transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+
+  :host {
+
+    .caption {
+      display: block;
+      padding: 25px 2rem;
+      background-color: #fff;
+      border-right: 0;
+    }
+
+    ::content {
+
+      c-navbar {
+        display: block;
+
+        .nav {
+          float: none;
+
+          nav-item {
+            display: block;
+            padding-left: 0;
+            border-bottom: 1px solid #e2e2e2;
+
+            a {
+              padding: 25px 2rem;
+              font-size: 12px;
+              letter-spacing: 0.2rem;
+              line-height: 20px;
+
+              &:hover span {
+                border-bottom: 0;
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

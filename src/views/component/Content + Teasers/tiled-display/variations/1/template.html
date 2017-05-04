@@ -1,0 +1,23 @@
+<div class = "row-variation1">
+  <div class="col-md-8 col-md-offset-2 text-center">
+    <h1>{{headline}}</h1>
+  </div>
+  <div class = "row">
+    <div class = "col-md-8 col-md-offset-2 text-center">   
+      <p>{{description}}</p>
+      <content></content>
+    </div>
+  </div>
+</div>
+<div class ="slick-scroll">
+  <template is="dom-repeat" items="{{imgarray}}">
+    <div class = "col-md-6 col-xs-6 variation-1">
+      <img src = {{item.first}}>
+    </div>
+  </template>
+</div>
+<div class = "row">
+  <div class = "col-xs-12 text-center">
+    <a href = "somewhere" class = "btn btn-primary">{{btntext}}</a>
+  </div>
+</div>

@@ -1,123 +1,156 @@
 /* Corporate header */
 
-      :host-context(.header-is-sticky) {
+:host-context(.header-is-sticky) {
 
-        .symbol.fixed {
-          top: 9px;
-        }
-      }
+  .symbol.fixed {
+    transition: top 100ms ease-in-out;
+    top: 9px;
+  }
+}
+:host-context(.app) {
 
-      :host {
-        display: block;
-        background: #fff;
+  nav {
+    padding-top: 0;
+    border-bottom: 0;
+  }
 
-        header {
-          border-bottom: 1px solid #e2e2e2;
+  .symbol {
+    top: -9px;
+    right: 17px;
+
+    &.fixed {
+      position: fixed;
+      top: 8px;
+      right: 32px;
+    }
+  }
+}
+:host-context(.header-is-sticky.app) {
+
+  .symbol.fixed {
+    top: 6px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    background-size: 35px 35px;
+  }
+}
+
+:host {
+  display: block;
+  background: #fff;
+
+  header {
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .symbol {
+    position: absolute;
+    top: 0;
+    right: 17px;
+    z-index: 1020;
+    width: 48px;
+    height: 48px;
+
+    &.fixed {
+      position: fixed;
+      top: 21px;
+      right: 32px;
+    }
+  }
+  .wordmark {
+    width: 169px;
+    height: 28px;
+  }
+  nav {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 11px;
+  }
+  .site-name {
+    font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #747472;
+    border-left: 1px solid #e2e2e2;
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 15px;
+    padding-left: 18px;
+    line-height: 20px;
+  }
+  .navbar-right {
+    margin-top: 0;
+  }
+  .navbar-user {
+    margin-top: 7px;
+    margin-right: 114px;
+
+    ::content {
+
+      c-nav-item {
+        border: 0;
+        padding: 0 10px;
+        line-height: 20px; // Is needed when only one item is available for some strange reason? :O
+
+        &:first-child {
+          border-left: 0;
         }
 
-        .symbol {
-          position: absolute;
-          top: 0;
-          right: 17px;
-          z-index: 1020;
-          width: 48px;
-          height: 48px;
-          transition: top 100ms ease-in-out;
-
-          &.fixed {
-            position: fixed;
-            top: 21px;
-            right: 32px;
-          }
-        }
-        .wordmark {
-          width: 169px;
-          height: 28px;
-        }
-        nav {
-          margin-top: 20px;
-          margin-bottom: 20px;
-          padding-top: 11px;
-        }
-        .site-name {
-          font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
-          font-size: 18px;
-          font-weight: 300;
+        a {
+          font-family: "Scania Sans", Helvetica, Arial, sans-serif;
+          font-weight: normal;
+          font-size: 12px;
           color: #747472;
-          border-left: 1px solid #e2e2e2;
-          display: inline-block;
-          margin-top: 5px;
-          margin-left: 15px;
-          padding-left: 18px;
-          line-height: 20px;
-        }
-        .navbar-right {
-          margin-top: 0;
-        }
-        .navbar-user {
-          margin-top: 7px;
-          margin-right: 114px;
-
-          ::content {
-
-            c-nav-item {
-              border: 0;
-              padding: 0 10px;
-              line-height: 20px; // Is needed when only one item is available for some strange reason? :O
-
-              &:first-child {
-                border-left: 0;
-              }
-
-              a {
-                font-family: "Scania Sans", Helvetica, Arial, sans-serif;
-                font-weight: normal;
-                font-size: 12px;
-                color: #747472;
-                text-transform: uppercase;
-                letter-spacing: 0.01rem;
-              }
-              a span:hover {
-                text-decoration: underline;
-              }
-            }
-          }
-        }
-
-        ::content a {
-          color: #041e42;
           text-transform: uppercase;
+          letter-spacing: 0.01rem;
+        }
+        a span:hover {
+          text-decoration: underline;
         }
       }
+    }
+  }
 
-      @media (max-width: 991px) {
-        :host {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 1100;
+  ::content a {
+    color: #041e42;
+    text-transform: uppercase;
+  }
+}
 
-          .navbar-header {
-            float: none;
-            text-align: center;
+@media (max-width: 991px) {
+  :host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
 
-            .symbol {
-              top: 13px;
-              right: 13px;
-              width: 40px;
-              height: 40px;
-              background-size: 40px;
-            }
-          }
-          .wordmark,
-          .navbar-user {
-            display: none;
-          }
-          .site-name {
-            margin: 0;
-            padding: 0;
-            border: 0;
-          }
-        }
+    nav {
+      position: static;
+      padding-top: 0;
+    }
+
+    .navbar-header {
+      float: none;
+      text-align: center;
+
+      .symbol {
+        top: 13px;
+        right: 13px;
+        width: 40px;
+        height: 40px;
+        background-size: 40px;
       }
+    }
+    .wordmark,
+    .navbar-user {
+      display: none;
+    }
+    .site-name {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+  }
+}

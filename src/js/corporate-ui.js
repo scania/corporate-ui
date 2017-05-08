@@ -212,12 +212,20 @@ CorporateUi = (function() {
         port = urlInfo(scriptUrl).port ? ':' + urlInfo(scriptUrl).port : '',
         localhost = urlInfo(scriptUrl).hostname === 'localhost' || urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
+    window.corporate_ui_params = urlInfo(scriptUrl).search.substring(1);
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
     window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
     window.vendors_root = window.static_root + '/vendors/';
     window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
     window.protocol = urlInfo(scriptUrl).protocol;
     window.environment = urlInfo(scriptUrl).pathname.split('/')[1];
+    window.params = {};
+
+    var params = decodeURI(window.corporate_ui_params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"');
+    if (params !== '') {
+      window.params = JSON.parse('{"' + params + '"}');
+    }
+
     window.less = { isFileProtocol: true }; // Is needed for making synchronous imports in less
     window.defaults = {
       appName: 'Application name',
@@ -276,6 +284,10 @@ CorporateUi = (function() {
   function appendExternals() {
     importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
 
+    if (window.params.bootstrap !== 'false') {
+      importLink(window.vendors_root + 'frameworks/bootstrap/3.2.0/css/bootstrap-org.css', 'stylesheet')
+    }
+
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
     // Adds support for webcomponents if non exist
@@ -285,7 +297,7 @@ CorporateUi = (function() {
 
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
-      importScript(window.vendors_root + 'es6-promise/dist/es6-promise.js');
+      importScript(window.vendors_root + 'es6-promise/dist/4.1.0/es6-promise.js');
     }
 
     window.preLoadedComponents = [

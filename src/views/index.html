@@ -26,7 +26,7 @@
 
     <c-main-navigation>
       <primary-items>
-        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
+        <!-- <c-nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</c-nav-item> -->
         <c-nav-item location="/">Components</c-nav-item>
       </primary-items>
     </c-main-navigation>
@@ -64,15 +64,15 @@
     function UxLib($http) {
       var vm = this;
 
-      vm.sections = [];
+      //vm.sections = [];
       vm.components = [];
 
-      $http.get('data?path=html').then(
+      /*$http.get('data?path=html').then(
         function(response) {
           vm.sections = response.data;
         }, function(response) {
           console.error(response);
-        });
+        });*/
 
       $http.get('data?path=html/component').then(
         function(response) {

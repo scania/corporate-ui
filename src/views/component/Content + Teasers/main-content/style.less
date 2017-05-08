@@ -1,44 +1,84 @@
+:host {
+  display: block;
+  min-height: 100%;
+  /*font-size: 16px;*/
+  word-break: break-word;
 
+  &.dark > section,
+  .dark {
+    background-color: #eee;
+  }
+  &.light > section,
+  .light {
+    background-color: #fff;
+  }
 
-   :host {
-        display: block;
-        min-height: 100%;
-        /*font-size: 16px;*/
-        word-break: break-word;
+  /* Grid related style */
+  .row.text-middle {
+    font-size: 0;
 
-        ::content > section {
-          padding: 60px 0;
-          overflow: hidden;
+    > div {
+      display: inline-block;
+      float: none;
+      vertical-align: middle;
+      font-size: medium;
+    }
+  }
+  .row.products {
+    /*margin-left: -30px;
+    margin-right: -30px;*/
 
-          &:nth-child(odd) {
-            background-color: #eee;
-          }
-          &.even:nth-child(odd) {
-            background-color: transparent;
-          }
-          &.even:nth-child(even) ~:nth-child(odd) {
-              background-color: transparent;
-          }
-          &.even:nth-child(even) ~:nth-child(even) {
-              background-color: #eee;
-          }
-          &.even:nth-child(odd) ~:nth-child(even) {
-              background-color: transparent;
-          }
-          &.even:nth-child(odd) ~:nth-child(odd) {
-              background-color: #eee;
-          }
-          &.light {
-            background-color: transparent !important;
-          }
-          &.dark {
-            background-color: #eee !important;
-          }
-        }
+    > div {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    a:after {
+      font-family: 'corporate-icons';
+      content: "\e6e9";
+      color: #c50918;
+      padding-left: 6px;
+    }
+  }
+
+  ::content {
+
+    img {
+      width: 100%;
+    }
+    > section {
+      padding: 60px 0;
+      overflow: hidden;
+
+      &:nth-child(odd) {
+        background-color: #eee;
       }
-
-      @media (max-width: 991px) {
-        :host {
-          margin-top: 0 !important;
-        }
+      &.even:nth-child(odd) {
+        background-color: transparent;
       }
+      &.even:nth-child(even) ~:nth-child(odd) {
+          background-color: transparent;
+      }
+      &.even:nth-child(even) ~:nth-child(even) {
+          background-color: #eee;
+      }
+      &.even:nth-child(odd) ~:nth-child(even) {
+          background-color: transparent;
+      }
+      &.even:nth-child(odd) ~:nth-child(odd) {
+          background-color: #eee;
+      }
+      &.light {
+        background-color: transparent !important;
+      }
+      &.dark {
+        background-color: #eee !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  :host {
+    margin-top: 0 !important;
+  }
+}

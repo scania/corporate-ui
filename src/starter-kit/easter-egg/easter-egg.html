@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Easter Egg Polymer Test</title>
+</head>
+<body>
+
+
+
+
+    <!-- Import standard polyfill to make it work in all browsers, not needed for the latest versions -->
+    <script src="https://static.scania.com/vendors/frameworks/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <!-- The new element is created further down the code, now you can just call it as you would call any other HTML element -->
+    <style>
+        easter-egg h1 {display:none;}
+    </style>
+    <easter-egg>
+        <h1>You found an easter egg!-)</h1>
+    </easter-egg>
+
+    <!-- The code defining the custom element is usally saved in an HTML file of its own, but you can have the code within the very same page  -->
+
+    <!-- Import standard Polymer  -->
+    <link rel="import" href="https://static.scania.com/vendors/frameworks/polymer/1.4.0/polymer.html">
+
+    <!-- Define the Custom Element and it's markup -->
+
+    <dom-module id="easter-egg">
+      <template>
+        <style>
+            ::content h1 {position:absolute;bottom:0;left:0;z-index:9999;font-size:90px;opacity:0.5;}
+        </style>
+        <div><content></content></div>
+      </template>
+    </dom-module>
+
+    <!-- Register custom element and fire script when ready -->
+    <script>
+    Polymer({
+        is: 'easter-egg',
+        ready: function (){
+            document.onkeydown = function(evt) {
+                evt = evt || window.event;
+                if (evt.keyCode == 118) {
+                    this.querySelector("h1").style.display="block"
+                }
+            };
+        }
+    });
+    </script>
+
+
+</body>
+</html>

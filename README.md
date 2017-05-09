@@ -27,7 +27,7 @@
 <li>CONFIGURE SCANIA PROXY: In environment variables (on computer) as well as in Git config. PROXY IS: http://PROXYSESO.SCANIA.COM:8080
 <li>INSTALL GULP (from command line): <b>npm install gulp-cli -g</b></li>
 <li>INSTALLING DEPENDENCIES (from command line): <b>npm install</b> from the corporate-ui folder.</li>
-<li>Start Gulp (from command line): <b>gulp</b></li>
+<li>Start Gulp (from command line, as administrator on windows): <b>gulp</b></li>
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
 <h2>Starter Kit</h2>

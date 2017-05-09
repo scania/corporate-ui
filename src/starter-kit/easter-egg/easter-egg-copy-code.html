@@ -1,0 +1,35 @@
+
+    This is just a somewhat minified version of the easter egg example. 
+    Use this code at the bottom of any page to verify that your application
+    can handle the Web Components polyfill from Google Polymer.
+
+    Once the code is in your page, hit the F7 key to verify the code. 
+
+
+    <script src="https://static.scania.com/vendors/frameworks/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <style>easter-egg h1 {display:none;}</style>
+    <easter-egg>
+        <h1>You found an easter egg!-)</h1>
+    </easter-egg>
+    <link rel="import" href="https://static.scania.com/vendors/frameworks/polymer/1.4.0/polymer.html">
+    <dom-module id="easter-egg">
+      <template>
+        <style>
+            ::content h1 {position:absolute;bottom:0;left:0;z-index:9999;font-size:90px;opacity:0.5;}
+        </style>
+        <div><content></content></div>
+        </template>
+    </dom-module>
+    <script>
+    Polymer({
+        is: 'easter-egg',
+        ready: function (){
+            document.onkeydown = function(evt) {
+                evt = evt || window.event;
+                if (evt.keyCode == 118) {
+                    this.querySelector("h1").style.display="block"
+                }
+            };
+        }
+    });
+    </script>

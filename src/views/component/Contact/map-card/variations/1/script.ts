@@ -1,3 +1,3 @@
- Polymer({
-      is: 'c-map-card-variation-1'
-    });
+Polymer({
+  is: name
+});

@@ -1,10 +1,10 @@
-    Polymer({
-      is: 'c-alert',
-      properties: {
-        fullbleed: true,
-        type: {
-          type: String,
-          value: "info"
-        }
-      }
-    });
+Polymer({
+  is: name,
+  properties: {
+    fullbleed: true,
+    type: {
+      type: String,
+      value: "info"
+    }
+  }
+});

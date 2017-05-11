@@ -28,6 +28,8 @@ CorporateUi = (function() {
 
     setGlobals();
 
+    addMetaAndHeaderSpecs();
+
     // Add dependencies.
     appendExternals();
 
@@ -36,11 +38,17 @@ CorporateUi = (function() {
     // System messages
     sysMessages();
 
-    window.onload = ready;
+    ready();
   }
 
   function ready() {
-    AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
+    document.addEventListener("DOMContentLoaded", function(e) {
+      e.target.body.setAttribute('unresolved', ' ');
+    }, false);
+
+    window.onload = function(e) {
+      AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
+    };
   }
 
   function EventStore() {
@@ -180,6 +188,14 @@ CorporateUi = (function() {
       hash      : ph.hash,     // => "#hash"
       search    : ph.search    // => "?search=test"
     };
+  }
+
+  function addMetaAndHeaderSpecs() {
+    generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+
+    var style = document.createElement('style')
+    style.appendChild(document.createTextNode('body[unresolved] { opacity: 0; } body { transition: none; }'));
+    document.head.appendChild(style);
   }
 
   function appendFavicon() {

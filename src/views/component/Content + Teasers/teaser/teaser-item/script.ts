@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-teaser-item',
+  is: name,
   properties: {
     fullbleed: {
       type: Boolean,

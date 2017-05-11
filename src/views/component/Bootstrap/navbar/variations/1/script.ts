@@ -1,3 +1,3 @@
- Polymer({
-      is: 'c-navbar-variation-1',
-    });
+Polymer({
+  is: name,
+});

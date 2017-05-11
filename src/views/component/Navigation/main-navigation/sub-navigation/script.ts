@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-sub-navigation',
+  is: name,
   properties: {
     variation: 0,
     fullbleed: {

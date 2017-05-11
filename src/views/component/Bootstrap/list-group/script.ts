@@ -1,9 +1,9 @@
 Polymer({
-      is: 'c-list-group',
-      properties: {
-        fullbleed: {
-          type: Boolean,
-          value: true
-        }
-      }
-    });
+  is: name,
+  properties: {
+    fullbleed: {
+      type: Boolean,
+      value: true
+    }
+  }
+});

@@ -1,3 +1,3 @@
- Polymer({
-      is: 'c-list-group-variation-1',
-    });
+Polymer({
+  is: name
+});

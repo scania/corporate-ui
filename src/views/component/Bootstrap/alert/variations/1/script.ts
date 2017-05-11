@@ -1,3 +1,3 @@
- Polymer({
-      is: 'c-alert-variation-1',
-    });
+Polymer({
+  is: name,
+});

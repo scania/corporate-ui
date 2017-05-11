@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-main-navigation',
+  is: name,
   properties: {
     siteName: String,
     siteUrl: String,
@@ -35,19 +35,19 @@ Polymer({
       $('body').toggleClass('navigation-open');
     });
 
-    // If no c-nav-item is selected set top-level as selected
-    if( !$('c-nav-item.active', this).length ) {
+    // If no nav-item is selected set top-level as selected
+    if( !$('nav-item.active', this).length ) {
       $('.top-level').addClass('active');
     } 
 
     // This have been moved to css section, should work
-    /*$('main-navigation .c-nav-item').bind("mouseover", function(){
+    /*$('main-navigation .nav-item').bind("mouseover", function(){
       var color  = $(this).css("color");
-      $('primary-items .c-nav-item').css("color", "#d4d4d3");
-      $('primary-items .c-nav-item:hover').css("color", "#041e42");
+      $('primary-items .nav-item').css("color", "#d4d4d3");
+      $('primary-items .nav-item:hover').css("color", "#041e42");
 
       $(this).bind("mouseout", function(){
-        $('primary-items .c-nav-item').css("color", "#041e42");
+        $('primary-items .nav-item').css("color", "#041e42");
       })
     });*/
   },

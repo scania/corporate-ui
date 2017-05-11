@@ -65,17 +65,26 @@ function _fullComponent() {
   return gulp.src('tmp/**/**/index.jade')
     .pipe(data(function(file) {
       var index = path.dirname(file.path).lastIndexOf(path.sep) + 1,
-          name = path.dirname(file.path).substring(index);
+          name = path.dirname(file.path).substring(index),
+          isVariation = !isNaN( parseFloat(name) ),
+          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 5;
+          prefix = 'c-';
 
-      if ( !isNaN( parseFloat(name) ) ) {
+      if (isVariation) {
         var parentPath = path.dirname(file.path).split('\\variations')[0],
             parentindex = parentPath.lastIndexOf(path.sep) + 1,
             parentName = parentPath.substring(parentindex);
 
         name = parentName + '-variation-' + name;
+      } else {        
+
+        if (isSubComponent) {
+          console.log(name)
+          prefix = '';
+        }
       }
 
-      return { name: 'c-' + name || 'test' };
+      return { name: prefix + name || 'test' };
     }))
     .pipe(jade({ pretty: true }))
     .pipe(rename(function(path) {

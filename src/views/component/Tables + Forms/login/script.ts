@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-login',
+  is: name,
   properties: {
     headline: {
       type: String

@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-corporate-header',
+  is: name,
   properties: {
     siteName: String,
     variation: 0,

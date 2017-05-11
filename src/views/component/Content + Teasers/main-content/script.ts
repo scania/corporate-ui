@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-main-content',
+  is: name,
   properties: {
     variation: 0,
     fullbleed: {

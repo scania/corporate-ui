@@ -1,7 +1,9 @@
 <div class="nav-container">
   <nav class="navbar navbar-default">
     <div class="extra-level">
-      <nav-item location="#main-nav" class="navbar-toggle collapsed" data-toggle="collapse"><span class="icon-expander"></span></nav-item>
+      <nav-item location="#main-nav" class="navbar-toggle collapsed" data-toggle="collapse">
+        <span class="icon-expander"></span>
+      </nav-item>
     </div>
 
     <div class="navbar-collapse collapse" id="main-nav">
@@ -13,28 +15,6 @@
           </c-navbar>
 
           <c-navbar class="navbar-right">
-            <!-- <template is="dom-if" if="{{showSearch}}">
-              <nav-item>
-                <span class="icon-search"></span>
-              </nav-item>
-            </template>
-
-            <template is="dom-if" if="{{dealerLocator}}">
-              <nav-item class="dealer-locator">
-                <a href="https://www.scania.com/global/en/home/dealer-locator.html">
-                  <span class="scania-icon-find-a-dealer"></span> 
-                  <span>Återförsäljare</span>
-                </a>
-              </nav-item>
-            </template> -->
-
-            <!-- <secondary-nav-item>
-              <span id="maximize-button">
-                <span class="icon-close-svg"></span>
-                <span class="explainatory-text">Hide</span>
-              </span>
-            </secondary-nav-item> -->
-
             <content select="secondary-items"></content>
           </c-navbar>
         </div>

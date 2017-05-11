@@ -19,16 +19,19 @@ body.navigation-open {
 
   ::content {
 
-    nav-item a {
-      padding-top: 10px;
-      padding-bottom: 10px;
+    primary-items {
 
-      span {
-        padding-left: 1.5rem;
-        padding-right: 0.7rem;
+      > nav-item > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
 
-        + span {
-          padding-left: 0.7rem;
+        > span {
+          padding-left: 1.5rem;
+          padding-right: 0.7rem;
+
+          + span {
+            padding-left: 0.7rem;
+          }
         }
       }
     }
@@ -116,9 +119,6 @@ body.navigation-open {
         margin-left: 2px;
       }
 
-      + nav-item a > span {
-        border-left: 1px solid #e2e2e2;
-      }
       span,
       i {
 
@@ -172,6 +172,12 @@ body.navigation-open {
         a.sub-nav-item {
           display: none;
           float: left;
+        }
+      }
+      > nav-item {
+
+        + nav-item > a > span {
+          border-left: 1px solid #e2e2e2;
         }
       }
     }

@@ -1,4 +1,1 @@
-
-### Variation-1
-
-Variation 1
+#### A application main navigation component

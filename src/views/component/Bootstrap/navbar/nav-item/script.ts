@@ -24,7 +24,7 @@ Polymer({
       this.removeAttribute('data-toggle');
     }
 
-    if( this.querySelectorAll('c-sub-navigation').length ) {
+    if( this.querySelectorAll('sub-navigation').length ) {
       this.isSubNav = true;
     }
   },

@@ -29,7 +29,7 @@ gulp.watch('src/views/component/**/*', gulp.series(['component']))
 
 /* Methods */
 function _clean() {
-  return gulp.src('dist', {read: false})
+  return gulp.src('{dist,tmp}', {read: false})
     .pipe(clean())
 }
 function _symlink() {
@@ -71,7 +71,7 @@ function _fullComponent() {
           prefix = 'c-';
 
       if (isVariation) {
-        var parentPath = path.dirname(file.path).split('\\variations')[0],
+        var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
             parentindex = parentPath.lastIndexOf(path.sep) + 1,
             parentName = parentPath.substring(parentindex);
 
@@ -87,11 +87,11 @@ function _fullComponent() {
       return { name: prefix + name || 'test' };
     }))
     .pipe(jade({ pretty: true }))
-    .pipe(rename(function(path) {
-      var index = path.dirname.lastIndexOf('\\') + 1;
-      path.basename = path.dirname.substring(index);
-      if ( !isNaN( parseFloat(path.basename) ) ) {
-        path.basename = '..\\..\\variation-' + path.basename;
+    .pipe(rename(function(_path) {
+      var index = _path.dirname.lastIndexOf(path.sep) + 1;
+      _path.basename = _path.dirname.substring(index);
+      if ( !isNaN( parseFloat(_path.basename) ) ) {
+        _path.basename = '..' + path.sep + '..' + path.sep + 'variation-' + _path.basename;
       }
     }))
     .pipe(gulp.dest('dist/html'))

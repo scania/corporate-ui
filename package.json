@@ -4,15 +4,35 @@
   "description": "<h1>The Corporate UI Framework</h1>\r <p>In this repository you'll find all components described in <a href=\"https://www.scania.com/ux-library/developer\">the UX Library</a>.</p>\r <p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository.</p> \r <ul>\r \t<li>Something broken in a existing component? Help fixing it!</li>\r \t<li>Found a component that needs to be extended? Get on and improve it!</li>\r \t<li>Missing out on a component? Develop it!</li>\r </ul>",
   "main": "gulpfile.js",
   "dependencies": {
-    "angular": "1.5.5"
+    "Polymer": "1.4.0",
+    "angular": "1.5.5",
+    "angular-ui-bootstrap": "2.5.0",
+    "bootstrap": "3.2.0",
+    "bootstrap-datepicker": "1.6.4",
+    "jquery": "2.2.2",
+    "jquery.hotkeys": "0.1.0",
+    "moment": "2.18.0",
+    "react": "15.4.2",
+    "react-datetime": "2.8.8",
+    "react-dom": "15.4.2",
+    "video.js": "5.19.2",
+    "videojs-youtube": "2.3.2",
+    "webcomponents.js": "0.7.22"
   },
   "devDependencies": {
+    "@types/node": "7.0.12",
     "directory-tree": "1.2.0",
     "express": "4.14.1",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean": "0.3.2",
+    "gulp-data": "1.2.1",
+    "gulp-jade": "1.1.0",
     "gulp-less": "3.3.0",
-    "gulp-sourcemaps": "2.4.1"
+    "gulp-rename": "1.2.2",
+    "gulp-sourcemaps": "2.4.1",
+    "gulp-typescript": "3.1.6",
+    "less": "2.7.2",
+    "typescript": "2.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

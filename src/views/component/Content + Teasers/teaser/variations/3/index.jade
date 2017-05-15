@@ -1,0 +1,25 @@
+
+extends ../../../../component
+
+append dependencies
+  style.
+    /* It did not work to use '>' in polymer standard host-context scoping so we use this for now... */
+    section > c-teaser-variation-3 {
+      margin-top: -60px;
+      margin-bottom: -60px;
+    }
+
+prepend comment
+  include comment.md
+
+block demo
+  include demo.html
+
+block style
+  include style.css
+
+append template
+  include template.html
+
+block script
+  include script.js

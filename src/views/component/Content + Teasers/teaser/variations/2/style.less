@@ -1,0 +1,40 @@
+
+:host {
+  display: block;
+
+  ::content {
+
+    teaser-item {
+      width: 25%;
+      padding-left: 45px;
+      padding-right: 45px;
+
+      h2 {
+        font-family: "Scania Sans Bold";
+        font-size: 1.4em;
+        text-transform: uppercase;
+      }
+      img {
+        width: auto;
+      }
+    }
+
+    .teaser-items {
+      margin-left: -45px;
+      margin-right: -45px;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  :host {
+
+    ::content {
+
+      teaser-item {
+        width: 100%;
+      }
+    }
+  }
+}

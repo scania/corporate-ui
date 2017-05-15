@@ -1,0 +1,133 @@
+
+<!--
+	Displays a demo with a code-example.
+-->
+<dom-module id="demo-component">
+	<template>
+		<style>
+			:host {
+				.demo-container {
+					margin:100px 0;
+
+					> .demo-template {
+						overflow: hidden;
+					}
+				}
+				::content {
+
+					pre {
+          				border: 0px;
+          				border-radius:5px; 
+       				}
+       				.prewrapper {
+         				position: relative;
+         				margin:30px 0;
+
+         				.codeheader {
+            				width: 100%;
+            				height:30px;
+            				text-align: center;
+            				padding-top:5px;
+            				cursor: pointer;
+
+            				h5 {
+            					margin:0;
+            				}
+          				}
+          				i {
+          				  margin-left: 15px;
+          				}
+        			}
+				}
+			}
+		</style>
+		<div class$="{{demoActive}}">
+			<div id="demotemplate" class="demo-template">
+			</div>
+			<div class="container code-template">
+				<marked-element class="markdown" on-marked-render-complete="_markedproc" markdown="[[democode]]">
+        			<div class="markdown-html"></div>
+      			</marked-element>
+			</div>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is: 'demo-component',
+			properties: {
+				/** The demo-html as a string */
+				data: {
+					type: String,
+					observer: 'dataChanged'
+				},
+				/** The processed demo-html passed to the marked-element */
+				democode: {
+					type: String,
+				},
+				/** If this demo is active - add margins. */
+				demoActive: {
+					type: String,
+					value: ''
+				}
+
+			},
+
+			/** Debounces and handles the `marked-render-complete`-event, attaches click-handler to generated code-wrapper */
+			_markedproc: function() {
+        	  this.debounce('markedproc', function() {
+	
+        	    var elements = this.querySelectorAll('pre'),
+        	                   $this = this;
+	
+        	    $(elements).wrap('<div class="prewrapper"></div>');
+
+        	    $('code', elements)[0].textContent = '  <link rel="import" href="' + path + '">\n' + $('code', elements)[0].textContent;
+	
+        	    $(this.querySelectorAll('.prewrapper'))
+        	      .prepend('<div class="codeheader"><h5>Code <i class="icon-chevron-sign-down"></i></h5></div>')
+        	      .find('.codeheader')
+        	      .on('click', function() {
+        	        var parent = $(this).parent();
+        	        $this.handleClick(parent);
+        	      }).parent().find('i').on('click', function() {
+        	        var parent = $(this).parent();
+        	        $this.handleClick(parent);
+        	      });
+
+				$(elements).hide();
+        	  }, 100);
+        	  
+        	},
+
+        	/** Handles the click on the generated code-wrapper */
+        	handleClick: function(parent) {
+	
+        	  $('pre', parent).slideToggle(500, function() {
+        	  	if($(this).is(':visible')) {
+        	  		$('i', parent).removeClass('icon-chevron-sign-down').addClass('icon-chevron-sign-up');
+        	  	}
+        	  	else 
+        	  		$('i', parent).removeClass('icon-chevron-sign-up').addClass('icon-chevron-sign-down');
+        	  });
+	
+        	},
+
+        	/** Handles data-attachment */
+			dataChanged: function () {
+				
+
+					if(this.data == "none") {
+						this.demoActive = '';
+						return;
+					}
+					
+					$(this.$.demotemplate).html(this.data);
+
+					this.democode = "```" + this.data + "```";
+
+					this.demoActive = 'demo-container';
+				
+			}
+		})
+	</script>
+</dom-module>

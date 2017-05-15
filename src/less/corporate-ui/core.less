@@ -3,20 +3,12 @@
 .compiled_at {content: "@{compiled_at}";}
 
 //@root_path: "../../../../";
-@root_path: "\\sesoco0812\static.scania.com/";
+//@root_path: "\\sesoco0812\static.scania.com/";
+@root_path: "../../../";
 //@root_path: "//sesoco0812/static.scania.com/";
 
-//Scania Logotypes
-@import (less, reference) '@{root_path}resources/logotype/scania/logotype-stylesheet/scania-logotype.css';
-
-//Corporate Icons CSS - Include this css as a less-reference to get the ability to extend classes to set icons
-@import (less, reference) '@{root_path}resources/fonts/corporate-icons/style.css';
-
-//Font awesome includes helper classes like icon-spin that we might need
-@import (less, reference) '@{root_path}resources/fonts/font-awesome/font-awesome.css';
-
-//BOOTSTRAP - Compiles from Bootstrap LESS-Source
-@import (less, reference) '@{root_path}vendors/frameworks/bootstrap/3.2.0/css/bootstrap-org.css';
+// BOOTSTRAP - Compiles from Bootstrap LESS-Source
+@import (less, reference) '@{root_path}node_modules/bootstrap/dist/css/bootstrap.css';
 
 // Modules needing to be outside .bootstrap enclosure.
 @import 'variables'; //Scania Bootstrap Variables
@@ -33,7 +25,6 @@
 @import 'dropdowns';
 @import 'progressbars';
 @import 'typography';
-@import 'brand-specific';
 
 @import 'navigation';
 @import 'panels-wells';

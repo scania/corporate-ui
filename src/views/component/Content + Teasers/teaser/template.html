@@ -1,0 +1,21 @@
+<template is="dom-if" if="{{info(headline, description)}}">
+  <div class="teaser-info">
+    <template is="dom-if" if="{{headline}}">
+      <h1>{{headline}}</h1>
+    </template>
+
+    <template is="dom-if" if="{{description}}">
+      <p>{{description}}</p>
+    </template>
+  </div>
+</template>
+
+<div class="teaser-items">
+  <content></content>
+</div>
+
+<template is="dom-if" if="{{link}}">
+  <div class="btn-container">
+    <a href="{{link}}" class="btn btn-primary">{{linkText}}</a>
+  </div>
+</template>

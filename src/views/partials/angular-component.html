@@ -1,0 +1,81 @@
+
+<script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+<script src="/vendors/components/angular/angular-ui-bootstrap/2.5.0/dist/ui-bootstrap-tpls.js"></script>
+<link href="/vendors/components/angular/angular-ui-bootstrap/2.5.0/dist/ui-bootstrap-csp.css" rel="stylesheet">
+
+<link rel="import" href="form-field.html">
+
+<script>
+  function angularPanel() {
+    return {
+      restrict: 'E',
+      templateUrl: 'angular-panel.html',
+      controller: ['$timeout', function($timeout) {
+        var vm = this;
+
+        vm.date = '';
+        vm.format = 'MM/dd/yyyy' //'yyyy-MM-dd';
+        vm.opened = false;
+        vm.updateDate = updateDate;
+
+        document.addEventListener('date.change', setDate, false);
+
+        function updateDate() {
+          AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: vm.date } });
+        }
+        function setDate(event) {
+          $timeout(function() {
+            vm.date = event.data.date;
+          }, 0);
+        }
+      }],
+      controllerAs: 'panel'
+    };
+  }
+</script>
+
+<dom-module id="angular-component">
+  <template>
+    <script type="text/ng-template" id="angular-panel.html">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          Angular
+        </div>
+        <div class="panel-body">
+          <label class="form-group">
+            Angular
+            <input class="form-control" ng-model="panel.date" uib-datepicker-popup="{{::panel.format}}" is-open="panel.opened" ng-focus="panel.opened = true" ng-blue="panel.opened = false" ng-change="panel.updateDate()">
+          </label>
+          <label class="form-group">
+            Polymer
+            <form-field type="date" name="date" value="{{::panel.date}}"></form-field>
+          </label>
+        </div>
+      </div>
+    </script>
+    <angular-panel>
+      <!-- The component will be rendered here -->
+    </angular-panel>
+  </template>
+
+  <script>
+    // Represents a ordinary polymer component
+
+    Polymer({
+      is: 'angular-component',
+      properties: {
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        }
+      },
+      ready: function() {
+        angular.module('app', ['ui.bootstrap'])
+          .directive('angularPanel', angularPanel);
+
+        angular.bootstrap(this, ['app']);
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,163 @@
+
+<script>
+  // Polymer hydrolysis is using same syntax as requirejs for requiring and defining things
+  // So we need to reset these to make ux-lib work as intended...
+  require = undefined;
+  define = undefined;
+</script>
+
+<link rel="import" href="hydrolysis/hydrolysis-analyzer.html">
+<link rel="import" href="iron-doc-viewer/iron-doc-viewer.html">
+<link rel="import" href="marked-element/marked-element.html">
+
+<dom-module id="scania-doc">
+	<template>
+
+  	<hydrolysis-analyzer id="analyzer" src="{{src}}" analyzer="{{_hydroDesc}}" loading="{{_hydroLoading}}"></hydrolysis-analyzer>
+
+      <section>
+        <template is="dom-repeat" items="{{descriptor}}" as="descitem">
+
+          <template is="dom-if" if="{{!template}}">
+            <iron-doc-viewer for="{{forItem(descriptor.*, 0, 'subdesc.is')}}" descriptor="{{descitem.subdesc}}"></iron-doc-viewer>
+          </template>
+
+          <template is="dom-if" if="{{template}}">
+            <marked-element class="markdown" markdown="[[descitem.subdesc.desc]]"></marked-element>
+          </template>
+
+        </template>
+      </section>
+    </template>
+
+	</template>
+
+	<script>
+		Polymer({
+			is: "scania-doc",
+			
+			properties: {
+				_hydroDesc: {
+					type: Object,
+					observer: "_loadDoc"
+				},
+				_hydroLoading: Boolean,
+				descriptor: {
+          type: Array,
+          value: []
+        },
+        mainDescriptor: Object,
+        subDescriptor: {
+          type: Array,
+          value: []
+        },
+        isSubs: {
+          type: Boolean,
+          value: false,
+        },
+				src: {
+          type: String,
+          observer: "_srcChanged"
+        },
+        for: {
+          type: String
+        },
+        template: {
+          type: Boolean,
+          value: false
+        }
+			},
+
+      mainClicked: function() {
+        this.descriptor = this.mainDescriptor;
+      },
+
+      subClicked: function(e) {
+        var model = e.model;
+        this.descriptor = model.subdescitem.subdesc;
+      },
+
+      /** Sorts the array - component matching filename comes first, then the variations in ascending order, then any other item. 
+      **MAIN COMPONENT SHOULD MATCH FILENAME**  */
+      _computeSort: function(a, b) {
+        var stra = a.subdesc.is,
+            straid = stra.indexOf('variation-'),
+            strb = b.subdesc.is,
+            strbid = strb.indexOf('variation-');
+
+        if(stra == 'c-' + this.for || stra == 'bs-' + this.for) {
+          return -1;
+        } //if a is main
+          
+        if(strb == 'c-' + this.for || strb == 'bs-' + this.for) {
+          return 1;
+        } //if b is main
+          
+        
+        if(straid > 0) { // if a is a variation
+          if(strbid < 0) { // if b is not a variation
+            return -1;
+          } else {                      // if b is a variation
+            if (Number(stra.substring(straid + 10, straid + 11 )) < Number(strb.substring(strbid + 10, strbid + 11 ))) 
+            	return -1;
+            else 
+            	return 1;
+          }
+
+        } else if(strbid > 0) { //if b is a variation
+        	if((straid < 0)) {
+        		return 1;
+          }
+        	else {
+            if (Number(stra.substring(straid + 10, straid + 11 )) < Number(strb.substring(strbid + 10, strbid + 11 ))) {// which is largest ?
+            	return 1;
+            } else {
+            	return -1;
+            }
+          }
+        } else {
+        	return 0;
+        }
+      },
+      _loadDoc: function() {
+        // Clean URL to component.
+        //var url = this.src.split('/');
+        //var name = url[url.length - 1].split('.');
+        var $this = this;
+        //this._hydroDesc.elements.sort( function(a, b) {
+          
+
+
+        //});
+
+        if(this.template) {
+          this._hydroDesc.elements = this._hydroDesc.elements.slice(0, 1);
+        }
+
+        for(var i=0;i<this._hydroDesc.elements.length;i++) {
+          this.push('descriptor', {"subdesc": this._hydroDesc.elements[i]});
+        }
+
+
+  			/*this.descriptor = this._hydroDesc.elements[0];
+        this.mainDescriptor = this._hydroDesc.elements[0];
+        if(this._hydroDesc.elements.length>1) {
+          this.isSubs = true;
+          for(var i=1;i<this._hydroDesc.elements.length;i++)
+            this.push('subDescriptor', {"subdesc": this._hydroDesc.elements[i]});
+        } else {
+          this.isSubs = false;
+        }*/
+        //console.log(this.descriptor);
+  		},
+
+      forItem: function(change, index, path){
+        return this.get(path, change.base[index]);
+      },
+
+      _srcChanged: function() {
+        this.$.analyzer.analyze();
+      }
+  	});
+  </script>
+</dom-module>

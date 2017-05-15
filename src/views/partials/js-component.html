@@ -1,0 +1,57 @@
+
+<link rel="import" href="form-field.html">
+
+<script>
+  // Represents a ordinary javascript component
+
+  document.addEventListener('date.change', setDate, false);
+  document.querySelector('js-component').addEventListener('input', updateDate, false);
+
+  function updateDate(event) {
+    AppEventStore.apply({ name: 'datepicker', action: 'date.change', data: { date: event.target.value } });
+  }
+  function setDate(event) {
+    document.querySelector('js-component input').value = event.data.date.toLocaleDateString('SV-se');
+  }
+</script>
+
+<dom-module id="js-component">
+  <template>
+    <style>
+      input::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+      }
+    </style>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Javascript
+      </div>
+      <div class="panel-body">
+        <label class="form-group">
+          Javascript
+          <input type="date" name="date" class="form-control">
+        </label>
+        <label class="form-group">
+          Polymer
+          <form-field type="date" name="date" value=""></form-field>
+        </label>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    // Represents a ordinary polymer component
+
+    Polymer({
+      is: 'js-component',
+      properties: {
+        variation: 0,
+        fullbleed: {
+          type: Boolean,
+          value: true
+        }
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,76 @@
+ /* Main hero */
+
+:host-context(c-main-content > section) {
+
+  ::content {
+
+    > * > c-main-hero {
+      margin-top: -60px;
+      margin-bottom: -60px;
+    }
+  }
+}
+
+:host {
+  display: block;
+  font-size: 1.8em;
+
+  .panel {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+  .image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    .image-overlay > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .image-overlay:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -0.28em;
+    }
+
+    ::content {
+
+      h1, h2, h3, h4, h5 {
+        line-height: 1;
+        color: #fff;
+      }
+      p {
+        color: #fff;
+        font-size: 1em;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+/* This rule should probably be moved to map component or somthing... */
+:host-context(.map) .image-wrapper {
+
+  > img {
+    /*height: 450px;
+    width: auto !important;*/
+    max-width: none;
+  }
+
+  ::content {
+
+    h1, h2, h3, h4, h5, p, span, strong {
+      color: #041e42;
+    }
+  }
+}

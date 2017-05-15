@@ -16,10 +16,11 @@
     "react-datetime": "2.8.8",
     "react-dom": "15.4.2",
     "video.js": "5.19.2",
-    "videojs-youtube": "2.3.2"
+    "videojs-youtube": "2.3.2",
+    "webcomponents.js": "0.7.22"
   },
   "devDependencies": {
-    "@types/node": "^7.0.12",
+    "@types/node": "7.0.12",
     "directory-tree": "1.2.0",
     "express": "4.14.1",
     "gulp": "github:gulpjs/gulp#4.0",

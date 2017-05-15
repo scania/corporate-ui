@@ -47,6 +47,7 @@ CorporateUi = (function() {
     }, false);
 
     window.onload = function(e) {
+      e.target.body.removeAttribute('unresolved');
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
     };
   }
@@ -298,17 +299,9 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-    importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
-
-    if (window.params.bootstrap !== 'false') {
-      importLink(window.vendors_root + 'frameworks/bootstrap/3.2.0/css/bootstrap-org.css', 'stylesheet')
-    }
-
-    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
-
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
+      importScript(window.vendors_root + 'frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
     }
 
     // Adds support for Promise if non exist
@@ -316,8 +309,16 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'es6-promise/dist/4.1.0/es6-promise.js');
     }
 
+    importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
+
+    if (window.params.bootstrap !== 'false') {
+      importLink(window.vendors_root + 'frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
+    }
+
+    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
+
     window.preLoadedComponents = [
-      //window.version_root + 'html/component/Bootstrap/bootstrap.html',
+      window.version_root + 'html/component/Bootstrap/navbar/navbar.html',
       window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
       window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
       window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',

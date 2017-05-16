@@ -1,6 +1,5 @@
 Polymer({
-  is: 'c-teaser',
-  dependencies: ['jquery'],
+  is: name,
   properties: {
     headline: String,
     description: String,

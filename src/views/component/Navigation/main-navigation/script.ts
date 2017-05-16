@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-main-navigation',
+  is: name,
   properties: {
     siteName: String,
     siteUrl: String,
@@ -17,16 +17,14 @@ Polymer({
     this.siteName = $('c-corporate-header')[0].siteName;
     this.siteUrl = $('c-corporate-header')[0].siteUrl;
 
-    // We should come up with a better solution for checking when a child has been attached.
-    this.addEventListener('childAttached', function(event) {
-      setTimeout(function() {
-        self.sticky();
-      }, 20);
-    });
+    // TODO - Remove timeout and make it work widthout it
+    setTimeout(function() {
+      self.sticky.call(self);
+    }, 20);
 
     // and run it again every time you scroll
     $(window).on('scroll resize', function() {
-      self.sticky();
+      self.sticky.call(self);
     });
 
     // Set start collapse value - couldnt get this to work in a better way...
@@ -37,13 +35,10 @@ Polymer({
       $('body').toggleClass('navigation-open');
     });
 
-    // Add possibility for logotype to be fixed if main-navigation exists
-    $('c-corporate-header .symbol').addClass('fixed');
-
     // If no nav-item is selected set top-level as selected
     if( !$('nav-item.active', this).length ) {
       $('.top-level').addClass('active');
-    }
+    } 
 
     // This have been moved to css section, should work
     /*$('main-navigation .nav-item').bind("mouseover", function(){
@@ -68,6 +63,7 @@ Polymer({
 
     $(this).height( headerHeight );
     $('.navbar-collapse.c-main-navigation', this).removeAttr('style');
+    navContainer.removeAttr('style');
 
     // Used in mobile mode
     if (window.innerWidth <= 991) {
@@ -84,7 +80,8 @@ Polymer({
     navContainer.addClass('sticky');
     body.addClass('header-is-sticky');
 
-    if (scrollTop <= Math.max(stickyNavTop - 15, 0)) {
+    // TODO - should not need to check for parent, does that for this to work on UX-lib while showing main-navigation
+    if (this.parentNode.nodeName === 'C-MAIN-CONTENT' && scrollTop <= Math.max(stickyNavTop - 15, 0)) {
       body.removeClass('header-is-sticky');
     }
 

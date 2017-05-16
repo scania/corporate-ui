@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-form-field',
+  is: name,
   properties: {
     id: String,
     fullbleed: {

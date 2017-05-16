@@ -1,6 +1,6 @@
 Polymer({
-      is: 'c-text-and-image',
-      properties: {
-        image: String
-      }
-    });
+  is: name,
+  properties: {
+    image: String
+  }
+});

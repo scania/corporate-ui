@@ -13,10 +13,20 @@
 }
 
 // Contextual footers (missing support in Bootstrap)
-.panel-primary .panel-footer {
+
+.panel {
+  margin-bottom: 15px;
+  border-radius: 0;
+}
+
+.panel-primary {
+  border-color: @brand-primary;
+}
+
+.panel-primary .panel-heading, .panel-primary .panel-footer {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: @brand-primary;
+  border-color: @brand-primary;
 }
 
 .panel-success .panel-footer {
@@ -55,8 +65,13 @@
   background-color: transparent;
 }
 
+.panel-default .panel-footer {
+  color: @brand-primary;
+  background-color: @dark-content-block;
+}
+
 .panel-default .panel-heading {
-  color: @main-font-color;
+  color: @brand-primary;
   background-color: @dark-content-block;
 
   &.panel-heading-clickable:hover {
@@ -65,17 +80,38 @@
   }
 }
 
-// remove all padding, margins and borders från panel-headings
+
+.panel-heading {
+  border-radius: 0;
+}
+
 .panel-heading h1,
 .panel-heading h2,
 .panel-heading h3,
 .panel-heading h4,
 .panel-heading h5,
 .panel-heading h6 {
-  padding: 0;
+  padding: 4px 0;
   margin: 0;
   border: 0;
-  color: inherit;
+  font-family: 'Scania Sans Bold';  
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+}
+
+.panel-heading h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.panel-heading h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.panel-heading h3 {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 // Icons in panel-heading
@@ -84,9 +120,14 @@
   font-size: 14px;
 }
 
+ .panel-footer{
+  font-weight: bold;
+}
+
+
 .well {
   background-color: @dark-content-block;
-  padding: 20px 25px;
+  padding: 60px;
   min-height: 20px;
   margin-bottom: 20px;
   //border: 1px solid #e3e3e3;
@@ -99,6 +140,12 @@
 .app {
 
   .well {
-    padding:15px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .well {
+    padding: 30px;
   }
 }

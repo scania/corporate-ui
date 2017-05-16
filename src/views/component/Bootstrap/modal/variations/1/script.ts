@@ -1,3 +1,3 @@
- Polymer({
-      is: 'c-modal-variation-1',
-    });
+Polymer({
+  is: name
+});

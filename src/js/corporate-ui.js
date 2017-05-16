@@ -28,6 +28,8 @@ CorporateUi = (function() {
 
     setGlobals();
 
+    addMetaAndHeaderSpecs();
+
     // Add dependencies.
     appendExternals();
 
@@ -36,11 +38,18 @@ CorporateUi = (function() {
     // System messages
     sysMessages();
 
-    window.onload = ready;
+    ready();
   }
 
   function ready() {
-    AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
+    document.addEventListener("DOMContentLoaded", function(e) {
+      e.target.body.setAttribute('unresolved', ' ');
+    }, false);
+
+    window.onload = function(e) {
+      e.target.body.removeAttribute('unresolved');
+      AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
+    };
   }
 
   function EventStore() {
@@ -182,6 +191,14 @@ CorporateUi = (function() {
     };
   }
 
+  function addMetaAndHeaderSpecs() {
+    generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+
+    var style = document.createElement('style')
+    style.appendChild(document.createTextNode('body[unresolved] { opacity: 0; } body { transition: none; }'));
+    document.head.appendChild(style);
+  }
+
   function appendFavicon() {
     importLink(window.favicon_root + 'favicon.ico', 'shortcut icon');
 
@@ -212,12 +229,20 @@ CorporateUi = (function() {
         port = urlInfo(scriptUrl).port ? ':' + urlInfo(scriptUrl).port : '',
         localhost = urlInfo(scriptUrl).hostname === 'localhost' || urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
+    window.corporate_ui_params = urlInfo(scriptUrl).search.substring(1);
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
     window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
     window.vendors_root = window.static_root + '/vendors/';
     window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
     window.protocol = urlInfo(scriptUrl).protocol;
     window.environment = urlInfo(scriptUrl).pathname.split('/')[1];
+    window.params = {};
+
+    var params = decodeURI(window.corporate_ui_params).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"');
+    if (params !== '') {
+      window.params = JSON.parse('{"' + params + '"}');
+    }
+
     window.less = { isFileProtocol: true }; // Is needed for making synchronous imports in less
     window.defaults = {
       appName: 'Application name',
@@ -276,16 +301,20 @@ CorporateUi = (function() {
   function appendExternals() {
     importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
 
+    if (window.params.bootstrap !== 'false') {
+      importLink(window.vendors_root + 'frameworks/bootstrap/3.2.0/css/bootstrap-org.css', 'stylesheet')
+    }
+
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
+      // importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
     }
 
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
-      importScript(window.vendors_root + 'es6-promise/dist/es6-promise.js');
+      importScript(window.vendors_root + 'es6-promise/dist/4.1.0/es6-promise.js');
     }
 
     window.preLoadedComponents = [

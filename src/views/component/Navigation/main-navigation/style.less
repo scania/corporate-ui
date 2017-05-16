@@ -1,416 +1,423 @@
 /* Main navigation */
 
-    body.navigation-open {
-        overflow: hidden;
-        -ms-overflow-style: none;
-      }
+body.navigation-open {
+  overflow: hidden;
+  -ms-overflow-style: none;
+}
 
-      :host-context(.header-is-sticky) {
+:host-context(.header-is-sticky) {
 
-        ::content {
-          c-nav-item .scania-icon-find-a-dealer + span {
-            // opacity: 0; // What was this used for?
+  ::content {
+
+    nav-item .scania-icon-find-a-dealer + span {
+      // opacity: 0; // What was this used for?
+    }
+  }
+}
+
+:host-context(.app) {
+
+  ::content {
+
+    primary-items {
+
+      > nav-item > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        > span {
+          padding-left: 1.5rem;
+          padding-right: 0.7rem;
+
+          + span {
+            padding-left: 0.7rem;
           }
         }
       }
+    }
+  }
+}
 
+:host {
+  display: block;
+  position: relative;
+  z-index: 1000;
+  letter-spacing: 0.03rem; 
 
-      :host-context(.app) {
-        c-navbar {
+  nav {
+    margin-bottom: 0;
+    word-break: normal;
 
-          c-nav-item {
-            a {
-              letter-spacing: .03rem;
-              line-height: 28px;
-              padding-top: 16px;
-              padding-bottom: 12px;
-            }
-          }
+    .navbar-left {
+
+      &:hover ::content {
+
+        nav-item a,
+        ~ c-navbar nav-item a,
+        ~ sub-navigation nav-item a {
+          color: #d4d4d3;
         }
       }
-      
-      :host {
-        display: block;
-        position: relative;
-        z-index: 1000;
-        letter-spacing: 0.03rem; 
+      ::content nav-item {
 
-        nav {
-          margin-bottom: 0;
-          word-break: normal;
-
-          .navbar-left {
-
-            &:hover ::content {
-
-              c-nav-item a,
-              ~ c-navbar c-nav-item a,
-              ~ sub-navigation c-nav-item a {
-                color: #d4d4d3;
-              }
-            }
-            ::content c-nav-item {
-
-              &:hover a {
-                color: #041e42;
-              }
-
-              a:focus {
-                color: #041e42;
-              }
-            }
-          }
+        &:hover a {
+          color: #041e42;
         }
-        a {
+
+        a:focus {
+          color: #041e42;
+        }
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+
+  .sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .navbar-right .explainatory-text {
+    display: none;
+  }
+  .navbar-right span {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  .navbar-left {
+    float: none !important;
+
+    a {
+      padding: 0 15px;
+    }
+  }
+  .navbar-footer {
+    display: none;
+  }
+  .navbar-default.navbar {
+    min-height: 0;
+    position: static;
+    border-top: none;
+  }
+  .top-level {
+    position: relative;
+    z-index: 1;
+    line-height: 0; // Temporary fix, investigate why top-level becomes so high...
+  }
+
+  ::content {
+
+    nav-item {
+
+      &:first-child {
+        margin-left: 2px;
+      }
+
+      span,
+      i {
+
+        &[class*="scania-icon-"] {
+          width: 30px;
+          height: 30px;
+          margin-top: -2px;
+          margin-bottom: -2px;
+        }
+      }
+      a {
+        font-size: 14px;
+        line-height: 26px;
+        letter-spacing: 0.03rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        &:hover {
           text-decoration: none;
         }
 
-        .sticky {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-        }
-        .navbar-right .explainatory-text {
-          display: none;
-        }
-        .navbar-right span {
+        > span {
           display: inline-block;
-          padding: 0;
-          margin: 0;
-          line-height: 1;
-          vertical-align: middle;
+          padding-left: 2.7rem;
+          padding-right: 2.7rem;
         }
-        .navbar-left {
-          float: none !important;
+      }
+
+      /*.scania-icon-find-a-dealer + span {
+        opacity: 1;
+        transition: opacity 200ms ease-in-out;
+      }*/
+    }
+    primary-items {
+      display: block;
+
+      nav-item {
+        position: relative;
+        display: inline-block;
+        padding: 0;
+        line-height: 21px;
+
+        &:first-child > span {
+          border-left: none;
+        }
+        &.active,
+        &.active a {
+          position: static;
+        }
+
+        a.sub-nav-item {
+          display: none;
+          float: left;
+        }
+      }
+      > nav-item {
+
+        + nav-item > a > span {
+          border-left: 1px solid #e2e2e2;
+        }
+      }
+    }
+    secondary-items {
+      display: block;
+
+      nav-item {
+        display: inline-block;
+        //padding: 0 25px;
+        padding: 0;
+
+        [class*="icon-"] {
+          font-size: 26px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  :host {
+    z-index: 1100;
+
+    .site-name {
+      font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: #747472;
+      display: inline-block;
+      margin-top: 25px;
+      padding: 0 5px;
+      line-height: 20px;
+    }
+    nav .navbar-left {
+      display: block;
+      padding: 0;
+      float: none !important;
+
+      &:hover ::content {
+
+        nav-item a,
+        ~ c-navbar nav-item a,
+        ~ sub-navigation nav-item a {
+          color: inherit;
+        }
+      }
+    }
+    .navbar-right {
+      display: none;
+    }
+    .top-level {
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    .navbar-default.navbar {
+      border-bottom: none;
+    }
+    /*  Changed by Jesper - new attributes below
+      .extra-level {
+      overflow: hidden;
+      text-align: center;
+      -moz-box-shadow: 0px 0px 4px #e2e2e2;
+      -webkit-box-shadow: 0px 0px 4px #e2e2e2;
+      box-shadow: 0px 0px 4px #e2e2e2;
+    }*/
+    .extra-level {
+      overflow: hidden;
+      text-align: center;
+      margin-right: 44px;
+
+      nav-item {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    }
+    .navbar-footer {
+      height: 55px;
+
+      ::content nav-item {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0;
+
+        a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+      }
+    }
+    .navbar-toggle {
+      display: inline-block;
+      float: left;
+      border: 1px solid #e2e2e2;
+      padding: 0;
+      margin: 0 0 -1px;
+      border-radius: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      ::content {
+
+        a {
+          padding: 19px;
+          font-size: 1.4em;
+
+          &:hover,
+          &:focus {
+            color: inherit;
+            outline: none;
+          }
+          &.collapsed .icon-expander:before {
+            content: "\e6b1";
+          }
+
+          > span {
+            padding: 0;
+            border-left: 0;
+          }
+          .icon-expander {
+            display: inline-block;
+            width: 18px;
+
+            &:before {
+              content: "\e60d";
+            }
+          }
+        }
+      }
+    }
+    nav .navbar-collapse {
+
+      &.collapsing {
+        overflow-y: hidden !important;
+
+        + .navbar-footer {
+          display: block;
+        }
+      }
+      &.collapse {
+        display: none !important;
+
+        &.in {
+          display: block !important;
+
+          + .navbar-footer {
+            display: block;
+          }
+        }
+      }
+      &.in {
+        height: 100vh !important;
+      }
+    }
+
+    ::content {
+
+      nav-item {
+
+        &.active {
+
+          .sub-nav-item {
+            display: block;
+            border-right: 1px solid #e2e2e2;
+
+            &:hover span {
+              text-decoration: none;
+            }
+          }
+        }
+
+        a {
+          padding-top: 25px;
+          padding-bottom: 25px;
+
+          &:focus {
+            color: inherit;
+          }
+
+          > span {
+            border-left: 0;
+            padding-left: 2rem;
+            padding-right: 2rem;
+
+            &[class^="icon-"] {
+              line-height: inherit;
+            }
+          }
+        }
+      }
+      primary-items {
+
+        > nav-item {
+          display: block;
+
+          > a:hover span {
+            text-decoration: underline;
+          }
+        }
+      }
+      secondary-items {
+
+        > nav-item {
+          display: none; // We might wanna show these in some way
+          padding: 0;
 
           a {
-            padding: 0 15px;
-          }
-        }
-        .navbar-footer {
-          display: none;
-        }
-        .navbar-default.navbar {
-          min-height: 0;
-          position: static;
-          border-top: none;
-        }
-        .top-level {
-          position: relative;
-          z-index: 1;
-          line-height: 0; // Temporary fix, investigate why top-level becomes so high...
-        }
+            padding: 10px 0;
+            margin: 0 15px;
 
-        ::content {
-
-          c-nav-item {
-
-            &:first-child {
-              margin-left: 2px;
-            }
-
-            + c-nav-item a > span {
-              border-left: 1px solid #e2e2e2;
-            }
-            span,
-            i {
-
-              &[class*="scania-icon-"] {
-                width: 30px;
-                height: 30px;
-                margin-top: -2px;
-                margin-bottom: -2px;
-              }
-            }
-            a {
-              font-size: 14px;
-              line-height: 26px;
-              letter-spacing: 0.03rem;
-              padding-top: 20px;
-              padding-bottom: 20px;
-
-              &:hover {
-                text-decoration: none;
-              }
-
-              > span {
-                display: inline-block;
-                padding-left: 2.7rem;
-                padding-right: 2.7rem;
-              }
-            }
-
-            /*.scania-icon-find-a-dealer + span {
-              opacity: 1;
-              transition: opacity 200ms ease-in-out;
-            }*/
-          }
-          primary-items {
-            display: block;
-
-            c-nav-item {
-              position: relative;
-              display: inline-block;
+            span {
               padding: 0;
-              line-height: 21px;
-
-              &:first-child > span {
-                border-left: none;
-              }
-              &.active,
-              &.active a {
-                position: static;
-              }
-
-              a.sub-nav-item {
-                display: none;
-                float: left;
-              }
-            }
-          }
-          secondary-items {
-            display: block;
-
-            c-nav-item {
-              display: inline-block;
-              //padding: 0 25px;
-              padding: 0;
-
-              [class*="icon-"] {
-                font-size: 26px;
-              }
             }
           }
         }
       }
 
-      @media (max-width: 991px) {
-        :host {
-          z-index: 1100;
+      .nav {
+        float: none;
+      }
+      .navbar-left {
 
-          .extra-level c-nav-item {
-            position: fixed;
-            top: 0;
-            left: 0;
-          }
-          .site-name {
-            font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
-            font-size: 18px;
-            font-weight: 300;
-            color: #747472;
-            display: inline-block;
-            margin-top: 25px;
-            padding: 0 5px;
-            line-height: 20px;
-          }
-          nav .navbar-left {
-            display: block;
-            padding: 0;
-            float: none !important;
+        &:hover ::content {
 
-            &:hover ::content {
-
-              c-nav-item a,
-              ~ c-navbar c-nav-item a,
-              ~ sub-navigation c-nav-item a {
-                color: inherit;
-              }
-            }
-          }
-          .navbar-right {
-            display: none;
-          }
-          .top-level {
-            -moz-box-shadow: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-          }
-          /*  Changed by Jesper - new attributes below
-            .extra-level {
-            overflow: hidden;
-            text-align: center;
-            -moz-box-shadow: 0px 0px 4px #e2e2e2;
-            -webkit-box-shadow: 0px 0px 4px #e2e2e2;
-            box-shadow: 0px 0px 4px #e2e2e2;
-          }*/
-          .extra-level {
-            overflow: hidden;
-            text-align: center;
-            margin-right: 44px;
-          }
-          .navbar-footer {
-            height: 55px;
-
-            ::content c-nav-item {
-              padding-left: 0;
-              padding-right: 0;
-              margin: 0;
-
-              a {
-                padding-top: 15px;
-                padding-bottom: 15px;
-              }
-            }
-          }
-          .navbar-toggle {
-            display: inline-block;
-            float: left;
-            border: 1px solid #e2e2e2;
-            padding: 0;
-            margin: 0 0 -1px;
-            border-radius: 0;
-
-            &:hover {
-              background-color: transparent;
-            }
-
-            ::content {
-
-              a {
-                padding: 19px;
-                font-size: 1.4em;
-
-                &:hover,
-                &:focus {
-                  color: inherit;
-                  outline: none;
-                }
-                &.collapsed .icon-expander:before {
-                  content: "\e6b1";
-                }
-
-                > span {
-                  padding: 0;
-                  border-left: 0;
-                }
-                .icon-expander {
-                  display: inline-block;
-                  width: 18px;
-
-                  &:before {
-                    content: "\e60d";
-                  }
-                }
-              }
-            }
-          }
-          nav .navbar-collapse {
-
-            &.collapsing {
-              overflow-y: hidden !important;
-
-              + .navbar-footer {
-                display: block;
-              }
-            }
-            &.collapse {
-              display: none !important;
-
-              &.in {
-                display: block !important;
-
-                + .navbar-footer {
-                  display: block;
-                }
-              }
-            }
-            &.in {
-              height: 100vh !important;
-            }
-          }
-
-          ::content {
-
-            c-nav-item {
-
-              &.active {
-
-                .sub-nav-item {
-                  display: block;
-                  border-right: 1px solid #e2e2e2;
-
-                  &:hover span {
-                    text-decoration: none;
-                  }
-                }
-              }
-
-              a {
-                padding-top: 25px;
-                padding-bottom: 25px;
-
-                &:focus {
-                  color: inherit;
-                }
-
-                > span {
-                  border-left: 0;
-                  padding-left: 2rem;
-                  padding-right: 2rem;
-
-                  &[class^="icon-"] {
-                    line-height: inherit;
-                  }
-                }
-              }
-            }
-            primary-items {
-
-              > c-nav-item {
-                display: block;
-
-                > a:hover span {
-                  text-decoration: underline;
-                }
-              }
-            }
-            secondary-items {
-
-              > c-nav-item {
-                display: none; // We might wanna show these in some way
-                padding: 0;
-
-                a {
-                  padding: 10px 0;
-                  margin: 0 15px;
-
-                  span {
-                    padding: 0;
-                  }
-                }
-              }
-            }
-
-            .top-level {
-
-              &:not(.active) {
-
-                primary-items > c-nav-item:not(.active) {
-                  display: none;
-                }
-              }
-            }
-            .nav {
-              float: none;
-            }
-            .navbar-left {
-
-              &:hover ::content {
-
-                c-nav-item a,
-                ~ c-navbar c-nav-item a,
-                ~ sub-navigation c-nav-item a {
-                  color: #041e42;
-                }
-              }
-            }
-            .nav-collapse-container {
-              height: 100%;
-              background-color: #f5f5f5;
-              overflow-y: auto;
-              -ms-overflow-style: auto;
-            }
+          nav-item a,
+          ~ c-navbar nav-item a,
+          ~ sub-navigation nav-item a {
+            color: #041e42;
           }
         }
       }
+      .nav-collapse-container {
+        height: 100%;
+        background-color: #f5f5f5;
+        overflow-y: auto;
+        -ms-overflow-style: auto;
+      }
+    }
+  }
+}

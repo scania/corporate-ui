@@ -1,3 +1,3 @@
 Polymer({
-  is: 'c-corporate-header-variation-1'
+  is: name
 });

@@ -16,7 +16,7 @@
   	<hydrolysis-analyzer id="analyzer" src="{{src}}" analyzer="{{_hydroDesc}}" loading="{{_hydroLoading}}"></hydrolysis-analyzer>
 
       <section>
-        <template is="dom-repeat" items="{{descriptor}}" as="descitem" sort="_computeSort">
+        <template is="dom-repeat" items="{{descriptor}}" as="descitem">
 
           <template is="dom-if" if="{{!template}}">
             <iron-doc-viewer for="{{forItem(descriptor.*, 0, 'subdesc.is')}}" descriptor="{{descitem.subdesc}}"></iron-doc-viewer>

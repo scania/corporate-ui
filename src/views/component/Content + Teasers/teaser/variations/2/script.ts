@@ -1,3 +1,3 @@
 Polymer({
-  is: 'c-teaser-variation-2'
+  is: name
 });

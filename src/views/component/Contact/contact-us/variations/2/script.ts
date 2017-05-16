@@ -1,3 +1,3 @@
- Polymer({
-      is: 'c-contact-us-variation-2'
-    });
+Polymer({
+  is: name
+});

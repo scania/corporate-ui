@@ -1,0 +1,22 @@
+<!-- Import standard Polymer  -->
+<link rel="import" href="https://static.scania.com/vendors/frameworks/polymer/1.4.0/polymer.html">
+
+<!-- Define the Custom Element and it's markup -->
+
+<style>
+	h1 {color:green;}
+</style>
+
+
+<dom-module id="hello-world">
+    <template>
+        <h1><content></content></h1>
+    </template>
+</dom-module>
+
+<!-- Register custom element -->
+<script>
+Polymer({
+    is: 'hello-world'
+});
+</script>

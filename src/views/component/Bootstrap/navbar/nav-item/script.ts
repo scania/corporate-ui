@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-nav-item',
+  is: name,
   properties: {
     variation: 0,
     fullbleed: {

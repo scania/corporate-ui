@@ -47,7 +47,6 @@ CorporateUi = (function() {
     }, false);
 
     window.onload = function(e) {
-      e.target.body.removeAttribute('unresolved');
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
     };
   }
@@ -309,7 +308,7 @@ CorporateUi = (function() {
 
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      // importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
+      importScript(window.vendors_root + 'frameworks/webcomponentsjs/webcomponents-lite.min.js');
     }
 
     // Adds support for Promise if non exist

@@ -25,7 +25,8 @@ function server() {
   console.log('FE-Dependencies: ', dependencies)
 
   app.use('/resources/logotype/scania', express.static(__dirname + '/dist/images') )
-  app.use('/vendors/frameworks/bootstrap/3.2.0/css/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
+  app.use('/vendors/**/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
+  app.use('/vendors/**/bootstrap-org.css.map', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css.map') )
 
   app.get('/data', function(req, res) {
     res.json( dirTree('dist/' + (req.query.path || 'html')) )

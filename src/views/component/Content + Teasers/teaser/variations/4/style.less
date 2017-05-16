@@ -2,11 +2,9 @@
 :host {
   display: block;
 
-  ::content .teaser-items {
-    margin-left: -10px;
-    margin-right: -10px;
+  ::content {
 
-    c-teaser-item {
+    teaser-item {
       width: 25%;
       padding-left: 10px;
       padding-right: 10px;
@@ -27,6 +25,24 @@
         .btn {
           padding: 0
         }
+      }
+    }
+
+    .teaser-items {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  :host {
+
+    ::content {
+
+      teaser-item,
+      teaser-item:first-child {
+        width: 100%;
       }
     }
   }

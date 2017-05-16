@@ -1,6 +1,5 @@
 Polymer({
   is: name,
-  dependencies: ['jquery'],
   properties: {
     title: {
       type: String

@@ -33,18 +33,18 @@
 
     <section class="light">
       <div class="container">
-        <h2>{{uxlib.components.name}}s</h2>
+        <h2>{{uxlib.categories.name}}s</h2>
 
-        <div ng-repeat="mainItem in uxlib.components.children" class="main-item">
+        <div ng-repeat="category in uxlib.categories.children" class="main-item">
           <h5>
-            <i ng-class="'icon-' + mainItem.name" class="outline md"></i>
-            {{mainItem.name}}
+            <i ng-class="'icon-' + category.name" class="outline md"></i>
+            {{category.name}}
           </h5>
           <div class="row">
             <!-- We ignore listing of main-content -->
-            <div ng-repeat="subItem in mainItem.children" class="col-sm-3 col-xs-6 component" ng-if="subItem.name !== 'main-content' && !subItem.extension">
-              <a href="/component.html?t={{mainItem.name}}&c={{subItem.name}}">{{subItem.name}}</a>
-              <span>{{subItem.children.length - 1}} variations</span>
+            <div ng-repeat="component in category.children" class="col-sm-3 col-xs-6 component" ng-if="component.name !== 'main-content' && !component.extension">
+              <a href="/component.html?t={{category.name}}&c={{component.name}}">{{component.name}}</a>
+              <span>{{component.varationNr}} variations</span>
             </div>
           </div>
         </div>
@@ -64,8 +64,9 @@
     function UxLib($http) {
       var vm = this;
 
-      //vm.sections = [];
-      vm.components = [];
+      // vm.sections = [];
+      vm.categories = [];
+
 
       /*$http.get('data?path=html').then(
         function(response) {
@@ -76,7 +77,20 @@
 
       $http.get('data?path=html/component').then(
         function(response) {
-          vm.components = response.data;
+          vm.categories = response.data;
+          var i;
+          vm.categories.children.forEach(function(category){
+            category.children.forEach(function(components){
+              i = 0;
+              components.children.forEach(function(component){
+                if(component.name.indexOf('variation-') > -1){
+                  i++
+                  components.varationNr = i
+                }
+              })
+            });
+          });
+          
         }, function(response) {
           console.error(response);
         });

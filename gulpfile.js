@@ -39,7 +39,11 @@ function _symlink() {
 function _less() {
   return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less'])
     .pipe(sourcemaps.init())
-    .pipe(less())
+    .pipe(less({
+      globalVars: {
+        lib_path: '..\\..\\..\\node_modules'
+      }
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }

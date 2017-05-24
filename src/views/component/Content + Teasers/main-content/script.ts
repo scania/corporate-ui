@@ -26,7 +26,7 @@ Polymer({
         pageref = window.location.pathname,
         lastPos = CorporateUi.readCookie(pageref) || '0:0',
         component = elm,
-        headerHeight = header.getBoundingClientRect().height,
+        headerHeight = header.getBoundingClientRect().height || 0.0,
         footerHeight = footer.getBoundingClientRect().height;
 
     /* Wait for everything to be loaded before continuing */

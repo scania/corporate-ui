@@ -14,6 +14,11 @@ Polymer({
   attached: function() {
     var self = this;
 
+    //$('primary-items, secondary-items' this).contents().unwrap();
+
+    $('primary-items, secondary-items' this).addClass('nav navbar-nav');
+    $('secondary-items' this).addClass('navbar-right');
+
     this.siteName = $('c-corporate-header')[0].siteName;
     this.siteUrl = $('c-corporate-header')[0].siteUrl;
 
@@ -31,14 +36,14 @@ Polymer({
     $('.navbar-toggle > a', this).addClass('collapsed');
 
     // Handling for navigation scoll in mobile mode
-    $('#main-nav', this).on('shown.bs.collapse hide.bs.collapse', function(event) {
+    /*$('#main-nav', this).on('shown.bs.collapse hide.bs.collapse', function(event) {
       $('body').toggleClass('navigation-open');
-    });
+    });*/
 
     // If no nav-item is selected set top-level as selected
-    if( !$('nav-item.active', this).length ) {
+    /*if( !$('nav-item.active', this).length ) {
       $('.top-level').addClass('active');
-    } 
+    } */
 
     // This have been moved to css section, should work
     /*$('main-navigation .nav-item').bind("mouseover", function(){

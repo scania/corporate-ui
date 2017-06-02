@@ -18,6 +18,12 @@ Polymer({
     icon: String
   },
   attached: function() {
+
+    //$(this).wrapInner('li').unwrap();
+    /*$(this).replaceWith(function(key, val) {
+      return '<li>' + val + '</li>';
+    });*/
+
     if( this.dataToggle ) {
       this.querySelector('a').setAttribute('data-toggle', this.dataToggle);
       this.querySelector('a').setAttribute('target', '_self');

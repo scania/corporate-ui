@@ -12,30 +12,23 @@ Polymer({
 
     $('head').append('<style>html,body { height: 100%; }</style>');
 
-    this.setContentHeight(this);
-
+    window.onload = function() {
+      self.setContentHeight.call(self);
+    }
     window.onresize = function() {
-      self.setContentHeight(self);
+      self.setContentHeight.call(self);
     }
   },
-  setContentHeight: function(elm) {
-    var header  = document.querySelector('c-corporate-header'),
+  setContentHeight: function() {
+    var component = this,
+        header  = document.querySelector('c-corporate-header') || document.createElement('c-corporate-header'),
         main    = document.querySelector('c-main-content'),
         content = main.querySelector('.content'),
-        footer  = document.querySelector('c-corporate-footer'),
+        footer  = document.querySelector('c-corporate-footer') || document.createElement('c-corporate-footer'),
         pageref = window.location.pathname,
         lastPos = CorporateUi.readCookie(pageref) || '0:0',
-        component = elm,
         headerHeight = header.getBoundingClientRect().height,
         footerHeight = footer.getBoundingClientRect().height;
-
-    /* Wait for everything to be loaded before continuing */
-    if (!(header && headerHeight && component && footer)) {
-      setTimeout(function() {
-        component.setContentHeight(component);
-      }, 10);
-      return;
-    }
 
     $(component).css({
       'padding-top'     : headerHeight,

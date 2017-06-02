@@ -1,23 +1,70 @@
- /* Nav item */
+@import (reference, less) "../../../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import (reference) "../../../../../less/corporate-ui/variables";
+@import (reference) "../../../../../less/corporate-ui/navigation";
 
-      :host {
-        display: inline-block;
-        padding: 0 15px;
+:host {
+  display: inline-block;
+}
 
-        a {
-          position: relative;
-          display: block;
-        }
-      }
-      :host-context(.nav-pills):first-child {
-        padding-left: 0;
-      }
-      :host-context(.nav-tabs) {
-        border: 0;
-        display: inline-block;
-        border-right: 1px solid #e2e2e2;
+:host-context(c-corporate-header) a {
+  text-transform: uppercase;
 
-        &:first-child {
-          border-left: 1px solid #e2e2e2;
-        }
-      }
+  // Bootstrap
+  &:extend(.nav > li > a);
+  &:extend(.navbar-default .navbar-header .navbar-nav a);
+
+  // Corporate-ui
+  &:extend(.navbar-nav > li > a);
+}
+
+:host-context(c-main-navigation) {
+
+  a {
+    text-transform: uppercase;
+
+    // Bootstrap
+    &:extend(.nav > li > a);
+
+    // Corporate-ui
+    &:extend(.navbar-nav > li > a);
+    &:extend(.navbar-default .navbar-nav > li > a all);
+    &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
+  }
+
+  &:not(:first-child) a {
+    &:extend(.navbar-default .navbar-nav > li + li > a all);
+  }
+}
+
+:host-context(sub-navigation) {
+
+  a {
+    text-transform: none;
+    padding: 15px;
+
+    // Corporate-ui
+    &:extend(.navbar-nav > li > a);
+    &:extend(.navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a all);
+    &:before,
+    &:after {
+      padding: 0 !important; // Should be solved in a better way, but for now...
+    }
+    &:before {
+      border-left: 0 !important; // Should be solved in a better way, but for now...
+    }
+  }
+}
+
+:host-context(.nav-pills):first-child {
+  padding-left: 0;
+}
+
+:host-context(.nav-tabs) {
+  border: 0;
+  display: inline-block;
+  border-right: 1px solid #e2e2e2;
+
+  &:first-child {
+    border-left: 1px solid #e2e2e2;
+  }
+}

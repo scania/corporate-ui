@@ -1,6 +1,7 @@
 <h1>The Corporate UI Framework</h1>
+
 <p>In this repository you'll find all components described in <a href="https://static.scania.com/ux-library/developer">the UX Library</a>.</p>
-<p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository.</p> 
+<p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository.</p>
 <ul>
 	<li>Something broken in a existing component? Help fixing it!</li>
 	<li>Found a component that needs to be extended? Get on and improve it!</li>
@@ -13,7 +14,7 @@
 	<li>Once project requirements are defined: Is there any component that we can re-use?</li>
 	<li>If not, is there any component that we can extend? Is there anyone else who's made a pull request for this kind of component?</li>
 	<li>Otherwise, create a pull request and start develop the component.</li>
-	<li>Push your code for review and then enjoy the limelight once your component is merged and released!</li>	
+	<li>Push your code for review and then enjoy the limelight once your component is merged and released!</li>
 </ul>
 
 <p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at <a href="mailto:corporate-ui@scania.com">the Corporate UI Librarians</a>.</p>
@@ -31,7 +32,7 @@
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
 <h2>Starter Kit</h2>
-<p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components. 
+<p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components.
 <br>
 <a href="https://github.scania.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
 

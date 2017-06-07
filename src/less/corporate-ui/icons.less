@@ -1,3 +1,6 @@
+@import 'variables'; //Scania Bootstrap Variables
+
+
 @font-face {
   font-family: 'corporate-icons';
   src: url('fonts/corporate-icons.eot?76oqt3');
@@ -17,6 +20,14 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-required-field {
+  color: @framework-grayish;
+
+  &:before {
+    &:extend(.icon-exclamation-sign:before);
+  }
 }
 .icon-team-room:before {
   content: "\e62b";

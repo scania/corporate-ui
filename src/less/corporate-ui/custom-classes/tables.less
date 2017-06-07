@@ -1,0 +1,98 @@
+/*** TABLES ***/
+.filtered {
+  display: none;
+}
+.table {
+
+  tbody {
+    tr.row-selected > td,
+    tr.row-selectable:hover > td {
+      background-color: darken(@framework-skyblue, 10%);
+      cursor: default;
+    }
+    tr.row-selectable > td {
+
+      &:first-child:before {
+        &:extend([class^="icon-"]);
+        &:extend(.icon-caret-right:before);
+
+        margin-right: 10px;
+      }
+    }
+    tr.row-selected {
+
+      &.row-selectable > td,
+      > td {
+
+        &:first-child:before {
+          &:extend(.icon-caret-down:before);
+        }
+      }
+      + tr > td {
+        background-color: darken(@framework-skyblue, 10%);
+        padding-top: 0;
+        border-top: 0;
+
+        > * {
+          background-color: #fff;
+        }
+        > div {
+          padding: 15px;
+        }
+      }
+    }
+  }
+
+  &.table-sm,
+  &.table-md,
+  &.table-lg {
+    // "max-width" needs to be set width js based on how big the table is
+    // or as a static value per table :/
+    max-width: 500px;
+
+    tr {
+      display: block;
+
+      th,
+      td {
+        width: 8%;
+      }
+    }
+    tbody {
+      display: block;
+      overflow-x: hidden;
+      max-width: inherit;
+
+      tr {
+        // The following rules is used for keeping the columns correctely aligned.
+        // Independent if the table have a scrollbar or not
+        max-width: inherit;
+        margin-right: -16px;
+
+        td:last-child {
+          padding-right: 24px; // 16 + 8 = scrollbar size + default padding
+        }
+      }
+    }
+  }
+  &.table-sm tbody {
+    max-height: 120px;
+  }
+  &.table-md tbody {
+    max-height: 250px;
+  }
+  &.table-lg tbody {
+    max-height: 400px;
+  }
+}
+// This is a separate rule to make this rule over rule the previous one.
+// This could be solved by using the specific unicode instead
+table.table {
+
+  tr.row-selected > td {
+
+    &:first-child:before {
+      &:extend(.icon-caret-down:before);
+    }
+  }
+}

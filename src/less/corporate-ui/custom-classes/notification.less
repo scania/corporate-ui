@@ -1,0 +1,217 @@
+.notification-container {
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 15px;
+    width: 400px;
+    max-height: 100vh;
+    overflow: hidden;
+    padding-bottom: 15px;
+
+    &:hover {
+        overflow-y: auto;
+
+        // Fixes glitch with the notifications not aligning properly after hover
+        .notification {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+    &.top-left {
+        top: 0;
+        left: 15px;
+        right: auto;
+    }
+    &.top-center {
+        top: 0;
+        right: 50%;
+        margin-right: -200px;
+    }
+    &.top-right {
+        top: 0;
+        right: 15px;
+    }
+    &.bottom-left {
+        top: auto;
+        left: 15px;
+        right: auto;
+        bottom: 0;
+    }
+    &.bottom-center {
+        top: auto;
+        right: 50%;
+        bottom: 0;
+        margin-right: -200px;
+    }
+    &.bottom-right {
+        top: auto;
+        right: 15px;
+        bottom: 0;
+    }
+    &.bottom-left,
+    &.bottom-center,
+    &.bottom-right {
+        padding-bottom: 0;
+        padding-top: 15px;
+
+        .notification {
+            top: 0;
+            bottom: 15px;
+        }
+    }
+
+    .notification {
+        &:extend(.bootstrap .alert all);
+
+        position: relative;
+        top: 15px;
+        z-index: 1;
+        overflow: hidden;
+        opacity: 1;
+        max-height: 2000px;
+
+        &.notification-dismissible {
+            &:extend(.bootstrap .alert-dismissible all);
+
+            padding-right: 15px;
+
+            .close {
+                right: 0;
+            }
+        }
+        &.notification-collapsing {
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 13px;
+                right: 13px;
+                width: 18px;
+                height: 18px;
+                z-index: 10;
+                background-color: transparent;
+            }
+        }
+        &.notification-info {
+            &:extend(.bootstrap .alert-info);
+
+            .notification-inner {
+                border-top: 1px solid @btn-info-bg;
+
+                &:before {
+                    &:extend(.icon-info-sign:before);
+                }
+            }
+            > .notification-inner {
+
+                + .dijitTitlePane > .dijitTitlePaneTitle {
+                    background-color: @btn-info-bg;
+                }
+            }
+        }
+        &.notification-success {
+            &:extend(.bootstrap .alert-success);
+
+            .notification-inner {
+                border-top: 1px solid @btn-success-bg;
+
+                &:before {
+                    &:extend(.icon-ok-sign:before);
+                }
+            }
+            > .notification-inner {
+
+                + .dijitTitlePane > .dijitTitlePaneTitle {
+                    background-color: @btn-success-bg;
+                }
+            }
+        }
+        &.notification-warning {
+            &:extend(.bootstrap .alert-warning);
+
+            .notification-inner {
+                border-top: 1px solid @btn-warning-bg;
+
+                &:before {
+                    &:extend(.icon-warning-sign:before);
+                }
+            }
+            > .notification-inner {
+
+                + .dijitTitlePane > .dijitTitlePaneTitle {
+                    background-color: @btn-warning-bg;
+                }
+            }
+        }
+        &.notification-danger {
+            &:extend(.bootstrap .alert-danger);
+
+            .notification-inner {
+                border-top: 1px solid @btn-danger-bg;
+
+                &:before {
+                    &:extend(.icon-warning-sign:before);
+                }
+            }
+            > .notification-inner {
+
+                + .dijitTitlePane > .dijitTitlePaneTitle {
+                    background-color: @btn-danger-bg;
+                }
+            }
+        }
+        &.notification-group {
+            padding-top: 30px;
+        }
+
+        .notification-inner {
+            overflow: hidden;
+            position: relative;
+            padding-left: 25px;
+            margin-top: 15px;
+            padding-top: 15px;
+
+            &:before {
+                &:extend([class^="icon-"]);
+                &:extend([class^="icon-"]:before);
+                &:extend(.icon-info-sign:before);
+
+                position: absolute;
+                top: 50%;
+                left: 0;
+                margin-top: -8px;
+                font-size: 16px;
+            }
+        }
+        > .notification-inner {
+            border-top: 0 !important;
+            margin-top: 0;
+            padding-top: 0;
+
+            + .dijitTitlePane > .dijitTitlePaneTitle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                color: #fff;
+                padding: 0 8px;
+                line-height: 20px;
+
+                .dijitTitlePaneTextNode {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+        h4 {
+            margin: 0;
+            border: none;
+        }
+        p:last-child {
+            margin: 0;
+        }
+        .close {
+            font-size: 16px;
+        }
+    }
+}

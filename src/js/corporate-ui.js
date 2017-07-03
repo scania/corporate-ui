@@ -321,12 +321,14 @@ CorporateUi = (function() {
 
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
-    window.preLoadedComponents = [
-      window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-      window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-      window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-      window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
-    ];
+    if (window.params.preload !== 'false') {
+      window.preLoadedComponents = [
+        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
+      ];
+    }
 
     for (var i = 0; i < window.preLoadedComponents.length; i++) {
       importLink(window.preLoadedComponents[i], 'import');

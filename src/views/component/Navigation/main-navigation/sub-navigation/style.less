@@ -85,6 +85,7 @@
 @media (max-width: 991px) {
 
   :host {
+    position: static;
 
     .caption {
       display: block;
@@ -95,27 +96,26 @@
 
     ::content {
 
-      c-navbar {
+      nav-item {
         display: block;
+        padding-left: 0;
+        border-bottom: 1px solid #e2e2e2;
 
-        .nav {
-          float: none;
+        a {
+          padding: 25px 2rem;
+          font-size: 12px;
+          letter-spacing: 0.2rem;
+          line-height: 20px;
 
-          nav-item {
-            display: block;
-            padding-left: 0;
-            border-bottom: 1px solid #e2e2e2;
+          &:hover {
 
-            a {
-              padding: 25px 2rem;
-              font-size: 12px;
-              letter-spacing: 0.2rem;
-              line-height: 20px;
+            &.nav-item:after {
+              content: none;
+            }
 
-              &:hover span {
-                border-bottom: 0;
-                margin-bottom: 0;
-              }
+            span {
+              border-bottom: 0;
+              margin-bottom: 0;
             }
           }
         }

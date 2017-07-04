@@ -94,7 +94,8 @@
     .active {
 
       > a,
-      > a:hover {
+      > a:hover,
+      > a:focus {
         background-color: transparent;
         color: #041e42;
       }
@@ -415,7 +416,7 @@ ul.nav-tabs {
 
 // Mixins related to navigations
 .top-level() {
-  padding: 8px 0 3px;
+  padding: 0;
 
   .navbar-nav {
 

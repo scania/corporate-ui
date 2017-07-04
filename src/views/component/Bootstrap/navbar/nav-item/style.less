@@ -21,6 +21,8 @@
 
   a {
     text-transform: uppercase;
+    padding-left: 0;
+    padding-right: 0;
 
     // Bootstrap
     &:extend(.nav > li > a);
@@ -38,19 +40,19 @@
 
 :host-context(sub-navigation) {
 
+  &:not(:first-child) a,
   a {
     text-transform: none;
-    //padding: 15px;
+    padding: 15px;
 
     // Corporate-ui
-    &:extend(.navbar-nav > li > a);
     &:extend(.navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a all);
     &:before,
     &:after {
-      padding: 0 !important; // Should be solved in a better way, but for now...
+      padding: 0;
     }
     &:before {
-      border-left: 0 !important; // Should be solved in a better way, but for now...
+      border-left: 0;
     }
   }
 }

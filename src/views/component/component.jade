@@ -1,6 +1,4 @@
 
-block dependencies
-
 | <!--
 block comment
   demo
@@ -9,7 +7,14 @@ block comment
 
 block root
   dom-module(id=name)
+    block dependencies
+
     template
+      block style_dependencies
+        //- Bootstrap and corporate-ui references will be needed when we switch to run Polymer in shadow dom mode.
+        //- link(rel="stylesheet" href="/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css")
+        //- link(rel="stylesheet" href="/css/corporate-ui.css")
+
       block template
         style
           block style

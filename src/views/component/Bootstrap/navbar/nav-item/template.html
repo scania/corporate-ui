@@ -14,10 +14,8 @@
   -->
 </content>
 
-<template is="dom-if" if="{{isSubNav}}">
+<!-- <template is="dom-if" if="{{isSubNav}}">
   <a href class="sub-nav-item"><span class="icon-arrow-left"></span></a>
-</template>
+</template> -->
 
-<a href="{{location}}">
-  <span class$="{{setClasses(icon)}}"><content></content></span>
-</a>
+<a href="{{location}}" class$="{{setClasses(icon)}}"><content></content></a>

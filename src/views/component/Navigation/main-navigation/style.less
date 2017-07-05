@@ -1,78 +1,12 @@
-/* Main navigation */
+@import (reference) "../../../../less/corporate-ui/variables";
+@import (reference) "../../../../less/corporate-ui/navigation";
 
 body.navigation-open {
   overflow: hidden;
   -ms-overflow-style: none;
 }
 
-:host-context(.header-is-sticky) {
-
-  ::content {
-
-    nav-item .scania-icon-find-a-dealer + span {
-      // opacity: 0; // What was this used for?
-    }
-  }
-}
-
-:host-context(.app) {
-
-  ::content {
-
-    primary-items {
-
-      > nav-item > a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-
-        > span {
-          padding-left: 1.5rem;
-          padding-right: 0.7rem;
-
-          + span {
-            padding-left: 0.7rem;
-          }
-        }
-      }
-    }
-  }
-}
-
 :host {
-  display: block;
-  position: relative;
-  z-index: 1000;
-  letter-spacing: 0.03rem; 
-
-  nav {
-    margin-bottom: 0;
-    word-break: normal;
-
-    .navbar-left {
-
-      &:hover ::content {
-
-        nav-item a,
-        ~ c-navbar nav-item a,
-        ~ sub-navigation nav-item a {
-          color: #d4d4d3;
-        }
-      }
-      ::content nav-item {
-
-        &:hover a {
-          color: #041e42;
-        }
-
-        a:focus {
-          color: #041e42;
-        }
-      }
-    }
-  }
-  a {
-    text-decoration: none;
-  }
 
   .sticky {
     position: fixed;
@@ -80,181 +14,31 @@ body.navigation-open {
     left: 0;
     right: 0;
   }
-  .navbar-right .explainatory-text {
-    display: none;
-  }
-  .navbar-right span {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-    line-height: 1;
-    vertical-align: middle;
-  }
-  .navbar-left {
-    float: none !important;
-
-    a {
-      padding: 0 15px;
-    }
-  }
   .navbar-footer {
     display: none;
   }
-  .navbar-default.navbar {
-    min-height: 0;
-    position: static;
-    border-top: none;
-  }
-  .top-level {
-    position: relative;
-    z-index: 1;
-    line-height: 0; // Temporary fix, investigate why top-level becomes so high...
+  .navbar-collapse {
+    &:extend(.navbar-default .navbar-header + .navbar-collapse);
   }
 
   ::content {
 
-    nav-item {
-
-      &:first-child {
-        margin-left: 2px;
-      }
-
-      span,
-      i {
-
-        &[class*="scania-icon-"] {
-          width: 30px;
-          height: 30px;
-          margin-top: -2px;
-          margin-bottom: -2px;
-        }
-      }
-      a {
-        font-size: 14px;
-        line-height: 26px;
-        letter-spacing: 0.03rem;
-        padding-top: 20px;
-        padding-bottom: 20px;
-
-        &:hover {
-          text-decoration: none;
-        }
-
-        > span {
-          display: inline-block;
-          padding-left: 2.7rem;
-          padding-right: 2.7rem;
-        }
-      }
-
-      /*.scania-icon-find-a-dealer + span {
-        opacity: 1;
-        transition: opacity 200ms ease-in-out;
-      }*/
-    }
     primary-items {
       display: block;
-
-      nav-item {
-        position: relative;
-        display: inline-block;
-        padding: 0;
-        line-height: 21px;
-
-        &:first-child > span {
-          border-left: none;
-        }
-        &.active,
-        &.active a {
-          position: static;
-        }
-
-        a.sub-nav-item {
-          display: none;
-          float: left;
-        }
-      }
-      > nav-item {
-
-        + nav-item > a > span {
-          border-left: 1px solid #e2e2e2;
-        }
-      }
     }
     secondary-items {
       display: block;
+    }
 
-      nav-item {
-        display: inline-block;
-        //padding: 0 25px;
-        padding: 0;
-
-        [class*="icon-"] {
-          font-size: 26px;
-        }
-      }
+    .navbar-nav.navbar-right:last-child {
+      margin-right: 0;
     }
   }
 }
 
 @media (max-width: 991px) {
   :host {
-    z-index: 1100;
 
-    .site-name {
-      font-family: 'Scania Sans Headline', Helvetica, Arial, Sans-serif;
-      font-size: 18px;
-      font-weight: 300;
-      color: #747472;
-      display: inline-block;
-      margin-top: 25px;
-      padding: 0 5px;
-      line-height: 20px;
-    }
-    nav .navbar-left {
-      display: block;
-      padding: 0;
-      float: none !important;
-
-      &:hover ::content {
-
-        nav-item a,
-        ~ c-navbar nav-item a,
-        ~ sub-navigation nav-item a {
-          color: inherit;
-        }
-      }
-    }
-    .navbar-right {
-      display: none;
-    }
-    .top-level {
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-    .navbar-default.navbar {
-      border-bottom: none;
-    }
-    /*  Changed by Jesper - new attributes below
-      .extra-level {
-      overflow: hidden;
-      text-align: center;
-      -moz-box-shadow: 0px 0px 4px #e2e2e2;
-      -webkit-box-shadow: 0px 0px 4px #e2e2e2;
-      box-shadow: 0px 0px 4px #e2e2e2;
-    }*/
-    .extra-level {
-      overflow: hidden;
-      text-align: center;
-      margin-right: 44px;
-
-      nav-item {
-        position: fixed;
-        top: 0;
-        left: 0;
-      }
-    }
     .navbar-footer {
       height: 55px;
 
@@ -374,6 +158,7 @@ body.navigation-open {
       primary-items {
 
         > nav-item {
+          background-color: #fff;
           display: block;
 
           > a:hover span {

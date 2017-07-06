@@ -37,11 +37,12 @@
 @td-font-size-app:              1.2rem;
 
 // BRAND COLORS
+@brand-default:					#ebeef0;
 @brand-primary:                 #041e42;
 @brand-success:                 #458744;
 @brand-warning:                 #e37b25;
 @brand-danger:                  #9e2b22;
-@brand-info:                    #bbb;
+@brand-info:                    #39b3d7;
 
 @brand-primary-1:               #162343;
 @brand-primary-2:               #fafafa;
@@ -114,8 +115,8 @@
 @table-cell-padding:            25px;
 
 // BUTTONS
-@btn-default-color:             #333;
-@btn-default-bg:                #fafafa;
+@btn-default-color:             #041e42;
+@btn-default-bg:                #fff;
 @btn-default-border:            #ccc;
 
 @btn-primary-color:             #fff; 
@@ -135,8 +136,10 @@
 @btn-danger-border:             darken(@btn-danger-bg, 5%);
 
 @btn-info-color:                #fff;
-@btn-info-bg:                   #39b3d7;
-@btn-info-border:               darken(#39b3d7, 5%);
+@btn-info-bg:                   @brand-info;
+@btn-info-border:               darken(@btn-info-bg, 5%);
+
+@btn-link-color:                @brand-primary;
 
 @btn-link-disabled-color:       #999;
 

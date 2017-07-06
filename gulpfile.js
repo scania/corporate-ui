@@ -1,4 +1,4 @@
-
+  
 var fs = require('fs'),
     path = require('path'),
     gulp = require('gulp'),
@@ -41,7 +41,7 @@ function _less() {
     .pipe(sourcemaps.init())
     .pipe(less({
       globalVars: {
-        lib_path: '..\\..\\..\\node_modules'
+        lib_path: 'node_modules'
       }
     }))
     .pipe(sourcemaps.write())

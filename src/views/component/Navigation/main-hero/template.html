@@ -1,11 +1,10 @@
 <section class="image-wrapper">
-      <template is="dom-if" if="{{image}}">
-        <img src="{{image}}" alt="{{text}}" class="img img-responsive">
-      </template>
-      <div class="image-overlay">
-        <div class="container">
-          <content></content>
-        </div>
-      </div>
-    </section>
+  <template is="dom-if" if="{{image}}">
+    <img src="{{image}}" alt="{{text}}" class="img img-responsive">
   </template>
+  <div class="image-overlay">
+    <div class="container">
+      <content></content>
+    </div>
+  </div>
+</section>

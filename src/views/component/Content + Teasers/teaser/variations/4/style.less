@@ -1,3 +1,4 @@
+@import (reference) '../../../../../../less/corporate-ui/buttons.less';
 
 :host {
   display: block;
@@ -22,8 +23,8 @@
         p {
           text-align: left;
         }
-        .btn {
-          padding: 0
+        .btn{
+          &:extend(.btn-link all);
         }
       }
     }

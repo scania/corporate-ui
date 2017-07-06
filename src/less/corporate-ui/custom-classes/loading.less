@@ -1,7 +1,5 @@
 .loading,
-.bootstrap .loading,
-.locked,
-.bootstrap .locked {
+.locked {
   position: relative;
 
   &:before {
@@ -27,33 +25,38 @@
 
     &:extend([class^="icon-"]);
     &:extend(.icon-spinner:before);
-    &:extend(.icon-spin);
+    // Issue with npm install for font-awesome@3.2.1 due to jekyll@1.0.2
+    // This makes it so that we cant extend things from font-awesome :(
+    // &:extend(.icon-spin);
+    display: inline-block;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
   }
   &.full:before,
   &.full:after {
     position: fixed;
   }
 }
-.bootstrap .loading,
-.bootstrap .locked {
+.loading,
+.locked {
   overflow: hidden;
 }
-.locked:after,
-.bootstrap .locked:after {
+.locked:after {
   content: "";
 }
-.loadingContainer,
-.bootstrap .loadingContainer {
+.loadingContainer {
   position: relative !important;
   overflow: hidden;
-}
-.loadingContainer > .loading,
-.bootstrap .loadingContainer > .loading {
-  position: static;
-}
-.loadingContainer > .loading:before,
-.bootstrap .loadingContainer > .loading:before {
-  width: inherit;
-  top: inherit;
-  left: inherit;
+
+   > .loading {
+    position: static;
+
+    &:before {
+      width: inherit;
+      top: inherit;
+      left: inherit;
+    }
+  }
 }

@@ -47,7 +47,6 @@ CorporateUi = (function() {
     }, false);
 
     window.onload = function(e) {
-      e.target.body.removeAttribute('unresolved');
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
     };
   }
@@ -248,6 +247,9 @@ CorporateUi = (function() {
       appName: 'Application name',
       company: 'Scania'
     };
+    /*window.Polymer = {
+      dom: 'shadow'
+    };*/
     if (localhost) {
       window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
     }
@@ -299,6 +301,7 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
+
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
       importScript(window.vendors_root + 'frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
@@ -309,6 +312,7 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'es6-promise/dist/4.1.0/es6-promise.js');
     }
 
+    //importLink(window.vendors_root + 'frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
     importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
 
     if (window.params.bootstrap !== 'false') {
@@ -317,13 +321,14 @@ CorporateUi = (function() {
 
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
-    window.preLoadedComponents = [
-      window.version_root + 'html/component/Bootstrap/navbar/navbar.html',
-      window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-      window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-      window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-      window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html',
-    ];
+    if (window.params.preload !== 'false') {
+      window.preLoadedComponents = [
+        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
+      ];
+    }
 
     for (var i = 0; i < window.preLoadedComponents.length; i++) {
       importLink(window.preLoadedComponents[i], 'import');

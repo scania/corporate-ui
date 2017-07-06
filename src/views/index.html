@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/ux-library.css">
 </head>
 <body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
-    
+
   <c-corporate-header site-name="UX Library" site-url="/">
     <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
     <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
@@ -27,8 +27,20 @@
     <c-main-navigation>
       <primary-items>
         <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
-        <nav-item location="/">Components</nav-item>
+        <nav-item location="#/" class="active">Components
+          <sub-navigation caption="solutions">
+            <nav-item location="#/news">News</nav-item>
+            <nav-item location="#/popular">Popular</nav-item>
+            <nav-item location="#/related">Related</nav-item>
+          </sub-navigation>
+        </nav-item>
+        <nav-item location="#/branding">Products and Services</nav-item>
+        <nav-item location="#/contact">Experience Scania</nav-item>
       </primary-items>
+
+      <secondary-items>
+        <nav-item location="#/profile"><span class="icon-user"></span></nav-item>
+      </secondary-items>
     </c-main-navigation>
 
     <section class="light">
@@ -97,7 +109,6 @@
     }
   </script>
 
-  <script src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.js"></script>
   <script src="js/ux-library.js"></script>
 </body>
 </html>

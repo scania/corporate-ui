@@ -35,16 +35,20 @@
     color: #041e42;
     letter-spacing: .03rem;
     text-transform: uppercase;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 169px;
+    display: inline-block;
     border-right: 1px solid #e2e2e2;
-    padding-left: 2.7rem;
-    padding-right: 4.5rem;
   }
 
   ::content {
 
     c-navbar {
 
-      nav-item {
+      /*nav-item {
 
         &:first-child {
           padding-left: 2.5rem;
@@ -78,7 +82,7 @@
             text-transform: none;
           }
         }
-      }
+      }*/
     }
   }
 }
@@ -86,6 +90,7 @@
 @media (max-width: 991px) {
 
   :host {
+    position: static;
 
     .caption {
       display: block;
@@ -96,27 +101,26 @@
 
     ::content {
 
-      c-navbar {
+      nav-item {
         display: block;
+        padding-left: 0;
+        border-bottom: 1px solid #e2e2e2;
 
-        .nav {
-          float: none;
+        a {
+          padding: 25px 2rem;
+          font-size: 12px;
+          letter-spacing: 0.2rem;
+          line-height: 20px;
 
-          nav-item {
-            display: block;
-            padding-left: 0;
-            border-bottom: 1px solid #e2e2e2;
+          &:hover {
 
-            a {
-              padding: 25px 2rem;
-              font-size: 12px;
-              letter-spacing: 0.2rem;
-              line-height: 20px;
+            &.nav-item:after {
+              content: none;
+            }
 
-              &:hover span {
-                border-bottom: 0;
-                margin-bottom: 0;
-              }
+            span {
+              border-bottom: 0;
+              margin-bottom: 0;
             }
           }
         }

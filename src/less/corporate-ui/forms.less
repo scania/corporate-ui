@@ -122,3 +122,103 @@ textarea.form-control {
     padding: 10px 12px 8px 12px;
   }
 }
+
+input[type=checkbox] {
+  opacity: 0;
+  &+span {
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      // margin: 5px 5px 0px 0px;
+      border: 2px solid #041E42;
+      border-radius: 3px;
+      vertical-align: text-top;
+    }
+  }
+  &:hover {
+    &+span {
+      &:before {
+        content: "";
+        background: #97999B;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        // margin: 5px 5px 0px 0px;
+        border: 2px solid #041E42;
+        border-radius: 3px;
+        vertical-align: text-top;
+      }
+    }
+  }
+  &:checked {
+    &+span {
+      &:before {
+        content: '\2714';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        color: #FAFAFA;
+        font-size: 11px;
+        line-height: 12px;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: text-top;
+        border-radius: 3px;
+        background: #041E42;
+      }
+    }
+  }
+}
+input[type=radio] {
+  opacity: 0;
+  &+span {
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin: 5px 5px 0px 0px;
+      border: 2px solid #000000;
+      border-radius: 50px;
+      vertical-align: text-bottom;
+    }
+  }
+  &:hover {
+    &+span {
+      &:before {
+        content: "";
+        background: #97999B;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin: 5px 5px 0px 0px;
+        border: 2px solid #041E42;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+  &:checked {
+    &+span {
+      &:before {
+        content: '•';
+        color: #041E42;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin: 5px 5px 0px 0px;
+        font-size: 21px;
+        line-height: 10px;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: text-bottom;
+        background: #FAFAFA;
+      }
+    }
+  }
+}
+
+.radio label, .checkbox label {
+    padding-left: 0px; 
+}

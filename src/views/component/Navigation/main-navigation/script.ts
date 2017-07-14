@@ -42,7 +42,7 @@ Polymer({
         navContainer = $('> .navbar-default', this),
         stickyNavTop = $(this).offset().top,
         scrollTop = $(window).scrollTop(), // our current vertical position from the top
-        headerHeight = $('.navbar-toggle:visible', this).height() || $('#main-nav .top-level', this).height() + $('sub-navigation:visible', this).height() || 'auto',// On desktop mode it will use #main-nav on mobile .navbar-toggle
+        headerHeight = $('.navbar-toggle:visible', this).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto',// On desktop mode it will use #main-nav on mobile .navbar-toggle
         footerHeight = $('.navbar-footer', this).height() || 'auto';
 
     $(this).height( headerHeight );

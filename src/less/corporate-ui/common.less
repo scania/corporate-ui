@@ -6,34 +6,30 @@ body {
 /*body.modal-open { //Temporary fix before updating to new Boostrap-version
   overflow: hidden;
 }*/
+
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 15px;
-  margin-bottom: 25px;
-  border-bottom: 0;
+  padding-top: 15px;
   padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 0;
 
   small {
     margin: 0 6px;
   }
 }
+h1 + h2,
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 { padding-top: 0; }
 p {
   margin-bottom: 20px;
 }
-
-//added by Jesper;
-a:hover, a:focus {
-  color: #e2e2e2;
-  text-decoration: none;
-}
-
-
-a {
-
-  &:hover,
-  &:active,
-  &:focus {
-    //text-decoration: underline;
-  }
+a,
+a:hover,
+a:active {
+  color: @brand-primary-3;
 }
 hr {
   margin: 10px 0;
@@ -69,6 +65,13 @@ kbd {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   text-shadow: 0 1px 0 #fff;
+}
+article {
+
+  &.container,
+  .container {
+    max-width: 750px;
+  }
 }
 
 .container .container {

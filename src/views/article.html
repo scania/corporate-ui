@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>UX Library</title>
+
+  <script src="/js/corporate-ui.js"></script>
+
+  <link rel="stylesheet" href="css/ux-library.css">
+</head>
+<body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+
+  <c-corporate-header site-name="UX Library" site-url="/">
+    <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items>
+        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
+        <nav-item location="#/" class="active">Components
+          <sub-navigation caption="solutions">
+            <nav-item location="#/news">News</nav-item>
+            <nav-item location="#/popular">Popular</nav-item>
+            <nav-item location="#/related">Related</nav-item>
+          </sub-navigation>
+        </nav-item>
+        <nav-item location="#/branding">Products and Services</nav-item>
+        <nav-item location="#/contact">Experience Scania</nav-item>
+      </primary-items>
+
+      <secondary-items>
+        <nav-item location="#/profile"><span class="icon-user"></span></nav-item>
+      </secondary-items>
+    </c-main-navigation>
+
+    <section>
+      <article>
+        <div class="container">
+          <h1>Corporate UI</h1>
+          <h2>Scania's Web Components Collection</h2>
+          <p>The new Scania user interface is now largely supplied as ready to run web components. This means that you no longer has to develop common elements like the header, main navigation or the page footer. Filtered and sortable tables are available to use straight of the shelf as well as a lot of other components as well.</p>
+        
+          <p>Web Components consists of several separate technologies. You can think of Web Components as reusable user interface widgets that are created using open Web technology. An existing Web Component can be used without writing much of the code, simply by adding an import statement to an HTML page. Since Web Components use new or still-developing standard browser capabilities, we are currently using Google Polymer to package the Scania components in a smart way and use their polyfills to make the components more browser independent.</p>
+
+          <h2>Ground-breaking improvement in Scania's reuse approach</h2>
+          <p>With Custom Elements (a part of the Web Components standard) Scania developers and partner companies can use functionality "off the shelf", create new HTML tags or extend the components other developers have created.</p>
+          <p>Google Polymer is the foundation of our web components and it brings a web standards-based way to create reusable components using nothing more than JS/HTML/CSS as well as using libraries or frameworks like jQuery and AngularJS to improve them even more. The result is less code, modular code, and more reuse in our applications. Now, you can totally focus on the user experience that you actually are here to develop.</p>
+
+          <h3>A single code base</h3>
+          <p>Scania stores its custom elements and Web Components in one single master repository. This gives us a unique opportunity to make continues improvements to shared elements. If for example a date picker is improved in one place, that one will immediately be available for other applications using the Scania standard. The economic effect is that much of our IT investments within this area automatically is shared and used for improvements and core UX rather than re-inventing the wheel from scratch every single time.</p>
+
+          <h2>Getting started</h2>
+          <p>In the UX Library you'll find a lot of ready to use elements and components ranging from a standalone Scania Corporate Header including our wordmark and logotype, to advanced Product Carousels and Tables with sorting, filtering and responsive utilities. Each component is/should be documented within the component itself, so basically you'll be able to download and use what you see as you're browsing the UX Library’s <a href="/ux-library/component/">Components</a> and <a href="/ux-library/template/">Templates</a> sections.</p>
+          <p>You can also participate in the development using our <a href="https://github.scania.com/Scania/corporate-ui">Scania Git Hub Repository</a>.
+
+          </p><h3>Learning about Polymer and Web Components</h3>
+          <p>Teaching about web standards, libraries and frameworks goes beyond the scope of the UX Library, but we do point some key areas of knowledge to read up on to ensure a that your project ends up with a high quality application:</p>
+
+          <h3>Strong skills in Bootstrap</h3>
+          <p>Since we will not be able to standardize each and every tailored component made at Scania IT, you'll need to develop you core UX within your project. Since we’re using the Bootstrap Grid within our components, you'll highly benefit from using it in your custom development as well. Here's a few good starting points:</p>
+          <ul>
+            <li>An introduction to Boostrap (YouTube videos)</li>
+            <li>Extending Boostrap with Corporate UI (Scania Boostrap)</li>
+          </ul>
+
+
+          <h3>Basic knowledge of Web Components and Google Polymer</h3>
+          <p>Using Web Components is so easy it is almost beyond imagination. Although, you will benefit from spending some time reading up on the basic ideas. Here's a few links to start out at:</p>
+          <ul>
+            <li><a href="https://meowni.ca/posts/polymer-cheatsheet/">Polymer Cheatsheet</a></li>
+  <!--             <li><a href="https://meowni.ca/posts/polymer-2-cheatsheet/">Polymer2 Cheatsheet</a></li>     -->        
+            <li><a href="https://blog.revillweb.com/why-web-components-are-so-important-66ad0bd4807a#.dyerfqvci" target="_blank">Why Web Components are so important</a></li>
+            <li><a href="https://developers.google.com/web/fundamentals/getting-started/primers/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a></li>
+            <li><a href="https://www.polymer-project.org/1.0/start/" target="_blank">Get started with Google Polymer</a></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('UxLib', ['$http', UxLib]);
+
+    function UxLib($http) {
+      var vm = this;
+
+      // vm.sections = [];
+      vm.categories = [];
+
+
+      /*$http.get('data?path=html').then(
+        function(response) {
+          vm.sections = response.data;
+        }, function(response) {
+          console.error(response);
+        });*/
+
+      $http.get('data?path=html/component').then(
+        function(response) {
+          vm.categories = response.data;
+          var i;
+          vm.categories.children.forEach(function(category){
+            category.children.forEach(function(components){
+              i = 0;
+              components.children.forEach(function(component){
+                if(component.name.indexOf('variation-') > -1){
+                  i++
+                  components.varationNr = i
+                }
+              })
+            });
+          });
+          
+        }, function(response) {
+          console.error(response);
+        });
+    }
+  </script>
+
+  <script src="js/ux-library.js"></script>
+</body>
+</html>

@@ -50,12 +50,10 @@ td, th { font-size: @td-font-size; }
 p {
   text-align: center;
 }
-
-a,
 strong,
 button {
   font-family: "Scania Sans Bold";
-  color: #041e42;
+  color: @brand-primary;
 }
 button {
   font-size: 0.9em;
@@ -74,13 +72,30 @@ blockquote {
 }
 article {
   text-align: left;
+  font-size: @p-font-size-article;
 
-  h1 { font-size: @h1-font-size * 0.8; }
-  h2 { font-size: @h2-font-size * 0.8; }
-  h3 { font-size: @h3-font-size * 0.8; }
-  h4 { font-size: @h4-font-size * 0.8; }
-  h5 { font-size: @h5-font-size * 0.8; }
-  h6 { font-size: @h6-font-size * 0.8; }
+  h2, h3, h4, h5, h6 {
+    font-family: "Scania Sans Bold";
+    text-align: inherit;
+    letter-spacing: normal;
+  }
+  h1 {
+    font-size: @h1-font-size-article;
+    text-align: inherit;
+    letter-spacing: normal;
+  }
+  h2 {
+    font-size: @h2-font-size-article;
+    letter-spacing: -0.1rem;
+  }
+  h3 { font-size: @h3-font-size-article; }
+  h4 { font-size: @h4-font-size-article; }
+  h5 { font-size: @h5-font-size-article; }
+  h6 { font-size: @h6-font-size-article; }
+  p {
+    text-align: inherit;
+    font-size: inherit;
+  }
 }
 
 .app {
@@ -91,20 +106,18 @@ article {
   h4 { font-size: @h4-font-size-app; }
   h5 { font-size: @h5-font-size-app; }
   h6 { font-size: @h6-font-size-app; }
-  p { font-size: @p-font-size-app;
-      text-align:left; }
+  p {
+    font-size: @p-font-size-app;
+    text-align: left;
+  }
   td, th { font-size: @td-font-size-app; }
 
   h1, h2, h3, h4, h5, h6, legend {
     font-family: "Scania Sans Bold";
     text-align: left;
-    margin-top: 15px;
-    margin-bottom: 5px;
   }
   h1, h2, h3 {
     letter-spacing: -0.03em;
-    margin-top: 25px;
-    margin-bottom: 10px;
   }
   p {
     text-align: left;
@@ -113,13 +126,19 @@ article {
     font-family: "Scania Sans";
   }
   article {
+    &:extend(article);
 
-    h1 { &:extend(article h1); }
+    h1 {
+      &:extend(article h1);
+
+      font-family: "Scania Sans Headline Bold";
+    }
     h2 { &:extend(article h2); }
     h3 { &:extend(article h3); }
     h4 { &:extend(article h4); }
     h5 { &:extend(article h5); }
     h6 { &:extend(article h6); }
+    p { &:extend(article p); }
   }
 }
 .public,

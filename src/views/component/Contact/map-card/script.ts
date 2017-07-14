@@ -1,6 +1,11 @@
 Polymer({
   is: name,
   properties: {
+    fullbleed: {
+      type: Boolean,
+      value: true
+    },
+    variation: 0,
     latitude: {
       type: String,
       value: '52.323902'
@@ -37,6 +42,12 @@ Polymer({
       type: Array,
       value: [{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}]
     },
+    pin: {
+      type: String,
+      //value: 'https://static.scania.com/resources/icons/scania/SVG_POS/12_Find_a_dealer_CTA-54-72px.svg'
+      value: 'https://static.scania.com/resources/icons/scania/PNG_POS/18_Dealer_locator_map_pin_filled-24-48px.png'
+      ///value: 'https://static.scania.com/resources/icons/scania/SVG_POS/26_Truck-54-72px.svg'
+    }
   },
   attached: function() {
     this._gMapInit();
@@ -65,8 +76,8 @@ Polymer({
 
     var marker = new google.maps.Marker({
       position: LatLng,
-      title: 'Marker',
-      icon: 'https://static.scania.com/development/global/html/component/Contact/map-card/extras/map-pin.png'
+      title: 'Marker'
+      icon: new google.maps.MarkerImage(this.pin, null, null, null, new google.maps.Size(75, 75)),
     });
 
     this._map = new google.maps.Map(this.$.map, this._getMapOptions());

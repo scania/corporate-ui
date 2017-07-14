@@ -95,6 +95,20 @@
     border-color: transparent;
     box-shadow:none;
   }
+    .app & {
+      color: #fff;
+      background-color: #133f7d;
+      border-color: transparent;
+
+      &:hover,
+      &:active,
+      &.active ,
+      .open .dropdown-toggle& {
+        color: #fff;
+        background-color: lighten(#133f7d, 10%);
+        border-color: transparent;
+      }
+    }  
 }
 
 .btn-success {
@@ -168,11 +182,11 @@
 }
 
 .btn-link  {
-
   font-weight: normal;
   color: @btn-link-color;
   cursor: pointer;
   box-shadow:none;
+
   &:hover,
   &:active,
   &:focus,

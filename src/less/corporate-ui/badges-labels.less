@@ -1,6 +1,10 @@
 // SCANIA BOOTSTRAP THEME
 // BADGES & LABELS
 
+
+
+
+
 .badge {
 	cursor: default;
 }
@@ -9,8 +13,20 @@
   font-size: 100%;
   font-weight: normal;
   border-radius: 1.25em;
-  padding: .3em .6em;
+  padding: .4em .6em .3em;
   display: inline-block;
+}
+
+.label-sm {
+  font-size: 80%;  
+  border-radius: 0.35em;
+  padding: 0.2em 0.4em 0.15em;
+}
+
+.label-lg {
+  font-weight: bold;
+  border-radius: 1.3em;
+  padding: 0.8em 1.2em 0.6em;
 }
 
 .label-danger {
@@ -25,7 +41,12 @@
   border: 1px solid #9ecbd4;
 }
 
-.label-info,
+.label-info {
+    color: @btn-info-color;
+    background-color: @btn-info-bg;
+    border: 1px solid darken(@btn-info-border, 4%);    
+}
+
 .label-default {
   background-color: #eee;
   color: #545454;

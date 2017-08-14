@@ -33,7 +33,6 @@
   &-title {
     font-family: 'Scania Sans Headline Bold';
     color: inherit;
-
   }
   & &-body{
 
@@ -47,13 +46,15 @@
   }
 
   // panel-onlyheading - Panels with just heading, transparent panel-body
-  &&-onlyheading,&&-onlyheading > &-heading {
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px; 
-  }
   &&-onlyheading {
     background-color: transparent;
+
+    &,
+    > &-heading {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+    }
   }
 
   .table {
@@ -65,7 +66,6 @@
     caption {
       display:block;
     }
-
     thead {
       background-color: inherit;
       color: inherit;
@@ -84,17 +84,18 @@
   .table-borderless > thead > tr > td,
   .table-borderless > thead > tr > th {
     border: none;
-
   }
-
 }
 
 // Contextual footers (missing support in Bootstrap)
 
 .panel-default {
   border-color: @brand-default;
-  > .panel-heading, > .panel-footer {
-    color:@brand-primary;
+
+  > .panel-heading,
+  > .panel-footer {
+    color: @brand-primary;
+
     h1,
     h2,
     h3,
@@ -109,7 +110,9 @@
 
 .panel-primary {
   border-color: @brand-primary;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-primary;
     border-color: @brand-primary;
@@ -121,19 +124,23 @@
 
 .panel-info {
   border-color: @brand-info;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-info;
     border-color: @brand-info;
   }
   .table caption {
-    background-color:@brand-info;
+    background-color: @brand-info;
   }
 }
 
 .panel-success {
   border-color: @brand-success;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-success;
     border-color: @brand-success;
@@ -145,7 +152,9 @@
 
 .panel-warning {
   border-color: @brand-warning;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-warning;
     border-color: @brand-warning;
@@ -156,14 +165,16 @@
 }
 
 .panel-danger {
-  border-color:@brand-danger;
-  > .panel-heading, > .panel-footer {
+  border-color: @brand-danger;
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-danger;
     border-color: @brand-danger;
   }
   .table caption {
-    background-color:@brand-danger;
+    background-color: @brand-danger;
   }
 }
 

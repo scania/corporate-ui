@@ -2,6 +2,34 @@
   border-radius: 0;
   background-color: #fff;
 
+  &-light {
+    background-color: transparent;
+
+    > li,
+    > .active {
+
+      > span,
+      > a {
+        background-color: transparent;
+        border: 0;
+        padding: 0px 6px;
+        font-weight: normal;
+
+        &:hover {
+          background-color: transparent;
+          color: inherit;
+        }
+      }
+    }
+    > .active > span {
+      background-color: transparent;
+      font-weight: bold;
+      border-bottom: 1px solid @brand-primary;
+      padding: 0;
+      margin: 0 10px;
+    }
+  }
+
   > li {
 
     &:first-child > a,
@@ -18,6 +46,10 @@
 
     > a {
       color: inherit;
+    }
+    > span,
+    > a {
+      float: none;
     }
   }
 }

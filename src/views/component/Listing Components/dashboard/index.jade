@@ -1,0 +1,25 @@
+
+extends ../../component
+
+append dependencies
+  script(src="https://static.scania.com/vendors/frameworks/jQuery/2.2.2/jquery.min.js")
+  script(src="https://static.scania.com//vendors/frameworks/jQuery/jQuery-ui/1.10.3/jquery-ui.min.js")
+  script(src="/vendors/frameworks/bootstrap/3.2.0/dist/js/bootstrap.js")
+  script(src="https://static.scania.com/vendors/components/jQuery/lobipanel/dist/js/lobipanel.min.js")
+  link(rel="import" href="toolbox-panel/toolbox-panel.html")
+  link(rel="import" href="variation-1.html")
+
+append style_dependencies
+  link(rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/lobipanel/dist/css/lobipanel.css")
+
+block comment
+  include comment.md
+
+block style
+  include style.css
+
+append template
+  include template.html
+
+block script
+  include script.js

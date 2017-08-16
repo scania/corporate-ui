@@ -7,7 +7,7 @@ Polymer({
       value: true
     },
     text: {
-      type: String
+      type: String,
     },
     tab: {
       type: Boolean,
@@ -21,16 +21,12 @@ Polymer({
     icon: String
   },
   created: function() {
-    // Add support for old structure where content was added textContent
-    var content = this.getAttribute('text');
-    if (this.childNodes.length) {
-      content = content || this.childNodes[0].textContent || this.childNodes[1].textContent;
-    }
-    this.setAttribute('text', content);
+    var elm =  this.childNodes[0];
+    this.properties.text.value = (elm || this).outerHTML || elm.textContent;
   },
   attached: function() {
     //$(this).wrapInner('li').unwrap();
-    /*$(this).replaceWith(function(key, val) {
+    /*$(this).replaceWith(function(key  val) {
       return '<li>' + val + '</li>';
     });*/
 
@@ -46,5 +42,9 @@ Polymer({
   },
   setClasses: function(icon) {
     return icon ? 'icon-' + icon : '';
+  },
+  ready: function() {
+    var link = this.querySelector('a');
+    link.innerHTML = link.textContent;
   }
 });

@@ -1,0 +1,41 @@
+
+:host {
+  display: block;
+
+  ::content {
+
+    teaser-item {
+      width: 50%;
+      padding: 0;
+
+      &:nth-child(odd) {
+        border-right: 1px solid #dadada;
+      }
+      &:nth-child(even) {
+        border-left: 1px solid #dadada;
+        margin-left: -1px;
+      }
+
+      .teaser-info {
+        margin: 60px 110px;
+      }
+    }
+
+    .teaser-items {
+      border: 1px solid #dadada;
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  :host {
+
+    ::content {
+
+      teaser-item {
+        width: 100%;
+      }
+    }
+  }
+}

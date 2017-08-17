@@ -1,0 +1,17 @@
+
+:host {
+  display: block;
+
+  > div {
+    transition: margin-right 300ms ease-in-out;
+
+    &.closed {
+      margin-right: -200px;
+    }
+  }
+
+  .tab {
+    transform: translateX(-100%);
+    display: inline-block;
+  }
+}

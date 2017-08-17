@@ -1,0 +1,13 @@
+<div ng-controller="Toolbox as toolbox" ng-class="{closed: toolbox.closed}">
+  <a href="" class="tab" ng-click="toolbox.closed = !toolbox.closed">flik</a>
+  <ul class="list-group">
+    <li ng-repeat="category in toolbox.categories" class="list-group-item">
+      <strong>{{::category.name}}</strong>
+      <ul class="list-group" ng-model="category.children" ui-sortable="::toolbox.options">
+        <li ng-repeat="component in category.children" class="list-group-item component" ng-if="component.name !== 'main-content' && !component.extension">
+          <strong data-url="/component.html?t={{::category.name}}&c={{::component.name}}">{{::component.name}}</strong>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

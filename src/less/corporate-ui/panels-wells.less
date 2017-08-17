@@ -23,19 +23,20 @@
       padding: 4px 0;
       margin: 0;
       letter-spacing: 0.03rem;
-      color:white;
+      color: white;
     }
     // Icons in panel-heading
-    [class^="icon-"], [class*=" icon-"] {
+    [class^="icon-"],
+    [class*=" icon-"] {
       font-size: 14px;
     }
   }
   &-title {
     font-family: 'Scania Sans Headline Bold';
     color: inherit;
-
+    font-size: 1.8rem;
   }
-  & &-body{
+  & &-body {
 
     > .table {
       margin:-16px;
@@ -47,13 +48,15 @@
   }
 
   // panel-onlyheading - Panels with just heading, transparent panel-body
-  &&-onlyheading,&&-onlyheading > &-heading {
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px; 
-  }
   &&-onlyheading {
     background-color: transparent;
+
+    &,
+    > &-heading {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px; 
+    }
   }
 
   .table {
@@ -84,17 +87,18 @@
   .table-borderless > thead > tr > td,
   .table-borderless > thead > tr > th {
     border: none;
-
   }
-
 }
 
 // Contextual footers (missing support in Bootstrap)
 
 .panel-default {
   border-color: @brand-default;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color:@brand-primary;
+
     h1,
     h2,
     h3,
@@ -104,7 +108,6 @@
       color:inherit;
     }
   }
-
 }
 
 .panel-primary {
@@ -166,7 +169,6 @@
     background-color:@brand-danger;
   }
 }
-
 
 //wells
 .well {

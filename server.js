@@ -19,7 +19,7 @@ function server() {
 
   var dependencies = Object.keys(package.dependencies)
   dependencies.map(function(dependency) {
-    var version = package.dependencies[dependency]
+    var version = package.dependencies[dependency].replace(/[^\d.]/g, '').replace(/^\./, '')
     app.use('/vendors/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
   })
   console.log('FE-Dependencies: ', dependencies)

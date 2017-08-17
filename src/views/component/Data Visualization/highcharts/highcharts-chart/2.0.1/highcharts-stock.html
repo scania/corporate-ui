@@ -1,0 +1,20 @@
+<link rel="import" href="highcharts-behavior.html">
+<link rel="import" href="highcharts-shared-styles.html">
+
+<dom-module id="highcharts-stock">
+    <template>
+        <style include="highcharts-shared-styles"></style>
+        <div id="Chart" width="100%" on-click="_checkSelected"></div>
+        <content></content>
+    </template>
+    <script>
+        'use strict';
+        Polymer({
+            is: "highcharts-stock",
+            behaviors: [Highcharts.Polymer_BaseBehavior, Highcharts.Polymer_ChartBehavior],
+            properties: {
+                title: {type: String, observer: "_titleUpdate"}},
+            ready: function() {this.__createChart("StockChart")}
+        });
+    </script>
+</dom-module>

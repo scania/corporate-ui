@@ -6,6 +6,9 @@ Polymer({
       type: Boolean,
       value: true
     },
+    text: {
+      type: String
+    },
     tab: {
       type: Boolean,
       value: false
@@ -17,10 +20,14 @@ Polymer({
     },
     icon: String
   },
+  created: function() {
+    // This section is needed to retrive a string or a element from text attribute
+    var elm =  this.childNodes[0];
+    this.properties.text.value = (elm || this).outerHTML || elm.textContent;
+  },
   attached: function() {
-
     //$(this).wrapInner('li').unwrap();
-    /*$(this).replaceWith(function(key, val) {
+    /*$(this).replaceWith(function(key,  val) {
       return '<li>' + val + '</li>';
     });*/
 
@@ -36,5 +43,9 @@ Polymer({
   },
   setClasses: function(icon) {
     return icon ? 'icon-' + icon : '';
+  },
+  ready: function() {
+    var link = this.querySelector('a');
+    link.innerHTML = link.textContent;
   }
 });

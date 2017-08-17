@@ -9,14 +9,19 @@
 }
 
 .list-group-item {
-  background-color: #eee;
+  background-color: #fff;
   position: relative;
+  font-family: "Scania Sans Bold", Helvetica, Arial, sans-serif;
 
   &.active {
     z-index: 0;
+    background-color: @btn-link-color;
+    border-color: @btn-link-color;
 
     &:hover {
       z-index: 0;
+      background-color: darken(@btn-link-color, 10%);
+      border-color: @btn-link-color;		
     }
 
     > a,

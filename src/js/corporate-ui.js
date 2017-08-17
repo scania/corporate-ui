@@ -312,8 +312,10 @@ CorporateUi = (function() {
       importScript(window.vendors_root + 'es6-promise/dist/4.1.0/es6-promise.js');
     }
 
-    //importLink(window.vendors_root + 'frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
-    importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
+    if (window.params.polymer !== 'false') {
+      //importLink(window.vendors_root + 'frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
+      importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
+    }
 
     if (window.params.css !== 'custom') {
       importLink(window.vendors_root + 'frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')

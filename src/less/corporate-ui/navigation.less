@@ -263,6 +263,25 @@ ul.nav-tabs {
   }
 }
 
+.nav-pills li {
+
+  &.active > a {
+
+    &,
+    &:hover {
+      background-color: @brand-info;
+    }
+
+    > .badge {
+      color: @brand-info;
+    }
+  }
+
+  > a {
+    color: @brand-info;
+  }
+}
+
 .breadcrumb {
 
   > .active {

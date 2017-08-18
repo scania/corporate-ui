@@ -89,25 +89,25 @@
   &:active,
   &.active ,
   .open .dropdown-toggle& {
-    color:  @btn-default-color;
+    color: #fff;
     background-color: #f5f5f5;
     border-color: transparent;
     box-shadow:none;
   }
-    .app & {
-      color: #fff;
-      background-color: #133f7d;
-      border-color: transparent;
 
-      &:hover,
-      &:active,
-      &.active ,
-      .open .dropdown-toggle& {
-        color: #fff;
-        background-color: lighten(#133f7d, 10%);
-        border-color: transparent;
-      }
-    }  
+  .app & {
+    background-color: @brand-primary-app;
+    border-color: transparent;
+
+    &:hover,
+    &:active,
+    &.active ,
+    .open .dropdown-toggle& {
+      color: #fff;
+      background-color: lighten(@brand-primary-app, 10%);
+      border-color: transparent;
+    }
+  }  
 }
 
 .btn-success {

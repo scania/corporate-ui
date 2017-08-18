@@ -39,7 +39,7 @@
   & &-body {
 
     > .table {
-      margin:-16px;
+      margin: -16px;
     }
   }
   &-footer {
@@ -59,33 +59,49 @@
     }
   }
 
-  .table {
-    display: block;
-    width: auto;
-    max-width: none;
-    margin:-1px;
+  .panel-body {
 
-    caption {
-      display:block;
+    > .table {
+      display: block;
+      width: auto;
+      max-width: none;
+      margin: -1px;
+
+      caption {
+        display:block;
+      }
+      thead {
+        background-color: inherit;
+        color: inherit;
+      }
+      > thead,
+      > tbody {
+        display: inline-table;
+        width: 100%;
+      }
+      th,
+      td {
+        width: 1%;
+      }
     }
-    thead {
-      background-color: inherit;
-      color: inherit;
-    }
-    > thead, > tbody {
-      display: inline-table;
-      width: 100%;
-    }
-    th, td {
-      width: 1%;
+  }
+  .panel-footer {
+
+    > .pagination {
+      margin: 0;
     }
   }
 
-  .table-borderless > tbody > tr > td,
-  .table-borderless > tbody > tr > th,
-  .table-borderless > thead > tr > td,
-  .table-borderless > thead > tr > th {
-    border: none;
+  .table-borderless > {
+    tbody,
+    thead {
+      > tr > {
+        td,
+        th {
+          border: none;
+        }
+      }
+    }
   }
 }
 

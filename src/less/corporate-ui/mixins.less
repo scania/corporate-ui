@@ -5,3 +5,29 @@
   -khtml-opacity: @opacityValue * 0.01;
   opacity: @opacityValue * 0.01;
 }
+
+.btn-mix(@type) {
+  .btn-@{type} {
+    @color: 'btn-@{type}-color';
+    @bg: 'btn-@{type}-bg';
+    @border: 'btn-@{type}-border';
+
+    &,
+    &:focus,
+    &:disabled,
+    &.disabled,
+    fieldset[disabled] & {
+      color: @@color;
+      background-color: @@bg;
+      border-color: @@border;
+    }
+    &:hover,
+    &:active,
+    &.active,
+    .open .dropdown-toggle& {
+      color: @@color;
+      background-color: lighten(@@bg, 10%);
+      border-color: lighten(@@bg, 10%);
+    }
+  }
+}

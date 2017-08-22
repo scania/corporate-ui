@@ -1,65 +1,70 @@
 .list-group {
-	margin: 0;
+  margin: 0;
+
+  &-light .list-group-item {
+    background-color: transparent;
+    border: 0;
+    padding: 10px 5px;
+  }
 }
 
 .list-group-item {
-	background-color: #fff;
-	position: relative;
-	font-family: "Scania Sans Bold", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  position: relative;
 
-	&.active {
-		z-index: 0;
-		background-color: @btn-link-color;
-		border-color: @btn-link-color;
+  &.active {
+    z-index: 0;
+    background-color: @btn-link-color;
+    border-color: @btn-link-color;
 
-		&:hover {
-			z-index: 0;
-			background-color: darken(@btn-link-color, 10%);
-			border-color: @btn-link-color;		
-		}
+    &:hover {
+      z-index: 0;
+      background-color: darken(@btn-link-color, 10%);
+      border-color: @btn-link-color;		
+    }
 
-		> a,
-		> i {
-			color: #fff;
-		}
-		> ul {
-			border-top-color: #428bca;
-		}
-	}
-	&.hovering {
-		background-color: #d1e8f2;
-	}
+    > a,
+    > i {
+      color: #fff;
+    }
+    > ul {
+      border-top-color: #428bca;
+    }
+  }
+  &.hovering {
+    background-color: #d1e8f2;
+  }
 
-	i {
-		color: #555555;
-	}
-	a {
+  i {
+    color: #555555;
+  }
+  a {
 
-		&:hover,
-		&:active,
-		&:focus {
-			text-decoration: none;
-		}
-	}
-	ul,
-	.list-group {
-		padding-left: 0;
-		margin: 12px -16px -11px;
-		border-left: 1px solid #fff;
-		border-top: 1px solid #ddd;
-		background-color: #fff;
-	}
-	li,
-	.list-group-item {
-		margin-left: 10px;
-		background-color: #fff;
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  ul,
+  .list-group {
+    padding-left: 0;
+    margin: 12px -16px -11px;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+  }
+  li,
+  .list-group-item {
+    margin-left: 10px;
+    background-color: #fff;
 
-		&:first-child {
-			border-top: 0;
-			border-radius: 0;
-		}
-		&:last-child {
-			border-radius: 0;
-		}
-	}
+    &:first-child {
+      border-top: 0;
+      border-radius: 0;
+    }
+    &:last-child {
+      border-radius: 0;
+    }
+  }
 }

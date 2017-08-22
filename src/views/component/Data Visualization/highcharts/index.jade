@@ -2,8 +2,11 @@
 extends ../../component
 
 append dependencies
+  script(src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js")
+  script(src="/vendors/components/pure-js/highcharts/5.0.14/highstock.js")
+  script(src="/vendors/components/pure-js/highcharts/5.0.14/modules/exporting.js")
+  script(src="/vendors/components/pure-js/highcharts/5.0.14/modules/drilldown.js")
   link(rel="import" href="variation-1.html")
-  link(rel="import" href="highcharts-chart-2.0.1/highcharts-chart.html")
 
 block comment
   include comment.md

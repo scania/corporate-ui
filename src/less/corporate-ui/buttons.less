@@ -1,4 +1,5 @@
 @import (reference) 'variables';
+@import (reference) 'mixins';
 // SCANIA BOOTSTRAP THEME
 // Buttons
 
@@ -21,7 +22,9 @@
   // Remove browser-outline
   &:focus,
   &:active:focus{
-    outline:none
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
 
   //size
@@ -65,147 +68,56 @@
   }
 }
 
+.btn-mix(default);
+.btn-mix(primary);
+.btn-mix(info);
+.btn-mix(success);
+.btn-mix(warning);
+.btn-mix(danger);
+
+// Buttons overrides
 .btn-default {
-  &,
-  &:focus,
+
   &:hover,
   &:active,
-  &.active ,
-  .open .dropdown-toggle& {
-    color: @btn-default-color;
-    background-color: @btn-default-bg;
+  &.active {
     border-color: @btn-default-border;
   }
 }
+.app .btn-primary {
+  background-color: @brand-primary-app;
 
-.btn-primary {
-  &,
-  &:focus {
-    color: @btn-primary-color;
-    background-color: @btn-primary-bg;
-    border-color: @btn-primary-border;
-  }
   &:hover,
   &:active,
-  &.active ,
+  &.active,
   .open .dropdown-toggle& {
-    color:  @btn-default-color;
-    background-color: #f5f5f5;
-    border-color: transparent;
-    box-shadow:none;
-  }
-    .app & {
-      color: #fff;
-      background-color: #133f7d;
-      border-color: transparent;
-
-      &:hover,
-      &:active,
-      &.active ,
-      .open .dropdown-toggle& {
-        color: #fff;
-        background-color: lighten(#133f7d, 10%);
-        border-color: transparent;
-      }
-    }  
-}
-
-.btn-success {
-  &,
-  &:focus {
-    color: @btn-success-color;
-    background-color: @btn-success-bg;
-    border-color: @btn-success-border;
-  }
-  &:hover,
-  &:active,
-  &.active ,
-  .open .dropdown-toggle& {
-    color: @btn-success-color;
-    background-color: lighten(@btn-success-bg, 10%);
-    border-color: transparent;
+    background-color: lighten(@brand-primary-app, 10%);
+    border-color: lighten(@brand-primary-app, 10%);
   }
 }
-
-.btn-info {
-  &,
-  &:focus {
-    color: @btn-info-color;
-    background-color: @btn-info-bg;
-    border-color: @btn-info-border;
-  }
-  &:hover,
-  &:active,
-  &.active ,
-  .open .dropdown-toggle& {
-    color: @btn-info-color;
-    background-color: lighten(@btn-info-bg, 10%);
-    border-color: transparent;
-  }
-}
-
-.btn-warning {
-  &,
-  &:focus {
-    color: @btn-warning-color;
-    background-color: @btn-warning-bg;
-    border-color: @btn-warning-border;
-  }
-  &:hover,
-  &:active,
-  &.active ,
-  .open .dropdown-toggle& {
-    color: @btn-warning-color;
-    background-color: lighten(@btn-warning-bg, 10%);
-    border-color: transparent;
-  }
-}
-
-.btn-danger {
-
-  &,
-  &:focus {
-    color: @btn-danger-color;
-    background-color: @btn-danger-bg;
-    border-color: @btn-danger-border;
-  }
-  &:hover,
-  &:active,
-  &.active ,
-  .open .dropdown-toggle& {
-    color: @btn-danger-color;
-    background-color: lighten(@btn-danger-bg, 10%);
-    border-color: transparent;
-  }
-}
-
+// Button extra
 .btn-link  {
   font-weight: normal;
   color: @btn-link-color;
   cursor: pointer;
-  box-shadow:none;
+  box-shadow: none;
 
+  &:focus,
   &:hover,
   &:active,
-  &:focus,
-  &:active {
+  &.active {
     border-color: transparent;
     text-decoration: underline;
     background-color: transparent;
-    color:@btn-link-color;
+    color: @btn-link-color;
   }
 }
-
-.btn-block {
-  padding-right: 0;
-  padding-left: 0;
-}
-
 .btn-transparent {
   border-width:2px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
   border-color: #fff;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -230,99 +142,17 @@ fieldset[disabled] .btn {
 .btn-link:active,
 .btn-link[disabled],
 fieldset[disabled] .btn-link {
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-   background-color: transparent;
-   text-decoration: none;
- }
-}
 
-.btn-default.disabled,
-.btn-default[disabled],
-fieldset[disabled] .btn-default{
   &,
   &:hover,
   &:focus,
   &:active,
   &.active {
-    color: @btn-default-color;
-    background-color: @btn-default-bg;
-    border-color: @btn-default-border;
+    background-color: transparent;
+    text-decoration: none;
   }
 }
 
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary {
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    color: @btn-primary-color;
-    background-color: @btn-primary-bg;
-    border-color: @btn-primary-border;
-  }
-}
-
-.btn-warning.disabled,
-.btn-warning[disabled],
-fieldset[disabled] .btn-warning {
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    color: @btn-warning-color;
-    background-color: @btn-warning-bg;
-    border-color: @btn-warning-border;
-  }
-}
-
-.btn-danger.disabled,
-.btn-danger[disabled],
-fieldset[disabled] .btn-danger {
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    color: @btn-danger-color;
-    background-color: @btn-danger-bg;
-    border-color: @btn-danger-border;
-  }
-}
-
-.btn-success.disabled,
-.btn-success[disabled],
-fieldset[disabled] .btn-success {
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    color: @btn-success-color;
-    background-color: @btn-success-bg;
-    border-color: @btn-success-border;
-  }
-}
-
-.btn-info.disabled,
-.btn-info[disabled],
-fieldset[disabled] .btn-info {
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    color: @btn-info-color;
-    background-color: @btn-info-bg;
-    border-color: @btn-info-border;
-  }
-}
 
 
 // Andreas LESS checklist

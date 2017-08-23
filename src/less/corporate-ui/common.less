@@ -26,10 +26,8 @@ h5 + h6 { padding-top: 0; }
 p {
   margin-bottom: 20px;
 }
-a,
-a:hover,
-a:active {
-  color: @brand-primary;
+dd {
+  margin-bottom: 15px;
 }
 hr {
   margin: 10px 0;
@@ -79,6 +77,33 @@ article {
 }
 .lead {
   margin-bottom: 20px;
+}
+.divider {
+
+  dt& {
+    border-top: 1px solid @tab-border;
+    padding-top: 5px;
+  }
+  dd& {
+    border-bottom: 1px solid @tab-border;
+    padding-bottom: 5px;
+  }
+}
+
+// Should we really have something this specific here?
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+
+  > img {
+    width: 100%;
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 body {

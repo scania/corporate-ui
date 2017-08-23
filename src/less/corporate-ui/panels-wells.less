@@ -39,7 +39,7 @@
   & &-body {
 
     > .table {
-      margin:-16px;
+      margin: -16px;
     }
   }
   &-footer {
@@ -59,34 +59,49 @@
     }
   }
 
-  .table {
-    display: block;
-    width: auto;
-    max-width: none;
-    margin:-1px;
+  .panel-body {
 
-    caption {
-      display:block;
-    }
+    > .table {
+      display: block;
+      width: auto;
+      max-width: none;
+      margin: -1px;
 
-    thead {
-      background-color: inherit;
-      color: inherit;
+      caption {
+        display:block;
+      }
+      thead {
+        background-color: inherit;
+        color: inherit;
+      }
+      > thead,
+      > tbody {
+        display: inline-table;
+        width: 100%;
+      }
+      th,
+      td {
+        width: 1%;
+      }
     }
-    > thead, > tbody {
-      display: inline-table;
-      width: 100%;
-    }
-    th, td {
-      width: 1%;
+  }
+  .panel-footer {
+
+    > .pagination {
+      margin: 0;
     }
   }
 
-  .table-borderless > tbody > tr > td,
-  .table-borderless > tbody > tr > th,
-  .table-borderless > thead > tr > td,
-  .table-borderless > thead > tr > th {
-    border: none;
+  .table-borderless > {
+    tbody,
+    thead {
+      > tr > {
+        td,
+        th {
+          border: none;
+        }
+      }
+    }
   }
 }
 
@@ -97,7 +112,7 @@
 
   > .panel-heading,
   > .panel-footer {
-    color:@brand-primary;
+    color: @brand-primary;
 
     h1,
     h2,
@@ -112,7 +127,9 @@
 
 .panel-primary {
   border-color: @brand-primary;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-primary;
     border-color: @brand-primary;
@@ -124,19 +141,23 @@
 
 .panel-info {
   border-color: @brand-info;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-info;
     border-color: @brand-info;
   }
   .table caption {
-    background-color:@brand-info;
+    background-color: @brand-info;
   }
 }
 
 .panel-success {
   border-color: @brand-success;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-success;
     border-color: @brand-success;
@@ -148,7 +169,9 @@
 
 .panel-warning {
   border-color: @brand-warning;
-  > .panel-heading, > .panel-footer {
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-warning;
     border-color: @brand-warning;
@@ -159,14 +182,16 @@
 }
 
 .panel-danger {
-  border-color:@brand-danger;
-  > .panel-heading, > .panel-footer {
+  border-color: @brand-danger;
+
+  > .panel-heading,
+  > .panel-footer {
     color: #ffffff;
     background-color: @brand-danger;
     border-color: @brand-danger;
   }
   .table caption {
-    background-color:@brand-danger;
+    background-color: @brand-danger;
   }
 }
 

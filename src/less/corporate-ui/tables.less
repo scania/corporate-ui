@@ -65,49 +65,24 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       border: 1px solid transparent;
 
       input,
-      input.form-control {
-      font-weight: normal;
-      font-family: 'Scania Sans';
-      }
+      select {
 
-      input::placeholder,
-      input.form-control::placeholder {
-      font-weight: normal; 
-      }
+        &,
+        &.form-control {
+          font-weight: normal;
+          font-family: 'Scania Sans';
 
-      input::-webkit-input-placeholder,
-      input.form-control::-webkit-input-placeholder {
-      font-weight: normal; 
-      font-family: 'Scania Sans';      
+          &::placeholder,
+          &::-webkit-input-placeholder,
+          &::-moz-placeholder,
+          &:-ms-input-placeholder,
+          &:moz-placeholder {
+            font-weight: normal;
+            font-family: 'Scania Sans';
+          }
+        }
       }
-
-      input::-moz-placeholder,
-      input.form-control::-moz-placeholder {
-      font-weight: normal; 
-      font-family: 'Scania Sans';      
-      }
-
-      input:-ms-input-placeholder,
-      input.form-control:-ms-input-placeholder {
-      font-weight: normal; 
-      font-family: 'Scania Sans';      
-      }
-      
-      input:moz-placeholder,
-      input.form-control:moz-placeholder {
-      font-weight: normal;
-      font-family: 'Scania Sans';      
-      }
-
-      select,
-      select.form-control {
-         font-weight: normal;
-         font-family: 'Scania Sans'
-      }      
-
     }
-
-
   }
   tfoot {
     background-color: #f7f7f7;

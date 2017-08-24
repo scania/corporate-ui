@@ -28,6 +28,11 @@ function server() {
   app.use('/vendors/**/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
   app.use('/vendors/**/bootstrap-org.css.map', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css.map') )
 
+  // This redirect is needed to solve hydrolysis linking to relative path
+  app.use('/vendors/**/hydrolysis/polymer/*', function(req, res) {
+    res.redirect('/vendors/frameworks/polymer/1.4.0/' + req.params[2])
+  })
+
   app.get('/data', function(req, res) {
     res.json( dirTree('dist/' + (req.query.path || 'html')) )
   })

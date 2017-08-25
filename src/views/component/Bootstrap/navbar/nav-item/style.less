@@ -38,6 +38,13 @@
   }
 }
 
+:host-context(.app c-main-navigation) {
+
+  a {
+    &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
+  }
+}
+
 :host-context(sub-navigation) {
 
   &:not(:first-child) a,
@@ -53,6 +60,19 @@
     }
     &:before {
       border-left: 0;
+    }
+  }
+}
+
+:host-context(.app sub-navigation) {
+
+  a {
+    &:extend(.app .navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a all);
+    padding-left: 15px; // Padding left and right is needed due to inheritence of main-nav is overruling sub-nav rules...
+    padding-right: 15px;
+
+    &:after {
+      padding: 0;
     }
   }
 }

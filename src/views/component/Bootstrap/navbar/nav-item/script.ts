@@ -22,8 +22,9 @@ Polymer({
   },
   created: function() {
     // This section is needed to retrive a string or a element from text attribute
-    var elm =  this.childNodes[0];
+    var elm = this.childNodes[0];
     this.properties.text.value = (elm || this).outerHTML || elm.textContent;
+    this.className += ' ' + this.nodeName.toLowerCase(); // Adds nav-item class to nav-item element (is needed for some app specific style)
   },
   attached: function() {
     //$(this).wrapInner('li').unwrap();

@@ -1,25 +1,33 @@
 
 :host-context(.header-is-sticky) {
 
-  .symbol.fixed {
-    transition: top 100ms ease-in-out;
-    top: 9px;
+  .navbar-symbol.fixed {
+    width: 41px;
+    height: 40px;
+    background-size: 40px 40px;
+
+    &:before {
+      transition: top 100ms ease-in-out;
+      top: 9px;
+    }
   }
 }
+
 :host-context(.app) {
 
-  .symbol {
+  .navbar-symbol {
 
-    &.fixed {
+    &.fixed:before {
       position: fixed;
       top: 8px;
       right: 32px;
     }
   }
 }
+
 :host-context(.header-is-sticky.app) {
 
-  .symbol.fixed {
+  .navbar-symbol.fixed:before {
     top: 6px;
     right: 10px;
     width: 35px;
@@ -32,13 +40,13 @@
   display: block;
   overflow: hidden;
 
-  .symbol {
-
-    &.fixed {
-      position: fixed;
-      top: 21px;
-      right: 32px;
-    }
+  .navbar-default {
+    z-index: 1010;
+  }
+  .navbar-symbol.fixed:before {
+    position: fixed;
+    top: 21px;
+    right: 25px;
   }
 }
 

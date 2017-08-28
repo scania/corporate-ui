@@ -40,6 +40,9 @@
 
 :host-context(.app c-main-navigation) {
 
+  &:first-child a:before {
+    &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a:first-child:before);
+  }
   a {
     &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
   }

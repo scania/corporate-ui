@@ -6,6 +6,7 @@
   margin-bottom: 0;
   border: 0;
   z-index: 1000;
+  font-size: 1.4rem;
 
   > .container-fluid {
     padding-left: 0;
@@ -15,7 +16,6 @@
     float: none;
     display: block;
     font-family: 'Scania Sans Headline';
-    font-size: 18px;
     padding: 12px 15px 3px;
     border-bottom: 1px solid #e2e2e2;
 
@@ -26,7 +26,7 @@
       height: auto;
       font-size: 0;
       padding: 0;
-      margin: 20px 0;
+      margin: 20px 30px 20px 15px;
 
       &:before {
         display: inline-block;
@@ -44,11 +44,11 @@
         display: inline-block;
         vertical-align: middle;
         border-left: 1px solid #e2e2e2;
-        margin: 0 15px;
+        margin: 0 -20px 0 15px;
         height: 20px;
+        cursor: default;
       }
     }
-
     .navbar-symbol {
       background-image: url(/resources/logotype/scania/scania-symbol.png);
       background-image: url(/resources/logotype/scania/scania-symbol.svg);
@@ -57,7 +57,7 @@
       width: 48px;
       height: 46px;
       float: right;
-      margin-right: 18px;
+      margin-right: 10px;
       margin-left: 45px;
       margin-top: 9px;
     }
@@ -142,23 +142,17 @@
       }
     }
   }
+}
 
-  .c-sub-navigation .nav a {
-    
-  }
+.app {
 
-  // Tier Two
-  .portal-nav-level-two {
+  .navbar-default {
 
+    .navbar-header {
+      padding: 2px 0 0px;
 
-    .nav > li {
-
-      &.active > a {
-
-      }
-
-      > a {
-
+      + .navbar-collapse + .navbar-collapse {
+        padding: 0;
       }
     }
   }
@@ -339,7 +333,6 @@ ul.nav-tabs {
         border-top: 0px;
         padding: 0;
 
-
         &.collapse {
           display: none !important;
 
@@ -452,6 +445,13 @@ ul.nav-tabs {
         content: "";
         padding: 0 15px;
       }
+      .app & {
+        padding: 16px 0;
+
+        &:first-child:before {
+          padding-right: 0;
+        }
+      }
     }
     + li a:before {
       border-left: 1px solid #e2e2e2;
@@ -475,6 +475,14 @@ ul.nav-tabs {
       right: 15px;
       bottom: 15px;
       margin-bottom: -2px;
+    }
+    .app & {
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      &:hover:after {
+        bottom: 8px;
+      }
     }
   }
 

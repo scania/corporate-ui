@@ -18,64 +18,26 @@
   <script src="/js/corporate-ui.js"></script>
 </head>
 <body unresolved class="scania bootstrap app internal">
+ <c-corporate-header site-name="UX Library" site-url="/">
+    <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
 
-  <div class="row hidden">
-    <div class="col-md-6">
-      <span class="symbol"></span><div class="portal-heading">Scania UI Guidelines</div>
-    </div>
-  </div>
-
-  <nav class="navbar navbar-default portal-navigation" role="navigation">
-    <div class="navbar-header">
-      <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="#" class="navbar-brand" data-noclick="true">Menu</a>
-      Scania UI Guidelines
-      <a href="#" class="navbar-symbol"></a>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">World Entry</a></li>
-        <li><a href="#">Scania Group</a></li>
-      </ul>
-    </div>
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <li data-id="home"><a href="index.html">Home</a></li>
-        <li data-id="design-principles"><a href="design-principles.html">Design principles</a></li>
-        <li data-id="graphic-profile"><a href="graphic-profile.html">Graphic Profile</a></li>
-        <li data-id="ux-guidelines"><a href="ux-getting-started.html">Design Guidelines</a></li>
-        <li data-id="developer-guide" class="active"><a href="developer-getting-started.html">Developer Guide</a></li>
-        <li data-id="examples"><a href="examples.html">Examples</a></li>
-        <li data-id="references"><a href="references.html">References</a></li>
-        <li data-id="support"><a href="support.html">Support</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <button class="btn btn-sm btn-default" type="button" id="maximize-button">
-            <span id="maximize-icon" class="icon-fullscreen" data-step="4" data-intro="At any time you can maximize the application."></span>
-          </button>
-        </li>
-      </ul>
-    </div>
-    <div class="collapse navbar-collapse portal-nav-level-two collapse">
-      <ul class="nav navbar-nav" data-id="nav-level-two-developer">
-        <li data-id="developer-getting-started"><a href="developer-getting-started.html">Getting Started</a></li>
-        <li data-id="developer-css" class="active"><a href="developer-css.html">CSS</a></li>
-        <li data-id="developer-components"><a href="developer-components.html">Components</a></li>
-        <li data-id="developer-javascript"><a href="developer-javascript.html">Javascript</a></li>
-        <li data-id="developer-icons"><a href="developer-icons.html">Icons</a></li>
-        <li data-id="developer-scania-bootstrap-classes"><a href="developer-scania-bootstrap-classes.html">Scania Bootstrap classes</a></li>
-        <li data-id="developer-print"><a href="developer-print.html">Print</a></li>
-        <li data-id="developer-support"><a href="developer-support.html">Support</a></li>
-        <li data-id="developer-recommended-tools"><a href="developer-recommended-tools.html">Recommended tools</a></li>
-        <li data-id="developer-coding-standard"><a href="developer-coding-standard.html">Coding standard</a></li>
-      </ul>
-    </div>
-  </nav>
+   <c-main-navigation>
+      <primary-items>
+        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
+        <nav-item location="/" class="active">Home</nav-item>
+        <nav-item location="/components.html">Components</nav-item>
+        <nav-item location="/templates.html">Templates</nav-item>
+        <nav-item location="/bootstrap-components.html" class="active">Bootstrap
+          <sub-navigation caption="Bootstrap">
+            <nav-item location="/bootstrap-components.html">Component</nav-item>
+            <nav-item location="/bootstrap-css.html" class="active">Css</nav-item>
+          </sub-navigation>
+        </nav-item>
+        <nav-item location="#" class="disabled">About us</nav-item>
+      </primary-items>
+    </c-main-navigation>
 
   <div class="container portal-main-container padding-top"><!-- MAIN CONTAINER -->
 

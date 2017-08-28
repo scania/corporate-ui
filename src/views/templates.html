@@ -46,7 +46,7 @@
             {{templates.name.substring(0, templates.name.lastIndexOf('.')) || templates.name}}
           </h5>
           <div class="row">
-            <div class="col-sm-3 col-xs-6 template" ng-repeat="template in templates.children">
+            <div class="col-sm-3 col-xs-6 template" ng-if="template.extension == '.html'" ng-repeat="template in templates.children">
                 <a href="/template/{{templates.name}}/{{template.name}}">{{template.name.substring(0, template.name.lastIndexOf('.'))}}</a>
             </div>
           </div>

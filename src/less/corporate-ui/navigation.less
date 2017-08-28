@@ -144,6 +144,20 @@
   }
 }
 
+.app {
+
+  .navbar-default {
+
+    .navbar-header {
+      padding: 2px 0 0px;
+
+      + .navbar-collapse + .navbar-collapse {
+        padding: 0;
+      }
+    }
+  }
+}
+
 // NAV TABS
 ul.nav-tabs {
   font-size: 0;
@@ -433,6 +447,10 @@ ul.nav-tabs {
       }
       .app & {
         padding: 16px 0;
+
+        &:first-child:before {
+          padding-right: 0;
+        }
       }
     }
     + li a:before {

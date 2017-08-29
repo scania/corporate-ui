@@ -33,7 +33,26 @@ body.navigation-open {
 
     .navbar-nav.navbar-right:last-child {
       margin-right: 0;
+      -webkit-transition: margin-right 100ms ease;
+      -moz-transition: margin-right 100ms ease;
+      -o-transition: margin-right 100ms ease;
+      -ms-transition: margin-right 100ms ease;
+      transition: margin-right 100ms ease;
     }
+  }
+}
+
+:host-context(.header-is-sticky) {
+
+  ::content .navbar-nav.navbar-right {
+    margin-right: 80px;
+  }
+}
+
+:host-context(.app.header-is-sticky) {
+
+  ::content .navbar-nav.navbar-right {
+    margin-right: 60px;
   }
 }
 

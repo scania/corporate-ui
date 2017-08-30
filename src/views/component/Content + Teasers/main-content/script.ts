@@ -12,6 +12,10 @@ Polymer({
 
     $('head').append('<style>html,body { height: 100%; }</style>');
 
+    $('#main-navigation').on('show.bs.collapse hidden.bs.collapse', function(e) {
+      $('body').toggleClass('navigation-open');
+    })
+
     window.onload = function() {
       self.setContentHeight.call(self);
     }

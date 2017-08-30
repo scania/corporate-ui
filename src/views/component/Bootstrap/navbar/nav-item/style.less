@@ -19,10 +19,12 @@
 
 :host-context(c-main-navigation) {
 
+  &:not(:first-child) a {
+    &:extend(.navbar-default .navbar-nav > li + li > a all);
+  }
+
   a {
     text-transform: uppercase;
-    padding-left: 0;
-    padding-right: 0;
 
     // Bootstrap
     &:extend(.nav > li > a);
@@ -31,10 +33,6 @@
     &:extend(.navbar-nav > li > a);
     &:extend(.navbar-default .navbar-nav > li > a all);
     &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
-  }
-
-  &:not(:first-child) a {
-    &:extend(.navbar-default .navbar-nav > li + li > a all);
   }
 }
 
@@ -65,6 +63,14 @@
       border-left: 0;
     }
   }
+
+  @media (max-width: 991px) {
+
+    &:not(:first-child) a,
+    a {
+      padding: 10px 35px;
+    }
+  }
 }
 
 :host-context(.app sub-navigation) {
@@ -76,6 +82,14 @@
 
     &:after {
       padding: 0;
+    }
+  }
+
+  @media (max-width: 991px) {
+
+    &:not(:first-child) a,
+    a {
+      padding: 10px 35px;
     }
   }
 }

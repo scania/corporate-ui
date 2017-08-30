@@ -30,7 +30,7 @@
   margin-top: 1px; // This makes it so that the border of main-nav is seen
 
   .navbar-default {
-    background: #f5f5f5;
+    background-color: #f5f5f5;
     margin-bottom: 0;
     min-height: 0;
     border-bottom: 1px solid #d3d3d3; // Maybe it would be better to add a navbar-collapse container inside instead...
@@ -97,19 +97,23 @@
   :host {
     position: static;
 
+    .navbar-default {
+      background-color: #fff;
+      border-bottom: 0;
+    }
     .caption {
       display: block;
-      padding: 25px 2rem;
-      background-color: #fff;
+      margin: 0;
+      padding: 10px 25px;
+      background-color: #f5f5f5;
       border-right: 0;
+      border-bottom: 1px solid #e2e2e2;
     }
 
     ::content {
 
-      nav-item {
+      nav-item.nav-item {
         display: block;
-        padding-left: 0;
-        border-bottom: 1px solid #e2e2e2;
 
         a {
           padding: 25px 2rem;
@@ -118,9 +122,11 @@
           line-height: 20px;
 
           &:hover {
+            text-decoration: none;
 
             &.nav-item:after {
               content: none;
+              border: 0;
             }
 
             span {

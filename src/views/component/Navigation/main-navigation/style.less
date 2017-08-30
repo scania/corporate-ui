@@ -1,11 +1,6 @@
 @import (reference) "../../../../less/corporate-ui/variables";
 @import (reference) "../../../../less/corporate-ui/navigation";
 
-body.navigation-open {
-  overflow: hidden;
-  -ms-overflow-style: none;
-}
-
 :host {
   display: block;
 
@@ -136,8 +131,13 @@ body.navigation-open {
         }
       }
       &.in {
-        height: 100vh !important;
+        height: 100% !important;
+        overflow-y: scroll !important;
       }
+    }
+    > .navbar-default {
+      display: none;
+      min-height: 0;
     }
 
     ::content {
@@ -178,11 +178,11 @@ body.navigation-open {
       primary-items {
 
         > nav-item {
-          background-color: #fff;
+          background-color: #f5f5f5;
           display: block;
 
           > a:hover span {
-            text-decoration: underline;
+            text-decoration: none;
           }
         }
       }
@@ -223,6 +223,14 @@ body.navigation-open {
         overflow-y: auto;
         -ms-overflow-style: auto;
       }
+    }
+  }
+
+  :host-context(.navigation-open) {
+
+    > .navbar-default {
+      display: block;
+      height: 100vh;
     }
   }
 }

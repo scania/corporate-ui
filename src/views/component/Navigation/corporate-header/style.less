@@ -1,26 +1,34 @@
 
 :host-context(.header-is-sticky) {
 
-  .symbol.fixed {
-    transition: top 100ms ease-in-out;
-    top: 9px;
-  }
-}
-:host-context(.app) {
+  .navbar-symbol.fixed {
+    width: 41px;
+    height: 40px;
+    background-size: 40px 40px;
 
-  .symbol {
-
-    &.fixed {
-      position: fixed;
-      top: 8px;
-      right: 32px;
+    &:before {
+      transition: top 100ms ease-in-out;
+      top: 9px;
     }
   }
 }
+
+:host-context(.app) {
+
+  .navbar-symbol {
+
+    &.fixed:before {
+      position: fixed;
+      top: 11px;
+      right: 10px;
+    }
+  }
+}
+
 :host-context(.header-is-sticky.app) {
 
-  .symbol.fixed {
-    top: 6px;
+  .navbar-symbol.fixed:before {
+    top: 8px;
     right: 10px;
     width: 35px;
     height: 35px;
@@ -32,13 +40,13 @@
   display: block;
   overflow: hidden;
 
-  .symbol {
-
-    &.fixed {
-      position: fixed;
-      top: 21px;
-      right: 32px;
-    }
+  .navbar-default {
+    z-index: 1010;
+  }
+  .navbar-symbol.fixed:before {
+    position: fixed;
+    top: 21px;
+    right: 25px;
   }
 }
 

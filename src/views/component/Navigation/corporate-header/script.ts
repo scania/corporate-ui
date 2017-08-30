@@ -26,7 +26,7 @@ Polymer({
     }
   },
   symbolFixed: function() {
-    var symbol = $('.symbol', this),
+    var symbol = $('.navbar-symbol', this),
         headerTop = $(this).offset().top,
         scrollTop = $(window).scrollTop(); // our current vertical position from the top
 

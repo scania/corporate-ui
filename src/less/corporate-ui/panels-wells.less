@@ -1,205 +1,202 @@
-// SCANIA BOOTSTRAP THEME
-// PANELS AND WELLS
-
-.panel {
-  margin-bottom: 15px;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  overflow: hidden;
-
-  &-heading {
-    border-radius: 0;
-    font-family: 'Scania Sans Bold';
-    text-transform: uppercase;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Scania Sans Headline Bold';
-      padding: 4px 0;
-      margin: 0;
-      letter-spacing: 0.03rem;
-      color: white;
-    }
-    // Icons in panel-heading
-    [class^="icon-"],
-    [class*=" icon-"] {
-      font-size: 14px;
-    }
-  }
-  &-title {
-    font-family: 'Scania Sans Headline Bold';
-    color: inherit;
-    font-size: 1.8rem;
-  }
-  & &-body {
-
-    > .table {
-      margin: -16px;
-    }
-  }
-  &-footer {
-    font-weight: bold;
-    border-radius: 0;
-  }
-
-  // panel-onlyheading - Panels with just heading, transparent panel-body
-  &&-onlyheading {
-    background-color: transparent;
-
-    &,
-    > &-heading {
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      border-radius: 0px; 
-    }
-  }
-
-  .panel-body {
-
-    > .table {
-      display: block;
-      width: auto;
-      max-width: none;
-      margin: -1px;
-
-      caption {
-        display:block;
+  // SCANIA BOOTSTRAP THEME
+  // PANELS AND WELLS
+  .panel {
+      margin-bottom: 15px;
+      border-radius: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      overflow: hidden;
+      &-heading {
+          border-radius: 0;
+          font-family: 'Scania Sans Bold';
+          text-transform: uppercase;
+          h1, h2, h3, h4, h5, h6 {
+              font-family: 'Scania Sans Headline Bold';
+              padding: 4px 0;
+              margin: 0;
+              letter-spacing: 0.03rem;
+              color: white;
+          }
+          // Icons in panel-heading
+          [class^="icon-"],
+          [class*=" icon-"] {
+              font-size: 14px;
+          }
       }
-      thead {
-        background-color: inherit;
-        color: inherit;
+      &-title {
+          font-family: 'Scania Sans Headline Bold';
+          color: inherit;
+          font-size: 1.8rem;
       }
-      > thead,
-      > tbody {
-        display: inline-table;
-        width: 100%;
+      & &-body {
+          > .table {
+              margin: -16px;
+          }
       }
-      th,
-      td {
-        width: 1%;
+      &-footer {
+          font-weight: bold;
+          border-radius: 0;
       }
-    }
-  }
-  .panel-footer {
+      &-inverse {
+              // &:extend(.panel-heading);
+          background-color: @dark-content-block;
+          border: 0px;
+          // margin-bottom: 0px;
 
-    > .pagination {
-      margin: 0;
-    }
-  }
+          &:first-child {
+            border: 1px solid #ddd;
+          }
 
-  .table-borderless > {
-    tbody,
-    thead {
-      > tr > {
-        td,
-        th {
-          border: none;
-        }
+          &:first-child .panel-heading{
+
+             background-color: #FFFFFF;
+             color: #041e42;
+             border: 1px solid #ddd;
+
+             :first-child {
+              color: #041e42;
+
+          }
+
       }
-    }
+      input[type=text] {
+          background-color: #fff;
+      }
+
+           
+
+          .form-control {
+              border: 0px;
+          }
+
+
+      }
+
+
+
+
+      // panel-onlyheading - Panels with just heading, transparent panel-body
+      &&-onlyheading {
+          background-color: transparent;
+          &, > &-heading {
+              -webkit-border-radius: 0px;
+              -moz-border-radius: 0px;
+              border-radius: 0px;
+          }
+      }
+      .panel-body {
+          > .table {
+              display: block;
+              width: auto;
+              max-width: none;
+              margin: -1px;
+              caption {
+                  display: block;
+              }
+              thead {
+                  background-color: inherit;
+                  color: inherit;
+              }
+              > thead,
+              > tbody {
+                  display: inline-table;
+                  width: 100%;
+              }
+              th,
+              td {
+                  width: 1%;
+              }
+          }
+      }
+      .panel-footer {
+          > .pagination {
+              margin: 0;
+          }
+      }
+      .table-borderless > {
+          tbody, thead {
+              > tr > {
+                  td, th {
+                      border: none;
+                  }
+              }
+          }
+      }
   }
-}
-
-// Contextual footers (missing support in Bootstrap)
-
-.panel-default {
-  border-color: @brand-default;
-
-  > .panel-heading,
-  > .panel-footer {
-    color: @brand-primary;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color:inherit;
-    }
+  // Contextual footers (missing support in Bootstrap)
+  .panel-default {
+      border-color: @brand-default;
+      > .panel-heading, > .panel-footer {
+          color: @brand-primary;
+          h1, h2, h3, h4, h5, h6 {
+              color: inherit;
+          }
+      }
   }
-}
-
-.panel-primary {
-  border-color: @brand-primary;
-
-  > .panel-heading,
-  > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-primary;
-    border-color: @brand-primary;
+  .panel-primary {
+      border-color: @brand-primary;
+      > .panel-heading, > .panel-footer {
+          color: #ffffff;
+          background-color: @brand-primary;
+          border-color: @brand-primary;
+      }
+      .table caption {
+          background-color: @brand-primary;
+      }
   }
-  .table caption {
-    background-color:@brand-primary;
+  .panel-info {
+      border-color: @brand-info;
+      > .panel-heading, > .panel-footer {
+          color: #ffffff;
+          background-color: @brand-info;
+          border-color: @brand-info;
+      }
+      .table caption {
+          background-color: @brand-info;
+      }
   }
-}
-
-.panel-info {
-  border-color: @brand-info;
-
-  > .panel-heading,
-  > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-info;
-    border-color: @brand-info;
+  .panel-success {
+      border-color: @brand-success;
+      > .panel-heading, > .panel-footer {
+          color: #ffffff;
+          background-color: @brand-success;
+          border-color: @brand-success;
+      }
+      .table caption {
+          background-color: @brand-success;
+      }
   }
-  .table caption {
-    background-color: @brand-info;
+  .panel-warning {
+      border-color: @brand-warning;
+      > .panel-heading, > .panel-footer {
+          color: #ffffff;
+          background-color: @brand-warning;
+          border-color: @brand-warning;
+      }
+      .table caption {
+          background-color: @brand-warning;
+      }
   }
-}
-
-.panel-success {
-  border-color: @brand-success;
-
-  > .panel-heading,
-  > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-success;
-    border-color: @brand-success;
+  .panel-danger {
+      border-color: @brand-danger;
+      > .panel-heading, > .panel-footer {
+          color: #ffffff;
+          background-color: @brand-danger;
+          border-color: @brand-danger;
+      }
+      .table caption {
+          background-color: @brand-danger;
+      }
   }
-  .table caption {
-    background-color:@brand-success;
+  //wells
+  .well {
+      background-color: @dark-content-block;
+      border-radius: 0px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border: 0;
   }
-}
 
-.panel-warning {
-  border-color: @brand-warning;
-
-  > .panel-heading,
-  > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-warning;
-    border-color: @brand-warning;
+  .label {
+    white-space:normal; 
   }
-  .table caption {
-    background-color:@brand-warning;
-  }
-}
-
-.panel-danger {
-  border-color: @brand-danger;
-
-  > .panel-heading,
-  > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-danger;
-    border-color: @brand-danger;
-  }
-  .table caption {
-    background-color: @brand-danger;
-  }
-}
-
-//wells
-.well {
-  background-color: @dark-content-block;
-  border-radius: 0px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border:0;
-}

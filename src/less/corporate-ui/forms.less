@@ -28,7 +28,7 @@ textarea[placeholder] {
     border-radius: 0;
     border: 0;
     height: 3em;
-    font-size: 0.85em;
+    font-size: inherit;
     font-weight: normal;
     background-color: #f5f5f5;
     &.form-control[readonly] {
@@ -42,7 +42,7 @@ textarea[placeholder] {
     &.form-control[disabled] {
         background-color: #dfdee1;
         color: #a1a1a1;
-        cursor: none;
+        cursor: default;
     }
     &:focus {
         border-color: #041e42;
@@ -60,7 +60,7 @@ textarea[placeholder] {
 }
 .control-label {
     font-weight: 800;
-    font-size: 11px;
+    font-size: inherit;
     white-space: normal;
 }
 .form-horizontal .control-label,

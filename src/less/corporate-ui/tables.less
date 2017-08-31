@@ -63,6 +63,25 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
     > tr > th {
       border: 1px solid transparent;
+
+      input,
+      select {
+
+        &,
+        &.form-control {
+          font-weight: normal;
+          font-family: 'Scania Sans';
+
+          &::placeholder,
+          &::-webkit-input-placeholder,
+          &::-moz-placeholder,
+          &:-ms-input-placeholder,
+          &:moz-placeholder {
+            font-weight: normal;
+            font-family: 'Scania Sans';
+          }
+        }
+      }
     }
   }
   tfoot {

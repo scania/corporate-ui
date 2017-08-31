@@ -33,6 +33,10 @@
     &:extend(.navbar-nav > li > a);
     &:extend(.navbar-default .navbar-nav > li > a all);
     &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
+
+    &.mode-toggler {
+      display: none;
+    }
   }
 }
 
@@ -63,14 +67,6 @@
       border-left: 0;
     }
   }
-
-  @media (max-width: 991px) {
-
-    &:not(:first-child) a,
-    a {
-      padding: 10px 35px;
-    }
-  }
 }
 
 :host-context(.app sub-navigation) {
@@ -82,14 +78,6 @@
 
     &:after {
       padding: 0;
-    }
-  }
-
-  @media (max-width: 991px) {
-
-    &:not(:first-child) a,
-    a {
-      padding: 10px 35px;
     }
   }
 }
@@ -105,5 +93,53 @@
 
   &:first-child {
     border-left: 1px solid #e2e2e2;
+  }
+}
+
+@media (max-width: 991px) {
+
+  :host-context(c-main-navigation) {
+    .modToggler();
+  }
+
+  :host-context(.app c-main-navigation) {
+    .modToggler();
+  }
+
+  :host-context(.app sub-navigation) {
+
+    &:not(:first-child) a,
+    a {
+      padding: 10px 35px;
+    }
+  }
+
+  :host-context(sub-navigation) {
+
+    &:not(:first-child) a,
+    a {
+      padding: 10px 35px;
+    }
+  }
+}
+
+.modToggler() {
+  &.expanded .mode-toggler:before {
+    content: "-";
+  }
+
+  a.mode-toggler {
+    display: block;
+    position: relative;
+    z-index: 1;
+    float: right;
+    padding: 10px;
+    border: 0;
+
+    &:before {
+      content: "+";
+      padding: 10px;
+      border: 0;
+    }
   }
 }

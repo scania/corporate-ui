@@ -19,10 +19,12 @@
 
 :host-context(c-main-navigation) {
 
+  &:not(:first-child) a {
+    &:extend(.navbar-default .navbar-nav > li + li > a all);
+  }
+
   a {
     text-transform: uppercase;
-    padding-left: 0;
-    padding-right: 0;
 
     // Bootstrap
     &:extend(.nav > li > a);
@@ -31,10 +33,10 @@
     &:extend(.navbar-nav > li > a);
     &:extend(.navbar-default .navbar-nav > li > a all);
     &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
-  }
 
-  &:not(:first-child) a {
-    &:extend(.navbar-default .navbar-nav > li + li > a all);
+    &.mode-toggler {
+      display: none;
+    }
   }
 }
 
@@ -91,5 +93,53 @@
 
   &:first-child {
     border-left: 1px solid #e2e2e2;
+  }
+}
+
+@media (max-width: 991px) {
+
+  :host-context(c-main-navigation) {
+    .modToggler();
+  }
+
+  :host-context(.app c-main-navigation) {
+    .modToggler();
+  }
+
+  :host-context(.app sub-navigation) {
+
+    &:not(:first-child) a,
+    a {
+      padding: 10px 35px;
+    }
+  }
+
+  :host-context(sub-navigation) {
+
+    &:not(:first-child) a,
+    a {
+      padding: 10px 35px;
+    }
+  }
+}
+
+.modToggler() {
+  &.expanded .mode-toggler:before {
+    content: "-";
+  }
+
+  a.mode-toggler {
+    display: block;
+    position: relative;
+    z-index: 1;
+    float: right;
+    padding: 10px;
+    border: 0;
+
+    &:before {
+      content: "+";
+      padding: 10px;
+      border: 0;
+    }
   }
 }

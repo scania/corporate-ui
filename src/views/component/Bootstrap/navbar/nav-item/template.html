@@ -7,15 +7,15 @@
   <!-- <a href="{{location}}" data-toggle="tab"><span><content></content></span></a> -->
 </template>
 
+<template is="dom-if" if="{{isSubNav}}">
+  <a href on-tap="toggleExpand" class="mode-toggler"></a>
+</template>
+
+<a href="{{location}}" class$="{{icon}}">{{text}}</a>
+
 <content select="sub-navigation">
   <!--
   TODO - We do not really want component specific stuff like this here, solve in a better way... 
   Might be possible to have it in primary-items, same thing goes for isSubNav
   -->
 </content>
-
-<!-- <template is="dom-if" if="{{isSubNav}}">
-  <a href class="sub-nav-item"><span class="icon-arrow-left"></span></a>
-</template> -->
-
-<a href="{{location}}" class$="{{setClasses(icon)}}">{{text}}</a>

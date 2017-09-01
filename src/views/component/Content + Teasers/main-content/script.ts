@@ -16,7 +16,8 @@ Polymer({
       $('body').toggleClass('navigation-open');
     })
 
-    window.onload = function() {
+    // "new" seems to be needed for ie to trigger the function
+    window.onload = new function() {
       self.setContentHeight.call(self);
     }
     window.onresize = function() {

@@ -30,7 +30,7 @@
   margin-top: 1px; // This makes it so that the border of main-nav is seen
 
   .navbar-default {
-    background: #f5f5f5;
+    background-color: #f5f5f5;
     margin-bottom: 0;
     min-height: 0;
     border-bottom: 1px solid #d3d3d3; // Maybe it would be better to add a navbar-collapse container inside instead...
@@ -48,68 +48,26 @@
     display: inline-block;
     border-right: 1px solid #e2e2e2;
   }
-
-  ::content {
-
-    c-navbar {
-
-      /*nav-item {
-
-        &:first-child {
-          padding-left: 2.5rem;
-        }
-
-        a {
-          background-color: transparent !important;
-        }              
-
-        &.active a > span {
-          border-bottom-color: #c50918 !important;
-        }
-
-        a {
-          font-family: "Scania Sans";
-          letter-spacing: .03rem;
-          line-height: 18px;
-          padding-top: 16px;
-          padding-bottom: 12px;
-          padding-right: 1.3rem;
-          padding-left: 1.3rem;
-
-          &:hover > span, &:active > span {
-            border-bottom-color: #c50918;
-          }
-
-          > span {
-            border-left: 0;
-            padding: 0;
-            border-bottom: 2px solid transparent;
-            text-transform: none;
-          }
-        }
-      }*/
-    }
-  }
 }
 
 @media (max-width: 991px) {
 
   :host {
     position: static;
+    margin-top: 0;
 
-    .caption {
-      display: block;
-      padding: 25px 2rem;
+    .navbar-default {
       background-color: #fff;
-      border-right: 0;
+      border-bottom: 0;
+    }
+    .caption {
+      display: none;
     }
 
     ::content {
 
-      nav-item {
+      nav-item.nav-item {
         display: block;
-        padding-left: 0;
-        border-bottom: 1px solid #e2e2e2;
 
         a {
           padding: 25px 2rem;
@@ -118,9 +76,11 @@
           line-height: 20px;
 
           &:hover {
+            text-decoration: none;
 
             &.nav-item:after {
               content: none;
+              border: 0;
             }
 
             span {
@@ -131,5 +91,13 @@
         }
       }
     }
+  }
+
+  :host-context(nav-item.expanded) {
+    display: block;
+  }
+
+  :host-context(nav-item.collapsed) {
+    display: none;
   }
 }

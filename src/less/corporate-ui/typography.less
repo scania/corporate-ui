@@ -129,6 +129,21 @@ article {
   }
   td, th { font-size: @td-font-size-app; }
 
+    &.compact {
+        body,
+        body& { font-size: @font-size-app * 0.9; }
+        h1 { font-size: @h1-font-size-app * 0.9; }
+        h2 { font-size: @h2-font-size-app * 0.9; }
+        h3 { font-size: @h3-font-size-app * 0.9; }
+        h4 { font-size: @h4-font-size-app * 0.9; }
+        h5 { font-size: @h5-font-size-app * 0.9; }
+        h6 { font-size: @h6-font-size-app * 0.9; }
+        p {
+          text-align: left;
+        }
+        td, th { font-size: @td-font-size-app * 0.86; }
+    } 
+
   h1, h2, h3, h4, h5, h6, legend {
     font-family: "Scania Sans Bold";
     text-align: left;
@@ -182,8 +197,8 @@ nav a,
   font-family: "Scania Sans";
 }
 .lead {
-  font-size: 1.6em;
-  font-weight: 200;
+  font-size: 1.2em;
+  font-weight: normal;
   line-height: 1.4;
 }
 

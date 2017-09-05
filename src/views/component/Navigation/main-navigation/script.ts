@@ -51,14 +51,15 @@ Polymer({
 
     // Used in mobile mode
     if (window.innerWidth <= 991) {
-      $('.navbar-collapse.c-main-navigation', this).css({
-        'padding-top'     : headerHeight,
-        'margin-top'      : headerHeight * -1,
+      var header = $('c-corporate-header').height();
+      $('.navbar-default.c-main-navigation', this).css({
+        'padding-top'     : header,
+        'margin-top'      : header * -1,
         'padding-bottom'  : footerHeight,
         'margin-bottom'   : footerHeight * -1
       });
 
-      $('.sticky', this).css({ top: headerHeight });
+      $('.sticky', this).css({ top: header });
     }
 
     navContainer.addClass('sticky');

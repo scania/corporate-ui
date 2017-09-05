@@ -301,107 +301,118 @@ ul.nav-tabs {
 @media (max-width: 991px) {
 
   .navbar-default {
+    font-size: 1.2rem;
 
-    .navbar-toggle {
-      display: block;
-      float: left;
-      margin: -18px 0 -19px -18px;
-      padding: 24px 17px;
-      border-radius: 0;
+    &,
+    .app & {
 
-      &.collapsed {
-
-        &:before {
-          content: none;
-        }
-        span {
-          display: block;
-        }
-      }
-      &:before {
-        font-family: 'corporate-icons';
-        content: "\e60d";
-        line-height: 14px;
-        height: 14px;
-        width: 22px;
+      .navbar-toggle {
         display: block;
-      }
-      span {
-        display: none;
-      }
-    }
-    .navbar-header {
-      padding: 18px;
-      text-align: center;
+        float: left;
+        margin: -18px 0 -19px -18px;
+        padding: 24px 17px;
+        border-radius: 0;
 
-      + .navbar-collapse,
-      + .navbar-collapse + .navbar-collapse {
-        background-color: #f5f5f5;
-        border-top: 0px;
-        padding: 0;
+        &.collapsed {
 
-        &.collapse {
-          display: none !important;
-
-          &.in {
-            display: block !important;
-
-            + .navbar-collapse {
-              display: block !important;
-            }
-          }
-        }
-
-        li {
-          float: none;
-
-          &.active {
-
-            &:after {
-              content: "-";
-              position: absolute;
-              right: 20px;
-              top: 50%;
-              transform: translate(0, -50%);
-              font-family: 'corporate-icons';
-              content: "\e662";
-            }
-
-            a {
-              border-left: 0;
-            }
-          }
-        }
-        + .navbar-collapse {
-          background-color: transparent;
-
-          li.active:after {
-            content: "";
-          }
-        }
-        .navbar-nav a {
-          padding: 29px 25px;
-          margin-left: 0;
-          font-size: 12px;
-          border-bottom: 1px solid #e2e2e2;
-
-          &:hover {
-            text-decoration: underline;
-          }
-          &:before,
-          &:after {
+          &:before {
             content: none;
           }
+          span {
+            display: block;
+          }
+        }
+        &:before {
+          font-family: 'corporate-icons';
+          content: "\e60d";
+          line-height: 14px;
+          height: 14px;
+          width: 22px;
+          display: block;
+        }
+        span {
+          display: none;
         }
       }
-      .navbar-symbol {
-        width: 40px;
-        height: 37px;
-        margin: -5px;
+      .navbar-header {
+        padding: 18px;
+        text-align: center;
+
+        + .navbar-collapse,
+        + .navbar-collapse + .navbar-collapse {
+          background-color: #f5f5f5;
+          border-top: 0px;
+          padding: 0;
+          font-size: 1.2rem;
+
+          &.collapse {
+            display: none !important;
+
+            &.in {
+              display: block !important;
+
+              + .navbar-collapse {
+                display: block !important;
+              }
+            }
+          }
+
+          li {
+            float: none;
+
+            &.active {
+
+              &:after {
+                content: "-";
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translate(0, -50%);
+                font-family: 'corporate-icons';
+                content: "\e662";
+              }
+
+              a {
+                border-left: 0;
+              }
+            }
+          }
+          + .navbar-collapse {
+            background-color: transparent;
+
+            > .navbar-nav li a {
+              padding-left: 35px;
+            }
+            li.active:after {
+              content: "";
+            }
+          }
+          .navbar-nav a {
+            padding: 10px 25px;
+            margin-left: 0;
+            border-bottom: 1px solid #e2e2e2;
+
+            &:hover {
+              text-decoration: none;
+            }
+            &:before,
+            &:after {
+              content: none;
+            }
+          }
+        }
+        .navbar-symbol {
+          width: 40px;
+          height: 37px;
+          margin: -5px;
+        }
+        .navbar-brand,
+        .navbar-nav {
+          display: none;
+        }
       }
-      .navbar-brand,
       .navbar-nav {
-        display: none;
+        float: none;
       }
     }
   }
@@ -467,11 +478,11 @@ ul.nav-tabs {
 }
 .sub-level() {
   background-color: #f3f3f3;
+  font-size: 1.5rem;
 
   a {
     font-family: "Scania Sans";
     text-transform: none;
-    font-size: 15px; // Whats up with this size, should we really have this...?
     position: relative;
 
     &:hover:after {

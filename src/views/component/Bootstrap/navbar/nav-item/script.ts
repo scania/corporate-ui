@@ -18,13 +18,16 @@ Polymer({
       type: Boolean,
       value: false
     },
-    icon: String
+    icon: {
+      type: String
+    }
   },
   created: function() {
     // This section is needed to retrive a string or a element from text attribute
     var elm = this.childNodes[0];
     this.properties.text.value = (elm || this).outerHTML || elm.textContent;
     this.className += ' ' + this.nodeName.toLowerCase(); // Adds nav-item class to nav-item element (is needed for some app specific style)
+    this.classes = this.className;
   },
   attached: function() {
     //$(this).wrapInner('li').unwrap();
@@ -41,12 +44,24 @@ Polymer({
     if( this.querySelectorAll('sub-navigation').length ) {
       this.isSubNav = true;
     }
-  },
-  setClasses: function(icon) {
-    return icon ? 'icon-' + icon : '';
+
+    if( this.hasClass(this, 'active') ) {
+      this.toggleExpand(this._getEvent());
+    }
+
+    this.icon = this.icon ? 'icon-' + this.icon : '';
   },
   ready: function() {
     var link = this.querySelector('a');
     link.innerHTML = link.textContent;
+  },
+  hasClass: function(element, className) {
+    return element.className.split(' ').indexOf(className) > -1;
+  },
+  toggleExpand: function(e) {
+    e.preventDefault();
+    var state = this.hasClass(this, 'expanded') ? ' collapsed' : ' expanded';
+    this.className = this.classes + state;
+    // this.mode = ['expand', 'collapse'].find(x => x !== this.mode); // Another way of doing the same :)
   }
 });

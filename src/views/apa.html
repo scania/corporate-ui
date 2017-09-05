@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html class="mandatory-scrollbars">
+    <head>
+        <title>Operational Analysis</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Scania Bootstrap -->
+        <link href="https://static.scania.com/resources/images/compressed/logotypes/favicon.ico" rel="shortcut icon">
+        <!-- Frameworks -->
+        <script src="https://static.scania.com/vendors/frameworks/jQuery/1.10.2/jquery.min.js" type="text/javascript"></script>
+        <script src="https://static.scania.com/build/global/1.3.3/js/scania-intranet-scripts.js" type="text/javascript"></script>
+        <!-- Scania Bootstrap -->
+        <link href="https://static.scania.com/build/global/1.6.0/css/scania-bootstrap.css" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap High Charts -->
+        <script src="https://static.scania.com/vendors/components/jQuery/high-charts/4.0.4/js/highcharts.js" type="text/javascript"></script>
+        <script src="https://static.scania.com/vendors/components/jQuery/high-charts/4.0.4/js/modules/exporting.js" type="text/javascript"></script>
+        <script src="https://static.scania.com/vendors/components/jQuery/high-charts/4.0.4/js/themes/scania-bootstrap.js" type="text/javascript"></script>
+        
+        <!-- File Upload Component -->        
+        <script src="https://static.scania.com/vendors/components/pure-js/file-upload/1.0.0/file-upload.js" type="text/javascript"></script>
+        
+        <!-- Loading indicator -->
+        <script src="https://static.scania.com/vendors/components/jQuery/loading/2.0.0/js/jquery.loading.js" type="text/javascript"></script>
+
+        <!-- Table Sorter Plugin -->
+        <script src="https://static.scania.com/vendors/components/jQuery/table-sorter/2.17.9/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+        <script src="https://static.scania.com/vendors/components/jQuery/table-sorter/2.17.9/js/jquery.tablesorter.widgets.min.js" type="text/javascript"></script>
+        <link href="https://static.scania.com/vendors/components/jQuery/table-sorter/2.17.9/css/table-sorter.css" rel="stylesheet" type="text/css"/> 
+        <!-- Tablesorter: optional -->
+        <script src="/OdsWeb/Scripts/jquery.tablesorter.pager.js" type="text/javascript"></script>
+        <script src="https://static.scania.com/vendors/components/jQuery/table-sorter/2.17.9/addons/expandable/jquery.tablesorter.expandable.js" type="text/javascript"></script>
+        <link href="https://static.scania.com/vendors/components/jQuery/table-sorter/2.17.9/addons/pager/jquery.tablesorter.pager.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="https://static.scania.com/build/users/ods/1.0.0/js/bootstrap-daterangepicker/moment.js" type="text/javascript"></script>
+        <script src="https://static.scania.com/build/users/ods/1.0.0/js/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+        
+        <!-- Bootstrap Datepicker -->
+        <script src="https://static.scania.com/vendors/components/jQuery/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <link href="https://static.scania.com/vendors/components/jQuery/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Including the Guided Tour -->
+        <script type="text/javascript" src="https://static.scania.com/vendors/components/jQuery/bootstrap-tour/0.10.1/js/bootstrap-tour.min.js"></script>
+        <link rel="stylesheet" href="https://static.scania.com/development/users/ods/css/bootstrap-tour.css" />
+        
+
+        <!-- Google Analytics for Guided Tour -->
+        <script src="https://static.scania.com/development/users/ods/google-analytics/google.js"></script>
+        <!-- <link href="https://static.scania.com/build/global/beta2/css/corporate-ui.css" rel="stylesheet" type="text/css"/> -->
+<script src="/js/corporate-ui.js"></script>
+            <!-- Different ODS specific css and js files should be used for prod/preprod and test/dev -->
+                    <!-- Scania Bootstrap Operational Analysis used in Development and Test environments -->
+                    <link rel="stylesheet" linktype="text/css" href="https://static.scania.com/development/users/ods/css/ods.css" />
+                    <link media="print" rel="stylesheet" type="text/css" href="https://static.scania.com/development/users/ods/css/print.css" />
+                    <link href="/OdsWeb/Css/ods-local.css" rel="stylesheet" type="text/css" />
+                    <link href="/OdsWeb/Css/ods-localPrint.css" media="print" rel="stylesheet" type="text/css" />
+
+
+        <!-- For Old Browsers -->
+        <!--[if lt IE 9]>
+        <script src="//static.scania.com/vendors/components/pure-js/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//static.scania.com/vendors/components/pure-js/respond/1.3.0/respond.min.js"></script>
+        <link href="//static.scania.com/vendors/components/pure-js/respond/1.3.0/respond_proxy.html" id="respond_proxy" rel="respond_proxy" />
+        <link href=respond.proxy.gif" id="respond_redirect" rel="respond_redirect" />
+        <script src="respond.proxy.js"></script>
+        <![endif]-->
+    </head>
+
+    <body class="bootstrap ods app">
+            <div class="container portal-main-container padding-top">
+                <!-- BEGIN MAIN CONTAINER -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="screen-only">
+            <span class="scania-portal-logo" onclick="window.location.href=&#39;/OdsWeb/Home/Index&#39;; "><img src="https://static.scania.com/resources/images/compressed/logotypes/logo_symbol_small.png"></span>
+            <div class="portal-heading">Operational Analysis</div>
+        </div>
+<form action="/OdsWeb/Home/GetProductIndividual?returnUrl=%2FOdsWeb%2F" class="serialNumberSelector" id="HomeProductSelectionForm" method="post" role="form">                <div class="inputGroupContainer form-group screen-only">
+                    <div class="input-group">
+                        <input autofocus="True" class="form-control input-md" id="ProductNumber" maxlength="7" name="ProductNumber" placeholder="Ange ett chassi- eller motornummer" type="text" value="" />
+                        <span class="input-group-btn">
+                            <input type="submit" value=Visa class="btn btn-md btn-primary" id="ProductSelectClick" style="margin-left: 0; word-break: normal;" />
+                        </span>
+                    </div>
+                </div>
+</form>        
+        <div class="btn-group pull-right language-selector">
+            <ul class="nav nav-pills">
+                
+                <li class="dropdown pull-right">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">svenska (Sverige) <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=en-GB&amp;returnUrl=%2FOdsWeb%2F">English (United Kingdom)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=sv-SE&amp;returnUrl=%2FOdsWeb%2F">svenska (Sverige)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=fi-FI&amp;returnUrl=%2FOdsWeb%2F">suomi (Suomi)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=cs-CZ&amp;returnUrl=%2FOdsWeb%2F">čeština (Česk&#225;&#160;republika)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=de-DE&amp;returnUrl=%2FOdsWeb%2F">Deutsch (Deutschland)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=es-ES&amp;returnUrl=%2FOdsWeb%2F">Espa&#241;ol (Espa&#241;a, alfabetizaci&#243;n internacional)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=fr-FR&amp;returnUrl=%2FOdsWeb%2F">fran&#231;ais (France)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=it-IT&amp;returnUrl=%2FOdsWeb%2F">italiano (Italia)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=ja-JP&amp;returnUrl=%2FOdsWeb%2F">日本語 (日本)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=ko-KR&amp;returnUrl=%2FOdsWeb%2F">한국어 (대한민국)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=nl-NL&amp;returnUrl=%2FOdsWeb%2F">Nederlands (Nederland)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=pl-PL&amp;returnUrl=%2FOdsWeb%2F">polski (Polska)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=pt-BR&amp;returnUrl=%2FOdsWeb%2F">Portugu&#234;s (Brasil)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=ru-RU&amp;returnUrl=%2FOdsWeb%2F">русский (Россия)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=tr-TR&amp;returnUrl=%2FOdsWeb%2F">T&#252;rk&#231;e (T&#252;rkiye)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=zh-CN&amp;returnUrl=%2FOdsWeb%2F">中文(中华人民共和国)</a></li>
+                            <li><a href="/OdsWeb/Home/SetSelectedLanguage?langId=zh-TW&amp;returnUrl=%2FOdsWeb%2F">中文(台灣)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN PORTAL NAVIGATION -->
+                        <nav class="navbar navbar-default portal-navigation" role="navigation">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand visible-xs" href="#" data-noclick="true"><small>Menu</small></a>
+                            </div>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+
+                <li id="Menu1_Home" class="active"><a href="/OdsWeb/Home/Index">Start</a></li>
+                <li id="Menu1_OperationalData" class="disabled"><a href="#">Driftdata</a></li>
+                <li id="Menu1_Analyses" class="disabled"><a href="#">Analyser</a></li>
+                <li id="Menu1_MyRequests" class="loading-catalyst"><a href="/OdsWeb/RemoteDiagnostics/MyRequests">Mina best&#228;llningar</a></li>
+                <li id="Menu1_TransferFiles" class="loading-catalyst"><a href="/OdsWeb/TransferFiles/Index">&#214;verf&#246;r filer</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn btn-sm btn-default" type="button" id="maximize-button"><span id="maximize-icon" class="icon-fullscreen"></span></button></li>
+    </ul>
+</div>
+
+                        </nav>
+                        <!-- END PORTAL NAVIGATION -->
+                        <div class="portlet-application padding-bottom padding-top">
+                            <div class="row">
+
+                                    <!-- BEGIN MAIN CONTENT -->
+                                    <div class="col-md-12">
+                                        
+<div class="multiple-chassis" data-id="product-tab-layout">
+    <div class="padding-top">
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#liAddProductIndividual").click(function() {
+            var position = $(this).position();
+
+            var divAddProductIndividual = $("#divAddProductIndividual");
+            divAddProductIndividual.css("top", position.top - ((divAddProductIndividual.height() - $(this).height()) / 2));
+            divAddProductIndividual.css("left", position.left + $(this).width() - 6);
+            divAddProductIndividual.show();
+        });
+    });
+</script>
+
+
+
+<div class="modal fade" id="modal-add-product" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class=" modal-dialog" style="width: 600px; margin-top: 180px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Ange chassinr eller motornr</h4>
+            </div>
+<form action="/OdsWeb/Home/AddProductIndividual?returnUrl=%2FOdsWeb%2F" id="TabProductSelectionForm" method="post" role="form">                <div class="modal-body">
+                    <div class="Row">
+                        <div class="col-md-5">
+                            <div class="input-section">
+                                <div class="inputGroupContainer form-group">
+                                    <div class="input-group-icon">
+                                        <input autofocus="True" class="form-control input-md" id="ProductNumber" maxlength="7" name="ProductNumber" placeholder="Ange ett chassi- eller motornummer" type="text" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default btn-sm btn-primary">L&#228;gg till produkt</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Avbryt</button>
+                </div>
+</form>        </div>
+    </div>
+</div>
+        <br/>
+        <div class="col-md-8">
+
+            <h3 class="wcm">Nyheter</h3>
+            <p><p><strong>Remote Diagnostics i Operational Analysis Web</strong></p>
+<ul>
+<li>För användare med behörighet finns nu möjlighet att beställa nya utläsningar för valt fordon eller vald motor genom att klicka på den nya knappen <i>Beställ ny utläsning</i> i produktvalspanelen.</li>
+<li>För användare med behörighet finns nu möjlighet att se sina utläsningsbeställningar under Mina Beställningar i menyn.</li>
+<li>Denna funktionalitet kommer att ersätta den nuvarande applikationen Remote Diagnostics Tool.</li>
+</ul></p>
+            <p><p><strong>Release augusti 2017</strong></p>
+<ul>
+<li>Produktval har lyfts upp till sidhuvudet. Produkt som väljs här ersätter eventuellt tidigare val.</li>
+<li>Startsidan innehåller nu mer information om det fordon som valts.</li>
+<li>Överföring av driftdatafiler har flyttats till ett eget menyval.</li>
+</ul></p>
+            <p><p><strong>Release september 2016</strong></p>
+<ul>
+<li>Justeringar av statusrapportens utseende.</li>
+</ul> </p>
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="wcm">&#214;verf&#246;r driftdata</h3>
+<form action="/OdsWeb/TransferFiles/UploadFile" enctype="multipart/form-data" method="post">                <div>
+                    <div class="input-section">
+                        <div class="input-group-icon">
+                            <div class="file-input" id="my-file-input">
+                                <input type="file" name="UploadFile" id="exampleInputFile" class="file-input-field" multiple=""/>
+                                <input type="text" class="file-input-replacement form-control" id="exampleInputFileReplacement" placeholder=V&#228;lj filer/>
+                                <i class="icon-file"></i>
+                            </div>
+                            <span class="input-group-btn file-submit">
+                                <input type="submit" value="Skicka in" class="btn btn-md btn-default" style="margin-left: 0; word-break: normal;">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+</form>        </div>
+    </div>
+</div>
+
+                                    </div>
+                                    <!-- END MAIN CONTENT -->
+                            </div>
+                        </div>
+                        <!-- BEGIN FOOTER -->
+
+                        <!-- END FOOTER -->
+                    </div>
+                </div>
+                <!-- END MAIN CONTAINER -->
+
+                    <!-- Different ODS specific css and js files should be used for prod/preprod and test/dev -->
+                            <script src="/OdsWeb/Scripts/ods-local.js"></script>
+                            <script src="/OdsWeb/Scripts/add-order.js"></script>
+                            <!-- Scania Bootstrap Operational Analysis used in Development and Test environments -->
+                            <script src="https://static.scania.com/development/users/ods/js/ods.js"></script>
+
+                
+                <script src="https://static.scania.com/build/global/1.6.0/js/scania-bootstrap.js" type="text/javascript"></script>
+                
+                <!-- Google Analytics -->
+                <script src="https://static.scania.com/build/users/ods/1.0.0/google-analytics/google.js"></script>
+
+
+                <script>
+                    // The below script sets the loading indicator when submitting a form
+                    // and when clicking on an object with the "loading-catalyst" class
+                    $(window).load(function() {
+                        $(".loading-catalyst").click(function() {
+                            $(".container").loading({ position: 'fixed' });
+                        });
+                        $("form").submit(function() {
+                            $(".load-icon-container").addClass("loading");
+                            $(".container").loading("on");
+                        });
+                    });
+                </script>
+            </div>
+        
+        <!-- This style overrides a central CSS -->
+        <style>
+            td .icon-warning-sign:after {
+                content: ''
+            }
+        </style>
+    </body>
+</html>

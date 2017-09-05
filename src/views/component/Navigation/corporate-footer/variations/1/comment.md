@@ -1,4 +1,4 @@
 
-### Variation-1
+### Corporate Footer
 
 Variation 1

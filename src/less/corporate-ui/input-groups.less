@@ -1,0 +1,60 @@
+
+
+// // ALL BUTTONS ARE SET TO white-space: normal - THIS FIXES PROBLEMS WITH DROPDOWNS CARETS;
+// 
+
+
+.input-group-btn {
+
+	.app & {
+			padding: 14px 12px;
+    }
+
+	&:last-child > .btn {
+		background-color: whitesmoke;
+    	border-width: 0;
+    	margin-left: 4px;
+
+	}
+
+	&::first-child > .btn {
+     background-color: whitesmoke;
+    border-width: 0;
+    margin-right: 4px; }
+
+	& .dropdown-toggle {
+		white-space: nowrap;
+	}
+}
+
+.input-group-addon {
+
+	background-color: whitesmoke;
+   	border: 0px;
+    border-radius: 0px;
+    font-size: inherit;
+
+    &:first-child {
+    	border-right: 2px solid #FFFFFF;
+    }
+    &:last-child {
+    	border-left: 2px solid #FFFFFF;
+    }
+
+    &:.input-group-addon [class^="icon-"],
+	.input-group-addon [class*=" icon-"] {
+			font-size: 14px;
+		    line-height: 13px;
+		    vertical-align: middle;
+		}
+
+}
+
+.input-group-lg  {
+    border-radius: 0px;
+}
+
+.input-group .form-control:first-child {
+    box-shadow: none;
+}
+

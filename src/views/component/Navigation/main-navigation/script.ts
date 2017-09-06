@@ -19,8 +19,23 @@ Polymer({
     $('primary-items, secondary-items' this).addClass('nav navbar-nav');
     $('secondary-items' this).addClass('navbar-right');
 
+    $('#main-navigation', this).on('show.bs.collapse hidden.bs.collapse', function() {
+      $('body').toggleClass('navigation-open');
+    })
+
     this.siteName = $('c-corporate-header')[0].siteName;
     this.siteUrl = $('c-corporate-header')[0].siteUrl;
+
+    // Hide hamburger menu if no items exist in main-navigation
+    if (this.querySelectorAll('nav-item').length) {
+      var elm = document.body.querySelector('c-corporate-header .navbar-toggle');
+      elm.className = elm.className.replace(/hidden/, '');
+    }
+
+    // Move sub-navigation items to be rendered after connected anchor element
+    this.querySelectorAll('sub-navigation').forEach(function(item) {
+      item.parentNode.insertAdjacentElement('afterend', item);
+    });
 
     // TODO - Remove timeout and make it work widthout it
     setTimeout(function() {
@@ -42,10 +57,8 @@ Polymer({
         navContainer = $('> .navbar-default', this),
         stickyNavTop = $(this).offset().top,
         scrollTop = $(window).scrollTop(), // our current vertical position from the top
-        headerHeight = $('.navbar-toggle:visible', this).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto',// On desktop mode it will use #main-nav on mobile .navbar-toggle
         footerHeight = $('.navbar-footer', this).height() || 'auto';
 
-    $(this).height( headerHeight );
     $('.navbar-collapse.c-main-navigation', this).removeAttr('style');
     navContainer.removeAttr('style');
 

@@ -16,6 +16,16 @@ Polymer({
     linkText: {
       type: String,
       value: 'Read more'
+    },
+    btnTypeItem: {
+      type: String,
+      value: function() {
+        if(this.attributes.btnTypeItem !== undefined){
+          this.btnTypeItem = this.attributes.btnTypeItem.value;
+        }else {
+          this.btnTypeItem = "link";
+        }
+      }
     }
   }
 });

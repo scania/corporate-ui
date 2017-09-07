@@ -17,14 +17,17 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Scania Sans Headline Bold";
   line-height: 1.15;
-  color: #041e42;
+  color: @brand-primary;
   text-align: center;
 
   small {
     font-family: "Scania Sans Headline";
     font-size: 0.5em;
     font-weight: normal;
-    color: #8089a0;
+    color: @brand-primary;
+    display: block;
+    margin-top: 0.2em;
+    margin-left: 0;
   }
 }
 h1 {
@@ -55,8 +58,11 @@ a {
   &,
   &:hover,
   &:active {
-    color: @color-brand-03;
+    color: @brand-primary-app;
   }
+article p a {
+    font-weight: bold;
+}    
 }
 dt {
   font-weight: normal;
@@ -192,14 +198,18 @@ nav a,
 .text-muted {
   color: @text-muted-color;
 }
-.breadcrumbs,
-.lead {
+.breadcrumbs {
   font-family: "Scania Sans";
 }
-.lead {
-  font-size: 1.2em;
+
+article p.lead,
+p.lead,
+.app p.lead {
+  font-size: 1.26em;
+  color: @brand-primary;
   font-weight: normal;
   line-height: 1.4;
+  font-family: 'Scania Sans Bold';  
 }
 
 

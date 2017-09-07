@@ -29,17 +29,6 @@
           background-repeat: no-repeat;
         }
 
-        .app .wordmark {
-          float: right;
-          width: 20px;
-          height: 29px;
-          display: inline-block;
-          vertical-align: middle;
-          background-size: 100%;
-          background-repeat: no-repeat;
-        }        
-
-        
         .social-channels {
           padding-left: 0;
           margin-bottom: 0;
@@ -119,11 +108,6 @@
             }
           }
         }
-
-        .app c-social-share {
-            display: none;
-        }
-
 
         @media (max-width: 991px) {
 
@@ -252,9 +236,25 @@
           }
         }
       }
-:host-context(.scania.app) {
+:host-context(.app) {
 
-    .app footer, footer .app, footer.app {
-      padding: 12px 30px 6px;
+    footer, footer .app, footer.app {
+      padding: 15px 30px 10px;
     }
+
+    .wordmark {
+      width: 125px;
+      height: 21px;
+    }
+
+    ::content {
+      
+      c-social-share {
+        display:none}
+
+    .footer-copy-text {
+      padding: 0;
+      }
+  }
+
 }

@@ -16,8 +16,8 @@ Polymer({
 
     //$('primary-items, secondary-items' this).contents().unwrap();
 
-    $('primary-items, secondary-items' this).addClass('nav navbar-nav');
-    $('secondary-items' this).addClass('navbar-right');
+    $('primary-items, secondary-items', this).addClass('nav navbar-nav');
+    $('secondary-items', this).addClass('navbar-right');
 
     $('#main-navigation', this).on('show.bs.collapse hidden.bs.collapse', function() {
       $('body').toggleClass('navigation-open');
@@ -37,13 +37,9 @@ Polymer({
       this.parentNode.insertAdjacentElement('afterend', this);
     });
 
-    // TODO - Remove timeout and make it work widthout it
-    setTimeout(function() {
-      self.sticky.call(self);
-    }, 20);
+    self.sticky.call(self);
 
-    // and run it again every time you scroll
-    $(window).on('scroll resize', function() {
+    $(window).on('load scroll resize', function() {
       self.sticky.call(self);
     });
 
@@ -57,26 +53,22 @@ Polymer({
         navContainer = $('> .navbar-default', this),
         stickyNavTop = $(this).offset().top,
         scrollTop = $(window).scrollTop(), // our current vertical position from the top
+        headerHeight = $('.navbar-toggle:visible', this).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto',// On desktop mode it will use #main-nav on mobile .navbar-toggle
         footerHeight = $('.navbar-footer', this).height() || 'auto';
 
+    $(this).height( headerHeight );
+
     $('.navbar-collapse.c-main-navigation', this).removeAttr('style');
+
     navContainer.removeAttr('style');
+    navContainer.addClass('sticky');
+    body.addClass('header-is-sticky');
 
     // Used in mobile mode
     if (window.innerWidth <= 991) {
       var header = $('c-corporate-header').height();
-      $('.navbar-default.c-main-navigation', this).css({
-        'padding-top'     : header,
-        'margin-top'      : header * -1,
-        'padding-bottom'  : footerHeight,
-        'margin-bottom'   : footerHeight * -1
-      });
-
       $('.sticky', this).css({ top: header });
     }
-
-    navContainer.addClass('sticky');
-    body.addClass('header-is-sticky');
 
     // TODO - should not need to check for parent, does that for this to work on UX-lib while showing main-navigation
     if (this.parentNode.nodeName === 'C-MAIN-CONTENT' && scrollTop <= Math.max(stickyNavTop - 15, 0)) {

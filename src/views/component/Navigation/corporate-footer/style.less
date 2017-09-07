@@ -15,10 +15,10 @@
           padding: 46px 30px 20px;
         }
 
-        .app c-corporate-footer footer.c-corporate-footer {
-          padding: 12px 30px 6px;
+        .app footer {
+          background-color: red;
         }
-        
+
         .wordmark {
           float: right;
           width: 178px;
@@ -28,6 +28,16 @@
           background-size: 100%;
           background-repeat: no-repeat;
         }
+
+        .app .wordmark {
+          float: right;
+          width: 20px;
+          height: 29px;
+          display: inline-block;
+          vertical-align: middle;
+          background-size: 100%;
+          background-repeat: no-repeat;
+        }        
 
         
         .social-channels {
@@ -108,6 +118,10 @@
               }
             }
           }
+        }
+
+        .app c-social-share {
+            display: none;
         }
 
 
@@ -238,3 +252,9 @@
           }
         }
       }
+:host-context(.scania.app) {
+
+    .app footer, footer .app, footer.app {
+      padding: 12px 30px 6px;
+    }
+}

@@ -33,8 +33,8 @@ Polymer({
     }
 
     // Move sub-navigation items to be rendered after connected anchor element
-    this.querySelectorAll('sub-navigation').forEach(function(item) {
-      item.parentNode.insertAdjacentElement('afterend', item);
+    $('sub-navigation', this).each(function() {
+      this.parentNode.insertAdjacentElement('afterend', this);
     });
 
     // TODO - Remove timeout and make it work widthout it

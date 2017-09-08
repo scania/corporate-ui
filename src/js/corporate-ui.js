@@ -199,25 +199,27 @@ CorporateUi = (function() {
   }
 
   function appendFavicon() {
-    importLink(window.favicon_root + 'favicon.ico', 'shortcut icon');
+    var favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
 
-    importLink(window.favicon_root + 'apple-icon-57x57.png', 'apple-touch-icon', '57x57');
-    importLink(window.favicon_root + 'apple-icon-60x60.png', 'apple-touch-icon', '60x60');
-    importLink(window.favicon_root + 'apple-icon-72x72.png', 'apple-touch-icon', '72x72');
-    importLink(window.favicon_root + 'apple-icon-76x76.png', 'apple-touch-icon', '76x76');
-    importLink(window.favicon_root + 'apple-icon-114x114.png', 'apple-touch-icon', '114x114');
-    importLink(window.favicon_root + 'apple-icon-120x120.png', 'apple-touch-icon', '120x120');
-    importLink(window.favicon_root + 'apple-icon-144x144.png', 'apple-touch-icon', '144x144');
-    importLink(window.favicon_root + 'apple-icon-152x152.png', 'apple-touch-icon', '152x152');
-    importLink(window.favicon_root + 'apple-icon-180x180.png', 'apple-touch-icon', '180x180');
+    importLink(favicon_root + 'favicon.ico', 'shortcut icon');
 
-    importLink(window.favicon_root + 'android-icon-192x192.png', 'icon', '192x192');
+    importLink(favicon_root + 'apple-icon-57x57.png', 'apple-touch-icon', '57x57');
+    importLink(favicon_root + 'apple-icon-60x60.png', 'apple-touch-icon', '60x60');
+    importLink(favicon_root + 'apple-icon-72x72.png', 'apple-touch-icon', '72x72');
+    importLink(favicon_root + 'apple-icon-76x76.png', 'apple-touch-icon', '76x76');
+    importLink(favicon_root + 'apple-icon-114x114.png', 'apple-touch-icon', '114x114');
+    importLink(favicon_root + 'apple-icon-120x120.png', 'apple-touch-icon', '120x120');
+    importLink(favicon_root + 'apple-icon-144x144.png', 'apple-touch-icon', '144x144');
+    importLink(favicon_root + 'apple-icon-152x152.png', 'apple-touch-icon', '152x152');
+    importLink(favicon_root + 'apple-icon-180x180.png', 'apple-touch-icon', '180x180');
 
-    importLink(window.favicon_root + 'favicon-32x32.png', 'icon', '32x32');
-    importLink(window.favicon_root + 'favicon-96x96.png', 'icon', '96x96');
-    importLink(window.favicon_root + 'favicon-16x16.png', 'icon', '16x16');
+    importLink(favicon_root + 'android-icon-192x192.png', 'icon', '192x192');
 
-    importLink(window.favicon_root + 'manifest.json', 'manifest');
+    importLink(favicon_root + 'favicon-32x32.png', 'icon', '32x32');
+    importLink(favicon_root + 'favicon-96x96.png', 'icon', '96x96');
+    importLink(favicon_root + 'favicon-16x16.png', 'icon', '16x16');
+
+    importLink(favicon_root + 'manifest.json', 'manifest');
 
     generateMeta('msapplication-TileColor', '#000');
     generateMeta('msapplication-TileImage', window.favicon_root + 'ms-icon-144x144.png');
@@ -231,8 +233,6 @@ CorporateUi = (function() {
     window.corporate_ui_params = urlInfo(scriptUrl).search.substring(1);
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
     window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
-    window.vendors_root = window.static_root + '/vendors/';
-    window.favicon_root = window.static_root + '/resources/logotype/scania/favicon/';
     window.protocol = urlInfo(scriptUrl).protocol;
     window.environment = urlInfo(scriptUrl).pathname.split('/')[1];
     window.params = {};
@@ -250,9 +250,6 @@ CorporateUi = (function() {
     /*window.Polymer = {
       dom: 'shadow'
     };*/
-    if (localhost) {
-      window.favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
-    }
   }
 
   function polymerInject() {
@@ -304,21 +301,21 @@ CorporateUi = (function() {
 
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.vendors_root + 'frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
+      importScript('/vendors/frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
     }
 
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
-      importScript(window.vendors_root + 'es6-promise/dist/4.1.0/es6-promise.js');
+      importScript('/vendors/es6-promise/dist/4.1.0/es6-promise.js');
     }
 
     if (window.params.polymer !== 'false') {
-      //importLink(window.vendors_root + 'frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
-      importLink(window.vendors_root + 'frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
+      //importLink('/vendors/frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
+      importLink('/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
     }
 
     if (window.params.css !== 'custom') {
-      importLink(window.vendors_root + 'frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
+      importLink('/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
     }
 
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
@@ -330,10 +327,10 @@ CorporateUi = (function() {
         window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
         window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
       ];
-    }
 
-    for (var i = 0; i < window.preLoadedComponents.length; i++) {
-      importLink(window.preLoadedComponents[i], 'import');
+      for (var i = 0; i < window.preLoadedComponents.length; i++) {
+        importLink(window.preLoadedComponents[i], 'import');
+      }
     }
   }
 

@@ -14,22 +14,30 @@ body {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Scania Sans Headline Bold";
   line-height: 1.15;
   color: @brand-primary;
   text-align: center;
+}
 
-  small {
-    font-family: "Scania Sans Headline";
-    font-size: 0.5em;
-    font-weight: normal;
-    color: @brand-primary;
-    display: block;
-    margin-top: 0.2em;
-    margin-left: 0;
+.page-header {
+  h1, 
+  h2, 
+  h3 {
+    small {
+      font-family: "Scania Sans Headline";
+      font-size: 0.5em;
+      font-weight: normal;
+      color: @brand-primary;
+      display: block;
+      margin-top: 0.2em;
+      margin-left: 0;
+    }
   }
 }
+
 h1 {
   font-size: @h1-font-size;
   line-height: 0.98;

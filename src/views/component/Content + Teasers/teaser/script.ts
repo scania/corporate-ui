@@ -11,11 +11,8 @@ Polymer({
     btnType: {
       type: String,
       value: function(){
-        if(this.attributes.btnType !== undefined){
-          this.btnType = this.attributes.btnType.value;
-        }else {
-          this.btnType = "primary";
-        }
+  
+          return(this.btnType = this.attributes.btnType ? this.attributes.btnType.value : 'primary');
       }
     }
   },

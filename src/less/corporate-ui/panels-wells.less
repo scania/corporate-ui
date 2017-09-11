@@ -55,6 +55,7 @@
               // &:extend(.panel-heading);
           background-color: @dark-content-block;
           border: 0px;
+          color: inherit;
           // margin-bottom: 0px;
 
           &:first-child {
@@ -208,11 +209,18 @@
   }
   //wells
   .well {
-      background-color: @dark-content-block;
-      border-radius: 0px;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-      border: 0;
+    background-color: @dark-content-block;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+
+    input {
+
+      &[type=text] {
+        background-color: #FFFFFF;
+      }
+    }
   }
 
 .jumbotron h1, .jumbotron .h1 {

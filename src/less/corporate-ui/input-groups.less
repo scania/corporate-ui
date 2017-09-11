@@ -1,52 +1,77 @@
+// @import (reference) 'variables';
+// @import (reference) 'mixins';
+
+
+
+// .btn-mix(default);
+// .btn-mix(primary);
+// .btn-mix(info);
+// .btn-mix(success);
+// .btn-mix(warning);
+// .btn-mix(danger);
 
 
 // // ALL BUTTONS ARE SET TO white-space: normal - THIS FIXES PROBLEMS WITH DROPDOWNS CARETS;
 // 
 
-
 .input-group-btn {
 
-	.app & {
-			padding: 14px 12px;
+    
+    word-break: normal;
+
+    &:last-child > .btn {
+
+        
+          padding: 10px 25px;
+        
+
+        &.btn-default {
+            background-color: whitesmoke;
+            border-width: 0;
+            margin-left: 4px;
+            
+        }
+
     }
 
-	&:last-child > .btn {
-		background-color: whitesmoke;
-    	border-width: 0;
-    	margin-left: 4px;
+    &:first-child > .btn {
 
-	}
+            padding: 10px 25px;
 
-	&::first-child > .btn {
-     background-color: whitesmoke;
-    border-width: 0;
-    margin-right: 4px; }
+         &.btn-default {
+            background-color: whitesmoke;
+            border-width: 0;
+            margin-right: 4px;
 
-	& .dropdown-toggle {
-		white-space: nowrap;
-	}
+        }
+       
+         }
+
+    & .dropdown-toggle {
+        white-space: nowrap;
+    }
 }
 
 .input-group-addon {
 
-	background-color: whitesmoke;
-   	border: 0px;
+    background-color: whitesmoke;
+    border: 0px;
     border-radius: 0px;
     font-size: inherit;
 
     &:first-child {
-    	border-right: 2px solid #FFFFFF;
+        border-right: 2px solid #FFFFFF;
     }
     &:last-child {
-    	border-left: 2px solid #FFFFFF;
+        border-left: 2px solid #FFFFFF;
     }
 
-    &:.input-group-addon [class^="icon-"],
-	.input-group-addon [class*=" icon-"] {
-			font-size: 14px;
-		    line-height: 13px;
-		    vertical-align: middle;
-		}
+    &[class^="icon-"],
+      [class*=" icon-"] {
+            font-size: 14px;
+            line-height: 13px;
+            vertical-align: middle;
+        }
 
 }
 

@@ -9,6 +9,7 @@ var fs = require('fs'),
     sourcemaps = require('gulp-sourcemaps'),
     rename = require('gulp-rename'),
     data = require('gulp-data'),
+    merge = require('merge-stream'),
     server = require('./server')
 
 /* Available tasks */
@@ -33,8 +34,11 @@ function _clean() {
     .pipe(clean())
 }
 function _symlink() {
-  return gulp.src('src/{images,js,less,starter-kit}')
-    .pipe(gulp.symlink('dist'))
+  var stream1 = gulp.src('src/{images,js,less,starter-kit}')
+    .pipe(gulp.symlink('dist'));
+  var stream2 = gulp.src('src/views/template')
+    .pipe(gulp.symlink('dist/html'))
+  return merge(stream1, stream2)  
 }
 function _less() {
   return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less'])

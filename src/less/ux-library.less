@@ -31,7 +31,11 @@
   }
 
   .ux-sections img {
-    width: 70%
+    width: auto;
+    height: auto;
+    min-height: 128px;
+    min-width: 128px;
+    margin: 10% 5% 0;
   }
 
   @media (max-width: 991px) {
@@ -97,7 +101,8 @@
       
     }
   }
-  .component {
+  .component, 
+  .template {
     padding: 20px;
 
     &:nth-child(5) {

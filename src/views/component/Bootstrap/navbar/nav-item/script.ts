@@ -17,24 +17,13 @@ Polymer({
     isSubNav: {
       type: Boolean,
       value: false
-    },
-    icon: {
-      type: String
     }
   },
   created: function() {
-    // This section is needed to retrive a string or a element from text attribute
-    var elm = this.childNodes[0];
-    this.properties.text.value = (elm || this).outerHTML || elm.textContent;
     this.className += ' ' + this.nodeName.toLowerCase(); // Adds nav-item class to nav-item element (is needed for some app specific style)
-    this.classes = this.className;
+    this.classes = this.className; // Store default classlist without state included
   },
   attached: function() {
-    //$(this).wrapInner('li').unwrap();
-    /*$(this).replaceWith(function(key,  val) {
-      return '<li>' + val + '</li>';
-    });*/
-
     if( this.dataToggle ) {
       this.querySelector('a').setAttribute('data-toggle', this.dataToggle);
       this.querySelector('a').setAttribute('target', '_self');
@@ -48,12 +37,6 @@ Polymer({
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
-
-    this.icon = this.icon ? 'icon-' + this.icon : '';
-  },
-  ready: function() {
-    var link = this.querySelector('a');
-    link.innerHTML = link.textContent;
   },
   hasClass: function(element, className) {
     return element.className.split(' ').indexOf(className) > -1;

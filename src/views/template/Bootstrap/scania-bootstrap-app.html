@@ -1,134 +1,31 @@
 <!DOCTYPE html>
-<html lang="en-GB" class="corporate-ui">
+<html lang="en-GB">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta charset="utf-8">
   <noscript><meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html"></noscript>
 
 
-  <title>UX Library - Test Center</title>
+  <title>Corporate UI - Developers</title>
 
   <script src="https://static.scania.com/vendors/frameworks/jquery/1.11.3/jquery-1.11.3.min.js"></script>   
-  <script src="../js/corporate-ui.js"></script>
+  <script src="/js/corporate-ui.js"></script>
   <link rel="stylesheet" href="https://static.scania.com/ux-library/developer/css/scania-bootstrap-docs.css">
-  <link rel="stylesheet" href="https://static.scania.com/ux-library/ux-lib.css">
+
+  <link rel="stylesheet" href="css/ux-library.css">
+</head>
   <style>
     .bs-callout,
     .highlight {
         display: none;
     }
-
-
-
-
-    .has-float-label {
-  display: block;
-  position: relative;
-}
-.has-float-label label, .has-float-label > span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  cursor: text;
-  font-size: 75%;
-  opacity: 1;
-  -webkit-transition: all .2s;
-          transition: all .2s;
-  top: -.5em;
-  left: 0.75rem;
-  z-index: 3;
-  line-height: 1;
-  padding: 0 1px;
-}
-.has-float-label label::after, .has-float-label > span::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  background: white;
-  height: 2px;
-  top: 50%;
-  left: -.2em;
-  right: -.2em;
-  z-index: -1;
-}
-.has-float-label .form-control::-webkit-input-placeholder {
-  opacity: 0.8;
-  -webkit-transition: all .2s;
-          transition: all .2s;
-}
-.has-float-label .form-control::-moz-placeholder {
-  opacity: 0.8;
-  transition: all .2s;
-}
-.has-float-label .form-control:-ms-input-placeholder {
-  opacity: 0.8;
-  transition: all .2s;
-}
-.has-float-label .form-control::placeholder {
-  opacity: 0.8;
-  -webkit-transition: all .2s;
-          transition: all .2s;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus)::-moz-placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus):-ms-input-placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus)::placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus) + * {
-  font-size: 100%;
-  opacity: .5;
-  top: 0.8em;
-}
-
-.input-group .has-float-label {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  margin-bottom: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.input-group .has-float-label .form-control {
-  width: 100%;
-  border-radius: 0.25rem;
-}
-.input-group .has-float-label:not(:last-child), .input-group .has-float-label:not(:last-child) .form-control {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  border-right: 0;
-}
-.input-group .has-float-label:not(:first-child), .input-group .has-float-label:not(:first-child) .form-control {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-
-
-
   </style>
 </head>
 
-<body class="scania app">
-  <c-corporate-header site-name="Corporate UI Test Center" site-url="/ux-library/">
-    <nav-item location="https://www.scania.com/ux-library/">UX Library</nav-item>
+<body class="scania app ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+
+  <c-corporate-header site-name="Developers" site-url="/">
+    <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
     <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
   </c-corporate-header>
 
@@ -136,17 +33,17 @@
 
     <c-main-navigation>
           <primary-items>
-          <nav-item location="index.html">Start</nav-item>         
-          <nav-item location="test-pages.html" class="active">Test Pages
-          <sub-navigation caption="Test Pages">
-            <nav-item location="corporate-ui-basic-template.html">Basic Template</nav-item>
-            <nav-item location="scania-bootstrap-app.html" class="active">Bootstrap CSS for Applications</nav-item>
-            <nav-item location="scania-bootstrap-public.html">Bootstrap Public CSS</nav-item>            
-            <nav-item location="advanced-tables.html">Advanced Tables</nav-item>
+          <nav-item location="/">Home</nav-item>
+          <nav-item location="/development.html">Development</nav-item>         
+          <nav-item location="/testing.html" class="active">Testing
+          <sub-navigation caption="Testing">
+            <nav-item location="scania-bootstrap-app.html">Bootstrap CSS for Applications</nav-item>
+            <nav-item location="scania-bootstrap-public.html">Bootstrap Public CSS</nav-item>  
+            <nav-item location="../Examples/advanced-tables.html">Advanced Tables</nav-item>
           </sub-navigation>
         </nav-item>
-            <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
-            <nav-item location="/ux-library/developer/support.html">Support</nav-item>
+        <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
+        <nav-item location="https://github.scania.com/pages/Scania/ux-library/developer/support.html">Support</nav-item>
         </primary-items>
     </c-main-navigation>
 
@@ -160,7 +57,7 @@
     <div class="page-body">
     <!-- Body copy -->
     <h2 id="type-body-copy">Body copy</h2>
-    <p>Bootstrap's global default <code>font-size</code> is <strong>14px</strong>, with a <code>line-height</code> of <strong>1.428</strong>. This is applied to the <code>&lt;body&gt;</code> and all paragraphs. In addition, <code>&lt;p&gt;</code> (paragraphs) receive a bottom margin of half their computed line-height (10px by default).</p>
+    <p>Bootstrap's global default <code>font-size</code> is <strong>1.4rem</strong>, with a <code>line-height</code> of <strong>1.428</strong>. This is applied to the <code>&lt;body&gt;</code> and all paragraphs. In addition, <code>&lt;p&gt;</code> (paragraphs) receive a bottom margin of half their computed line-height (10px by default).</p>
     <div class="bs-example">
       <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
       <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
@@ -4455,7 +4352,7 @@
     <nav-item location="#">accessibility</nav-item>
   </c-corporate-footer>
 </div>
-  <script src="https://static.scania.com/ux-library/ux-lib.js"></script>
+   <script src="/js/ux-library.js"></script>
 
 
         

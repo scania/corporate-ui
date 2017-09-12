@@ -5,9 +5,23 @@
 
   ::content {
 
+    h1 {
+      font-size:7rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+
     teaser-item {
       width: 50%;
       padding: 0;
+
+      h2 {
+        font-size:4rem;
+      }
+      p {
+        font-size:1.6rem;
+      }
 
       &:nth-child(odd) {
         border-right: 1px solid #dadada;
@@ -19,6 +33,9 @@
 
       .teaser-info {
         margin: 60px 110px;
+        > .btn {
+            &:extend(.btn-link all);
+        }
       }
     }
 
@@ -26,9 +43,7 @@
       border: 1px solid #dadada;
       margin: 0;
     }
-    .teaser-info > .btn {
-      &:extend(.btn-link all);
-    }
+
   }
 }
 

@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-
+  
   ::content {
 
     .teaser-items {
@@ -14,11 +14,13 @@
       .teaser-info {
         background-color: #eee;
         padding: 70px 15% 60px;
-        > .btn {
-           &:extend(.btn-primary all);
+         > .btn {
+            .btn-mix(primary);
         }
       }
-
+      p {
+        font-size: 1.8rem;
+      }
     }
   }
 }

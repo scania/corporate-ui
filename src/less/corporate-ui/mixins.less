@@ -7,7 +7,6 @@
 }
 
 .btn-mix(@type) {
-  .btn-@{type} {
     @color: 'btn-@{type}-color';
     @bg: 'btn-@{type}-bg';
     @border: 'btn-@{type}-border';
@@ -29,5 +28,4 @@
       background-color: lighten(@@bg, 10%);
       border-color: lighten(@@bg, 10%);
     }
-  }
 }

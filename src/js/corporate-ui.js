@@ -301,21 +301,21 @@ CorporateUi = (function() {
 
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript('/vendors/frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
+      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
     }
 
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
-      importScript('/vendors/es6-promise/dist/4.1.0/es6-promise.js');
+      importScript(window.static_root + '/vendors/es6-promise/dist/4.1.0/es6-promise.js');
     }
 
     if (window.params.polymer !== 'false') {
       //importLink('/vendors/frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
-      importLink('/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
+      importLink(window.static_root + '/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
     }
 
     if (window.params.css !== 'custom') {
-      importLink('/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
+      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
     }
 
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');

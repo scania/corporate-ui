@@ -16,12 +16,6 @@ Polymer({
     linkText: {
       type: String,
       value: 'Read more'
-    },
-    btnTypeItem: {
-      type: String,
-      value: function() {
-        return(this.btnTypeItem = this.attributes.btnTypeItem ? this.attributes.btnTypeItem.value : 'link');
-      }
     }
   }
 });

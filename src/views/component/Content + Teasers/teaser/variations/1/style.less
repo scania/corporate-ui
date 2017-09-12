@@ -1,5 +1,6 @@
 @import (reference) '../../../../../../less/corporate-ui/buttons.less';
 
+
 :host {
   display: block;
 
@@ -33,6 +34,9 @@
 
       .teaser-info {
         margin: 60px 110px;
+        > .btn {
+            &:extend(.btn-link all);
+        }
       }
     }
 
@@ -40,6 +44,7 @@
       border: 1px solid #dadada;
       margin: 0;
     }
+
   }
 }
 

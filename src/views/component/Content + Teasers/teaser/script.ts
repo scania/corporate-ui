@@ -7,13 +7,6 @@ Polymer({
     linkText: {
       type: String,
       value: 'Read more'
-    },
-    btnType: {
-      type: String,
-      value: function(){
-  
-          return(this.btnType = this.attributes.btnType ? this.attributes.btnType.value : 'primary');
-      }
     }
   },
   created: function() {

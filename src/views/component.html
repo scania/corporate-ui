@@ -25,9 +25,13 @@
     
   <c-main-content>
 
-    <c-main-navigation>
+   <c-main-navigation>
       <primary-items>
-        <nav-item location="/">Components</nav-item>
+        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
+        <nav-item location="/">Home</nav-item>
+        <nav-item location="/components.html" class="active">Components</nav-item>
+        <nav-item location="/templates.html" class="active">Templates</nav-item>
+        <nav-item location="#" class="disabled">About us</nav-item>
       </primary-items>
     </c-main-navigation>
 

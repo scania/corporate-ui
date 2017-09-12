@@ -16,19 +16,30 @@ Polymer({
 
     //$('primary-items, secondary-items' this).contents().unwrap();
 
-    $('primary-items, secondary-items' this).addClass('nav navbar-nav');
-    $('secondary-items' this).addClass('navbar-right');
+    $('primary-items, secondary-items', this).addClass('nav navbar-nav');
+    $('secondary-items', this).addClass('navbar-right');
+
+    $('#main-navigation', this).on('show.bs.collapse hidden.bs.collapse', function() {
+      $('body').toggleClass('navigation-open');
+    })
 
     this.siteName = $('c-corporate-header')[0].siteName;
     this.siteUrl = $('c-corporate-header')[0].siteUrl;
 
-    // TODO - Remove timeout and make it work widthout it
-    setTimeout(function() {
-      self.sticky.call(self);
-    }, 20);
+    // Hide hamburger menu if no items exist in main-navigation
+    if (this.querySelectorAll('nav-item').length) {
+      var elm = document.body.querySelector('c-corporate-header .navbar-toggle');
+      elm.className = elm.className.replace(/hidden/, '');
+    }
 
-    // and run it again every time you scroll
-    $(window).on('scroll resize', function() {
+    // Move sub-navigation items to be rendered after connected anchor element
+    $('sub-navigation', this).each(function() {
+      this.parentNode.insertAdjacentElement('afterend', this);
+    });
+
+    self.sticky.call(self);
+
+    $(window).on('load scroll resize', function() {
       self.sticky.call(self);
     });
 
@@ -46,24 +57,18 @@ Polymer({
         footerHeight = $('.navbar-footer', this).height() || 'auto';
 
     $(this).height( headerHeight );
+
     $('.navbar-collapse.c-main-navigation', this).removeAttr('style');
+
     navContainer.removeAttr('style');
+    navContainer.addClass('sticky');
+    body.addClass('header-is-sticky');
 
     // Used in mobile mode
     if (window.innerWidth <= 991) {
       var header = $('c-corporate-header').height();
-      $('.navbar-default.c-main-navigation', this).css({
-        'padding-top'     : header,
-        'margin-top'      : header * -1,
-        'padding-bottom'  : footerHeight,
-        'margin-bottom'   : footerHeight * -1
-      });
-
       $('.sticky', this).css({ top: header });
     }
-
-    navContainer.addClass('sticky');
-    body.addClass('header-is-sticky');
 
     // TODO - should not need to check for parent, does that for this to work on UX-lib while showing main-navigation
     if (this.parentNode.nodeName === 'C-MAIN-CONTENT' && scrollTop <= Math.max(stickyNavTop - 15, 0)) {

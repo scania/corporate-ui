@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB" class="corporate-ui">
+<html lang="en-GB">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta charset="utf-8">
@@ -9,124 +9,18 @@
   <title>UX Library - Test Center</title>
 
   <script src="https://static.scania.com/vendors/frameworks/jquery/1.11.3/jquery-1.11.3.min.js"></script>   
-  <script src="../js/corporate-ui.js"></script>
-  <link rel="stylesheet" href="https://static.scania.com/ux-library/developer/css/scania-bootstrap-docs.css">
-  <link rel="stylesheet" href="https://static.scania.com/ux-library/ux-lib.css">
+  <script src="../../js/corporate-ui.js"></script>
+  <link rel="stylesheet" href="/ux-library/developer/css/scania-bootstrap-docs.css">
+  <link rel="stylesheet" href="css/ux-library.css">
   <style>
     .bs-callout,
     .highlight {
         display: none;
     }
-
-
-
-
-    .has-float-label {
-  display: block;
-  position: relative;
-}
-.has-float-label label, .has-float-label > span {
-  position: absolute;
-  left: 0;
-  top: 0;
-  cursor: text;
-  font-size: 75%;
-  opacity: 1;
-  -webkit-transition: all .2s;
-          transition: all .2s;
-  top: -.5em;
-  left: 0.75rem;
-  z-index: 3;
-  line-height: 1;
-  padding: 0 1px;
-}
-.has-float-label label::after, .has-float-label > span::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  background: white;
-  height: 2px;
-  top: 50%;
-  left: -.2em;
-  right: -.2em;
-  z-index: -1;
-}
-.has-float-label .form-control::-webkit-input-placeholder {
-  opacity: 0.8;
-  -webkit-transition: all .2s;
-          transition: all .2s;
-}
-.has-float-label .form-control::-moz-placeholder {
-  opacity: 0.8;
-  transition: all .2s;
-}
-.has-float-label .form-control:-ms-input-placeholder {
-  opacity: 0.8;
-  transition: all .2s;
-}
-.has-float-label .form-control::placeholder {
-  opacity: 0.8;
-  -webkit-transition: all .2s;
-          transition: all .2s;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus)::-moz-placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus):-ms-input-placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus)::placeholder {
-  opacity: 0;
-}
-.has-float-label .form-control:placeholder-shown:not(:focus) + * {
-  font-size: 100%;
-  opacity: .5;
-  top: 0.8em;
-}
-
-.input-group .has-float-label {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  margin-bottom: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.input-group .has-float-label .form-control {
-  width: 100%;
-  border-radius: 0.25rem;
-}
-.input-group .has-float-label:not(:last-child), .input-group .has-float-label:not(:last-child) .form-control {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  border-right: 0;
-}
-.input-group .has-float-label:not(:first-child), .input-group .has-float-label:not(:first-child) .form-control {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-
-
-
   </style>
 </head>
 
-<body class="scania app">
+<body class="scania">
   <c-corporate-header site-name="Corporate UI Test Center" site-url="/ux-library/">
     <nav-item location="https://www.scania.com/ux-library/">UX Library</nav-item>
     <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
@@ -136,13 +30,12 @@
 
     <c-main-navigation>
           <primary-items>
-          <nav-item location="index.html">Start</nav-item>         
+          <nav-item location="/">Home</nav-item>         
           <nav-item location="test-pages.html" class="active">Test Pages
           <sub-navigation caption="Test Pages">
-            <nav-item location="corporate-ui-basic-template.html">Basic Template</nav-item>
-            <nav-item location="scania-bootstrap-app.html" class="active">Bootstrap CSS for Applications</nav-item>
-            <nav-item location="scania-bootstrap-public.html">Bootstrap Public CSS</nav-item>            
-            <nav-item location="advanced-tables.html">Advanced Tables</nav-item>
+            <nav-item location="scania-bootstrap-app.html">Bootstrap CSS for Applications</nav-item>
+            <nav-item location="scania-bootstrap-public.html" class="active">Bootstrap Public CSS</nav-item>            
+            <nav-item location="../Examples/advanced-tables.html">Advanced Tables</nav-item>
           </sub-navigation>
         </nav-item>
             <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
@@ -151,12 +44,11 @@
     </c-main-navigation>
 
 <section>
-      <article>
         <div class="container"><!-- MAIN CONTAINER -->
           <div class="row">
           <div class="col-md-9 bs-docs-section">
             <h1>Bootstrap Essentials</h1>
-            <p class="lead">Below you can find the most essential Bootstrap CSS implementations that you need to test before making your pull request.</p>    
+            <p class="lead">Below you can find the most essential Bootstrap CSS implmentations that you need to test before making your pull request.</p>    
   <div class="bs-docs-section panel">
     <div class="page-body">
     <!-- Body copy -->
@@ -946,15 +838,16 @@
     <h2 id="forms-example">Basic example</h2>
     <p>Individual form controls automatically receive some global styling. All textual <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, and <code>&lt;select&gt;</code> elements with <code>.form-control</code> are set to <code>width: 100%;</code> by default. Wrap labels and controls in <code>.form-group</code> for optimum spacing.</p>
     <form class="bs-example" role="form">
-      <div class="form-group has-float-label">
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="john.doe@scania.com">
-        <label for="exampleInputEmail1">Enter e-mail</label>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
       </div>
-      <div class="form-group has-float-label">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
-          <label for="exampleInputPassword1">Enter password</label>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
       </div>
-      <div class="form-group has-float-label">
+      <div class="form-group">
+        <label for="exampleInputFile">File input</label>
         <input type="file" id="exampleInputFile">
         <p class="help-block">Example block-level help text here.</p>
       </div>
@@ -987,6 +880,7 @@
   <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </code></pre></div>
+
 
     <h2 id="forms-inline">Inline form</h2>
     <p>Add <code>.form-inline</code> for left-aligned and inline-block controls for a compact layout.</p>
@@ -4434,31 +4328,13 @@
           </div>
         </div>
   </div>
-    </div></article>
+    </div>
     </section>
   </c-main-content>
-<div class="app">
-<c-corporate-footer>
-    <c-social-share>
-      <c-social-media name="facebook" link="https://www.facebook.com/search/top/?q=%23scania"></c-social-media>
-      <c-social-media name="twitter" link="https://twitter.com/search?q=%23scania&src=typd"></c-social-media>
-      <c-social-media name="linkedin" link="https://twitter.com/search?q=%23scania&src=typd"></c-social-media>
-      <c-social-media name="instagram" link="https://www.instagram.com/explore/tags/scania/"></c-social-media>
-      <c-social-media name="vk" link="https://twitter.com/search?q=%23scania&src=typd"></c-social-media>
-      <c-social-media name="weibo" link="https://twitter.com/search?q=%23scania&src=typd"></c-social-media>
-    </c-social-share>
 
-    <nav-item location="#">privacy policy</nav-item>
-    <nav-item location="#">terms &amp; conditions</nav-item>
-    <nav-item location="#">cookies</nav-item>
-    <nav-item location="#">site map</nav-item>
-    <nav-item location="#">contact us</nav-item>
-    <nav-item location="#">accessibility</nav-item>
-  </c-corporate-footer>
-</div>
-  <script src="https://static.scania.com/ux-library/ux-lib.js"></script>
+  <c-corporate-footer></c-corporate-footer>
 
+  <script src="/js/ux-lib.js"></script>
 
-        
       </body>
       </html>

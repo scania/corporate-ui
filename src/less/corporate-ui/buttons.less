@@ -4,9 +4,7 @@
 // Buttons
 
 .btn {
-  padding:20px 40px;
-  line-height: 1;
-  white-space: normal;
+  padding: 20px 40px;
   border-radius: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -28,25 +26,24 @@
   }
 
   //size
+  &-md,
   .app & {
     text-transform: none;
-    padding: 10px 12px;
-    &-md {
-      &:extend(.app .btn);
-    }      
+    padding: 6px 12px;
   }
 
   &-xs {
-    font-size:11px;
-    padding:3px 6px;
+    font-size: 11px;
+    padding: 3px 6px;
+
     .app & {
-      padding:1px 5px;
+      padding: 1px 5px;
     }
   }
 
   &-sm {
-    font-size:12px;
-    padding:7px 11px;
+    font-size: 12px;
+    padding: 7px 11px;
     // Icons in btn-sm
     & [class^="icon-"], 
     & [class*=" icon-"] {
@@ -55,15 +52,15 @@
       vertical-align: middle;
     }
     .app & {
-      padding:5px 10px;
+      padding: 5px 10px;
     }
   }
 
   &-lg {
-    padding:20px 40px;
-    font-size:14px;
+    padding: 20px 40px;
+    font-size: 14px;
     .app &{
-      padding:14px 28px;
+      padding: 14px 28px;
     }
   }
 

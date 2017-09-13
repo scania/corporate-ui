@@ -215,6 +215,13 @@
     box-shadow: none;
     border: 0;
 
+    .well {
+    background-color: @dark-content-block;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+
     input[type="text"] {
 
      
@@ -225,6 +232,102 @@
         box-shadow: none;
         font-size: inherit;
         font-weight: normal;
+
+        &.input-group-btn {
+
+    
+    word-break: normal;
+
+    &:last-child > .btn {
+
+        
+          padding: 10px 12px;
+          border-width: 0;
+          border: 0;
+         
+        
+
+        &.btn-default, 
+        &.btn-default:focus, 
+        &.btn-default:disabled {
+            background-color: whitesmoke;
+            margin-left: 4px;
+            
+        }
+        
+        
+
+    }
+
+
+    &:first-child > .btn {
+
+            padding: 10px 12px;
+            border-width: 0;
+            border: 0;
+
+         &.btn-default, 
+         &.btn-default:focus, 
+         &.btn-default:disabled, {
+            background-color: whitesmoke;
+            margin-right: 4px;
+
+
+        }
+
+        
+
+       
+         }
+
+    & .dropdown-toggle {
+        white-space: nowrap;
+    }
+}
+
+      
+
+      &:disabled {
+
+        background-color: #dfdee1;
+        color: #a1a1a1;
+        cursor: default;
+    
+      }
+
+      &:focus {
+        border-color: #041e42;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      }
+
+      &:read-only {
+
+        background-color: transparent;
+        cursor: default;
+        &:focus {
+            cursor: default;
+            box-shadow: none;
+        }
+    
+      }
+    }
+  }
+
+
+
+    input[type="text"] {
+
+     
+        background-color: #FFFFFF;
+        padding: 4px 12px;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: inherit;
+        font-weight: normal;
+
+
 
       
 

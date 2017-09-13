@@ -15,39 +15,24 @@
 // 
 
 .input-group-btn {
+    z-index: 2;
 
-    
-    word-break: normal;
-
-    &:last-child > .btn {
-
-        
-          padding: 10px 20px;
-          border-width: 0;
-        
-
-        &.btn-default {
-            background-color: whitesmoke;
-            border-width: 0;
-            margin-left: 4px;
-            
-        }
-
+    > .btn-default {
+        border-color: transparent;
+        background-color: #f5f5f5;
     }
 
+    &:last-child > .btn-default {
+        margin-left: 3px;
+
+    }
     &:first-child > .btn {
+        margin-right: 3px;
+    }
 
-            padding: 10px 20px;
-            border-width: 0;
-
-         &.btn-default {
-            background-color: whitesmoke;
-            border-width: 0;
-            margin-right: 4px;
-
-        }
-       
-         }
+    .well & .btn-default {
+        background-color: #fff;
+    }
 
     & .dropdown-toggle {
         white-space: nowrap;
@@ -55,7 +40,6 @@
 }
 
 .input-group-addon {
-
     background-color: whitesmoke;
     border: 0px;
     border-radius: 0px;

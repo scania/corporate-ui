@@ -23,16 +23,20 @@ textarea[placeholder] {
 }
 .form-control {
     color: #747472;
-    padding: 4px 12px;
+    padding: 20px 40px;
+    height: auto;
+    line-height: 1;
     box-shadow: none;
     border-radius: 0;
     border: 0;
     font-size: inherit;
     font-weight: normal;
     background-color: #f5f5f5;
+
     &.form-control[readonly] {
         background-color: transparent;
         cursor: default;
+
         &:focus {
             cursor: default;
             box-shadow: none;
@@ -48,6 +52,11 @@ textarea[placeholder] {
         -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     }
+
+    .app & {
+        padding: 4px 12px;
+        height: 34px;
+    }
 }
 .form-condensed {
     .form-group {
@@ -62,15 +71,20 @@ textarea[placeholder] {
     font-size: 0.9em;
     white-space: normal;
 }
-.form-horizontal .control-label,
-.form-horizontal .radio,
-.form-horizontal .checkbox,
-.form-horizontal .radio-inline,
-.form-horizontal .checkbox-inline {
-    padding-top: 9px;
+.form-horizontal {
+
+    .control-label, 
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline {
+        padding-top: 9px;
+    }
 }
 .form-inline {
-    .radio + .radio, .checkbox + .checkbox {
+
+    .radio + .radio,
+    .checkbox + .checkbox {
         margin-left: 10px;
     }
 }

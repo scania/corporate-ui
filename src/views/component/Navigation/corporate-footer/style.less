@@ -15,10 +15,6 @@
           padding: 46px 30px 20px;
         }
 
-        .app footer, footer .app {
-          padding: 12px 30px 6px;
-        }        
-
         .wordmark {
           float: right;
           width: 178px;
@@ -29,7 +25,6 @@
           background-repeat: no-repeat;
         }
 
-        
         .social-channels {
           padding-left: 0;
           margin-bottom: 0;
@@ -53,6 +48,7 @@
           nav-item {
             display: inline-block;
             padding: 0 21px 0 0;
+            font-size: 1.3rem;
 
             &:first-child a {
               margin-left: 7px;
@@ -63,6 +59,12 @@
 
               &:hover {
                 text-decoration: underline;
+                color: #fff;
+              }
+
+              &:active,
+              &:focus {
+                color: #fff;
               }
 
               span {
@@ -103,7 +105,6 @@
             }
           }
         }
-
 
         @media (max-width: 991px) {
 
@@ -232,3 +233,31 @@
           }
         }
       }
+:host-context(.app) {
+
+    footer {
+      padding: 20px 30px 25px;
+    }
+
+    .wordmark {
+      width: 125px;
+      height: 21px;
+    }
+
+::content {
+
+    c-social-share {
+      display:none
+    }
+
+    .footer-links {
+        margin: 0 0 10px 0;
+      }
+
+    .footer-copy-text {
+      padding: 0;
+      margin-left: 7px;
+      }
+  }
+
+}

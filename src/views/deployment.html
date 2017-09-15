@@ -28,7 +28,7 @@
         <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
         <nav-item location="/" class="active">Home</nav-item>
         <nav-item location="/development.html">Development</nav-item>       
-        <nav-item location="/testing.html">Testing</nav-item>
+        <nav-item location="test-pages.html">Testing</nav-item>
         <nav-item location="deployment.html">Deployment</nav-item>
         <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
         <nav-item location="https://github.scania.com/pages/Scania/ux-library/developer/support.html">Support</nav-item>
@@ -37,8 +37,14 @@
 
     <section class="light">
       <div class="container">
-        <h1>Corporate UI for Developers</h1>
-        <p>In this repository you can find tools and information to help you further develop and test new components and validate changes to existing ones.</p>
+        <h1>Corporate UI Deployment Workflow</h1>
+        <p>The development workflow follows a pretty straightforward process:</p>
+        <ol>
+          <li>Clone the UI repo from https://github.scania.com/Scania/corporate-ui.git</li>
+          <li>Make your changes or add your new components to the repo, using the Corporate coding standard and guidelines.</li>
+          <li>Test your changes according to the Corporate UI recomendations.</li>
+          <li>Publish your branches.</li>
+          <li>Make the necessary pull requests. Once approved, they will go into the next Corporate UI build.</li>
       </div>
     </section>
 

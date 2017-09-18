@@ -23,17 +23,20 @@ textarea[placeholder] {
 }
 .form-control {
     color: #747472;
-    padding: 4px 12px;
+    padding: 20px 40px;
+    height: auto;
+    line-height: 1;
     box-shadow: none;
     border-radius: 0;
     border: 0;
-    height: 3em;
     font-size: inherit;
     font-weight: normal;
     background-color: #f5f5f5;
+
     &.form-control[readonly] {
         background-color: transparent;
         cursor: default;
+
         &:focus {
             cursor: default;
             box-shadow: none;
@@ -49,6 +52,11 @@ textarea[placeholder] {
         -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     }
+
+    .app & {
+        padding: 4px 12px;
+        height: 34px;
+    }
 }
 .form-condensed {
     .form-group {
@@ -63,30 +71,24 @@ textarea[placeholder] {
     font-size: 0.9em;
     white-space: normal;
 }
-.form-horizontal .control-label,
-.form-horizontal .radio,
-.form-horizontal .checkbox,
-.form-horizontal .radio-inline,
-.form-horizontal .checkbox-inline {
-    padding-top: 9px;
+.form-horizontal {
+
+    .control-label, 
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline {
+        padding-top: 9px;
+    }
 }
 .form-inline {
-    .radio + .radio, .checkbox + .checkbox {
+
+    .radio + .radio,
+    .checkbox + .checkbox {
         margin-left: 10px;
     }
 }
-.input-group .form-control:first-child {
-    box-shadow: none;
-}
-.input-group-addon {
-    background-color: #f6f6f6;
-    font-size: inherit;
-}
-// ALL BUTTONS ARE SET TO white-space: normal - THIS FIXES PROBLEMS WITH DROPDOWNS CARETS;
-.input-group-btn .dropdown-toggle {
-    white-space: nowrap;
-}
-// Andreas added this to override default.css global p rule - this should be removed later
+
 .form-control-static {
     padding-bottom: 0;
 }
@@ -101,17 +103,13 @@ textarea[placeholder] {
 }
 .table .form-control {
     .input-sm
-} //Forms in labels have input-sm-styling per default
+} 
+//Forms in labels have input-sm-styling per default
 .table .input-group-btn .btn {
     .input-sm;
     margin: 0 0 0 -1px;
 }
-.input-group-addon [class^="icon-"],
-.input-group-addon [class*=" icon-"] {
-    font-size: 14px;
-    line-height: 13px;
-    vertical-align: middle;
-}
+
 fieldset {
     border: 2px dotted silver;
     padding: 25px 25px 5px 5px;

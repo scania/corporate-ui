@@ -55,6 +55,7 @@
               // &:extend(.panel-heading);
           background-color: @dark-content-block;
           border: 0px;
+          color: inherit;
           // margin-bottom: 0px;
 
           &:first-child {
@@ -206,14 +207,50 @@
           background-color: @brand-danger;
       }
   }
+
   //wells
   .well {
-      background-color: @dark-content-block;
-      border-radius: 0px;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-      border: 0;
+    background-color: @dark-content-block;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+
+  
+    input[type="text"] {
+
+     
+        background-color: #FFFFFF;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: inherit;
+        font-weight: normal;
+
+       
+      &:disabled {
+
+        background-color: #dfdee1;
+        color: #a1a1a1;
+        cursor: default;
+    
+      }
+
+      &:read-only {
+
+        background-color: transparent;
+        cursor: default;
+        &:focus {
+            cursor: default;
+            box-shadow: none;
+        }
+    
+      }
+    }
   }
+
+
+
 
 .jumbotron h1, .jumbotron .h1 {
     color: @brand-primary;

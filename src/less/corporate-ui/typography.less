@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
       font-weight: normal;
       color: @brand-primary;
       display: block;
-      margin-top: 0.2em;
+      margin-top: 0;
       margin-left: 0;
     }
   }
@@ -68,9 +68,6 @@ a {
   &:active {
     color: @brand-primary-app;
   }
-article p a {
-    font-weight: bold;
-}    
 }
 dt {
   font-weight: normal;
@@ -126,6 +123,9 @@ article {
     text-align: inherit;
     font-size: inherit;
   }
+  p a {
+      font-family: 'Scania Sans Bold';
+  }
 }
 
 .app {
@@ -164,6 +164,28 @@ article {
   }
   h1, h2, h3 {
     letter-spacing: -0.03em;
+  }
+  .page-header {
+
+    h1 { font-size: @h1-font-size-app * 1.6; }
+    h2 { font-size: @h2-font-size-app * 1.6; }
+    h3 { font-size: @h3-font-size-app * 1.6; }
+
+    h1, 
+    h2, 
+    h3 {
+        font-family: "Scania Sans Headline Bold";
+    }
+
+    h1, 
+    h2, 
+    h3 {
+      small {
+        font-family: "Scania Sans Bold";
+        margin-top: 0.2em;
+        font-size: 0.6em;
+      }
+    }
   }
   p {
     text-align: left;

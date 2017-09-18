@@ -68,7 +68,7 @@ a {
   &:active {
     color: @brand-primary-app;
   }
-
+}
 dt {
   font-weight: normal;
   font-size: 85%;
@@ -166,17 +166,24 @@ article {
     letter-spacing: -0.03em;
   }
   .page-header {
+
+    h1 { font-size: @h1-font-size-app * 1.6; }
+    h2 { font-size: @h2-font-size-app * 1.6; }
+    h3 { font-size: @h3-font-size-app * 1.6; }
+
     h1, 
     h2, 
     h3 {
         font-family: "Scania Sans Headline Bold";
     }
+
     h1, 
     h2, 
     h3 {
       small {
         font-family: "Scania Sans Bold";
         margin-top: 0.2em;
+        font-size: 0.6em;
       }
     }
   }

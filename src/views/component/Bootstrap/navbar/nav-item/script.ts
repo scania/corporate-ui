@@ -18,7 +18,7 @@ Polymer({
       type: Boolean,
       value: false
     },
-    location: {
+    isLink: {
       type: Boolean,
       value: false
     }
@@ -36,6 +36,10 @@ Polymer({
 
     if( this.querySelectorAll('sub-navigation').length ) {
       this.isSubNav = true;
+    }
+
+    if( this.location ) {
+      this.isLink = true;
     }
 
     if( this.hasClass(this, 'active') ) {

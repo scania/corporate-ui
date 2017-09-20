@@ -44,6 +44,12 @@ CorporateUi = (function() {
   function ready() {
     document.addEventListener("DOMContentLoaded", function(e) {
       e.target.body.setAttribute('unresolved', ' ');
+
+      setTimeout(function() {
+        // We have this just to be sure application is never left in a invisible state
+        // If error happens the unresolved state might never be resolved this "solves" that...
+        document.body.removeAttribute('unresolved');
+      }, 5000);
     }, false);
 
     window.onload = function(e) {

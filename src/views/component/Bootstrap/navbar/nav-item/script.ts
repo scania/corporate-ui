@@ -17,6 +17,10 @@ Polymer({
     isSubNav: {
       type: Boolean,
       value: false
+    },
+    location: {
+      type: Boolean,
+      value: false
     }
   },
   created: function() {

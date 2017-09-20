@@ -3,6 +3,12 @@
   <a href on-tap="toggleExpand" class="mode-toggler"></a>
 </template>
 
-<a href="{{location}}">
-	<content></content>
-</a>
+<template is="dom-if" if="{{isLink}}">
+  <a href="{{location}}">
+    <content></content>
+  </a>
+</template>
+
+<template is="dom-if" if="{{!isLink}}">
+  <content></content>
+</template>

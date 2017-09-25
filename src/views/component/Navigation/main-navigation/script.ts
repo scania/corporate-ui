@@ -34,17 +34,21 @@ Polymer({
 
     // Move sub-navigation items to be rendered after connected anchor element
     $('sub-navigation', this).each(function() {
-      this.parentNode.insertAdjacentElement('afterend', this);
+      $(this).parent().after(this);
     });
 
-    self.sticky.call(self);
-
-    $(window).on('load scroll resize', function() {
+    $(window).on('scroll resize', function() {
       self.sticky.call(self);
     });
 
     // Set start collapse value - couldnt get this to work in a better way...
     $('.navbar-toggle > a', this).addClass('collapsed');
+  },
+  ready: function() {
+    var self = this;
+    setTimeout(function() {
+      self.sticky.call(self);
+    });
   },
   // if we've scrolled more than the navigation, change its position to fixed making it stick to the top,
   // otherwise change it back to relative
@@ -56,7 +60,7 @@ Polymer({
         headerHeight = $('.navbar-toggle:visible', this).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto',// On desktop mode it will use #main-nav on mobile .navbar-toggle
         footerHeight = $('.navbar-footer', this).height() || 'auto';
 
-    $(this).height( headerHeight );
+    $(this).removeAttr('style').height( headerHeight );
 
     $('.navbar-collapse.c-main-navigation', this).removeAttr('style');
 

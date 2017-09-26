@@ -1,41 +1,95 @@
 .input-group {
-    &-btn {
-        z-index: 2;
-        > .btn-default {
-            border-color: transparent;
-            background-color: #f5f5f5;
-        }
-        &:last-child > .btn-default {
-            margin-left: 3px;
-        }
-        &:first-child > .btn-default {
-            margin-right: 3px;
-        }
-        .well & .btn-default {
-            background-color: #fff;
-            margin-left: 4px;
-        }
-        & .dropdown-toggle {
-            white-space: nowrap;
-        }
-    }
-    &-addon {
-        border-color: transparent;
-        &:first-child {
-            border-right: 2px solid #FFFFFF;
-            // margin-right: 3px;
-        }
-        &:last-child {
-            border-left: 2px solid #FFFFFF;
-            // margin-right: 3px;
-        }
-    }
-    &-lg {
-        border-radius: 0px;
-        &-addon {
-            height: auto;
-            padding: none;
-        }
-    }
+  border-radius: 0px;
+  box-shadow: none;
+  border-color: transparent;
+  
+&-addon {
+  border-radius: 0px;
+  box-shadow: none;
+  border-color: transparent;
+  padding: 4px 18px;
+  font-size: 22px;
 
-}
+  .app & {
+
+    padding: 0px 10px;
+    font-size: 17px;
+  }
+
+  }
+  & > .form-control {
+    padding: 20px 40px;
+    border-radius: 0px;
+      &:first-child {
+        margin-right: 2px;
+      }
+      &:last-child {
+        margin-left: 2px;
+      }
+    .app & {
+      padding: 8px 20px;
+    }
+  }
+  &-lg {
+    .input-group {
+      &-addon {
+          border-radius: 0px;
+          box-shadow: none;
+          border-color: transparent;
+          padding: 0px 25px;
+          font-size: 28px;
+
+          .app & {
+            padding: 0px 15px;
+            font-size: 20px;
+
+          }
+        }
+      }
+      & > .form-control {
+        padding: 40px 80px;
+        .app & {
+          padding: 20px 40px;
+        }
+      }
+    }
+    &-sm {
+      .input-group-addon {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        height: auto;
+
+        .app & {
+            padding: 0px 7px;
+            font-size: 12px;
+
+          }
+      }
+      & > .form-control {
+        padding: 10px 20px;
+        .app & {
+          padding: 5px 10px;
+        }
+      }
+    }
+    &-btn {
+      z-index: 2;
+      > .btn-default {
+        border-color: transparent;
+        background-color: #f5f5f5;
+      }
+      &:last-child > .btn-default {
+        margin-left: 3px;
+      }
+      &:first-child > .btn-default {
+        margin-right: 3px;
+      }
+      .well & .btn-default {
+        background-color: #fff;
+        margin-left: 4px;
+      }
+      & .dropdown-toggle {
+        white-space: nowrap;
+      }
+    }
+  }

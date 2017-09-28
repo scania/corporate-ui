@@ -26,10 +26,9 @@ Polymer({
     this.siteName = $('c-corporate-header')[0].siteName;
     this.siteUrl = $('c-corporate-header')[0].siteUrl;
 
-    // Hide hamburger menu if no items exist in main-navigation
-    if (this.querySelectorAll('nav-item').length) {
-      var elm = document.body.querySelector('c-corporate-header .navbar-toggle');
-      elm.className = elm.className.replace(/hidden/, '');
+    // Show hamburger menu if item exist in main-navigation
+    if ($('nav-item', this).length) {
+      $('c-corporate-header .navbar-toggle').removeClass('hidden');
     }
 
     // Move sub-navigation items to be rendered after connected anchor element
@@ -81,8 +80,7 @@ Polymer({
     navContainer.addClass('sticky');
     body.addClass('header-is-sticky');
 
-    // TODO - should not need to check for parent, does that for this to work on UX-lib while showing main-navigation
-    if(this.parentNode.nodeName === 'C-MAIN-CONTENT' && scrollTop <= Math.max(stickyNavTop - 15, 0)) {
+    if (scrollTop <= Math.max(stickyNavTop - 15, 0)) {
       body.removeClass('header-is-sticky');
     }
 

@@ -3,10 +3,14 @@
 
 :host {
   display: block;
+  // we set height on this element dynamicly, this rule make it look smoother
+  transition: height 100ms ease;
 
   .sticky {
     position: fixed;
-    top: 0;
+    // In ie and ff the sub-nav´s position is calculated wrong by 0.5px adding a small gap
+    // between main and sub navigation, this for some reason solves that :O
+    top: -1px;
     left: 0;
     right: 0;
   }

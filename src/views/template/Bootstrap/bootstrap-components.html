@@ -773,12 +773,13 @@
 
         <h2 id="input-groups-checkboxes-radios">Checkboxes and radio addons</h2>
         <p>Place any checkbox or radio option within an input group's addon instead of text.</p>
+        <p>Use empty span after input to get corporate-ui specific styling.</p>
         <form class="bs-example bs-example-form">
           <div class="row">
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="checkbox">
+                  <input type="checkbox"><span></span>
                 </span>
                 <input type="text" class="form-control">
               </div><!-- /input-group -->
@@ -786,18 +787,21 @@
             <div class="col-lg-6">
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="radio">
+                  <input type="radio"><span></span>
                 </span>
                 <input type="text" class="form-control">
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
           </div><!-- /.row -->
+
+
         </form>
         <div class="highlight"><pre><code class="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;row&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-lg-6&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;input-group&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;input-group-addon&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span&gt;<span></span><span class="nt">&lt;span&gt;<span></span>
           <span class="nt">&lt;/span&gt;</span>
           <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!-- /input-group --&gt;</span>
@@ -806,6 +810,7 @@
           <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;input-group&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;input-group-addon&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;radio&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span&gt;<span></span><span class="nt">&lt;span&gt;<span></span>
           <span class="nt">&lt;/span&gt;</span>
           <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span><span class="nt">&gt;</span>
           <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!-- /input-group --&gt;</span>

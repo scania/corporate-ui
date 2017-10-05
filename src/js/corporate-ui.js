@@ -59,7 +59,7 @@ CorporateUi = (function() {
 
   function EventStore() {
     this.store = {};
-    this.__proto__.apply = apply;
+    this.apply = apply;
     //this.__proto__.revert = revert;
 
     function apply(event) {
@@ -312,7 +312,7 @@ CorporateUi = (function() {
 
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
-      importScript(window.static_root + '/vendors/es6-promise/dist/4.1.0/es6-promise.js');
+      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js');
     }
 
     if (window.params.polymer !== 'false') {

@@ -14,15 +14,16 @@ Polymer({
       value: false
     },
     dataToggle: '',
-    renderLink: {
+    isSubNav: {
       type: Boolean,
-      value: true
+      value: false
+    },
+    isLink: {
+      type: Boolean,
+      value: false
     }
   },
   created: function() {
-    if (!this.children.length) {
-      this.attributes.renderLink = false;
-    }
     this.className += ' ' + this.nodeName.toLowerCase(); // Adds nav-item class to nav-item element (is needed for some app specific style)
     this.classes = this.className; // Store default classlist without state included
   },
@@ -33,8 +34,12 @@ Polymer({
       this.removeAttribute('data-toggle');
     }
 
-    if( !this.location ) {
-      this.renderLink = false;
+    if( this.querySelectorAll('sub-navigation').length ) {
+      this.isSubNav = true;
+    }
+
+    if( this.location ) {
+      this.isLink = true;
     }
 
     if( this.hasClass(this, 'active') ) {

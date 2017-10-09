@@ -24,11 +24,11 @@ CorporateUi = (function() {
 
 
   function init() {
+    addMetaAndHeaderSpecs();
+
     AppEventStore = new EventStore();
 
     setGlobals();
-
-    addMetaAndHeaderSpecs();
 
     // Add dependencies.
     appendExternals();
@@ -42,19 +42,21 @@ CorporateUi = (function() {
   }
 
   function ready() {
+    window.addEventListener('WebComponentsReady', function() {
+      document.documentElement.removeAttribute('unresolved');
+    });
+
+    setTimeout(function() {
+      document.documentElement.removeAttribute('unresolved');
+    }, 5000);
+
     document.addEventListener("DOMContentLoaded", function(e) {
-      e.target.body.setAttribute('unresolved', ' ');
-
-      setTimeout(function() {
-        // We have this just to be sure application is never left in a invisible state
-        // If error happens the unresolved state might never be resolved this "solves" that...
-        document.body.removeAttribute('unresolved');
-      }, 5000);
-    }, false);
-
-    window.onload = function(e) {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
-    };
+
+      if (!window.HTMLImports) {
+        AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
+      }
+    }, false);
   }
 
   function EventStore() {
@@ -198,9 +200,10 @@ CorporateUi = (function() {
 
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+    document.documentElement.setAttribute('unresolved', ' ');
 
     var style = document.createElement('style')
-    style.appendChild(document.createTextNode('body[unresolved] { opacity: 0; } body { transition: none; }'));
+    style.appendChild(document.createTextNode('html[unresolved] { opacity: 0; } html { transition: none; }'));
     document.head.appendChild(style);
   }
 
@@ -307,9 +310,8 @@ CorporateUi = (function() {
 
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
+      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents.min.js');
     }
-
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
       importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js');

@@ -24,18 +24,17 @@ CorporateUi = (function() {
 
 
   function init() {
-    addMetaAndHeaderSpecs();
 
     AppEventStore = new EventStore();
 
     setGlobals();
 
-    // Add dependencies.
+    addMetaAndHeaderSpecs();
+
     appendExternals();
 
     appendFavicon();
 
-    // System messages
     sysMessages();
 
     ready();
@@ -53,6 +52,7 @@ CorporateUi = (function() {
     document.addEventListener("DOMContentLoaded", function(e) {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
 
+      // If chrome "WebComponentsReady" is not triggered thats why we have this
       if (!window.HTMLImports) {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
@@ -200,11 +200,6 @@ CorporateUi = (function() {
 
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
-    document.documentElement.setAttribute('unresolved', ' ');
-
-    var style = document.createElement('style')
-    style.appendChild(document.createTextNode('html[unresolved] { opacity: 0; } html { transition: none; }'));
-    document.head.appendChild(style);
   }
 
   function appendFavicon() {
@@ -256,6 +251,7 @@ CorporateUi = (function() {
       appName: 'Application name',
       company: 'Scania'
     };
+
     /*window.Polymer = {
       dom: 'shadow'
     };*/
@@ -287,7 +283,6 @@ CorporateUi = (function() {
 
           /* Automatically wrapping component inside a container */
           var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : false);
-          var apa = this.nodeName;
 
           if(fullbleed !== true) {
             var container = document.createElement('div'),
@@ -307,10 +302,11 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
       importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents.min.js');
+
+      document.documentElement.setAttribute('unresolved', ' ');
     }
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {

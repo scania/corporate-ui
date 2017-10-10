@@ -36,7 +36,7 @@
     "gulp-sourcemaps": "2.4.1",
     "gulp-typescript": "3.1.6",
     "less": "2.7.2",
-    "merge-stream": "^1.0.1",
+    "merge-stream": "1.0.1",
     "typescript": "2.2.2"
   },
   "scripts": {

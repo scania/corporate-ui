@@ -61,7 +61,7 @@ CorporateUi = (function() {
 
   function EventStore() {
     this.store = {};
-    this.__proto__.apply = apply;
+    this.apply = apply;
     //this.__proto__.revert = revert;
 
     function apply(event) {

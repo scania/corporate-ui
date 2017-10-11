@@ -49,14 +49,14 @@ CorporateUi = (function() {
       document.documentElement.removeAttribute('unresolved');
     }, 5000);
 
-    document.addEventListener("DOMContentLoaded", function(e) {
+    window.onload = function(event) {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
 
       // If chrome "WebComponentsReady" is not triggered thats why we have this
       if (!window.HTMLImports) {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
-    }, false);
+    }
   }
 
   function EventStore() {
@@ -200,6 +200,11 @@ CorporateUi = (function() {
 
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+
+    // We create this dynamically to make sure this style is always rendered before things in body
+    var style = document.createElement('style')
+    style.appendChild(document.createTextNode('html[unresolved] { opacity: 0; }'));
+    document.head.appendChild(style);
   }
 
   function appendFavicon() {

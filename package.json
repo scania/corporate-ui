@@ -9,6 +9,7 @@
     "angular-ui-bootstrap": "2.5.0",
     "bootstrap": "3.2.0",
     "bootstrap-datepicker": "1.6.4",
+    "es6-promise": "4.1.0",
     "highcharts": "5.0.14",
     "hydrolysis": "1.25.0",
     "jquery": "2.2.2",
@@ -19,7 +20,8 @@
     "react-dom": "15.4.2",
     "video.js": "5.19.2",
     "videojs-youtube": "2.3.2",
-    "webcomponents.js": "0.7.22"
+    "webcomponents.js": "0.7.24",
+    "es6-promise": "4.1.0"
   },
   "devDependencies": {
     "@types/node": "7.0.12",
@@ -34,7 +36,7 @@
     "gulp-sourcemaps": "2.4.1",
     "gulp-typescript": "3.1.6",
     "less": "2.7.2",
-    "merge-stream": "^1.0.1",
+    "merge-stream": "1.0.1",
     "typescript": "2.2.2"
   },
   "scripts": {

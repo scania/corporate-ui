@@ -399,7 +399,7 @@ ul.nav-tabs {
             }
             &:before,
             &:after {
-              content: none;
+              content: none !important;
             }
           }
         }
@@ -487,6 +487,7 @@ ul.nav-tabs {
     text-transform: none;
     position: relative;
 
+    &.active:after,
     &:hover:after {
       content: "";
       border-bottom: 2px solid #c50918;
@@ -500,9 +501,17 @@ ul.nav-tabs {
       padding-top: 8px;
       padding-bottom: 8px;
 
+      &.active:after,
       &:hover:after {
         bottom: 8px;
       }
+    }
+  }
+  li.active a:after {
+    &:extend(.navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a.active:after);
+
+    .app & {
+      &:extend(.app .navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a.active:after);
     }
   }
 

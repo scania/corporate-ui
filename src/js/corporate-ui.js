@@ -24,36 +24,44 @@ CorporateUi = (function() {
 
 
   function init() {
+
     AppEventStore = new EventStore();
 
     setGlobals();
 
     addMetaAndHeaderSpecs();
 
-    // Add dependencies.
     appendExternals();
 
     appendFavicon();
 
-    // System messages
     sysMessages();
 
     ready();
   }
 
   function ready() {
-    document.addEventListener("DOMContentLoaded", function(e) {
-      e.target.body.setAttribute('unresolved', ' ');
-    }, false);
+    window.addEventListener('WebComponentsReady', function() {
+      document.documentElement.removeAttribute('unresolved');
+    });
 
-    window.onload = function(e) {
+    setTimeout(function() {
+      document.documentElement.removeAttribute('unresolved');
+    }, 5000);
+
+    window.onload = function(event) {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
-    };
+
+      // If chrome "WebComponentsReady" is not triggered thats why we have this
+      if (!window.HTMLImports) {
+        AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
+      }
+    }
   }
 
   function EventStore() {
     this.store = {};
-    this.__proto__.apply = apply;
+    this.apply = apply;
     //this.__proto__.revert = revert;
 
     function apply(event) {
@@ -193,8 +201,9 @@ CorporateUi = (function() {
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 
+    // We create this dynamically to make sure this style is always rendered before things in body
     var style = document.createElement('style')
-    style.appendChild(document.createTextNode('body[unresolved] { opacity: 0; } body { transition: none; }'));
+    style.appendChild(document.createTextNode('html[unresolved] { opacity: 0; }'));
     document.head.appendChild(style);
   }
 
@@ -247,6 +256,7 @@ CorporateUi = (function() {
       appName: 'Application name',
       company: 'Scania'
     };
+
     /*window.Polymer = {
       dom: 'shadow'
     };*/
@@ -278,7 +288,6 @@ CorporateUi = (function() {
 
           /* Automatically wrapping component inside a container */
           var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : false);
-          var apa = this.nodeName;
 
           if(fullbleed !== true) {
             var container = document.createElement('div'),
@@ -298,15 +307,15 @@ CorporateUi = (function() {
   }
 
   function appendExternals() {
-
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.22/webcomponents-lite.min.js');
-    }
+      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents.min.js');
 
+      document.documentElement.setAttribute('unresolved', ' ');
+    }
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {
-      importScript(window.static_root + '/vendors/es6-promise/dist/4.1.0/es6-promise.js');
+      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js');
     }
 
     if (window.params.polymer !== 'false') {

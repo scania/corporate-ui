@@ -27,9 +27,9 @@ CorporateUi = (function() {
 
     AppEventStore = new EventStore();
 
-    setGlobals();
-
     addMetaAndHeaderSpecs();
+
+    setGlobals();
 
     appendExternals();
 
@@ -42,12 +42,11 @@ CorporateUi = (function() {
 
   function ready() {
     window.addEventListener('WebComponentsReady', function() {
-      document.documentElement.removeAttribute('unresolved');
-      document.body.className += ' loaded';
+      document.documentElement.className = document.documentElement.className.replace(/\bglobal-loading\b/, '');
     });
 
     setTimeout(function() {
-      document.documentElement.removeAttribute('unresolved');
+      document.documentElement.className = document.documentElement.className.replace(/\bglobal-loading\b/, '');
     }, 5000);
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -202,10 +201,13 @@ CorporateUi = (function() {
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 
+    document.documentElement.className += ' global-loading';
     // We create this dynamically to make sure this style is always rendered before things in body
     var style = document.createElement('style')
-    style.appendChild(document.createTextNode('html[unresolved] { opacity: 0; }'));
-    document.head.appendChild(style);
+    style.appendChild(document.createTextNode('\
+      .global-loading c-corporate-header, .global-loading c-corporate-footer, .global-loading c-main-navigation { display: none; }\
+    '));
+    document.documentElement.appendChild(style);
   }
 
   function appendFavicon() {
@@ -310,9 +312,7 @@ CorporateUi = (function() {
   function appendExternals() {
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents.min.js');
-
-      document.documentElement.setAttribute('unresolved', ' ');
+      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js');
     }
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {

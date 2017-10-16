@@ -9,38 +9,43 @@ Polymer({
     text: {
       type: String
     },
-    tab: {
-      type: Boolean,
-      value: false
-    },
-    dataToggle: '',
-    isSubNav: {
-      type: Boolean,
-      value: false
-    },
-    isLink: {
-      type: Boolean,
-      value: false
+    location: {
+      type: String
     }
   },
   created: function() {
-    this.className += ' ' + this.nodeName.toLowerCase(); // Adds nav-item class to nav-item element (is needed for some app specific style)
     this.classes = this.className; // Store default classlist without state included
   },
   attached: function() {
-    if( this.dataToggle ) {
-      this.querySelector('a').setAttribute('data-toggle', this.dataToggle);
-      this.querySelector('a').setAttribute('target', '_self');
-      this.removeAttribute('data-toggle');
+
+    var arr = [];
+    for(var i = 0; i<this.children.length; i++){
+      arr.push(this.children[i].nodeName)
     }
 
-    if( this.querySelectorAll('sub-navigation').length ) {
-      this.isSubNav = true;
+    // Check if we have any direct childs of current item with type A
+    if (arr.indexOf('A') === -1) {
+      var node;
+      for(var i = 0; i<this.childNodes.length; i++){
+        node = this.childNodes[i];
+
+        // Break loop we we find a node containing a text
+        if(node.nodeType === 3 && node.nodeValue.trim() != '') {
+          break;
+        }
+      }
+      var anchor = document.createElement('a');
+      anchor.className = 'nav-item';
+      anchor.innerText = node.textContent.trim();
+      anchor.href = this.location;
+      this.replaceChild(anchor, node)
     }
 
-    if( this.location ) {
-      this.isLink = true;
-    }
+    /*if( this.location && this.children.length > 2 ) {
+      this.apa = true;
+      this.text = this.childNodes[5].textContent;
+      this.childNodes[5].textContent = '';
+    }*/
 
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());

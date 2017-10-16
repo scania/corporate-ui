@@ -15,8 +15,6 @@ Polymer({
   ready: function() {
     var self = this;
 
-    self.style.visibility = "visible";
-
     // If main-navigation exists then we want the logotype inside corporate-header to get sticky
     if ($('c-main-navigation').length) {
       this.symbolFixed();

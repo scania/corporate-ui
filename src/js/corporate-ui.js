@@ -43,20 +43,21 @@ CorporateUi = (function() {
   function ready() {
     window.addEventListener('WebComponentsReady', function() {
       document.documentElement.removeAttribute('unresolved');
+      document.body.className += ' loaded';
     });
 
     setTimeout(function() {
       document.documentElement.removeAttribute('unresolved');
     }, 5000);
 
-    window.onload = function(event) {
+    document.addEventListener("DOMContentLoaded", function() {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
 
       // If chrome "WebComponentsReady" is not triggered thats why we have this
       if (!window.HTMLImports) {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
-    }
+    });
   }
 
   function EventStore() {

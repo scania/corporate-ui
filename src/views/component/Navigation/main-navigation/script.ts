@@ -31,11 +31,6 @@ Polymer({
       $('c-corporate-header .navbar-toggle').removeClass('hidden');
     }
 
-    // Move sub-navigation items to be rendered after connected anchor element
-    $('sub-navigation', this).each(function() {
-      $(this).parent().after(this);
-    });
-
     $(window).on('scroll', function() {
       self.sticky.call(self);
     });
@@ -50,7 +45,6 @@ Polymer({
   ready: function() {
     var self = this;
 
-    self.style.visibility = "visible";
     setTimeout(function() {
       self.sticky.call(self);
       self.setHeaderSize.call(self);
@@ -60,7 +54,9 @@ Polymer({
     var headerHeight = $('.navbar-toggle:visible', this).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle
 
     if( $(this).offset().top === 0 || $(this).height() != headerHeight ) {
-      $(this).height( headerHeight );
+      $(this)
+        .removeAttr('style')
+        .height( headerHeight );
     }
 
     $('> .navbar-default', this).removeAttr('style');
@@ -68,7 +64,7 @@ Polymer({
     // Used in mobile mode
     if(window.innerWidth <= 991) {
       var header = $('c-corporate-header').height();
-      $('> .navbar-default', this).css({ top: header });
+      $('> .navbar-default', this).css({ 'padding-top': header });
     }
   },
   sticky: function() {

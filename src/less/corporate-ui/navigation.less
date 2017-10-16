@@ -103,7 +103,6 @@
 
     a {
       text-decoration: none;
-      position: static;
     }
 
     .active {
@@ -250,12 +249,12 @@ ul.nav-tabs {
           border-width: 0 0 2px;
         }
       }
-
+      &:first-child a,
       > a,
       > a:hover {
         background-color: transparent;
+        border-color: transparent;
         color: inherit;
-        border-color: #ddd;
       }
     }
   }

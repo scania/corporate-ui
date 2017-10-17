@@ -25,9 +25,9 @@ CorporateUi = (function() {
 
   function init() {
 
-    AppEventStore = new EventStore();
-
     addMetaAndHeaderSpecs();
+
+    AppEventStore = new EventStore();
 
     setGlobals();
 
@@ -41,19 +41,21 @@ CorporateUi = (function() {
   }
 
   function ready() {
-    window.addEventListener('WebComponentsReady', function() {
-      document.documentElement.className = document.documentElement.className.replace(/\bglobal-loading\b/, '');
-    });
+    window.fallback = setTimeout(function() {
+      console.log('"WebComponentsReady" seems to have failed loading so a fallback has triggered.');
+      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+    }, 10000);
 
-    setTimeout(function() {
-      document.documentElement.className = document.documentElement.className.replace(/\bglobal-loading\b/, '');
-    }, 5000);
+    window.addEventListener('WebComponentsReady', function() {
+      clearTimeout(window.fallback);
+      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+    });
 
     document.addEventListener("DOMContentLoaded", function() {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
 
       // If chrome "WebComponentsReady" is not triggered thats why we have this
-      if (!window.HTMLImports) {
+      if (!!window.chrome) {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
     });
@@ -201,13 +203,15 @@ CorporateUi = (function() {
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 
-    document.documentElement.className += ' global-loading';
+    document.documentElement.className += ' loading';
     // We create this dynamically to make sure this style is always rendered before things in body
-    var style = document.createElement('style')
+    var style = document.createElement('style');
     style.appendChild(document.createTextNode('\
-      .global-loading c-corporate-header, .global-loading c-corporate-footer, .global-loading c-main-navigation { display: none; }\
+      html.loading { height: 100%; opacity: 0; }\
+      html.loading:before { background-color: rgb(250, 250, 250); }\
+      /*html.loading c-corporate-header, html.loading c-corporate-footer, html.loading c-main-navigation { display: none; }*/\
     '));
-    document.documentElement.appendChild(style);
+    document.head.appendChild(style);
   }
 
   function appendFavicon() {

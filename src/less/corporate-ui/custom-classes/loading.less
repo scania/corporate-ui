@@ -1,6 +1,7 @@
 .loading,
 .locked {
   position: relative;
+  overflow: hidden;
 
   &:before {
     display: block !important;
@@ -38,10 +39,9 @@
   &.full:after {
     position: fixed;
   }
-}
-.loading,
-.locked {
-  overflow: hidden;
+  html& {
+    opacity: 1 !important;
+  }
 }
 .locked:after {
   content: "";

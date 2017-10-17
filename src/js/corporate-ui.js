@@ -25,11 +25,11 @@ CorporateUi = (function() {
 
   function init() {
 
+    addMetaAndHeaderSpecs();
+
     AppEventStore = new EventStore();
 
     setGlobals();
-
-    addMetaAndHeaderSpecs();
 
     appendExternals();
 
@@ -41,22 +41,24 @@ CorporateUi = (function() {
   }
 
   function ready() {
+    window.fallback = setTimeout(function() {
+      console.log('"WebComponentsReady" seems to have failed loading so a fallback has triggered.');
+      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+    }, 10000);
+
     window.addEventListener('WebComponentsReady', function() {
-      document.documentElement.removeAttribute('unresolved');
+      clearTimeout(window.fallback);
+      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
     });
 
-    setTimeout(function() {
-      document.documentElement.removeAttribute('unresolved');
-    }, 5000);
-
-    window.onload = function(event) {
+    document.addEventListener("DOMContentLoaded", function() {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
 
       // If chrome "WebComponentsReady" is not triggered thats why we have this
-      if (!window.HTMLImports) {
+      if (!!window.chrome) {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
-    }
+    });
   }
 
   function EventStore() {
@@ -201,9 +203,14 @@ CorporateUi = (function() {
   function addMetaAndHeaderSpecs() {
     generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 
+    document.documentElement.className += ' loading';
     // We create this dynamically to make sure this style is always rendered before things in body
-    var style = document.createElement('style')
-    style.appendChild(document.createTextNode('html[unresolved] { opacity: 0; }'));
+    var style = document.createElement('style');
+    style.appendChild(document.createTextNode('\
+      html.loading { height: 100%; opacity: 0; }\
+      html.loading:before { background-color: rgb(250, 250, 250); }\
+      /*html.loading c-corporate-header, html.loading c-corporate-footer, html.loading c-main-navigation { display: none; }*/\
+    '));
     document.head.appendChild(style);
   }
 
@@ -309,9 +316,7 @@ CorporateUi = (function() {
   function appendExternals() {
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents.min.js');
-
-      document.documentElement.setAttribute('unresolved', ' ');
+      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js');
     }
     // Adds support for Promise if non exist
     if (typeof(Promise) === 'undefined') {

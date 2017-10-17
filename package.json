@@ -20,8 +20,7 @@
     "react-dom": "15.4.2",
     "video.js": "5.19.2",
     "videojs-youtube": "2.3.2",
-    "webcomponents.js": "0.7.24",
-    "es6-promise": "4.1.0"
+    "webcomponents.js": "0.7.24"
   },
   "devDependencies": {
     "@types/node": "7.0.12",

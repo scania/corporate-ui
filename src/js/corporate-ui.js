@@ -35,21 +35,13 @@ CorporateUi = (function() {
 
     appendFavicon();
 
-    sysMessages();
-
     ready();
   }
 
   function ready() {
-    window.fallback = setTimeout(function() {
-      console.log('"WebComponentsReady" seems to have failed loading so a fallback has triggered.');
-      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
-    }, 10000);
 
-    window.addEventListener('WebComponentsReady', function() {
-      clearTimeout(window.fallback);
-      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
-    });
+    window.fallback = setTimeout(done, 10000);
+    window.addEventListener('WebComponentsReady', done);
 
     document.addEventListener("DOMContentLoaded", function() {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
@@ -59,6 +51,19 @@ CorporateUi = (function() {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
     });
+  }
+
+  function done(event) {
+    if (window.appLoaded) {
+      return;
+    }
+    window.appLoaded = true;
+
+    window.standard_ready = event // Timeout have no params sent so it will be undefined
+    clearTimeout(window.fallback);
+
+    document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+    sysMessages();
   }
 
   function EventStore() {
@@ -355,6 +360,10 @@ CorporateUi = (function() {
 
     if (window.environment === 'development') {
       console.warn('Remeber that you are pointing to our development environment and due to this you might experience some techical difficulties.');
+    }
+
+    if (!window.standard_ready) {
+      console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
     }
   }
 }());

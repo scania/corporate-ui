@@ -212,8 +212,12 @@ CorporateUi = (function() {
     // We create this dynamically to make sure this style is always rendered before things in body
     var style = document.createElement('style');
     style.appendChild(document.createTextNode('\
-      html.loading { height: 100%; opacity: 0; }\
-      html.loading:before { background-color: rgb(250, 250, 250); }\
+      @keyframes show {\
+        99% { visibility: hidden; }\
+        100% { visibility: visible; }\
+      }\
+      html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
+      html.loading:before { background-color: #fff; }\
       /*html.loading c-corporate-header, html.loading c-corporate-footer, html.loading c-main-navigation { display: none; }*/\
     '));
     document.head.appendChild(style);

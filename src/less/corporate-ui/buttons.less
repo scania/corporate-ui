@@ -32,7 +32,8 @@
     padding: 6px 12px;
   }
 
-  &-xs {
+  &-xs,
+  &-group-xs > & {
     font-size: 11px;
     padding: 3px 6px;
 
@@ -41,7 +42,8 @@
     }
   }
 
-  &-sm {
+  &-sm,
+  &-group-sm > & {
     font-size: 12px;
     padding: 7px 11px;
     // Icons in btn-sm
@@ -56,7 +58,8 @@
     }
   }
 
-  &-lg {
+  &-lg,
+  &-group-lg > & {
     padding: 20px 40px;
     font-size: 14px;
     .app &{
@@ -189,3 +192,8 @@ fieldset[disabled] .btn-link {
 //       border-color: #5da7a9;
 //   }
 
+.btn-group {
+   > .btn {
+      border-radius: 0;
+    }
+}

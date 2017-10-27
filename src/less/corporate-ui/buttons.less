@@ -97,7 +97,8 @@
 
   &:hover,
   &:active,
-  &.active {
+  &.active,
+  .open .dropdown-toggle& {
     color: lighten(@btn-default-border, 10%);
     border-color: lighten(@btn-default-border, 10%);
     background-color: #f5f5f5;
@@ -191,9 +192,3 @@ fieldset[disabled] .btn-link {
 //       background-color: #5da7a9;
 //       border-color: #5da7a9;
 //   }
-
-.btn-group {
-   > .btn {
-      border-radius: 0;
-    }
-}

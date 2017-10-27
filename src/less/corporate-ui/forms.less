@@ -1,3 +1,8 @@
+
+@import (less, reference) 'typography';
+@import (less, reference) 'icons';
+
+
 // SCANIA BOOTSTRAP THEME
 // FORMS
 legend {
@@ -55,7 +60,7 @@ textarea[placeholder] {
 
     .app & {
         padding: 4px 12px;
-        height: 100%;
+        height: 34px;
     }
 }
 .form-condensed {
@@ -216,41 +221,202 @@ input[type=radio] {
 
 
 select{       
-    height: 40px;
-    padding: 5px;
-    border: 0;
-    font-size: 16px;       
-    width: 100%;
+    
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    width: 100%;
 }
 
 
-.select {
-    border: 1px solid #ccc;
-    overflow: hidden; 
-    height: 40px;    
-    width: initial;
-    position: relative;
-    display: block;
+.custom-select {
+        font-size: inherit;
+    width: 100%;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E%3C!-- Generator: IcoMoon.io --%3E%3Csvg xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:cc='http://creativecommons.org/ns%23' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns%23' xmlns:svg='http://www.w3.org/2000/svg' xmlns='http://www.w3.org/2000/svg' xmlns:sodipodi='http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd' xmlns:inkscape='http://www.inkscape.org/namespaces/inkscape' id='svg2' data-tags='remove-circle, cancel, close, remove, delete' height='1200' viewBox='0 0 1200 1200' width='1200' version='1.1' data-du='' inkscape:version='0.48.4 r9939' sodipodi:docname='chevron-down.svg'%3E%3Cdefs id='defs3181' /%3E%3Csodipodi:namedview pagecolor='%23ffffff' bordercolor='%23666666' borderopacity='1' objecttolerance='10' gridtolerance='10' guidetolerance='10' inkscape:pageopacity='0' inkscape:pageshadow='2' inkscape:window-width='1535' inkscape:window-height='876' id='namedview3179' showgrid='false' inkscape:zoom='0.26339286' inkscape:cx='-67.796606' inkscape:cy='448' inkscape:window-x='65' inkscape:window-y='24' inkscape:window-maximized='1' inkscape:current-layer='svg2' /%3E%3Cmetadata id='metadata62'%3E%3Crdf:RDF%3E%3Ccc:Work rdf:about=''%3E%3Cdc:format%3Eimage/svg+xml%3C/dc:format%3E%3Cdc:type rdf:resource='http://purl.org/dc/dcmitype/StillImage' /%3E%3Cdc:title /%3E%3C/cc:Work%3E%3C/rdf:RDF%3E%3C/metadata%3E%3Cpath style='font-size:1353.90197754px;font-style:italic;letter-spacing:0;word-spacing:0;font-family:Serif' id='path3134' d='M 600.00584,1200 778.71504,1021.2908 1200,600.00586 1021.2673,421.29666 600.00584,842.55818 178.7209,421.29666 -1.9e-5,600.01758 421.2615,1021.2791 599.9824,1200 z' inkscape:connector-curvature='0' /%3E%3C/svg%3E");
+    background-size: 31px;
+    background-position: calc(100% - 2px) center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
 
-&:after {
-    content:"a";
-    font-family: FontAwesome;
-    color: #000;
-    padding: 12px 8px;
-    position: absolute; 
-    right: 0; 
-    top: 0;
-    border: 1px solid red;
-    // background: red;
-    z-index: 1;
-    text-align: center;
-    width: 10%;
-    height: 100%;      
-    pointer-events: none;
-    box-sizing: border-box;   
-}
+     & > option {
+        background: #FFFFFF;
+        // color: #FFFFFF;
+
+    }
+
+    &:focus {
+        border: 0;
+        outline: none;
+    }
+
+    .app & {
+
+        background-size: 12px;
+        background-position: calc(100% - 3px) center;
+        // padding: 8px 20px;
+
+    }
+
+    .well & {
+
+        background-color: #FFFFFF;
+    }
+
 }
 
+
+b[role="presentation"] {
+    display: none;
+}
+
+.select2 [class^='select2-selection__rendered'] {
+  
+  font-size: inherit;
+  width: 100%;
+  // padding:20px 40px;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=");  background-position: calc(100% - 3px) center;
+  background-repeat: no-repeat;
+  background-color: #f5f5f5;
+  background-position: calc(98%) center;
+  background-size: 35px;
+  height: 56px;
+  display: inline-block;
+  outline: none;
+
+   .app & {
+
+    height: 35px;
+    background-size: 12px;
+
+  }
+
+  .well & {
+
+        background-color: #FFFFFF;
+    }
+      
+}
+
+.select2-container--open {
+
+    & .select2-dropdown--above, 
+    & .select2-dropdown--below { 
+
+    border: 1px solid #f5f5f5;
+    border-radius: 0px;
+
+    .well & {
+        border: 1px solid #dadada;
+    }
+
+    }
+
+   & [class^='select2-selection__rendered'] {
+  
+   background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDY4LjhsLTU3LjItNTdxLTEuNS0xLjQtMy41LTEuNFQ2OSAxMS44bC01Ny4yIDU3cS0xLjUgMS41LTEuNSAzLjV0MS41IDMuNWwxMi44IDEyLjdRMjYgOTAgMjggOTB0My41LTEuNWw0MC44LTQwLjggNDEgNDAuOHExLjMgMS41IDMuMyAxLjV0My41LTEuNWwxMy0xMi43cTEuMy0xLjQgMS4zLTMuNXQtMS40LTMuNXoiLz48L3N2Zz4=");
+    }
+
+}
+
+.select2-container--default {
+  
+  & .select2-selection--multiple, 
+  &.select2-container--focus .select2-selection--multiple,
+  & .select2-selection--single {
+    
+    border: 1px solid #f5f5f5;
+    outline: none;
+    height: 56px;
+    border-radius: 0px;
+
+     .app & {
+        height:36px;
+    }
+  }
+  
+  & .select2-selection--single .select2-selection__rendered {
+    line-height: 56px;
+    font-family: inherit;
+    color: #53565a;
+
+     .app & {
+        line-height: 37px;
+    }
+  }
+  
+  & .select2-selection--multiple .select2-selection__choice {
+    border-radius: 0px;
+    font-size: 20px;
+    background-color: #FFFFFF;
+    padding: 5px 5px 5px 5px;
+    margin-top: 12px;
+    margin-left: 5px;
+    line-height: normal;
+
+    .app & {
+    padding: 3px 5px 3px 5px;
+    margin-top: 5px;
+    font-size: 15px;
+    }
+    
+  }
+
+  & .select2-results__option--highlighted[aria-selected] {
+    background-color: #f5f5f5;
+    color: #53565a;
+
+  }
+
+  & .select2-selection--multiple .select2-selection__clear {
+    margin-right: 35px;
+  
+  }
+
+  & .select2-search--dropdown .select2-search__field {
+    border: none;
+    outline: 0;
+  }
+
+}
+
+.select2-container .select2-search--inline .select2-search__field {
+    line-height: 43px;
+    font-family: inherit;
+    color: #53565a;
+    padding: 0px 0px 0px 5px;
+
+
+    .app & {
+    line-height: 25px;
+    color: #53565a;
+    
+
+    }
+
+
+ }
+
+.select2-search--dropdown {
+    background-color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+
+   & .select2-search__field {
+    box-shadow: inset 0 0 10px #F5F5EF;
+    padding: 4px;
+    width: 96%;
+    box-sizing: border-box;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .090);
+
+    }
+}

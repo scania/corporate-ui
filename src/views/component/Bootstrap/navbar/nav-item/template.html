@@ -1,11 +1,6 @@
 
-<template is="dom-if" if="{{renderLink}}">
-  <a href="{{location}}">
-    <content></content>
-  </a>
+<template is="dom-if" if="{{isSubNav}}">
+  <a href on-tap="toggleExpand" class="mode-toggler"></a>
 </template>
 
-<template is="dom-if" if="{{!renderLink}}">
-  <a href on-tap="toggleExpand" class="mode-toggler"></a>
-  <content></content>
-</template>
+<content></content>

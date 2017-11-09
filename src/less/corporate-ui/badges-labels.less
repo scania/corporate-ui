@@ -6,59 +6,62 @@
 }
 
 .label {
-  font-size: 100%;
-  font-weight: normal;
-  border-radius: 1.25em;
-  padding: .4em .6em .3em;
-  display: inline-block;
+	font-size: 80%;
+  	font-weight: bold;
+	border-radius: 1em;
+	padding: .6em 1.9em .7em;
+	display: inline-block;
+  	display: inline-block;
 }
 
 .label-sm {
-  font-size: 80%;  
+  font-size: 70%;  
+  font-weight: normal;  
   border-radius: 0.35em;
-  padding: 0.2em 0.4em 0.15em;
+  padding: 0.28em 0.4em 0.25em;
 }
 
 .label-lg {
+  font-size: 100%; 	
   font-weight: bold;
   border-radius: 1.3em;
-  padding: 0.8em 1.2em 0.6em;
+  padding: 0.6em 1.2em 0.6em;
 }
 
 .label-danger {
-  background-color: #f2dede;
-  color: #a94442;
-  border: 1px solid #d9aeae;
+  background-color: lighten(@brand-danger, 10%);
+  color: #fff;
+  border: 1px solid lighten(@brand-danger, 10%);
 }
 
 .label-primary {
-  background-color: #d9edf7;
-  color: #31708f;
-  border: 1px solid #9ecbd4;
+  background-color: lighten(@brand-primary-app, 10%);
+  color: #fff;
+  border: 1px lighten(@brand-primary-app, 10%);
 }
 
 .label-info {
-  color: @btn-info-color;
-  background-color: @btn-info-bg;
-  border: 1px solid darken(@btn-info-border, 4%);
+  background-color: lighten(@brand-info, 10%);
+  color: #fff;  
+  border: 1px solid lighten(@brand-info, 10%);
 }
 
 .label-default {
-  background-color: #eee;
-  color: #545454;
-  border: 1px solid #d2d2d2;
+  background-color: #fff;
+  color: lighten(@brand-primary-app, 10%);
+  border: 1px solid lighten(@brand-primary-app, 10%);
 }
 
 .label-success {
-  background-color: #dff0d8;
-  color: #3c763d;
-  border: 1px solid #b8d2a2;
+  background-color: lighten(@brand-success, 10%);
+  color: #fff;
+  border: 1px solid lighten(@brand-success, 10%);
 }
 
 .label-warning {
-  background-color: #fcf8e3;
-  color: #8a6d3b;
-  border: 1px solid #d9c8a5;
+  background-color: lighten(@brand-warning, 10%);
+  color: #fff;
+  border: 1px solid lighten(@brand-warning, 10%);
 }
 
 // CRUD LABELS

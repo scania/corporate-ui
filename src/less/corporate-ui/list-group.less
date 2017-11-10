@@ -2,6 +2,7 @@
   font-family: 'Scania Sans Bold';
   margin-bottom: 60px;
 
+  //list-group-light
   &-light .list-group-item {
     background-color: transparent;
     border: 0;
@@ -22,58 +23,20 @@
 
   &.active {
     z-index: 0;
-    background-color: #4a8ba4;
-    border-color: #4a8ba4;
+    background-color: @brand-info;
+    border-color: @brand-info;
 
     &:hover,
     &:focus {
       z-index: 0;
-      background-color: #4a8ba4;
-      border-color: #4a8ba4;		
-    }
-
-    > a,
-    > i {
-      color: #fff;
-    }
-    > ul {
-      border-top-color: #428bca;
+      background-color: @brand-info;
+      border-color: @brand-info;
     }
   }
 
-  &.hovering {
-    background-color: #d1e8f2;
-  }
-
-  i {
-    color: #555555;
-  }
-  a {
-
-    &:hover,
-    &:active,
-    &:focus {
-      text-decoration: none;
-    }
-  }
-  ul,
-  .list-group {
-    padding-left: 0;
-    margin: 12px -16px -11px;
-    border-left: 1px solid #fff;
-    border-top: 1px solid #ddd;
-    background-color: #fff;
-  }
-  li {
-    margin-left: 10px;
-    background-color: #fff;
-
-    &:first-child {
-      border-top: 0;
-      border-radius: 0;
-    }
-    &:last-child {
-      border-radius: 0;
-    }
+  &.submenu-item {
+    background-color: #e3edf0;
+    border-color: #e3edf0;
+    color: #000;
   }
 }

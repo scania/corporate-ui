@@ -1,0 +1,17 @@
+.btn-group {
+
+  &.open .dropdown-toggle {
+    box-shadow: none;
+  }
+
+   > .btn {
+    border-radius: 0;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 0;
+    }
+  }
+}

@@ -6,7 +6,7 @@
   -webkit-box-shadow: none;
   box-shadow: none;
   overflow: hidden;
-  
+
   &-heading {
     border-radius: 0;
     font-family: 'Scania Sans Bold';
@@ -32,123 +32,127 @@
       }
     }
 
-      &-title {
-        font-family: 'Scania Sans Headline Bold';
-        color: inherit;
-        font-size: 1.8rem;
+  &-title {
+      font-family: 'Scania Sans Headline Bold';
+      color: inherit;
+      font-size: 1.8rem;
 
-        small {
-          display: block;
-          margin: 4px 0;
-          font-size: 0.75em;
-          font-family: 'Scania Sans';
-          text-transform: initial;
-          color: inherit;
-        }
-      }
-
-      &-body {
-        padding: 30px 30px;
-        min-height: 165px;
-        
-        > .table {
-          margin: -16px;
-        }
-      }
-
-      &-footer {
-        font-weight: bold;
-        border-radius: 0;
-      }
-
-      &-inverse {
-            // &:extend(.panel-heading);
-            background-color: @dark-content-block;
-            border: 0px;
-            color: inherit;
-        // margin-bottom: 0px;
-
-        &:first-child {
-          border: 1px solid #ddd;
-        }
-
-        &:first-child .panel-heading{
-         background-color: #FFFFFF;
-         color: #041e42;
-         border: 1px solid #ddd;
-
-         :first-child {
-          color: #041e42;
-        }
-      }
-
-      input[type=text] {
-        background-color: #fff;
-      }
-      .form-control {
-        border: 0px;
-      }
-    }
-
-    // panel-onlyheading - Panels with just heading, transparent panel-body
-    &&-onlyheading {
-      background-color: transparent;
-
-      &, > &-heading {
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        border-radius: 0px;
-      }
-    }
-
-    .panel-body {
-
-      > .table {
+      small {
         display: block;
-        width: auto;
-        max-width: none;
-        margin: -1px;
+        margin: 4px 0;
+        font-size: 0.75em;
+        font-family: 'Scania Sans';
+        text-transform: initial;
+        color: inherit;
+      }
+  }
 
-        caption {
-          display: block;
-        }
+    &-body {
+      padding: 30px 30px;
+      min-height: 165px;
+      
+      > .table {
+        margin: -16px;
+      }
 
-        thead {
-          background-color: inherit;
+      .panel-heading + & {
+        padding: 15px;
+      }
+    }
+
+    &-footer {
+      font-weight: bold;
+      border-radius: 0;
+    }
+
+    &-inverse {
+          // &:extend(.panel-heading);
+          background-color: @dark-content-block;
+          border: 0px;
           color: inherit;
-        }
+      // margin-bottom: 0px;
 
-        > thead,
-        > tbody {
-          display: inline-table;
-          width: 100%;
-        }
+      &:first-child {
+        border: 1px solid #ddd;
+      }
 
-        th,
-        td {
-          width: 1%;
-        }
+      &:first-child .panel-heading{
+       background-color: #FFFFFF;
+       color: #041e42;
+       border: 1px solid #ddd;
+
+       :first-child {
+        color: #041e42;
       }
     }
 
-    .panel-footer {
-      > .pagination {
-        margin: 0;
-      }
+    input[type=text] {
+      background-color: #fff;
     }
+    .form-control {
+      border: 0px;
+    }
+  }
 
-    .table-borderless > {
-      tbody,
+  // panel-onlyheading - Panels with just heading, transparent panel-body
+  &&-onlyheading {
+    background-color: transparent;
+
+    &, > &-heading {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  .panel-body {
+
+    > .table {
+      display: block;
+      width: auto;
+      max-width: none;
+      margin: -1px;
+
+      caption {
+        display: block;
+      }
+
       thead {
-        > tr > {
-          td,
-          th {
-            border: none;
-          }
+        background-color: inherit;
+        color: inherit;
+      }
+
+      > thead,
+      > tbody {
+        display: inline-table;
+        width: 100%;
+      }
+
+      th,
+      td {
+        width: 1%;
+      }
+    }
+  }
+
+  .panel-footer {
+    > .pagination {
+      margin: 0;
+    }
+  }
+
+  .table-borderless > {
+    tbody,
+    thead {
+      > tr > {
+        td,
+        th {
+          border: none;
         }
       }
     }
   }
+}
 
 // Contextual footers (missing support in Bootstrap)
 .panel-default {

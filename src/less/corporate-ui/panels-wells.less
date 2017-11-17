@@ -1,7 +1,7 @@
   // SCANIA BOOTSTRAP THEME
   // PANELS AND WELLS
   .panel {
-      margin-bottom: 15px;
+      margin-bottom: 30px;
       border-radius: 0;
       -webkit-box-shadow: none;
       box-shadow: none;
@@ -42,7 +42,9 @@
           color: inherit;
         }
       }
-      & &-body {
+      &-body {
+          padding: 30px 30px;
+          min-height: 165px;
           > .table {
               margin: -16px;
           }
@@ -139,7 +141,7 @@
   }
   // Contextual footers (missing support in Bootstrap)
   .panel-default {
-      border-color: @brand-default;
+      border-color: #e2e2e2;
       > .panel-heading, > .panel-footer {
           color: @brand-primary;
           h1,

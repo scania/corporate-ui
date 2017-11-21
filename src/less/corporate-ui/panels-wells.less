@@ -81,7 +81,7 @@
       padding: 15px;
     }
 
-    > .table {
+    .table {
       display: block;
       width: auto;
       max-width: none;
@@ -106,23 +106,39 @@
       td {
         width: 1%;
       }
-    }
 
-   .table.table-sm {
-      max-width: 100%;
-      margin: 20px 0;
+      &.table-sm {
+        max-width: 100%;
+        margin: 20px 0;
 
-      thead {
-        background-color: transparent;
-        color: #b7b7b7;
+        thead {
+          background-color: transparent;
+          color: #b7b7b7;
 
-        > tr > th {
-          text-transform: none;
-          font-weight: normal;
-          font-family: 'Scania Sans Condensed Bold';
-          font-size: 1.3rem;
-          padding: 0 10px;
-          border-bottom: 1px solid #b7b7b7;
+          > tr {
+
+            > th {
+              text-transform: none;
+              font-weight: normal;
+              font-family: 'Scania Sans Condensed Bold';
+              font-size: 1.3rem;
+              padding: 0 10px;
+              border-bottom: 1px solid #b7b7b7;
+            }
+          }
+        }
+        
+        tbody {
+
+          > tr {
+
+            > td { 
+              font-family: 'Scania Sans Condensed' !important;
+              padding: 5px 10px !important;
+              border: none;
+              font-size: 1.3rem;
+            }
+          }
         }
       }
     }

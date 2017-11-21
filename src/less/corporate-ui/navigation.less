@@ -172,7 +172,7 @@
 ul.nav-tabs {
   font-size: 0;
   text-align: center;
-  border-bottom: 1px solid @color-primary-01;
+  margin: 10px 20px 5px;
 
   > li {
     margin-bottom: 0;
@@ -180,18 +180,16 @@ ul.nav-tabs {
     display: inline-block;
 
     > a {
-      padding: 15px 15px 14px 15px;
-      text-transform: none;
-      font-weight: normal;
+      font-family: 'Scania Sans Bold';
+      padding: 10px 20px 9px 20px;
       -webkit-border-radius: 0;
       border-radius: 0;
       margin-right: 0;
       border-top: 1px solid @color-primary-01;
       border-right: 1px solid @color-primary-01;
-      position: relative;
       background-color: #fff;
       color: @color-primary-03;
-      font-size: 12px;
+      font-size: 1.4rem;
       text-transform: uppercase;
 
       &:hover {
@@ -230,11 +228,15 @@ ul.nav-tabs {
 
     > li {
 
-      &:hover a {
-        color: inherit;
+      a,
+      a:hover,
+      &:first-child a, {
+        font-family: 'Scania Sans';
+        background-color: transparent;
+        border-color: transparent;
       }
+
       &.active {
-        background-color: #fff;
 
         a,
         a:hover,
@@ -245,16 +247,10 @@ ul.nav-tabs {
           color: inherit;
           padding: 0;
           margin: 15px 15px 13px 15px;
-          border-color: red;
+          border-color: @brand-primary-3;
           border-width: 0 0 2px;
+          font-family: 'Scania Sans Bold';
         }
-      }
-      &:first-child a,
-      > a,
-      > a:hover {
-        background-color: transparent;
-        border-color: transparent;
-        color: inherit;
       }
     }
   }

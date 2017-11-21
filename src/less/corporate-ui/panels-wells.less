@@ -7,7 +7,7 @@
   box-shadow: none;
   overflow: hidden;
 
-  &-heading {
+  .panel-heading {
     border-radius: 0;
     font-family: 'Scania Sans Bold';
     text-transform: uppercase;
@@ -36,7 +36,7 @@
       }
     }
 
-  &-title {
+  .panel-title {
       font-family: 'Scania Sans Headline Bold';
       color: inherit;
       font-size: 1.8rem;
@@ -51,87 +51,35 @@
       }
   }
 
-    &-body {
-      padding: 30px 30px;
-      min-height: 165px;
-      
-      > .table {
-        margin: -16px;
-      }
-
-      .panel-heading + & {
-        padding: 15px;
-      }
-
-      h3,
-      h4 {
-         font-family: 'Scania Sans Condensed Bold';
-      }
-
-      h3 {
-        font-size: 24px;
-        padding-top: 5px;
-        color: #041e42;
-      }
-
-      h4 {
-        color: #4a8ba4;
-        margin-top: 0;
-        margin-bottom: 20px;
-      }
-
-      p {
-        font-family:'Scania Sans Semi Condensed';
-        font-size:16px;
-      }
-    }
-
-    &-footer {
-      font-weight: bold;
-      border-radius: 0;
-    }
-
-    &-inverse {
-          // &:extend(.panel-heading);
-          background-color: @dark-content-block;
-          border: 0px;
-          color: inherit;
-      // margin-bottom: 0px;
-
-      &:first-child {
-        border: 1px solid #ddd;
-      }
-
-      &:first-child .panel-heading{
-       background-color: #FFFFFF;
-       color: #041e42;
-       border: 1px solid #ddd;
-
-       :first-child {
-        color: #041e42;
-      }
-    }
-
-    input[type=text] {
-      background-color: #fff;
-    }
-    .form-control {
-      border: 0px;
-    }
-  }
-
-  // panel-onlyheading - Panels with just heading, transparent panel-body
-  &&-onlyheading {
-    background-color: transparent;
-
-    &, > &-heading {
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      border-radius: 0px;
-    }
-  }
-
   .panel-body {
+    padding: 30px 30px;
+    min-height: 165px;
+    
+    h3,
+    h4 {
+       font-family: 'Scania Sans Condensed Bold';
+    }
+
+    h3 {
+      font-size: 24px;
+      padding-top: 5px;
+      color: #041e42;
+    }
+
+    h4 {
+      color: #4a8ba4;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-family:'Scania Sans Semi Condensed';
+      font-size:16px;
+    }
+
+    .panel-heading + .panel-body {
+      padding: 15px;
+    }
 
     > .table {
       display: block;
@@ -158,6 +106,70 @@
       td {
         width: 1%;
       }
+    }
+
+   .table.table-sm {
+      max-width: 100%;
+      margin: 20px 0;
+
+      thead {
+        background-color: transparent;
+        color: #b7b7b7;
+
+        > tr > th {
+          text-transform: none;
+          font-weight: normal;
+          font-family: 'Scania Sans Condensed Bold';
+          font-size: 1.3rem;
+          padding: 0 10px;
+          border-bottom: 1px solid #b7b7b7;
+        }
+      }
+    }
+  }
+
+  .panel-footer {
+    font-weight: bold;
+    border-radius: 0;
+  }
+
+  //Panel-inverse
+  &-inverse {
+    background-color: @dark-content-block;
+    border: 0px;
+    color: inherit;
+
+    &:first-child {
+      border: 1px solid #ddd;
+    }
+
+    &:first-child .panel-heading {
+     background-color: #FFFFFF;
+     color: #041e42;
+     border: 1px solid #ddd;
+
+      :first-child {
+        color: #041e42;
+      }
+    }
+
+    input[type=text] {
+      background-color: #fff;
+    }
+
+    .form-control {
+      border: 0px;
+    }
+  }
+
+  // panel-onlyheading - Panels with just heading, transparent panel-body
+  &&-onlyheading {
+    background-color: transparent;
+
+    &, > &-heading {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
     }
   }
 

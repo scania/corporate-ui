@@ -127,16 +127,41 @@
             }
           }
         }
-        
+
         tbody {
 
           > tr {
 
-            > td { 
-              font-family: 'Scania Sans Condensed' !important;
-              padding: 5px 10px !important;
+            > td {
+              font-family: 'Scania Sans Condensed';
+              padding: 5px 10px;
               border: none;
               font-size: 1.3rem;
+            }
+          }
+        }
+
+        &.table-striped {
+
+          > tbody {
+
+            > tr {
+
+              &:nth-child(odd) {
+
+                > td,
+                > th {
+                  background-color: #fff;
+                }
+              }
+
+              &:nth-child(even) {
+
+                > td,
+                > th {
+                  background-color: #f2f7f9;
+                }
+              }
             }
           }
         }

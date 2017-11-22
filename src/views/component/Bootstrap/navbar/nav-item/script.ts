@@ -35,7 +35,6 @@ Polymer({
         }
       }
       var anchor = document.createElement('a');
-      anchor.className = 'nav-item';
       anchor.innerText = node.textContent.trim();
       anchor.href = this.location;
       this.replaceChild(anchor, node)

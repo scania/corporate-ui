@@ -1,0 +1,97 @@
+.page-header {
+
+  h1,
+  h2,
+  h3 {
+
+    small {
+      font-family: "Scania Sans Headline";
+      font-size: 0.5em;
+      font-weight: normal;
+      color: @brand-primary;
+      display: block;
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
+
+  .app & {
+  
+    h1 {
+      font-size: @h1-font-size-app * 1.5;
+    }
+    h2 {
+      font-size: @h2-font-size-app * 1.5;
+    }
+    h3 {
+      font-size: @h3-font-size-app * 1.5;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Scania Sans Headline Bold";
+      padding-top: 0;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.03rem;
+
+      small {
+        font-family: "Scania Sans Bold";
+        font-size: 0.6em;
+      }
+    }
+  }
+}
+
+header.c-page-header {
+  background: transparent;
+  margin-bottom: 30px;
+  padding: 0;
+  border: none;
+
+  .page-header {
+    display: table;
+
+    h1,
+    h2,
+    h3 {
+      padding-top: 0;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.03rem;
+      font-family: "Scania Sans Headline Bold", Arial, sans-serif;
+    }
+
+    h3 {
+      font-size: 18px;
+      padding-right: 10px; 
+    }
+
+    h4 {
+      font-family: 'Scania Sans Condensed Bold';
+      font-size: 22px;
+      padding-left: 10px;
+      border-left: 1px solid #041e42;
+    }
+
+    h3,
+    h4 {
+      display: table-cell; 
+      vertical-align: middle;
+    }
+  }
+
+  & .form-control {
+    background-color: #FFF;
+    padding: 15px;
+  }
+
+  .btn-toolbar,
+  .form-group {
+    margin: 0;
+  }
+}
+
+html body.scania .page-header {
+  border: none;
+  margin-top: 0;
+}

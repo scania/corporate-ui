@@ -104,16 +104,37 @@
     background-color: #f5f5f5;
   }
 }
-.app .btn-primary {
-  background-color: @brand-primary-app;
+.app {
 
-  &:hover,
-  &:active,
-  &.active,
-  .open .dropdown-toggle& {
-    background-color: lighten(@brand-primary-app, 10%);
-    border-color: lighten(@brand-primary-app, 10%);
+  .btn-primary {
+    background-color: @brand-primary-app;
+
+    &:hover,
+    &:active,
+    &.active,
+    .open .dropdown-toggle& {
+      background-color: lighten(@brand-primary-app, 10%);
+      border-color: lighten(@brand-primary-app, 10%);
   }
+
+  .btn-link.btn-info {
+    color: @btn-info-bg;
+    text-decoration: none;
+    font-family: 'Scania Sans Condensed Bold';
+    font-weight: normal;
+    font-size: 1.6rem;
+    background-color: transparent;
+    border: 0;
+
+    &:hover,
+    &:active,
+    &.active {
+      background-color: lighten(@btn-info-bg, 10%);
+      border-color: lighten(@btn-info-bg, 10%);
+  }
+}
+
+
 }
 // Button extra
 .btn-link  {

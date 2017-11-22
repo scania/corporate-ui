@@ -43,47 +43,49 @@
     }
   }
 
-  &.table-sm,
-  &.table-md,
-  &.table-lg {
-    // "max-width" needs to be set width js based on how big the table is
-    // or as a static value per table :/
-    max-width: 500px;
+  // Removed this section since Bootstrap 4 will use table-sm
+  // &.table-sm,
+  // &.table-md,
+  // &.table-lg {
+  //   // "max-width" needs to be set width js based on how big the table is
+  //   // or as a static value per table :/
+  //   max-width: 500px;
 
-    tr {
-      display: block;
+  //   tr {
+  //     display: block;
 
-      th,
-      td {
-        width: 8%;
-      }
-    }
-    tbody {
-      display: block;
-      overflow-x: hidden;
-      max-width: inherit;
+  //     th,
+  //     td {
+  //       width: 8%;
+  //     }
+  //   }
+  //   tbody {
+  //     display: block;
+  //     overflow-x: hidden;
+  //     max-width: inherit;
 
-      tr {
-        // The following rules is used for keeping the columns correctely aligned.
-        // Independent if the table have a scrollbar or not
-        max-width: inherit;
-        margin-right: -16px;
+  //     tr {
+  //       // The following rules is used for keeping the columns correctely aligned.
+  //       // Independent if the table have a scrollbar or not
+  //       max-width: inherit;
+  //       margin-right: -16px;
 
-        td:last-child {
-          padding-right: 24px; // 16 + 8 = scrollbar size + default padding
-        }
-      }
-    }
-  }
-  &.table-sm tbody {
-    max-height: 120px;
-  }
-  &.table-md tbody {
-    max-height: 250px;
-  }
-  &.table-lg tbody {
-    max-height: 400px;
-  }
+  //       td:last-child {
+  //         padding-right: 24px; // 16 + 8 = scrollbar size + default padding
+  //       }
+  //     }
+  //   }
+  // }
+  // &.table-sm tbody {
+  //   max-height: 120px;
+  // }
+  // &.table-md tbody {
+  //   max-height: 250px;
+  // }
+  // &.table-lg tbody {
+  //   max-height: 400px;
+  // }
+
 }
 // This is a separate rule to make this rule over rule the previous one.
 // This could be solved by using the specific unicode instead

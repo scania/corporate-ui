@@ -265,22 +265,91 @@ ul.nav-tabs {
   }
 }
 
-.nav-pills li {
+//nav-pills
+.nav-pills {
 
-  &.active > a {
+  li {
 
-    &,
-    &:hover {
-      background-color: @brand-info;
+    &.active > a {
+
+      &,
+      &:hover,
+      &:focus {
+        background-color: @brand-info;
+        color: #fff;
+      }
+
+      > .badge {
+        color: @brand-info;
+      }
     }
 
-    > .badge {
+    > a {
       color: @brand-info;
     }
   }
 
-  > a {
-    color: @brand-info;
+  > li {
+
+    > a {
+      border-radius:0;
+
+      > .badge {
+        margin-left: 10px;
+        vertical-align: top;
+      }
+    }
+  }
+
+  ul.nav& {
+    padding: 0;
+    margin: 0;
+    font-family: 'Scania Sans Condensed Bold';
+
+    li {
+      border: 1px solid @brand-info;
+      background-color: #fff;
+    }
+
+    li + li {
+      margin-left:-1px;
+      margin-bottom: 10px;
+    }
+
+    &.nav-stacked {
+      font-size: 1.56rem;
+      margin-bottom: 30px;
+
+      li {
+         border-color: #e2e2e2;
+
+         + li {
+          margin-left: 0;
+          margin-bottom: -1px;
+        }
+      }
+     
+      > li {
+
+        + li {
+          margin-top: 0;
+          margin-left: 0;
+        }
+
+        &.active > a {
+         color: #fff;
+        }
+
+        > a {
+          padding: 22px;
+          color: #555; 
+        }
+      }
+
+      li.active {
+        border-color: #4a8ba4;
+      }
+    }
   }
 }
 

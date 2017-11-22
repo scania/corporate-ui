@@ -61,11 +61,12 @@
 
 :host-context(sub-navigation) {
 
+  &.active ::content a:after {
+    &:extend(.navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a.active:after);
+  }
+
   ::content {
 
-    &.active a:after {
-      &:extend(.navbar-default .navbar-header + .navbar-collapse + .navbar-collapse a.active:after);
-    }
     + nav-item a,
     a {
       text-transform: none;

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Flex test page</title>
+	<style>
+		/* Global style */
+		body {
+			height: 100vh;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+		}
+		c-main {
+			flex-grow: 1;
+		}
+	</style>
+	<link rel="stylesheet" href="/css/corporate-ui.css">
+	<script src="/vendors/frameworks/webcomponents.js/0.7.24/ShadowDOM.min.js"></script>
+	<script src="/vendors/frameworks/webcomponents.js/0.7.24/CustomElements.min.js"></script>
+
+	<template id="c-header">
+		<style>
+			header {
+				background-color: #eee;
+				padding: 15px;
+			}
+			::content a + a {
+				margin-left: 15px;
+				padding-left: 15px;
+				border-left: 1px solid black;
+			}
+			header > a {
+				float: right;
+			}
+			header > a img {
+				display: inline-block;
+				background-color: #000;
+				color: #fff;
+				margin: -5px;
+				line-height: 30px;
+				width: 60px;
+				text-align: center;
+				font-family: Arial;
+				font-size: 13px;
+			}
+		</style>
+		<header>
+			<a href="#">
+				<img src="" alt="Logo">
+			</a>
+			<nav>
+				<content></content>
+			</nav>
+		</header>
+	</template>
+
+	<template id="c-main">
+		<style>
+			main {
+				padding: 15px;
+			}
+		</style>
+		<main>
+			<content></content>
+		</main>
+	</template>
+
+	<template id="c-footer">
+		<style>
+			footer {
+				background-color: #000;
+				color: #fff;
+				padding: 15px;
+			}
+		</style>
+		<footer>
+			<address>
+				<content></content>
+			</address>
+		</footer>
+	</template>
+
+	<script>
+		var proto = Object.create(HTMLElement.prototype);
+		proto.createdCallback = function() {
+			var name = this.nodeName.toLowerCase();
+			var root = this.createShadowRoot();
+			var template = document.querySelector('#' + name);
+			var clone = document.importNode(template.content, true);
+			root.appendChild(clone);
+		}
+
+		document.registerElement('c-header', { prototype: proto });
+		document.registerElement('c-main', { prototype: proto });
+		document.registerElement('c-footer', { prototype: proto });
+	</script>
+</head>
+<body>
+	<c-header>
+		<a href="#">Nav item</a>
+		<a href="#">Nav item 2</a>
+	</c-header>
+	<c-main>
+		<section>
+			<h1>Headline</h1>
+			<p>Paragraph</p>
+			<a href="#">Link</a>
+		</section>
+
+		<section>
+			<h3>Headline 2</h3>
+			<ul>
+				<li>List item</li>
+				<li>List item 2</li>
+			</ul>
+		</section>
+	</c-main>
+	<c-footer>
+		Address info <a href="mailto://">Email link</a>.
+	</c-footer>
+</body>
+</html>

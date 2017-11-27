@@ -42,11 +42,6 @@
           color: inherit;
         }
       }
-      & &-body {
-          > .table {
-              margin: -16px;
-          }
-      }
       &-footer {
           font-weight: bold;
           border-radius: 0;
@@ -96,44 +91,9 @@
               border-radius: 0px;
           }
       }
-      .panel-body {
-          > .table {
-              display: block;
-              width: auto;
-              max-width: none;
-              margin: -1px;
-              caption {
-                  display: block;
-              }
-              thead {
-                  background-color: inherit;
-                  color: inherit;
-              }
-              > thead,
-              > tbody {
-                  display: inline-table;
-                  width: 100%;
-              }
-              th,
-              td {
-                  width: 1%;
-              }
-          }
-      }
       .panel-footer {
           > .pagination {
               margin: 0;
-          }
-      }
-      .table-borderless > {
-          tbody,
-          thead {
-              > tr > {
-                  td,
-                  th {
-                      border: none;
-                  }
-              }
           }
       }
   }

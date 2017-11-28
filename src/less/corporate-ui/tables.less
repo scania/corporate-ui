@@ -360,44 +360,5 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 }
 
 // Small table inside panel body - Will remove some redundant styles later
-.panel {
-      .panel-body {
-
-        .table.table-sm  {
-                max-width: 100%;
-                margin: 20px 0 20px 0;
-
-            thead {
-                background-color: transparent;
-                color: #b7b7b7;  
-            }
-
-            thead > tr > th {
-                text-transform: none;
-                font-weight: normal;
-                font-family: 'Scania Sans Condensed Bold';
-                padding: 0 10px !important;
-                font-size: 1.3rem;  
-                border-bottom: 1px solid  #b7b7b7;
-            }
-
-            tbody > tr > td {
-                font-family: 'Scania Sans Condensed';
-                padding: 5px 10px !important;
-                border: none;
-                font-size: 1.3rem;
-            }
-
-            &.table-striped > tbody > tr:nth-child(odd)>td, 
-            &.table-striped > tbody > tr:nth-child(odd)>th {
-                background-color: #fff;
-            }
-            &.table-striped > tbody > tr:nth-child(even)>td, 
-            &.table-striped > tbody > tr:nth-child(even)>th {
-                background-color: #f2f7f9;
-            }            
-        }
-      }
-}
 
 @import 'custom-classes/list-table';

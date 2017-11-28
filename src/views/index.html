@@ -13,9 +13,19 @@
 
   <script src="/js/corporate-ui.js"></script>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
   <link rel="stylesheet" href="css/ux-library.css">
 </head>
-<body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+<body class="scania app ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
@@ -39,6 +49,12 @@
       <div class="container">
         <h1>Corporate UI for Developers</h1>
         <p>In this repository you can find tools and information to help you further develop and test new components and validate changes to existing ones.</p>
+      </div>
+
+      <div class="container-fluid margin-top">
+          <link rel="stylesheet" type="text/css" href="https://static.scania.com/resources/fonts/scania-sans/scania-tools-fonts.css">
+          <link rel="import" href="https://scania.github.io/corporate-ui/corporate-ui/template/html-copy-paste/c-html-copy-paste.html">
+          <c-html-copy-paste fullbleed></c-html-copy-paste> 
       </div>
     </section>
 

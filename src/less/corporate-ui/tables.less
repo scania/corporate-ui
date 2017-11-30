@@ -44,7 +44,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     text-transform: uppercase;
     border: 0;
     line-height: normal;
-    background-color: @brand-primary;
+    background-color: @interaction-primary;
     color: #fff;
     padding: 25px;
 
@@ -58,7 +58,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     }
   }
   thead {
-    background-color: @brand-primary;
+    background-color: @interaction-primary;
     color: #fff;
 
     > tr > th {
@@ -125,7 +125,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       &.active > td,
       &.selected > td,
       &.expanded > td {
-        background-color: darken(@brand-secondary-2, 10%);
+        background-color: darken(@color-secondary-02, 10%);
         cursor: default;
       }
       &.expandable {
@@ -139,7 +139,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           margin-right: 2px;
         }
         + tr > td {
-          background-color: darken(@brand-secondary-2, 10%);
+          background-color: darken(@color-secondary-02, 10%);
           padding: 0;
 
           > div {
@@ -219,7 +219,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           padding-right: 6px;
         }
         &:hover > td {
-          background-color: @brand-secondary-2;
+          background-color: @color-secondary-02;
           cursor: default;
         }
         &.selected > td:first-child:before {
@@ -251,7 +251,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
       &.configurable {
         // Some elements are readonly but should still be interactive, thats why we need !important
-        border: 1px solid darken(@brand-secondary-2, 20%) !important;
+        border: 1px solid darken(@color-secondary-02, 20%) !important;
         position: relative;
 
         &:before {
@@ -262,7 +262,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           left: 15px;
           top: 50%;
           margin-top: -6px;
-          color: @brand-primary;
+          color: @interaction-primary;
         }
         &:hover,
         &:hover span,

@@ -23,31 +23,59 @@
         margin: 0;
         letter-spacing: 0.03rem;
         color: white;
-      }
-
-      // Icons in panel-heading
-      [class^="icon-"],
-      [class*=" icon-"] {
-        font-size: 14px;
-      }
     }
 
-  .panel-title {
-      font-family: 'Scania Sans Headline Bold';
-      color: inherit;
-      font-size: 1.8rem;
+    h3 {
+      font-size: 1.7rem;
+      letter-spacing:0.05rem;
+    }
 
-      small {
-        display: block;
-        margin: 4px 0;
-        font-size: 0.75em;
-        font-family: 'Scania Sans';
-        text-transform: initial;
-        color: inherit;
-      }
+    // Icons in panel-heading
+    [class^="icon-"],
+    [class*=" icon-"] {
+      font-size: 14px;
+    }
+
+    + .panel-body {
+      padding: 15px;
+    }
   }
 
+  .panel-title {
+    color: inherit;
+    font-size: 1.8rem;
+
+    small {
+      display: block;
+      margin: 4px 0;
+      font-size: 0.75em;
+      font-family: 'Scania Sans';
+      text-transform: initial;
+      color: inherit;
+    }
+}
+
   .panel-body {
+    padding: 30px 30px;
+    min-height: 165px;
+
+    h3 {
+      font-family: 'Scania Sans Condensed Bold';
+      font-size: 24px;
+      padding-top: 5px;
+      color: #041e42;
+    }
+
+    h4 {
+      font-family: 'Scania Sans Condensed Bold';
+      color: #4a8ba4;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+    }
 
     .table {
 

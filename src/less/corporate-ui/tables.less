@@ -20,7 +20,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     border: 1px solid #e8e7eb;
   }
   thead > tr > th {
-    font-family: "Scania Sans Bold", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-family: 'Scania Sans Condensed Bold';
   }
   tbody > tr > td {
     color: #53565a;
@@ -356,6 +357,18 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     &.divider-left {
       border-left: 2px solid #fff;
     }
+  }
+}
+
+.table-panel {
+  background-color: white;
+  border: 1px solid;
+  border-collapse: inherit;
+
+  thead {
+    word-break: normal;
+    text-transform: uppercase;
+    font-family: 'Scania Sans Condensed';
   }
 }
 

@@ -35,21 +35,13 @@ CorporateUi = (function() {
 
     appendFavicon();
 
-    sysMessages();
-
     ready();
   }
 
   function ready() {
-    window.fallback = setTimeout(function() {
-      console.log('"WebComponentsReady" seems to have failed loading so a fallback has triggered.');
-      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
-    }, 10000);
 
-    window.addEventListener('WebComponentsReady', function() {
-      clearTimeout(window.fallback);
-      document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
-    });
+    window.fallback = setTimeout(done, 10000);
+    window.addEventListener('WebComponentsReady', done);
 
     document.addEventListener("DOMContentLoaded", function() {
       AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
@@ -59,6 +51,19 @@ CorporateUi = (function() {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
     });
+  }
+
+  function done(event) {
+    if (window.appLoaded) {
+      return;
+    }
+    window.appLoaded = true;
+
+    window.standard_ready = event // Timeout have no params sent so it will be undefined
+    clearTimeout(window.fallback);
+
+    document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+    sysMessages();
   }
 
   function EventStore() {
@@ -207,8 +212,12 @@ CorporateUi = (function() {
     // We create this dynamically to make sure this style is always rendered before things in body
     var style = document.createElement('style');
     style.appendChild(document.createTextNode('\
-      html.loading { height: 100%; opacity: 0; }\
-      html.loading:before { background-color: rgb(250, 250, 250); }\
+      @keyframes show {\
+        99% { visibility: hidden; }\
+        100% { visibility: visible; }\
+      }\
+      html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
+      html.loading:before { background-color: #fff; }\
       /*html.loading c-corporate-header, html.loading c-corporate-footer, html.loading c-main-navigation { display: none; }*/\
     '));
     document.head.appendChild(style);
@@ -355,6 +364,10 @@ CorporateUi = (function() {
 
     if (window.environment === 'development') {
       console.warn('Remeber that you are pointing to our development environment and due to this you might experience some techical difficulties.');
+    }
+
+    if (!window.standard_ready) {
+      console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
     }
   }
 }());

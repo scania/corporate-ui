@@ -22,22 +22,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-.page-header {
-  h1, 
-  h2, 
-  h3 {
-    small {
-      font-family: "Scania Sans Headline";
-      font-size: 0.5em;
-      font-weight: normal;
-      color: @brand-primary;
-      display: block;
-      margin-top: 0;
-      margin-left: 0;
-    }
-  }
-}
-
 h1 {
   font-size: @h1-font-size;
   line-height: 0.98;
@@ -91,8 +75,8 @@ legend {
   font-family: "Scania Sans Headline Bold";
 }
 blockquote {
-  font-family: "Scania Sans";
-  font-weight: 400;
+  font-family: "Scania Sans Bold";
+  font-weight: normal;
 }
 pre {
      font-size: inherit;
@@ -166,35 +150,12 @@ article {
     letter-spacing: -0.03em;
   }
 
-  .page-header {
-
-    h1 { font-size: @h1-font-size-app * 1.5; }
-    h2 { font-size: @h2-font-size-app * 1.5; }
-    h3 { font-size: @h3-font-size-app * 1.5; }
-
-    h1, 
-    h2, 
-    h3 {
-        font-family: "Scania Sans Headline Bold";
-        padding-top: 0;
-        margin-bottom: 0.2rem;
-        letter-spacing: 0.03rem;
-    }
-
-    h1, 
-    h2, 
-    h3 {
-      small {
-        font-family: "Scania Sans Bold";
-        font-size: 0.6em;
-      }
-    }
-  }
   p {
     text-align: left;
   }
   label {
-    font-family: "Scania Sans";
+    font-family: "Scania Sans Bold";
+    font-weight: bold;
   }
   article {
     &:extend(article);
@@ -248,9 +209,30 @@ p.lead,
 
 @media (max-width: 768px) {
 
-  h1 { font-size: @h1-font-size * 0.5; }
-  h2 { font-size: @h2-font-size * 0.5; }
-  h3 { font-size: @h3-font-size * 0.5; }
-  p { font-size: @h3-font-size * 0.85; }
+  .app {
+    
+    article {
+
+      h1  {
+      font-size:3.2rem;
+      }
+    }
+  }
+
+  h1 { 
+    font-size: @h1-font-size * 0.4; 
+  }
+
+  h2 { 
+    font-size: @h2-font-size * 0.5; 
+  }
+
+  h3 { 
+    font-size: @h3-font-size * 0.5; 
+  }
+
+  p { 
+    font-size: @font-size;
+  }
 
 }

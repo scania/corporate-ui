@@ -20,7 +20,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     border: 1px solid #e8e7eb;
   }
   thead > tr > th {
-    font-family: "Scania Sans Bold", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-family: 'Scania Sans Condensed Bold';
   }
   tbody > tr > td {
     color: #53565a;
@@ -173,6 +174,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     }
   }
   // "table-calculation" Should be moved to separate component...
+
   &.table-calculation {
     table-layout: fixed;
     border-collapse: separate;
@@ -281,6 +283,17 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+  .table-borderless {
+    tbody,
+    thead {
+        tr {
+            td,
+            th {
+                border: none;
+            }
+        }
+    }
+  }  
 }
 
 .app {
@@ -347,22 +360,18 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   }
 }
 
+.table-panel {
+  background-color: white;
+  border: 1px solid;
+  border-collapse: inherit;
 
-// Prospect for Scrollable table - By Jesper
-// table.table-scrollable {
-//  height:600px; 
-// }
+  thead {
+    word-break: normal;
+    text-transform: uppercase;
+    font-family: 'Scania Sans Condensed';
+  }
+}
 
-// .table-scrollable tbody{
-//   overflow-y: scroll;
-//   height: 550px;
-//   width: 100%;
-//   position: absolute;
-// }
-
-// .table-scrollable tr {
-// width: 100%;
-// display: inline-table;
-// }
+// Small table inside panel body - Will remove some redundant styles later
 
 @import 'custom-classes/list-table';

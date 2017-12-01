@@ -34,24 +34,54 @@
 
   > li {
 
-    &:first-child > a,
-    &:last-child > a {
-      border-radius: 0;
-    }
-    &.active {
-
-      > a,
-      > a:hover {
-        &:extend(.btn-primary);
-      }
-    }
-
-    > a {
-      color: inherit;
-    }
+    > a,
     > span,
-    > a {
-      float: none;
+    > a:hover,
+    > a:focus,
+    > span:hover, 
+    > span:focus {
+      color: @brand-primary;
+      background-color: transparent;
+      border-color: transparent; 
+    }
+
+    &.active {
+      
+      > a,
+      > span,
+      > a:hover,
+      > a:focus,
+      > span:hover, 
+      > span:focus {
+        color: @brand-primary;
+        background-color: transparent;
+        border-color: transparent; 
+        text-decoration: underline;
+      }
+
+    }
+
+    > a > strong {
+      color:inherit;
+    }
+
+    > a,
+    > span {
+      padding: 6px;
+      line-height: 1.42857143;
+      color: #97999B;
+      text-decoration: none;
+      background-color: transparent;
+      border: none;
+
+      > i {
+        color:inherit;
+      }
+
+      > strong {
+        font-family: "Scania Sans";
+        color: inherit;
+      }
     }
   }
 }

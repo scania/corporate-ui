@@ -1,11 +1,11 @@
 
 // PORTAL NAVIGATION
 @tab-border:                    #ddd;
-@tab-bg-active:                 #f0f0f0; 
+@tab-bg-active:                 #f0f0f0;
 @tab-bg-inactive:               #fff;
 
 // MISC
-@main-background:               #e5e9ec; //Portal background-color
+@main-background:               @color-grey5; //Page background-color
 @dark-content-block:            lighten(@main-background, 2%);
 @main-font-color:               #53565a; //Main font color
 @inverted-font-color:           #fafafa; //Inverted font color
@@ -13,7 +13,7 @@
 @text-muted-color:              #949494;
 
 // TYPOGRAPHY
-@headline-color-level1:         @framework-red;
+@headline-color-level1:         @brand-primary-1;
 @headline-color-level2:         #ccc;
 
 // Public
@@ -46,46 +46,24 @@
 @p-font-size-article:           1.8rem;
 @td-font-size-article:          1rem;
 
-// BRAND COLORS
-@brand-default:					#ebeef0;
-@brand-primary:                 #041e42;
-@brand-primary-app:             #033a6a;
-@brand-success:                 #44a878;
-@brand-warning:                 #f88643;
-@brand-danger:                  #cc1040;
-@brand-info:                    #4a8ba4;
-
-@brand-primary-1:               #162343;
+// MAIN BRAND COLORS 
+@brand-primary-1:               #041e42;
 @brand-primary-2:               #fafafa;
 @brand-primary-3:               #d6001c;
-@brand-primary-4:               #c6ccd0;
 
-@brand-secondary-1:             #e35205;
-@brand-secondary-2:             #ceb888;
-@brand-secondary-3:             #94a596;
-@brand-secondary-4:             #2c5234;
-
-
-// SCANIA COLOURS
-
-// Brand colours
-@color-brand-01:                 #041e42;
-@color-brand-02:                 #fafafa;
-@color-brand-03:                 #d6001c;
-
-// Primary palette - Primary supporting colours
+// PRIMARY PALETTE
 @color-primary-01:               #c8c9c7;
 @color-primary-02:               #97999b;
 @color-primary-03:               #53565a;
 @color-primary-04:               #2d2926;
 
-// Secondary palette - Secondary supporting colours
+// SECONDARY PALETTE 
 @color-secondary-01:             #e35205;
 @color-secondary-02:             #ceb888;
 @color-secondary-03:             #94a596;
 @color-secondary-04:             #2c5234;
 
-// Tertiary palette - Tertiary supporting colours
+// TERTIARY PALETTE 
 @color-tertiary-01:             #448691;
 @color-tertiary-02:             #5e3885;
 @color-tertiary-03:             #005d6d;
@@ -95,70 +73,63 @@
 @color-tertiary-07:             #60b269;
 @color-tertiary-08:             #ff7b7d;
 
-// FRAMEWORK COLORS
-@framework-red:                 #7c1c1d; 
-@framework-lightblue:           #3e7fa3;
-@framework-darkblue:            #265667;
-@framework-sepia:               #e3d9bc;
-@framework-grayish:             #616c77;
-@framework-darkgray:            #646464;
-@framework-skyblue:             #d1e8f2;
-@framework-light:               #eeeff0;
-@framework-babyblue:            #0c9bd7;
-@framework-yellow:              #f5bf36;
-@framework-black:               #171717;
-@framework-white:               #fff;
-@framework-gold:                #cca430;
-@framework-transparent:         transparent;
+// INTERACTION COLORS
+@interaction-primary:           #041e42;
+@interaction-primary-app:       #033a6a;
+@interaction-success:           #60bf91;
+@interaction-warning:           #faa674;
+@interaction-danger:            #ee2156;
+@interaction-info:              #67a3ba;
+@interaction-default:			#fafafa;
 
 // GREYSCALE
-@framework-grey1:               #f8f8f8;
-@framework-grey2:               #f3f3f3;
-@framework-grey3:               #eaeaea;
-@framework-grey4:               #d5d5d5;
-@framework-grey5:               #c1c1c1;
-@framework-grey6:               #989898;
-@framework-grey7:               #878787;
-@framework-grey8:               #646464;
-@framework-grey9:               #484848;
+@color-grey1:					#fafafa;
+@color-grey2:               	#f6f9fa;
+@color-grey3:               	#f0f0f0;
+@color-grey4:					#e7e8ea;
+@color-grey5:               	#e2e2e2;
+@color-grey6:             		#c8c9c7;
+@color-grey7:               	#97999b;
+@color-grey8:               	#53565a;
+@color-grey9:               	#2d2926;
 
 // GRADIENT
-@gradient-color-a:               #60e266;
-@gradient-color-b:               #b9ee51;
-@gradient-color-c:               #ffec00;
-@gradient-color-d:               #eda053;
-@gradient-color-e:               #e16060;
+@gradient-color-a:              #60e266;
+@gradient-color-b:              #b9ee51;
+@gradient-color-c:              #ffec00;
+@gradient-color-d:              #eda053;
+@gradient-color-e:              #e16060;
 
 
 // TABLES
 @table-cell-padding:            25px;
 
 // BUTTONS
-@btn-default-color:             @brand-primary-app;
+@btn-default-color:             @interaction-primary-app;
 @btn-default-bg:                #fff;
-@btn-default-border:            @brand-primary-app;
+@btn-default-border:            @interaction-primary-app;
 	
 @btn-primary-color:             #fff; 
-@btn-primary-bg:                @brand-primary;
-@btn-primary-border:            @brand-primary;
+@btn-primary-bg:                @interaction-primary;
+@btn-primary-border:            @interaction-primary;
 
 @btn-success-color:             #fff;
-@btn-success-bg:                @brand-success;
-@btn-success-border:            @brand-success;
+@btn-success-bg:                @interaction-success;
+@btn-success-border:            @interaction-success;
 
 @btn-warning-color:             #fff;
-@btn-warning-bg:                @brand-warning;
-@btn-warning-border:            @brand-warning;
+@btn-warning-bg:                @interaction-warning;
+@btn-warning-border:            @interaction-warning;
 
 @btn-danger-color:              #fff;
-@btn-danger-bg:                 @brand-danger;
-@btn-danger-border:             @brand-danger;
+@btn-danger-bg:                 @interaction-danger;
+@btn-danger-border:             @interaction-danger;
 
 @btn-info-color:                #fff;
-@btn-info-bg:                   @brand-info;
-@btn-info-border:               @brand-info;
+@btn-info-bg:                   @interaction-info;
+@btn-info-border:               @interaction-info;
 
-@btn-link-color:                @brand-primary-app;
+@btn-link-color:                @interaction-primary-app;
 
 @btn-link-disabled-color:       #999;
 

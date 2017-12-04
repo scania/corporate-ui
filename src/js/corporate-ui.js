@@ -33,7 +33,7 @@ CorporateUi = (function() {
 
     appendExternals();
 
-    appendFavicon();
+    applyBrand();
 
     ready();
   }
@@ -223,8 +223,48 @@ CorporateUi = (function() {
     document.head.appendChild(style);
   }
 
-  function appendFavicon() {
-    var favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
+
+
+  function applyBrand() {
+
+    var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'spotify'];
+    var subDomain = window.location.hostname.split('.')[0];
+    var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
+
+    var classes = document.body.classList;
+    for(index in classes) {
+      if(brands.indexOf( classes[index] ) > -1) {
+        brand = classes[index];
+      }
+    }
+             
+    var properties = window.location.search.substring(1).split('&');
+    var params = {};
+    for(index in properties) {
+      var item = properties[index].split('=')
+      params[item[0]] = item[1]
+    }
+
+    if(params.brand) {
+      brand = params.brand;
+    }
+
+    var bodyClasses = document.body.className;
+    for(index in brands) {
+      if(bodyClasses.indexOf( brands[index] ) > -1) {
+        bodyClasses = bodyClasses.replace(brands[index], '');
+      }
+    }
+
+    document.body.className = bodyClasses;
+
+    var fileref = document.createElement("link");
+    fileref.rel = "stylesheet";
+    fileref.type = "text/css";
+    fileref.href =  "https://static.scania.com/resources/brands/css/" + brand + ".css";
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+
+    var favicon_root = "https://static.scania.com/resources/logotype/" + brand + "/favicon/";
 
     importLink(favicon_root + 'favicon.ico', 'shortcut icon');
 
@@ -248,7 +288,11 @@ CorporateUi = (function() {
 
     generateMeta('msapplication-TileColor', '#000');
     generateMeta('msapplication-TileImage', window.favicon_root + 'ms-icon-144x144.png');
+
+    document.body.className += brand;
+
   }
+
 
   function setGlobals() {
     var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src,
@@ -338,10 +382,9 @@ CorporateUi = (function() {
     }
 
     if (window.params.css !== 'custom') {
-      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
+      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet');
+      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');      
     }
-
-    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
 
     if (window.params.preload !== 'false') {
       window.preLoadedComponents = [

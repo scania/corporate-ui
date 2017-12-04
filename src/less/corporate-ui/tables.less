@@ -19,16 +19,20 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     padding: @table-cell-padding;
     border: 1px solid #e8e7eb;
   }
+
   thead > tr > th {
     text-transform: uppercase;
     font-family: 'Scania Sans Condensed Bold';
   }
+
   tbody > tr > td {
     color: #53565a;
   }
+
   i {
     white-space: nowrap;
   }
+
   h1,
   h2,
   h3,
@@ -40,6 +44,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     margin: 0;
     text-transform: none;
   }
+
   caption {
     text-align: left;
     text-transform: uppercase;
@@ -58,6 +63,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+
   thead {
     background-color: @interaction-primary;
     color: #fff;
@@ -85,6 +91,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+
   tfoot {
     background-color: #f7f7f7;
   }
@@ -97,10 +104,12 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   &.table-striped tfoot > tr > td {
     border-top: 0;
   }
+
   &.table-striped > tbody > tr:nth-child(odd) > td,
   &.table-striped > tbody > tr:nth-child(odd) > th {
     background-color: @dark-content-block;
   }
+  
   &.table-clickable {
 
     > tbody > tr {
@@ -115,6 +124,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+
   &.table-selectable {
 
     > tbody > tr {
@@ -123,12 +133,14 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         background-color: #def7fb;
         cursor: default;
       }
+
       &.active > td,
       &.selected > td,
       &.expanded > td {
         background-color: darken(@color-secondary-02, 10%);
         cursor: default;
       }
+
       &.expandable {
 
         > td:first-child:before {
@@ -139,6 +151,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           width: 10px;
           margin-right: 2px;
         }
+
         + tr > td {
           background-color: darken(@color-secondary-02, 10%);
           padding: 0;
@@ -162,17 +175,17 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
               &:extend(.icon-caret-down:before);
             }
           }
-          // Add some space between two expanded rows
-          + .expand-child + .expand-child + .expanded {
+            // Add some space between two expanded rows
+            + .expand-child + .expand-child + .expanded {
 
-            > td {
-              border-top: 3px solid #fff;
+              > td {
+                border-top: 3px solid #fff;
+              }
             }
           }
         }
       }
     }
-  }
   // "table-calculation" Should be moved to separate component...
 
   &.table-calculation {
@@ -188,63 +201,74 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       cursor: text;
       height: inherit;
     }
+
     .input-group {
       border-collapse: collapse;
     }
+
     > thead > tr > th {
       border: 0;
       padding-bottom: 0;
       padding-left: 0;
     }
+
     > tbody > tr > th,
     > tbody > tr > td {
       border: 0;
       padding: 5px;
       background-color: #eee;
     }
+
     > tbody > tr > td,
     > tbody > tr > td input {
       text-align: right;
     }
+
     tbody {
 
       tr.total td {
         background-color: transparent;
       }
+
       tr.selectable {
 
-         > td:first-child:before {
-          &:extend([class^="icon-"]);
-          &:extend(.icon-caret-right:before);
+       > td:first-child:before {
+        &:extend([class^="icon-"]);
+        &:extend(.icon-caret-right:before);
 
-          padding-right: 6px;
-        }
-        &:hover > td {
-          background-color: @color-secondary-02;
-          cursor: default;
-        }
-        &.selected > td:first-child:before {
-          &:extend(.icon-caret-down:before);
-        }
+        padding-right: 6px;
       }
-      tr.child > td {
-        background-color: #f6f6f6;
 
-        &:first-child {
+      &:hover > td {
+        background-color: @color-secondary-02;
+        cursor: default;
+      }
+
+      &.selected > td:first-child:before {
+        &:extend(.icon-caret-down:before);
+      }
+    }
+    tr.child > td {
+      background-color: #f6f6f6;
+
+      &:first-child {
           border-left: 15px solid #fff !important; // Need important to work if readonly
         }
       }
+
       tr.divider > td {
         vertical-align: top;
         border-top: 1px solid #eee !important; // Need important to work if readonly
         border-bottom: 1px solid #eee !important; // Need important to work if readonly
       }
     }
+
     td,
     input,
     span {
       font-size: 12px;
     }
+
     td {
 
       &:first-child {
@@ -265,11 +289,13 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           margin-top: -6px;
           color: @interaction-primary;
         }
+
         &:hover,
         &:hover span,
         input:hover {
           cursor: pointer;
         }
+
         &:hover {
           background-color: #d1e8f2;
         }
@@ -284,14 +310,17 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     }
   }
   .table-borderless {
+
     tbody,
     thead {
-        tr {
-            td,
-            th {
-                border: none;
-            }
+
+      tr {
+
+        td,
+        th {
+          border: none;
         }
+      }
     }
   }  
 }
@@ -346,7 +375,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     text-align: center;
     padding: 0 20px;
     line-height: 22px;
-        
+
     small {
       font-weight: normal;
     }

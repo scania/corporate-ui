@@ -1,27 +1,45 @@
-&.modal-open .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.modal-title {
-  border: 0;
-  padding: 0;
-}
-
 /*** MODAL SIZES ***/
-// @media screen and (min-width: 768px){
-  .modal-sm {
+.modal {
+
+  &-header &-title {
+    color: #041e42;
+    font-family: 'Scania Sans Headline Bold';
+  }
+
+  &-open & {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &-body {
+    font-size: 1.6rem;
+  }
+
+  &-content {
+    border-radius: 0; 
+  }
+
+  &-title {
+    padding: 0;
+  }
+
+  &-sm {
     width: 80%;
     max-width: 400px;
   }
-  .modal-md {
+
+  &-md {
     width: 80%;
     max-width: 600px;
   }
-  .modal-lg {
+
+  &-lg {
     width: 80%;
     max-width: 900px;
   }
-  .modal-xl {
+
+  &-xl {
     width: 99%;
     max-width: 1440px;
   }
+}

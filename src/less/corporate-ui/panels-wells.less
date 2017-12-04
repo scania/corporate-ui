@@ -1,208 +1,316 @@
-  // SCANIA BOOTSTRAP THEME
-  // PANELS AND WELLS
-  .panel {
-      margin-bottom: 15px;
-      border-radius: 0;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-      overflow: hidden;
-      &-heading {
-          border-radius: 0;
-          font-family: 'Scania Sans Bold';
-          text-transform: uppercase;
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-              font-family: 'Scania Sans Headline Bold';
-              padding: 4px 0;
-              margin: 0;
-              letter-spacing: 0.03rem;
-              color: white;
-          }
-          // Icons in panel-heading
-          [class^="icon-"],
-          [class*=" icon-"] {
-              font-size: 14px;
-          }
-      }
-      &-title {
-          font-family: 'Scania Sans Headline Bold';
-          color: inherit;
-          font-size: 1.8rem;
+// SCANIA BOOTSTRAP THEME
+// PANELS AND WELLS
+.panel {
+  margin-bottom: 15px;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  overflow: hidden;
 
-        small {
-          display: block;
-          margin: 4px 0;
-          font-size: 0.75em;
-          font-family: 'Scania Sans';
-          text-transform: initial;
-          color: inherit;
-        }
-      }
-      &-footer {
-          font-weight: bold;
-          border-radius: 0;
-      }
-      &-inverse {
-              // &:extend(.panel-heading);
-          background-color: @dark-content-block;
-          border: 0px;
-          color: inherit;
-          // margin-bottom: 0px;
+  .panel-heading {
+    border-radius: 0;
+    font-family: 'Scania Sans Bold';
+    text-transform: uppercase;
 
-          &:first-child {
-            border: 1px solid #ddd;
-          }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Scania Sans Headline Bold';
+        padding: 4px 0;
+        margin: 0;
+        letter-spacing: 0.03rem;
+        color: white;
+    }
 
-          &:first-child .panel-heading{
+    h3 {
+      font-size: 1.7rem;
+      letter-spacing:0.05rem;
+    }
 
-             background-color: #FFFFFF;
-             color: #041e42;
-             border: 1px solid #ddd;
+    // Icons in panel-heading
+    [class^="icon-"],
+    [class*=" icon-"] {
+      font-size: 14px;
+    }
 
-             :first-child {
-              color: #041e42;
+    + .panel-body {
+      padding: 15px;
+    }
+  }
 
-          }
+  .panel-title {
+    color: inherit;
+    font-size: 1.8rem;
 
-      }
-      input[type=text] {
-          background-color: #fff;
-      }
+    small {
+      display: block;
+      margin: 4px 0;
+      font-size: 0.75em;
+      font-family: 'Scania Sans';
+      text-transform: initial;
+      color: inherit;
+    }
+}
 
-           
+  .panel-body {
+    padding: 30px 30px;
+    min-height: 165px;
 
-          .form-control {
-              border: 0px;
-          }
+    h3 {
+      font-family: 'Scania Sans Condensed Bold';
+      font-size: 24px;
+      padding-top: 5px;
+      color: #041e42;
+    }
 
+    h4 {
+      font-family: 'Scania Sans Condensed Bold';
+      color: #4a8ba4;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
 
-      }
+    p {
+      font-size: 16px;
+    }
 
-      // panel-onlyheading - Panels with just heading, transparent panel-body
-      &&-onlyheading {
+    .table {
+
+      &.table-sm {
+        max-width: 100%;
+        margin: 20px 0;
+
+        thead {
           background-color: transparent;
-          &, > &-heading {
-              -webkit-border-radius: 0px;
-              -moz-border-radius: 0px;
-              border-radius: 0px;
+          color: #b7b7b7;
+
+          > tr {
+
+            > th {
+              text-transform: none;
+              font-weight: normal;
+              font-family: 'Scania Sans Condensed Bold';
+              font-size: 1.3rem;
+              padding: 0 10px;
+              border-bottom: 1px solid #b7b7b7;
+            }
           }
-      }
-      .panel-footer {
-          > .pagination {
-              margin: 0;
-          }
-      }
-  }
-  // Contextual footers (missing support in Bootstrap)
-  .panel-default {
-      border-color: @interaction-default;
-      > .panel-heading, > .panel-footer {
-          color: @interaction-primary;
-          h1,
-          h2,
-          h3,
-          h4,
-          h5, 
-          h6 {
-              color: inherit;
-          }
-      }
-  }
-  .panel-primary {
-      border-color: @interaction-primary;
-      > .panel-heading, > .panel-footer {
-          color: #ffffff;
-          background-color: @interaction-primary;
-          border-color: @interaction-primary;
-      }
-      .table caption {
-          background-color: @interaction-primary;
-      }
-  }
-  .panel-info {
-      border-color: @interaction-info;
-      > .panel-heading, > .panel-footer {
-          color: #ffffff;
-          background-color: @interaction-info;
-          border-color: @interaction-info;
-      }
-      .table caption {
-          background-color: @interaction-info;
-      }
-  }
-  .panel-success {
-      border-color: @interaction-success;
-      > .panel-heading, > .panel-footer {
-          color: #ffffff;
-          background-color: @interaction-success;
-          border-color: @interaction-success;
-      }
-      .table caption {
-          background-color: @interaction-success;
-      }
-  }
-  .panel-warning {
-      border-color: @interaction-warning;
-      > .panel-heading, > .panel-footer {
-          color: #ffffff;
-          background-color: @interaction-warning;
-          border-color: @interaction-warning;
-      }
-      .table caption {
-          background-color: @interaction-warning;
-      }
-  }
-  .panel-danger {
-      border-color: @interaction-danger;
-      > .panel-heading, > .panel-footer {
-          color: #ffffff;
-          background-color: @interaction-danger;
-          border-color: @interaction-danger;
-      }
-      .table caption {
-          background-color: @interaction-danger;
-      }
-  }
-
-  //wells
-  .well {
-    background-color: @dark-content-block;
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border: 0;
-
-  
-    input {
-
-     
-        background-color: #FFFFFF;
-
-      &:disabled {
-
-        background-color: #dfdee1;
-        color: #a1a1a1;
-        cursor: default;
-    
-      }
-
-      &:read-only {
-
-        background-color: transparent;
-        cursor: default;
-        &:focus {
-            cursor: default;
-            box-shadow: none;
         }
-    
+
+        tbody {
+
+          > tr {
+
+            > td {
+              font-family: 'Scania Sans Condensed';
+              padding: 5px 10px;
+              border: none;
+              font-size: 1.3rem;
+            }
+          }
+        }
+
+        &.table-striped {
+
+          > tbody {
+
+            > tr {
+
+              &:nth-child(odd) {
+
+                > td,
+                > th {
+                  background-color: #fff;
+                }
+              }
+
+              &:nth-child(even) {
+
+                > td,
+                > th {
+                  background-color: #f2f7f9;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 
-  .jumbotron h1, .jumbotron .h1 {
-    color: @interaction-primary;
+  .panel-footer {
+    font-weight: bold;
+    border-radius: 0;
   }
+
+  //Panel-inverse
+  &-inverse {
+    background-color: @dark-content-block;
+    border: 0px;
+    color: inherit;
+
+    &:first-child {
+      border: 1px solid #ddd;
+    }
+
+    &:first-child .panel-heading {
+     background-color: #FFFFFF;
+     color: #041e42;
+     border: 1px solid #ddd;
+
+      :first-child {
+        color: #041e42;
+      }
+    }
+
+    input[type=text] {
+      background-color: #fff;
+    }
+
+    .form-control {
+      border: 0px;
+    }
+  }
+
+  // panel-onlyheading - Panels with just heading, transparent panel-body
+  &&-onlyheading {
+    background-color: transparent;
+
+    &, > &-heading {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+    }
+  }
+
+  .panel-footer {
+    > .pagination {
+      margin: 0;
+
+    }
+  }
+}
+
+// Contextual footers (missing support in Bootstrap)
+.panel-default {
+      border-color: @interaction-default;
+
+  > .panel-heading, > .panel-footer {
+          color: @interaction-primary;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5, 
+    h6 {
+      color: inherit;
+    }
+  }
+}
+
+.panel-primary {
+      border-color: @interaction-primary;
+
+  > .panel-heading, > .panel-footer {
+    color: #ffffff;
+          background-color: @interaction-primary;
+          border-color: @interaction-primary;
+  }
+
+  .table caption {
+          background-color: @interaction-primary;
+  }
+}
+
+.panel-info {
+      border-color: @interaction-info;
+
+  > .panel-heading, > .panel-footer {
+    color: #ffffff;
+          background-color: @interaction-info;
+          border-color: @interaction-info;
+  }
+
+  .table caption {
+          background-color: @interaction-info;
+  }
+}
+
+.panel-success {
+      border-color: @interaction-success;
+
+  > .panel-heading, > .panel-footer {
+    color: #ffffff;
+          background-color: @interaction-success;
+          border-color: @interaction-success;
+  }
+
+  .table caption {
+          background-color: @interaction-success;
+  }
+}
+
+.panel-warning {
+      border-color: @interaction-warning;
+
+  > .panel-heading, > .panel-footer {
+    color: #ffffff;
+          background-color: @interaction-warning;
+          border-color: @interaction-warning;
+  }
+
+  .table caption {
+          background-color: @interaction-warning;
+  }
+}
+
+.panel-danger {
+      border-color: @interaction-danger;
+
+  > .panel-heading, > .panel-footer {
+    color: #ffffff;
+          background-color: @interaction-danger;
+          border-color: @interaction-danger;
+  }
+  
+  .table caption {
+          background-color: @interaction-danger;
+  }
+}
+
+//wells
+.well {
+  background-color: @dark-content-block;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 0;
+
+  input {
+    background-color: #FFFFFF;
+
+    &:disabled {
+      background-color: #dfdee1;
+      color: #a1a1a1;
+      cursor: default;
+    }
+
+    &:read-only {
+      background-color: transparent;
+      cursor: default;
+
+      &:focus {
+        cursor: default;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.jumbotron h1, .jumbotron .h1 {
+    color: @interaction-primary;
+}

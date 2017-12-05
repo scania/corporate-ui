@@ -33,8 +33,6 @@ CorporateUi = (function() {
 
     appendExternals();
 
-    applyBrand();
-
     ready();
   }
 
@@ -50,6 +48,9 @@ CorporateUi = (function() {
       if (!!window.chrome) {
         AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
       }
+
+    applyBrand();  
+    
     });
   }
 

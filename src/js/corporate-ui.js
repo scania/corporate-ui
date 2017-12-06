@@ -21,8 +21,7 @@ CorporateUi = (function() {
   init();
 
   return public;
-
-
+  
   function init() {
 
     addMetaAndHeaderSpecs();
@@ -224,8 +223,6 @@ CorporateUi = (function() {
     document.head.appendChild(style);
   }
 
-
-
   function applyBrand() {
 
     var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'spotify'];
@@ -290,8 +287,7 @@ CorporateUi = (function() {
     generateMeta('msapplication-TileColor', '#000');
     generateMeta('msapplication-TileImage', window.favicon_root + 'ms-icon-144x144.png');
 
-    document.body.className += brand;
-
+    document.body.classList.add(brand);
   }
 
 

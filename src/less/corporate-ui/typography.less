@@ -154,38 +154,45 @@ article {
   label,
   caption {
     font-family: "Scania Sans Condensed Bold";
-  dd,
-  strong,
-  button {
-    font-family: "Scania Sans Semi Condensed Bold";
-    color: @interaction-primary;
-  }
-  blockquote {
-    font-family: "Scania Sans Semi Condensed Bold";
-    font-weight: normal;
-  }
-  p a {
-      font-family: 'Scania Sans Semi Condensed Bold';
-  }
-  p {
-    text-align: left;
-  }
-  article {
-    &:extend(article);
 
-    h1 {
-      &:extend(article h1);
-
-      font-family: "Scania Sans Headline Bold";
+    dd,
+    strong,
+    button {
+      font-family: "Scania Sans Semi Condensed Bold";
+      color: @interaction-primary;
     }
-    h2 { &:extend(article h2); }
-    h3 { &:extend(article h3); }
-    h4 { &:extend(article h4); }
-    h5 { &:extend(article h5); }
-    h6 { &:extend(article h6); }
-    p { &:extend(article p); }
+
+    blockquote {
+      font-family: "Scania Sans Semi Condensed Bold";
+      font-weight: normal;
+    }
+
+    p a {
+      font-family: 'Scania Sans Semi Condensed Bold';
+    }
+
+    p {
+      text-align: left;
+    }
+
+    article {
+      &:extend(article);
+
+      h1 {
+        &:extend(article h1);
+
+        font-family: "Scania Sans Headline Bold";
+      }
+      h2 { &:extend(article h2); }
+      h3 { &:extend(article h3); }
+      h4 { &:extend(article h4); }
+      h5 { &:extend(article h5); }
+      h6 { &:extend(article h6); }
+      p { &:extend(article p); }
+    }
   }
 }
+
 .public,
 .app .public {
 

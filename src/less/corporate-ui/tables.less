@@ -1,6 +1,6 @@
-// SCANIA BOOTSTRAP THEME
 // TABLES
-
+// Small table inside panel body - Will remove some redundant styles later
+@import 'custom-classes/list-table';
 
 table { //This is to override the Boostrap standard of "collapse" on all table elements
   border-collapse: separate;
@@ -10,25 +10,71 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   border-collapse: collapse;
   color: #041e42;
 
-  thead > tr > th, 
-  tbody > tr > th, 
-  tfoot > tr > th, 
-  thead > tr > td, 
-  tbody > tr > td, 
-  tfoot > tr > td {
-    padding: @table-cell-padding;
-    border: 1px solid #e8e7eb;
+  thead, 
+  tbody, 
+  tfoot {
+
+    > tr {
+
+      > td,
+      > th {
+        padding: @table-cell-padding;
+        border: 1px solid #e8e7eb;
+      }
+    }
   }
-  thead > tr > th {
-    text-transform: uppercase;
-    font-family: 'Scania Sans Condensed Bold';
+
+  thead {
+    background-color: @interaction-primary;
+    color: #fff;
+    
+    > tr {
+
+      > th {
+        text-transform: uppercase;
+        font-family: 'Scania Sans Condensed Bold';
+        border: 1px solid transparent;
+        
+        input,
+        select {
+
+          &,
+          &.form-control {
+            font-weight: normal;
+            font-family: 'Scania Sans';
+
+            &::placeholder,
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,
+            &:moz-placeholder {
+              font-weight: normal;
+              font-family: 'Scania Sans';
+            }
+          }
+        }
+      }
+    }
   }
-  tbody > tr > td {
-    color: #53565a;
+
+  tbody {
+
+    > tr {
+
+      > td {
+        color: #53565a;
+      }
+    }
   }
+
+  tfoot {
+    background-color: #f7f7f7;
+  }
+
   i {
     white-space: nowrap;
   }
+
   h1,
   h2,
   h3,
@@ -40,6 +86,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     margin: 0;
     text-transform: none;
   }
+
   caption {
     text-align: left;
     text-transform: uppercase;
@@ -58,49 +105,37 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
-  thead {
-    background-color: @interaction-primary;
-    color: #fff;
 
-    > tr > th {
-      border: 1px solid transparent;
+  &.table-striped {
 
-      input,
-      select {
+    thead,
+    tbody,
+    tfoot {
 
-        &,
-        &.form-control {
-          font-weight: normal;
-          font-family: 'Scania Sans';
+      > tr {
 
-          &::placeholder,
-          &::-webkit-input-placeholder,
-          &::-moz-placeholder,
-          &:-ms-input-placeholder,
-          &:moz-placeholder {
-            font-weight: normal;
-            font-family: 'Scania Sans';
+        > th,
+        > td {
+          border-top: 0;
+        }
+      }
+    }
+
+    > tbody {
+
+      > tr {
+        
+        :nth-child(odd) {
+
+          > td,
+          > th {
+            background-color: @dark-content-block;
           }
         }
       }
     }
   }
-  tfoot {
-    background-color: #f7f7f7;
-  }
 
-  &.table-striped thead > tr > th, 
-  &.table-striped tbody > tr > th, 
-  &.table-striped tfoot > tr > th, 
-  &.table-striped thead > tr > td, 
-  &.table-striped tbody > tr > td, 
-  &.table-striped tfoot > tr > td {
-    border-top: 0;
-  }
-  &.table-striped > tbody > tr:nth-child(odd) > td,
-  &.table-striped > tbody > tr:nth-child(odd) > th {
-    background-color: @dark-content-block;
-  }
   &.table-clickable {
 
     > tbody > tr {
@@ -115,6 +150,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+  
   &.table-selectable {
 
     > tbody > tr {
@@ -371,7 +407,3 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     font-family: 'Scania Sans Condensed';
   }
 }
-
-// Small table inside panel body - Will remove some redundant styles later
-
-@import 'custom-classes/list-table';

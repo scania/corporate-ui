@@ -125,7 +125,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
       > tr {
         
-        :nth-child(odd) {
+        &:nth-child(odd) {
 
           > td,
           > th {
@@ -138,71 +138,89 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
   &.table-clickable {
 
-    > tbody > tr {
+    > tbody {
 
-      &:hover {
+      > tr {
 
-        > td,
-        > th {
-          background-color: #def7fb;
-          cursor: pointer;
+        &:hover {
+
+          > td,
+          > th {
+            background-color: #def7fb;
+            cursor: pointer;
+          }
         }
       }
     }
   }
-  
+
   &.table-selectable {
 
-    > tbody > tr {
+    > tbody {
 
-      &:hover > td {
-        background-color: #def7fb;
-        cursor: default;
-      }
-      &.active > td,
-      &.selected > td,
-      &.expanded > td {
-        background-color: darken(@color-secondary-02, 10%);
-        cursor: default;
-      }
-      &.expandable {
+      > tr {
 
-        > td:first-child:before {
-          &:extend([class^="icon-"]);
-          &:extend(.icon-caret-right:before);
+        &:hover {
 
-          display: inline-block;
-          width: 10px;
-          margin-right: 2px;
-        }
-        + tr > td {
-          background-color: darken(@color-secondary-02, 10%);
-          padding: 0;
-
-          > div {
-            background-color: #fff;
-            overflow: hidden;
-            margin: 0 5px 5px;
-
-            > .content {
-              padding: 10px;
-            }
+          > td {
+            background-color: #def7fb;
+            cursor: default;
           }
         }
 
+        &.active,
+        &.selected,
         &.expanded {
+
+          > td {
+            background-color: darken(@color-secondary-02, 10%);
+            cursor: default;
+          }
+        }
+
+        &.expandable {
 
           > td {
 
             &:first-child:before {
-              &:extend(.icon-caret-down:before);
+              &:extend([class^="icon-"]);
+              &:extend(.icon-caret-right:before);
+
+              display: inline-block;
+              width: 10px;
+              margin-right: 2px;
             }
           }
-          // Add some space between two expanded rows
-          + .expand-child + .expand-child + .expanded {
+          
+          + tr > td {
+            background-color: darken(@color-secondary-02, 10%);
+            padding: 0;
 
+              > div {
+                background-color: #fff;
+                overflow: hidden;
+                margin: 0 5px 5px;
+
+              > .content {
+                padding: 10px;
+              }
+            }
+          }
+
+          &.expanded {
+            
             > td {
-              border-top: 3px solid #fff;
+
+              &:first-child:before {
+
+                &:extend(.icon-caret-down:before);
+              }
+            }
+            + .expand-child + .expand-child + .expanded {
+
+              > td {
+                border-top: 3px solid #fff;
+              }
             }
           }
         }
@@ -322,27 +340,36 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   .table-borderless {
     tbody,
     thead {
-        tr {
-            td,
-            th {
-                border: none;
-            }
+
+      tr {
+
+        td,
+        th {
+          border: none;
         }
+      }
     }
-  }  
+  }
 }
 
 .app {
 
   .table {
 
-    caption,
-    thead > tr > th, 
-    tbody > tr > th, 
-    tfoot > tr > th, 
-    thead > tr > td, 
-    tbody > tr > td, 
-    tfoot > tr > td {
+    thead,
+    tbody,
+    tfoot {
+
+      > tr {
+
+        > th,
+        > td, {
+          padding: 10px;
+        }
+      }
+    }
+
+    caption {
       padding: 10px;
     }
   }

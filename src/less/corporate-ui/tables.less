@@ -10,8 +10,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   border-collapse: collapse;
   color: #041e42;
 
-  thead, 
-  tbody, 
+  thead,
+  tbody,
   tfoot {
 
     > tr {
@@ -71,22 +71,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     background-color: #f7f7f7;
   }
 
-  i {
-    white-space: nowrap;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5, 
-  h6 {
-    border-bottom: 0;
-    padding: 0;
-    margin: 0;
-    text-transform: none;
-  }
-
   caption {
     text-align: left;
     text-transform: uppercase;
@@ -104,6 +88,22 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         border: 1px solid #e8e7eb;
       }
     }
+  }
+
+  i {
+    white-space: nowrap;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5, 
+  h6 {
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    text-transform: none;
   }
 
   &.table-striped {
@@ -242,68 +242,109 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       cursor: text;
       height: inherit;
     }
+
     .input-group {
       border-collapse: collapse;
     }
-    > thead > tr > th {
-      border: 0;
-      padding-bottom: 0;
-      padding-left: 0;
-    }
-    > tbody > tr > th,
-    > tbody > tr > td {
-      border: 0;
-      padding: 5px;
-      background-color: #eee;
-    }
-    > tbody > tr > td,
-    > tbody > tr > td input {
-      text-align: right;
-    }
-    tbody {
 
-      tr.total td {
-        background-color: transparent;
-      }
-      tr.selectable {
+    > thead {
 
-         > td:first-child:before {
-          &:extend([class^="icon-"]);
-          &:extend(.icon-caret-right:before);
+       > tr {
 
-          padding-right: 6px;
-        }
-        &:hover > td {
-          background-color: @color-secondary-02;
-          cursor: default;
-        }
-        &.selected > td:first-child:before {
-          &:extend(.icon-caret-down:before);
+        > th {
+          border: 0;
+          padding-bottom: 0;
+          padding-left: 0;
         }
       }
-      tr.child > td {
-        background-color: #f6f6f6;
+    }
 
-        &:first-child {
-          border-left: 15px solid #fff !important; // Need important to work if readonly
+    > tbody {
+
+      > tr {
+
+        > th,
+        > td {
+          border: 0;
+          padding: 5px;
+          background-color: #eee;
+        }
+
+        > td,
+        > td input {
+          text-align: right;
+        } 
+      }
+
+      tr {
+
+        &.total {
+
+          td {
+            background-color: transparent;
+          }
+        }
+
+        &.selectable {
+
+          > td {
+
+            &:first-child:before {
+              &:extend([class^="icon-"]);
+              &:extend(.icon-caret-right:before);
+              padding-right: 6px;
+            }
+          }
+
+          &:hover {
+
+            > td {
+              background-color: @color-secondary-02;
+              cursor: default;
+            }
+          }
+
+          &.selected {
+
+            > td:first-child:before {
+              &:extend(.icon-caret-down:before);
+            }
+          }
+        }
+
+        &.child {
+
+          > td {
+            background-color: #f6f6f6;
+
+            &:first-child {
+              border-left: 15px solid #fff !important; // Need important to work if readonly
+            }
+          }
+        }
+
+        &.divider {
+          > td {
+            vertical-align: top;
+            border-top: 1px solid #eee !important; // Need important to work if readonly
+            border-bottom: 1px solid #eee !important; // Need important to work if readonly
+          }
         }
       }
-      tr.divider > td {
-        vertical-align: top;
-        border-top: 1px solid #eee !important; // Need important to work if readonly
-        border-bottom: 1px solid #eee !important; // Need important to work if readonly
-      }
     }
+
     td,
     input,
     span {
       font-size: 12px;
     }
+
     td {
 
       &:first-child {
         text-align: left;
       }
+
       &.configurable {
         // Some elements are readonly but should still be interactive, thats why we need !important
         border: 1px solid darken(@color-secondary-02, 20%) !important;
@@ -319,14 +360,22 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           margin-top: -6px;
           color: @interaction-primary;
         }
-        &:hover,
-        &:hover span,
+
+
+       
+        &:hover {
+          background-color: #d1e8f2;
+
+          &,
+          span, {
+            cursor: pointer;
+          }
+        }
+
         input:hover {
           cursor: pointer;
         }
-        &:hover {
-          background-color: #d1e8f2;
-        }
+
 
         span {
           position: relative;
@@ -337,6 +386,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+
   .table-borderless {
     tbody,
     thead {
@@ -375,10 +425,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   }
 }
 
-.table-condenced {
-  &:extend(.table-condenced);
-}
-
 // Striped table inside well
 .well .table-striped > tbody > tr:nth-child(odd) > td,
 .well .table-striped > tbody > tr:nth-child(odd) > th {
@@ -394,7 +440,9 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
 // Data table table-layout: 
 .table-data tbody tr {
+  
   &:first-child {
+
     th,
     td {
       border-top: 0;
@@ -417,6 +465,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     &.divider-right {
       border-right: 2px solid #fff;
     }
+    
     &.divider-left {
       border-left: 2px solid #fff;
     }

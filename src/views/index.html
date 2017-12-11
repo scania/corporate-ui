@@ -1,40 +1,40 @@
-
 <!DOCTYPE html>
 
 <html lang="en-GB" ng-app="CorporateUI">
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-  <meta charset="utf-8">
-  <noscript>
-    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
-  </noscript>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta charset="utf-8">
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+    </noscript>
 
-  <title>Corporate UI - Developers</title>
+    <title>Corporate UI - Developers</title>
 
-  <script src="/js/corporate-ui.js"></script>
+    <script src="/js/corporate-ui.js"></script>
   
-  <link rel="stylesheet" href="css/ux-library.css">
-</head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="stylesheet" href="css/ux-library.css">
+  </head>
 
-  gtag('config', 'UA-110069805-1');
-</script>
-<body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  <c-corporate-header site-name="Developers" site-url="/">
-    <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
-    <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
-  </c-corporate-header>
-    
-  <c-main-content>
+    gtag('config', 'UA-110069805-1');
+  </script>
+
+  <body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+
+    <c-corporate-header site-name="Developers" site-url="/">
+      <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
+      <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
+    </c-corporate-header>
+
+    <c-main-content>
      <c-main-navigation>
       <primary-items>
-        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
         <nav-item location="/" class="active">Home</nav-item>
         <nav-item location="/development.html">Development</nav-item>
         <nav-item location="/testing.html">Testing</nav-item>
@@ -49,17 +49,11 @@
         <h1>Corporate UI for Developers</h1>
         <p>In this repository you can find tools and information to help you further develop and test new components and validate changes to existing ones.</p>
       </div>
-
-      <div class="container-fluid margin-top">
-          <link rel="stylesheet" type="text/css" href="https://static.scania.com/resources/fonts/scania-sans/scania-tools-fonts.css">
-          <link rel="import" href="https://scania.github.io/corporate-ui/corporate-ui/template/html-copy-paste/c-html-copy-paste.html">
-          <c-html-copy-paste fullbleed></c-html-copy-paste> 
-      </div>
     </section>
 
-  </c-main-content>
-  <c-corporate-footer></c-corporate-footer>
+    </c-main-content>
+    <c-corporate-footer></c-corporate-footer>
 
-  <script src="js/ux-library.js"></script>
-</body>
+    <script src="js/ux-library.js"></script>
+  </body>
 </html>

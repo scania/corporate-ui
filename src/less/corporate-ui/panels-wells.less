@@ -1,5 +1,6 @@
 // SCANIA BOOTSTRAP THEME
 // PANELS AND WELLS
+
 .panel {
   margin-bottom: 15px;
   border-radius: 0;
@@ -179,7 +180,8 @@
   &&-onlyheading {
     background-color: transparent;
 
-    &, > &-heading {
+    &, 
+    > &-heading {
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       border-radius: 0px;
@@ -187,6 +189,7 @@
   }
 
   .panel-footer {
+
     > .pagination {
       margin: 0;
 
@@ -213,73 +216,23 @@
 }
 
 .panel-primary {
-  border-color: @interaction-primary;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @interaction-primary;
-    border-color: @interaction-primary;
-  }
-
-  .table caption {
-    background-color: @interaction-primary;
-  }
+  .panel-mixin(primary);
 }
 
 .panel-info {
-  border-color: @interaction-info;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @interaction-info;
-    border-color: @interaction-info;
-  }
-
-  .table caption {
-    background-color: @interaction-info;
-  }
+  .panel-mixin(info);
 }
 
 .panel-success {
-  border-color: @interaction-success;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @interaction-success;
-    border-color: @interaction-success;
-  }
-
-  .table caption {
-    background-color: @interaction-success;
-  }
+  .panel-mixin(success);
 }
 
 .panel-warning {
-  border-color: @interaction-warning;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @interaction-warning;
-    border-color: @interaction-warning;
-  }
-
-  .table caption {
-    background-color: @interaction-warning;
-  }
+  .panel-mixin(warning);
 }
 
 .panel-danger {
-  border-color: @interaction-danger;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @interaction-danger;
-    border-color: @interaction-danger;
-  }
-  
-  .table caption {
-    background-color: @interaction-danger;
-  }
+  .panel-mixin(danger);
 }
 
 //wells
@@ -311,6 +264,7 @@
   }
 }
 
-.jumbotron h1, .jumbotron .h1 {
+.jumbotron h1, 
+.jumbotron .h1 {
   color: @interaction-primary;
 }

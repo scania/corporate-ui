@@ -29,3 +29,22 @@
       border-color: lighten(@@bg, 10%);
     }
 }
+
+.panel-mixin(@type2) {
+  @color-panel: 'interaction-@{type2}';
+  border-color: @@color-panel;
+
+  > .panel-heading,
+  > .panel-footer {
+      color:white;
+      background-color: @@color-panel;
+      border-color: inherit;
+  }
+
+  .table {
+
+    caption {
+      background-color: @@color-panel;
+    }
+  }
+}

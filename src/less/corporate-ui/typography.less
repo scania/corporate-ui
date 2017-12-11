@@ -3,6 +3,7 @@
 html {
   font-size: 62.5%;
 }
+
 body {
   font-family: "Scania Sans", Helvetica, Arial, sans-serif;
   line-height: 1.428571429;
@@ -12,7 +13,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,7 +80,7 @@ blockquote {
   font-weight: normal;
 }
 pre {
-     font-size: inherit;
+ font-size: inherit;
 }
 article {
   text-align: left;
@@ -108,7 +109,7 @@ article {
     font-size: inherit;
   }
   p a {
-      font-family: 'Scania Sans Bold';
+    font-family: 'Scania Sans Bold';
   }
 }
 
@@ -123,25 +124,29 @@ article {
   h4 { font-size: @h4-font-size-app; }
   h5 { font-size: @h5-font-size-app; }
   h6 { font-size: @h6-font-size-app; }
+
   p {
     text-align: left;
   }
+
   td, th { font-size: @td-font-size-app; }
 
-    &.compact {
-        body,
-        body& { font-size: @font-size-app * 0.9; }
-        h1 { font-size: @h1-font-size-app * 0.9; }
-        h2 { font-size: @h2-font-size-app * 0.9; }
-        h3 { font-size: @h3-font-size-app * 0.9; }
-        h4 { font-size: @h4-font-size-app * 0.9; }
-        h5 { font-size: @h5-font-size-app * 0.9; }
-        h6 { font-size: @h6-font-size-app * 0.9; }
-        p {
-          text-align: left;
-        }
-        td, th { font-size: @td-font-size-app * 0.86; }
-    } 
+  &.compact {
+
+    body,
+    body& { font-size: @font-size-app * 0.9; }
+    h1 { font-size: @h1-font-size-app * 0.9; }
+    h2 { font-size: @h2-font-size-app * 0.9; }
+    h3 { font-size: @h3-font-size-app * 0.9; }
+    h4 { font-size: @h4-font-size-app * 0.9; }
+    h5 { font-size: @h5-font-size-app * 0.9; }
+    h6 { font-size: @h6-font-size-app * 0.9; }
+    p {
+      text-align: left;
+    }
+
+    td, th { font-size: @td-font-size-app * 0.86; }
+  } 
 
   h2, h3, h4, h5, h6, legend {
     font-family: "Scania Sans Condensed Bold";
@@ -204,14 +209,17 @@ article {
   h6 { &:extend(h6); }
   p { &:extend(p); }
 }
+
 nav a,
 .btn {
   font-family: "Scania Sans Bold";
   text-transform: uppercase;
 }
+
 .text-muted {
   color: @text-muted-color;
 }
+
 .breadcrumbs {
   font-family: "Scania Sans";
 }
@@ -223,35 +231,35 @@ p.lead,
   color: @interaction-primary;
   font-weight: normal;
   line-height: 1.4;
-  font-family: 'Scania Sans Bold';  
+  font-family: 'Scania Sans Bold';
 }
 
 
 @media (max-width: 768px) {
 
   .app {
-    
+
     article {
 
-      h1  {
+      h1 {
       font-size:2.8rem;
       }
     }
   }
 
-  h1 { 
+  h1 {
     font-size: @h1-font-size * 0.4; 
   }
 
-  h2 { 
+  h2 {
     font-size: @h2-font-size * 0.5; 
   }
 
-  h3 { 
+  h3 {
     font-size: @h3-font-size * 0.5; 
   }
 
-  p { 
+  p {
     font-size: @font-size;
   }
 

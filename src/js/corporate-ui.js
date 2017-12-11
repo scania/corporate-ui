@@ -1,5 +1,5 @@
 
-CorporateUi = (function() {
+window.CorporateUi = (function() {
 
   /*** Public proporties ***/
   var public = {
@@ -14,7 +14,9 @@ CorporateUi = (function() {
     importLink      : importLink,
     generateMeta    : generateMeta,
     urlInfo         : urlInfo,
-    EventStore      : EventStore
+    baseComponents  : baseComponents,
+    EventStore      : EventStore,
+    components      : {},
   };
 
   /*** This starts everything ***/
@@ -32,34 +34,14 @@ CorporateUi = (function() {
     setGlobals();
 
     appendExternals();
-
-    appendFavicon();
-
-    ready();
-  }
-
-  function ready() {
-
-    window.fallback = setTimeout(done, 10000);
-    window.addEventListener('WebComponentsReady', done);
-
-    document.addEventListener("DOMContentLoaded", function() {
-      AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
-
-      // If chrome "WebComponentsReady" is not triggered thats why we have this
-      if (!!window.chrome) {
-        AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
-      }
-    });
   }
 
   function done(event) {
-    if (window.appLoaded) {
+    if (window.ready_event) {
       return;
     }
-    window.appLoaded = true;
+    window.ready_event = event ? 'load' : 'timeout'; // Timeout have no params sent so it will be undefined
 
-    window.standard_ready = event // Timeout have no params sent so it will be undefined
     clearTimeout(window.fallback);
 
     document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
@@ -218,9 +200,9 @@ CorporateUi = (function() {
       }\
       html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
       html.loading:before { background-color: #fff; }\
-      /*html.loading c-corporate-header, html.loading c-corporate-footer, html.loading c-main-navigation { display: none; }*/\
+      c-main-navigation { display: none; }\
     '));
-    document.head.appendChild(style);
+    document.head.insertBefore(style, document.head.firstChild);
   }
 
   function appendFavicon() {
@@ -257,7 +239,7 @@ CorporateUi = (function() {
 
     window.corporate_ui_params = urlInfo(scriptUrl).search.substring(1);
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
-    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
+    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('/js/corporate-ui.js', '');
     window.protocol = urlInfo(scriptUrl).protocol;
     window.environment = urlInfo(scriptUrl).pathname.split('/')[1];
     window.params = {};
@@ -271,6 +253,11 @@ CorporateUi = (function() {
     window.defaults = {
       appName: 'Application name',
       company: 'Scania'
+    };
+    public.components = {
+      'corporate-header': window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+      'corporate-footer': window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+      'main-content': window.version_root + 'html/component/Content + Teasers/main-content/main-content.html'
     };
 
     /*window.Polymer = {
@@ -322,14 +309,34 @@ CorporateUi = (function() {
     }
   }
 
+  function baseComponents(references) {
+
+    if (window.params.preload === 'false') {
+      window.ready_event = undefined;
+    }
+
+    // Maybe we should change importLink to return a promise instead
+    var resources = (references || window.preLoadedComponents).map(function(resource) {
+      return new Promise(function(resolve, reject) {
+        importLink(resource, 'import', function(e) { resolve(e.target) });
+      });
+    });
+
+    window.fallback = setTimeout(done, 10000);
+
+    Promise.all(resources).then(done);
+  }
+
   function appendExternals() {
+    window.preLoadedComponents = [
+      public.components['corporate-header'],
+      public.components['corporate-footer'],
+      public.components['main-content']
+    ];
+
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
       importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js');
-    }
-    // Adds support for Promise if non exist
-    if (typeof(Promise) === 'undefined') {
-      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js');
     }
 
     if (window.params.polymer !== 'false') {
@@ -338,23 +345,20 @@ CorporateUi = (function() {
     }
 
     if (window.params.css !== 'custom') {
-      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
+      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet');
+    }
+
+    // Adds support for Promise if non exist
+    if (typeof(Promise) === 'undefined') {
+      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
+        Promise = ES6Promise;
+        baseComponents(window.params.preload === 'false' ? [] : undefined);
+      });
+    } else {
+      baseComponents(window.params.preload === 'false' ? [] : undefined);
     }
 
     importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
-
-    if (window.params.preload !== 'false') {
-      window.preLoadedComponents = [
-        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
-      ];
-
-      for (var i = 0; i < window.preLoadedComponents.length; i++) {
-        importLink(window.preLoadedComponents[i], 'import');
-      }
-    }
   }
 
   function sysMessages() {
@@ -366,7 +370,7 @@ CorporateUi = (function() {
       console.warn('Remeber that you are pointing to our development environment and due to this you might experience some techical difficulties.');
     }
 
-    if (!window.standard_ready) {
+    if (window.ready_event === 'timeout') {
       console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
     }
   }

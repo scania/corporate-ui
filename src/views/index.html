@@ -12,20 +12,19 @@
   <title>Corporate UI - Developers</title>
 
   <script src="/js/corporate-ui.js"></script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-110069805-1');
-  </script>
   
   <link rel="stylesheet" href="css/ux-library.css">
 </head>
-<body class="scania app ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110069805-1');
+</script>
+<body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
@@ -60,7 +59,6 @@
 
   </c-main-content>
   <c-corporate-footer></c-corporate-footer>
-
 
   <script src="js/ux-library.js"></script>
 </body>

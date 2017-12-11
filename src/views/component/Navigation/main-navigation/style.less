@@ -6,14 +6,6 @@
   // we set height on this element dynamicly, this rule make it look smoother
   transition: height 100ms ease;
 
-  .sticky {
-    position: fixed;
-    // In ie and ff the sub-nav´s position is calculated wrong by 0.5px adding a small gap
-    // between main and sub navigation, this for some reason solves that :O
-    top: -1px;
-    left: 0;
-    right: 0;
-  }
   .navbar-footer {
     display: none;
   }
@@ -43,8 +35,19 @@
 
 :host-context(.header-is-sticky) {
 
-  ::content .navbar-nav.navbar-right {
-    margin-right: 80px;
+  ::content {
+
+    > .navbar {
+      position: fixed;
+      // In ie and ff the sub-nav´s position is calculated wrong by 0.5px adding a small gap
+      // between main and sub navigation, this for some reason solves that :O
+      top: -1px;
+      left: 0;
+      right: 0;
+    }
+    .navbar-nav.navbar-right {
+      margin-right: 80px;
+    }
   }
 }
 

@@ -40,13 +40,14 @@ window.CorporateUi = (function() {
       return;
     }
 
-    applyBrand();
-
     window.ready_event = event ? 'load' : 'timeout'; // Timeout have no params sent so it will be undefined
 
     clearTimeout(window.fallback);
 
     document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+
+    //document.addEventListener("DOMContentLoaded", applyBrand);
+
     sysMessages();
   }
 
@@ -281,7 +282,8 @@ window.CorporateUi = (function() {
 
     window.corporate_ui_params = urlInfo(scriptUrl).search.substring(1);
     window.static_root = (localhost ? 'http://' : 'https://') + urlInfo(scriptUrl).hostname + port;
-    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('/js/corporate-ui.js', '');
+    window.version_root = window.static_root + '/' + urlInfo(scriptUrl).pathname.replace('js/corporate-ui.js', '');
+    console.log('window.static_root: ', window.static_root)
     window.protocol = urlInfo(scriptUrl).protocol;
     window.environment = urlInfo(scriptUrl).pathname.split('/')[1];
     window.params = {};
@@ -388,7 +390,7 @@ window.CorporateUi = (function() {
 
     if (window.params.css !== 'custom') {
       importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet');
-      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');      
+      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
     }
 
     // Adds support for Promise if non exist
@@ -400,8 +402,6 @@ window.CorporateUi = (function() {
     } else {
       baseComponents(window.params.preload === 'false' ? [] : undefined);
     }
-
-    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
   }
 
   function sysMessages() {

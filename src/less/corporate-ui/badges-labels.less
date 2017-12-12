@@ -14,35 +14,17 @@
 }
 
 .label-sm {
-  font-size: 70%;  
-  font-weight: normal;  
+  font-size: 70%;
+  font-weight: normal;
   border-radius: 0.35em;
   padding: 0.28em 0.4em 0.25em;
 }
 
 .label-lg {
-  font-size: 100%; 	
+  font-size: 100%;
   font-weight: bold;
   border-radius: 1.3em;
   padding: 0.6em 1.2em 0.6em;
-}
-
-.label-danger {
-  background-color: lighten(@interaction-danger, 10%);
-  color: #fff;
-  border: 1px solid lighten(@interaction-danger, 10%);
-}
-
-.label-primary {
-  background-color: lighten(@interaction-primary-app, 10%);
-  color: #fff;
-  border: 1px lighten(@interaction-primary-app, 10%);
-}
-
-.label-info {
-  background-color: lighten(@interaction-info, 10%);
-  color: #fff;  
-  border: 1px solid lighten(@interaction-info, 10%);
 }
 
 .label-default {
@@ -51,16 +33,24 @@
   border: 1px solid lighten(@interaction-primary-app, 10%);
 }
 
+.label-primary {
+  .label-mixin(primary);
+}
+
+.label-danger {
+  .label-mixin(danger);
+}
+
+.label-info {
+  .label-mixin(info);
+}
+
 .label-success {
-  background-color: lighten(@interaction-success, 10%);
-  color: #fff;
-  border: 1px solid lighten(@interaction-success, 10%);
+  .label-mixin(success);
 }
 
 .label-warning {
-  background-color: lighten(@interaction-warning, 10%);
-  color: #fff;
-  border: 1px solid lighten(@interaction-warning, 10%);
+  .label-mixin(warning);
 }
 
 // CRUD LABELS

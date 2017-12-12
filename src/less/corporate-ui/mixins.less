@@ -48,3 +48,11 @@
     }
   }
 }
+
+.label-mixin(@type) {
+  @color-label: 'interaction-@{type}';
+
+  background-color: lighten(@@color-label, 10%);
+  color: #fff;
+  border: 1px solid lighten(@@color-label, 10%);
+}

@@ -38,10 +38,9 @@ Polymer({
   },
   ready: function() {
     var self = this;
-
     setTimeout(function() {
-      self.sticky.call(self);
       self.setHeaderSize.call(self);
+      Polymer.updateStyles({ '--display': 'block' });
     });
   },
   setHeaderSize: function() {
@@ -63,22 +62,14 @@ Polymer({
   },
   sticky: function() {
     var body = $('body'),
-        navContainer = $('> .navbar-default', this), // This could lead to performance issues
+        navContainer = $('> .navbar-default', this), // Using > could lead to performance issues due to manipulation of dom
         stickyNavTop = $(this).offset().top,
         scrollTop = $(window).scrollTop(); // our current vertical position from the top
 
-    if (scrollTop <= Math.max(stickyNavTop - 15, 0)) {
+    if (scrollTop <= Math.max(stickyNavTop, 0)) {
       body.removeClass('header-is-sticky');
     } else {
       body.addClass('header-is-sticky');
-    }
-
-    if(scrollTop <= stickyNavTop) {
-      navContainer.removeClass('sticky');
-    } else {
-      if (navContainer.hasClass('sticky')) {
-        navContainer.addClass('sticky');
-      }
     }
   }
 });

@@ -2,7 +2,7 @@
 @import (reference) "../../../../less/corporate-ui/navigation";
 
 :host {
-  display: block !important;
+  display: var(--display, none) !important;
   // we set height on this element dynamicly, this rule make it look smoother
   transition: height 100ms ease;
 

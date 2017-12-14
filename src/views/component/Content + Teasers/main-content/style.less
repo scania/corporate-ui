@@ -4,13 +4,13 @@
   /*font-size: 16px;*/
   word-break: break-word;
 
-  &.dark > section,
-  .dark {
-    background-color: #eee;
-  }
-  &.light > section,
-  .light {
+  &.light,
+  :content .light {
     background-color: #fff;
+  }
+  &.dark,
+  ::content .dark {
+    background-color: #eee;
   }
 
   /* Grid related style */
@@ -67,12 +67,6 @@
       }
       &.even:nth-child(odd) ~:nth-child(odd) {
           background-color: #eee;
-      }
-      &.light {
-        background-color: transparent !important;
-      }
-      &.dark {
-        background-color: #eee !important;
       }
     }
   }

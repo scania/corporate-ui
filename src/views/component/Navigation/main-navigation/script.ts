@@ -41,7 +41,7 @@ Polymer({
     setTimeout(function() {
       self.setHeaderSize.call(self);
       Polymer.updateStyles({ '--display': 'block' });
-    });
+    }, 1);
   },
   setHeaderSize: function() {
     var headerHeight = $('.navbar-toggle:visible', this.header).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle

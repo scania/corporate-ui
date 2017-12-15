@@ -84,12 +84,12 @@ pre {
 }
 
 .text-pale {
-  color: #767676
+  color: @text-pale-color;
 }
 
 b.text-pale,
 strong.text-pale {
-  color: #979595
+  color: @text-pale-strong-color;
 }
 
 article {
@@ -169,6 +169,7 @@ article {
   label,
   caption {
     font-family: "Scania Sans Condensed Bold";
+    color: @text-pale-strong-color;
 
     dd,
     strong,

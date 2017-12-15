@@ -80,8 +80,18 @@ blockquote {
   font-weight: normal;
 }
 pre {
- font-size: inherit;
+  font-size: inherit;
 }
+
+.text-pale {
+  color: @text-pale-color;
+}
+
+b.text-pale,
+strong.text-pale {
+  color: @text-pale-strong-color;
+}
+
 article {
   text-align: left;
   font-size: @p-font-size-article;
@@ -159,6 +169,7 @@ article {
   label,
   caption {
     font-family: "Scania Sans Condensed Bold";
+    color: @text-pale-strong-color;
 
     dd,
     strong,

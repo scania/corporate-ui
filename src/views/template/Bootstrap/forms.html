@@ -3,10 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>FMP form</title>
+    <title>Form example</title>
     <!-- <script src="https://static.scania.com/build/global/2.1.0/js/corporate-ui.js"></script> -->
-  <script src="../../../js/corporate-ui.js"></script>
-  </head>
+    <script src="../../../js/corporate-ui.js"></script>
+    <script src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.js"></script>
+    <script src="/vendors/components/jQuery/select2/4.0.5/dist/js/select2.full.min.js"></script>  
+         <!-- <link href="https://static.scania.com/vendors/components/jQuery/select2/4.0.0/css/select2.css" rel="stylesheet">  -->
+         <script>
+         $(document).ready(function() {
+          $(".select2").select2();
+           });
+</script>
+</head>
   <body class="scania app">
     <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
       <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
@@ -100,13 +108,13 @@
                   <div class="fcol-xs-12 col-md-3">
                     <div class="form-group">
                       <label class="control-label nowrap">Time in advance (min)</label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="30">
+                      <input type="text" value='' class="form-control" placeholder="30">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-9">
                     <div class="form-group">
                       <label class="control-label nowrap">Notify expected delays</label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="">
+                      <input type="text" value='' class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-3">
@@ -220,13 +228,13 @@
                   <div class="fcol-xs-12 col-md-3">
                     <div class="form-group">
                       <label class="control-label nowrap">Time in advance (min)</label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="30">
+                      <input type="text" value='' class="form-control" placeholder="30">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-9">
                     <div class="form-group">
                       <label class="control-label nowrap">Notify expected delays</label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="">
+                      <input type="text" value='' class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-3">
@@ -260,7 +268,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="well">
-            <h4>Input-group-btn inside well first child</h4>
+            <h4>Input-group-btn inside well</h4>
             <div class="input-group">
               <span class="input-group-btn">
               <button class="btn btn-default" type="button">Go!</button>
@@ -271,7 +279,7 @@
         </div>
         <div class="col-md-6">
           <div class="well">
-            <h4>Input-group-btn inside well last child</h4>
+            <h4>Input-group-btn inside well</h4>
             <div class="input-group">
               <input type="text" class="form-control">
               <span class="input-group-btn">
@@ -285,7 +293,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-6">
-              <h4>Input-group-btn first child</h4>
+              <h4>Input-group-btn</h4>
               <div class="input-group">
                 <span class="input-group-btn">
                 <button class="btn btn-default" type="button">Go!</button>
@@ -294,7 +302,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <h4>Input-group-btn inside last child</h4>
+              <h4>Input-group-btn</h4>
               <div class="input-group">
                 <input type="text" class="form-control">
                 <span class="input-group-btn">
@@ -305,8 +313,148 @@
           </div>
         </div>
       </div>
-    </div>
-    </div>
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Select</h4>
+              <p>Basic css only</p>
+              <select class="custom-select form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <h4>Select</h4>
+              <p>Placeholder single</p>
+              <select multiple data-placeholder="Select an option" data-allow-clear="true" class="form-control select2">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+                <option>Option 7</option>
+                <option>Option 8</option>
+                <option>Option 9</option>
+                <option>Option 10</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Select</h4>
+              <p>Basic single</p>
+              <select class="form-control select2">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+                <option>Option 7</option>
+                <option>Option 8</option>
+                <option>Option 9</option>
+                <option>Option 10</option>
+              </select>
+
+            </div>
+            <div class="col-md-6">
+              <h4>Select</h4>
+              <p>Basic search minimum</p>
+              <select data-minimum-input-range="3" class="form-control select2">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+                <option>Option 7</option>
+                <option>Option 8</option>
+                <option>Option 9</option>
+                <option>Option 10</option>
+              </select>
+
+            </div>
+            <div class="col-md-6">
+              <h4>Select</h4>
+              <p>Basic multiple</p>
+              <select multiple class="form-control select2">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+                <option>Option 7</option>
+                <option>Option 8</option>
+                <option>Option 9</option>
+                <option>Option 10</option>
+              </select>
+
+            </div>
+            <div class="col-md-6">
+              <h4>select</h4>
+              <p>Basic multiple limit</p>
+              <select multiple data-maximum-selection-length="2" class="form-control select2">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+                <option>Option 7</option>
+                <option>Option 8</option>
+                <option>Option 9</option>
+                <option>Option 10</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="well">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Select</h4>
+            <p>Basic css only inside well</p>
+            <select class="custom-select form-control">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <h4>Select</h4>
+            <p>Basic css only inside well</p>
+            <select class="custom-select form-control">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div> 
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Select</h4>
+            <p>Basic multiple limit well</p>
+            <select multiple class="form-control select2">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <h4>Select</h4>
+            <p>Basic multiple</p>
+            <select multiple class="form-control select2">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>     
+      </div>   
     <c-main-content>
-    <body>
-      <html>
+  <body>
+<html>

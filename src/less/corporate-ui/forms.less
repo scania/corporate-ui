@@ -1,76 +1,74 @@
+
 // SCANIA BOOTSTRAP THEME
 // FORMS
 legend {
-    border: 0;
+  border: 0;
 }
 input[placeholder],
 textarea[placeholder] {
-    /* Do not group these rules */
-    
+  /* Do not group these rules */
+  
+  color: inherit;
+  &::-webkit-input-placeholder {
     color: inherit;
-    &::-webkit-input-placeholder {
-        color: inherit;
-    }
-    &:-moz-placeholder {
-        color: inherit;
-    }
-    &::-moz-placeholder {
-        color: inherit;
-    }
-    &:-ms-input-placeholder {
-        color: inherit;
-    }
+  }
+  &:-moz-placeholder {
+    color: inherit;
+  }
+  &::-moz-placeholder {
+    color: inherit;
+  }
+  &:-ms-input-placeholder {
+    color: inherit;
+  }
 }
 .form-control {
-    color: #747472;
-    padding: 20px 40px;
-    height: auto;
-    line-height: 1;
-    box-shadow: none;
-    border-radius: 0;
-    border: 0;
-    font-size: inherit;
-    font-weight: normal;
-    background-color: #f5f5f5;
-
-    &.form-control[readonly] {
-        background-color: transparent;
-        cursor: default;
-
-        &:focus {
-            cursor: default;
-            box-shadow: none;
-        }
-    }
-    &.form-control[disabled] {
-        background-color: #dfdee1;
-        color: #a1a1a1;
-        cursor: default;
-    }
+  color: #747472;
+  padding: 20px 40px;
+  height: auto;
+  line-height: 1;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0;
+  font-size: inherit;
+  font-weight: normal;
+  background-color: #f5f5f5;
+  &.form-control[readonly] {
+    background-color: transparent;
+    cursor: default;
     &:focus {
-        border-color: #041e42;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      cursor: default;
+      box-shadow: none;
     }
-
-    .app & {
-        padding: 4px 12px;
-        height: 34px;
-    }
+  }
+  &.form-control[disabled] {
+    background-color: #dfdee1;
+    color: #a1a1a1;
+    cursor: default;
+  }
+  &:focus {
+    border-color: #041e42;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  }
+  .app & {
+    padding: 4px 12px;
+    height: 34px;
+  }
 }
 .form-condensed {
-    .form-group {
-        margin-bottom: 5px;
-    }
-    .form-control {
-        &:extend(.bootstrap .input-sm);
-    }
+  .form-group {
+    margin-bottom: 5px;
+  }
+  .form-control {
+    &:extend(.bootstrap .input-sm);
+  }
 }
 .control-label {
     font-family: 'Scania Sans Bold';
     font-weight: bold;
-    font-size: 0.9em;
-    white-space: normal;
+  font-size: 0.9em;
+  white-space: normal;
 }
 .form-horizontal {
 
@@ -79,138 +77,179 @@ textarea[placeholder] {
     .checkbox,
     .radio-inline,
     .checkbox-inline {
-        padding-top: 9px;
-    }
+    padding-top: 9px;
+  }
 }
 .form-inline {
-
-    .radio + .radio,
-    .checkbox + .checkbox {
-        margin-left: 10px;
-    }
+  .radio + .radio, .checkbox + .checkbox {
+    margin-left: 10px;
+  }
 }
-
 .form-control-static {
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
 // Form Sizing
 .input-sm {
-    height: 30px;
-    border-radius: 0;
+  height: 30px;
+  border-radius: 0;
 }
 .input-lg {
-    height: 39px;
-    border-radius: 0;
+  height: 39px;
+  border-radius: 0;
 }
 .table .form-control {
-    .input-sm
-} 
+  .input-sm
+}
 //Forms in labels have input-sm-styling per default
 .table .input-group-btn .btn {
-    .input-sm;
-    margin: 0 0 0 -1px;
+  .input-sm;
+  margin: 0 0 0 -1px;
 }
-
 fieldset {
-    border: 2px dotted silver;
-    padding: 25px 25px 5px 5px;
-    margin-bottom: 30px;
+  border: 2px dotted silver;
+  padding: 25px 25px 5px 5px;
+  margin-bottom: 30px;
 }
 // Radio and Checkboxes//
 input[type=checkbox] {
-    opacity: 0;
+  opacity: 0;
+  &+span {
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      margin: 0px 5px 10px 0px;
+      border: 2px solid #041E42;
+      vertical-align: text-top;
+      .app & {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+  &:hover {
     &+span {
-        &:before {
-            content: "";
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            margin: 0px 5px 10px 0px;
-            border: 2px solid #041E42;
-            vertical-align: text-top;
-            .app & {
-                width: 15px;
-                height: 15px;
-            }
-        }
+      &:before {
+        background: #97999B;
+        .app & {}
+      }
     }
-    &:hover {
-        &+span {
-            &:before {
-                background: #97999B;
-                .app & {}
-            }
+  }
+  &:checked {
+    &+span {
+      &:before {
+        content: '\2713';
+        color: #FAFAFA;
+        font-size: 17px;
+        line-height: 18px;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: text-top;
+        background: #041E42;
+        .app & {
+          font-size: 11px;
+          line-height: 12px;
         }
+      }
     }
-    &:checked {
-        &+span {
-            &:before {
-                content: '\2713';
-                color: #FAFAFA;
-                font-size: 17px;
-                line-height: 18px;
-                text-align: center;
-                font-weight: bold;
-                vertical-align: text-top;
-                background: #041E42;
-                .app & {
-                    font-size: 11px;
-                    line-height: 12px;
-                }
-            }
-        }
-    }
+  }
 }
 input[type=radio] {
-    opacity: 0;
+  opacity: 0;
     // Zoom is used to make it smaller. Without zoom it cant be smaller than 16px and use vertical-align: bottom;  // 
     &+span {
+      display: inline-block;
+      border: 2px solid #041E42;
+      line-height: normal;
+      border-radius: 15px;
+      /* vertical-align: bottom; */
+      
+      zoom: .8;
+      .app & {
+        border-radius: 10px;
+      }
+      &:before {
+        content: "";
         display: inline-block;
-        border: 2px solid #041E42;
-        line-height: normal;
-        border-radius: 15px;
-        /* vertical-align: bottom; */
+        width: 24px;
+        height: 24px;
+        border-radius: inherit;
+        border: 0.3em solid #FFF;
+        /* margin: 1px; */
         
-        zoom: .8;
+        vertical-align: bottom;
         .app & {
-            border-radius: 10px;
+          width: 16px;
+          height: 16px;
         }
-        &:before {
-            content: "";
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border-radius: inherit;
-            border: 0.3em solid #FFF;
-            /* margin: 1px; */
-            
-            vertical-align: bottom;
-            .app & {
-                width: 16px;
-                height: 16px;
-            }
-        }
+      }
     }
     &:hover {
-        &+span {
-            &:before {
-                background: #97999B;
-            }
+      &+span {
+        &:before {
+          background: #97999B;
         }
+      }
     }
     &:checked {
-        &+span {
-            &:before {
-                background: #041E42;
-            }
+      &+span {
+        &:before {
+          background: #041E42;
         }
+      }
     }
-}
-.radio label,
-.checkbox label {
+  }
+  .radio label,
+  .checkbox label {
     padding-left: 0px;
-}
-
-.nowrap {
+  }
+  .nowrap {
     white-space: nowrap;
-}
+  }
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+
+    &::-ms-expand {
+      border: none;
+      background-color: #f5f5f5;
+    }
+
+    .well &::-ms-expand {
+      border: none;
+      background-color: #FFFFFF;
+    }
+  }
+  .custom-select {
+    font-size: inherit;
+    width: 100%;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=);
+    background-size: 31px;
+    background-position: calc(100% - 2px) center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    & > option {
+      background: #FFFFFF;
+        // color: #FFFFFF;
+      }
+      &:focus {
+        border: 0;
+        outline: none;
+      }
+      .app & {
+        background-size: 12px;
+        background-position: calc(100% - 3px) center;
+        // padding: 8px 20px;
+      }
+      .well & {
+        background-color: #FFFFFF;
+      }
+    }
+    

@@ -56,3 +56,9 @@
   color: #fff;
   border: 1px solid lighten(@@color-label, 10%);
 }
+
+.icon-mixin(@icon @content) {
+  .@{icon}:before {
+    content: @content;
+  }
+}

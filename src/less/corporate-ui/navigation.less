@@ -13,6 +13,7 @@
     padding-left: 0;
     padding-right: 0;
   }
+
   .navbar-header {
     float: none;
     display: block;
@@ -51,6 +52,7 @@
         cursor: default;
       }
     }
+
     .navbar-symbol {
       width: 48px;
       height: 46px;
@@ -70,6 +72,7 @@
         height: inherit;
       }
     }
+    
     .navbar-nav {
       margin: 11px 0 0 -15px;
 
@@ -124,7 +127,7 @@
     }
   }
 
-  .navbar-nav {
+  .navbar-nav {   
 
     > li {
 
@@ -157,6 +160,13 @@
 .app {
 
   .navbar-default {
+
+    .navbar-nav {
+      a,
+      span {
+        font-family: "Scania Sans Semi Condensed";
+      }
+    }     
 
     .navbar-header {
       padding: 2px 0 0px;
@@ -217,6 +227,7 @@ ul.nav-tabs {
     &.active:first-child a {
       border-left: 1px solid @color-primary-01; 
     }
+
     &.disabled a {
         color: #999;
         font-style: italic;
@@ -247,7 +258,7 @@ ul.nav-tabs {
           color: inherit;
           padding: 0;
           margin: 15px 16px 13px;
-          border-color: @brand-primary-3;
+          border-color: @color-brand-03;
           border-width: 0 0 2px;
           font-family: 'Scania Sans Bold';
         }
@@ -275,17 +286,17 @@ ul.nav-tabs {
       &,
       &:hover,
       &:focus {
-        background-color: @brand-info;
+        background-color: @interaction-info;
         color: #fff;
       }
 
       > .badge {
-        color: @brand-info;
+        color: @interaction-info;
       }
     }
 
     > a {
-      color: @brand-info;
+      color: @interaction-info;
     }
   }
 
@@ -307,7 +318,7 @@ ul.nav-tabs {
     font-family: 'Scania Sans Semi Condensed Bold';
 
     li {
-      border: 1px solid @brand-info;
+      border: 1px solid @interaction-info;
       background-color: #fff;
 
       &.active {

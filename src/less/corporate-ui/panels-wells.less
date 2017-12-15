@@ -1,5 +1,6 @@
 // SCANIA BOOTSTRAP THEME
 // PANELS AND WELLS
+
 .panel {
   margin-bottom: 15px;
   border-radius: 0;
@@ -18,11 +19,11 @@
     h4,
     h5,
     h6 {
-        font-family: 'Scania Sans Headline Bold';
-        padding: 4px 0;
-        margin: 0;
-        letter-spacing: 0.03rem;
-        color: white;
+      font-family: 'Scania Sans Headline Bold';
+      padding: 4px 0;
+      margin: 0;
+      letter-spacing: 0.03rem;
+      color: white;
     }
 
     h3 {
@@ -53,7 +54,7 @@
       text-transform: initial;
       color: inherit;
     }
-}
+  }
 
   .panel-body {
     padding: 30px 30px;
@@ -161,25 +162,26 @@
      color: #041e42;
      border: 1px solid #ddd;
 
-      :first-child {
-        color: #041e42;
-      }
-    }
-
-    input[type=text] {
-      background-color: #fff;
-    }
-
-    .form-control {
-      border: 0px;
+     :first-child {
+      color: #041e42;
     }
   }
+
+  input[type=text] {
+    background-color: #fff;
+  }
+
+  .form-control {
+    border: 0px;
+  }
+}
 
   // panel-onlyheading - Panels with just heading, transparent panel-body
   &&-onlyheading {
     background-color: transparent;
 
-    &, > &-heading {
+    &, 
+    > &-heading {
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       border-radius: 0px;
@@ -187,6 +189,7 @@
   }
 
   .panel-footer {
+
     > .pagination {
       margin: 0;
 
@@ -196,10 +199,10 @@
 
 // Contextual footers (missing support in Bootstrap)
 .panel-default {
-  border-color: @brand-default;
+  border-color: @interaction-default;
 
   > .panel-heading, > .panel-footer {
-    color: @brand-primary;
+    color: @interaction-primary;
 
     h1,
     h2,
@@ -213,73 +216,23 @@
 }
 
 .panel-primary {
-  border-color: @brand-primary;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-primary;
-    border-color: @brand-primary;
-  }
-
-  .table caption {
-    background-color: @brand-primary;
-  }
+  .panel-mixin(primary);
 }
 
 .panel-info {
-  border-color: @brand-info;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-info;
-    border-color: @brand-info;
-  }
-
-  .table caption {
-    background-color: @brand-info;
-  }
+  .panel-mixin(info);
 }
 
 .panel-success {
-  border-color: @brand-success;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-success;
-    border-color: @brand-success;
-  }
-
-  .table caption {
-    background-color: @brand-success;
-  }
+  .panel-mixin(success);
 }
 
 .panel-warning {
-  border-color: @brand-warning;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-warning;
-    border-color: @brand-warning;
-  }
-
-  .table caption {
-    background-color: @brand-warning;
-  }
+  .panel-mixin(warning);
 }
 
 .panel-danger {
-  border-color: @brand-danger;
-
-  > .panel-heading, > .panel-footer {
-    color: #ffffff;
-    background-color: @brand-danger;
-    border-color: @brand-danger;
-  }
-  
-  .table caption {
-    background-color: @brand-danger;
-  }
+  .panel-mixin(danger);
 }
 
 //wells
@@ -311,6 +264,7 @@
   }
 }
 
-.jumbotron h1, .jumbotron .h1 {
-  color: @brand-primary;
+.jumbotron h1, 
+.jumbotron .h1 {
+  color: @interaction-primary;
 }

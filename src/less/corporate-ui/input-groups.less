@@ -35,9 +35,21 @@
     }
 
     & input[type="checkbox"] {
-      margin-top: 10px;
-      margin-right: -15px;
-      font-size: inherit;
+      // margin-top: 10px;
+      // margin-right: -20px;
+      // font-size: inherit;
+      // height: 20px;
+          margin-right: -35px;
+          height: 30px;
+          width: 30px;
+
+          .app & {
+          margin-right: -25px;
+          height: 20px;
+          width: 20px;
+        }
+
+         
 
       + span {
 
@@ -46,22 +58,30 @@
         }
       }
     }
+    
     .app & {
-      padding: 0px 10px;
+       // margin-right: -20px;
+       //  height: 20px;
+      padding: 0px 15px;
       font-size: 17px;
     }
   }
+
   & > .form-control {
     padding: 20px 17px;
     border-radius: 0px;
-      
+
     .app & {
       padding: 8.4px 17px;
     }
   }
+
   &-lg {
+
     .input-group {
+
       &-addon {
+
         border-radius: 0px;
         box-shadow: none;
         border-color: transparent;
@@ -74,14 +94,18 @@
         }
       }
     }
+
     & > .form-control {
       padding: 40px 17px;
+
       .app & {
-            padding: 23px 17px;
+        padding: 23px 17px;
       }
     }
   }
+
   &-sm {
+
     .input-group-addon {
       padding-top: 2px;
       padding-bottom: 2px;
@@ -92,6 +116,7 @@
         font-size: 12px;
       }
     }
+
     & > .form-control {
       padding: 20px 17px;
       .app & {
@@ -121,6 +146,7 @@
       background-color: #fff;
       margin-left: 3px;
     }
+
     & .dropdown-toggle {
       white-space: nowrap;
     }

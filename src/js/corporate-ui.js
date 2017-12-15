@@ -1,5 +1,5 @@
 
-CorporateUi = (function() {
+window.CorporateUi = (function() {
 
   /*** Public proporties ***/
   var public = {
@@ -14,15 +14,16 @@ CorporateUi = (function() {
     importLink      : importLink,
     generateMeta    : generateMeta,
     urlInfo         : urlInfo,
-    EventStore      : EventStore
+    baseComponents  : baseComponents,
+    EventStore      : EventStore,
+    components      : {},
   };
 
   /*** This starts everything ***/
   init();
 
   return public;
-
-
+  
   function init() {
 
     addMetaAndHeaderSpecs();
@@ -32,37 +33,21 @@ CorporateUi = (function() {
     setGlobals();
 
     appendExternals();
-
-    appendFavicon();
-
-    ready();
   }
-
-  function ready() {
-
-    window.fallback = setTimeout(done, 10000);
-    window.addEventListener('WebComponentsReady', done);
-
-    document.addEventListener("DOMContentLoaded", function() {
-      AppEventStore.apply({ name: 'corporate-ui', action: 'corporate-ui.loaded' });
-
-      // If chrome "WebComponentsReady" is not triggered thats why we have this
-      if (!!window.chrome) {
-        AppEventStore.apply({ name: 'corporate-ui', action: 'WebComponentsReady' });
-      }
-    });
-  }
-
+  
   function done(event) {
-    if (window.appLoaded) {
+    if (window.ready_event) {
       return;
     }
-    window.appLoaded = true;
 
-    window.standard_ready = event // Timeout have no params sent so it will be undefined
+    window.ready_event = event ? 'load' : 'timeout'; // Timeout have no params sent so it will be undefined
+
     clearTimeout(window.fallback);
 
     document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+
+    //document.addEventListener("DOMContentLoaded", applyBrand);
+
     sysMessages();
   }
 
@@ -218,13 +203,50 @@ CorporateUi = (function() {
       }\
       html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
       html.loading:before { background-color: #fff; }\
-      /*html.loading c-corporate-header, html.loading c-corporate-footer, html.loading c-main-navigation { display: none; }*/\
     '));
-    document.head.appendChild(style);
+    document.head.insertBefore(style, document.head.firstChild);
   }
 
-  function appendFavicon() {
-    var favicon_root = 'https://static.scania.com/resources/logotype/scania/favicon/';
+  function applyBrand() {
+
+    var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'spotify'];
+    var subDomain = window.location.hostname.split('.')[0];
+    var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
+
+    var classes = document.body.classList;
+    for(index in classes) {
+      if(brands.indexOf( classes[index] ) > -1) {
+        brand = classes[index];
+      }
+    }
+
+    var properties = window.location.search.substring(1).split('&');
+    var params = {};
+    for(index in properties) {
+      var item = properties[index].split('=')
+      params[item[0]] = item[1]
+    }
+
+    if(params.brand) {
+      brand = params.brand;
+    }
+
+    var bodyClasses = document.body.className;
+    for(index in brands) {
+      if(bodyClasses.indexOf( brands[index] ) > -1) {
+        bodyClasses = bodyClasses.replace(brands[index], '');
+      }
+    }
+
+    document.body.className = bodyClasses;
+
+    var fileref = document.createElement("link");
+    fileref.rel = "stylesheet";
+    fileref.type = "text/css";
+    fileref.href =  "https://static.scania.com/resources/brands/css/" + brand + ".css";
+    document.getElementsByTagName("head")[0].appendChild(fileref);
+
+    var favicon_root = "https://static.scania.com/resources/logotype/" + brand + "/favicon/";
 
     importLink(favicon_root + 'favicon.ico', 'shortcut icon');
 
@@ -248,6 +270,8 @@ CorporateUi = (function() {
 
     generateMeta('msapplication-TileColor', '#000');
     generateMeta('msapplication-TileImage', window.favicon_root + 'ms-icon-144x144.png');
+
+    document.body.classList.add(brand);
   }
 
   function setGlobals() {
@@ -271,6 +295,11 @@ CorporateUi = (function() {
     window.defaults = {
       appName: 'Application name',
       company: 'Scania'
+    };
+    public.components = {
+      'corporate-header': window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
+      'corporate-footer': window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
+      'main-content': window.version_root + 'html/component/Content + Teasers/main-content/main-content.html'
     };
 
     /*window.Polymer = {
@@ -322,14 +351,34 @@ CorporateUi = (function() {
     }
   }
 
+  function baseComponents(references) {
+
+    if (window.params.preload === 'false') {
+      window.ready_event = undefined;
+    }
+
+    // Maybe we should change importLink to return a promise instead
+    var resources = (references || window.preLoadedComponents).map(function(resource) {
+      return new Promise(function(resolve, reject) {
+        importLink(resource, 'import', function(e) { resolve(e.target) });
+      });
+    });
+
+    window.fallback = setTimeout(done, 10000);
+
+    Promise.all(resources).then(done);
+  }
+
   function appendExternals() {
+    window.preLoadedComponents = [
+      public.components['corporate-header'],
+      public.components['corporate-footer'],
+      public.components['main-content']
+    ];
+
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
       importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js');
-    }
-    // Adds support for Promise if non exist
-    if (typeof(Promise) === 'undefined') {
-      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js');
     }
 
     if (window.params.polymer !== 'false') {
@@ -338,22 +387,18 @@ CorporateUi = (function() {
     }
 
     if (window.params.css !== 'custom') {
-      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet')
+      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet');
+      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
     }
 
-    importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
-
-    if (window.params.preload !== 'false') {
-      window.preLoadedComponents = [
-        window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
-        window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-        window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
-        window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
-      ];
-
-      for (var i = 0; i < window.preLoadedComponents.length; i++) {
-        importLink(window.preLoadedComponents[i], 'import');
-      }
+    // Adds support for Promise if non exist
+    if (typeof(Promise) === 'undefined') {
+      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
+        Promise = ES6Promise;
+        baseComponents(window.params.preload === 'false' ? [] : undefined);
+      });
+    } else {
+      baseComponents(window.params.preload === 'false' ? [] : undefined);
     }
   }
 
@@ -366,7 +411,7 @@ CorporateUi = (function() {
       console.warn('Remeber that you are pointing to our development environment and due to this you might experience some techical difficulties.');
     }
 
-    if (!window.standard_ready) {
+    if (window.ready_event === 'timeout') {
       console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
     }
   }

@@ -1,7 +1,17 @@
 // SCANIA BOOTSTRAP THEME
 // NAVIGATION
 
+@siteNameFont: 'Scania Sans Headline';
+@headerItems:  'Scania Sans';
+
+@topLevelFont: 'Scania Sans Bold';
+@subLevelFont: 'Scania Sans';
+
+@topLevelAppFont: 'Scania Sans Semi Condensed Bold';
+@subLevelAppFont: 'Scania Sans Semi Condensed'
+
 .navbar-default {
+  font-family: @headerItems;
   background-color: #fff;
   margin-bottom: 0;
   border: 0;
@@ -17,7 +27,7 @@
   .navbar-header {
     float: none;
     display: block;
-    font-family: 'Scania Sans Headline';
+    font-family: @siteNameFont;
     padding: 12px 15px 3px;
     border-bottom: 1px solid #e2e2e2;
     font-size: 1.8rem;
@@ -159,20 +169,20 @@
 
 .app {
 
-  .navbar-default {
-
-    .navbar-nav {
-      a,
-      span {
-        font-family: "Scania Sans Semi Condensed";
-      }
-    }     
+  .navbar-default {     
 
     .navbar-header {
       padding: 2px 0 0px;
 
-      + .navbar-collapse + .navbar-collapse {
-        padding: 0;
+      // Top level - main navigation
+      + .navbar-collapse {
+        font-family: @topLevelAppFont;
+
+        // Sub level - main navigation
+        + .navbar-collapse {
+          font-family: @subLevelAppFont;
+          padding: 0;
+        }
       }
     }
   }
@@ -530,6 +540,7 @@ ul.nav-tabs {
 // Mixins related to navigations
 .top-level() {
   padding: 0;
+  font-family: @topLevelFont;
 
   .navbar-nav {
 
@@ -560,6 +571,7 @@ ul.nav-tabs {
   }
 }
 .sub-level() {
+  font-family: @subLevelFont;
   background-color: #f3f3f3;
   font-size: 1.5rem;
 
@@ -600,3 +612,6 @@ ul.nav-tabs {
     margin-left: 0;
   }
 }
+
+
+

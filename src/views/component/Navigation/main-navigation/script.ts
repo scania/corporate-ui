@@ -11,6 +11,9 @@ Polymer({
       value: true
     }
   },
+  listeners: {
+    'subNavigation-attached': 'setHeaderSize'
+  },
   attached: function() {
     //$('primary-items, secondary-items' this).contents().unwrap();
 
@@ -37,11 +40,7 @@ Polymer({
     $('.navbar-toggle > a', this).addClass('collapsed');
   },
   ready: function() {
-    var self = this;
-    setTimeout(function() {
-      self.setHeaderSize.call(self);
-      Polymer.updateStyles({ '--display': 'block' });
-    }, 1);
+    Polymer.updateStyles({ '--display': 'block' });
   },
   setHeaderSize: function() {
     var headerHeight = $('.navbar-toggle:visible', this.header).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle

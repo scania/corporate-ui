@@ -39,6 +39,9 @@ Polymer({
       $(window).on('scroll resize', this.symbolFixed.bind(this));
     }
   },
+  attached: function() {
+    Polymer.updateStyles({ '--display': 'block' });
+  },
   symbolFixed: function() {
     var symbol = $('.navbar-symbol', this),
         headerTop = $(this).offset().top,

@@ -203,6 +203,7 @@ window.CorporateUi = (function() {
       }\
       html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
       html.loading:before { background-color: #fff; }\
+      c-corporate-header,\
       c-main-navigation { display: none; }\
     '));
     document.head.insertBefore(style, document.head.firstChild);

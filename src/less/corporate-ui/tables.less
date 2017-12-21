@@ -25,14 +25,14 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   thead {
     background-color: @interaction-primary;
     color: #fff;
-    
+
     > tr {
 
       > th {
         text-transform: uppercase;
         font-family: 'Scania Sans Condensed Bold';
         border: 1px solid transparent;
-        
+
         input,
         select {
 
@@ -66,7 +66,14 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   }
 
   tfoot {
-    background-color: #f7f7f7;
+    background-color: transparent;
+
+    > tr {
+
+      > td {
+        border: none;
+      }
+    }
   }
 
   caption {
@@ -96,7 +103,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   h2,
   h3,
   h4,
-  h5, 
+  h5,
   h6 {
     border-bottom: 0;
     padding: 0;
@@ -136,7 +143,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tbody {
 
       > tr {
-        
+
         &:nth-child(odd) {
 
           > td,

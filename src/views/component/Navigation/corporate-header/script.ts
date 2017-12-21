@@ -12,17 +12,31 @@ Polymer({
       value: true
     }
   },
+  created: function() {
+    /* What this does is to visualize whatever nav-item will do if it was not yet loaded.
+      We might wanna add same thing to corporate-footer later if we wanna keep using Polymer... */
+    if (window['params'].preload === 'false') {
+      var items = this.querySelectorAll('nav-item');
+      for(var i=0; i<items.length; i++) {
+        var item = items[i];
+        if ( !(item.children.length && item.children[0].nodeName === 'A') ) {
+          item.innerHTML = '<a href="' + item.getAttribute('location') + '">' + item.innerHTML + '</a>';
+        }
+      }
+    }
+  },
   ready: function() {
-    var self = this;
+    if (window['params'].preload !== 'false') {
+      var url = this.resolveUrl('../../Bootstrap/navbar/nav-item/nav-item.html');
+      this.importHref(url);
+    }
 
     // If main-navigation exists then we want the logotype inside corporate-header to get sticky
     if ($('c-main-navigation').length) {
       this.symbolFixed();
 
       // and run it again every time you scroll
-      $(window).on('scroll resize', function() {
-        self.symbolFixed();
-      });
+      $(window).on('scroll resize', this.symbolFixed.bind(this));
     }
   },
   symbolFixed: function() {

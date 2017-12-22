@@ -17,7 +17,6 @@ Polymer({
     this.classes = this.className; // Store default classlist without state included
   },
   attached: function() {
-
     var arr = [];
     for(var i = 0; i<this.children.length; i++){
       arr.push(this.children[i].nodeName)

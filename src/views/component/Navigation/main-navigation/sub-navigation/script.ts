@@ -8,5 +8,10 @@ Polymer({
     },
     showSearch: Boolean,
     caption: String
+  },
+  attached: function() {
+    this.async(function() {
+      this.fire('subNavigation-attached');
+    });
   }
 });

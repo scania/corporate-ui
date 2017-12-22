@@ -11,7 +11,12 @@ Polymer({
       value: true
     }
   },
+  listeners: {
+    'subNavigation-attached': 'setHeaderSize'
+  },
   attached: function() {
+    Polymer.updateStyles({ '--display': 'block' });
+
     //$('primary-items, secondary-items' this).contents().unwrap();
 
     $('primary-items, secondary-items', this).addClass('nav navbar-nav');
@@ -35,13 +40,6 @@ Polymer({
 
     // Set start collapse value - couldnt get this to work in a better way...
     $('.navbar-toggle > a', this).addClass('collapsed');
-  },
-  ready: function() {
-    var self = this;
-    setTimeout(function() {
-      self.setHeaderSize.call(self);
-      Polymer.updateStyles({ '--display': 'block' });
-    }, 1);
   },
   setHeaderSize: function() {
     var headerHeight = $('.navbar-toggle:visible', this.header).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle

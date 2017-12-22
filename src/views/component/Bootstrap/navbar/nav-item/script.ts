@@ -11,6 +11,10 @@ Polymer({
     },
     location: {
       type: String
+    },
+    active: {
+      type: String,
+      observer: 'setActive'
     }
   },
   created: function() {
@@ -48,6 +52,12 @@ Polymer({
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
+  },
+  setActive: function() {
+    this.classList.add('active');
+    this.async(function() {
+      this.fire('navItem-active');
+    });
   },
   hasClass: function(element, className) {
     return element.className.split(' ').indexOf(className) > -1;

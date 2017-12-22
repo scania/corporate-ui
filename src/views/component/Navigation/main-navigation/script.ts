@@ -12,7 +12,8 @@ Polymer({
     }
   },
   listeners: {
-    'subNavigation-attached': 'setHeaderSize'
+    'subNavigation-attached': 'setHeaderSize',
+    'navItem-active': 'setHeaderSize'
   },
   attached: function() {
     Polymer.updateStyles({ '--display': 'block' });

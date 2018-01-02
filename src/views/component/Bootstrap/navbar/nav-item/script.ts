@@ -53,8 +53,12 @@ Polymer({
       this.toggleExpand(this._getEvent());
     }
   },
-  setActive: function() {
-    this.classList.add('active');
+  setActive: function(newValue) {
+    if (newValue === 'true') {
+      this.classList.add('active');
+    } else {
+      this.classList.remove('active');
+    }
     this.async(function() {
       this.fire('navItem-active');
     });

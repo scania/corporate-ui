@@ -16,7 +16,7 @@ Polymer({
     'navItem-active': 'setHeaderSize'
   },
   attached: function() {
-    Polymer.updateStyles({ '--display': 'block' });
+    $(this).show();
 
     //$('primary-items, secondary-items' this).contents().unwrap();
 
@@ -53,6 +53,7 @@ Polymer({
     // if( $(this).offset().top === 0 || $(this).height() != headerHeight ) {
       $(this)
         .removeAttr('style')
+        .show()
         .height( headerHeight );
     // }
 

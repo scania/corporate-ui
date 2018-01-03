@@ -16,7 +16,6 @@
   }
 
   .app & {
-    display:table;
 
     h1 {
       font-size: @h1-font-size-app * 1.5;
@@ -31,10 +30,7 @@
     h1,
     h2,
     h3 {
-      font-family: inherit !important;
-      padding-top: 0;
-      margin-bottom: 0.2rem;
-      letter-spacing: 0.03rem;
+      font-family: inherit;
 
       small {
         font-family: "Scania Sans Bold";
@@ -49,7 +45,6 @@ header.c-page-header {
   margin-bottom: 15px;
 
   .page-header {
-    display: table;
 
     h1,
     h2,
@@ -57,12 +52,12 @@ header.c-page-header {
       padding-top: 0;
       margin-bottom: 0.2rem;
       letter-spacing: 0.03rem;
-      font-family: "Scania Sans Headline Bold", Arial, sans-serif !important;
+      font-family: "Scania Sans Headline Bold" !important;
     }
 
     h3,
     h4 {
-      display: table-cell;
+      display: inline;
       vertical-align: middle;
     }
 

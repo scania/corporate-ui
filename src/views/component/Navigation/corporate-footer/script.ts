@@ -11,5 +11,8 @@ Polymer({
       type: String,
       value: 'Copyright Scania 2016 All rights reserved.'
     }
+  },
+  attached: function() {
+    this.style.display = 'block';
   }
 });

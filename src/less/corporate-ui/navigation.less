@@ -8,6 +8,7 @@
   border-radius: 0;
   z-index: 1000;
   font-size: 1.4rem;
+  min-height: auto;
 
   > .container-fluid {
     padding-left: 0;
@@ -34,8 +35,8 @@
       &:before {
         display: inline-block;
         content: "";
-        background-image: url(/resources/logotype/scania/scania-wordmark.png);
-        background-image: url(/resources/logotype/scania/scania-wordmark.svg);
+        background-image: url('/resources/logotype/scania/scania-wordmark.png');
+        background-image: url('/resources/logotype/scania/scania-wordmark.svg');
         background-repeat: no-repeat;
         background-size: cover;
         vertical-align: middle; // This is needed to make after able to align middle vertical
@@ -64,15 +65,15 @@
       &:before {
         display: inline-block;
         content: "";
-        background-image: url(/resources/logotype/scania/scania-symbol.png);
-        background-image: url(/resources/logotype/scania/scania-symbol.svg);
+        background-image: url('/resources/logotype/scania/scania-symbol.png');
+        background-image: url('/resources/logotype/scania/scania-symbol.svg');
         background-repeat: no-repeat;
         background-size: cover;
         width: inherit;
         height: inherit;
       }
     }
-    
+
     .navbar-nav {
       margin: 11px 0 0 -15px;
 
@@ -81,6 +82,9 @@
         font-family: "Scania Sans";
         font-size: 12px;
         color: #747472;
+      }
+      a {
+        padding: 15px;
 
         &:hover {
           color: inherit;
@@ -401,6 +405,7 @@ ul.nav-tabs {
           &:before {
             content: none;
           }
+
           span {
             display: block;
           }
@@ -488,6 +493,10 @@ ul.nav-tabs {
           width: 40px;
           height: 37px;
           margin: -5px;
+
+          &:before {
+            position: static;
+          }
         }
         .navbar-brand,
         .navbar-nav {

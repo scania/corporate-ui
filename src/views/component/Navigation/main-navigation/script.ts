@@ -16,7 +16,7 @@ Polymer({
     'navItem-active': 'setHeaderSize'
   },
   attached: function() {
-    $(this).css({display: 'block'});
+    this.style.display = 'block';
 
     //$('primary-items, secondary-items' this).contents().unwrap();
 
@@ -40,6 +40,8 @@ Polymer({
     if ($('nav-item', this).length) {
       $('.navbar-toggle', this.header).removeClass('hidden');
     }
+
+    this.sticky.call(this);
 
     $(window).on('scroll', this.sticky.bind(this));
     $(window).on('resize', this.setHeaderSize.bind(this));

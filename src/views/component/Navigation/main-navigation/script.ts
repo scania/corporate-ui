@@ -30,9 +30,14 @@ Polymer({
     this.siteName = this.header.siteName;
     this.siteUrl = this.header.siteUrl;
 
+    // If corporate-header exists tell the logotype to have sticky handling
+    if (this.header) {
+      $('.navbar-symbol', this.header).addClass('should-stick');
+    }
+
     // Show hamburger menu if item exist in main-navigation
     if ($('nav-item', this).length) {
-      $('c-corporate-header .navbar-toggle').removeClass('hidden');
+      $('.navbar-toggle', this.header).removeClass('hidden');
     }
 
     $(window).on('scroll', this.sticky.bind(this));

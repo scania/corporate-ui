@@ -41,7 +41,8 @@
      <c-main-navigation>
       <primary-items>
         <nav-item location="/">Home</nav-item> 
-        <nav-item location="/development.html" class="active">Development
+        <nav-item location="/development.html">
+          Development
           <sub-navigation caption="Development">
             <nav-item location="/components.html">Components</nav-item>
             <nav-item location="/templates.html">Templates</nav-item>
@@ -66,10 +67,12 @@
 
   <script>
     setTimeout(function() {
-    	Polymer.Base.importHref(window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html')
-    }, 5000);
-  </script>
+      Polymer.Base.importHref(window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html');
 
-  <script src="js/ux-library.js"></script>
+      setTimeout(function() {
+        document.querySelectorAll('c-main-navigation nav-item')[1].setAttribute('active', 'true');
+      }, 3000);
+    }, 3000);
+  </script>
 </body>
 </html>

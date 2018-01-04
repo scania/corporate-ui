@@ -1,23 +1,42 @@
 
+:host {
+  display: none;
+
+  ::content {
+
+    .navbar-symbol.should-stick:before {
+      position: fixed;
+      top: 21px;
+      right: 25px;
+    }
+  }
+
+  .navbar-default {
+    z-index: 1010;
+  }
+}
+
 :host-context(.header-is-sticky) {
 
-  .navbar-symbol.fixed {
-    width: 41px;
-    height: 40px;
-    background-size: 40px 40px;
+  ::content {
 
-    &:before {
-      transition: top 100ms ease-in-out;
-      top: 9px;
+    .navbar-symbol.should-stick {
+      width: 40px;
+      height: 37px;
+
+      &:before {
+        transition: top 100ms ease-in-out;
+        top: 9px;
+      }
     }
   }
 }
 
 :host-context(.app) {
 
-  .navbar-symbol {
+  ::content {
 
-    &.fixed:before {
+    .navbar-symbol.should-stick:before {
       position: fixed;
       top: 11px;
       right: 10px;
@@ -27,25 +46,12 @@
 
 :host-context(.header-is-sticky.app) {
 
-  .navbar-symbol.fixed:before {
-    top: 7px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    background-size: 40px 40px;
-  }
-}
+  ::content {
 
-:host {
-  display: var(--display, none);
-
-  .navbar-default {
-    z-index: 1010;
-  }
-  .navbar-symbol.fixed:before {
-    position: fixed;
-    top: 21px;
-    right: 25px;
+    .navbar-symbol.should-stick:before {
+      top: 7px;
+      right: 10px;
+    }
   }
 }
 

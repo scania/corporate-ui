@@ -30,27 +30,8 @@ Polymer({
       var url = this.resolveUrl('../../Bootstrap/navbar/nav-item/nav-item.html');
       this.importHref(url);
     }
-
-    // If main-navigation exists then we want the logotype inside corporate-header to get sticky
-    if ($('c-main-navigation').length) {
-      this.symbolFixed();
-
-      // and run it again every time you scroll
-      $(window).on('scroll resize', this.symbolFixed.bind(this));
-    }
   },
   attached: function() {
-    Polymer.updateStyles({ '--display': 'block' });
-  },
-  symbolFixed: function() {
-    var symbol = $('.navbar-symbol', this),
-        headerTop = $(this).offset().top,
-        scrollTop = $(window).scrollTop(); // our current vertical position from the top
-
-    symbol.addClass('fixed');
-
-    if (scrollTop <= headerTop) {
-      symbol.removeClass('fixed');
-    }
+    this.style.display = 'block';
   }
 });

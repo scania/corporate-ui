@@ -203,6 +203,7 @@ window.CorporateUi = (function() {
       }\
       html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
       html.loading:before { background-color: #fff; }\
+      c-corporate-header, c-corporate-footer, c-main-navigation, c-main-content { display: none; }\
     '));
     document.head.insertBefore(style, document.head.firstChild);
   }
@@ -299,7 +300,8 @@ window.CorporateUi = (function() {
     public.components = {
       'corporate-header': window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
       'corporate-footer': window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-      'main-content': window.version_root + 'html/component/Content + Teasers/main-content/main-content.html'
+      'main-content': window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+      'main-navigation': window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
     };
 
     /*window.Polymer = {
@@ -349,9 +351,25 @@ window.CorporateUi = (function() {
       /* Execute the origional function and apply current this to it */
       Polymer.Base._orgReady.call(this);
     }
+
+    /* Makes Polymer apply component specific style in the end of head element */
+    Polymer.StyleUtil.orgApplyCss = Polymer.StyleUtil.applyCss;
+    Polymer.StyleUtil.applyCss = function(cssText, moniker, target, contextNod) {
+      target = target || document.head;
+      target.firstChild = target.lastChild;
+
+      var links = target ? target.querySelectorAll('link') : [];
+
+      if (links.length) {
+        contextNod = links[ links.length-1 ];
+      }
+
+      Polymer.StyleUtil.orgApplyCss.call(this, cssText, moniker, target, contextNod);
+    }
   }
 
   function baseComponents(references) {
+    importLink(public.components['main-content'], 'import');
 
     if (window.params.preload === 'false') {
       window.ready_event = undefined;
@@ -359,8 +377,9 @@ window.CorporateUi = (function() {
 
     // Maybe we should change importLink to return a promise instead
     var resources = (references || window.preLoadedComponents).map(function(resource) {
+      var url = public.components[resource] || resource;
       return new Promise(function(resolve, reject) {
-        importLink(resource, 'import', function(e) { resolve(e.target) });
+        importLink(url, 'import', function(e) { resolve(e.target) });
       });
     });
 
@@ -373,7 +392,7 @@ window.CorporateUi = (function() {
     window.preLoadedComponents = [
       public.components['corporate-header'],
       public.components['corporate-footer'],
-      public.components['main-content']
+      public.components['main-navigation']
     ];
 
     // Adds support for webcomponents if non exist

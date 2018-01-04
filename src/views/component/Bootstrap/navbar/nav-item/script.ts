@@ -11,13 +11,16 @@ Polymer({
     },
     location: {
       type: String
+    },
+    active: {
+      type: String,
+      observer: 'setActive'
     }
   },
   created: function() {
     this.classes = this.className; // Store default classlist without state included
   },
   attached: function() {
-
     var arr = [];
     for(var i = 0; i<this.children.length; i++){
       arr.push(this.children[i].nodeName)
@@ -49,6 +52,16 @@ Polymer({
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
+  },
+  setActive: function(newValue) {
+    if (newValue === 'true') {
+      this.classList.add('active');
+    } else {
+      this.classList.remove('active');
+    }
+    this.async(function() {
+      this.fire('navItem-active');
+    });
   },
   hasClass: function(element, className) {
     return element.className.split(' ').indexOf(className) > -1;

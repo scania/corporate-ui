@@ -6,15 +6,18 @@
   display: inline-block;
 }
 
-:host-context(c-corporate-header) a {
-  text-transform: uppercase;
+:host-context(c-corporate-header) {
 
-  // Bootstrap
-  &:extend(.nav > li > a);
-  &:extend(.navbar-default .navbar-header .navbar-nav a);
+  ::content a {
+    text-transform: uppercase;
 
-  // Corporate-ui
-  &:extend(.navbar-nav > li > a);
+    // Bootstrap
+    &:extend(.nav > li > a);
+    &:extend(.navbar-default .navbar-header .navbar-nav a);
+
+    // Corporate-ui
+    &:extend(.navbar-nav > li > a);
+  }
 }
 
 :host-context(c-main-navigation) {

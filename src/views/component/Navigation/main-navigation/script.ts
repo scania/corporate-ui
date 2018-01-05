@@ -12,10 +12,11 @@ Polymer({
     }
   },
   listeners: {
-    'subNavigation-attached': 'setHeaderSize'
+    'subNavigation-attached': 'setHeaderSize',
+    'navItem-active': 'setHeaderSize'
   },
   attached: function() {
-    Polymer.updateStyles({ '--display': 'block' });
+    this.style.display = 'block';
 
     //$('primary-items, secondary-items' this).contents().unwrap();
 
@@ -40,6 +41,8 @@ Polymer({
       $('.navbar-toggle', this.header).removeClass('hidden');
     }
 
+    this.sticky.call(this);
+
     $(window).on('scroll', this.sticky.bind(this));
     $(window).on('resize', this.setHeaderSize.bind(this));
 
@@ -52,6 +55,7 @@ Polymer({
     // if( $(this).offset().top === 0 || $(this).height() != headerHeight ) {
       $(this)
         .removeAttr('style')
+        .css({display: 'block'})
         .height( headerHeight );
     // }
 

@@ -6,5 +6,8 @@ Polymer({
       type: Boolean,
       value: true
     }
+  },
+  attached: function() {
+    this.style.display = 'block';
   }
 });

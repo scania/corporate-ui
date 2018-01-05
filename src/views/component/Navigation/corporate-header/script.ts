@@ -32,6 +32,6 @@ Polymer({
     }
   },
   attached: function() {
-    Polymer.updateStyles({ '--display': 'block' });
+    this.style.display = 'block';
   }
 });

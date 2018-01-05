@@ -9,7 +9,7 @@ Polymer({
     },
     copyright: {
       type: String,
-      value: 'Copyright Scania 2016 All rights reserved.'
+      value: 'Copyright Scania 2018 All rights reserved.'
     }
   },
   attached: function() {

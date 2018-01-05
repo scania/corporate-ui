@@ -27,18 +27,34 @@
 
   <link rel="import" href="/html/component/Navigation/corporate-header/corporate-header.html">
   <link rel="import" href="/html/component/Navigation/corporate-footer/corporate-footer.html">
+
+  <!-- FMP demo style -->
+  <style>
+    /* Why is this really needed... */
+    body.fmp.fullscreen c-main-navigation > .navbar-default .navbar-collapse {
+      height: 0 !important;
+    }
+    body.fmp.fullscreen c-main-navigation nav-item,
+    body.fmp.fullscreen c-main-navigation nav-item.active > a {
+      display: none;
+    }
+    body.fmp.fullscreen c-main-navigation nav-item.active,
+    body.fmp.fullscreen c-main-navigation nav-item.active nav-item {
+      display: inline-block;
+    }
+  </style>
 </head>
-<body class="scania ux-lib">
+<body class="scania ux-lib fmp">
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
     <nav-item>
-    	<a href="https://github.scania.com/scania/corporate-ui">Scania GitHub</a>
-	</nav-item>
+      <a href="https://github.scania.com/scania/corporate-ui">Scania GitHub</a>
+    </nav-item>
   </c-corporate-header>
     
   <c-main-content>
-     <c-main-navigation>
+    <c-main-navigation>
       <primary-items>
         <nav-item location="/">Home</nav-item> 
         <nav-item location="/development.html">
@@ -46,12 +62,21 @@
           <sub-navigation caption="Development">
             <nav-item location="/components.html">Components</nav-item>
             <nav-item location="/templates.html">Templates</nav-item>
+            <nav-item class="pull-right margin-right">
+              <c-fullscreen></c-fullscreen>
+            </nav-item>
           </sub-navigation>
         </nav-item>
         <nav-item location="/testing.html">Testing</nav-item>
         <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
         <nav-item location="https://github.scania.com/pages/Scania/ux-library/developer/support.html">Support</nav-item>
       </primary-items>
+
+      <secondary-items>
+        <nav-item>
+          <c-fullscreen></c-fullscreen>
+        </nav-item>
+      </secondary-items>
     </c-main-navigation>
 
     <section class="light">

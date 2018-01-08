@@ -31,16 +31,24 @@
   <!-- FMP demo style -->
   <style>
     /* Why is this really needed... */
-    body.fmp.fullscreen c-main-navigation > .navbar-default .navbar-collapse {
-      height: 0 !important;
+    body.fmp.fullscreen c-main-navigation {
+      height: auto !important;
+    }
+    body.fmp.fullscreen c-main-navigation primary-items {
+      width: 100%;
     }
     body.fmp.fullscreen c-main-navigation nav-item,
     body.fmp.fullscreen c-main-navigation nav-item.active > a {
       display: none;
     }
-    body.fmp.fullscreen c-main-navigation nav-item.active,
+    body.fmp.fullscreen c-main-navigation nav-item.active {
+      display: block;
+    }
     body.fmp.fullscreen c-main-navigation nav-item.active nav-item {
       display: inline-block;
+    }
+    body.fmp.fullscreen c-main-navigation nav-item.active > sub-navigation {
+      position: static;
     }
   </style>
 </head>

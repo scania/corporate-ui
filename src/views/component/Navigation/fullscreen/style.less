@@ -1,0 +1,22 @@
+@import (reference) "../../../../less/corporate-ui/variables";
+@import (reference) "../../../../less/corporate-ui/navigation";
+
+:host {
+  display: inline-block;
+
+  // Used for when fullscreen is used in sub-nav, might be that this should be located there instead
+  a:hover:after {
+    border: 0;
+  }
+}
+
+:host-context(body.fullscreen) {
+
+  /* When fullscreen mode is on change icon to icon-resize-small */
+  a {
+
+    .icon-fullscreen:before {
+      content: "\e660";
+    }
+  }
+}

@@ -21,33 +21,25 @@ Polymer({
     this.classes = this.className; // Store default classlist without state included
   },
   attached: function() {
-    var arr = [];
-    for(var i = 0; i<this.children.length; i++){
-      arr.push(this.children[i].nodeName)
-    }
+    var child = this.firstChild,
+        texts = [];
 
-    // Check if we have any direct childs of current item with type A
-    if (arr.indexOf('A') === -1) {
-      var node;
-      for(var i = 0; i<this.childNodes.length; i++){
-        node = this.childNodes[i];
-
-        // Break loop we we find a node containing a text
-        if(node.nodeType === 3 && node.nodeValue.trim() != '') {
-          break;
+    while (child) {
+        if (child.nodeType == 3) {
+            texts.push(child.data);
+            child.data = '';
         }
-      }
-      var anchor = document.createElement('a');
-      anchor.innerText = node.textContent.trim();
-      anchor.href = this.location;
-      this.replaceChild(anchor, node)
+        child = child.nextSibling;
     }
 
-    /*if( this.location && this.children.length > 2 ) {
-      this.apa = true;
-      this.text = this.childNodes[5].textContent;
-      this.childNodes[5].textContent = '';
-    }*/
+    var text = texts.join('').trim();
+
+    if (text) {
+      var anchor = document.createElement('a');
+      anchor.innerText = text;
+      anchor.href = this.location;
+      this.appendChild(anchor);
+    }
 
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());

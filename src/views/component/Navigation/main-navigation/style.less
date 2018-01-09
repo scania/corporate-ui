@@ -36,8 +36,15 @@
 :host-context(.app) {
 
   // Might wanna move this to nav-item or things in nav-item here later on...
-  ::content nav-item a {
-    &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a);
+  ::content nav-item {
+
+    &:first-child a:before {
+      padding-left: 0;
+    }
+
+    a {
+      &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a);
+    }
   }
 }
 
@@ -55,6 +62,16 @@
     }
     .navbar-nav.navbar-right {
       margin-right: 80px;
+    }
+  }
+}
+
+:host-context(body.fullscreen) {
+
+  ::content {
+
+    .navbar-nav.navbar-right {
+      margin-right: 1px; // If we use 0 a horizontal scrollbar will be shown... :O
     }
   }
 }

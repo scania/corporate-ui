@@ -6,7 +6,6 @@
   border-radius: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
-  overflow: hidden;
 
   .panel-heading {
     border-radius: 0;
@@ -57,12 +56,11 @@
   }
 
   .panel-body {
-    padding: 30px 30px;
-    min-height: 165px;
+    padding: 30px 40px;
 
     h3 {
-      font-family: 'Scania Sans Condensed Bold';
-      font-size: 24px;
+      font-family: 'Scania Sans Semi Condensed Bold';
+      font-size: 23px;
       padding-top: 5px;
       color: #041e42;
     }
@@ -180,7 +178,7 @@
   &&-onlyheading {
     background-color: transparent;
 
-    &, 
+    &,
     > &-heading {
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
@@ -193,6 +191,13 @@
     > .pagination {
       margin: 0;
 
+    }
+  }
+
+  .app & {
+
+    h1,h2,h3 {
+      letter-spacing: -0.03rem;
     }
   }
 }
@@ -208,7 +213,7 @@
     h2,
     h3,
     h4,
-    h5, 
+    h5,
     h6 {
       color: inherit;
     }
@@ -264,7 +269,7 @@
   }
 }
 
-.jumbotron h1, 
+.jumbotron h1,
 .jumbotron .h1 {
   color: @interaction-primary;
 }

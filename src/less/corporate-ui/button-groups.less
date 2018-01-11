@@ -1,7 +1,7 @@
 .btn-group {
 
   &-vertical {
-    
+
     > .btn:first-child:not(:last-child) {
       border-radius: 0;
     }
@@ -13,5 +13,28 @@
 
    > .btn {
     border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
+
+  //add all different types as a mixin like btn-primary
+  .btn-info {
+    color: #4a8ba4;
+    background-color: #fff;
+    border-color: #4a8ba4;
+
+    &.active {
+      color: #fff;
+      background-color: #4a8ba4;
+      border-color: #4a8ba4;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+}
+
+
+.btn-toolbar {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

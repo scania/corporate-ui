@@ -44,6 +44,10 @@ Polymer({
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
+
+    if (this.active === 'true') {
+      this.classList.add('active');
+    }
   },
   setActive: function(newValue) {
     if (newValue === 'true') {
@@ -51,9 +55,12 @@ Polymer({
     } else {
       this.classList.remove('active');
     }
-    this.async(function() {
-      this.fire('navItem-active');
-    });
+
+    if (this.value != newValue) {
+      this.async(function() {
+        this.fire('navItem-active');
+      });
+    }
   },
   hasClass: function(element, className) {
     return element.className.split(' ').indexOf(className) > -1;

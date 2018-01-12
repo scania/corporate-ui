@@ -21,25 +21,25 @@ Polymer({
     }
   },
   toggleFullscreen: function(e) {
-    var triggeredGlobally = !this._readied;
-    e.preventDefault();
-    document.body.classList.toggle(this.name);
-    sessionStorage.setItem(this.name, 'true');
+    var globalTrigger = !this.name,
+        className = 'fullscreen';
 
-    if (!document.body.classList.contains(this.name)) {
-      sessionStorage.removeItem(this.name);
+    e.preventDefault();
+    document.body.classList.toggle(className);
+    sessionStorage.setItem(className, 'true');
+
+    if (!document.body.classList.contains(className)) {
+      sessionStorage.removeItem(className);
     }
 
-    if (!triggeredGlobally) {
+    if (!globalTrigger) {
       // This will bubble from current node and down, but if this happens 
       // from outside we should only trigger the event globally
       this.async(function() {
         this.fire('fullscreen-toggled');
       });
     } else {
-      var newEvent = document.createEvent('Event');
-      newEvent.initEvent('fullscreen-toggled', true, true);
-      document.dispatchEvent(newEvent);
+      AppEventStore.apply({ name: 'fullscreen', action: 'fullscreen-toggled' });
     }
   }
 });

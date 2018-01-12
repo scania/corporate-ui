@@ -48,7 +48,7 @@
     font-size: 12px;
     padding: 7px 11px;
     // Icons in btn-sm
-    & [class^="icon-"], 
+    & [class^="icon-"],
     & [class*=" icon-"] {
       font-size: 14px;
       line-height: 13px;
@@ -113,7 +113,6 @@
     color: @btn-info-bg;
     text-decoration: none;
     font-family: 'Scania Sans Condensed Bold';
-    font-weight: normal;
     font-size: 1.6rem;
     background-color: transparent;
     border: 0;
@@ -121,13 +120,15 @@
     &:hover,
     &:active,
     &.active {
-      background-color: lighten(@btn-info-bg, 10%);
-      border-color: lighten(@btn-info-bg, 10%);
+      color: #6cabc3;
+      background-color: transparent;
+      border-color: transparent;
     }
-  }  
+  }
 
   .btn-primary {
     background-color: @interaction-primary-app;
+    border-color: @interaction-primary-app;
 
     &:hover,
     &:active,

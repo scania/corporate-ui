@@ -16,7 +16,7 @@
   }
 
   .app & {
-  
+
     h1 {
       font-size: @h1-font-size-app * 1.5;
     }
@@ -30,10 +30,7 @@
     h1,
     h2,
     h3 {
-      font-family: "Scania Sans Headline Bold";
-      padding-top: 0;
-      margin-bottom: 0.2rem;
-      letter-spacing: 0.03rem;
+      font-family: inherit;
 
       small {
         font-family: "Scania Sans Bold";
@@ -45,12 +42,9 @@
 
 header.c-page-header {
   background: transparent;
-  margin-bottom: 30px;
-  padding: 0;
-  border: none;
+  margin-bottom: 15px;
 
   .page-header {
-    display: table;
 
     h1,
     h2,
@@ -58,12 +52,18 @@ header.c-page-header {
       padding-top: 0;
       margin-bottom: 0.2rem;
       letter-spacing: 0.03rem;
-      font-family: "Scania Sans Headline Bold", Arial, sans-serif;
+      font-family: "Scania Sans Headline Bold" !important;
+    }
+
+    h3,
+    h4 {
+      display: inline;
+      vertical-align: middle;
     }
 
     h3 {
       font-size: 18px;
-      padding-right: 10px; 
+      padding-right: 10px;
     }
 
     h4 {
@@ -71,12 +71,11 @@ header.c-page-header {
       font-size: 22px;
       padding-left: 10px;
       border-left: 1px solid #041e42;
+      padding-right: 0;
     }
 
-    h3,
-    h4 {
-      display: table-cell; 
-      vertical-align: middle;
+    .row {
+      margin-bottom: 15px;
     }
   }
 

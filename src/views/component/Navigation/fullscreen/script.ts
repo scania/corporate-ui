@@ -11,23 +11,35 @@ Polymer({
       value: 'fullscreen'
     }
   },
+  registered: function() {
+    document.addEventListener('toggle-fullscreen', this.toggleFullscreen.bind(this), false);
+  },
   attached: function() {
-    var mode = localStorage.getItem(this.name);
+    var mode = sessionStorage.getItem(this.name);
     if(mode) {
       document.body.classList.add(this.name);
     }
   },
   toggleFullscreen: function(e) {
-    e.preventDefault();
-    document.body.classList.toggle(this.name);
-    localStorage.setItem(this.name, 'true');
+    var globalTrigger = !this.name,
+        className = 'fullscreen';
 
-    if (!document.body.classList.contains(this.name)) {
-      localStorage.removeItem(this.name);
+    e.preventDefault();
+    document.body.classList.toggle(className);
+    sessionStorage.setItem(className, 'true');
+
+    if (!document.body.classList.contains(className)) {
+      sessionStorage.removeItem(className);
     }
 
-    this.async(function() {
-      this.fire('toggle-fullscreen');
-    });
+    if (!globalTrigger) {
+      // This will bubble from current node and down, but if this happens 
+      // from outside we should only trigger the event globally
+      this.async(function() {
+        this.fire('fullscreen-toggled');
+      });
+    } else {
+      AppEventStore.apply({ name: 'fullscreen', action: 'fullscreen-toggled' });
+    }
   }
 });

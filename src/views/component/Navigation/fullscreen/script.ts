@@ -12,7 +12,7 @@ Polymer({
     }
   },
   attached: function() {
-    var mode = localStorage.getItem(this.name);
+    var mode = sessionStorage.getItem(this.name);
     if(mode) {
       document.body.classList.add(this.name);
     }
@@ -20,10 +20,10 @@ Polymer({
   toggleFullscreen: function(e) {
     e.preventDefault();
     document.body.classList.toggle(this.name);
-    localStorage.setItem(this.name, 'true');
+    sessionStorage.setItem(this.name, 'true');
 
     if (!document.body.classList.contains(this.name)) {
-      localStorage.removeItem(this.name);
+      sessionStorage.removeItem(this.name);
     }
 
     this.async(function() {

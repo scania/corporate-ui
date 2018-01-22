@@ -43,9 +43,34 @@
     opacity: 1 !important;
   }
 }
-.locked:after {
-  content: "";
+.locked {
+
+  &:before {
+    background-color: rgba(150, 130, 130, 0.8);
+  }
+
+  &:after {
+    content: "\e65e";
+    -moz-animation: none;
+    -o-animation: none;
+    -webkit-animation: none;
+    animation: none;
+    font-size: 100px;
+    color: #cc1040;
+    top: 40%;    
+  }
+
+  &.locked-sm:after {
+    font-size: 50px;
+    top: 48%;
+  }
+
+  &.locked-xs:after {
+    font-size: 20px;
+    top: 50%;
+  }
 }
+
 .loadingContainer {
   position: relative !important;
   overflow: hidden;

@@ -13,7 +13,8 @@ Polymer({
   },
   listeners: {
     'subNavigation-attached': 'setHeaderSize',
-    'navItem-active': 'setHeaderSize'
+    'navItem-active': 'setHeaderSize',
+    'fullscreen-toggled': 'setHeaderSize'
   },
   attached: function() {
     this.style.display = 'block';

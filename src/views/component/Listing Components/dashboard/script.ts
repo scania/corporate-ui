@@ -22,8 +22,18 @@ Polymer({
 
       item.outerHTML = '<figure class="panel panel-default"><header class="panel-heading">' + type + '</header><div class="panel-body">' + item.innerHTML + '</div></figure>';
     }
+
+    if (!window.jQuery) {
+      var placeHolder = document.createElement('div'),
+          url = this.resolveUrl('/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js');
+
+      this._template.parentNode.insertBefore(placeHolder, this._template.parentNode.children[0]);
+      CorporateUi.importScript(url, this.jqReady.bind(this), placeHolder);
+    } else {
+      this.jqReady.call(this);
+    }
   },
-  ready: function() {
+  jqReady: function() {
     var self = this;
     var temp = $('<figure class="lobipanel-placeholder"></figure>');
     /*$(this)
@@ -40,17 +50,17 @@ Polymer({
         self.columns = self.columns - 1;
         console.log('stop')
       });*/
-      document.addEventListener('toolbox.sortstart', function(e) {
-        $('figure:nth-child(' + self.columns + 'n)', self).after(temp);
-        self.columns = self.columns + 1;
-        console.log('start')
-      }, false);
+    document.addEventListener('toolbox.sortstart', function(e) {
+      $('figure:nth-child(' + self.columns + 'n)', self).after(temp);
+      self.columns = self.columns + 1;
+      console.log('start')
+    }, false);
 
-      document.addEventListener('toolbox.sortstop', function(e) {
-        temp.remove();
-        self.columns = self.columns - 1;
-        console.log('stop')
-      }, false);
+    document.addEventListener('toolbox.sortstop', function(e) {
+      temp.remove();
+      self.columns = self.columns - 1;
+      console.log('stop')
+    }, false);
 
     $('.panel', this)
       .lobiPanel({

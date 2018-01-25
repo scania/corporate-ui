@@ -48,6 +48,10 @@ window.CorporateUi = (function() {
 
     //document.addEventListener("DOMContentLoaded", applyBrand);
 
+    var newEvent = document.createEvent('Event');
+    newEvent.initEvent('CorporateUiLoaded', true, true);
+    document.dispatchEvent(newEvent);
+
     sysMessages();
   }
 
@@ -162,7 +166,7 @@ window.CorporateUi = (function() {
     head.appendChild(link);
   }
 
-  function importScript(src, callback) {
+  function importScript(src, callback, target) {
     var head = document.head,
         script = document.createElement('script'),
         xhr = new XMLHttpRequest();
@@ -173,7 +177,7 @@ window.CorporateUi = (function() {
       xhr.send();
     }
     script.src = src;
-    head.appendChild(script);
+    (target || head).appendChild(script);
   }
 
   function urlInfo(url) {

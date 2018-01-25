@@ -1,3 +1,21 @@
+.tooltip {
+  pointer-events: none;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.2)) drop-shadow(0 0 8px rgba(0,0,0,0.2));
+  z-index: 2000;
+  padding: 0 !important;
+}
 .tooltip-inner {
+  background: white !important;
+  color: black !important;
+  border-radius: 1px !important;
+  padding: 10px 15px !important;
+  line-height: 150% !important;
   max-width: 250px;
+}
+.tooltip-arrow {
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 4px) !important;
+  border: 8px solid transparent !important;
+  border-top: 8px solid white !important;
 }

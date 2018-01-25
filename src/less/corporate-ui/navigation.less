@@ -173,7 +173,7 @@
 
 .app {
 
-  .navbar-default {     
+  .navbar-default {
 
     .navbar-header {
       padding: 2px 0 0px;
@@ -198,6 +198,11 @@ ul.nav-tabs {
   text-align: center;
   margin: 10px 20px 5px;
 
+  .app & {
+    text-align: left;
+    margin: 10px 20px 5px 0;
+  }
+
   > li {
     margin-bottom: 0;
     float: none;
@@ -215,6 +220,12 @@ ul.nav-tabs {
       color: @color-primary-03;
       font-size: 1.4rem;
       text-transform: uppercase;
+
+      .app & {
+        font-family: 'Scania Sans Condensed Bold' !important;
+        padding: 8px 16px 7px 16px;
+        text-transform: none;
+      }
 
       &:hover {
         background-color: #f7f7f7;
@@ -259,6 +270,7 @@ ul.nav-tabs {
         font-family: 'Scania Sans';
         background-color: transparent;
         border-color: transparent;
+        color:@color-brand-01;
       }
 
       &.active {
@@ -277,6 +289,15 @@ ul.nav-tabs {
           font-family: 'Scania Sans Bold';
         }
       }
+
+      &:first-child a {
+        padding-left:0;
+      }
+    }
+
+    .nav-tabs + & {
+      margin-top: 5px;
+      margin-bottom: 8px;
     }
   }
 

@@ -25,7 +25,7 @@
   
   <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
 </head>
-<body class="scania" ng-controller="ThisSite as thissite">
+<body class="scania" ng-controller="UxLib as uxlib">
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
@@ -35,13 +35,13 @@
   <c-main-content>
     <c-main-navigation ng-cloak>
       <primary-items>
-        <nav-item ng-repeat="item in thissite.items" location="{{item.url}}" nav-item="item" active="{{item.active}}" ng-click="thissite.changeView($event, item)"></nav-item>
+        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" nav-item="item" active="{{item.active}}" ng-click="uxlib.changeView($event, item)"></nav-item>
       </primary-items>
     </c-main-navigation>
 
-<!--     <c-main-navigation ng-cloak>
+    <c-main-navigation ng-cloak>
       <primary-items>
-        <nav-item ng-repeat="item in thissite.items" location="{{item.url}}" active="{{item.active}}" ng-click="thissite.changeView($event, item)">
+        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" active="{{item.active}}" ng-click="uxlib.changeView($event, item)">
           {{item.name}}
           <sub-navigation ng-if="item.active && item.children" item="item" sub-navigation>
             <nav-item ng-repeat="subItem in item.children" location="{{item.url}}">{{subItem.name}}</nav-item>
@@ -49,7 +49,7 @@
         </nav-item>
       </primary-items>
     </c-main-navigation>
- -->
+
     <section class="light">
       <div class="container">
         <h2>Angular navigation demo</h2>
@@ -67,11 +67,11 @@
 
   <script>
     angular.module('CorporateUI', [])
-      .controller('ThisSite', [ThisSite])
+      .controller('UxLib', [UxLib])
       .directive('navItem', navItem)
       .directive('subNavigation', ['$compile', '$timeout', subNavigation]);
 
-    function ThisSite() {
+    function UxLib() {
       var vm = this;
 
       vm.items = [

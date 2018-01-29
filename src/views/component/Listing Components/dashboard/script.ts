@@ -28,12 +28,16 @@ Polymer({
           url = this.resolveUrl('/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js');
 
       this._template.parentNode.insertBefore(placeHolder, this._template.parentNode.children[0]);
-      CorporateUi.importScript(url, this.created.bind(this), placeHolder);
+      CorporateUi.importScript(url, this.jqReady.bind(this), placeHolder);
     } else {
       this.jqReady.call(this);
     }
   },
   jqReady: function() {
+    if (!window.jQuery) {
+      return setTimeout(this.jqReady.bind(this), 100);
+    }
+
     var self = this;
     var temp = $('<figure class="lobipanel-placeholder"></figure>');
     /*$(this)

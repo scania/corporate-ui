@@ -174,7 +174,7 @@ window.CorporateUi = (function() {
 
     script.onload = function() {
       xhr.open('GET', src);
-      xhr.onload = (callback || function(){})();
+      xhr.onload = callback || function(){};
       xhr.send();
     }
     script.src = src;
@@ -208,7 +208,7 @@ window.CorporateUi = (function() {
       }\
       html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
       html.loading:before { background-color: #fff; }\
-      c-corporate-header, c-corporate-footer, c-main-navigation, c-main-content { display: none; }\
+      c-corporate-header, c-corporate-footer, c-main-navigation, sub-navigation, c-main-content { display: none; }\
     '));
     document.head.insertBefore(style, document.head.firstChild);
   }

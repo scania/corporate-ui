@@ -26,12 +26,16 @@ Polymer({
           url = this.resolveUrl('/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js');
 
       this._template.parentNode.insertBefore(placeHolder, this._template.parentNode.children[0]);
-      CorporateUi.importScript(url, this.created.bind(this), placeHolder);
+      CorporateUi.importScript(url, this.jqReady.bind(this), placeHolder);
     } else {
       this.jqReady.call(this);
     }
   },
   jqReady: function() {
+    if (!window.jQuery) {
+      return setTimeout(this.jqReady.bind(this), 100);
+    }
+
     Highcharts.setOptions({
       colors: ['#ceb888', '#c8c9c7', '#94a596', '#041e42', '#53565a', '#97999b', '#2c5234', '#e35205', '#9ba5b4', '#f1a982', '#ebe3cf'],
       chart: {

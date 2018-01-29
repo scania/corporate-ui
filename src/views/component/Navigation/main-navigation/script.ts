@@ -22,12 +22,16 @@ Polymer({
           url = this.resolveUrl('/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js');
 
       this._template.parentNode.insertBefore(placeHolder, this._template.parentNode.children[0]);
-      CorporateUi.importScript(url, this.created.bind(this), placeHolder);
+      CorporateUi.importScript(url, this.jqReady.bind(this), placeHolder);
     } else {
       this.jqReady.call(this);
     }
   },
   jqReady: function() {
+    if (!window.jQuery) {
+      return setTimeout(this.jqReady.bind(this), 100);
+    }
+
     // We load sub-navigation dynamically because it will trigger "setHeaderSize" and this have a dependency to jQuery
     // TODO - We should probably have solution using promises instead so that we dont have these special cases...
     var url = this.resolveUrl('sub-navigation/sub-navigation.html');

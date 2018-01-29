@@ -63,11 +63,6 @@ kbd {
   text-shadow: 0 1px 0 #fff;
 }
 
-.container-fluid {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
 article {
 
   &.container,
@@ -118,6 +113,11 @@ body {
   }
 }
 
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 @media (max-width: 576px) {
 
   .container-fluid {
@@ -126,15 +126,14 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-
+@media only screen and (max-width: 768px) and (min-width: 577px) {
   .container-fluid {
     padding-left: 8px;
     padding-right: 8px;
   }
 }
 
-@media (max-width: 1200px) {
+@media only screen and (max-width: 1200px) and (min-width: 769px) {
 
   .container-fluid {
     padding-left: 15px;

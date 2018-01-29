@@ -169,7 +169,8 @@ window.CorporateUi = (function() {
   function importScript(src, callback, target) {
     var head = document.head,
         script = document.createElement('script'),
-        xhr = new XMLHttpRequest();
+        xhr = new XMLHttpRequest(),
+        target = target || head;
 
     script.onload = function() {
       xhr.open('GET', src);
@@ -177,7 +178,7 @@ window.CorporateUi = (function() {
       xhr.send();
     }
     script.src = src;
-    (target || head).appendChild(script);
+    target.appendChild(script);
   }
 
   function urlInfo(url) {

@@ -16,29 +16,7 @@ Polymer({
     'navItem-active': 'setHeaderSize',
     'fullscreen-toggled': 'setHeaderSize'
   },
-  created: function() {
-    if (!window.jQuery) {
-      var placeHolder = document.createElement('div'),
-          url = this.resolveUrl('/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js');
-
-      this._template.parentNode.insertBefore(placeHolder, this._template.parentNode.children[0]);
-      CorporateUi.importScript(url, this.jqReady.bind(this), placeHolder);
-    } else {
-      this.jqReady.call(this);
-    }
-  },
-  jqReady: function() {
-    if (!window.jQuery) {
-      return setTimeout(this.jqReady.bind(this), 100);
-    }
-
-    // We load sub-navigation dynamically because it will trigger "setHeaderSize" and this have a dependency to jQuery
-    // TODO - We should probably have solution using promises instead so that we dont have these special cases...
-    var url = this.resolveUrl('sub-navigation/sub-navigation.html');
-    this.importHref(url);
-
-    CorporateUi.importScript('/vendors/frameworks/bootstrap/3.2.0/dist/js/bootstrap.js', undefined, this._template.parentNode.children[0]);
-    //$('primary-items, secondary-items' this).contents().unwrap();
+  ready: function() {
 
     $('primary-items, secondary-items', this).addClass('nav navbar-nav');
     $('secondary-items', this).addClass('navbar-right');
@@ -74,6 +52,9 @@ Polymer({
     this.header = document.querySelector('c-corporate-header')
     this.siteName = this.header.siteName;
     this.siteUrl = this.header.siteUrl;
+  },
+  read: function() {
+    window.jQuery = window.preJQuery;
   },
   setHeaderSize: function() {
     var headerHeight = $('.navbar-toggle:visible', this.header).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle

@@ -208,7 +208,7 @@ window.CorporateUi = (function() {
       }\
       html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
       html.loading:before { background-color: #fff; }\
-      c-corporate-header, c-corporate-footer, c-main-navigation, sub-navigation, c-main-content { display: none; }\
+      c-corporate-header, c-corporate-footer, c-main-navigation, c-main-content { display: none; }\
     '));
     document.head.insertBefore(style, document.head.firstChild);
   }
@@ -379,6 +379,8 @@ window.CorporateUi = (function() {
     if (window.params.preload === 'false') {
       window.ready_event = undefined;
     }
+
+    window.preJQuery = window.jQuery;
 
     // Maybe we should change importLink to return a promise instead
     var resources = (references || window.preLoadedComponents).map(function(resource) {

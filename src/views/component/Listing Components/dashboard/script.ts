@@ -22,22 +22,8 @@ Polymer({
 
       item.outerHTML = '<figure class="panel panel-default"><header class="panel-heading">' + type + '</header><div class="panel-body">' + item.innerHTML + '</div></figure>';
     }
-
-    if (!window.jQuery) {
-      var placeHolder = document.createElement('div'),
-          url = this.resolveUrl('/vendors/frameworks/jQuery/2.2.2/dist/jquery.min.js');
-
-      this._template.parentNode.insertBefore(placeHolder, this._template.parentNode.children[0]);
-      CorporateUi.importScript(url, this.jqReady.bind(this), placeHolder);
-    } else {
-      this.jqReady.call(this);
-    }
   },
-  jqReady: function() {
-    if (!window.jQuery) {
-      return setTimeout(this.jqReady.bind(this), 100);
-    }
-
+  ready: function() {
     var self = this;
     var temp = $('<figure class="lobipanel-placeholder"></figure>');
     /*$(this)
@@ -75,5 +61,7 @@ Polymer({
         expand: false,
         minimize: false
       });
+
+    window.jQuery = window.preJQuery;
   }
 });

@@ -51,9 +51,6 @@ Polymer({
     // Set start collapse value - couldnt get this to work in a better way...
     $('.navbar-toggle > a', this).addClass('collapsed');
 
-    this.sticky.call(this);
-    this.setHeaderSize.call(this);
-
     window.jQuery = window.preJQuery;
   },
   setHeaderSize: function() {

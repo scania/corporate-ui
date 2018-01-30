@@ -16,7 +16,10 @@ Polymer({
     'navItem-active': 'setHeaderSize',
     'fullscreen-toggled': 'setHeaderSize'
   },
-  ready: function() {
+  attached: function() {
+    this.style.display = 'block';
+
+    //$('primary-items, secondary-items' this).contents().unwrap();
 
     $('primary-items, secondary-items', this).addClass('nav navbar-nav');
     $('secondary-items', this).addClass('navbar-right');
@@ -24,6 +27,10 @@ Polymer({
     $('#main-navigation', this).on('show.bs.collapse hidden.bs.collapse', function() {
       $('body').toggleClass('navigation-open');
     })
+
+    this.header = document.querySelector('c-corporate-header');
+    this.siteName = this.header.siteName;
+    this.siteUrl = this.header.siteUrl;
 
     // If corporate-header exists tell the logotype to have sticky handling
     if (this.header) {
@@ -46,14 +53,7 @@ Polymer({
 
     this.sticky.call(this);
     this.setHeaderSize.call(this);
-  },
-  attached: function() {
-    this.style.display = 'block';
-    this.header = document.querySelector('c-corporate-header')
-    this.siteName = this.header.siteName;
-    this.siteUrl = this.header.siteUrl;
-  },
-  read: function() {
+
     window.jQuery = window.preJQuery;
   },
   setHeaderSize: function() {

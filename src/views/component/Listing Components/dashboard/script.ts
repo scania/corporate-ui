@@ -61,7 +61,8 @@ Polymer({
         expand: false,
         minimize: false
       });
-
+  },
+  attached: function() {
     window.jQuery = window.preJQuery;
   }
 });

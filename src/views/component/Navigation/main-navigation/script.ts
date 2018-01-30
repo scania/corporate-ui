@@ -28,7 +28,7 @@ Polymer({
       $('body').toggleClass('navigation-open');
     })
 
-    this.header = document.querySelector('c-corporate-header')
+    this.header = document.querySelector('c-corporate-header');
     this.siteName = this.header.siteName;
     this.siteUrl = this.header.siteUrl;
 
@@ -43,22 +43,25 @@ Polymer({
     }
 
     this.sticky.call(this);
+    this.setHeaderSize.call(this);
 
     $(window).on('scroll', this.sticky.bind(this));
     $(window).on('resize', this.setHeaderSize.bind(this));
 
     // Set start collapse value - couldnt get this to work in a better way...
     $('.navbar-toggle > a', this).addClass('collapsed');
+
+    window.jQuery = window.preJQuery;
   },
   setHeaderSize: function() {
     var headerHeight = $('.navbar-toggle:visible', this.header).height() || $('> nav', this).height() + $('sub-navigation:visible', this).height() || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle
 
-    // if( $(this).offset().top === 0 || $(this).height() != headerHeight ) {
+    if( parseInt(this.style.height) != headerHeight ) {
       $(this)
         .removeAttr('style')
         .css({display: 'block'})
         .height( headerHeight );
-    // }
+    }
 
     $('> .navbar-default', this).removeAttr('style');
 

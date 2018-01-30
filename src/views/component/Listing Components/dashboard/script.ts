@@ -40,17 +40,17 @@ Polymer({
         self.columns = self.columns - 1;
         console.log('stop')
       });*/
-      document.addEventListener('toolbox.sortstart', function(e) {
-        $('figure:nth-child(' + self.columns + 'n)', self).after(temp);
-        self.columns = self.columns + 1;
-        console.log('start')
-      }, false);
+    document.addEventListener('toolbox.sortstart', function(e) {
+      $('figure:nth-child(' + self.columns + 'n)', self).after(temp);
+      self.columns = self.columns + 1;
+      console.log('start')
+    }, false);
 
-      document.addEventListener('toolbox.sortstop', function(e) {
-        temp.remove();
-        self.columns = self.columns - 1;
-        console.log('stop')
-      }, false);
+    document.addEventListener('toolbox.sortstop', function(e) {
+      temp.remove();
+      self.columns = self.columns - 1;
+      console.log('stop')
+    }, false);
 
     $('.panel', this)
       .lobiPanel({
@@ -61,5 +61,8 @@ Polymer({
         expand: false,
         minimize: false
       });
+  },
+  attached: function() {
+    window.jQuery = window.preJQuery;
   }
 });

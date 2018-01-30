@@ -183,9 +183,12 @@ Polymer({
   },
   ready: function() {
     Polymer.updateStyles({
-      '--highcharts-height' : this.height
+      '--highcharts-height': this.height
     });
 
     this.__createChart();
+  },
+  attached: function() {
+    window.jQuery = window.preJQuery;
   }
 })

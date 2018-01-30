@@ -53,7 +53,7 @@
     </c-main-navigation>
 
     <section class="light">
-      <div class="container">
+      <div class="container" ng-cloak>
         <h2>{{uxlibtemp.templates.name}}s</h2>
 
         <div ng-repeat="templates in uxlibtemp.templates.children" ng-if="templates.children.length != '0'" class="main-item">

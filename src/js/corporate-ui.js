@@ -376,9 +376,9 @@ window.CorporateUi = (function() {
   function baseComponents(references) {
     importLink(public.components['main-content'], 'import');
 
-    if (window.params.preload === 'false') {
+    /*if (window.params.preload === 'false') {
       window.ready_event = undefined;
-    }
+    }*/
 
     window.preJQuery = window.jQuery;
 

@@ -39,7 +39,7 @@
       </primary-items>
     </c-main-navigation>
 
-    <c-main-navigation ng-cloak>
+    <!-- <c-main-navigation ng-cloak>
       <primary-items>
         <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" active="{{item.active}}" ng-click="uxlib.changeView($event, item)">
           {{item.name}}
@@ -48,7 +48,7 @@
           </sub-navigation>
         </nav-item>
       </primary-items>
-    </c-main-navigation>
+    </c-main-navigation> -->
 
     <section class="light">
       <div class="container">
@@ -69,7 +69,7 @@
     angular.module('CorporateUI', [])
       .controller('UxLib', [UxLib])
       .directive('navItem', navItem)
-      .directive('subNavigation', ['$compile', '$timeout', subNavigation]);
+      /*.directive('subNavigation', ['$compile', '$timeout', subNavigation])*/;
 
     function UxLib() {
       var vm = this;
@@ -119,7 +119,7 @@
           tAttrs.$set('template', tElement.html());
 
           // Need to a way to reset and compile template using template attribute when user clicks the navigation
-          iAttrs.$observe('ngIf', function() {
+          tAttrs.$observe('ngIf', function() {
             console.log('apa')
           });
         }

@@ -174,8 +174,14 @@
 
   ::content {
 
-    &.expanded .mode-toggler:before {
-      content: "-";
+    &.expanded {
+      // TODO - Instead of a flex solution maybe change order of elements would be better
+      display: flex;
+      flex-direction: column-reverse;
+
+      .mode-toggler:before {
+        content: "-";
+      }
     }
 
     a.mode-toggler {

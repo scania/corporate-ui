@@ -66,7 +66,7 @@ Polymer({
     $('> .navbar-default', this).removeAttr('style');
 
     // Used in mobile mode
-    if(window.innerWidth <= 990) {
+    if(window.innerWidth < 991) {
       var header = $(this.header).height();
       $('> .navbar-default', this).css({ 'padding-top': header });
     }

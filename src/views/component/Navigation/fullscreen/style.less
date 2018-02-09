@@ -5,8 +5,20 @@
   display: inline-block;
 
   // Used for when fullscreen is used in sub-nav, might be that this should be located there instead
-  a:hover:after {
-    border: 0;
+  a {
+
+    &:hover:after {
+      border: 0;
+    }
+
+    .icon-fullscreen {
+      line-height: 21px;
+      vertical-align: middle;
+
+      &:before {
+        content: "\e72f";
+      }
+    }
   }
 }
 
@@ -16,7 +28,7 @@
   a {
 
     .icon-fullscreen:before {
-      content: "\e660";
+      content: "\e784";
     }
   }
 }

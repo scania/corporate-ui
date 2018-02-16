@@ -40,6 +40,8 @@ textarea[placeholder] {
     &:focus {
       cursor: default;
       box-shadow: none;
+      border: 1px solid rgb(74, 139, 164);
+      background: rgb(242, 247, 249);
     }
   }
   &.form-control[disabled] {
@@ -48,9 +50,10 @@ textarea[placeholder] {
     cursor: default;
   }
   &:focus {
-    border-color: #041e42;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: rgb(242, 247, 249);
+    border: 1px solid rgb(74, 139, 164);
   }
 
   .app & {
@@ -58,12 +61,19 @@ textarea[placeholder] {
     height: 46px;
   }
 
-  header.c-page-header & {
+  .app header.c-page-header & {
     background: #FFFFFF;
+       &:focus {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      background: rgb(242, 247, 249);
+      border: 1px solid rgb(74, 139, 164);
+    }
   }
 
   .compact & {
     height:30px;
+    padding: 12px 10px;
     line-height: 32px;
     font-size: 12px;
 
@@ -193,7 +203,6 @@ input[type=radio] {
       border: 2px solid #041E42;
       line-height: normal;
       border-radius: 15px;
-      /* vertical-align: bottom; */
       
       zoom: .8;
       .app & {
@@ -206,7 +215,6 @@ input[type=radio] {
         height: 24px;
         border-radius: inherit;
         border: 0.3em solid #FFF;
-        /* margin: 1px; */
         
         vertical-align: bottom;
         .app & {
@@ -260,23 +268,33 @@ input[type=radio] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=);
-    background-size: 31px;
+    // background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=);
+     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==);
+    background-size: 37px;
     background-position: calc(100% - 2px) center;
     background-repeat: no-repeat;
     background-color: #f5f5f5;
     & > option {
       background: #FFFFFF;
-        // color: #FFFFFF;
       }
       &:focus {
+        font-size: inherit;
+        width: 100%;
         border: 0;
-        outline: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid #4a8ba4;
+        // background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=);
+         background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==);
+        background-size: 31px;
+        background-position: calc(100% - 2px) center;
+        background-repeat: no-repeat;
+        background-color: #f2f7f9;
       }
       .app & {
-        background-size: 12px;
-        background-position: calc(100% - 3px) center;
-        // padding: 8px 20px;
+        background-size: 27px;
+        background-position: calc(98%) center;
       }
       .well & {
         background-color: #FFFFFF;
@@ -284,19 +302,30 @@ input[type=radio] {
     }
 
 
+    .alert-danger-validate {
+        border-color: rgb(204, 16, 64);
+        background-color: rgb(238, 218, 224);
+    }
+
+    .alert-success-validate {
+      border-color: rgb(68, 168, 120);
+      background-color: rgb(242, 249, 245);
+    }
+
 
 // Daterange Picker
 
- // .scania .date-time-range-picker .display-table .display-cell  {
+ .scania .date-time-range-picker .display-table .display-cell  {
 
- //      font-family: "Scania Sans Condensed";
- //       display: inline;
- //       vertical-align: middle;
+      font-family: "Scania Sans Condensed";
+       display: inline;
+       vertical-align: middle;
 
- //       &.text-right span:before {
- //         display: inline;
- //         vertical-align: middle;
+       &.text-right span:before {
+         display: inline;
+         vertical-align: middle;
+         color: #000000;
 
- //       }
+       }
 
- //   }
+   }

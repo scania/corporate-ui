@@ -48,6 +48,10 @@ window.CorporateUi = (function() {
 
     //document.addEventListener("DOMContentLoaded", applyBrand);
 
+    var newEvent = document.createEvent('Event');
+    newEvent.initEvent('CorporateUiLoaded', true, true);
+    document.dispatchEvent(newEvent);
+
     sysMessages();
   }
 
@@ -162,18 +166,19 @@ window.CorporateUi = (function() {
     head.appendChild(link);
   }
 
-  function importScript(src, callback) {
+  function importScript(src, callback, target) {
     var head = document.head,
         script = document.createElement('script'),
-        xhr = new XMLHttpRequest();
+        xhr = new XMLHttpRequest(),
+        target = target || head;
 
     script.onload = function() {
       xhr.open('GET', src);
-      xhr.onload = (callback || function(){})();
+      xhr.onload = callback || function(){};
       xhr.send();
     }
     script.src = src;
-    head.appendChild(script);
+    target.appendChild(script);
   }
 
   function urlInfo(url) {
@@ -371,9 +376,11 @@ window.CorporateUi = (function() {
   function baseComponents(references) {
     importLink(public.components['main-content'], 'import');
 
-    if (window.params.preload === 'false') {
+    /*if (window.params.preload === 'false') {
       window.ready_event = undefined;
-    }
+    }*/
+
+    window.preJQuery = window.jQuery;
 
     // Maybe we should change importLink to return a promise instead
     var resources = (references || window.preLoadedComponents).map(function(resource) {

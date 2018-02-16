@@ -61,14 +61,6 @@
 .bg-tertiary-06 { background-color: @color-tertiary-06 !important; }
 .bg-tertiary-07 { background-color: @color-tertiary-07 !important; }
 
-	.bg-tertiary-01.bright { background-color: lighten(@color-tertiary-01, 90%) !important; }
-	.bg-tertiary-02.bright { background-color: lighten(@color-tertiary-02, 90%) !important; }
-	.bg-tertiary-03.bright { background-color: lighten(@color-tertiary-03, 90%) !important; }
-	.bg-tertiary-04.bright { background-color: lighten(@color-tertiary-04, 90%) !important; }
-	.bg-tertiary-05.bright { background-color: lighten(@color-tertiary-05, 90%) !important; }
-	.bg-tertiary-06.bright { background-color: lighten(@color-tertiary-06, 90%) !important; }
-	.bg-tertiary-07.bright { background-color: lighten(@color-tertiary-07, 90%) !important; }
-
 .bg-grey1 { background-color: @color-grey1 !important; }
 .bg-grey2 { background-color: @color-grey2 !important; }
 .bg-grey3 { background-color: @color-grey3 !important; }
@@ -85,11 +77,12 @@
 .bg-danger  { background-color: @interaction-danger !important; }
 .bg-info    { background-color: @interaction-info !important; }
 
-	.bg-primary.bright { background-color: lighten(@interaction-primary, 90%) !important; }
-	.bg-success.bright { background-color: lighten(@interaction-success, 90%) !important; }
-	.bg-warning.bright { background-color: lighten(@interaction-warning, 90%) !important; }
-	.bg-danger.bright  { background-color: lighten(@interaction-danger, 90%) !important; }
-	.bg-info.bright    { background-color: lighten(@interaction-info, 90%) !important; }
+	.bg-default-bright { background-color: #e7e5ea !important; }
+	.bg-primary-bright { background-color: mix(@interaction-primary, #fff, 15%) !important; }
+	.bg-success-bright { background-color: mix(@interaction-success, #fff, 15%) !important; }
+	.bg-warning-bright { background-color: mix(@interaction-warning, #fff, 15%) !important; }
+	.bg-danger-bright  { background-color: mix(@interaction-danger, #fff, 15%) !important; }
+	.bg-info-bright    { background-color: mix(@interaction-info, #fff, 15%) !important; }
 
 .bg-half-primary  { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-primary 50%, @interaction-primary 100%) !important; }
 .bg-half-success  { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-success 50%, @interaction-success 100%) !important; }

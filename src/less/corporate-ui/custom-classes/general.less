@@ -12,16 +12,27 @@
   display: none;
 }
 
+
 .light {
 
+  &,
   section&,
-  > section { background-color: #fff; }
+  > section,
+  section:nth-child(odd)& {
+    background-color: #fff;
+  }
 }
+
 .dark {
 
+  &,
   section&,
-  > section { background-color: #eee; }
+  > section,
+  section:nth-child(odd)& {
+    background-color: #eee;
+  }
 }
+
 
 .content-panel {
   background-color: #fff;

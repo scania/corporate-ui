@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+   <title>Corporate UI - Developers</title>
+
+  <script src="/js/corporate-ui.js?preload=false"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+</head>
+<body class="scania" ng-controller="UxLib as uxlib">
+
+  <c-corporate-header site-name="Developers" site-url="/">
+    <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
+    <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+    <c-main-navigation ng-cloak>
+      <primary-items>
+        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" nav-item="item" active="{{item.active}}" ng-click="uxlib.changeView($event, item)"></nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <c-main-navigation ng-cloak>
+      <primary-items>
+        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" active="{{item.active}}" ng-click="uxlib.changeView($event, item)">
+          {{item.name}}
+          <sub-navigation ng-if="item.active && item.children" item="item" sub-navigation>
+            <nav-item ng-repeat="subItem in item.children" location="{{item.url}}">{{subItem.name}}</nav-item>
+          </sub-navigation>
+        </nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <h2>Angular navigation demo</h2>
+        <p style="color: red"><strong>Notice</strong> that the second integration pattern is not fully working as of now...</p>
+        <p>Here you can find two ways of integrating a navigaton using Angular JS</p>
+        <p>This is just as a demonstration so the sticky solution does not work for both navigations (you are only ment to have one in a real senario)</p>
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('UxLib', [UxLib])
+      .directive('navItem', navItem)
+      .directive('subNavigation', ['$compile', '$timeout', subNavigation]);
+
+    function UxLib() {
+      var vm = this;
+
+      vm.items = [
+        { name: 'home', location: '/', active: true },
+        { name: 'libs', location: '/libs/', children: [
+          { name: 'angular', location: '/libs/angular/' },
+          { name: 'react', location: '/libs/react/' }
+        ] },
+        { name: 'gallery', location: '/gallery/', children: [
+          { name: 'sport', location: '/gallery/sport/' },
+          { name: 'motor', location: '/gallery/motor/' }
+        ] },
+        { name: 'contact', location: '/contact/' }
+      ];
+
+      vm.changeView = function($event, target) {
+        $event.preventDefault();
+        for(i in vm.items) {
+          var item = vm.items[i];
+          delete item.active;
+        }
+        target.active = true;
+      }
+    }
+
+    function navItem() {
+      return {
+        restrict: 'A',
+        scope: {
+          item: '=navItem'
+        },
+        template: '{{item.name}} \
+          <sub-navigation caption="{{item.name}}" ng-if="item.children">\
+            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}" nav-item="subItem"></nav-item>\
+          </sub-navigation>'
+      }
+    }
+
+    function subNavigation($compile, $timeout) {
+      return {
+        restrict: 'A',
+        priority: 1000,
+        compile: function compile(tElement, tAttrs, transclude) {
+          // Might be that we can set third param to false (visible attribute in dom)
+          tAttrs.$set('template', tElement.html());
+
+          // Need to a way to reset and compile template using template attribute when user clicks the navigation
+          iAttrs.$observe('ngIf', function() {
+            console.log('Alive and kicking!')
+          });
+        }
+      }
+    }
+
+    window.CorporateUi.baseComponents();
+  </script>
+</body>
+</html>

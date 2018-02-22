@@ -76,22 +76,25 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     }
   }
 
-  caption,
-  .app & caption {
-    text-align: left;
-    text-transform: uppercase;
-    border: 0;
-    line-height: normal;
-    background-color: @interaction-primary;
-    color: #fff;
-    padding: 25px;
+  caption {
 
-    + thead {
-      background-color: inherit;
-      color: inherit;
+    &,
+    .app & {
+      text-align: left;
+      text-transform: uppercase;
+      border: 0;
+      line-height: normal;
+      background-color: @interaction-primary;
+      color: #fff;
+      padding: 25px;
 
-      > tr > th {
-        border: 1px solid #e8e7eb;
+      + thead {
+        background-color: inherit;
+        color: inherit;
+
+        > tr > th {
+          border: 1px solid #e8e7eb;
+        }
       }
     }
   }

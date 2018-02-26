@@ -28,6 +28,7 @@ function server() {
   app.use('/vendors/**/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
   app.use('/vendors/**/bootstrap-org.css.map', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css.map') )
 
+
   app.get('/data', function(req, res) {
     res.json( dirTree('dist/' + (req.query.path || 'html')) )
   })

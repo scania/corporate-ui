@@ -6,7 +6,6 @@
   "dependencies": {
     "Polymer": "1.4.0",
     "angular": "1.5.5",
-    "angular-ui-bootstrap": "2.5.0",
     "bootstrap": "3.2.0",
     "bootstrap-datepicker": "1.6.4",
     "es6-promise": "4.1.0",
@@ -18,7 +17,6 @@
     "react": "15.4.2",
     "react-datetime": "2.8.8",
     "react-dom": "15.4.2",
-    "select2": "4.0.5",
     "video.js": "5.19.2",
     "videojs-youtube": "2.3.2",
     "webcomponents.js": "0.7.24"

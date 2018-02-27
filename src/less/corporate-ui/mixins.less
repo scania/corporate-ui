@@ -32,13 +32,18 @@
 
 .panel-mixin(@type) {
   @color-panel: 'interaction-@{type}';
-  border-color: @@color-panel;
+  border:none;
 
   > .panel-heading,
   > .panel-footer {
       color:white;
       background-color: @@color-panel;
-      border-color: inherit;
+      border:none;
+  }
+
+  > .panel-body {
+    border: 1px solid #dadada;
+    border-top-color: transparent;
   }
 
   .table {

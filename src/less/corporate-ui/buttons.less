@@ -142,7 +142,7 @@
 
 
 
-// Button extra
+// Extra buttons
 .btn-link  {
   font-weight: normal;
   color: @btn-link-color;
@@ -159,6 +159,7 @@
     color: @btn-link-color;
   }
 }
+
 .btn-transparent {
   border-width:2px;
   color: #fff;
@@ -182,20 +183,5 @@
 .btn[disabled],
 fieldset[disabled] .btn {
   pointer-events: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.btn-link:active,
-.btn-link[disabled],
-fieldset[disabled] .btn-link {
-
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    background-color: transparent;
-    text-decoration: none;
-  }
+  text-decoration: none;
 }

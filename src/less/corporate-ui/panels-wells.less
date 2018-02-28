@@ -146,6 +146,8 @@
     border-color: inherit;
     margin-top: 15px;
     border-top:none;
+    font-weight: bold;
+    border-radius: 0;
   }
 
   //Panel-inverse
@@ -199,7 +201,9 @@
 
   .app & {
 
-    h1,h2,h3 {
+    h1,
+    h2,
+    h3 {
       letter-spacing: 0.05rem;
     }
   }
@@ -207,9 +211,10 @@
 
 // Contextual footers (missing support in Bootstrap)
 .panel-default {
+  border-color: @interaction-default;
 
-  > .panel-heading, > .panel-footer {
-    color: @interaction-primary;
+  > .panel-heading,
+  > .panel-footer {
 
     h1,
     h2,
@@ -217,7 +222,7 @@
     h4,
     h5,
     h6 {
-      color: inherit;
+      color: @interaction-primary;
     }
   }
 }

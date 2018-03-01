@@ -33,41 +33,6 @@
     padding: 6px 12px;
   }
 
-  &-xs,
-  &-group-xs > & {
-    font-size: 11px;
-    padding: 3px 6px;
-
-    .app & {
-      padding: 1px 5px;
-    }
-  }
-
-  &-sm,
-  &-group-sm > & {
-    font-size: 12px;
-    padding: 7px 11px;
-    // Icons in btn-sm
-    & [class^="icon-"],
-    & [class*=" icon-"] {
-      font-size: 14px;
-      line-height: 13px;
-      vertical-align: middle;
-    }
-    .app & {
-      padding: 5px 10px;
-    }
-  }
-
-  &-lg,
-  &-group-lg > & {
-    padding: 20px 40px;
-    font-size: 14px;
-    .app &{
-      padding: 14px 28px;
-    }
-  }
-
   &-default {
     .btn-mix(default);
   }
@@ -94,6 +59,39 @@
 
   .app & {
     font-family: "Scania Sans Semi Condensed Bold"
+  }
+}
+
+
+.btn-lg {
+  padding: 20px 40px;
+  font-size: 14px;
+  .app &{
+    padding: 14px 28px;
+  }
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 7px 11px;
+  // Icons in btn-sm
+  & [class^="icon-"],
+  & [class*=" icon-"] {
+    font-size: 14px;
+    line-height: 13px;
+    vertical-align: middle;
+  }
+  .app & {
+    padding: 5px 10px;
+  }
+}
+
+.btn-xs {
+  font-size: 11px;
+  padding: 3px 6px;
+
+  .app & {
+    padding: 1px 5px;
   }
 }
 
@@ -143,8 +141,6 @@
     }
   }
 }
-
-
 
 // Extra buttons
 .btn-link  {

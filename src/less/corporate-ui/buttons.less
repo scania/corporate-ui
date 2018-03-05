@@ -53,7 +53,10 @@
   }
 
   .app & {
-    font-family: "Scania Sans Semi Condensed Bold"
+    font-family: "Scania Sans Semi Condensed Bold";
+    padding: 6px 12px;
+    text-transform: none;
+    font-size: @btn-font-size-app;
   }
 }
 
@@ -63,13 +66,12 @@
   font-size: 14px;
   .app &{
     padding: 14px 28px;
+    font-size: @btn-font-size-lg-app;
   }
 }
 
-.btn-md,
-.app .btn {
-  text-transform: none;
-  padding: 6px 12px;
+.btn-md {
+  &:extend(.btn);
 }
 
 .btn-sm {
@@ -84,6 +86,7 @@
   }
   .app & {
     padding: 5px 10px;
+    font-size: @btn-font-size-sm-app;
   }
 }
 
@@ -93,6 +96,7 @@
 
   .app & {
     padding: 1px 5px;
+    font-size: @btn-font-size-xs-app;
   }
 }
 
@@ -113,6 +117,9 @@
 .app {
 
   .btn-link.btn-info {
+    font-family: 'Scania Sans Condensed Bold';
+    font-size: 1.6rem;
+    text-decoration: none;
     color: @btn-info-bg;
     background-color: transparent;
     border: 0;

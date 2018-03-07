@@ -9,6 +9,10 @@ Polymer({
     fullbleed: {
       type: Boolean,
       value: true
+    },
+    items: {
+      type: Array,
+      observer: 'done'
     }
   },
   listeners: {

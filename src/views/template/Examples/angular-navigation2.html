@@ -31,7 +31,7 @@
   
   <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
 </head>
-<body class="scania" ng-controller="Example as example">
+<body class="scania" ng-controller="Example as example" ng-cloak>
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="/">Global</nav-item>
@@ -132,9 +132,9 @@
       }
 
       function cond(index) {
-        return !!(vm.itemsSelected.find(function(item) {
+        return !!(vm.itemsSelected.filter(function(item) {
           return item.id === index
-        }))
+        })[0])
       }
 
       function add() {
@@ -153,18 +153,18 @@
 
       /*function filter(itemsSelected) {
         return function(item) {
-          return itemsSelected.find(function(sitem) {
+          return itemsSelected.filter(function(sitem) {
             return sitem.id === item.id
-          })
+          })[0]
         }
       }*/
     }
 
     function i18n($rootScope, translation) {
       function localization(input) {
-        var lang = $rootScope.languages.find(function(item) {
+        var lang = $rootScope.languages.filter(function(item) {
           return item.current
-        })
+        })[0]
         return translation[lang.short || 'en'][input] || translation['en'][input] || '"' + input + '"'
       }
       // Used to make this filer be re applied if value is changed where this filter is used

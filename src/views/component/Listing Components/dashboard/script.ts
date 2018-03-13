@@ -63,6 +63,6 @@ Polymer({
       });
   },
   attached: function() {
-    window.jQuery = window.preJQuery;
+    window.$ = window.jQuery = window.preJQuery;
   }
 });

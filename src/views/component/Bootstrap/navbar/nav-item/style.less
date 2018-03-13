@@ -171,11 +171,17 @@
 
 .modToggler() {
 
-  ::content {
+  &.expanded {
+    // TODO - Instead of a flex solution maybe change order of elements would be better
+    display: flex;
+    flex-direction: column-reverse;
 
-    &.expanded .mode-toggler:before {
+    ::content .mode-toggler:before {
       content: "-";
     }
+  }
+
+  ::content {
 
     a.mode-toggler {
       display: block;

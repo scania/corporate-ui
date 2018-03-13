@@ -46,7 +46,7 @@ window.CorporateUi = (function() {
 
     document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
 
-    //document.addEventListener("DOMContentLoaded", applyBrand);
+    document.addEventListener("DOMContentLoaded", applyBrand);
 
     var newEvent = document.createEvent('Event');
     newEvent.initEvent('CorporateUiLoaded', true, true);

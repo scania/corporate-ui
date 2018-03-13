@@ -35,11 +35,11 @@
   <c-main-content>
     <c-main-navigation ng-cloak>
       <primary-items>
-        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" nav-item="item" active="{{item.active}}" ng-click="uxlib.changeView($event, item)"></nav-item>
+        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" nav-item="item" items="uxlib.items" active="{{item.active}}"></nav-item>
       </primary-items>
     </c-main-navigation>
 
-    <c-main-navigation ng-cloak>
+    <!-- <c-main-navigation ng-cloak>
       <primary-items>
         <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" active="{{item.active}}" ng-click="uxlib.changeView($event, item)">
           {{item.name}}
@@ -48,7 +48,7 @@
           </sub-navigation>
         </nav-item>
       </primary-items>
-    </c-main-navigation>
+    </c-main-navigation> -->
 
     <section class="light">
       <div class="container">
@@ -69,7 +69,7 @@
     angular.module('CorporateUI', [])
       .controller('UxLib', [UxLib])
       .directive('navItem', navItem)
-      .directive('subNavigation', ['$compile', '$timeout', subNavigation]);
+      /*.directive('subNavigation', ['$compile', '$timeout', subNavigation])*/;
 
     function UxLib() {
       var vm = this;
@@ -86,27 +86,30 @@
         ] },
         { name: 'contact', location: '/contact/' }
       ];
-
-      vm.changeView = function($event, target) {
-        $event.preventDefault();
-        for(i in vm.items) {
-          var item = vm.items[i];
-          delete item.active;
-        }
-        target.active = true;
-      }
     }
 
     function navItem() {
       return {
         restrict: 'A',
         scope: {
-          item: '=navItem'
+          item: '=navItem',
+          items: '=items'
         },
-        template: '{{item.name}} \
+        template: '\
+          <a href="{{item.url}}" ng-click="changeView($event, item, items)">{{item.name}}</a> \
           <sub-navigation caption="{{item.name}}" ng-if="item.children">\
-            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}" nav-item="subItem"></nav-item>\
-          </sub-navigation>'
+            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}">{{subItem.name}}</nav-item>\
+          </sub-navigation>',
+        link: function($scope, element, attrs) {
+          $scope.changeView = function($event, target) {
+            $event.preventDefault();
+            for(i in $scope.items) {
+              var item = $scope.items[i];
+              delete item.active;
+            }
+            target.active = true;
+          }
+        }
       }
     }
 
@@ -119,7 +122,7 @@
           tAttrs.$set('template', tElement.html());
 
           // Need to a way to reset and compile template using template attribute when user clicks the navigation
-          iAttrs.$observe('ngIf', function() {
+          tAttrs.$observe('ngIf', function() {
             console.log('Alive and kicking!')
           });
         }

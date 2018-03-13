@@ -112,144 +112,136 @@ fieldset {
 }
 // Radio and Checkboxes//
 input[type=checkbox] {
-  opacity: 0;
-  &+span {
+
+  + span {
+    position: relative;
+    margin-left: -20px;
+    margin-right: 5px;
+
     &:before {
       content: "";
       display: inline-block;
       width: 22px;
       height: 22px;
-      margin: 0px 5px 10px 0px;
+      background-color: #fff;
       border: 2px solid #041E42;
       vertical-align: text-top;
+
       .app & {
         width: 15px;
         height: 15px;
       }
     }
   }
-  &:hover {
-    &+span {
-      &:before {
-        background: #97999B;
-        .app & {}
-      }
-    }
+  &:hover + span:before {
+    background: #97999B;
   }
-  &:checked {
-    &+span {
-      &:before {
-        content: '\2713';
-        color: #FAFAFA;
-        font-size: 17px;
-        line-height: 18px;
-        text-align: center;
-        font-weight: bold;
-        vertical-align: text-top;
-        background: #041E42;
-        .app & {
-          font-size: 11px;
-          line-height: 12px;
-        }
-      }
+  &:checked + span:before {
+    content: '\2713';
+    color: #FAFAFA;
+    font-size: 17px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: text-top;
+    background: #041E42;
+
+    .app & {
+      font-size: 11px;
+      line-height: 12px;
     }
   }
 }
 input[type=radio] {
-  opacity: 0;
-    // Zoom is used to make it smaller. Without zoom it cant be smaller than 16px and use vertical-align: bottom;  // 
-    &+span {
+
+  // Zoom is used to make it smaller. Without zoom it cant be 
+  // smaller than 16px and use vertical-align: bottom;
+  + span {
+    position: relative;
+    margin-left: -25px; // -25 here instead of 20 beause of zoom
+    margin-right: 6px;
+    display: inline-block;
+    border: 2px solid #041E42;
+    background-color: #fff;
+    line-height: normal;
+    border-radius: 15px;
+    zoom: .8;
+    // vertical-align: bottom;
+
+    &:before {
+      content: "";
       display: inline-block;
-      border: 2px solid #041E42;
-      line-height: normal;
-      border-radius: 15px;
-      /* vertical-align: bottom; */
-      
-      zoom: .8;
+      width: 24px;
+      height: 24px;
+      border-radius: inherit;
+      border: 0.3em solid #FFF;
+      vertical-align: bottom;
+      // margin: 1px;
+
       .app & {
-        border-radius: 10px;
+        width: 16px;
+        height: 16px;
       }
-      &:before {
-        content: "";
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        border-radius: inherit;
-        border: 0.3em solid #FFF;
-        /* margin: 1px; */
-        
-        vertical-align: bottom;
-        .app & {
-          width: 16px;
-          height: 16px;
-        }
-      }
-    }
-    &:hover {
-      &+span {
-        &:before {
-          background: #97999B;
-        }
-      }
-    }
-    &:checked {
-      &+span {
-        &:before {
-          background: #041E42;
-        }
-      }
-    }
-  }
-  .radio label,
-  .checkbox label {
-    padding-left: 0px;
-  }
-  .nowrap {
-    white-space: nowrap;
-  }
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 100%;
-
-    &::-ms-expand {
-      border: none;
-      background-color: #f5f5f5;
     }
 
-    .well &::-ms-expand {
-      border: none;
-      background-color: #FFFFFF;
+    .app & {
+      border-radius: 10px;
     }
   }
-  .custom-select {
-    font-size: inherit;
-    width: 100%;
-    border: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=);
-    background-size: 31px;
-    background-position: calc(100% - 2px) center;
-    background-repeat: no-repeat;
+
+  &:hover + span:before {
+    background: #97999B;
+  }
+  &:checked + span:before {
+    background: #041E42;
+  }
+}
+.nowrap {
+  white-space: nowrap;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+
+  &::-ms-expand {
+    border: none;
     background-color: #f5f5f5;
-    & > option {
-      background: #FFFFFF;
-        // color: #FFFFFF;
-      }
-      &:focus {
-        border: 0;
-        outline: none;
-      }
-      .app & {
-        background-size: 12px;
-        background-position: calc(100% - 3px) center;
-        // padding: 8px 20px;
-      }
-      .well & {
-        background-color: #FFFFFF;
-      }
-    }
+  }
+
+  .well &::-ms-expand {
+    border: none;
+    background-color: #FFFFFF;
+  }
+}
+.custom-select {
+  font-size: inherit;
+  width: 100%;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTMzIDMxLjJsLTU3LjIgNTdxLTEuNSAxLjQtMy41IDEuNFQ2OSA4OC4ybC01Ny4yLTU3cS0xLjUtMS41LTEuNS0zLjV0MS41LTMuNWwxMi44LTEyLjdRMjYgMTAgMjggMTB0My41IDEuNWw0MC44IDQwLjggNDEtNDAuOHExLjMtMS41IDMuMy0xLjV0My41IDEuNWwxMyAxMi43cTEuMyAxLjQgMS4zIDMuNXQtMS40IDMuNXoiLz48L3N2Zz4=);
+  background-size: 31px;
+  background-position: calc(100% - 2px) center;
+  background-repeat: no-repeat;
+  background-color: #f5f5f5;
+
+  &:focus {
+    border: 0;
+    outline: none;
+  }
+
+  > option {
+    background: #FFFFFF;
+  }
+  .app & {
+    background-size: 12px;
+    background-position: calc(100% - 3px) center;
+  }
+  .well & {
+    background-color: #FFFFFF;
+  }
+}
     

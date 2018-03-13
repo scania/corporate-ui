@@ -13,6 +13,7 @@
     "highcharts": "5.0.14",
     "hydrolysis": "1.25.0",
     "jquery": "2.2.2",
+    "jquery-ui": "1.12.1",
     "jquery.hotkeys": "0.1.0",
     "moment": "2.18.0",
     "react": "15.4.2",

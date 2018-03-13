@@ -150,9 +150,9 @@ window.CorporateUi = (function() {
     head.appendChild(meta);
   }
 
-  function importLink(href, type, callback) {
-    var head = document.head,
-        link = document.createElement('link');
+  function importLink(href, type, callback, target, attrs) {
+    var link = document.createElement('link'),
+        target = target || document.head;
 
     if ( !('onload' in link) ) {
       imgTag = document.createElement(img);
@@ -163,14 +163,20 @@ window.CorporateUi = (function() {
     link.onload = (callback || function(){});
     link.rel = type || 'stylesheet';
     link.href = href;
-    head.appendChild(link);
+
+    if (typeof attrs === 'object') {
+      Object.keys(attrs).map(function(key) {
+        link.setAttribute(key, attrs[key]);
+      });
+    }
+
+    target.appendChild(link);
   }
 
   function importScript(src, callback, target) {
-    var head = document.head,
-        script = document.createElement('script'),
+    var script = document.createElement('script'),
         xhr = new XMLHttpRequest(),
-        target = target || head;
+        target = target || document.head;
 
     script.onload = function() {
       xhr.open('GET', src);
@@ -246,42 +252,40 @@ window.CorporateUi = (function() {
 
     document.body.className = bodyClasses;
 
-    var fileref = document.createElement("link");
-    fileref.rel = "stylesheet";
-    fileref.type = "text/css";
-    fileref.href =  "https://static.scania.com/resources/brands/css/" + brand + ".css";
-    document.getElementsByTagName("head")[0].appendChild(fileref);
+    importLink('https://static.scania.com/resources/brands/css/' + brand + '.css', 'stylesheet', null, window.corporate_elm);
 
     var favicon_root = "https://static.scania.com/resources/logotype/" + brand + "/favicon/";
 
-    importLink(favicon_root + 'favicon.ico', 'shortcut icon');
+    importLink(favicon_root + 'favicon.ico', 'shortcut icon', null, window.corporate_elm);
 
-    importLink(favicon_root + 'apple-icon-57x57.png', 'apple-touch-icon', '57x57');
-    importLink(favicon_root + 'apple-icon-60x60.png', 'apple-touch-icon', '60x60');
-    importLink(favicon_root + 'apple-icon-72x72.png', 'apple-touch-icon', '72x72');
-    importLink(favicon_root + 'apple-icon-76x76.png', 'apple-touch-icon', '76x76');
-    importLink(favicon_root + 'apple-icon-114x114.png', 'apple-touch-icon', '114x114');
-    importLink(favicon_root + 'apple-icon-120x120.png', 'apple-touch-icon', '120x120');
-    importLink(favicon_root + 'apple-icon-144x144.png', 'apple-touch-icon', '144x144');
-    importLink(favicon_root + 'apple-icon-152x152.png', 'apple-touch-icon', '152x152');
-    importLink(favicon_root + 'apple-icon-180x180.png', 'apple-touch-icon', '180x180');
+    importLink(favicon_root + 'apple-icon-57x57.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'57x57'});
+    importLink(favicon_root + 'apple-icon-60x60.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'60x60'});
+    importLink(favicon_root + 'apple-icon-72x72.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'72x72'});
+    importLink(favicon_root + 'apple-icon-76x76.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'76x76'});
+    importLink(favicon_root + 'apple-icon-114x114.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'114x114'});
+    importLink(favicon_root + 'apple-icon-120x120.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'120x120'});
+    importLink(favicon_root + 'apple-icon-144x144.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'144x144'});
+    importLink(favicon_root + 'apple-icon-152x152.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'152x152'});
+    importLink(favicon_root + 'apple-icon-180x180.png', 'apple-touch-icon', null, window.corporate_elm, {sizes:'180x180'});
 
-    importLink(favicon_root + 'android-icon-192x192.png', 'icon', '192x192');
+    importLink(favicon_root + 'android-icon-192x192.png', 'icon', null, window.corporate_elm, {sizes:'192x192'});
 
-    importLink(favicon_root + 'favicon-32x32.png', 'icon', '32x32');
-    importLink(favicon_root + 'favicon-96x96.png', 'icon', '96x96');
-    importLink(favicon_root + 'favicon-16x16.png', 'icon', '16x16');
+    importLink(favicon_root + 'favicon-32x32.png', 'icon', null, window.corporate_elm, {sizes:'32x32'});
+    importLink(favicon_root + 'favicon-96x96.png', 'icon', null, window.corporate_elm, {sizes:'96x96'});
+    importLink(favicon_root + 'favicon-16x16.png', 'icon', null, window.corporate_elm, {sizes:'16x16'});
 
-    importLink(favicon_root + 'manifest.json', 'manifest');
+    importLink(favicon_root + 'manifest.json', 'manifest', null, window.corporate_elm);
 
     generateMeta('msapplication-TileColor', '#000');
-    generateMeta('msapplication-TileImage', window.favicon_root + 'ms-icon-144x144.png');
+    generateMeta('msapplication-TileImage', favicon_root + 'ms-icon-144x144.png');
 
     document.body.classList.add(brand);
   }
 
   function setGlobals() {
-    var scriptUrl = document.querySelector('[src*="corporate-ui.js"]').src,
+    window.corporate_elm = document.querySelector('[src*="corporate-ui.js"]');
+
+    var scriptUrl = window.corporate_elm.src,
         port = urlInfo(scriptUrl).port ? ':' + urlInfo(scriptUrl).port : '',
         localhost = urlInfo(scriptUrl).hostname === 'localhost' || urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
@@ -374,7 +378,7 @@ window.CorporateUi = (function() {
   }
 
   function baseComponents(references) {
-    importLink(public.components['main-content'], 'import');
+    importLink(public.components['main-content'], 'import', null, window.corporate_elm);
 
     /*if (window.params.preload === 'false') {
       window.ready_event = undefined;
@@ -386,7 +390,7 @@ window.CorporateUi = (function() {
     var resources = (references || window.preLoadedComponents).map(function(resource) {
       var url = public.components[resource] || resource;
       return new Promise(function(resolve, reject) {
-        importLink(url, 'import', function(e) { resolve(e.target) });
+        importLink(url, 'import', function(e) { resolve(e.target) }, window.corporate_elm);
       });
     });
 
@@ -404,17 +408,17 @@ window.CorporateUi = (function() {
 
     // Adds support for webcomponents if non exist
     if (!('import' in document.createElement('link'))) {
-      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js');
+      importScript(window.static_root + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js', null, window.corporate_elm);
     }
 
     if (window.params.polymer !== 'false') {
       //importLink('/vendors/frameworks/@polymer/polymer/2.0.0/polymer.html', 'import');
-      importLink(window.static_root + '/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject);
+      importLink(window.static_root + '/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', polymerInject, window.corporate_elm);
     }
 
     if (window.params.css !== 'custom') {
-      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet');
-      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet');
+      importLink(window.static_root + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window.corporate_elm);
+      importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet', null, window.corporate_elm);
     }
 
     // Adds support for Promise if non exist
@@ -422,7 +426,7 @@ window.CorporateUi = (function() {
       importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
         Promise = ES6Promise;
         baseComponents(window.params.preload === 'false' ? [] : undefined);
-      });
+      }, window.corporate_elm);
     } else {
       baseComponents(window.params.preload === 'false' ? [] : undefined);
     }

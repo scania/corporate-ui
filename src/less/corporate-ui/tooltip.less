@@ -1,6 +1,5 @@
 .tooltip {
   font-family: "Scania Sans Condensed";
-  font-size:14px;
 
   &.in {
     opacity: 1;
@@ -43,5 +42,9 @@
   }
   &.bottom-right .tooltip-arrow {
     border-bottom-color: #fff;
+  }
+
+  .app & {
+    font-size: @tooltip-font-size-app;
   }
 }

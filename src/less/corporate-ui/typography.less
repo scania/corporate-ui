@@ -161,7 +161,7 @@ article {
   body,
   body& {
     font-size: @font-size-app;
-    font-family: 'Scania Sans Semi Condensed', 'Scania Sans Condensed', 'Scania Sans', Arial, Helvetica, sans-serif
+    font-family: 'Scania Sans Semi Condensed', 'Scania Sans Condensed', 'Scania Sans', Arial, Helvetica, sans-serif;
   }
 
   h1 { font-size: @h1-font-size-app; }
@@ -173,6 +173,7 @@ article {
 
   p {
     text-align: left;
+    font-size: @font-size-app;
   }
 
   td,
@@ -258,6 +259,7 @@ article {
     h6 { &:extend(article h6); }
     p { &:extend(article p); }
   }
+
 }
 
 .public,
@@ -295,6 +297,8 @@ p.lead,
   line-height: 1.4;
   font-family: 'Scania Sans Bold';
 }
+
+
 
 
 @media (max-width: 768px) {

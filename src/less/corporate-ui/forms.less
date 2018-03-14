@@ -127,20 +127,33 @@ fieldset {
 }
 // Radio and Checkboxes//
 input[type=checkbox] {
-  margin-right: -35px;
-  height: 30px;
-  width: 30px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    vertical-align: bottom;
+
+    .checkbox & {
+      position: static;
+    }
+
 
   .app & {
-    margin-right: -25px;
     height: 20px;
     width: 20px;
+    position: static;
+    display: inline-block;
+    vertical-align: bottom;
   }
 
   + span {
     position: relative;
-    margin-left: -20px;
-    margin-right: 5px;
+    display: inline-block;
+    vertical-align: bottom;
+    line-height: 0;
+    margin-left: -35px;
+    .app & {
+      margin-left:-23px;
+    }
 
     &:before {
       content: "";
@@ -149,12 +162,11 @@ input[type=checkbox] {
       height: 30px;
       background-color: #fff;
       border: 1.2px solid #6f6f70;
-      vertical-align: inherit;
       border-radius: 2px;
 
       .app & {
-        width: 17px;
-        height: 17px;
+        width: 20px;
+        height: 20px;
       }
     }
   }
@@ -186,14 +198,14 @@ input[type=radio] {
   + span {
     position: relative;
     margin-left: -25px; // -25 here instead of 20 beause of zoom
-    margin-right: 6px;
+    // margin-right: 6px;
     display: inline-block;
     border: 2px solid #041E42;
     background-color: #fff;
     line-height: normal;
     border-radius: 15px;
     zoom: .8;
-    // vertical-align: bottom;
+    vertical-align: text-bottom;
 
     &:before {
       content: "";

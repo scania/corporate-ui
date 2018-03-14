@@ -13,6 +13,7 @@
     text-transform: uppercase;
     margin: -1px;
     border-color:#dadada;
+    border-bottom: none;
 
     h1,
     h2,
@@ -151,6 +152,10 @@
 .panel-default {
   border-color: #dadada;
 
+  > .panel-heading {
+    background-color: #e8f0f3;
+  }
+
   > .panel-heading,
   > .panel-footer {
 
@@ -164,7 +169,7 @@
     }
   }
   .panel-footer {
-    color: #fff;
+    color: @interaction-primary;
     border-top: none;
     padding: 15px 15px;
   }

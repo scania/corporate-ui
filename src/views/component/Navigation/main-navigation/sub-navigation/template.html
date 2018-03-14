@@ -1,4 +1,6 @@
 <nav class="navbar navbar-default">
-  <span class="caption">{{caption}}</span>
+  <template is="dom-if" if="{{caption}}">
+  	<span class="caption">{{caption}}</span>
+  </template>
   <content></content>
 </nav>

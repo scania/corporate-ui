@@ -9,10 +9,9 @@
 :host-context(c-corporate-header) {
 
   ::content a {
-    text-transform: uppercase;
 
     // Bootstrap
-    &:extend(.nav > li > a);
+    // &:extend(.nav > li > a);
     &:extend(.navbar-default .navbar-header .navbar-nav a);
 
     // Corporate-ui
@@ -172,11 +171,17 @@
 
 .modToggler() {
 
-  ::content {
+  &.expanded {
+    // TODO - Instead of a flex solution maybe change order of elements would be better
+    display: flex;
+    flex-direction: column-reverse;
 
-    &.expanded .mode-toggler:before {
+    ::content .mode-toggler:before {
       content: "-";
     }
+  }
+
+  ::content {
 
     a.mode-toggler {
       display: block;

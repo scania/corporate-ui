@@ -25,11 +25,11 @@ Polymer({
         texts = [];
 
     while (child) {
-        if (child.nodeType == 3) {
-            texts.push(child.data);
-            child.data = '';
-        }
-        child = child.nextSibling;
+      if (child.nodeType == 3) {
+        texts.push(child.data);
+        child.data = '';
+      }
+      child = child.nextSibling;
     }
 
     var text = texts.join('').trim();

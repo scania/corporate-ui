@@ -34,19 +34,23 @@
   }
 }
 
-//TODO to set margin on the c-fullscreen component
-// :host-context(c-main-navigation) {
-//   margin-right:13px;
-// }
+:host-context(c-main-navigation) {
+  margin-right:13px;
+}
 
+:host-context(sub-navigation) {
+  margin-right:26px;
+}
+
+// TODO fix the issue in app-mode in a more clean way
 // :host-context(.app c-main-navigation) {
 //   margin-right:1px;
 // }
 
-// :host-context(sub-navigation) {
-//   margin-right:26px;
-// }
-
-// :host-context(sub-navigation) {
-//   margin-right:13px;
-// }
+:host-context(.app) {
+  ::content {
+    .c-fullscreen {
+      margin-right:-7px;
+    }
+  }
+}

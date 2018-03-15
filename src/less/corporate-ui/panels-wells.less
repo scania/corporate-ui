@@ -12,6 +12,8 @@
     font-family: 'Scania Sans Bold';
     text-transform: uppercase;
     margin: -1px;
+    border-color:#dadada;
+    border-bottom: none;
 
     h1,
     h2,
@@ -94,13 +96,13 @@
     color: inherit;
 
     &:first-child {
-      border: 1px solid #ddd;
+      border: 1px solid #dadada;
     }
 
     &:first-child .panel-heading {
      background-color: #FFFFFF;
      color: #041e42;
-     border: 1px solid #ddd;
+     border: 1px solid #dadada;
 
      :first-child {
       color: #041e42;
@@ -148,7 +150,11 @@
 
 // Contextual footers (missing support in Bootstrap)
 .panel-default {
-  border-color: @interaction-default;
+  border-color: #dadada;
+
+  > .panel-heading {
+    background-color: #e8f0f3;
+  }
 
   > .panel-heading,
   > .panel-footer {
@@ -163,10 +169,10 @@
     }
   }
   .panel-footer {
-    color: #fff;
+    color: @interaction-primary;
     border-top: none;
     padding: 15px 15px;
-  }  
+  }
 }
 
 .panel-primary {

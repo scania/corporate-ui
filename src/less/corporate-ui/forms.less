@@ -34,7 +34,11 @@ textarea[placeholder] {
   font-weight: normal;
   background-color: #f5f5f5;
 
-  &.form-control[readonly] {
+  select& {
+    cursor: pointer;
+  }
+
+  &[readonly] {
     background-color: transparent;
     cursor: default;
 
@@ -45,10 +49,10 @@ textarea[placeholder] {
       background: rgb(242, 247, 249);
     }
   }
-  &.form-control[disabled] {
+  &[disabled] {
     background-color: #dfdee1;
     color: #a1a1a1;
-    cursor: default;
+    cursor: not-allowed;
   }
   &:focus {
     -webkit-box-shadow: none;

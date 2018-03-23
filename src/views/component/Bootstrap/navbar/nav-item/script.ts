@@ -48,18 +48,20 @@ Polymer({
     if (this.active === 'true') {
       this.classList.add('active');
     }
+
+    this.onclick = (function() {
+      this.active = 'true';
+    }).bind(this);
   },
   setActive: function(newValue) {
     if (newValue === 'true') {
       this.classList.add('active');
-    } else {
-      this.classList.remove('active');
-    }
 
-    if (this.value != newValue) {
       this.async(function() {
         this.fire('navItem-active');
       });
+    } else {
+      this.classList.remove('active');
     }
   },
   hasClass: function(element, className) {

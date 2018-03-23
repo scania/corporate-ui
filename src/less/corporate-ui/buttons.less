@@ -7,6 +7,8 @@
 .btn {
   padding: 20px 40px;
   border-radius: 0;
+  font-family: "Scania Sans Bold";
+  text-transform: uppercase;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -26,48 +28,6 @@
     box-shadow: none;
   }
 
-  //size
-  &-md,
-  .app & {
-    text-transform: none;
-    padding: 6px 12px;
-  }
-
-  &-xs,
-  &-group-xs > & {
-    font-size: 11px;
-    padding: 3px 6px;
-
-    .app & {
-      padding: 1px 5px;
-    }
-  }
-
-  &-sm,
-  &-group-sm > & {
-    font-size: 12px;
-    padding: 7px 11px;
-    // Icons in btn-sm
-    & [class^="icon-"],
-    & [class*=" icon-"] {
-      font-size: 14px;
-      line-height: 13px;
-      vertical-align: middle;
-    }
-    .app & {
-      padding: 5px 10px;
-    }
-  }
-
-  &-lg,
-  &-group-lg > & {
-    padding: 20px 40px;
-    font-size: 14px;
-    .app &{
-      padding: 14px 28px;
-    }
-  }
-
   &-default {
     .btn-mix(default);
   }
@@ -78,19 +38,66 @@
 
   &-success {
    .btn-mix(success);
- }
+  }
 
- &-info {
+  &-info {
   .btn-mix(info);
-}
+  }
 
-&-warning {
+  &-warning {
   .btn-mix(warning);
+  }
+
+  &-danger {
+  .btn-mix(danger);
+  }
+
+  .app & {
+    font-family: "Scania Sans Semi Condensed Bold";
+    padding: 6px 12px;
+    text-transform: none;
+    font-size: @btn-font-size-app;
+  }
 }
 
-&-danger {
-  .btn-mix(danger);
+//size
+.btn-lg {
+  padding: 20px 40px;
+  font-size: 14px;
+  .app &{
+    padding: 14px 28px;
+    font-size: @btn-font-size-lg-app;
+  }
 }
+
+.btn-md {
+  &:extend(.btn);
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 7px 11px;
+  // Icons in btn-sm
+  & [class^="icon-"],
+  & [class*=" icon-"] {
+    font-size: 14px;
+    line-height: 13px;
+    vertical-align: middle;
+  }
+  .app & {
+    padding: 5px 10px;
+    font-size: @btn-font-size-sm-app;
+  }
+}
+
+.btn-xs {
+  font-size: 11px;
+  padding: 3px 6px;
+
+  .app & {
+    padding: 1px 5px;
+    font-size: @btn-font-size-xs-app;
+  }
 }
 
 // Buttons overrides
@@ -112,9 +119,8 @@
   .btn-link.btn-info {
     font-family: 'Scania Sans Condensed';
     font-weight: bold;    
-    color: @btn-info-bg;
     text-decoration: none;
-    font-size: 1.6rem;
+    color: @btn-info-bg;
     background-color: transparent;
     border: 0;
 
@@ -141,9 +147,7 @@
   }
 }
 
-
-
-// Button extra
+// Extra buttons
 .btn-link  {
   font-weight: normal;
   color: @btn-link-color;
@@ -154,12 +158,12 @@
   &:hover,
   &:active,
   &.active {
-    border-color: transparent;
     text-decoration: underline;
-    background-color: transparent;
     color: @btn-link-color;
+    box-shadow: none;
   }
 }
+
 .btn-transparent {
   border-width:2px;
   color: #fff;
@@ -183,20 +187,5 @@
 .btn[disabled],
 fieldset[disabled] .btn {
   pointer-events: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.btn-link:active,
-.btn-link[disabled],
-fieldset[disabled] .btn-link {
-
-  &,
-  &:hover,
-  &:focus,
-  &:active,
-  &.active {
-    background-color: transparent;
-    text-decoration: none;
-  }
+  text-decoration: none;
 }

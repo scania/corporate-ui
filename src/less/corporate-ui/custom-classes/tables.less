@@ -44,6 +44,66 @@
     }
   }
 
+  &.table-sm {
+    max-width: 100%;
+    margin: 20px 0;
+
+    thead {
+      background-color: transparent;
+      color: #b7b7b7;
+
+      > tr {
+
+        > th {
+          text-transform: none;
+          font-weight: normal;
+          font-family: 'Scania Sans Condensed Bold';
+          font-size: 1.2rem;
+          padding: 0 10px;
+          border-bottom: 1px solid #b7b7b7;
+        }
+      }
+    }
+
+    tbody {
+
+      > tr {
+
+        > td {
+          font-family: 'Scania Sans Condensed';
+          padding: 5px 10px;
+          border: none;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    &.table-striped {
+
+      > tbody {
+
+        > tr {
+
+          &:nth-child(odd) {
+
+            > td,
+            > th {
+              background-color: #fff;
+            }
+          }
+
+          &:nth-child(even) {
+
+            > td,
+            > th {
+              background-color: #f2f7f9;
+            }
+          }
+        }
+      }
+    }
+  }
+
   &.table-clickable {
 
     > tbody {
@@ -354,4 +414,8 @@ table.table {
     text-transform: uppercase;
     font-family: 'Scania Sans Condensed';
   }
+}
+
+.table thead .input-icon {
+  color: #000;
 }

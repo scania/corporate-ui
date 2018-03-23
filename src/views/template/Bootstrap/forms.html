@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Form example</title>
-    <!-- <script src="https://static.scania.com/build/global/2.1.0/js/corporate-ui.js"></script> -->
     <script src="../../../js/corporate-ui.js"></script>
+    <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/dist/css/select2.css">
+    <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/scania-select/scania-select.css">
     <script src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.js"></script>
-    <script src="/vendors/components/jQuery/select2/4.0.5/dist/js/select2.full.min.js"></script>  
-         <!-- <link href="https://static.scania.com/vendors/components/jQuery/select2/4.0.0/css/select2.css" rel="stylesheet">  -->
+    <script src="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/dist/js/select2.js"></script>
          <script>
-         $(document).ready(function() {
-          $(".select2").select2();
-           });
+          $(document).ready(function() {
+         $( ".select2" ).select2( {
+            width: "100%",
+          });
+         });
 </script>
 </head>
   <body class="scania app">
@@ -145,6 +147,7 @@
           </div>
         </div>
         <div class="col-xs-12 col-lg-6">
+
           <div class="panel panel-primary panel-inverse">
             <div class="panel-heading">
               <h3 class="panel-title">Edit job</h3>
@@ -433,7 +436,7 @@
               <option value="3">3</option>
             </select>
           </div>
-        </div> 
+        </div>
         <div class="row">
           <div class="col-md-6">
             <h4>Select</h4>
@@ -453,8 +456,58 @@
               <option value="3">3</option>
             </select>
           </div>
-        </div>     
-      </div>   
+        </div>
+        </div>
+        <div class="panel panel-primary">
+        <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Input Error</h4>
+            <p>Error</p>
+            <div class="alert alert-danger-validate" role="alert">
+              <span class="sr-only">Error:</span>
+              Enter a valid email address
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h4>Input Success</h4>
+            <p>Success</p>
+            <div class="alert alert-success-validate" role="alert">
+              <span class="sr-only">Success:</span>
+              Success!
+            </div>
+          </div>
+        </div>
+         <div class="panel panel-primary">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Checkbox</h4>
+                <p>Add span to get custom styling</p>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> <span></span>
+                    Checkbox
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Radiobutton</h4>
+                <p>Add span to get custom styling</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio"> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
     <c-main-content>
   <body>
 <html>

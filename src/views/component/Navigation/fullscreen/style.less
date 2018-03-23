@@ -12,8 +12,9 @@
     }
 
     .icon-fullscreen {
-      line-height: 21px;
+      line-height: 19px;
       vertical-align: middle;
+      font-size:1.5em;
 
       &:before {
         content: "\e72f";
@@ -29,6 +30,27 @@
 
     .icon-fullscreen:before {
       content: "\e784";
+    }
+  }
+}
+
+:host-context(c-main-navigation) {
+  margin-right:13px;
+}
+
+:host-context(sub-navigation) {
+  margin-right:26px;
+}
+
+// TODO fix the issue in app-mode in a more clean way
+// :host-context(.app c-main-navigation) {
+//   margin-right:1px;
+// }
+
+:host-context(.app) {
+  ::content {
+    .c-fullscreen {
+      margin-right:-7px;
     }
   }
 }

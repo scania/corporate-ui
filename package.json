@@ -8,6 +8,7 @@
     "angular": "1.5.5",
     "bootstrap": "3.2.0",
     "bootstrap-datepicker": "1.6.4",
+    "bootstrap.native": "^2.0.21",
     "es6-promise": "4.1.0",
     "highcharts": "5.0.14",
     "hydrolysis": "1.25.0",

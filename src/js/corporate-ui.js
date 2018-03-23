@@ -384,8 +384,6 @@ window.CorporateUi = (function() {
       window.ready_event = undefined;
     }*/
 
-    window.preJQuery = window.jQuery;
-
     // Maybe we should change importLink to return a promise instead
     var resources = (references || window.preLoadedComponents).map(function(resource) {
       var url = public.components[resource] || resource;

@@ -96,18 +96,13 @@
           items: '=items'
         },
         template: '\
-          <a href="{{item.url}}" ng-click="changeView($event, item, items)">{{item.name}}</a> \
+          <a href="{{item.url}}" ng-click="changeView($event)">{{item.name}}</a> \
           <sub-navigation caption="{{item.name}}" ng-if="item.children">\
-            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}">{{subItem.name}}</nav-item>\
+            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}" nav-item="subItem"></nav-item>\
           </sub-navigation>',
         link: function($scope, element, attrs) {
           $scope.changeView = function($event, target) {
             $event.preventDefault();
-            for(i in $scope.items) {
-              var item = $scope.items[i];
-              delete item.active;
-            }
-            target.active = true;
           }
         }
       }

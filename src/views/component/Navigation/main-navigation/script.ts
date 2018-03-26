@@ -60,6 +60,14 @@ Polymer({
     this.done.call(this);
   },
   setItemActive: function(event) {
+    var navItems = [].slice.call(event.target.parentElement.children);
+
+    navItems.map(function(navItem) {
+      if (!(navItem === event.target) && navItem.active === 'true') {
+        navItem.active = 'false';
+      }
+    });
+
     if(window.innerWidth < 991 && event.target.active == 'true' && this.jQuery(event.target).parents('sub-navigation').length) {
       this.jQuery('#main-navigation', this).collapse('hide');
     }

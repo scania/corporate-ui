@@ -22,7 +22,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Scania Sans Headline Bold";
+  font-family: "Scania Sans Headline";
+  font-weight: bold;
   line-height: 1.15;
   color: @interaction-primary;
   text-align: center;
@@ -40,11 +41,13 @@ h2 {
 }
 
 h5 {
-  font-family: "Scania Sans Bold";
+  font-family: "Scania Sans";
+  font-weight: bold;
 }
 
 h6 {
-  font-family: "Scania Sans Italic";
+  font-family: "Scania Sans";
+  font-style: italic;
 }
 
 h3 { font-size: @h3-font-size; }
@@ -76,8 +79,9 @@ dt {
 dd,
 strong,
 button {
-  font-family: "Scania Sans Bold";
+  font-family: "Scania Sans";
   color: @interaction-primary;
+  font-weight: bold;
 }
 
 button {
@@ -86,17 +90,18 @@ button {
 
 label,
 caption {
-  font-family: "Scania Sans Bold";
-  font-weight: normal;
+  font-family: "Scania Sans";
+  font-weight: bold;
 }
 
 legend {
-  font-family: "Scania Sans Headline Bold";
+  font-family: "Scania Sans Headline";
+  font-weight: bold;
 }
 
 blockquote {
-  font-family: "Scania Sans Bold";
-  font-weight: normal;
+  font-family: "Scania Sans";
+  font-weight: bold;
 }
 
 pre {
@@ -125,8 +130,9 @@ article {
   h4,
   h5,
   h6 {
-    font-family: "Scania Sans Bold";
+    font-family: "Scania Sans";
     text-align: inherit;
+    font-weight: bold;
     letter-spacing: normal;
   }
 
@@ -152,7 +158,8 @@ article {
   }
 
   p a {
-    font-family: 'Scania Sans Bold';
+    font-family: 'Scania Sans';
+   font-weight: bold;
   }
 }
 
@@ -207,8 +214,10 @@ article {
   h5,
   h6,
   legend {
-    font-family: "Scania Sans Condensed Bold";
+    font-family: "Scania Sans Condensed";
+    font-weight: bold;
     text-align: left;
+
   }
 
   h1,
@@ -220,23 +229,27 @@ article {
 
   label,
   caption {
-    font-family: "Scania Sans Condensed Bold";
+    font-family: "Scania Sans Condensed";
+    font-weight: bold;
     color: @text-pale-strong-color;
 
     dd,
     strong,
     button {
-      font-family: "Scania Sans Semi Condensed Bold";
+      font-family: "Scania Sans Semi Condensed";
+      font-weight: bold;
       color: @interaction-primary;
     }
 
     blockquote {
-      font-family: "Scania Sans Semi Condensed Bold";
+      font-family: "Scania Sans Semi Condensed";
+      font-weight: bold;      
       font-weight: normal;
     }
 
     p a {
-      font-family: 'Scania Sans Semi Condensed Bold';
+      font-family: 'Scania Sans Semi Condensed';
+      font-weight: bold;      
     }
 
     p {
@@ -248,7 +261,8 @@ article {
     &:extend(article);
 
     h1 {
-      font-family: "Scania Sans Headline Bold";
+      font-family: "Scania Sans Headline";
+      font-weight: bold;      
       &:extend(article h1);
     }
 
@@ -259,7 +273,6 @@ article {
     h6 { &:extend(article h6); }
     p { &:extend(article p); }
   }
-
 }
 
 .public,
@@ -275,7 +288,8 @@ article {
 }
 
 nav a {
-  font-family: "Scania Sans Bold";
+  font-family: "Scania Sans";
+  font-weight: bold;
   text-transform: uppercase;
 }
 
@@ -290,11 +304,12 @@ nav a {
 article p.lead,
 p.lead,
 .app p.lead {
+  font-family: 'Scania Sans';  
+  font-weight: bold;
   font-size: 1.26em;
   color: @interaction-primary;
   font-weight: normal;
   line-height: 1.4;
-  font-family: 'Scania Sans Bold';
 }
 
 

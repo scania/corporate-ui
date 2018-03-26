@@ -63,6 +63,14 @@ Polymer({
     this.done.call(this);
   },
   setItemActive: function(event) {
+    var navItems = [].slice.call(event.target.parentElement.children);
+
+    navItems.map(function(navItem) {
+      if (!(navItem === event.target) && navItem.active === 'true') {
+        navItem.active = 'false';
+      }
+    });
+
     if(window.innerWidth < 991 && this.closest(event.target, 'sub-navigation')) {
       new Collapse( this.querySelector('#main-navigation') ).hide();
     }

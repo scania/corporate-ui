@@ -221,7 +221,7 @@ window.CorporateUi = (function() {
 
   function applyBrand() {
 
-    var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'spotify'];
+    var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus'];
     var subDomain = window.location.hostname.split('.')[0];
     var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
 

@@ -97,19 +97,19 @@ Polymer({
 
     if( parseInt(this.style.height) != headerHeight ) {
       this.removeAttribute('style')
-      this.style ='display: block; height: ' + headerHeight + 'px;';
+      this.style.cssText ='display: block; height: ' + headerHeight + (isNaN(Number(headerHeight)) ? ';' : 'px;');
     }
 
     this.querySelector('.navbar-default').removeAttribute('style');
 
     // Used in mobile mode
     if(window.innerWidth < 991) {
-      this.querySelector('.navbar-default').style = 'padding-top: ' + this.header.offsetHeight;
+      this.querySelector('.navbar-default').style.cssText = 'padding-top: ' + this.header.offsetHeight;
     }
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,
-        scrollTop = window.scrollY; // our current vertical position from the top
+        scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY; // our current vertical position from the top
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
       document.body.classList.remove('header-is-sticky');

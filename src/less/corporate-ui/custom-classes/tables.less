@@ -110,12 +110,55 @@
 
       > tr {
 
-        &:hover {
 
+        &:hover,
+        &:active,
+        &.active {
           > td,
           > th {
-            background-color: #def7fb;
+            background-color: #f2f7f9;
             cursor: pointer;
+          }
+        }
+
+        &:not(:active) > td,
+        &:not(.active) > td  {
+          border-bottom:none;
+        }
+
+        &:last-child > td {
+          border-bottom: 1px solid #dadada;
+        }
+
+        &:first-child > td {
+          border-top: 1px solid #dadada;
+        }
+
+        > td {
+
+           &:not(:first-child) {
+            border-left:transparent;
+           }
+
+           &:not(:last-child) {
+            border-right:transparent;
+           }
+        }
+
+
+        &:active,
+        &.active {
+
+        > td {
+          border:1px solid #4a8ba4;
+
+           &:not(:first-child) {
+            border-left:transparent;
+           }
+
+           &:not(:last-child) {
+            border-right:transparent;
+           }
           }
         }
       }

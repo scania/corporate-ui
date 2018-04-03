@@ -72,7 +72,7 @@ Polymer({
     });
 
     if(window.innerWidth < 991 && this.closest(event.target, 'sub-navigation')) {
-      new Collapse( this.querySelector('#main-navigation') ).hide();
+      // new Collapse( this.querySelector('#main-navigation') ).hide();
     }
 
     // $('.navbar-toggle').trigger('click');

@@ -51,7 +51,7 @@ Polymer({
 
     // Show hamburger menu if item exist in main-navigation
     if (this.querySelectorAll('nav-item').length) {
-      this.header.querySelector('.navbar-toggle').classList.remove('hidden');
+      this.header.hasMainNav = true;
     }
 
     window.addEventListener('scroll', this.sticky.bind(this));
@@ -104,7 +104,7 @@ Polymer({
 
     // Used in mobile mode
     if(window.innerWidth < 991) {
-      this.querySelector('.navbar-default').style.cssText = 'padding-top: ' + this.header.offsetHeight;
+      this.querySelector('.navbar-default').style.cssText = 'padding-top: ' + this.header.offsetHeight + 'px;';
     }
   },
   sticky: function() {

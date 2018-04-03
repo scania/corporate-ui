@@ -1,12 +1,14 @@
 
 <nav class="navbar navbar-default">
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed hidden" data-toggle="collapse" data-target="#main-navigation">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+    <template is="dom-if" if="{{hasMainNav}}">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </template>
     <a href="{{siteUrl}}" class="navbar-brand"></a>
     {{siteName}}
     <a href="{{siteUrl}}" class="navbar-symbol"></a>

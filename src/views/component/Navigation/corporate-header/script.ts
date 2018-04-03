@@ -10,6 +10,10 @@ Polymer({
     fullbleed: {
       type: Boolean,
       value: true
+    },
+    hasMainNav: {
+      type: Boolean,
+      value: false
     }
   },
   created: function() {

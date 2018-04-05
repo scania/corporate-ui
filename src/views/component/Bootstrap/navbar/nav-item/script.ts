@@ -14,7 +14,6 @@ Polymer({
     },
     active: {
       type: Boolean,
-      value: false,
       observer: 'setActive'
     }
   },

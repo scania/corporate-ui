@@ -193,67 +193,46 @@ input[type=checkbox] {
     }
   }
 
-   &:hover + span:before {
-      // background-color: #f2f7f9;
-      // border-color: #f2f7f9;
+  &:hover + span:before {
+  }
+
+  &:checked {
+
+    + span {
+      border-color: #242424;
+
+      &:before {
+        background-color: #242424;
+      }
     }
 
-    &:checked {
+    &:hover {
 
       + span {
-        border-color: #242424;
+        border-color: #033a6a;
 
         &:before {
-          background-color: #242424;
-        }
-      }
-
-      &:hover {
-
-        + span {
-          border-color: #033a6a;
-
-          &:before {
-            background-color: #033a6a;
-            border: 1.2px solid #033a6a;
-          }
+          background-color: #033a6a;
+          border: 1.2px solid #033a6a;
         }
       }
     }
+  }
 
-    &:disabled {
+  &:disabled {
 
-      &,
-      &:hover {
+    &,
+    &:hover {
 
-        + span {
-          // border: 2px solid #C8C9C7;
+      + span {
 
-          &:before {
-            background: #fff;
-            border: 1.2px solid #C8C9C7;
-          }
+        &:before {
+          background: #fff;
+          border: 1.2px solid #C8C9C7;
         }
       }
     }
-
-
-  // &[checked]:hover + span:before {
-  //   background-color: #033a6a;
-  //   border-color: #033a6a;
-  // }
-
-  // &:disabled + span:before {
-  //   border-color: #C8C9C7;
-  //   cursor: not-allowed;
-
-  //     }
-  //   &[disabled]:checked + span:before {
-  //   border-color: #C8C9C7;
-  //   background-color: #C8C9C7;
-  //   cursor: not-allowed;
-
-  //     }
+  }
 }
 
 input[type=radio] {
@@ -293,13 +272,6 @@ input[type=radio] {
       border-radius: 10px;
     }
   }
-
-  /* Unchecked : #ffffff,
-  Unchecked (on hover) : #f2f7f9 */
-
-  /* checked : #242424,
-  checked (on hover) : #033a6a */
-
 
   /* Hover states */
 

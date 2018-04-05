@@ -13,7 +13,8 @@ Polymer({
       type: String
     },
     active: {
-      type: String,
+      type: Boolean,
+      value: false,
       observer: 'setActive'
     }
   },
@@ -45,16 +46,16 @@ Polymer({
       this.toggleExpand(this._getEvent());
     }
 
-    if (this.active === 'true') {
+    if (this.active) {
       this.classList.add('active');
     }
 
     this.onclick = (function() {
-      this.active = 'true';
+      this.active = true;
     }).bind(this);
   },
-  setActive: function(newValue) {
-    if (newValue === 'true') {
+  setActive: function(newState) {
+    if (newState) {
       this.classList.add('active');
 
       this.async(function() {

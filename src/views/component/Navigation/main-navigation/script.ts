@@ -14,7 +14,8 @@ Polymer({
   listeners: {
     'navItem-active': 'setItemActive',
     'subNavigation-attached': 'setHeaderSize',
-    'fullscreen-toggled': 'setHeaderSize'
+    'fullscreen-toggled': 'setHeaderSize',
+    'navigation-close': 'navigationClose'
   },
   done: function() {
     [].slice.call(this.querySelectorAll('primary-items, secondary-items')).map(function(elm) {
@@ -33,13 +34,6 @@ Polymer({
   },
   attached: function() {
     this.style.display = 'block';
-
-    ['show.bs.collapse', 'hidden.bs.collapse'].map((function(event) {
-      this.querySelector('#main-navigation').addEventListener(event, function() {
-        document.body.classList.toggle('navigation-open');
-      });
-    }).bind(this));
-
     this.header = document.querySelector('c-corporate-header');
     this.siteName = this.header.siteName;
     this.siteUrl = this.header.siteUrl;
@@ -54,8 +48,17 @@ Polymer({
       this.header.hasMainNav = true;
     }
 
+    var nav = this.querySelector('#main-navigation');
+
     window.addEventListener('scroll', this.sticky.bind(this));
     window.addEventListener('resize', this.setHeaderSize.bind(this));
+    nav.addEventListener('show.bs.collapse', function(e) {
+      document.body.classList.add('navigation-open');
+    });
+    nav.addEventListener('hidden.bs.collapse', (function(e) {
+      document.body.classList.remove('navigation-open');
+      this.setHeaderSize.call(this);
+    }).bind(this));
 
     // Set start collapse value - couldnt get this to work in a better way...
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
@@ -63,17 +66,11 @@ Polymer({
     this.done.call(this);
   },
   setItemActive: function(event) {
-    var navItems = [].slice.call(event.target.parentElement.children);
-
-    navItems.map(function(navItem) {
-      if (!(navItem === event.target) && navItem.active === 'true') {
-        navItem.active = 'false';
-      }
-    });
-
-    if(window.innerWidth < 991 && this.closest(event.target, 'sub-navigation')) {
-      // new Collapse( this.querySelector('#main-navigation') ).hide();
+    var parent = event.target.parentNode;
+    if (parent.preActive) {
+      parent.preActive.active = false;
     }
+    parent.preActive = event.target;
 
     // $('.navbar-toggle').trigger('click');
     this.setHeaderSize.call(this);
@@ -107,6 +104,9 @@ Polymer({
       this.querySelector('.navbar-default').style.cssText = 'padding-top: ' + this.header.offsetHeight + 'px;';
     }
   },
+  navigationClose: function() {
+    new window.Collapse(this.header.querySelector('.navbar-toggle')).hide();
+  },
   sticky: function() {
     var stickyNavTop = this.offsetTop,
         scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY; // our current vertical position from the top
@@ -116,10 +116,5 @@ Polymer({
     } else {
       document.body.classList.add('header-is-sticky');
     }
-  },
-  // Taken from: https://stackoverflow.com/a/27037567
-  closest: function(el, sel) {
-    while ((el = el.parentElement) && !((el.matches || el.matchesSelector).call(el, sel)));
-    return el;
   }
 });

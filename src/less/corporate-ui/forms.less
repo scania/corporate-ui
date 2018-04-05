@@ -175,13 +175,13 @@ input[type=checkbox] {
     }
   }
   &:hover + span:before {
-    border-color: #C8C9C7;
+    background-color: #f2f7f9;
   }
   &:checked + span:before {
     content: "";
     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjM2Ljk4OCIgaGVpZ2h0PSIyMzYuOTg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8Zz4gIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4gIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIyMDIiIHdpZHRoPSIyMDIiIHk9Ii0xIiB4PSItMSIvPiA8L2c+IDxnPiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjE5OC4wOTgsMjQuMzI2IDg3LjU0MywxMzQuODgxIDM4Ljg5MSw4Ni4yMjkgMCwxMjUuMTIxIDg3LjU0MywyMTIuNjYyIDIzNi45ODgsNjMuMjE3ICIvPiAgPGcgaWQ9InN2Z18yIi8+ICA8ZyBpZD0ic3ZnXzMiLz4gIDxnIGlkPSJzdmdfNCIvPiAgPGcgaWQ9InN2Z181Ii8+ICA8ZyBpZD0ic3ZnXzYiLz4gIDxnIGlkPSJzdmdfNyIvPiAgPGcgaWQ9InN2Z184Ii8+ICA8ZyBpZD0ic3ZnXzkiLz4gIDxnIGlkPSJzdmdfMTAiLz4gIDxnIGlkPSJzdmdfMTEiLz4gIDxnIGlkPSJzdmdfMTIiLz4gIDxnIGlkPSJzdmdfMTMiLz4gIDxnIGlkPSJzdmdfMTQiLz4gIDxnIGlkPSJzdmdfMTUiLz4gIDxnIGlkPSJzdmdfMTYiLz4gPC9nPjwvc3ZnPg==);
     background-size: 20px;
-    background-position: 50% 50%;
+    background-position: 50%;
     background-repeat: no-repeat;
     border-color: #041E42;
     background-color: #041E42;
@@ -190,20 +190,70 @@ input[type=checkbox] {
       font-size: 11px;
       line-height: 12px;
       background-size: 13px;
-      background-position: 25% 25%;
     }
   }
-  &:disabled + span:before {
-    border-color: #C8C9C7;
-    cursor: not-allowed;
 
-      }
-    &[disabled]:checked + span:before {
-    border-color: #C8C9C7;
-    background-color: #C8C9C7;
-    cursor: not-allowed;
+   &:hover + span:before {
+      // background-color: #f2f7f9;
+      // border-color: #f2f7f9;
+    }
 
+    &:checked {
+
+      + span {
+        border-color: #242424;
+
+        &:before {
+          background-color: #242424;
+        }
       }
+
+      &:hover {
+
+        + span {
+          border-color: #033a6a;
+
+          &:before {
+            background-color: #033a6a;
+            border: 1.2px solid #033a6a;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+
+      &,
+      &:hover {
+
+        + span {
+          // border: 2px solid #C8C9C7;
+
+          &:before {
+            background: #fff;
+            border: 1.2px solid #C8C9C7;
+          }
+        }
+      }
+    }
+
+
+  // &[checked]:hover + span:before {
+  //   background-color: #033a6a;
+  //   border-color: #033a6a;
+  // }
+
+  // &:disabled + span:before {
+  //   border-color: #C8C9C7;
+  //   cursor: not-allowed;
+
+  //     }
+  //   &[disabled]:checked + span:before {
+  //   border-color: #C8C9C7;
+  //   background-color: #C8C9C7;
+  //   cursor: not-allowed;
+
+  //     }
 }
 
 input[type=radio] {
@@ -244,31 +294,58 @@ input[type=radio] {
     }
   }
 
-  &:hover + span:before {
-    background: #97999B;
-  }
-  &[disabled]:hover + span:before {
-    cursor: not-allowed;
-  }
-  &:checked + span:before {
-    background: #041E42;
-  }
+  /* Unchecked : #ffffff,
+  Unchecked (on hover) : #f2f7f9 */
 
-  &:disabled + span {
-      border-color: #C8C9C7;
+  /* checked : #242424,
+  checked (on hover) : #033a6a */
+
+
+  /* Hover states */
+
+    &:hover + span:before {
+      background-color: #f2f7f9;
+      border-color: #f2f7f9;
     }
 
-    &:disabled .checked + span {
-      border: 4px solid red;
-      cursor: not-allowed;
-    }
-     &[disabled]:checked + span:before {
-    background-color: #C8C9C7;
-    cursor: not-allowed;
+    &:checked {
 
+      + span {
+        border-color: #242424;
+
+        &:before {
+          background-color: #242424;
+        }
       }
 
-}
+      &:hover {
+
+        + span {
+          border-color: #033a6a;
+
+          &:before {
+            background-color: #033a6a;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+
+      &,
+      &:hover {
+
+        + span {
+          border: 2px solid #C8C9C7;
+
+          &:before {
+            border: 2px solid #fff;
+            background: #fff;
+          }
+        }
+      }
+    }
+  }
 .nowrap {
   white-space: nowrap;
 }

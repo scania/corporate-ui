@@ -3,13 +3,13 @@
 
 <html lang="en-GB" ng-app="CorporateUI">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <noscript>
     <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
   </noscript>
 
-   <title>Corporate UI - Developers</title>
+  <title>Corporate UI - Developers</title>
 
   <!-- <script src="/js/corporate-ui.js?preload=false"></script> -->
   <script src="/js/corporate-ui.js"></script>
@@ -33,7 +33,7 @@
 </head>
 <body class="scania" ng-controller="Example as example" ng-cloak>
 
-  <c-corporate-header site-name="Developers" site-url="/">
+  <c-corporate-header site-name="{{example.name}}" site-url="/">
     <nav-item location="/">Global</nav-item>
     <nav-item>
       <a href="#" ng-if="!example.auth" ng-click="example.auth = !example.auth">login</a>
@@ -57,6 +57,9 @@
       <primary-items>
         <nav-item>
           <a href="/">{{'home' | i18n}}</a>
+          <sub-navigation>
+            <nav-item>text</nav-item>
+          </sub-navigation>
         </nav-item>
         <nav-item ng-repeat="item in example.items">
           <a href="{{item.url}}" ng-if="example.cond($index+1)">{{item.name}}</a>
@@ -82,6 +85,10 @@
 
     <section>
       <div class="container">
+        <form>
+          <label>App name</label>
+          <input type="text" ng-model="example.name">
+        </form>
         <label>Nav items</label>
         <select multiple="" ng-model="example.itemsSelected" ng-options="item.name for item in example.items"></select>
         <form ng-submit="example.add()">
@@ -107,7 +114,8 @@
       var vm = this
 
       vm.auth = true
-      vm.item = 'home';
+      vm.name = 'Developers'
+      vm.item = 'home'
       vm.items = [
         {id:1, name:'start', url:'/start'},
         {id:2, name:'mid', url:'/mid'},
@@ -185,7 +193,7 @@
       }
     }
 
-    // window.CorporateUi.baseComponents()
+    // window.CorporateUi.baseComponents();
   </script>
 </body>
 </html>

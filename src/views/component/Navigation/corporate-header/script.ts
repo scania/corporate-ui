@@ -10,6 +10,11 @@ Polymer({
     fullbleed: {
       type: Boolean,
       value: true
+    },
+    hasMainNav: {
+      type: Boolean,
+      value: false,
+      observer: 'initCollapsable'
     }
   },
   created: function() {
@@ -33,5 +38,18 @@ Polymer({
   },
   attached: function() {
     this.style.display = 'block';
+  },
+  initCollapsable: function(newState) {
+    if (newState) {
+      var elm = this.querySelector('.navbar-toggle');
+      if (!elm) {
+        // IE issue - We need this recursive loop to
+        // make sure that the elm is actually available
+        return setTimeout((function() {
+          this.initCollapsable(newState);
+        }).bind(this), 100);
+      }
+      new window.Collapse(elm);
+    }
   }
 });

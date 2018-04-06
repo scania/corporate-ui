@@ -14,11 +14,17 @@ Polymer({
   listeners: {
     'navItem-active': 'setItemActive',
     'subNavigation-attached': 'setHeaderSize',
-    'fullscreen-toggled': 'setHeaderSize'
+    'fullscreen-toggled': 'setHeaderSize',
+    'navigation-close': 'navigationClose'
   },
   done: function() {
-    this.jQuery('primary-items, secondary-items', this).addClass('nav navbar-nav');
-    this.jQuery('secondary-items', this).addClass('navbar-right');
+    [].slice.call(this.querySelectorAll('primary-items, secondary-items')).map(function(elm) {
+      elm.classList.add('nav', 'navbar-nav')
+    })
+
+    if (this.querySelector('secondary-items')) {
+      this.querySelector('secondary-items').classList.add('navbar-right');
+    }
 
     // The timeout here is used to delay the callback until template is fully rendered
     setTimeout((function() {
@@ -27,83 +33,88 @@ Polymer({
     }).bind(this));
   },
   attached: function() {
-    var self = this;
     this.style.display = 'block';
-
-    $('#main-navigation', this).on('show.bs.collapse hidden.bs.collapse', function() {
-      self.jQuery('body').toggleClass('navigation-open');
-    });
-
     this.header = document.querySelector('c-corporate-header');
     this.siteName = this.header.siteName;
     this.siteUrl = this.header.siteUrl;
 
     // If corporate-header exists tell the logotype to have sticky handling
     if (this.header) {
-      $('.navbar-symbol', this.header).addClass('should-stick');
+      this.header.querySelector('.navbar-symbol').classList.add('should-stick');
     }
 
     // Show hamburger menu if item exist in main-navigation
-    if ($('nav-item', this).length) {
-      $('.navbar-toggle', this.header).removeClass('hidden');
+    if (this.querySelectorAll('nav-item').length) {
+      this.header.hasMainNav = true;
     }
 
-    $(window).on('scroll', this.sticky.bind(this));
-    $(window).on('resize', this.setHeaderSize.bind(this));
+    var nav = this.querySelector('#main-navigation');
+
+    window.addEventListener('scroll', this.sticky.bind(this));
+    window.addEventListener('resize', this.setHeaderSize.bind(this));
+    nav.addEventListener('show.bs.collapse', function(e) {
+      document.body.classList.add('navigation-open');
+    });
+    nav.addEventListener('hidden.bs.collapse', (function(e) {
+      document.body.classList.remove('navigation-open');
+      this.setHeaderSize.call(this);
+    }).bind(this));
 
     // Set start collapse value - couldnt get this to work in a better way...
-    $('.navbar-toggle > a', this).addClass('collapsed');
-
-    this.jQuery = window.jQuery;
-    window.$ = window.jQuery = window.preJQuery;
+    // this.querySelector('.navbar-toggle').classList.add('collapsed');
 
     this.done.call(this);
   },
   setItemActive: function(event) {
-    var navItems = [].slice.call(event.target.parentElement.children);
-
-    navItems.map(function(navItem) {
-      if (!(navItem === event.target) && navItem.active === 'true') {
-        navItem.active = 'false';
-      }
-    });
-
-    if(window.innerWidth < 991 && event.target.active == 'true' && this.jQuery(event.target).parents('sub-navigation').length) {
-      this.jQuery('#main-navigation', this).collapse('hide');
+    var parent = event.target.parentNode;
+    if (parent.preActive) {
+      parent.preActive.active = false;
     }
-    // this.jQuery('.navbar-toggle').trigger('click');
+    parent.preActive = event.target;
+
+    // $('.navbar-toggle').trigger('click');
     this.setHeaderSize.call(this);
   },
   setHeaderSize: function() {
-    var headerHeight = this.jQuery('.navbar-toggle:visible', this.header).height()
-                     || this.jQuery('> nav', this).height() + this.jQuery('sub-navigation:visible', this).height()
-                     || 'auto'; // On desktop mode it will use #main-nav on mobile .navbar-toggle
+    var headerHeight = 'auto',
+        elm = this.querySelector('.navbar-toggle'),
+        elm2 = this.querySelector('.navbar-default'),
+        elm3 = this.querySelector('nav-item.active sub-navigation');
 
-    if( parseInt(this.style.height) != headerHeight ) {
-      this.jQuery(this)
-        .removeAttr('style')
-        .css({display: 'block'})
-        .height( headerHeight );
+    if (elm2 && elm2.offsetHeight) {
+      headerHeight = elm2.offsetHeight;
+      if (elm3 && elm3.offsetHeight) {
+        headerHeight += elm3.offsetHeight;
+      }
     }
 
-    this.jQuery('> .navbar-default', this).removeAttr('style');
+    if (elm && elm.getClientRects().length) {
+      headerHeight = elm.offsetHeight
+    }
+
+    if( parseInt(this.style.height) != headerHeight ) {
+      this.removeAttribute('style')
+      this.style.cssText ='display: block; height: ' + headerHeight + (isNaN(Number(headerHeight)) ? ';' : 'px;');
+    }
+
+    this.querySelector('.navbar-default').removeAttribute('style');
 
     // Used in mobile mode
     if(window.innerWidth < 991) {
-      var header = this.jQuery(this.header).height();
-      this.jQuery('> .navbar-default', this).css({ 'padding-top': header });
+      this.querySelector('.navbar-default').style.cssText = 'padding-top: ' + this.header.offsetHeight + 'px;';
     }
   },
+  navigationClose: function() {
+    new window.Collapse(this.header.querySelector('.navbar-toggle')).hide();
+  },
   sticky: function() {
-    var body = this.jQuery('body'),
-        navContainer = this.jQuery('> .navbar-default', this), // Using > could lead to performance issues due to manipulation of dom
-        stickyNavTop = this.jQuery(this).offset().top,
-        scrollTop = this.jQuery(window).scrollTop(); // our current vertical position from the top
+    var stickyNavTop = this.offsetTop,
+        scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY; // our current vertical position from the top
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
-      body.removeClass('header-is-sticky');
+      document.body.classList.remove('header-is-sticky');
     } else {
-      body.addClass('header-is-sticky');
+      document.body.classList.add('header-is-sticky');
     }
   }
 });

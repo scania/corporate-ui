@@ -240,26 +240,24 @@ input[type=radio] {
   // smaller than 16px and use vertical-align: bottom;
 
   + span {
-    position: relative;
-    margin-left: -25px; // -25 here instead of 20 beause of zoom
-    // margin-right: 6px;
-    display: inline-block;
-    border: 2px solid #041E42;
-    background-color: #fff;
-    line-height: normal;
-    border-radius: 15px;
-    zoom: .8;
-    vertical-align: text-bottom;
+        position: relative;
+        margin-left: -25px;
+        display: inline-block;
+        border: 0.23rem solid #041E42;
+        background-color: #fff;
+        line-height: 0.5rem;
+        border-radius: 15px;
+        zoom: .8;
+        vertical-align: text-bottom;
 
     &:before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border-radius: inherit;
-      border: 0.3em solid #FFF;
-      vertical-align: bottom;
-      // margin: 1px;
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border-radius: inherit;
+        border: 0.3em solid #FFF;
+        vertical-align: bottom;
 
 
       .app & {
@@ -279,6 +277,10 @@ input[type=radio] {
       background-color: #f2f7f9;
       border-color: #f2f7f9;
     }
+
+    &:focus {
+          outline: none;
+        }
 
     &:checked {
 

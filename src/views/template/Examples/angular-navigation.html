@@ -3,15 +3,16 @@
 
 <html lang="en-GB" ng-app="CorporateUI">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <noscript>
     <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
   </noscript>
 
-   <title>Corporate UI - Developers</title>
+  <title>Corporate UI - Developers</title>
 
   <script src="/js/corporate-ui.js?preload=false"></script>
+  <!-- <script src="/js/corporate-ui.js"></script> -->
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
@@ -35,7 +36,7 @@
   <c-main-content>
     <c-main-navigation ng-cloak>
       <primary-items>
-        <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" nav-item="item" items="uxlib.items" active="{{item.active}}"></nav-item>
+        <nav-item ng-repeat="item in uxlib.items" location="{{item.location}}" item="item"></nav-item>
       </primary-items>
     </c-main-navigation>
 
@@ -68,7 +69,7 @@
   <script>
     angular.module('CorporateUI', [])
       .controller('UxLib', [UxLib])
-      .directive('navItem', navItem)
+      .directive('item', [item])
       /*.directive('subNavigation', ['$compile', '$timeout', subNavigation])*/;
 
     function UxLib() {
@@ -88,19 +89,19 @@
       ];
     }
 
-    function navItem() {
+    function item() {
       return {
         restrict: 'A',
         scope: {
-          item: '=navItem',
-          items: '=items'
+          item: '=item'
         },
         template: '\
-          <a href="{{item.url}}" ng-click="changeView($event)">{{item.name}}</a> \
+          <a href="{{item.location}}" ng-click="changeView($event)">{{item.name}}</a> \
           <sub-navigation caption="{{item.name}}" ng-if="item.children">\
-            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}" nav-item="subItem"></nav-item>\
+            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}" item="subItem"></nav-item>\
           </sub-navigation>',
         link: function($scope, element, attrs) {
+          element.active = $scope.item.active;
           $scope.changeView = function($event, target) {
             $event.preventDefault();
           }

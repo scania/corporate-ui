@@ -104,62 +104,24 @@
     }
   }
 
-  &.table-clickable {
+&.table-clickable {
 
-    > tbody {
+  > tbody {
 
-      > tr {
+    > tr {
+      border: 1px solid #dadada;
 
+      &.active {
+        border-color: #4a8ba4;
+        border-style: double;
+      }
 
-        &:hover,
-        &.active {
-          > td,
-          > th {
-            background-color: #f2f7f9;
-            cursor: pointer;
-          }
-        }
-
-        &:not(.active) > td  {
-          border-bottom: none;
-        }
-
-        &:last-child > td {
-          border-bottom: 1px solid #dadada;
-        }
-
-        &:first-child > td {
-          border-top: 1px solid #dadada;
-        }
-
-        > td {
-
-           &:not(:first-child) {
-            border-left: transparent;
-           }
-
-           &:not(:last-child) {
-            border-right: transparent;
-           }
-        }
-
-        &.active {
-
-          > td {
-            border: 1px solid #4a8ba4;
-
-            &:not(:first-child) {
-              border-left: transparent;
-            }
-
-            &:not(:last-child) {
-              border-right: transparent;
-            }
-          }
-        }
+      > td {
+        border: none;
       }
     }
   }
+}
 
   &.table-selectable {
 

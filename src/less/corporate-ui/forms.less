@@ -26,6 +26,7 @@ textarea[placeholder] {
   color: #747472;
   padding: 20px 40px;
   height: 63px;
+  line-height: 3.33;
   box-shadow: none;
   border-radius: 0;
   border: 0;
@@ -124,16 +125,17 @@ textarea[placeholder] {
 }
 
 fieldset {
-  border: 2px dotted silver;
-  padding: 25px 25px 5px 5px;
-  margin-bottom: 30px;
+    border: 2px dotted silver;
+    padding: 25px 25px 5px 5px;
+    margin-bottom: 30px;
 }
 // Radio and Checkboxes//
 input[type=checkbox] {
-    height: 30px;
-    width: 30px;
+    height: 26px;
+    width: 26px;
+    position: static;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: text-bottom;
 
     .checkbox & {
       position: static;
@@ -141,35 +143,37 @@ input[type=checkbox] {
 
 
   .app & {
-    height: 20px;
+    height: 17px;
     width: 20px;
     position: static;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: text-bottom;
   }
 
   + span {
     position: relative;
     display: inline-block;
-    vertical-align: bottom;
-    line-height: 0;
+    vertical-align: middle;
+    line-height: 1;
     margin-left: -35px;
     .app & {
-      margin-left:-23px;
+      // margin-left:-23px;
+        margin-left: -21px;
+        right: 2px;
     }
 
     &:before {
-      content: "";
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
-      border: 1.2px solid #6f6f70;
-      border-radius: 2px;
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border: 1.1px solid #6f6f70;
+        border-radius: 1.2px;
 
       .app & {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
     }
   }
@@ -188,7 +192,7 @@ input[type=checkbox] {
     .app & {
       font-size: 11px;
       line-height: 12px;
-      background-size: 13px;
+      background-size: 12px;
     }
   }
 
@@ -212,7 +216,7 @@ input[type=checkbox] {
 
         &:before {
           background-color: #033a6a;
-          border: 1.2px solid #033a6a;
+          border: 1.1px solid #033a6a;
         }
       }
     }
@@ -227,7 +231,7 @@ input[type=checkbox] {
 
         &:before {
           background: #fff;
-          border: 1.2px solid #C8C9C7;
+          border: 1.1px solid #C8C9C7;
         }
       }
     }
@@ -239,24 +243,26 @@ input[type=radio] {
   // smaller than 16px and use vertical-align: bottom;
 
   + span {
-        position: relative;
-        margin-left: -25px;
-        display: inline-block;
-        border: 0.23rem solid #041E42;
-        background-color: #fff;
-        line-height: 0.5rem;
-        border-radius: 15px;
-        zoom: .8;
-        vertical-align: text-bottom;
+    position: relative;
+    margin-left: -25px; // -25 here instead of 20 beause of zoom
+    display: inline-block;
+    border: 2px solid #041E42;
+    background-color: #fff;
+    line-height: normal;
+    border-radius: 15px;
+    zoom: .8;
+    vertical-align: text-bottom;
+    right: 2px;
 
     &:before {
-        content: "";
-        display: inline-block;
-        width: 24px;
-        height: 24px;
-        border-radius: inherit;
-        border: 0.3em solid #FFF;
-        vertical-align: bottom;
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: inherit;
+      border: 0.3em solid #FFF;
+      vertical-align: bottom;
+      // margin: 1px;
 
 
       .app & {

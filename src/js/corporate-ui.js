@@ -378,6 +378,14 @@ window.CorporateUi = (function() {
   }
 
   function baseComponents(references) {
+    // Adds support for Promise if non exist
+    if (typeof(Promise) === 'undefined') {
+      return importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
+        Promise = ES6Promise;
+        baseComponents(references);
+      }, window.corporate_elm);
+    }
+
     importLink(public.components['main-content'], 'import', null, window.corporate_elm);
 
     /*if (window.params.preload === 'false') {
@@ -419,15 +427,7 @@ window.CorporateUi = (function() {
       importLink(window.version_root + 'css/corporate-ui.css', 'stylesheet', null, window.corporate_elm);
     }
 
-    // Adds support for Promise if non exist
-    if (typeof(Promise) === 'undefined') {
-      importScript(window.static_root + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
-        Promise = ES6Promise;
-        baseComponents(window.params.preload === 'false' ? [] : undefined);
-      }, window.corporate_elm);
-    } else {
-      baseComponents(window.params.preload === 'false' ? [] : undefined);
-    }
+    baseComponents(window.params.preload === 'false' ? [] : undefined);
   }
 
   function sysMessages() {

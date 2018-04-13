@@ -104,23 +104,28 @@
     }
   }
 
-  &.table-clickable {
+&.table-clickable {
 
-    > tbody {
+  > tbody {
 
-      > tr {
+    > tr {
+      border: 1px solid #dadada;
 
-        &:hover {
+      &.active {
+        border-color: #4a8ba4;
+        border-style: double;
 
-          > td,
-          > th {
-            background-color: #def7fb;
-            cursor: pointer;
-          }
+        > td {
+          background-color: #f2f7f9;
         }
+      }
+
+      > td {
+        border: none;
       }
     }
   }
+}
 
   &.table-selectable {
 

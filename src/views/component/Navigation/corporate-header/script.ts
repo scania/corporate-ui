@@ -38,6 +38,14 @@ Polymer({
   },
   attached: function() {
     this.style.display = 'block';
+    this.setSize();
+    window.addEventListener('resize', this.setSize.bind(this));
+  },
+  setSize: function() {
+    this.style.padding = '';
+    if(window.innerWidth < 991) {
+      this.style.padding = (this.querySelector('.navbar-default').offsetHeight / 2) + 'px';
+    }
   },
   initCollapsable: function(newState) {
     if (newState) {

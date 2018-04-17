@@ -67,7 +67,7 @@ Polymer({
   },
   setItemActive: function(event) {
     var parent = event.target.parentNode;
-    if (parent.preActive) {
+    if (parent.preActive && parent.preActive !== event.target) {
       parent.preActive.active = false;
     }
     parent.preActive = event.target;

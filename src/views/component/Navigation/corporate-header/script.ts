@@ -44,7 +44,8 @@ Polymer({
   setSize: function() {
     this.style.padding = '';
     if(window.innerWidth < 991) {
-      this.style.padding = (this.querySelector('.navbar-default').offsetHeight / 2) + 'px';
+      // TODO - We should use height, but then we need to add flex-grow & flex-shrink
+      this.style.paddingTop = this.querySelector('.navbar-default').offsetHeight + 'px';
     }
   },
   initCollapsable: function(newState) {

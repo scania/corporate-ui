@@ -98,11 +98,6 @@ Polymer({
     }
 
     this.querySelector('.navbar-default').removeAttribute('style');
-
-    // Used in mobile mode
-    if(window.innerWidth < 991) {
-      this.querySelector('.navbar-default').style.cssText = 'padding-top: ' + this.header.offsetHeight + 'px;';
-    }
   },
   navigationClose: function() {
     new window.Collapse(this.header.querySelector('.navbar-toggle')).hide();

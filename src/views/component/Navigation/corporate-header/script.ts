@@ -38,6 +38,15 @@ Polymer({
   },
   attached: function() {
     this.style.display = 'block';
+    this.setSize();
+    window.addEventListener('resize', this.setSize.bind(this));
+  },
+  setSize: function() {
+    this.style.padding = '';
+    if(window.innerWidth < 991) {
+      // TODO - We should use height, but then we need to add flex-grow & flex-shrink
+      this.style.paddingTop = this.querySelector('.navbar-default').offsetHeight + 'px';
+    }
   },
   initCollapsable: function(newState) {
     if (newState) {

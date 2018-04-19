@@ -234,10 +234,12 @@ window.CorporateUi = (function() {
 
     var properties = window.location.search.substring(1).split('&');
     var params = {};
-    for(index in properties) {
-      var item = properties[index].split('=')
-      params[item[0]] = item[1]
-    }
+    properties.map(function(item) {
+      var prop = item.split('=');
+      if (prop[0]) {
+        params[prop[0]] = prop[1];
+      }
+    });
 
     if(params.brand) {
       brand = params.brand;

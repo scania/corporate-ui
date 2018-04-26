@@ -26,26 +26,40 @@ Polymer({
       this.querySelector('secondary-items').classList.add('navbar-right');
     }
 
+    // Show hamburger menu if item exist in main-navigation
+    if (this.querySelectorAll('nav-item').length) {
+      this.header.hasMainNav = true;
+    }
+
     // The timeout here is used to delay the callback until template is fully rendered
     setTimeout((function() {
       this.sticky.call(this);
       this.setHeaderSize.call(this);
     }).bind(this));
   },
+  created: function() {
+    this.header = document.querySelector('c-corporate-header');
+
+    var self = this,
+        url = this.resolveUrl('/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js');
+
+    if(window.define) {
+      requirejs([url], function(bsn) {
+        Object.assign(window, bsn);
+        self.done.call(self);
+      })
+    } else {
+      window.CorporateUi.importScript(url, this.done.bind(this));
+    }
+  },
   attached: function() {
     this.style.display = 'block';
-    this.header = document.querySelector('c-corporate-header');
     this.siteName = this.header.siteName;
     this.siteUrl = this.header.siteUrl;
 
     // If corporate-header exists tell the logotype to have sticky handling
     if (this.header) {
       this.header.querySelector('.navbar-symbol').classList.add('should-stick');
-    }
-
-    // Show hamburger menu if item exist in main-navigation
-    if (this.querySelectorAll('nav-item').length) {
-      this.header.hasMainNav = true;
     }
 
     var nav = this.querySelector('#main-navigation');
@@ -62,8 +76,6 @@ Polymer({
 
     // Set start collapse value - couldnt get this to work in a better way...
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
-
-    this.done.call(this);
   },
   setItemActive: function(event) {
     var parent = event.target.parentNode;

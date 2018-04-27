@@ -45,21 +45,23 @@ Polymer({
       this.toggleExpand(this._getEvent());
     }
 
-    if (this.active === 'true') {
+    if (this.active && this.active.toString() == 'true') {
       this.classList.add('active');
-    }
-  },
-  setActive: function(newValue) {
-    if (newValue === 'true') {
-      this.classList.add('active');
-    } else {
-      this.classList.remove('active');
     }
 
-    if (this.value != newValue) {
+    this.onclick = (function() {
+      this.active = true;
+    }).bind(this);
+  },
+  setActive: function(newState) {
+    if (newState.toString() == 'true') {
+      this.classList.add('active');
+
       this.async(function() {
         this.fire('navItem-active');
       });
+    } else {
+      this.classList.remove('active');
     }
   },
   hasClass: function(element, className) {

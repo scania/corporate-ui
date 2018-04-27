@@ -10,6 +10,11 @@ Polymer({
     fullbleed: {
       type: Boolean,
       value: true
+    },
+    hasMainNav: {
+      type: Boolean,
+      value: false,
+      observer: 'initCollapsable'
     }
   },
   created: function() {
@@ -33,5 +38,27 @@ Polymer({
   },
   attached: function() {
     this.style.display = 'block';
+    this.setSize();
+    window.addEventListener('resize', this.setSize.bind(this));
+  },
+  setSize: function() {
+    this.style.padding = '';
+    if(window.innerWidth < 991) {
+      // TODO - We should use height, but then we need to add flex-grow & flex-shrink
+      this.style.paddingTop = this.querySelector('.navbar-default').offsetHeight + 'px';
+    }
+  },
+  initCollapsable: function(newState) {
+    if (newState) {
+      var elm = this.querySelector('.navbar-toggle');
+      if (!elm) {
+        // IE issue - We need this recursive loop to
+        // make sure that the elm is actually available
+        return setTimeout((function() {
+          this.initCollapsable(newState);
+        }).bind(this), 100);
+      }
+      new window.Collapse(elm);
+    }
   }
 });

@@ -2,6 +2,7 @@
 
 table { //This is to override the Boostrap standard of "collapse" on all table elements
   border-collapse: separate;
+  word-break: normal;
 }
 
 .table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
@@ -29,8 +30,9 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tr {
 
       > th {
+        font-family: 'Scania Sans Condensed';
+        font-weight: bold;
         text-transform: uppercase;
-        font-family: 'Scania Sans Condensed Bold';
         border: 1px solid transparent;
 
         input,
@@ -61,6 +63,11 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
       > td {
         color: #53565a;
+        vertical-align: middle;
+
+        ul {
+          margin: unset;
+        }
       }
     }
   }
@@ -211,7 +218,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       &:hover{
         > td,
         > th {
-          background-color: #e3e3e3;
+          background-color: #f2f7f9;
         }
       }
     }

@@ -1,4 +1,5 @@
 //BUTTONS Custom-classes
+
 .btn-close {
     background-color: transparent;
     border: 0;
@@ -21,4 +22,30 @@
         box-shadow: none;
         color: gray;
     }
+}
+
+.app {
+
+  .btn-link.btn-info {
+    font-family: 'Scania Sans Condensed';
+    font-weight: bold;
+    text-decoration: none;
+    color: @btn-info-bg;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:active,
+    &.active {
+      color: #6cabc3;
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    i {
+      margin-top: -1px !important;
+      margin-right: 1px;
+      font-size: 20px;
+    }
+  }
 }

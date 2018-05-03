@@ -122,20 +122,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     text-transform: none;
   }
 
-  .table-borderless {
-    tbody,
-    thead {
-
-      tr {
-
-        td,
-        th {
-          border: none;
-        }
-      }
-    }
-  }
-
   &.table-striped {
 
     thead,
@@ -160,6 +146,11 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           > td,
           > th {
             background-color: @dark-content-block;
+
+            // Striped table inside well
+            .well & {
+              background-color: #fdfdfd;
+            }
           }
         }
       }
@@ -190,22 +181,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
     caption {
       padding: 10px;
-    }
-  }
-}
-
-// Striped table inside well
-.well {
-  .table-striped {
-    > tbody {
-        > tr {
-        &:nth-child(odd) {
-          > td,
-          > th {
-            background-color: #fdfdfd;
-          }
-        }
-      }
     }
   }
 }

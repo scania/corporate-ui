@@ -17,6 +17,7 @@
         margin-right: 10px;
       }
     }
+
     tr.row-selected {
 
       &.row-selectable > td,
@@ -197,6 +198,7 @@
       }
     }
   }
+
   // "table-calculation" Should be moved to separate component...
   &.table-calculation {
     table-layout: fixed;
@@ -343,7 +345,6 @@
           cursor: pointer;
         }
 
-
         span {
           position: relative;
           display: block;
@@ -414,6 +415,20 @@
           &.divider-left {
             border-left: 2px solid #fff;
           }
+        }
+      }
+    }
+  }
+
+  &.table-borderless {
+    tbody,
+    thead {
+
+      tr {
+
+        td,
+        th {
+          border: none;
         }
       }
     }

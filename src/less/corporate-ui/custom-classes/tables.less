@@ -1,7 +1,4 @@
-/*** TABLES ***/
-.filtered {
-  display: none;
-}
+/*** Custom Tables ***/
 
 .table {
 
@@ -20,6 +17,7 @@
         margin-right: 10px;
       }
     }
+
     tr.row-selected {
 
       &.row-selectable > td,
@@ -104,28 +102,28 @@
     }
   }
 
-&.table-clickable {
+  &.table-clickable {
 
-  > tbody {
+    > tbody {
 
-    > tr {
-      border: 1px solid #dadada;
+      > tr {
+        border: 1px solid #dadada;
 
-      &.active {
-        border-color: #4a8ba4;
-        border-style: double;
+        &.active {
+          border-color: #4a8ba4;
+          border-style: double;
+
+          > td {
+            background-color: #f2f7f9;
+          }
+        }
 
         > td {
-          background-color: #f2f7f9;
+          border: none;
         }
-      }
-
-      > td {
-        border: none;
       }
     }
   }
-}
 
   &.table-selectable {
 
@@ -200,6 +198,7 @@
       }
     }
   }
+
   // "table-calculation" Should be moved to separate component...
   &.table-calculation {
     table-layout: fixed;
@@ -346,7 +345,6 @@
           cursor: pointer;
         }
 
-
         span {
           position: relative;
           display: block;
@@ -356,7 +354,91 @@
       }
     }
   }
+
+  &.table-condensed {
+    font-family: 'Scania Sans Condensed';
+
+    > tbody {
+      > tr {
+        > td {
+          padding-top: 8px;
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  &.table-panel {
+    background-color: white;
+    border: 1px solid;
+    border-collapse: inherit;
+
+    thead {
+      word-break: normal;
+      text-transform: uppercase;
+      font-family: 'Scania Sans Condensed';
+    }
+  }
+
+  // Data table table-layout:
+  &.table-data {
+
+    tbody {
+
+       tr {
+
+        &:first-child {
+
+          th,
+          td {
+            border-top: 0;
+          }
+        }
+
+        > td {
+          background-color: #f5f5f5;
+          font-weight: bold;
+          font-size: 12px;
+          font-family: 'Open Sans';
+          text-align: center;
+          padding: 0 20px;
+          line-height: 22px;
+
+          small {
+            font-weight: normal;
+          }
+
+          &.divider-right {
+            border-right: 2px solid #fff;
+          }
+
+          &.divider-left {
+            border-left: 2px solid #fff;
+          }
+        }
+      }
+    }
+  }
+
+  &.table-borderless {
+    tbody,
+    thead {
+
+      tr {
+
+        td,
+        th {
+          border: none;
+        }
+      }
+    }
+  }
 }
+
+.filtered {
+  display: none;
+}
+
 // This is a separate rule to make this rule over rule the previous one.
 // This could be solved by using the specific unicode instead
 table.table {
@@ -366,58 +448,6 @@ table.table {
     &:first-child:before {
       &:extend(.icon-caret-down:before);
     }
-  }
-}
-
-// Data table table-layout:
-.table-data {
-
-  tbody {
-
-     tr {
-
-      &:first-child {
-
-        th,
-        td {
-          border-top: 0;
-        }
-      }
-
-      > td {
-        background-color: #f5f5f5;
-        font-weight: bold;
-        font-size: 12px;
-        font-family: 'Open Sans';
-        text-align: center;
-        padding: 0 20px;
-        line-height: 22px;
-
-        small {
-          font-weight: normal;
-        }
-
-        &.divider-right {
-          border-right: 2px solid #fff;
-        }
-
-        &.divider-left {
-          border-left: 2px solid #fff;
-        }
-      }
-    }
-  }
-}
-
-.table-panel {
-  background-color: white;
-  border: 1px solid;
-  border-collapse: inherit;
-
-  thead {
-    word-break: normal;
-    text-transform: uppercase;
-    font-family: 'Scania Sans Condensed';
   }
 }
 

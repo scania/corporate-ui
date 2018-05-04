@@ -61,6 +61,14 @@
 .bg-tertiary-06 { background-color: @color-tertiary-06 !important; }
 .bg-tertiary-07 { background-color: @color-tertiary-07 !important; }
 
+.bg-tertiary-01.bright { background-color: #58a4b0 !important; }
+.bg-tertiary-02.bright { background-color: #7747a9 !important; }
+.bg-tertiary-03.bright { background-color: #0089a0 !important; }
+.bg-tertiary-04.bright { background-color: #e8bd6a !important; }
+.bg-tertiary-05.bright { background-color: #a1858d !important; }
+.bg-tertiary-06.bright { background-color: #7eb9bb !important; }
+.bg-tertiary-07.bright { background-color: #82c389 !important; }
+
 .bg-grey1 { background-color: @color-grey1 !important; }
 .bg-grey2 { background-color: @color-grey2 !important; }
 .bg-grey3 { background-color: @color-grey3 !important; }
@@ -77,19 +85,18 @@
 .bg-danger  { background-color: @interaction-danger !important; }
 .bg-info    { background-color: @interaction-info !important; }
 
-	.bg-default-bright { background-color: #e7e5ea !important; }
-	.bg-primary-bright { background-color: mix(@interaction-primary, #fff, 15%) !important; }
-	.bg-success-bright { background-color: mix(@interaction-success, #fff, 15%) !important; }
-	.bg-warning-bright { background-color: mix(@interaction-warning, #fff, 15%) !important; }
-	.bg-danger-bright  { background-color: mix(@interaction-danger, #fff, 15%) !important; }
-	.bg-info-bright    { background-color: mix(@interaction-info, #fff, 15%) !important; }
+.bg-default-bright { background-color: #e7e5ea !important; }
+.bg-primary-bright { background-color: mix(@interaction-primary, #fff, 15%) !important; }
+.bg-success-bright { background-color: mix(@interaction-success, #fff, 15%) !important; }
+.bg-warning-bright { background-color: mix(@interaction-warning, #fff, 15%) !important; }
+.bg-danger-bright  { background-color: mix(@interaction-danger, #fff, 15%) !important; }
+.bg-info-bright    { background-color: mix(@interaction-info, #fff, 15%) !important; }
 
 .bg-half-primary  { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-primary 50%, @interaction-primary 100%) !important; }
 .bg-half-success  { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-success 50%, @interaction-success 100%) !important; }
 .bg-half-warning  { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-warning 50%, @interaction-warning 100%) !important; }
 .bg-half-danger   { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-danger 50%, @interaction-danger 100%) !important; }
 .bg-half-info     { background-image: linear-gradient(to bottom right, transparent 0%, transparent 50%, @interaction-info 50%, @interaction-info 100%) !important; }
-
 
 .chart-series-01 { background-color: #041E42; fill: #041E42; }
 .chart-series-02 { background-color: #97999B; fill: #97999B; }
@@ -102,11 +109,14 @@
 .chart-series-09 { background-color: #896A73; fill: #896A73; }
 .chart-series-10 { background-color: #2C5234; fill: #2C5234; }
 
+.bg-gradient-01  {
+  background-image: linear-gradient(90deg, @gradient-01-color-a, @gradient-01-color-b, @gradient-01-color-c, @gradient-01-color-d, @gradient-01-color-e) !important; 
+}
 
-.bg-gradient-01  { background-image: linear-gradient(90deg, @gradient-01-color-a, @gradient-01-color-b, @gradient-01-color-c, @gradient-01-color-d, @gradient-01-color-e) !important; }
-
-.bg-cross { background-image: linear-gradient(to bottom right, transparent 45%, #ddd 48%, #ddd 51%, transparent 55%), 
-                              linear-gradient(to bottom left, transparent 45%, #ddd 48%, #ddd 51%, transparent 55%) !important; }
+.bg-cross {
+  background-image: linear-gradient(to bottom right, transparent 45%, #ddd 48%, #ddd 51%, transparent 55%), 
+  linear-gradient(to bottom left, transparent 45%, #ddd 48%, #ddd 51%, transparent 55%) !important; 
+}
 
 .bg-disabled    { color: #ddd !important; }
 

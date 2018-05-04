@@ -159,7 +159,7 @@ input[type=checkbox] {
     margin-left: -35px;
     .app & {
       // margin-left:-23px;
-        margin-left: -21px;
+        margin-left: -20px;
         right: 2px;
     }
 
@@ -239,13 +239,17 @@ input[type=checkbox] {
   }
 }
 
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    display: none;
+}
+
 input[type=radio] {
   // Zoom is used to make it smaller. Without zoom it cant be
   // smaller than 16px and use vertical-align: bottom;
 
   + span {
     position: relative;
-    margin-left: -25px; // -25 here instead of 20 beause of zoom
+    margin-left: -20px; // -25 here instead of 20 beause of zoom
     display: inline-block;
     border: 2px solid #041E42;
     background-color: #fff;

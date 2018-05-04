@@ -26,7 +26,7 @@ textarea[placeholder] {
   color: #747472;
   padding: 20px 40px;
   height: 63px;
-  line-height: 1;
+  line-height: 3.33;
   box-shadow: none;
   border-radius: 0;
   border: 0;
@@ -126,16 +126,17 @@ textarea[placeholder] {
 }
 
 fieldset {
-  border: 2px dotted silver;
-  padding: 25px 25px 5px 5px;
-  margin-bottom: 30px;
+    border: 2px dotted silver;
+    padding: 25px 25px 5px 5px;
+    margin-bottom: 30px;
 }
 // Radio and Checkboxes//
 input[type=checkbox] {
-    height: 30px;
-    width: 30px;
+    height: 26px;
+    width: 26px;
+    position: static;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: text-bottom;
 
     .checkbox & {
       position: static;
@@ -143,46 +144,48 @@ input[type=checkbox] {
 
 
   .app & {
-    height: 20px;
+    height: 17px;
     width: 20px;
     position: static;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: text-bottom;
   }
 
   + span {
     position: relative;
     display: inline-block;
-    vertical-align: bottom;
-    line-height: 0;
+    vertical-align: middle;
+    line-height: 1;
     margin-left: -35px;
     .app & {
-      margin-left:-23px;
+      // margin-left:-23px;
+        margin-left: -20px;
+        right: 2px;
     }
 
     &:before {
-      content: "";
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
-      border: 1.2px solid #6f6f70;
-      border-radius: 2px;
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border: 1.1px solid #6f6f70;
+        border-radius: 1.2px;
 
       .app & {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
     }
   }
   &:hover + span:before {
-    border-color: #C8C9C7;
+    background-color: #f2f7f9;
   }
   &:checked + span:before {
     content: "";
     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjM2Ljk4OCIgaGVpZ2h0PSIyMzYuOTg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8Zz4gIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4gIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIyMDIiIHdpZHRoPSIyMDIiIHk9Ii0xIiB4PSItMSIvPiA8L2c+IDxnPiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjE5OC4wOTgsMjQuMzI2IDg3LjU0MywxMzQuODgxIDM4Ljg5MSw4Ni4yMjkgMCwxMjUuMTIxIDg3LjU0MywyMTIuNjYyIDIzNi45ODgsNjMuMjE3ICIvPiAgPGcgaWQ9InN2Z18yIi8+ICA8ZyBpZD0ic3ZnXzMiLz4gIDxnIGlkPSJzdmdfNCIvPiAgPGcgaWQ9InN2Z181Ii8+ICA8ZyBpZD0ic3ZnXzYiLz4gIDxnIGlkPSJzdmdfNyIvPiAgPGcgaWQ9InN2Z184Ii8+ICA8ZyBpZD0ic3ZnXzkiLz4gIDxnIGlkPSJzdmdfMTAiLz4gIDxnIGlkPSJzdmdfMTEiLz4gIDxnIGlkPSJzdmdfMTIiLz4gIDxnIGlkPSJzdmdfMTMiLz4gIDxnIGlkPSJzdmdfMTQiLz4gIDxnIGlkPSJzdmdfMTUiLz4gIDxnIGlkPSJzdmdfMTYiLz4gPC9nPjwvc3ZnPg==);
     background-size: 20px;
-    background-position: 50% 50%;
+    background-position: 50%;
     background-repeat: no-repeat;
     border-color: #041E42;
     background-color: #041E42;
@@ -190,10 +193,54 @@ input[type=checkbox] {
     .app & {
       font-size: 11px;
       line-height: 12px;
-      background-size: 13px;
-      background-position: 25% 25%;
+      background-size: 12px;
     }
   }
+
+  &:hover + span:before {
+  }
+
+  &:checked {
+
+    + span {
+      border-color: #242424;
+
+      &:before {
+        background-color: #242424;
+      }
+    }
+
+    &:hover {
+
+      + span {
+        border-color: #033a6a;
+
+        &:before {
+          background-color: #033a6a;
+          border: 1.1px solid #033a6a;
+        }
+      }
+    }
+  }
+
+  &:disabled {
+
+    &,
+    &:hover {
+
+      + span {
+
+        &:before {
+          background: #fff;
+          border: 1.1px solid #C8C9C7;
+        }
+      }
+    }
+  }
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    display: none;
 }
 
 input[type=radio] {
@@ -202,8 +249,7 @@ input[type=radio] {
 
   + span {
     position: relative;
-    margin-left: -25px; // -25 here instead of 20 beause of zoom
-    // margin-right: 6px;
+    margin-left: -20px; // -25 here instead of 20 beause of zoom
     display: inline-block;
     border: 2px solid #041E42;
     background-color: #fff;
@@ -211,6 +257,7 @@ input[type=radio] {
     border-radius: 15px;
     zoom: .8;
     vertical-align: text-bottom;
+    right: 2px;
 
     &:before {
       content: "";
@@ -221,6 +268,7 @@ input[type=radio] {
       border: 0.3em solid #FFF;
       vertical-align: bottom;
       // margin: 1px;
+
 
       .app & {
         width: 16px;
@@ -233,13 +281,55 @@ input[type=radio] {
     }
   }
 
-  &:hover + span:before {
-    background: #97999B;
+  /* Hover states */
+
+    &:hover + span:before {
+      background-color: #f2f7f9;
+      border-color: #f2f7f9;
+    }
+
+    &:focus {
+          outline: none;
+        }
+
+    &:checked {
+
+      + span {
+        border-color: #242424;
+
+        &:before {
+          background-color: #242424;
+        }
+      }
+
+      &:hover {
+
+        + span {
+          border-color: #033a6a;
+
+          &:before {
+            background-color: #033a6a;
+          }
+        }
+      }
+    }
+
+    &:disabled {
+
+      &,
+      &:hover {
+
+        + span {
+          border: 2px solid #C8C9C7;
+
+          &:before {
+            border: 2px solid #fff;
+            background: #fff;
+          }
+        }
+      }
+    }
   }
-  &:checked + span:before {
-    background: #041E42;
-  }
-}
 .nowrap {
   white-space: nowrap;
 }

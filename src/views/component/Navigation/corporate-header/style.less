@@ -67,5 +67,16 @@
     left: 0;
     right: 0;
     z-index: 1100;
+
+    .navbar-header[short-name]:not([short-name='']) {
+      font-size: 0;
+
+      &:after {
+        display: inline-block;
+        font-size: 1.8rem;
+        vertical-align: middle;
+        content: attr(short-name);
+      }
+    }
   }
 }

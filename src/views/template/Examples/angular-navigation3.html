@@ -65,7 +65,7 @@
 </head>
 <body class="scania" ng-controller="Example as example" ng-cloak>
 
-  <c-corporate-header site-name="{{example.name}}" site-url="/">
+  <c-corporate-header site-name="{{example.name}}" short-name="{{example.short}}" site-url="/">
     <nav-item location="/">Global</nav-item>
     <nav-item>
       <a href="#" ng-if="!example.auth" ng-click="example.auth = !example.auth">login</a>
@@ -121,6 +121,7 @@
 
       vm.auth = true
       vm.name = 'Developers'
+      vm.short = 'Dev'
       vm.item = 'home'
       vm.items = [
         {id:1, name:'start', url:'/start'},

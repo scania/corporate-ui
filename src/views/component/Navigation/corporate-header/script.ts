@@ -2,6 +2,7 @@ Polymer({
   is: name,
   properties: {
     siteName: String,
+    shortName: String,
     variation: 0,
     siteUrl: {
       type: String,

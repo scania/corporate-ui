@@ -130,11 +130,16 @@
     > tbody {
 
       > tr {
+        border: 1px solid #dadada;
+
+        > td {
+          border: none;
+        }
 
         &:hover {
 
           > td {
-            background-color: #def7fb;
+            background-color: #d9e8ef;
             cursor: default;
           }
         }
@@ -142,10 +147,11 @@
         &.active,
         &.selected,
         &.expanded {
+          border:1px double #4a8ba4;
 
           > td {
-            background-color: darken(@color-secondary-02, 10%);
-            cursor: default;
+            background-color: #ebf2f5;
+            border:none;
           }
         }
 

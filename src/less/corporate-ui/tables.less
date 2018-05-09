@@ -30,8 +30,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tr {
 
       > th {
-        font-family: 'Scania Sans Condensed';
-        font-weight: bold;
         text-transform: uppercase;
         border: 1px solid transparent;
 
@@ -172,10 +170,13 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
       > tr {
 
+        > th {
+          text-transform: none;
+        }
+
         > th,
         > td, {
           padding: 10px;
-          text-transform: none;
         }
       }
     }

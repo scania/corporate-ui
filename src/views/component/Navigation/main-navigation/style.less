@@ -22,6 +22,12 @@
       display: inline-block;
     }
 
+    > .navbar {
+      // Inherit height from its child js calculated height
+      height: inherit;
+      box-shadow: 0 0 0 0 transparent;
+      transition: box-shadow 0.15s ease-in-out;
+    }
     .navbar-nav.navbar-right:last-child {
       margin-right: 1px;
       -webkit-transition: margin-right 100ms ease;
@@ -59,6 +65,8 @@
       top: -1px;
       left: 0;
       right: 0;
+      -webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
+      box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
     }
     .navbar-nav.navbar-right {
       margin-right: 80px;

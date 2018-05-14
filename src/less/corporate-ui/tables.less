@@ -18,7 +18,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > td,
       > th {
         padding: @table-cell-padding;
-        border: 1px solid #dadada;
       }
     }
   }
@@ -124,19 +123,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
   &.table-striped {
 
-    thead,
-    tbody,
-    tfoot {
-
-      > tr {
-
-        > th,
-        > td {
-          border-top: 0;
-        }
-      }
-    }
-
     > tbody {
 
       > tr {
@@ -152,6 +138,19 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
               background-color: #fdfdfd;
             }
           }
+        }
+      }
+    }
+  }
+
+  .app &.table-condensed {
+    font-family: 'Scania Sans Condensed';
+
+    > tbody {
+      > tr {
+        > td {
+          padding-top: 8px;
+          padding-bottom: 5px;
         }
       }
     }

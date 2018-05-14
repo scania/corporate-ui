@@ -107,16 +107,7 @@
     > tbody {
 
       > tr {
-        border: 1px solid #dadada;
-
-        &.active {
-          border-color: #4a8ba4;
-          border-style: double;
-
-          > td {
-            background-color: #f2f7f9;
-          }
-        }
+        cursor: pointer;
       }
     }
   }
@@ -128,7 +119,8 @@
       > tr {
         border: 1px solid #dadada;
 
-        &:hover {
+        &:hover,
+        &.active:hover {
 
           > td {
             background-color: #d9e8ef;
@@ -139,6 +131,13 @@
         &.selected,
         &.expanded {
           border:1px double #4a8ba4;
+
+          &.danger {
+            border-color: #cc1040;
+          }
+          &.success {
+            border-color: #44a878;
+          }
 
           > td {
             background-color: #ebf2f5;

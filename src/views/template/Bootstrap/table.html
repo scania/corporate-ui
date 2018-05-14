@@ -5,53 +5,7 @@
   <title>Test page for elements</title>
 
   <script src="../../../js/corporate-ui.js"></script>
-  <style type="text/css">
 
-  /*table-selectable danger color*/
-    .table.table-selectable > tbody > tr.active.danger > td{
-      background-color: #cc10401f;
-    }
-     .table.table-selectable > tbody > tr.active.danger {
-      border-color: #cc1040;
-    }
-    .table.table-selectable > tbody > tr.danger > td {
-      background-color: #cc10401f;
-    }
-
-  /*normal table danger*/
-    .table > tbody > tr.danger > td {
-      background-color: #cc10401f;
-    }
-    .table > tbody > tr.danger > td,
-    .table.table-striped > tbody > tr.danger > td {
-      background-color: #cc10401f;
-    }
-
-
-  /*Success*/
-   .table.table-selectable > tbody > tr.active.success > td{
-      background-color: #44a8781f;
-    }
-     .table.table-selectable > tbody > tr.active.success {
-      border-color: #44a878;
-    }
-    .table.table-selectable > tbody > tr.success > td {
-      background-color: #44a8781f;
-    }
-
-    .table > tbody > tr.success > td {
-      background-color: #44a8781f;
-    }
-    .table > tbody > tr.success > td,
-    .table.table-striped > tbody > tr.success > td {
-      background-color: #44a8781f;
-    }
-
-    .table-clickable tbody > tr:hover td {
-      cursor: pointer;
-    }
-
-  </style>
    <!-- Table Sorter Plugin -->
   <script src="https://static.scania.com/vendors/frameworks/jquery/1.11.3/jquery-1.11.3.min.js"></script>
   <script src="https://static.scania.com/vendors/components/jQuery/table-sorter/2.30.3/js/jquery.tablesorter.combined.js"></script>
@@ -192,6 +146,14 @@
                     <td>@twitter</td>
                   </tr>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th>3</th>
+                    <th>Footer th</th>
+                    <th>Footer th</th>
+                    <th>Footer th</th>
+                  </tr>
+                </tfoot>
             </table>
           </div>
           <!-- Table Table-bordered  -->

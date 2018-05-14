@@ -1,5 +1,8 @@
 // TABLES
 
+@table-cell-padding: 25px;
+@table-cell-padding-app: 10px;
+
 table { //This is to override the Boostrap standard of "collapse" on all table elements
   border-collapse: separate;
   word-break: normal;
@@ -71,38 +74,24 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     }
   }
 
-  tfoot {
-    background-color: transparent;
-
-    > tr {
-
-      > td {
-        border: none;
-      }
-    }
-  }
-
   caption {
+    text-align: left;
+    text-transform: uppercase;
+    border: 0;
+    line-height: normal;
+    background-color: @interaction-primary;
+    color: #fff;
+    padding: 25px;
 
-    &,
-    .app & {
-      text-align: left;
-      text-transform: uppercase;
-      border: 0;
-      line-height: normal;
-      background-color: @interaction-primary;
-      color: #fff;
-      padding: 25px;
+    + thead {
+      background-color: inherit;
+      color: inherit;
 
-      + thead {
-        background-color: inherit;
-        color: inherit;
-
-        > tr > th {
-          border: 1px solid #dadada;
-        }
+      > tr > th {
+        border: 1px solid #dadada;
       }
     }
+
   }
 
   i {
@@ -121,36 +110,22 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     text-transform: none;
   }
 
+  &,
   &.table-striped {
-
     > tbody {
 
-      > tr {
-
-        &:nth-child(odd) {
-
-          > td,
-          > th {
-            background-color: #ebf2f5;
-
-            // Striped table inside well
-            .well & {
-              background-color: #fdfdfd;
-            }
+      > tr,
+      > tr.active {
+        &.danger {
+          > td {
+            background-color: rgba(204, 16, 64, 0.12)
           }
         }
-      }
-    }
-  }
 
-  .app &.table-condensed {
-    font-family: 'Scania Sans Condensed';
-
-    > tbody {
-      > tr {
-        > td {
-          padding-top: 8px;
-          padding-bottom: 5px;
+        &.success {
+          > td {
+            background-color: rgba(68, 168, 120, 0.12);
+          }
         }
       }
     }
@@ -158,8 +133,45 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 }
 
 .table-responsive {
-    overflow-x: auto;
+  overflow-x: auto;
 }
+
+.table-hover {
+    > tbody {
+      > tr,
+      > tr.active {
+        &:hover{
+          > td,
+          > th {
+            background-color: #f2f7f9;
+          }
+        }
+      }
+    }
+  }
+
+.table-striped {
+
+  > tbody {
+
+    > tr {
+
+      &:nth-child(odd) {
+
+        > td,
+        > th {
+          background-color: #ebf2f5;
+
+          // Striped table inside well
+          .well & {
+            background-color: #fdfdfd;
+          }
+        }
+      }
+    }
+  }
+}
+
 
 .app {
 
@@ -173,28 +185,28 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
         > th,
         > td, {
-          padding: 10px;
+          padding: @table-cell-padding-app;
         }
       }
     }
 
     caption {
       padding: 10px;
+      &:extend(.table caption all);
     }
   }
-}
 
+  .table-condensed {
+    font-family: 'Scania Sans Condensed';
 
-.well .table-hover,
-.table-hover {
-  > tbody {
-    > tr {
-      &:hover{
-        > td,
-        > th {
-          background-color: #f2f7f9;
+    > tbody {
+      > tr {
+        > td {
+          padding-top: 8px;
+          padding-bottom: 5px;
         }
       }
     }
   }
 }
+

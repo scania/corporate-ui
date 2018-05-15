@@ -1,4 +1,4 @@
-  
+
 var fs = require('fs'),
     path = require('path'),
     gulp = require('gulp'),
@@ -10,19 +10,33 @@ var fs = require('fs'),
     rename = require('gulp-rename'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
-    server = require('./server')
+    chalk = require('chalk'),
+    server = require('./server'),
+    print = require('gulp-print').default,
+    inject = require('gulp-inject');
 
 /* Available tasks */
 gulp.task('clean', _clean)
 gulp.task('symlink', _symlink)
+gulp.task('copy', _copy) // Needed for npm packaging which cannot handle symlinks
 gulp.task('less', _less)
 gulp.task('lessComponent', _lessComponent)
 gulp.task('tsComponent', _tsComponent)
 gulp.task('jadeComponent', _jadeComponent)
 gulp.task('fullComponent', _fullComponent)
+gulp.task('fullCorporateUIHtml', _fullCorporateUIHtml)
+gulp.task('test', _test)
 
 gulp.task('component', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('default', gulp.series(['clean', 'symlink', 'less', 'component'], server))
+gulp.task('build', gulp.series('clean', ['copy', 'less', 'component'], 'fullCorporateUIHtml', function(done) {
+    done();
+}))
+gulp.task('prepublish', gulp.series('test', 'build',  function(done) {
+    done();
+    // need this, otherwise the task does not return...!?
+    process.exit(0);
+}))
+gulp.task('default', gulp.series('build', server))
 
 /* File watches */
 gulp.watch('src/less/**/*', gulp.series(['less']))
@@ -30,18 +44,31 @@ gulp.watch('src/views/component/**/*', gulp.series(['component']))
 
 /* Methods */
 function _clean() {
-  return gulp.src('{dist,tmp}', {read: false})
-    .pipe(clean())
+ return gulp.src('{dist,tmp}', {read: false})
+    .pipe(clean());
 }
 function _symlink() {
   var stream1 = gulp.src('src/{images,js,less,starter-kit}')
     .pipe(gulp.symlink('dist'));
   var stream2 = gulp.src('src/views/template')
     .pipe(gulp.symlink('dist/html'))
-  return merge(stream1, stream2)  
+  return merge(stream1, stream2)
+}
+function _copy() {
+    var stream1 = gulp.src('src/{images,js,less}/**')
+        .pipe(gulp.dest('dist'));
+    var stream2 = gulp.src('demo/**')
+        .pipe(gulp.dest('dist/demo'));
+    var stream2 = gulp.src('src/js/corporate-ui.js')
+        .pipe(gulp.dest('dist/demo/js'));
+    var stream3 = gulp.src('src/views/corporate-ui-base.html')
+        .pipe(gulp.dest('dist/html'))
+    var stream4 = gulp.src('src/views/corporate-ui-full.html')
+        .pipe(gulp.dest('dist/html'));
+    return merge(stream1, stream2, stream3, stream4)
 }
 function _less() {
-  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less'])
+  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less', 'demo/less/*.less'])
     .pipe(sourcemaps.init())
     .pipe(less({
       globalVars: {
@@ -50,6 +77,7 @@ function _less() {
     }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist/demo/css'))
 }
 function cleanComponent() {
   return gulp.src('tmp', {read: false})
@@ -58,6 +86,9 @@ function cleanComponent() {
 function _lessComponent() {
   return gulp.src('src/views/component/**/*.less')
     .pipe(less())
+      .on('error', function (error) {
+          console.log(error);
+      })
     .pipe(gulp.dest('tmp/component'))
 }
 function _tsComponent() {
@@ -84,7 +115,7 @@ function _fullComponent() {
             parentName = parentPath.substring(parentindex);
 
         name = parentName + '-variation-' + name;
-      } else {        
+      } else {
 
         if (isSubComponent) {
           console.log(name)
@@ -103,4 +134,17 @@ function _fullComponent() {
       }
     }))
     .pipe(gulp.dest('dist/html'))
+    .pipe(gulp.dest('dist/demo/html'))
 }
+
+function _fullCorporateUIHtml() {
+    return gulp.src('./dist/html/corporate-ui-full.html')
+        .pipe(inject(gulp.src('./dist/html/component/**/*.html', {read: false}), {relative: true}))
+        .pipe(gulp.dest('./dist/html'))
+}
+
+function _test(done) {
+  console.log(chalk.red("Here we should do some testing????"));
+  done();
+}
+

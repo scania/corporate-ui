@@ -8,6 +8,46 @@
 	<li>Missing out on a component? Develop it!</li>
 </ul>
 
+## Quick start
+
+Several quick start options are available:
+
+- [Download the latest release.](https://github.scania.com/Scania/corporate-ui/archive/2.4.1.zip)
+- Clone the repo: `git clone https://github.scania.com/Scania/corporate-ui.git`
+- Install with [npm](https://www.npmjs.com/): `npm install corporate-ui`
+- Install with [yarn](https://yarnpkg.com/): `yarn add corporate-ui`
+
+Use the bundles included in the package or individual components according to your needs
+
++ `corporate-ui.html` a bundle of all Corporate UI components
++ `base-components.html` a set of basic Corporate UI
++ All individual components are located under html/component directory
+
+
+## CorporateUI-CDN
+
+Use our CDN to deliver cached version of CorporateUI's compiled CSS and JS to your project.
+
+        <script src="https://static.scania.com/build/global/2.4.1/js/corporate-ui.js"></script>
+
+The CDN will inject all dependencies needed to use Corporate UI components.
+
+
+## CorporateUI-npm
+
+        <link rel="stylesheet" href="node_modules/corporate-ui/dist/css/corporate-ui.css">
+        <link rel="import" href="node_modules/corporate-ui/dist/html/`corporate-ui-base.html` OR `corporate-ui-full.html`">
+        <script src="node_modules/corporate-ui/dist/js/corporate-ui-light.js"></script>
+
+Don't forget to include jQuery, webcomponents.js, bootstrap and polymer  npm modules before it
+
+        <script src="node_modules/query/query.min.js"></script>
+        <script src="node_modules/webcomponents.js/webcomponents-lite.min.js"></script>
+        <link rel="import" href="node_modules/polymer-1.4.0/polymer.html" data-concat="false">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
 <h2>The Corporate UI Development Process</h2>
 <p>There are many stakeholders that has interest in this library. Normally, new needs and improvements are filtered from business and end users via UX designers and product owners.</p>
 <ul>
@@ -34,7 +74,7 @@
 <h2>Starter Kit</h2>
 <p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components.
 <br>
-<a href="https://github.scania.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
+<a href="https://github.scania.com/Scania/corporate-ui/tree/master/demo/starter-kit">Learn more...</a>
 
 
 

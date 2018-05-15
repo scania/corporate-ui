@@ -27,6 +27,7 @@
           &:extend(.icon-caret-down:before);
         }
       }
+
       + tr > td {
         background-color: lighten(@interaction-info, 80%);
         padding-top: 0;
@@ -41,408 +42,6 @@
       }
     }
   }
-
-  &.table-sm {
-    max-width: 100%;
-    margin: 20px 0;
-
-    thead {
-      background-color: transparent;
-      color: #b7b7b7;
-
-      > tr {
-
-        > th {
-          text-transform: none;
-          font-weight: normal;
-          font-family: 'Scania Sans Condensed Bold';
-          font-size: 1.2rem;
-          padding: 0 10px;
-          border-bottom: 1px solid #b7b7b7;
-        }
-      }
-    }
-
-    tbody {
-
-      > tr {
-
-        > td {
-          font-family: 'Scania Sans Condensed';
-          padding: 5px 10px;
-          border: none;
-          font-size: 1.2rem;
-        }
-      }
-    }
-
-    &.table-striped {
-
-      > tbody {
-
-        > tr {
-
-          &:nth-child(odd) {
-
-            > td,
-            > th {
-              background-color: #fff;
-            }
-          }
-
-          &:nth-child(even) {
-
-            > td,
-            > th {
-              background-color: #f2f7f9;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &.table-clickable {
-
-    > tbody {
-
-      > tr {
-        border: 1px solid #dadada;
-
-        &.active {
-          border-color: #4a8ba4;
-          border-style: double;
-
-          > td {
-            background-color: #f2f7f9;
-          }
-        }
-
-        > td {
-          border: none;
-        }
-      }
-    }
-  }
-
-  &.table-selectable {
-
-    > tbody {
-
-      > tr {
-        border: 1px solid #dadada;
-
-        > td {
-          border: none;
-        }
-
-        &:hover {
-
-          > td {
-            background-color: #d9e8ef;
-            cursor: default;
-          }
-        }
-
-        &.active,
-        &.selected,
-        &.expanded {
-          border:1px double #4a8ba4;
-
-          > td {
-            background-color: #ebf2f5;
-            border:none;
-          }
-        }
-
-        &.expandable {
-
-          > td {
-
-            &:first-child:before {
-              &:extend([class^="icon-"]);
-              &:extend(.icon-caret-right:before);
-
-              display: inline-block;
-              width: 10px;
-              margin-right: 2px;
-            }
-          }
-
-          + tr > td {
-            background-color: darken(@color-secondary-02, 10%);
-            padding: 0;
-
-              > div {
-                background-color: #fff;
-                overflow: hidden;
-                margin: 0 5px 5px;
-
-              > .content {
-                padding: 10px;
-              }
-            }
-          }
-
-          &.expanded {
-
-            > td {
-
-              &:first-child:before {
-
-                &:extend(.icon-caret-down:before);
-              }
-            }
-            + .expand-child + .expand-child + .expanded {
-
-              > td {
-                border-top: 3px solid #fff;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // "table-calculation" Should be moved to separate component...
-  &.table-calculation {
-    table-layout: fixed;
-    border-collapse: separate;
-    border-spacing: 10px 6px;
-
-    .form-control[readonly] {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      box-shadow: none;
-      cursor: text;
-      height: inherit;
-    }
-
-    .input-group {
-      border-collapse: collapse;
-    }
-
-    > thead {
-
-       > tr {
-
-        > th {
-          border: 0;
-          padding-bottom: 0;
-          padding-left: 0;
-        }
-      }
-    }
-
-    > tbody {
-
-      > tr {
-
-        > th,
-        > td {
-          border: 0;
-          padding: 5px;
-          background-color: #eee;
-        }
-
-        > td,
-        > td input {
-          text-align: right;
-        }
-      }
-
-      tr {
-
-        &.total {
-
-          td {
-            background-color: transparent;
-          }
-        }
-
-        &.selectable {
-
-          > td {
-
-            &:first-child:before {
-              &:extend([class^="icon-"]);
-              &:extend(.icon-caret-right:before);
-              padding-right: 6px;
-            }
-          }
-
-          &:hover {
-
-            > td {
-              background-color: @color-secondary-02;
-              cursor: default;
-            }
-          }
-
-          &.selected {
-
-            > td:first-child:before {
-              &:extend(.icon-caret-down:before);
-            }
-          }
-        }
-
-        &.child {
-
-          > td {
-            background-color: #f6f6f6;
-
-            &:first-child {
-              border-left: 15px solid #fff !important; // Need important to work if readonly
-            }
-          }
-        }
-
-        &.divider {
-          > td {
-            vertical-align: top;
-            border-top: 1px solid #eee !important; // Need important to work if readonly
-            border-bottom: 1px solid #eee !important; // Need important to work if readonly
-          }
-        }
-      }
-    }
-
-    td,
-    input,
-    span {
-      font-size: 12px;
-    }
-
-    td {
-
-      &:first-child {
-        text-align: left;
-      }
-
-      &.configurable {
-        // Some elements are readonly but should still be interactive, thats why we need !important
-        border: 1px solid darken(@color-secondary-02, 20%) !important;
-        position: relative;
-
-        &:before {
-          &:extend([class^="icon-"]);
-          &:extend(.icon-table:before);
-
-          position: absolute;
-          left: 15px;
-          top: 50%;
-          margin-top: -6px;
-          color: @interaction-primary;
-        }
-
-        &:hover {
-          background-color: #d1e8f2;
-
-          &,
-          span, {
-            cursor: pointer;
-          }
-        }
-
-        input:hover {
-          cursor: pointer;
-        }
-
-        span {
-          position: relative;
-          display: block;
-          margin: -5px;
-          padding: 5px;
-        }
-      }
-    }
-  }
-
-  &.table-condensed {
-    font-family: 'Scania Sans Condensed';
-
-    > tbody {
-      > tr {
-        > td {
-          padding-top: 8px;
-          padding-bottom: 5px;
-        }
-      }
-    }
-  }
-
-  &.table-panel {
-    background-color: white;
-    border: 1px solid;
-    border-collapse: inherit;
-
-    thead {
-      word-break: normal;
-      text-transform: uppercase;
-      font-family: 'Scania Sans Condensed';
-    }
-  }
-
-  // Data table table-layout:
-  &.table-data {
-
-    tbody {
-
-       tr {
-
-        &:first-child {
-
-          th,
-          td {
-            border-top: 0;
-          }
-        }
-
-        > td {
-          background-color: #f5f5f5;
-          font-weight: bold;
-          font-size: 12px;
-          font-family: 'Open Sans';
-          text-align: center;
-          padding: 0 20px;
-          line-height: 22px;
-
-          small {
-            font-weight: normal;
-          }
-
-          &.divider-right {
-            border-right: 2px solid #fff;
-          }
-
-          &.divider-left {
-            border-left: 2px solid #fff;
-          }
-        }
-      }
-    }
-  }
-
-  &.table-borderless {
-    tbody,
-    thead {
-
-      tr {
-
-        td,
-        th {
-          border: none;
-        }
-      }
-    }
-  }
-}
-
-.filtered {
-  display: none;
 }
 
 // This is a separate rule to make this rule over rule the previous one.
@@ -457,6 +56,320 @@ table.table {
   }
 }
 
-.table thead .input-icon {
-  color: #000;
+.table-clickable {
+
+  > tbody {
+
+    > tr {
+      cursor: pointer;
+    }
+  }
+}
+
+.table-borderless {
+  tbody,
+  thead {
+
+    tr {
+
+      td,
+      th {
+        border: none;
+      }
+    }
+  }
+}
+
+.table-selectable {
+
+  > tbody {
+
+    > tr {
+      border: 1px solid #dadada;
+
+      &:hover,
+      &.active:hover {
+
+        > td {
+          background-color: #d9e8ef;
+        }
+      }
+
+      &.active,
+      &.selected,
+      &.expanded {
+        border:1px double #4a8ba4;
+
+        &.danger {
+          border-color: #cc1040;
+        }
+        &.success {
+          border-color: #44a878;
+        }
+
+        > td {
+          background-color: #ebf2f5;
+        }
+      }
+
+      &.expandable {
+
+        > td {
+
+          &:first-child:before {
+            &:extend([class^="icon-"]);
+            &:extend(.icon-caret-right:before);
+
+            display: inline-block;
+            width: 10px;
+            margin-right: 2px;
+          }
+        }
+
+        + tr > td {
+          background-color: darken(@color-secondary-02, 10%);
+          padding: 0;
+
+            > div {
+              background-color: #fff;
+              overflow: hidden;
+              margin: 0 5px 5px;
+
+            > .content {
+              padding: 10px;
+            }
+          }
+        }
+
+        &.expanded {
+
+          > td {
+
+            &:first-child:before {
+
+              &:extend(.icon-caret-down:before);
+            }
+          }
+          + .expand-child + .expand-child + .expanded {
+
+            > td {
+              border-top: 3px solid #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-panel {
+  background-color: white;
+  border: 1px solid;
+  border-collapse: inherit;
+
+  thead {
+    word-break: normal;
+    text-transform: uppercase;
+    font-family: 'Scania Sans Condensed';
+  }
+}
+
+// Data table table-layout:
+.table-data {
+
+  tbody {
+
+     tr {
+
+      &:first-child {
+
+        th,
+        td {
+          border-top: 0;
+        }
+      }
+
+      > td {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        font-size: 12px;
+        font-family: 'Open Sans';
+        text-align: center;
+        padding: 0 20px;
+        line-height: 22px;
+
+        small {
+          font-weight: normal;
+        }
+
+        &.divider-right {
+          border-right: 2px solid #fff;
+        }
+
+        &.divider-left {
+          border-left: 2px solid #fff;
+        }
+      }
+    }
+  }
+}
+
+// "table-calculation" Should be moved to separate component...
+.table-calculation {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 10px 6px;
+
+  .form-control[readonly] {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    cursor: text;
+    height: inherit;
+  }
+
+  .input-group {
+    border-collapse: collapse;
+  }
+
+  > thead {
+
+     > tr {
+
+      > th {
+        border: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+      }
+    }
+  }
+
+  > tbody {
+
+    > tr {
+
+      > th,
+      > td {
+        border: 0;
+        padding: 5px;
+        background-color: #eee;
+      }
+
+      > td,
+      > td input {
+        text-align: right;
+      }
+    }
+
+    tr {
+
+      &.total {
+
+        td {
+          background-color: transparent;
+        }
+      }
+
+      &.selectable {
+
+        > td {
+
+          &:first-child:before {
+            &:extend([class^="icon-"]);
+            &:extend(.icon-caret-right:before);
+            padding-right: 6px;
+          }
+        }
+
+        &:hover {
+
+          > td {
+            background-color: @color-secondary-02;
+            cursor: default;
+          }
+        }
+
+        &.selected {
+
+          > td:first-child:before {
+            &:extend(.icon-caret-down:before);
+          }
+        }
+      }
+
+      &.child {
+
+        > td {
+          background-color: #f6f6f6;
+
+          &:first-child {
+            border-left: 15px solid #fff !important; // Need important to work if readonly
+          }
+        }
+      }
+
+      &.divider {
+        > td {
+          vertical-align: top;
+          border-top: 1px solid #eee !important; // Need important to work if readonly
+          border-bottom: 1px solid #eee !important; // Need important to work if readonly
+        }
+      }
+    }
+  }
+
+  td,
+  input,
+  span {
+    font-size: 12px;
+  }
+
+  td {
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &.configurable {
+      // Some elements are readonly but should still be interactive, thats why we need !important
+      border: 1px solid darken(@color-secondary-02, 20%) !important;
+      position: relative;
+
+      &:before {
+        &:extend([class^="icon-"]);
+        &:extend(.icon-table:before);
+
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        margin-top: -6px;
+        color: @interaction-primary;
+      }
+
+      &:hover {
+        background-color: #d1e8f2;
+
+        &,
+        span, {
+          cursor: pointer;
+        }
+      }
+
+      input:hover {
+        cursor: pointer;
+      }
+
+      span {
+        position: relative;
+        display: block;
+        margin: -5px;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+.filtered {
+  display: none;
 }

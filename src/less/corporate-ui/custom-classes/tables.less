@@ -27,6 +27,7 @@
           &:extend(.icon-caret-down:before);
         }
       }
+
       + tr > td {
         background-color: lighten(@interaction-info, 80%);
         padding-top: 0;
@@ -72,31 +73,6 @@
           padding: 5px 10px;
           border: none;
           font-size: 1.2rem;
-        }
-      }
-    }
-
-    &.table-striped {
-
-      > tbody {
-
-        > tr {
-
-          &:nth-child(odd) {
-
-            > td,
-            > th {
-              background-color: #fff;
-            }
-          }
-
-          &:nth-child(even) {
-
-            > td,
-            > th {
-              background-color: #f2f7f9;
-            }
-          }
         }
       }
     }

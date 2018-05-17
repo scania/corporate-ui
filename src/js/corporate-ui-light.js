@@ -18,24 +18,9 @@ window.CorporateUi = (function() {
   function init() {
     setGlobals();
     polymerInject();
-    done();
+    applyBrand();
   }
-
-  function done(event) {
-    if (window.ready_event) {
-      return;
-    }
-
-    window.ready_event = event ? 'load' : 'timeout'; // Timeout have no params sent so it will be undefined
-
-    document.addEventListener("DOMContentLoaded", applyBrand);
-
-    var newEvent = document.createEvent('Event');
-    newEvent.initEvent('CorporateUiLoaded', true, true);
-    document.dispatchEvent(newEvent);
-
-  }
-
+  
   function generateMeta(name, content) {
     var head = document.head,
         meta = document.createElement('meta');

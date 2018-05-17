@@ -311,7 +311,7 @@ window.CorporateUi = (function() {
     public.components = {
       'corporate-header': window.version_root + 'html/component/Navigation/corporate-header/corporate-header.html',
       'corporate-footer': window.version_root + 'html/component/Navigation/corporate-footer/corporate-footer.html',
-      'main-content': window.version_root + 'html/component/Content + Teasers/main-content/main-content.html',
+      'main-content': window.version_root + 'html/component/ContentAndTeasers/main-content/main-content.html',
       'main-navigation': window.version_root + 'html/component/Navigation/main-navigation/main-navigation.html'
     };
 

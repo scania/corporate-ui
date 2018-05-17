@@ -18,7 +18,7 @@ window.CorporateUi = (function() {
   function init() {
     setGlobals();
     polymerInject();
-    applyBrand();
+    document.addEventListener("DOMContentLoaded", applyBrand);
   }
   
   function generateMeta(name, content) {

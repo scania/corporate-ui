@@ -126,44 +126,54 @@ Polymer({
   setMoreItems: function() {
     var primary = this.querySelector('primary-items'),
         secondary = this.querySelector('secondary-items'),
-        itemsWidth = 0;
+        itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
 
-    [].slice.call(primary.querySelectorAll('nav-item.hidden')).map(function(item) {
-      item.classList = item.classList.toString().split('hidden').join('');
-    })
+    // [].slice.call(primary.querySelectorAll('nav-item.hidden')).map(function(item) {
+    //   item.classList = item.classList.toString().split('hidden').join('');
+    // })
 
-    itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
+    // itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
 
     if(itemsWidth > this.offsetWidth) {
       this.moreItemsAvailable = true;
     }
   },
   initMoreItem: function(val) {
-    this.moreitems = [];
-
     if(!val) {
       return;
     }
 
+    this.moreItems = [];
+
     setTimeout((function() {
       var primary = this.querySelector('primary-items'),
-          secondary = this.querySelector('secondary-items');
+          secondary = this.querySelector('secondary-items'),
+          styleElm = this.querySelector('style') || document.createElement('style'),
+          availableSpace = this.offsetWidth - (secondary.offsetWidth + 2);
 
-      availableSpace = this.offsetWidth - (secondary.offsetWidth + 2);
       primary.style.width = ( availableSpace - this.querySelector('.dropdown-toggle').offsetWidth ) + 'px';
+      primary.parentNode.insertBefore(styleElm, primary);
+      styleElm.innerText = '';
 
-      [].slice.call(primary.querySelectorAll('nav-item')).map((function(item) {
-        if(item.offsetTop) {
-          item.classList += ' hidden';
-          var node = item.querySelector('a');
-          this.moreitems.push({
-            text: node.text,
-            href: node.getAttribute('href')
-          });
+      [].slice.call(primary.querySelectorAll('nav-item')).map((function(item, index) {
+
+        if(item.offsetTop && !styleElm.innerText) {
+          styleElm.innerText = '\
+            c-main-navigation nav-item:nth-child(1n+' + index + ') { display: none; } \
+            c-main-navigation .more li:nth-child(1n+' + (index + 1) + ') { display: block; }';
         }
+
+        var node = item.querySelector('a');
+        this.push('moreItems', {
+          text: node.text,
+          href: node.getAttribute('href')
+        });
       }).bind(this));
 
       primary.removeAttribute('style');
+
+      // this.notifySplices('moreItems', this.moreItems);
+      this.moreItemsAvailable = false;
     }).bind(this));
   },
   navigationClose: function() {

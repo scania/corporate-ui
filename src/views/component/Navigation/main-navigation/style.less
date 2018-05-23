@@ -30,8 +30,17 @@
       -ms-transition: margin-right 100ms ease;
       transition: margin-right 100ms ease;
     }
-    .more li {
-      display: none;
+    .more {
+      // Why is this actually set to "display: none;" ?
+      display: inline-block !important;
+
+      li {
+        display: none;
+      }
+    }
+    .dropdown-menu {
+      max-height: 70vh;
+      overflow-y: scroll;
     }
   }
 }

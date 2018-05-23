@@ -23,6 +23,7 @@ Polymer({
     'navItem-active': 'setItemActive',
     'subNavigation-attached': 'setHeaderSize',
     'fullscreen-toggled': 'setHeaderSize',
+    'moreItem-toggled': 'setMoreItems',
     'navigation-close': 'navigationClose'
   },
   done: function() {
@@ -71,7 +72,10 @@ Polymer({
       this.header.querySelector('.navbar-symbol').classList.add('should-stick');
     }
 
-    var nav = this.querySelector('#main-navigation');
+    var nav = this.querySelector('#main-navigation'),
+        styleElm = document.createElement('style');
+
+    this.insertBefore(styleElm, this.children[0]);
 
     window.addEventListener('scroll', this.sticky.bind(this));
     window.addEventListener('resize', (function() {
@@ -126,17 +130,22 @@ Polymer({
   setMoreItems: function() {
     var primary = this.querySelector('primary-items'),
         secondary = this.querySelector('secondary-items'),
-        itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
+        styleElm = this.querySelector('style'),
+        itemsWidth;
 
-    // [].slice.call(primary.querySelectorAll('nav-item.hidden')).map(function(item) {
-    //   item.classList = item.classList.toString().split('hidden').join('');
-    // })
-
-    // itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
-
-    if(itemsWidth > this.offsetWidth) {
-      this.moreItemsAvailable = true;
+    if (window.moreItemDelay) {
+      clearTimeout(window.moreItemDelay);
     }
+
+    // We have a delay here to make sure the navigation 
+    // doesnt flicker on resize
+    window.moreItemDelay = setTimeout((function() {
+      styleElm.innerText = '';
+      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
+      if(itemsWidth >= this.offsetWidth) {
+        this.moreItemsAvailable = true;
+      }
+    }).bind(this), 100);
   },
   initMoreItem: function(val) {
     if(!val) {
@@ -145,15 +154,17 @@ Polymer({
 
     this.moreItems = [];
 
-    setTimeout((function() {
+    // Async is used to make sure template has rerendered before
+    // continuing. Else dropdown nav-item is not rendered
+    this.async(function() {
       var primary = this.querySelector('primary-items'),
           secondary = this.querySelector('secondary-items'),
-          styleElm = this.querySelector('style') || document.createElement('style'),
-          availableSpace = this.offsetWidth - (secondary.offsetWidth + 2);
+          styleElm = this.querySelector('style'),
+          dropdown = this.querySelector('.dropdown-toggle'),
+          availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0);
 
-      primary.style.width = ( availableSpace - this.querySelector('.dropdown-toggle').offsetWidth ) + 'px';
-      primary.parentNode.insertBefore(styleElm, primary);
-      styleElm.innerText = '';
+      primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
+      new Dropdown(dropdown);
 
       [].slice.call(primary.querySelectorAll('nav-item')).map((function(item, index) {
 
@@ -172,12 +183,12 @@ Polymer({
 
       primary.removeAttribute('style');
 
-      // this.notifySplices('moreItems', this.moreItems);
       this.moreItemsAvailable = false;
-    }).bind(this));
+      this.setHeaderSize.call(this);
+    });
   },
   navigationClose: function() {
-    new window.Collapse(this.header.querySelector('.navbar-toggle')).hide();
+    new window.Collapse(this.header.querySelector('.navbar-toggle'));
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,

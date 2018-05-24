@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Form example</title>
+    <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/select2.css">
+    <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/corporate-ui-select.css">
     <script src="../../../js/corporate-ui.js"></script>
-    <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/dist/css/select2.css">
-    <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/scania-select/scania-select.css">
+    
+    <!-- <link rel="stylesheet" href="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/scania-select/scania-select.css"> -->
     <script src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.js"></script>
-    <script src="https://static.scania.com/vendors/components/jQuery/select2/4.0.5/dist/js/select2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.js"></script>
          <script>
           $(document).ready(function() {
          $( ".select2" ).select2( {
@@ -613,5 +615,10 @@
                 </div>
                 </div>
             <c-main-content>
+              <script>
+                $(document).ready(function() {
+                $($(".select2")[0].previousSibling).find("div.select2-search").prepend("APAPAAP")
+              });
+              </script>
   <body>
 <html>

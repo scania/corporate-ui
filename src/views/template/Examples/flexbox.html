@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Corporate UI - Developers</title>
+
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+
+  <style>
+    .list-group {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body class="scania flex" ng-controller="Example as example" ng-cloak>
+  <c-corporate-header site-name="Flex Box" short-name="FB" site-url="/">
+    <nav-item location="/">Global</nav-item>
+  </c-corporate-header>
+
+  <c-main-content scroll="true">
+    <c-main-navigation>
+      <primary-items>
+        <nav-item active="true">Start</nav-item>
+        <nav-item>Mid</nav-item>
+        <nav-item>End</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section>
+      <div class="container-flex">
+        <div class="row">
+          <div class="col-xs-3">
+            <nav class="list-group">
+              <a class="list-group-item list-group-item-action" ng-href="{{item.link}}" ng-class="{'active': item.active}" ng-repeat="item in example.items">{{item.text}}</a>
+            </nav>
+          </div>
+          <div class="col-xs-9">
+            <div class="panel panel-info">
+              <header class="panel-heading">
+                heading
+              </header>
+              <div class="panel-body">
+                <p>Body</p>
+              </div>
+              <footer class="panel-footer">
+                <span>Footer</span>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer>
+    <nav-item location="#">contact</nav-item>
+  </c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular
+      .module('CorporateUI', [])
+      .controller('Example', [Example])
+
+    function Example() {
+      var vm = this
+
+      vm.items = [
+        {text:'start', link:'/start', active: true},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'mid', link:'/mid'},
+        {text:'stop', link:'/stop'}
+      ]
+    }
+  </script>
+</body>
+</html>

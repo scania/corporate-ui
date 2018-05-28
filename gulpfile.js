@@ -12,7 +12,6 @@ var fs = require('fs'),
     merge = require('merge-stream'),
     chalk = require('chalk'),
     server = require('./server'),
-    print = require('gulp-print').default,
     inject = require('gulp-inject');
 
 /* Available tasks */
@@ -65,7 +64,9 @@ function _copy() {
         .pipe(gulp.dest('dist/html'))
     var stream4 = gulp.src('src/views/corporate-ui-full.html')
         .pipe(gulp.dest('dist/html'));
-    return merge(stream1, stream2, stream3, stream4)
+    var stream5 = gulp.src('demo/template')
+        .pipe(gulp.symlink('dist/html'))
+    return merge(stream1, stream2, stream3, stream4, stream5)
 }
 function _less() {
   return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less', 'demo/less/*.less'])
@@ -134,7 +135,7 @@ function _fullComponent() {
       }
     }))
     .pipe(gulp.dest('dist/html'))
-    .pipe(gulp.dest('dist/demo/html'))
+    //.pipe(gulp.dest('dist/demo/html'))
 }
 
 function _fullCorporateUIHtml() {

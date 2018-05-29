@@ -39,4 +39,4 @@
 
 
 <h2>License</h2>
-<p>The Scania brand identity, logos and photographs found in this repository are not available on an open source basis. All CSS, HTML and JS code are available under the MIT licens.</p>
+<p>All CSS, HTML and JS code are available under the MIT licens. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way if now ordered directly by Scania CV AB.</p>

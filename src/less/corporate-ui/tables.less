@@ -1,5 +1,8 @@
 // TABLES
 
+@table-cell-padding: 25px;
+@table-cell-padding-app: 10px;
+
 table { //This is to override the Boostrap standard of "collapse" on all table elements
   border-collapse: separate;
   word-break: normal;
@@ -18,7 +21,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > td,
       > th {
         padding: @table-cell-padding;
-        border: 1px solid #dadada;
       }
     }
   }
@@ -72,38 +74,24 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     }
   }
 
-  tfoot {
-    background-color: transparent;
-
-    > tr {
-
-      > td {
-        border: none;
-      }
-    }
-  }
-
   caption {
+    text-align: left;
+    text-transform: uppercase;
+    border: 0;
+    line-height: normal;
+    background-color: @interaction-primary;
+    color: #fff;
+    padding: 25px;
 
-    &,
-    .app & {
-      text-align: left;
-      text-transform: uppercase;
-      border: 0;
-      line-height: normal;
-      background-color: @interaction-primary;
-      color: #fff;
-      padding: 25px;
+    + thead {
+      background-color: inherit;
+      color: inherit;
 
-      + thead {
-        background-color: inherit;
-        color: inherit;
-
-        > tr > th {
-          border: 1px solid #dadada;
-        }
+      > tr > th {
+        border: 1px solid #dadada;
       }
     }
+
   }
 
   i {
@@ -122,35 +110,21 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     text-transform: none;
   }
 
+  &,
   &.table-striped {
-
-    thead,
-    tbody,
-    tfoot {
-
-      > tr {
-
-        > th,
-        > td {
-          border-top: 0;
-        }
-      }
-    }
-
     > tbody {
 
-      > tr {
+      > tr,
+      > tr.active {
+        &.danger {
+          > td {
+            background-color: rgba(204, 16, 64, 0.12)
+          }
+        }
 
-        &:nth-child(odd) {
-
-          > td,
-          > th {
-            background-color: #ebf2f5;
-
-            // Striped table inside well
-            .well & {
-              background-color: #fdfdfd;
-            }
+        &.success {
+          > td {
+            background-color: rgba(68, 168, 120, 0.12);
           }
         }
       }
@@ -159,9 +133,46 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 }
 
 .table-responsive {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
+.table-hover {
+    > tbody {
+      > tr,
+      > tr.active {
+        &:hover{
+          > td,
+          > th {
+            background-color: #d9e8ef;
+          }
+        }
+      }
+    }
+  }
+
+.table-striped {
+
+  > tbody {
+
+    > tr {
+
+      &:nth-child(odd) {
+
+        > td,
+        > th {
+          background-color: #ebf2f5;
+
+          // Striped table inside well
+          .well & {
+            background-color: #fdfdfd;
+          }
+        }
+      }
+    }
+  }
+}
+
+//tables in app mode
 .app {
 
   .table {
@@ -174,28 +185,63 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
         > th,
         > td, {
-          padding: 10px;
+          padding: @table-cell-padding-app;
         }
       }
     }
 
     caption {
       padding: 10px;
+      &:extend(.table caption all);
     }
   }
-}
 
+  .table-sm {
+    max-width: 100%;
+    margin: 20px 0;
 
-.well .table-hover,
-.table-hover {
-  > tbody {
-    > tr {
-      &:hover{
-        > td,
+    > thead {
+      background-color: transparent;
+      color: #b7b7b7;
+
+      > tr {
+
         > th {
-          background-color: #f2f7f9;
+          text-transform: none;
+          font-weight: normal;
+          font-family: 'Scania Sans Condensed Bold';
+          font-size: 1.2rem;
+          padding: 0 10px;
+          border-bottom: 1px solid #b7b7b7;
+        }
+      }
+    }
+
+    > tbody {
+
+      > tr {
+
+        > td {
+          font-family: 'Scania Sans Condensed';
+          padding: 5px 10px;
+          border: none;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .table-condensed {
+    font-family: 'Scania Sans Condensed';
+
+    > tbody {
+      > tr {
+        > td {
+          padding-top: 8px;
+          padding-bottom: 5px;
         }
       }
     }
   }
 }
+

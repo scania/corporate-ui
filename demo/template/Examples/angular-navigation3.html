@@ -94,8 +94,10 @@
         <label>App name</label>
         <input type="text" ng-model="example.name">
       </form>
-      <label>Nav items</label>
-      <select multiple="" ng-model="example.itemsSelected" ng-options="item.name for item in example.items"></select>
+      <form>
+        <label>Nav items</label>
+        <select multiple="" ng-model="example.itemsSelected" ng-options="item.name for item in example.items" ng-change="example.select()"></select>
+      </form>
       <form ng-submit="example.add()">
         <input type="text" placeholder="New item" ng-model="example.itemAdd">
         <button type="submit" class="btn btn-primary btn-sm">Add item</button>
@@ -135,6 +137,7 @@
     ]
     vm.cond = cond
     vm.add = add
+    vm.select = select
     vm.setLang = setLang
     // vm.filter = filter
 
@@ -162,6 +165,12 @@
         vm.items.push({id:vm.items.length+1, name:vm.itemAdd, url:'/' + vm.itemAdd})
         vm.itemAdd = ''
       }
+    }
+
+    function select() {
+      var event = document.createEvent('Event');
+      event.initEvent('moreItem-toggled', true, true);
+      document.querySelector('c-main-navigation').dispatchEvent(event);
     }
 
     function setLang(lang) {

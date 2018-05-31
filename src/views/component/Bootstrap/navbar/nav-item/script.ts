@@ -49,9 +49,10 @@ Polymer({
       this.classList.add('active');
     }
 
-    this.onclick = (function() {
-      this.active = true;
-    }).bind(this);
+    this.listen(this, 'tap', 'onTap');
+  },
+  onTap: function(e) {
+    this.active = true;
   },
   setActive: function(newState) {
     if (newState.toString() == 'true') {

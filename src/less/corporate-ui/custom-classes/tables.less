@@ -167,7 +167,7 @@ table.table {
   border: 1px solid;
   border-collapse: inherit;
 
-  thead {
+  > thead {
     word-break: normal;
     text-transform: uppercase;
     font-family: 'Scania Sans Condensed';
@@ -372,4 +372,21 @@ table.table {
 
 .filtered {
   display: none;
+}
+
+.app {
+
+ .table-panel {
+
+  > thead {
+
+    > tr
+
+      > th {
+        padding-top: 19px;
+        padding-bottom: 19px;
+        text-transform: none;
+      }
+    }
+  }
 }

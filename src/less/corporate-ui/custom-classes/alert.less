@@ -1,9 +1,40 @@
- .alert-danger-validate {
-        border-color: rgb(204, 16, 64);
-        background-color: rgb(238, 218, 224);
-    }
+.alert-indicator {
+  display: inline-block;
+  padding: 6px;
+  content: ' ';
+  background-color: #C8C9C7;
+  font-size: 0;
+  border-radius: 50%;
+  margin: 0;
+  border: none;
 
-    .alert-success-validate {
-      border-color: rgb(68, 168, 120);
-      background-color: rgb(242, 249, 245);
-    }
+  &.alert-primary {
+    background-color: #073472;
+  }
+
+  &.alert-success {
+    background-color: #60bf91;
+  }
+
+  &.alert-info {
+    background-color: #4a8ba4;
+  }
+
+  &.alert-warning {
+    background-color: #faa674;
+  }
+
+  &.alert-danger {
+    background-color: #D6001C;
+  }
+}
+
+.alert-danger-validate {
+    border-color: rgb(204, 16, 64);
+    background-color: rgb(238, 218, 224);
+}
+
+.alert-success-validate {
+  border-color: rgb(68, 168, 120);
+  background-color: rgb(242, 249, 245);
+}

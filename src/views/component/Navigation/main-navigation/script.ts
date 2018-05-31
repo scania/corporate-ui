@@ -51,7 +51,7 @@ Polymer({
     this.header = document.querySelector('c-corporate-header');
 
     var self = this,
-        url = this.resolveUrl('/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js');
+        url = this.resolveUrl('https://static.scania.com/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js');
 
     if(window.define) {
       requirejs([url], function(bsn) {

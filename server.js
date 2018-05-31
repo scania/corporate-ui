@@ -15,11 +15,12 @@ function server() {
     next()
   })
   app.use(express.static(__dirname + '/dist'))
-  app.use('/', express.static(__dirname + '/src/views'))
+  app.use('/', express.static(__dirname + '/demo'))
 
-  var dependencies = Object.keys(package.dependencies)
+  var dependencies = Object.keys(package.devDependencies)
+
   dependencies.map(function(dependency) {
-    var version = package.dependencies[dependency].replace(/[^\d.]/g, '').replace(/^\./, '')
+    var version = package.devDependencies[dependency].replace(/[^\d.]/g, '').replace(/^\./, '')
     app.use('/vendors/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
   })
   console.log('FE-Dependencies: ', dependencies)

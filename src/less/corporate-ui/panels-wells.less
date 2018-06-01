@@ -13,7 +13,6 @@
     border-radius: 0;
     text-transform: uppercase;
     margin: -1px;
-    border-color:#dadada;
     border-bottom: none;
 
     h1,
@@ -74,7 +73,7 @@
     > h4 {
       font-family: 'Scania Sans Condensed';
       font-weight: bold;
-      color: #4a8ba4;
+      color: @interaction-info;
       margin-top: 0;
       margin-bottom: 20px;
     }
@@ -86,11 +85,14 @@
 
   .panel-footer {
     background-color:transparent;
-    border-color: inherit;
     margin-top: 15px;
     border-top:none;
     font-weight: bold;
     border-radius: 0;
+
+    > .pagination {
+      margin: 0;
+    }
   }
 
   //Panel-inverse
@@ -130,14 +132,6 @@
     }
   }
 
-  .panel-footer {
-
-    > .pagination {
-      margin: 0;
-
-    }
-  }
-
   .app & {
 
     h1,
@@ -150,7 +144,6 @@
 
 // Contextual footers (missing support in Bootstrap)
 .panel-default {
-  border-color: #dadada;
 
   > .panel-heading {
     background-color: #e8f0f3;
@@ -167,11 +160,6 @@
     h6 {
       color: @interaction-primary;
     }
-  }
-  .panel-footer {
-    color: @interaction-primary;
-    border-top: none;
-    padding: 15px 15px;
   }
 }
 

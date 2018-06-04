@@ -48,7 +48,7 @@
 
 </head>
 
-<body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+<body class="scania ux-lib" data-env="dev">
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
@@ -56,23 +56,19 @@
   </c-corporate-header>
 
   <c-main-content>
-
     <c-main-navigation>
-          <primary-items>
-          <nav-item location="/">Start</nav-item>
-          <nav-item location="/development.html">Development</nav-item>         
-          <nav-item location="/testing.html">Testing
+      <primary-items>
+        <nav-item location="/">Start</nav-item>
+        <nav-item location="/development.html">Development</nav-item>         
+        <nav-item location="/testing.html">Testing
           <sub-navigation caption="Testing">
-            <nav-item location="scania-bootstrap-app.html">Bootstrap CSS for Applications</nav-item>
-            <nav-item location="scania-bootstrap-public.html">Bootstrap Public CSS</nav-item>  
-            <nav-item location="testing-advanced-tables.html"  class="active">Advanced Tables</nav-item>
+            <nav-item location="/testing-advanced-tables.html" active="true">Advanced Tables</nav-item>
           </sub-navigation>
         </nav-item>
         <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
         <nav-item location="https://github.scania.com/pages/Scania/ux-library/developer/support.html">Support</nav-item>
-        </primary-items>
+      </primary-items>
     </c-main-navigation>
-
 
     <section>
       <div class="container">

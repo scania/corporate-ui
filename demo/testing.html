@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <noscript><meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html"></noscript>
 
-
   <title>Corporate UI - Developers</title>
 
   <script src="https://static.scania.com/vendors/frameworks/jquery/1.11.3/jquery-1.11.3.min.js"></script>   
@@ -25,7 +24,7 @@
   <link rel="stylesheet" href="css/ux-library.css">
 </head>
 
-<body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
+<body class="scania ux-lib" data-env="dev">
 
   <c-corporate-header site-name="Developers" site-url="/">
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
@@ -33,16 +32,13 @@
   </c-corporate-header>
 
   <c-main-content>
-
     <c-main-navigation>
       <primary-items>
         <nav-item location="/">Home</nav-item>
         <nav-item location="/development.html">Development</nav-item>
-        <nav-item location="/testing.html" class="active">Testing
+        <nav-item location="/testing.html" active="true">Testing
           <sub-navigation caption="Testing">
-            <nav-item location="template/Bootstrap/scania-bootstrap-app.html">Bootstrap CSS for Applications</nav-item>
-            <nav-item location="template/Bootstrap/scania-bootstrap-public.html">Bootstrap Public CSS</nav-item>  
-            <nav-item location="template/Examples/advanced-tables.html">Advanced Tables</nav-item>
+            <nav-item location="/advanced-tables.html">Advanced Tables</nav-item>
           </sub-navigation>
         </nav-item>
         <nav-item location="https://github.scania.com/Scania/corporate-ui/issues/new">Report an Issue</nav-item>
@@ -53,22 +49,21 @@
     <section>
       <article>
         <div class="container"><!-- MAIN CONTAINER -->
-          <div class="row">
-          <div class="col-md-12">
-            <h1>Regression Tests</h1>
-            <p>To ensure that your changes within Corporate UI does not cause disturbance för other standard elements and components, please test the pages on the sub navigation above.</p>
-            <p>Please check the following web browsers:</p>
-            <ul>Safari > 8</ul>
-            <ul>Internet Explorer > 10</ul>
-            <ul>Chrome  > 48</ul>
-            <ul>Firefox > 38</ul>
-            <p>Note that your changes could affect both  the PUBLIC zone and the APP zone. Please review both set of elements available in the subnavigation.</p>
-      </div>
-    </article>
+          <h1>Regression Tests</h1>
+          <p>To ensure that your changes within Corporate UI does not cause disturbance för other standard elements and components, please test the pages on the sub navigation above.</p>
+          <p>Please check the following web browsers:</p>
+          <ul>
+            <li>Safari > 8</li>
+            <li>Internet Explorer > 10</li>
+            <li>Chrome  > 48</li>
+            <li>Firefox > 38</li>
+          </ul>
+          <p>Note that your changes could affect both  the PUBLIC zone and the APP zone. Please review both set of elements available in the subnavigation.</p>
+        </div>
+      </article>
     </section>
   </c-main-content>
 
   <c-corporate-footer></c-corporate-footer>
-        
-      </body>
-      </html>
+</body>
+</html>

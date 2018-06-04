@@ -111,7 +111,7 @@ Polymer({
 
     // This is set to make height calculation correct.
     // The height of the child is otherwise inherited by the parent
-    this.children[0].style.height = 'auto';
+    this.children[1].style.height = 'auto';
 
     if (elm2 && elm2.offsetHeight) {
       headerHeight = elm2.offsetHeight;

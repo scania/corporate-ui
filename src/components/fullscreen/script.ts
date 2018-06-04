@@ -25,6 +25,7 @@ Polymer({
         className = 'fullscreen';
 
     e.preventDefault();
+    e.stopPropagation();
     document.body.classList.toggle(className);
     sessionStorage.setItem(className, 'true');
 

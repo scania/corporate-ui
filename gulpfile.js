@@ -2,7 +2,7 @@
 var fs = require('fs'),
     path = require('path'),
     gulp = require('gulp'),
-    clean = require('gulp-clean'),
+    del = require('del'),
     less = require('gulp-less'),
     jade = require('gulp-jade'),
     typescript = require('gulp-typescript'),
@@ -10,38 +10,43 @@ var fs = require('fs'),
     rename = require('gulp-rename'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
+    publish = require('npm-publish-release'),
     server = require('./server')
 
 /* Available tasks */
 gulp.task('clean', _clean)
-gulp.task('symlink', _symlink)
+// gulp.task('symlink', _symlink)
+gulp.task('copy', _copy)
 gulp.task('less', _less)
 gulp.task('lessComponent', _lessComponent)
 gulp.task('tsComponent', _tsComponent)
 gulp.task('jadeComponent', _jadeComponent)
 gulp.task('fullComponent', _fullComponent)
 
-gulp.task('component', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('default', gulp.series(['clean', 'symlink', 'less', 'component'], server))
+gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'components'], server))
+gulp.task('release', release)
+gulp.task('default', gulp.series(['build'], server))
 
 /* File watches */
-gulp.watch('src/less/**/*', gulp.series(['less']))
-gulp.watch('src/views/component/**/*', gulp.series(['component']))
+gulp.watch('src/global/less/**/*', gulp.series(['less']))
+gulp.watch('src/components/**/*', gulp.series(['components']))
+gulp.watch('src/global/**/*', gulp.series(['copy']))
 
 /* Methods */
 function _clean() {
-  return gulp.src('{dist,tmp}', {read: false})
-    .pipe(clean())
+  return del(['tmp', 'dist'])
 }
-function _symlink() {
-  var stream1 = gulp.src('src/{images,js,less,starter-kit}')
-    .pipe(gulp.symlink('dist'));
-  var stream2 = gulp.src('src/views/template')
-    .pipe(gulp.symlink('dist/html'))
-  return merge(stream1, stream2)  
+/*function _symlink() {
+  return gulp.src('src/global/{images,js,less}')
+    .pipe(gulp.symlink('dist'))
+}*/
+function _copy() {
+  return gulp.src('src/global/**')
+    .pipe(gulp.dest('dist'))
 }
 function _less() {
-  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less'])
+  return gulp.src(['src/global/less/*.less', 'src/global/less/corporate-ui/{core,fonts,icons,brands}.less'])
     .pipe(sourcemaps.init())
     .pipe(less({
       globalVars: {
@@ -52,22 +57,21 @@ function _less() {
     .pipe(gulp.dest('dist/css'))
 }
 function cleanComponent() {
-  return gulp.src('tmp', {read: false})
-    .pipe(clean())
+  return del('tmp')
 }
 function _lessComponent() {
-  return gulp.src('src/views/component/**/*.less')
+  return gulp.src('src/components/**/*.less')
     .pipe(less())
-    .pipe(gulp.dest('tmp/component'))
+    .pipe(gulp.dest('tmp/components'))
 }
 function _tsComponent() {
-  return gulp.src('src/views/component/**/*.ts')
+  return gulp.src('src/components/**/*.ts')
     .pipe(typescript())
-    .pipe(gulp.dest('tmp/component'))
+    .pipe(gulp.dest('tmp/components'))
 }
 function _jadeComponent() {
-  return gulp.src('src/views/component/**/*.{jade,html,md}')
-    .pipe(gulp.dest('tmp/component'))
+  return gulp.src('src/components/**/*.{jade,html,md}')
+    .pipe(gulp.dest('tmp/components'))
 }
 function _fullComponent() {
   return gulp.src('tmp/**/**/index.jade')
@@ -75,7 +79,7 @@ function _fullComponent() {
       var index = path.dirname(file.path).lastIndexOf(path.sep) + 1,
           name = path.dirname(file.path).substring(index),
           isVariation = !isNaN( parseFloat(name) ),
-          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 5;
+          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4;
           prefix = 'c-';
 
       if (isVariation) {
@@ -84,11 +88,11 @@ function _fullComponent() {
             parentName = parentPath.substring(parentindex);
 
         name = parentName + '-variation-' + name;
-      } else {        
+      } else {
 
         if (isSubComponent) {
           console.log(name)
-          prefix = '';
+          prefix = ''
         }
       }
 
@@ -102,5 +106,18 @@ function _fullComponent() {
         _path.basename = '..' + path.sep + '..' + path.sep + 'variation-' + _path.basename;
       }
     }))
-    .pipe(gulp.dest('dist/html'))
+    .pipe(gulp.dest('dist'))
+}
+function release() {
+  // npm run release -- --env=prod
+  console.log(process.argv)
+  return
+  /*publish()
+    .then(function() {
+      console.log('success!');
+    })
+    .catch(function(err) {
+      console.error('Something went wrong:', err);
+    })
+    .done();*/
 }

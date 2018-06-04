@@ -14,8 +14,8 @@ function server() {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     next()
   })
-  app.use(express.static(__dirname + '/dist'))
-  app.use('/', express.static(__dirname + '/src/views'))
+  app.use(express.static(__dirname + '/demo'))
+  app.use('/', express.static(__dirname + '/dist'))
 
   var dependencies = Object.keys(package.dependencies)
   dependencies.map(function(dependency) {
@@ -28,9 +28,8 @@ function server() {
   app.use('/vendors/**/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
   app.use('/vendors/**/bootstrap-org.css.map', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css.map') )
 
-
   app.get('/data', function(req, res) {
-    res.json( dirTree('dist/' + (req.query.path || 'html')) )
+    res.json( dirTree('dist/' + (req.query.path || 'components')) )
   })
 
   app.listen(app.get('port'), function() {

@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  flex-grow: 1;
+  flex-shrink: 0;
+  word-break: break-word;
+
+  /* Grid related style */
+  .row.text-middle {
+    font-size: 0;
+
+    > div {
+      display: inline-block;
+      float: none;
+      vertical-align: middle;
+      font-size: medium;
+    }
+  }
+  .row.products {
+    /*margin-left: -30px;
+    margin-right: -30px;*/
+
+    > div {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    a:after {
+      font-family: 'corporate-icons';
+      content: "\e6e9";
+      color: #d6001c;
+      padding-left: 6px;
+    }
+  }
+
+  ::content {
+
+    img {
+      width: 100%;
+    }
+  }
+}
+//app
+:host-context(.app) {
+
+  ::content {
+
+    > section {
+      background-color: #f7f7f7;
+      padding: 30px 0;
+    }
+  }
+}

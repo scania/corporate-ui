@@ -11,6 +11,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 .table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
   border-collapse: collapse;
   color: #041e42;
+  border: 1px solid #dadada;
 
   thead,
   tbody,
@@ -21,6 +22,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > td,
       > th {
         padding: @table-cell-padding;
+        border-color: #dadada;
       }
     }
   }
@@ -205,6 +207,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   .table-sm {
     max-width: 100%;
     margin: 20px 0;
+    border:none;
 
     > thead {
       background-color: transparent;

@@ -53,13 +53,14 @@ Polymer({
     var self = this,
         url = this.resolveUrl('/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js');
 
-    if(window.define) {
-      requirejs([url], function(bsn) {
-        Object.assign(window, bsn);
+    if(window['requirejs']) {
+      window['requirejs']([url], function(bsn) {
+        // Object.assign(window, bsn);
+        window = {...window, ...bsn}
         self.done.call(self);
       })
     } else {
-      window.CorporateUi.importScript(url, this.done.bind(this));
+      window['CorporateUi'].importScript(url, this.done.bind(this));
     }
   },
   attached: function() {
@@ -111,7 +112,7 @@ Polymer({
 
     // This is set to make height calculation correct.
     // The height of the child is otherwise inherited by the parent
-    this.children[1].style.height = 'auto';
+    (this.children[1] || this.children[0]).style.height = 'auto';
 
     if (elm2 && elm2.offsetHeight) {
       headerHeight = elm2.offsetHeight;
@@ -124,7 +125,7 @@ Polymer({
       headerHeight = elm.offsetHeight
     }
 
-    if( parseInt(this.style.height) != headerHeight ) {
+    if( parseInt(this.style.height) != parseInt(headerHeight) ) {
       this.style.cssText ='display: block; height: ' + headerHeight + (isNaN(Number(headerHeight)) ? ';' : 'px;');
     }
 
@@ -136,13 +137,13 @@ Polymer({
         styleElm = this.querySelector('style'),
         itemsWidth;
 
-    if (window.moreItemDelay) {
-      clearTimeout(window.moreItemDelay);
+    if (window['moreItemDelay']) {
+      clearTimeout(window['moreItemDelay']);
     }
 
     // We have a delay here to make sure the navigation 
     // doesnt flicker on resize
-    window.moreItemDelay = setTimeout((function() {
+    window['moreItemDelay'] = setTimeout((function() {
       styleElm.innerText = '';
       itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
       if(itemsWidth >= this.offsetWidth) {
@@ -191,7 +192,7 @@ Polymer({
     });
   },
   navigationClose: function() {
-    new window.Collapse(this.header.querySelector('.navbar-toggle'));
+    new Collapse(this.header.querySelector('.navbar-toggle'));
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,

@@ -1,4 +1,6 @@
 
+declare var Highcharts: any;
+
 Highcharts.setOptions({
   colors: ['#ceb888', '#c8c9c7', '#94a596', '#041e42', '#53565a', '#97999b', '#2c5234', '#e35205', '#9ba5b4', '#f1a982', '#ebe3cf'],
   chart: {
@@ -187,8 +189,5 @@ Polymer({
     });
 
     this.__createChart();
-  },
-  attached: function() {
-    window.$ = window.jQuery = window.preJQuery;
   }
 })

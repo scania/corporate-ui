@@ -1,7 +1,6 @@
 
 var express = require('express'),
     dirTree = require('directory-tree'),
-    package = require('./package.json'),
     app = express()
 
 module.exports = server
@@ -14,19 +13,24 @@ function server() {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     next()
   })
+
   app.use(express.static(__dirname + '/demo'))
   app.use('/', express.static(__dirname + '/dist'))
 
-  var dependencies = Object.keys(package.dependencies)
-  dependencies.map(function(dependency) {
-    var version = package.dependencies[dependency].replace(/[^\d.]/g, '').replace(/^\./, '')
-    app.use('/vendors/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
+  // var dependencies = Object.keys(package.dependencies)
+  // dependencies.map(function(dependency) {
+  //   var version = package.dependencies[dependency].replace(/[^\d.]/g, '').replace(/^\./, '')
+  //   app.use('/vendors/**/' + dependency + '/' + version, express.static(__dirname + '/node_modules/' + dependency) )
+  // })
+
+  // app.use('/vendors/frameworks/:dependency/:version', express.static(__dirname + '/node_modules/' + app.param('dependency')) )
+
+  app.use('/vendors/:type/:dependency/:version/*', function(req, res) {
+    file = req.params[0].replace('bootstrap-org', 'bootstrap')
+    res.sendFile(__dirname + '/node_modules/' + req.params.dependency + '/' + file)
   })
-  console.log('FE-Dependencies: ', dependencies)
 
   app.use('/resources/logotype/scania', express.static(__dirname + '/dist/images') )
-  app.use('/vendors/**/bootstrap-org.css', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css') )
-  app.use('/vendors/**/bootstrap-org.css.map', express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css.map') )
 
   app.get('/data', function(req, res) {
     res.json( dirTree('dist/' + (req.query.path || 'components')) )

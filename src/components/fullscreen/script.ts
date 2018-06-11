@@ -26,6 +26,7 @@ Polymer({
 
     e.preventDefault();
     e.stopPropagation();
+
     document.body.classList.toggle(className);
     sessionStorage.setItem(className, 'true');
 
@@ -40,7 +41,7 @@ Polymer({
         this.fire('fullscreen-toggled');
       });
     } else {
-      AppEventStore.apply({ name: 'fullscreen', action: 'fullscreen-toggled' });
+      window['AppEventStore'].apply({ name: 'fullscreen', action: 'fullscreen-toggled' });
     }
   }
 });

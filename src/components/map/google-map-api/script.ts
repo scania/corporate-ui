@@ -97,7 +97,7 @@ Polymer({
   /**
    * Provides the google.maps JS API namespace.
    */
-  get api() {
+  api: function() {
     return google.maps;
   }
-});
+}); 

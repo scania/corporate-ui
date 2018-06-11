@@ -1,3 +1,6 @@
+declare var videojs: any;
+declare var YT: any;
+
 Polymer({
 	is: name,
 	properties: {
@@ -141,7 +144,7 @@ Polymer({
 			var u = i.aspectRatio
 			  , s = i.poster
 			  , d = JSON.parse(n.attr("data-setup"));
-			var c = {};
+			var c:any = {};
 			c.originalElement = n;
 			c.playerParent = n.parent();
 			var p = u.split(":");
@@ -158,7 +161,7 @@ Polymer({
 			c.videoId = v;
 			if (!l || "" == l) {
 			    var y = $('div[id^="youtube_fallback"], video[id^="youtube_fallback"]').length
-			      , l = "youtube_fallback_" + y;
+			      , l:any = "youtube_fallback_" + y;
 			    c.originalElement.attr("id", l)
 			}
 			c.elementId = l;
@@ -204,7 +207,7 @@ Polymer({
 			    case YT.PlayerState.PLAYING:
 			        c.videoPaused = false;
 			        c.playCallback.forEach(function(e) {
-			            var t = {};
+			            var t:any = {};
 			            t.target = c.currentElement;
 			            t.currentTarget = c.currentElement;
 			            t.type = "Youtube Video Play";
@@ -246,7 +249,7 @@ Polymer({
 			else
 			    t[c.elementId] = c;
 			a[c.elementId] = c;
-			window.onYouTubeIframeAPIReady = function() {
+			window['onYouTubeIframeAPIReady'] = function() {
 			    r = true;
 			    for (var e in t)
 			        t[e].initPlayer()

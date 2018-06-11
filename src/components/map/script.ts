@@ -79,8 +79,8 @@ Polymer({
 
     var marker = new google.maps.Marker({
       position: LatLng,
-      title: 'Marker'
-      icon: new google.maps.MarkerImage(this.pin, null, null, null, new google.maps.Size(75, 75)),
+      title: 'Marker',
+      icon: new google.maps.MarkerImage(this.pin, null, null, null, new google.maps.Size(75, 75))
     });
 
     this._map = new google.maps.Map(this.$.map, this._getMapOptions());
@@ -194,7 +194,7 @@ Polymer({
   },
 
   _getMapOptions: function() {
-    var mapOptions = {
+    var mapOptions:any = {
       zoom: this.zoom,
       tilt:  0,
       mapTypeId: 'roadmap',

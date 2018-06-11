@@ -43,7 +43,7 @@ Polymer({
     });
 
     // Should be moved to a notification component
-    document.addEventListener('notify', function(event) {
+    document.addEventListener('notify', function(event:any) {
       self.showMessage = true;
       self.message = event.data.message;
       self.messageType = event.data.type === 'error' ? 'danger' : event.data.type;
@@ -51,9 +51,9 @@ Polymer({
   },
   login: function(data) {
     var self = this;
-    AppEventStore.apply({ name: 'login', action: this.event, data: data });
+    window['AppEventStore'].apply({ name: 'login', action: this.event, data: data });
   },
   forgotpassword: function() {
-    AppEventStore.apply({ name: 'login', action: 'forgotpassword' });
+    window['AppEventStore'].apply({ name: 'login', action: 'forgotpassword' });
   }
 });

@@ -3,6 +3,7 @@ var fs = require('fs'),
     path = require('path'),
     gulp = require('gulp'),
     del = require('del'),
+    child = require('child_process'),
     less = require('gulp-less'),
     jade = require('gulp-jade'),
     typescript = require('gulp-typescript'),
@@ -10,39 +11,37 @@ var fs = require('fs'),
     rename = require('gulp-rename'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
-    publish = require('npm-publish-release'),
+    webpack = require('webpack-stream'),
     server = require('./server')
 
 /* Available tasks */
 gulp.task('clean', _clean)
-// gulp.task('symlink', _symlink)
 gulp.task('copy', _copy)
 gulp.task('less', _less)
+gulp.task('ts', _ts)
 gulp.task('lessComponent', _lessComponent)
 gulp.task('tsComponent', _tsComponent)
 gulp.task('jadeComponent', _jadeComponent)
 gulp.task('fullComponent', _fullComponent)
 
+gulp.task('test', test)
+
 gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series(['clean', 'copy', 'less', 'components'], server))
-gulp.task('release', release)
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test']))
 gulp.task('default', gulp.series(['build'], server))
 
 /* File watches */
+gulp.watch('src/global/ts/*', gulp.series(['ts']))
 gulp.watch('src/global/less/**/*', gulp.series(['less']))
 gulp.watch('src/components/**/*', gulp.series(['components']))
-gulp.watch('src/global/**/*', gulp.series(['copy']))
+gulp.watch('src/global/{images,less}/*', gulp.series(['copy']))
 
 /* Methods */
 function _clean() {
   return del(['tmp', 'dist'])
 }
-/*function _symlink() {
-  return gulp.src('src/global/{images,js,less}')
-    .pipe(gulp.symlink('dist'))
-}*/
 function _copy() {
-  return gulp.src('src/global/**')
+  return gulp.src(['src/global/**'])
     .pipe(gulp.dest('dist'))
 }
 function _less() {
@@ -56,6 +55,40 @@ function _less() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }
+function _ts() {
+  var dirs = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory()),
+      _components = dirs('src/components'),
+      stream1 = gulp.src('src/global/ts/corporate-ui.ts')
+        // We pipe webpack instead of typescript to bundle our modules
+        .pipe(webpack({
+          watch: false,
+          devtool: 'inline-source-map',
+          output: {
+            filename: 'corporate-ui.js',
+          },
+          resolve: {
+            extensions: ['.ts']
+          },
+          module: {
+            loaders: [
+              { test: /\.ts$/, loader: 'ts-loader' }
+            ]
+          },
+          externals: {
+            // export components array to the view
+            'webpackVariables': `{
+              'components': '${_components}'
+            }`
+          }
+        }))
+        .pipe(gulp.dest('dist/js'))
+
+  var stream2 = gulp.src('src/global/ts/ux-library.ts')
+    .pipe(typescript())
+    .pipe(gulp.dest('dist/js'))
+
+  return merge(stream1, stream2)
+}
 function cleanComponent() {
   return del('tmp')
 }
@@ -65,9 +98,12 @@ function _lessComponent() {
     .pipe(gulp.dest('tmp/components'))
 }
 function _tsComponent() {
-  return gulp.src('src/components/**/*.ts')
-    .pipe(typescript())
-    .pipe(gulp.dest('tmp/components'))
+  var tsProject = typescript.createProject('tsconfig.json'),
+      tsResult = tsProject.src()
+        .pipe(tsProject())
+
+  return tsResult.js
+    .pipe(gulp.dest('tmp'))
 }
 function _jadeComponent() {
   return gulp.src('src/components/**/*.{jade,html,md}')
@@ -91,7 +127,7 @@ function _fullComponent() {
       } else {
 
         if (isSubComponent) {
-          console.log(name)
+          // console.log(name)
           prefix = ''
         }
       }
@@ -108,16 +144,6 @@ function _fullComponent() {
     }))
     .pipe(gulp.dest('dist'))
 }
-function release() {
-  // npm run release -- --env=prod
-  console.log(process.argv)
-  return
-  /*publish()
-    .then(function() {
-      console.log('success!');
-    })
-    .catch(function(err) {
-      console.error('Something went wrong:', err);
-    })
-    .done();*/
+function test(done) {
+  return done();
 }

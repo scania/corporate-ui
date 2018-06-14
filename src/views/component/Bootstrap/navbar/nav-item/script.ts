@@ -26,6 +26,7 @@ Polymer({
   attached: function() {
     var child = this.firstChild,
         texts = [];
+        icon = this.icon;
 
     while (child) {
       if (child.nodeType == 3) {
@@ -37,15 +38,16 @@ Polymer({
 
     var text = texts.join('').trim();
 
-    if (text || this.icon) {
+    if (text || icon) {
       var anchor = document.createElement('a');
       anchor.innerText = text;
       anchor.href = this.location;
       this.appendChild(anchor);
 
-      if(this.icon) {
+
+      if(icon) {
         var SpanIcon = document.createElement('span');
-        SpanIcon.classList.add('icon-' + this.icon);
+        SpanIcon.classList.add('icon-' + icon);
         anchor.appendChild(SpanIcon);
       }
     }

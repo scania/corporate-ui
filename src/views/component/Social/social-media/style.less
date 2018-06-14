@@ -3,43 +3,19 @@
 :host {
     display: inline-block;
 
-    .social-icon {
-      display: inline;
-      margin: auto 38px;
+   ::content {
 
-      @media (max-width: 992px) {
-        margin: auto 20px;
-        @media (max-width: 767px) {
-          margin: auto 12px;
-        }
-      }
+      nav-item a {
+        display: inline-block;
+        padding: 10px 0;
+        width: 55px;
+        text-align: center;
+        margin-left: 20px;
+        background-color: @interaction-primary;
 
-      a {
-
-        i {
-          color: @brand-primary;
-          border: 2px solid @brand-primary;
-          border-radius: 70px;
-          padding: 7px 0px;
-          font-size: 35px;
-
-          @media (max-width: 767px) {
-            font-size: 15px;
-          }
-
-          &:before {
-            height: 50px;
-            width: 50px;
-
-            @media (max-width: 767px) {
-              height: 28px;
-              width: 28px;
-            }
-          }
-          &:hover {
-            color: #fff;
-            background-color: @brand-primary;
-          } 
+        span {
+          color: #fff;
+          font-size: 30px;
         }
       }
     }

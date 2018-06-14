@@ -1,5 +1,5 @@
 Polymer({
-  is: 'c-social-media',
+  is: name,
   properties: {
     /* Name of social media */
     name: String,

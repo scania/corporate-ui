@@ -12,6 +12,9 @@ Polymer({
     location: {
       type: String
     },
+    icon: {
+      type: String;
+    }
     active: {
       type: String,
       observer: 'setActive'
@@ -34,11 +37,17 @@ Polymer({
 
     var text = texts.join('').trim();
 
-    if (text) {
+    if (text || this.icon) {
       var anchor = document.createElement('a');
       anchor.innerText = text;
       anchor.href = this.location;
       this.appendChild(anchor);
+
+      if(this.icon) {
+        var SpanIcon = document.createElement('span');
+        SpanIcon.classList.add('icon-' + this.icon);
+        anchor.appendChild(SpanIcon);
+      }
     }
 
     if( this.hasClass(this, 'active') ) {

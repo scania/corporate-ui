@@ -26,8 +26,13 @@ function server() {
   // app.use('/vendors/frameworks/:dependency/:version', express.static(__dirname + '/node_modules/' + app.param('dependency')) )
 
   app.use('/vendors/:type/:dependency/:version/*', function(req, res) {
-    file = req.params[0].replace('bootstrap-org', 'bootstrap')
-    res.sendFile(__dirname + '/node_modules/' + req.params.dependency + '/' + file)
+    path = req.params[0].replace('bootstrap-org', 'bootstrap')
+    dependency = req.params.dependency
+    if (!req.params.version.match(/\d.\d.\d/g)) {
+      path = path.substring(path.indexOf("/") + 1)
+      dependency = req.params.version
+    }
+    res.sendFile(__dirname + '/node_modules/' + dependency + '/' + path)
   })
 
   app.use('/resources/logotype/scania', express.static(__dirname + '/dist/images') )

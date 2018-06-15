@@ -5,22 +5,15 @@ const wv = require('webpackVariables');
 
 export {
   init,
-  done,
-  addMetaAndHeaderSpecs,
-  applyBrand,
   setGlobals,
   polymerInject,
-  baseComponents,
-  appendExternals,
-  sysMessages
+  applyBrand,
+  baseComponents
 }
 
 function init() {
-
   addMetaAndHeaderSpecs();
-
   setGlobals();
-
   appendExternals();
 }
 
@@ -137,7 +130,7 @@ function setGlobals() {
 
   window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
   window['static_root'] = (localhost ? 'http://' : 'https://') + helpers.urlInfo(scriptUrl).hostname + port;
-  window['version_root'] = window['static_root'] + helpers.urlInfo(scriptUrl).pathname.replace('/js/corporate-ui.js', '');
+  window['version_root'] = (window['static_root'] + helpers.urlInfo(scriptUrl).pathname).replace('/js/corporate-ui.js', '');
   window['protocol'] = helpers.urlInfo(scriptUrl).protocol;
   window['environment'] = helpers.urlInfo(scriptUrl).pathname.split('/')[1];
   window['params'] = {};
@@ -163,6 +156,12 @@ function setGlobals() {
 }
 
 function polymerInject() {
+  if (!(window['Polymer'] && window['Polymer'].StyleUtil)) {
+    clearTimeout(window['polymerTimer']);
+    window['polymerTimer'] = setTimeout(polymerInject, 10);
+    return;
+  }
+
   /* Extending Polymer _ready method */
   /* We extend _ready and not ready because ready will be overridden when used in a component */
   window['Polymer'].Base._orgReady = window['Polymer'].Base._ready;
@@ -206,7 +205,7 @@ function polymerInject() {
   }
 
   /* Makes Polymer apply component specific style in the end of head element */
-  window['Polymer'].StyleUtil.orgApplyCss = window['Polymer'].StyleUtil.applyCss;
+  /*window['Polymer'].StyleUtil.orgApplyCss = window['Polymer'].StyleUtil.applyCss;
   window['Polymer'].StyleUtil.applyCss = function(cssText, moniker, target, contextNod) {
     target = target || document.head;
     target.firstChild = target.lastChild;
@@ -218,10 +217,12 @@ function polymerInject() {
     }
 
     window['Polymer'].StyleUtil.orgApplyCss.call(this, cssText, moniker, target, contextNod);
-  }
+  }*/
 }
 
 function baseComponents(references) {
+  polymerInject();
+
   // Adds support for Promise if non exist
   if (typeof(window['Promise']) === 'undefined') {
     return helpers.importScript(window['static_root'] + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
@@ -258,10 +259,11 @@ function appendExternals() {
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
-    helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.min.js', null, window['corporate_elm']);
+    helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.js', null, window['corporate_elm']);
   }
 
   if (window['params'].css !== 'custom') {
+    helpers.importScript(window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js', null, window['corporate_elm']);
     helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }

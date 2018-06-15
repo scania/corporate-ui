@@ -56,31 +56,33 @@ function _less() {
     .pipe(gulp.dest('dist/css'))
 }
 function _ts() {
-  var dirs = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory()),
-      _components = dirs('src/components'),
-      stream1 = gulp.src('src/global/ts/corporate-ui.ts')
-        // We pipe webpack instead of typescript to bundle our modules
-        .pipe(webpack({
-          watch: false,
-          devtool: 'inline-source-map',
-          output: {
-            filename: 'corporate-ui.js',
-          },
-          resolve: {
-            extensions: ['.ts']
-          },
-          module: {
-            loaders: [
-              { test: /\.ts$/, loader: 'ts-loader' }
-            ]
-          },
-          externals: {
-            // export components array to the view
-            'webpackVariables': `{
-              'components': '${_components}'
-            }`
-          }
-        }))
+  var _components = dirs('src/components'),
+      // We pipe webpack instead of typescript to bundle our modules
+      stream1 = webpack({
+        watch: false,
+        devtool: 'inline-source-map',
+        entry: {
+          'corporate-ui': './src/global/ts/corporate-ui',
+          'corporate-ui-light': './src/global/ts/corporate-ui-light'
+        },
+        output: {
+          filename: '[name].js'
+        },
+        resolve: {
+          extensions: ['.ts']
+        },
+        module: {
+          loaders: [
+            { test: /\.ts$/, loader: 'ts-loader' }
+          ]
+        },
+        externals: {
+          // export components array to the view
+          'webpackVariables': `{
+            'components': '${_components}'
+          }`
+        }
+      })
         .pipe(gulp.dest('dist/js'))
 
   var stream2 = gulp.src('src/global/ts/ux-library.ts')
@@ -121,9 +123,9 @@ function _fullComponent() {
       if (isVariation) {
         var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
             parentindex = parentPath.lastIndexOf(path.sep) + 1,
-            parentName = parentPath.substring(parentindex);
+            parentName = parentPath.substring(parentindex)
 
-        name = parentName + '-variation-' + name;
+        name = parentName + '-variation-' + name
       } else {
 
         if (isSubComponent) {
@@ -145,5 +147,8 @@ function _fullComponent() {
     .pipe(gulp.dest('dist'))
 }
 function test(done) {
-  return done();
+  /* We will have some tests here later on */
+  return done()
 }
+
+dirs = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory())

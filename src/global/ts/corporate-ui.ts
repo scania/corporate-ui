@@ -1,14 +1,14 @@
 
 import * as helpers from './helpers';
-import * as core from './core';
+import { init, baseComponents } from './core';
 
 window['CorporateUi'] = (function() {
 
   /*** Public proporties ***/
   var _public = {
-    baseComponents  : core.baseComponents,
-    components      : {},
-    ...helpers
+    ...helpers,
+    baseComponents,
+    components: {}
   };
 
   return _public;
@@ -16,4 +16,4 @@ window['CorporateUi'] = (function() {
 }());
 
 /*** This starts everything ***/
-core.init();
+init();

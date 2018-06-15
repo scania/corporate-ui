@@ -148,12 +148,14 @@ function importScript(src, callback, target) {
 function urlInfo(url) {
   var ph = document.createElement("a");
   ph.href = url;
+  // This makes ie render same pathname as chrome
+  var pathname = ph.pathname.indexOf('/') == 0 ? ph.pathname : '/' + ph.pathname;
   return {
     protocol  : ph.protocol, // => "http:"
     host      : ph.host,     // => "example.com:3000"
     hostname  : ph.hostname, // => "example.com"
     port      : ph.port,     // => "3000"
-    pathname  : ph.pathname, // => "/pathname/"
+    pathname  : pathname,    // => "/pathname/"
     hash      : ph.hash,     // => "#hash"
     search    : ph.search    // => "?search=test"
   };

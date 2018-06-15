@@ -26,7 +26,9 @@ Polymer({
     'moreItem-toggled': 'setMoreItems',
     'navigation-close': 'navigationClose'
   },
-  done: function() {
+  created: function() {
+    this.header = document.querySelector('c-corporate-header');
+
     [].slice.call(this.querySelectorAll('primary-items, secondary-items')).map(function(elm) {
       elm.classList.add('nav', 'navbar-nav')
     })
@@ -46,22 +48,6 @@ Polymer({
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
     }).bind(this));
-  },
-  created: function() {
-    this.header = document.querySelector('c-corporate-header');
-
-    var self = this,
-        url = this.resolveUrl('/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js');
-
-    if(window['requirejs']) {
-      window['requirejs']([url], function(bsn) {
-        // Object.assign(window, bsn);
-        window = {...window, ...bsn}
-        self.done.call(self);
-      })
-    } else {
-      window['CorporateUi'].importScript(url, this.done.bind(this));
-    }
   },
   attached: function() {
     this.style.display = 'block';
@@ -134,7 +120,7 @@ Polymer({
   setMoreItems: function() {
     var primary = this.querySelector('primary-items'),
         secondary = this.querySelector('secondary-items'),
-        styleElm = this.querySelector('style'),
+        styleElm = this.querySelector('style') || {},
         itemsWidth;
 
     if (window['moreItemDelay']) {

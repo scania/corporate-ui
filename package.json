@@ -20,7 +20,7 @@
     "jquery-ui": "1.12.1",
     "jquery.hotkeys": "0.1.0",
     "moment": "2.19.3",
-    "pmm": "^2.0.0",
+    "pmm": "2.0.0",
     "react": "15.4.2",
     "react-datetime": "2.8.8",
     "react-dom": "15.4.2",
@@ -31,7 +31,7 @@
     "directory-tree": "1.2.0",
     "express": "4.14.1",
     "gulp": "4.0.0",
-    "gulp-cli": "^2.0.1",
+    "gulp-cli": "2.0.1",
     "gulp-data": "1.2.1",
     "gulp-jade": "1.1.0",
     "gulp-less": "3.3.0",
@@ -45,10 +45,11 @@
     "webpack-stream": "4.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "build": "gulp build",
-    "release": "pmm"
+    "prepare": "gulp build",
+    "release": "pmm",
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",

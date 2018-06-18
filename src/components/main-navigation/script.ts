@@ -165,10 +165,12 @@ Polymer({
         }
 
         var node = item.querySelector('a');
-        this.push('moreItems', {
-          text: node.text,
-          href: node.getAttribute('href')
-        });
+        if (node) {
+          this.push('moreItems', {
+            text: node.text,
+            href: node.getAttribute('href')
+          });
+        }
       }).bind(this));
 
       primary.removeAttribute('style');

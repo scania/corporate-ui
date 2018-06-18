@@ -3,7 +3,7 @@
 
 <html lang="en-GB" ng-app="CorporateUI">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <noscript>
     <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
@@ -22,7 +22,7 @@
 
     gtag('config', 'UA-110069805-1');
   </script>
-  
+
   <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
 
   <link rel="stylesheet" href="css/ux-library.css">
@@ -33,12 +33,11 @@
     <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
     <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
   </c-corporate-header>
-    
+
   <c-main-content>
      <c-main-navigation>
-      <primary-items>
-        <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
-        <nav-item location="/">Home</nav-item> 
+      <primary-items>>
+        <nav-item location="/">Home</nav-item>
         <nav-item location="/development.html" class="active">Development
           <sub-navigation caption="Development">
             <nav-item location="/components.html">Components</nav-item>
@@ -57,27 +56,8 @@
         <p>Here you can find information about basic things that is good to take into consideration when fixing existing components as well as creating new ones.</p>
       </div>
     </section>
-
-      <link rel="import" href="/html/component/Social/social-media/social-media.html">
-   <c-social-media>
-      <nav-item location="#" icon="facebook"></nav-item>
-      <nav-item location="#" icon="twitter"></nav-item>
-      <nav-item location="#" icon="youtube"></nav-item>
-      <nav-item location="#" icon="linkedin"></nav-item>
-    </c-social-media>
-
   </c-main-content>
-  <c-corporate-footer>
-   <c-social-media>
-      <nav-item location="#" icon="facebook"></nav-item>
-      <nav-item location="#" icon="twitter"></nav-item>
-      <nav-item location="#" icon="youtube"></nav-item>
-      <nav-item location="#" icon="linkedin"></nav-item>
-    </c-social-media>
-
-      <nav-item location="#" >test</nav-item>
-  </c-corporate-footer>
-
+  <c-corporate-footer></c-corporate-footer>
 
   <script src="js/ux-library.js"></script>
 </body>

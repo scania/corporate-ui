@@ -13,8 +13,9 @@ Polymer({
       type: String
     },
     icon: {
-      type: String;
-    }
+      type: String,
+      observer: 'AddIcon'
+    },
     active: {
       type: String,
       observer: 'setActive'
@@ -38,19 +39,14 @@ Polymer({
 
     var text = texts.join('').trim();
 
-    if (text || icon) {
+    if (text) {
       var anchor = document.createElement('a');
       anchor.innerText = text;
       anchor.href = this.location;
       this.appendChild(anchor);
-
-
-      if(icon) {
-        var SpanIcon = document.createElement('span');
-        SpanIcon.classList.add('icon-' + icon);
-        anchor.appendChild(SpanIcon);
-      }
     }
+
+    // this.AddIcon(icon, anchor);
 
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
@@ -84,5 +80,13 @@ Polymer({
     var state = this.hasClass(this, 'expanded') ? ' collapsed' : ' expanded';
     this.className = this.classes + state;
     // this.mode = ['expand', 'collapse'].find(x => x !== this.mode); // Another way of doing the same :)
+  },
+  AddIcon: function(icon) {
+      var anchor = document.createElement('a');
+      anchor.href = this.location;
+      this.appendChild(anchor);
+      var SpanIcon = document.createElement('span');
+      SpanIcon.classList.add('icon-' + icon);
+      anchor.appendChild(SpanIcon);
   }
 });

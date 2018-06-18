@@ -27,7 +27,6 @@ Polymer({
   attached: function() {
     var child = this.firstChild,
         texts = [];
-        icon = this.icon;
 
     while (child) {
       if (child.nodeType == 3) {
@@ -45,8 +44,6 @@ Polymer({
       anchor.href = this.location;
       this.appendChild(anchor);
     }
-
-    // this.AddIcon(icon, anchor);
 
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());

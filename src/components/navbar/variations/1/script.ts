@@ -1,3 +1,3 @@
 Polymer({
-  is: name,
+  is: name
 });

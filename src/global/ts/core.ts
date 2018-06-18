@@ -186,7 +186,7 @@ function polymerInject() {
         }
 
         /* Automatically wrapping component inside a container */
-        var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : false);
+        var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : true);
 
         if(fullbleed !== true) {
           var container = document.createElement('div'),

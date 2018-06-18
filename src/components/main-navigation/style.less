@@ -43,6 +43,9 @@
       li {
         display: none;
       }
+      > a {
+        &:extend(.navbar-default .navbar-nav > li + li > a all);
+      }
     }
     .dropdown-menu {
       max-height: 70vh;

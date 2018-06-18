@@ -27,7 +27,7 @@ gulp.task('fullComponent', _fullComponent)
 gulp.task('test', test)
 
 gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test']))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], exit))
 gulp.task('default', gulp.series(['build'], server))
 
 /* File watches */
@@ -148,7 +148,14 @@ function _fullComponent() {
 }
 function test(done) {
   /* We will have some tests here later on */
-  return done()
+  done()
+}
+function exit(done) {
+  done()
+  // Running exit to end the gulp process if current task is build
+  if (process.argv.indexOf('build') > -1) {
+    process.exit(0)
+  }
 }
 
 dirs = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory())

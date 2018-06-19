@@ -11,6 +11,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 .table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
   border-collapse: collapse;
   color: #041e42;
+  border: 1px solid #dadada;
 
   thead,
   tbody,
@@ -21,6 +22,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > td,
       > th {
         padding: @table-cell-padding;
+        border-color: #dadada;
       }
     }
   }
@@ -32,8 +34,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tr {
 
       > th {
-        font-family: 'Scania Sans Condensed';
-        font-weight: bold;
         text-transform: uppercase;
         border: 1px solid transparent;
 
@@ -156,6 +156,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
     > tr {
 
+      > td {
+        border-top-color: transparent;
+      }
+
       &:nth-child(odd) {
 
         > td,
@@ -183,6 +187,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
       > tr {
 
+        > th {
+          text-transform: none;
+        }
+
         > th,
         > td, {
           padding: @table-cell-padding-app;
@@ -199,6 +207,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   .table-sm {
     max-width: 100%;
     margin: 20px 0;
+    border:none;
 
     > thead {
       background-color: transparent;
@@ -212,7 +221,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           font-family: 'Scania Sans Condensed Bold';
           font-size: 1.2rem;
           padding: 0 10px;
-          border-bottom: 1px solid #b7b7b7;
+          border-bottom: 1px solid #dadada;
         }
       }
     }

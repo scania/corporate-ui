@@ -1,6 +1,23 @@
 <nav class="navbar navbar-default">
   <div class="collapse navbar-collapse" id="main-navigation">
     <content select="primary-items"></content>
+
+    <template is="dom-if" if="{{moreItemsAvailable}}">
+      <nav-item class="dropdown more">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          More
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <template is="dom-repeat" items="{{moreItems}}">
+            <li>
+              <a href="{{item.href}}">{{item.text}}</a>
+            </li>
+          </template>
+        </ul>
+      </nav-item>
+    </template>
+
     <content select="secondary-items"></content>
   </div>
 </nav>

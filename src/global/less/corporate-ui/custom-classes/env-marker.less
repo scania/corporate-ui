@@ -1,0 +1,58 @@
+body[data-env]:before {
+  background-color: #ddd;
+  display: inline-block;
+  padding: 52px 50px 2px;
+  content: attr(data-env);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1170;
+  -ms-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -moz-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -webkit-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -o-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  text-transform: uppercase;
+  font-size: 14px;
+  border: 2px solid #fafafa;
+}
+
+body[data-env=dev]:before,
+body[data-env=proj]:before,
+body[data-env=demo]:before,
+body[data-env=proto]:before,
+body[data-env=development]:before,
+body[data-env^=beta]:before {
+  background-color: @color-secondary-03;
+  color: #fff;
+}
+
+body[data-env=sys]:before {
+  background-color: @color-secondary-04;
+  color: #fff;
+}
+
+body[data-env=acc]:before,
+body[data-env=pre]:before {
+  background-color: @color-secondary-02;
+  color: #fff;
+}
+body[data-env^="2"]:before {
+  background-color: @interaction-primary;
+  color: #fff;
+}
+
+body[data-env=proto]:before {
+  font-size: 10px;
+}
+
+body[data-env=""]:before,
+body[data-env=prod]:before,
+body[data-env=production]:before,
+body[data-env=hidden]:before {
+  display:none;
+}
+
+body[data-env=development]:before {
+  content: "dev";
+}

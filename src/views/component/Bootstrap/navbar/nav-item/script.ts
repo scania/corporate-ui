@@ -12,6 +12,10 @@ Polymer({
     location: {
       type: String
     },
+    icon: {
+      type: String,
+      observer: 'AddIcon'
+    },
     active: {
       type: String,
       observer: 'setActive'
@@ -49,9 +53,10 @@ Polymer({
       this.classList.add('active');
     }
 
-    this.onclick = (function() {
-      this.active = true;
-    }).bind(this);
+    this.listen(this, 'tap', 'onTap');
+  },
+  onTap: function(e) {
+    this.active = true;
   },
   setActive: function(newState) {
     if (newState.toString() == 'true') {
@@ -72,5 +77,13 @@ Polymer({
     var state = this.hasClass(this, 'expanded') ? ' collapsed' : ' expanded';
     this.className = this.classes + state;
     // this.mode = ['expand', 'collapse'].find(x => x !== this.mode); // Another way of doing the same :)
+  },
+  AddIcon: function(icon) {
+      var anchor = document.createElement('a');
+      anchor.href = this.location;
+      this.appendChild(anchor);
+      var SpanIcon = document.createElement('span');
+      SpanIcon.classList.add('icon-' + icon);
+      anchor.appendChild(SpanIcon);
   }
 });

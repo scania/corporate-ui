@@ -2,7 +2,8 @@
 var fs = require('fs'),
     path = require('path'),
     gulp = require('gulp'),
-    clean = require('gulp-clean'),
+    del = require('del'),
+    child = require('child_process'),
     less = require('gulp-less'),
     jade = require('gulp-jade'),
     typescript = require('gulp-typescript'),
@@ -10,38 +11,41 @@ var fs = require('fs'),
     rename = require('gulp-rename'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
+    webpack = require('webpack-stream'),
     server = require('./server')
 
 /* Available tasks */
 gulp.task('clean', _clean)
-gulp.task('symlink', _symlink)
+gulp.task('copy', _copy)
 gulp.task('less', _less)
+gulp.task('ts', _ts)
 gulp.task('lessComponent', _lessComponent)
 gulp.task('tsComponent', _tsComponent)
 gulp.task('jadeComponent', _jadeComponent)
 gulp.task('fullComponent', _fullComponent)
 
-gulp.task('component', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('default', gulp.series(['clean', 'symlink', 'less', 'component'], server))
+gulp.task('test', test)
+
+gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], exit))
+gulp.task('default', gulp.series(['build'], server))
 
 /* File watches */
-gulp.watch('src/less/**/*', gulp.series(['less']))
-gulp.watch('src/views/component/**/*', gulp.series(['component']))
+gulp.watch('src/global/ts/*', gulp.series(['ts']))
+gulp.watch('src/global/less/**/*', gulp.series(['less']))
+gulp.watch('src/components/**/*', gulp.series(['components']))
+gulp.watch('src/global/{images,less}/*', gulp.series(['copy']))
 
 /* Methods */
 function _clean() {
-  return gulp.src('{dist,tmp}', {read: false})
-    .pipe(clean())
+  return del(['tmp', 'dist'])
 }
-function _symlink() {
-  var stream1 = gulp.src('src/{images,js,less,starter-kit}')
-    .pipe(gulp.symlink('dist'));
-  var stream2 = gulp.src('src/views/template')
-    .pipe(gulp.symlink('dist/html'))
-  return merge(stream1, stream2)  
+function _copy() {
+  return gulp.src(['src/global/**'])
+    .pipe(gulp.dest('dist'))
 }
 function _less() {
-  return gulp.src(['src/less/*.less', 'src/less/corporate-ui/{core,fonts,icons,brands}.less'])
+  return gulp.src(['src/global/less/*.less', 'src/global/less/corporate-ui/{core,fonts,icons,brands}.less'])
     .pipe(sourcemaps.init())
     .pipe(less({
       globalVars: {
@@ -51,23 +55,61 @@ function _less() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }
+function _ts() {
+  var _components = dirs('src/components'),
+      // We pipe webpack instead of typescript to bundle our modules
+      stream1 = webpack({
+        watch: false,
+        devtool: 'inline-source-map',
+        entry: {
+          'corporate-ui': './src/global/ts/corporate-ui',
+          'corporate-ui-light': './src/global/ts/corporate-ui-light'
+        },
+        output: {
+          filename: '[name].js'
+        },
+        resolve: {
+          extensions: ['.ts']
+        },
+        module: {
+          loaders: [
+            { test: /\.ts$/, loader: 'ts-loader' }
+          ]
+        },
+        externals: {
+          // export components array to the view
+          'webpackVariables': `{
+            'components': '${_components}'
+          }`
+        }
+      })
+        .pipe(gulp.dest('dist/js'))
+
+  var stream2 = gulp.src('src/global/ts/ux-library.ts')
+    .pipe(typescript())
+    .pipe(gulp.dest('dist/js'))
+
+  return merge(stream1, stream2)
+}
 function cleanComponent() {
-  return gulp.src('tmp', {read: false})
-    .pipe(clean())
+  return del('tmp')
 }
 function _lessComponent() {
-  return gulp.src('src/views/component/**/*.less')
+  return gulp.src('src/components/**/*.less')
     .pipe(less())
-    .pipe(gulp.dest('tmp/component'))
+    .pipe(gulp.dest('tmp/components'))
 }
 function _tsComponent() {
-  return gulp.src('src/views/component/**/*.ts')
-    .pipe(typescript())
-    .pipe(gulp.dest('tmp/component'))
+  var tsProject = typescript.createProject('tsconfig.json'),
+      tsResult = tsProject.src()
+        .pipe(tsProject())
+
+  return tsResult.js
+    .pipe(gulp.dest('tmp'))
 }
 function _jadeComponent() {
-  return gulp.src('src/views/component/**/*.{jade,html,md}')
-    .pipe(gulp.dest('tmp/component'))
+  return gulp.src('src/components/**/*.{jade,html,md}')
+    .pipe(gulp.dest('tmp/components'))
 }
 function _fullComponent() {
   return gulp.src('tmp/**/**/index.jade')
@@ -75,20 +117,20 @@ function _fullComponent() {
       var index = path.dirname(file.path).lastIndexOf(path.sep) + 1,
           name = path.dirname(file.path).substring(index),
           isVariation = !isNaN( parseFloat(name) ),
-          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 5;
+          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4;
           prefix = 'c-';
 
       if (isVariation) {
         var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
             parentindex = parentPath.lastIndexOf(path.sep) + 1,
-            parentName = parentPath.substring(parentindex);
+            parentName = parentPath.substring(parentindex)
 
-        name = parentName + '-variation-' + name;
-      } else {        
+        name = parentName + '-variation-' + name
+      } else {
 
         if (isSubComponent) {
-          console.log(name)
-          prefix = '';
+          // console.log(name)
+          prefix = ''
         }
       }
 
@@ -102,5 +144,18 @@ function _fullComponent() {
         _path.basename = '..' + path.sep + '..' + path.sep + 'variation-' + _path.basename;
       }
     }))
-    .pipe(gulp.dest('dist/html'))
+    .pipe(gulp.dest('dist'))
 }
+function test(done) {
+  /* We will have some tests here later on */
+  done()
+}
+function exit(done) {
+  done()
+  // Running exit to end the gulp process if current task is build
+  if (process.argv.indexOf('build') > -1) {
+    process.exit(0)
+  }
+}
+
+dirs = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory())

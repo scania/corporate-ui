@@ -159,9 +159,14 @@ Polymer({
       [].slice.call(primary.querySelectorAll('nav-item')).map((function(item, index) {
 
         if(item.offsetTop && !styleElm.innerText) {
-          styleElm.innerText = '\
+          var css = '\
             c-main-navigation nav-item:nth-child(1n+' + index + ') { display: none; } \
             c-main-navigation .more li:nth-child(1n+' + (index + 1) + ') { display: block; }';
+          if (styleElm.styleSheet){
+            styleElm.styleSheet.cssText = css;
+          } else {
+            styleElm.appendChild(document.createTextNode(css));
+          }
         }
 
         var node = item.querySelector('a');

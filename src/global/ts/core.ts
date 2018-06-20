@@ -122,7 +122,7 @@ function applyBrand() {
 
 function setGlobals() {
   window['AppEventStore'] = new helpers.EventStore();
-  window['corporate_elm'] = document.querySelector('[src*="corporate-ui.js"]');
+  window['corporate_elm'] = document.querySelector('[src*="corporate-ui"]');
 
   var scriptUrl = window['corporate_elm'].src,
       port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '',
@@ -149,9 +149,11 @@ function setGlobals() {
   window['CorporateUi'].version = wv.version;
   document.documentElement.setAttribute('cui-version', wv.version);
 
-  wv.components.split(',').map(function(component) {
-    window['CorporateUi'].components[component] = window['version_root'] + '/components/' + component + '/' + component + '.html'
-  });
+  if (window['CorporateUi'].components) {
+    wv.components.split(',').map(function(component) {
+      window['CorporateUi'].components[component] = window['version_root'] + '/components/' + component + '/' + component + '.html'
+    });
+  }
 
   /*window['Polymer'] = {
     dom: 'shadow'

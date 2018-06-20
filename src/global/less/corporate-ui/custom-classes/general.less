@@ -1,0 +1,56 @@
+
+/*** NO WRAP ***/
+.no-wrap {
+  white-space: nowrap !important;
+}
+
+.text-uppercase{
+  text-transform: uppercase !important;
+}
+
+.h0neyp0t {
+  display: none;
+}
+
+
+.light {
+
+  &,
+  section&,
+  > section,
+  section:nth-child(odd)& {
+    background-color: #fff;
+  }
+}
+
+.dark {
+
+  &,
+  section&,
+  > section,
+  section:nth-child(odd)& {
+    background-color: #f7f7f7;
+  }
+}
+
+
+.content-panel {
+  background-color: #fff;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 0px 3px 5px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.portlet-application {
+  &:extend(.app .public all);
+  &:extend(.panel-body all);
+}
+
+@media (max-width: 991px) {
+
+  body.navigation-open {
+    overflow: hidden;
+    -ms-overflow-style: none;
+  }
+}

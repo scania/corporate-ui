@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Corporate UI - Developers</title>
+
+  <!-- <script src="/js/corporate-ui.js?preload=false"></script> -->
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+
+  <style>
+    .navbar-default .navbar-header .dropdown-menu > li > a { padding: 6px 20px; }
+    .navbar-default .navbar-header .dropdown-menu > .active > a { color: #fff; }
+  </style>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+</head>
+<body class="scania" ng-controller="Example as example" ng-cloak>
+
+  <c-corporate-header site-name="{{example.name}}" site-url="/">
+    <nav-item location="/">Global</nav-item>
+    <nav-item>
+      <a href="#" ng-if="!example.auth" ng-click="example.auth = !example.auth">login</a>
+      <a href="#" ng-if="example.auth" ng-click="example.auth = !example.auth">logout</a>
+    </nav-item>
+    <nav-item class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        {{($root.languages | filter:{current:true})[0].name}}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li ng-repeat="lang in $root.languages" ng-class="{'active': lang.current}">
+          <a href="" ng-click="example.setLang(lang)">{{lang.name}}</a>
+        </li>
+      </ul>
+    </nav-item>
+  </c-corporate-header>
+
+  <c-main-content>
+    <c-main-navigation>
+      <primary-items>
+        <nav-item>
+          <a href="/">{{'home' | i18n}}</a>
+          <sub-navigation>
+            <nav-item>text</nav-item>
+          </sub-navigation>
+        </nav-item>
+        <nav-item ng-repeat="item in example.items">
+          <a href="{{item.url}}" ng-if="example.cond($index+1)">{{item.name}}</a>
+        </nav-item>
+      </primary-items>
+
+      <secondary-items>
+        <!--
+          <nav-item ng-repeat="item in example.items | filter: example.filter(example.itemsSelected)" href="" ng-bind="item.name"></nav-item>
+          <nav-item ng-repeat="item in example.itemsSelected">
+            <a href="" ng-bind="item.name"></a>
+          </nav-item>
+          <nav-item ng-repeat="item in example.itemsSelected" ng-bind="item.name"></nav-item>
+          <nav-item ng-repeat="item in example.itemsSelected">{{item.name}}</nav-item>
+        -->
+        <nav-item>
+          <a href="/hello">{{'hello' | i18n}}</a>
+        </nav-item>
+        <nav-item location="#" ng-if="!example.auth" ng-click="example.auth = !example.auth">login</nav-item>
+        <nav-item location="#" ng-if="example.auth" ng-click="example.auth = !example.auth">logout</nav-item>
+      </secondary-items>
+    </c-main-navigation>
+
+    <section>
+      <div class="container">
+        <form>
+          <label>App name</label>
+          <input type="text" ng-model="example.name">
+        </form>
+        <label>Nav items</label>
+        <select multiple="" ng-model="example.itemsSelected" ng-options="item.name for item in example.items"></select>
+        <form ng-submit="example.add()">
+          <input type="text" placeholder="New item" ng-model="example.itemAdd">
+          <button type="submit" class="btn btn-primary btn-sm">Add item</button>
+        </form>
+      </div>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular
+      .module('CorporateUI', [])
+      .controller('Example', ['$rootScope', 'translation', Example])
+      .filter('i18n', ['$rootScope', 'translation', i18n])
+      .service('translation', translation)
+
+    function Example($rootScope, translation) {
+      var vm = this
+
+      vm.auth = true
+      vm.name = 'Developers'
+      vm.item = 'home'
+      vm.items = [
+        {id:1, name:'start', url:'/start'},
+        {id:2, name:'mid', url:'/mid'},
+        {id:3, name:'stop', url:'/stop'}
+      ]
+      vm.cond = cond
+      vm.add = add
+      vm.setLang = setLang
+      // vm.filter = filter
+
+      vm.itemAdd = ''
+      vm.itemsSelected = vm.items.filter(selected)
+      vm.translation = translation
+
+      $rootScope.languages = [
+        {id:1, name:'english', short:'en'},
+        {id:2, name:'svenska', short:'se', current:true}
+      ]
+
+      function selected(item, key) {
+        return key === 0 || key === 2
+      }
+
+      function cond(index) {
+        return !!(vm.itemsSelected.filter(function(item) {
+          return item.id === index
+        })[0])
+      }
+
+      function add() {
+        if (vm.itemAdd) {
+          vm.items.push({id:vm.items.length+1, name:vm.itemAdd, url:'/' + vm.itemAdd})
+          vm.itemAdd = ''
+        }
+      }
+
+      function setLang(lang) {
+        $rootScope.languages.map(function(item) {
+          delete item.current
+        })
+        lang.current = true
+      }
+
+      /*function filter(itemsSelected) {
+        return function(item) {
+          return itemsSelected.filter(function(sitem) {
+            return sitem.id === item.id
+          })[0]
+        }
+      }*/
+    }
+
+    function i18n($rootScope, translation) {
+      function localization(input) {
+        var lang = $rootScope.languages.filter(function(item) {
+          return item.current
+        })[0]
+        return translation[lang.short || 'en'][input] || translation['en'][input] || '"' + input + '"'
+      }
+      // Used to make this filer be re applied if value is changed where this filter is used
+      // https://stackoverflow.com/a/33755929
+      localization.$stateful = true;
+      return localization
+    }
+
+    function translation() {
+      return {
+        en: {
+          'home': 'home',
+          'hello': 'hello'
+        },
+        se: {
+          'home': 'hem'
+        }
+      }
+    }
+
+    // window.CorporateUi.baseComponents();
+  </script>
+</body>
+</html>

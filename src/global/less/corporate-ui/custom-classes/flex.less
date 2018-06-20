@@ -1,0 +1,52 @@
+/////////////////////////////////////////////////////////////////////
+// This file adds box model 'flex-box' to bootstrap grid by adding //
+// class 'container-flex' to the element with class 'container'    //
+/////////////////////////////////////////////////////////////////////
+
+// Bootstrap flex mixins
+.df() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+}
+.display-flex {
+    .df;
+
+    > * {
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+}
+
+// Bootstrap flex rules
+.container-flex {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .row {
+        .df;
+        -webkit-box-lines: multiple;
+        -moz-box-lines: multiple;
+        -o-box-lines: multiple;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+
+        &:before {
+            display: initial;
+        }
+
+        > [class^="col"] {
+            .df;
+            flex-direction: column;
+
+            > *:first-child:last-child {
+                flex-grow: 1;
+                flex-shrink: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,164 @@
+.alert-indicator {
+  display: inline-block;
+  padding: 6px;
+  content: ' ';
+  background-color: #C8C9C7;
+  font-size: 0;
+  border-radius: 50%;
+  margin: 0;
+  border: none;
+
+  &.alert-primary {
+    background-color: #073472;
+  }
+
+  &.alert-success {
+    background-color: #60bf91;
+  }
+
+  &.alert-info {
+    background-color: #4a8ba4;
+  }
+
+  &.alert-warning {
+    background-color: #faa674;
+  }
+
+  &.alert-danger {
+    background-color: #D6001C;
+  }
+}
+
+.alert-danger-validate {
+    border-color: rgb(204, 16, 64);
+    background-color: rgb(238, 218, 224);
+}
+
+.alert-success-validate {
+  border-color: rgb(68, 168, 120);
+  background-color: rgb(242, 249, 245);
+}
+
+
+// Callouts are taken from the Boostrap Documentation section and incorporated to the Core CSS.
+
+.callout {
+ border-left: 3px solid #eee;
+ margin: 20px 0;
+ padding: 20px;
+}
+.callout code {
+ background-color: #fff;
+ border-radius: 3px;
+}
+.callout-danger {
+ background-color: #fdf7f7;
+ border-color: #d9534f;
+}
+.callout-danger h4 {
+ color: #d9534f;
+}
+.callout-warning {
+ background-color: #fcf8f2;
+ border-color: #f0ad4e;
+}
+.callout-warning h4 {
+ color: #f0ad4e;
+}
+.callout-info {
+ background-color: #f4f8fa;
+ border-color: #5bc0de;
+}
+.callout-info h4 {
+ color: #5bc0de;
+}
+
+.callout p:last-child {
+ margin-bottom: 0;
+}
+
+.callout h4,
+.callout h4 {
+ margin-top: 0;
+ margin-bottom: 5px;
+}
+
+// Code samples are taken from the Boostrap Documentation section and incorporated to the Core CSS.
+
+.code-sample {
+  position: relative;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.05);
+  border-color: #e5e5e5 #eee #eee;
+  border-style: solid;
+  border-width: 1px 0;
+  padding: 45px 15px 15px;
+}
+.code-sample:after {
+  content: "Example";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.code-sample + .highlight {
+  border-radius: 0;
+  border-width: 0 0 1px;
+}
+
+.code-sample .container {
+  width: auto;
+}
+
+.code-sample > p > .close {
+  float: none;
+}
+
+.code-sample-type .table .type-info {
+  color: #999;
+  vertical-align: middle;
+}
+
+.code-sample-type .table td {
+  border-color: #eee;
+  padding: 15px 0;
+}
+
+.code-sample-type .table tr:first-child td {
+  border-top: 0;
+}
+
+.code-sample-type h1,
+.code-sample-type h2,
+.code-sample-type h3,
+.code-sample-type h4,
+.code-sample-type h5,
+.code-sample-type h6 {
+  margin: 0;
+}
+
+.code-sample-bg-classes p {
+  padding: 15px;
+}
+
+.code-sample > .img-circle,
+.code-sample > .img-rounded,
+.code-sample > .img-thumbnail {
+  margin: 5px;
+}
+
+.code-sample > .table-responsive > .table {
+  background-color: #fff;
+}
+
+.code-sample > textarea.form-control {
+  resize: vertical;
+}
+
+.code-sample > .list-group {
+  max-width: 400px;
+}

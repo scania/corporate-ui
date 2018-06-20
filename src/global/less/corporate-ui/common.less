@@ -1,0 +1,137 @@
+
+body {
+  margin: 0;
+  height: 100vh;
+  -webkit-print-color-adjust: exact;
+
+  &.app {
+    background-color: #f7f7f7;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding-top: 15px;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 0;
+
+  small {
+    margin: 0 6px;
+  }
+}
+h1 + h2,
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 { padding-top: 0; }
+p {
+  margin-bottom: 20px;
+}
+dd {
+  margin-bottom: 15px;
+}
+hr {
+  margin: 10px 0;
+}
+input {
+
+  &[disabled] {
+    cursor: default;
+  }
+  &[type="button"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+  }
+  &[type=text]::-ms-clear {
+    width: 0;
+    height: 0;
+  }
+}
+kbd {
+  margin: 0px 0.1em;
+  padding: 0.1em 0.6em;
+  border-radius: 3px;
+  border: 1px solid rgb(204, 204, 204);
+  color: rgb(51, 51, 51);
+  line-height: 1.4;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  display: inline-block;
+  box-shadow: 0px 1px 0px rgba(0,0,0,0.2), inset 0px 0px 0px 2px #ffffff;
+  background-color: rgb(247, 247, 247);
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+article {
+
+  &.container,
+  .container {
+    max-width: 1170px;
+  }
+}
+
+.container .container {
+  width: auto;
+}
+.lead {
+  margin-bottom: 20px;
+}
+.divider {
+
+  dt& {
+    border-top: 1px solid @tab-border;
+    padding-top: 5px;
+  }
+  dd& {
+    border-bottom: 1px solid @tab-border;
+    padding-bottom: 5px;
+  }
+}
+
+// Should we really have something this specific here?
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+
+  > img {
+    width: 100%;
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+body {
+  opacity: 1;
+
+  .polymer-loading & {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+
+  .container-fluid {
+    margin-left: 15px;
+    margin-right: 15px;  
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+      width: 1400px;
+    }
+}

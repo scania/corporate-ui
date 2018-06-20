@@ -146,6 +146,9 @@ function setGlobals() {
     company: 'Scania'
   };
 
+  window['CorporateUi'].version = wv.version;
+  document.documentElement.setAttribute('cui-version', wv.version);
+
   if (window['CorporateUi'].components) {
     wv.components.split(',').map(function(component) {
       window['CorporateUi'].components[component] = window['version_root'] + '/components/' + component + '/' + component + '.html'

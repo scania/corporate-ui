@@ -56,7 +56,7 @@ Polymer({
 
     // If corporate-header exists tell the logotype to have sticky handling
     if (this.header) {
-      this.header.querySelector('.navbar-symbol').classList.add('should-stick');
+      this.header.sticky = 'should-stick';
     }
 
     var nav = this.querySelector('#main-navigation'),

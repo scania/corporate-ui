@@ -16,6 +16,9 @@ Polymer({
       type: Boolean,
       value: false,
       observer: 'initCollapsable'
+    },
+    sticky: {
+      type: String
     }
   },
   created: function() {

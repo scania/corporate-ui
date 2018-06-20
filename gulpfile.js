@@ -12,7 +12,8 @@ var fs = require('fs'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
     webpack = require('webpack-stream'),
-    server = require('./server')
+    server = require('./server'),
+    package = require('./package.json')
 
 /* Available tasks */
 gulp.task('clean', _clean)
@@ -79,7 +80,8 @@ function _ts() {
         externals: {
           // export components array to the view
           'webpackVariables': `{
-            'components': '${_components}'
+            'components': '${_components}',
+            'version': '${package.version}'
           }`
         }
       })

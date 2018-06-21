@@ -147,7 +147,7 @@ function setGlobals() {
   };
 
   window['CorporateUi'].version = wv.version;
-  document.documentElement.setAttribute('cui-version', wv.version);
+  document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
   if (window['CorporateUi'].components) {
     wv.components.split(',').map(function(component) {

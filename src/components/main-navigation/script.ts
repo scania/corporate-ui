@@ -70,6 +70,7 @@ Polymer({
       this.setMoreItems.call(this);
     }).bind(this));
     nav.addEventListener('show.bs.collapse', function() {
+      window.scrollTo(0, 0);
       document.body.classList.add('navigation-open');
     });
     nav.addEventListener('hidden.bs.collapse', (function() {
@@ -160,8 +161,10 @@ Polymer({
 
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
-            c-main-navigation nav-item:nth-child(1n+' + index + ') { display: none; } \
-            c-main-navigation .more li:nth-child(1n+' + (index + 1) + ') { display: block; }';
+            @media (min-width: 991px) {\
+              c-main-navigation nav-item:nth-child(1n+' + index + ') { display: none; } \
+              c-main-navigation .more li:nth-child(1n+' + (index + 1) + ') { display: block; }\
+            }';
           if (styleElm.styleSheet){
             styleElm.styleSheet.cssText = css;
           } else {

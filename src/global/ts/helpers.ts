@@ -131,16 +131,10 @@ function importLink(href, type, callback, target, attrs=undefined) {
   target.appendChild(link);
 }
 
-function importScript(src, callback, target) {
-  var script = document.createElement('script'),
-      xhr = new XMLHttpRequest(),
-      target = target || document.head;
+function importScript(src, callback=function(){}, target=document.head) {
+  var script = document.createElement('script');
 
-  script.onload = function() {
-    xhr.open('GET', src);
-    xhr.onload = callback || function(){};
-    xhr.send();
-  }
+  script.onload = callback;
   script.src = src;
   target.appendChild(script);
 }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Flex test page</title>
+
+	<link rel="stylesheet" href="/css/corporate-ui.css">
+
+	<style>
+		/* Global style */
+		body {
+			height: 100vh;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+		}
+		/* We have this component specific style here because ":host" does not seems to work in pollyfill :( */
+		c-main {
+			flex-grow: 1;
+		}
+	</style>
+
+	<template id="c-header" sitename="String">
+		<style>
+			header {
+				background-color: #eee;
+				padding: 15px;
+			}
+			::content a + a {
+				margin-left: 15px;
+				padding-left: 15px;
+				border-left: 1px solid black;
+			}
+			header > a {
+				float: right;
+			}
+			header > a img {
+				display: inline-block;
+				background-color: #000;
+				color: #fff;
+				margin: -5px;
+				line-height: 30px;
+				min-width: 60px;
+				padding-left: 6px;
+				padding-right: 6px;
+				text-align: center;
+				font-family: Arial;
+				font-size: 13px;
+			}
+		</style>
+		<header>
+			<a href="#">
+				<img src="" alt="${sitename}">
+			</a>
+			<nav>
+				<content></content>
+			</nav>
+		</header>
+	</template>
+
+	<template id="c-main" text="String" text2="String">
+		<style>
+			/* ":host" does not work with pollyfill :( */
+			:host {
+				flex-grow: 1;
+			}
+			main {
+				padding: 15px;
+			}
+		</style>
+		<main>
+			<content></content>
+			<p>${text}</p>
+			<p>${text2}</p>
+		</main>
+	</template>
+
+	<template id="c-footer">
+		<style>
+			footer {
+				background-color: #000;
+				color: #fff;
+				padding: 15px;
+			}
+		</style>
+		<footer>
+			<address>
+				<content></content>
+			</address>
+		</footer>
+	</template>
+
+	<script>
+		if (!('import' in document.createElement('link'))) {
+			importScript('/vendors/frameworks/webcomponents.js/0.7.24/ShadowDOM.min.js', function() {
+				importScript('/vendors/frameworks/webcomponents.js/0.7.24/CustomElements.min.js', ready);
+			})
+		} else {
+			ready();
+		}
+
+		function importScript(src, callback) {
+			var head = document.head,
+				script = document.createElement('script'),
+				xhr = new XMLHttpRequest();
+
+			script.onload = function() {
+				xhr.open('GET', src);
+				xhr.onload = (callback || function(){})();
+				xhr.send();
+			}
+			script.src = src;
+			head.appendChild(script);
+		}
+
+		function ready() {
+			var templates = document.querySelectorAll('template');
+			for (var i = 0; i < templates.length; i++) {
+				document.registerElement(templates[i].id, { prototype: new proto });
+			}
+
+			function proto() {
+				var prototype = Object.create(HTMLElement.prototype);
+				prototype.createdCallback = function() {
+					var self = this;
+					var name = this.nodeName.toLowerCase();
+					var root = this.createShadowRoot();
+					var template = document.querySelector('template#' + name);
+					var properties = {}
+					for(var i=0;i<template.attributes.length; i++) {
+						var property = template.attributes[i];
+						properties[property.name] = property.value;
+					}
+					delete properties.id;
+					var values = Object.keys(properties).map(function(key) {
+						var type = template.attributes[key].value;
+						var value = (self.attributes[key] || { value: '' }).value;
+						return new Function('return ' + type + '("' + value + '")')();
+					});
+					template.innerHTML = new Function(Object.keys(properties), 'return `' + template.innerHTML + '`;').apply(null, values);
+					var clone = document.importNode(template.content, true);
+					root.appendChild(clone);
+				}
+				return prototype;
+			}
+		}
+	</script>
+	<!-- <script src="/js/corporate-ui.js"></script> -->
+</head>
+<body>
+	<c-header sitename="Andreas Wikström">
+		<a href="#">Nav item</a>
+		<a href="#">Nav item 2</a>
+	</c-header>
+	<c-main text="Some scoped text" text2="More scoped text">
+		<section>
+			<h1>Headline</h1>
+			<p>Paragraph</p>
+			<a href="#">Link</a>
+		</section>
+
+		<section>
+			<h3>Headline 2</h3>
+			<ul>
+				<li>List item</li>
+				<li>List item 2</li>
+			</ul>
+		</section>
+	</c-main>
+	<c-footer>
+		Address info <a href="mailto://">Email link</a>.
+	</c-footer>
+</body>
+</html>

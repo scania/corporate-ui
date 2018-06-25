@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="corporate-ui">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>UX Library</title>
+
+  <script src="../../../js/corporate-ui.js"></script>
+
+  <style>
+    /* Should be added to Corporate */
+      .container-flex .row > div {
+        flex-grow: 1;
+      }
+      .list-group strong {
+        display: block;
+      }
+      .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .tab-pane {
+        display: none;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+
+    @media(max-width: 991px) {
+      /* This is a bug in the Corporate framework */
+        c-corporate-header {
+          position: static;
+        }
+
+      .message-selected,
+      .messages {
+        display: none !important;
+      }
+      .message-selected + .messages {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+<body class="scania ux-lib app" data-env="dev" ng-app="App">
+  <c-corporate-header site-name="UX Library" site-url="/">
+    <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+  <c-main-content ng-controller="Messaging as main">
+    <c-main-navigation>
+      <primary-items>
+        <nav-item location="/">Home</nav-item>
+        <nav-item location="/messaging" active="true">
+          messaging
+          <sub-navigation caption="messaging">
+            <nav-item location="/messaging/persons" active="true">Persons</nav-item>
+            <nav-item location="/messaging/groups">Groups</nav-item>
+          </sub-navigation>
+        </nav-item>
+        <nav-item location="/contacts">Contacts</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <div class="container-flex">
+      <div class="row">
+        <div class="col-md-4 col-lg-3" ng-class="{'message-selected': main.messages}">
+          <form class="form-group margin-top">
+            <input type="text" name="search" class="form-control" placeholder="Search for a conversation or keyword">
+          </form>
+          <div class="text-center">
+            <a href="">
+              <span class="icon-plus-sign"></span>
+              Group conversation
+            </a>
+          </div>
+          <hr>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <ul class="nav nav-tabs nav-tabs-light">
+                <li class="active">
+                  <a href="#conversation" data-toggle="tab">Conversation</a>
+                </li>
+                <li>
+                  <a href="#contacts" data-toggle="tab">Contacts</a>
+                </li>
+              </ul>
+            </div>
+            <div class="panel-body">
+              <div class="tab-pane active" id="conversation">
+                <div class="list-group list-group-light">
+                  <a href="{{conv.user.id}}" class="list-group-item ellipsis" title="{{conv.text}}" ng-repeat="conv in main.conversations" ng-click="main.getMessages($event, conv.user)">
+                    <small class="pull-right">{{conv.time * 1000 | date:'MM-dd-yyyy'}}</small>
+                    <figure class="avatar pull-left margin-right">
+                      <img ng-src="{{conv.user.avatar}}">
+                    </figure>
+                    <strong class="ellipsis" title="{{conv.user.name}}">
+                      <span class="icon-circle color-success pull-left" ng-if="conv.user.status"></span>
+                      {{conv.user.name}}
+                    </strong>
+                    {{conv.text}}
+                  </a>
+                </div>
+              </div>
+              <div class="tab-pane" id="contacts"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 col-lg-9 messages">
+          <section>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div ng-if="!main.messages">
+                  <h2>Message list</h2>
+                  <p>We will display a conversation history here when you select a message in the conversation list in the left sidebar</p>
+                </div>
+
+                <div ng-if="main.messages">
+                  <div class="mb-2">
+                    <a href="" ng-click="main.messages = undefined">
+                      <span class="icon-arrow-left"></span>
+                      Close conversation
+                    </a>
+                  </div>
+
+                  <div ng-if="main.messages.length === 0">
+                    <p>You have not had a conversation with <strong>{{main.user.name}}</strong> yet.</p>
+                  </div>
+
+                  <ol class="list-unstyled" ng-if="main.messages.length">
+                    <li ng-repeat="mess in main.messages">
+                      <div class="alert alert-info">{{mess.text}}</div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </c-main-content>
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+  <script>
+    angular.module('App', [])
+      .controller('Messaging', [Messaging]);
+
+    function Messaging() {
+      var vm = this,
+
+          // api/messages
+          messages = [
+            {
+              id: 1,
+              user: 1,
+              text: 'Tänk att man är så jävla grym asså...',
+              time: 1519117816
+            },
+            {
+              id: 2,
+              user: 1,
+              text: 'Say woot woot',
+              time: 1519117816
+            },
+            {
+              id: 3,
+              user: 2,
+              text: 'Om jag ändå kunde koda :(',
+              time: 1519117816
+            }
+          ];
+
+      vm.user = {};
+
+      // api/conversations?populate=user
+      vm.conversations = [
+        {
+          id: 1,
+          text: 'Tänk att man är så jävla grym asså...',
+          time: 1519117816,
+          user: {
+            id: 1,
+            status: 1,
+            name: 'Andreas Wikström',
+            avatar: 'https://static.scania.com/cds/awinny/avatar.jpg'
+          }
+        },
+        {
+          id: 2,
+          text: 'Om jag ändå kunde koda :(',
+          time: 1519117816,
+          user: {
+            id: 2,
+            status: 0,
+            name: 'Marcus Mena',
+            avatar: 'https://static.scania.com/cds/awinny/avatar2.jpg'
+          }
+        },
+        {
+          id: 3,
+          text: 'Baaah',
+          time: 1519117816,
+          user: {
+            id: 3,
+            status: 0,
+            name: 'Martin Leterius',
+            avatar: 'https://static.scania.com/cds/awinny/avatar2.jpg'
+          }
+        },
+        {
+          id: 4,
+          text: 'Vaaah',
+          time: 1519117816,
+          user: {
+            id: 4,
+            status: 0,
+            name: 'Jesper Karlsson',
+            avatar: 'https://static.scania.com/cds/awinny/avatar2.jpg'
+          }
+        },
+        {
+          id: 5,
+          text: 'Naaah',
+          time: 1519117816,
+          user: {
+            id: 5,
+            status: 1,
+            name: 'Apa Banan',
+            avatar: 'https://static.scania.com/cds/awinny/avatar2.jpg'
+          }
+        },
+        {
+          id: 6,
+          text: 'Aaaah',
+          time: 1519117816,
+          user: {
+            id: 6,
+            status: 1,
+            name: 'Foo Bah',
+            avatar: 'https://static.scania.com/cds/awinny/avatar.jpg'
+          }
+        }
+      ];
+
+      vm.getMessages = function(event, user) {
+        event.preventDefault();
+        // api/messages/:id
+        vm.user = user;
+        vm.messages = messages.filter(function(message) {
+          return message.user === user.id;
+        });
+      }
+    }
+  </script>
+</body>
+</html>

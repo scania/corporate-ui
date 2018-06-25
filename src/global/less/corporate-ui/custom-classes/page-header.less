@@ -1,0 +1,108 @@
+.page-header {
+
+  h1,
+  h2,
+  h3 {
+
+    small {
+      font-family: "Scania Sans Headline";
+      font-size: 0.5em;
+      font-weight: normal;
+      color: @interaction-primary;
+      display: block;
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
+
+  .app & {
+
+    h1 {
+      font-size: @h1-font-size-app * 1.5;
+    }
+    h2 {
+      font-size: @h2-font-size-app * 1.5;
+    }
+    h3 {
+      font-size: @h3-font-size-app * 1.5;
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-align: left;
+
+      small {
+        font-family: "Scania Sans";
+        font-weight: bold;
+        font-size: 0.6em;
+      }
+    }
+  }
+}
+
+header.c-page-header {
+  background: transparent;
+  margin-bottom: 15px;
+
+  .page-header {
+
+    h1,
+    h2,
+    h3 {
+      padding-top: 0;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.03rem;
+      font-family: "Scania Sans Headline" !important;
+      font-weight: bold;      
+    }
+
+    h3,
+    h4 {
+      display: inline;
+      vertical-align: middle;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      padding-right: 10px;
+    }
+
+    h4 {
+      font-family: 'Scania Sans Condensed';
+      font-weight: bold;      
+      font-size: 1.6rem;
+      padding-left: 10px;
+      border-left: 1px solid #041e42;
+      padding-right: 0;
+    }
+
+    .row {
+      margin-bottom: 15px;
+    }
+  }
+
+  .btn-toolbar {
+      margin-top: 0;
+  }
+
+  .form-control {
+
+    &:focus {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      background: rgb(242, 247, 249);
+      border: 1px solid rgb(74, 139, 164);
+    }
+
+    .app & {
+      background-color: #FFF;
+
+    }
+  }
+}
+
+html body.scania .page-header {
+  border: none;
+  margin-top: 0;
+}

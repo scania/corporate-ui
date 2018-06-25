@@ -1,7 +1,7 @@
 <h1>The Corporate UI Framework</h1>
 
-<p>In this repository you'll find all components described in <a href="https://github.scania.com/pages/Scania/ux-library/developer/">the UX Library</a>.</p>
-<p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository as well as <a href="https://github.scania.com/pages/Scania/ux-library/">the documentation</a>.</p>
+<p>In this repository you'll find all components described in <a href="https://scania.github.io/corporate-ui-docs/developer/">the UX Library</a>.</p>
+<p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository as well as <a href="https://scania.github.io/corporate-ui-docs/">the documentation</a>.</p>
 <ul>
 	<li>Something broken in a existing component? Help fixing it!</li>
 	<li>Found a component that needs to be extended? Get on and improve it!</li>
@@ -19,13 +19,13 @@
 
 <p>Do you want to have an introduction to Web Component development at Scania? Please throw an e-mail at <a href="mailto:corporate-ui@scania.com">the Corporate UI Librarians</a>.</p>
 
-<p>Full Corporate UI documentation <a href="https://github.scania.com/pages/Scania/ux-library/">available here</a>.</p>
+<p>Full Corporate UI documentation <a href="https://scania.github.io/corporate-ui-docs/">available here</a>.</p>
 
 <h2>Set up your local server</h2>
 <ul>
 <li>Clone the Corporate UI repo</li>
 <li>Download and install node.js: https://nodejs.org/en/</li>
-<li>CONFIGURE SCANIA PROXY: In environment variables (on computer) as well as in Git config. PROXY IS: http://PROXYSESO.SCANIA.COM:8080
+<li>If you're behind a firewall, CONFIGURE THE PROXY
 <li>INSTALL GULP (from command line): <b>npm install gulp-cli -g</b></li>
 <li>INSTALLING DEPENDENCIES (from command line): <b>npm install</b> from the corporate-ui folder.</li>
 <li>Start Gulp (from command line, as administrator on windows): <b>gulp</b></li>
@@ -34,9 +34,9 @@
 <h2>Starter Kit</h2>
 <p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components.
 <br>
-<a href="https://github.scania.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
+<a href="https://github.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
 
 
 
 <h2>License</h2>
-<p>The Scania brand identity and the interaction patterns found in this repository are not available on an open source basis. Although we have great freedom to make improvements and new components, some changes to interaction patterns and use of colours etc may not be approved.</p>
+<p>All CSS, HTML and JS code are available under the MIT licens. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.</p>

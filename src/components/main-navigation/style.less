@@ -1,0 +1,283 @@
+@import (reference) "../../global/less/corporate-ui/variables";
+@import (reference) "../../global/less/corporate-ui/navigation";
+
+:host {
+  display: none;
+  // we set height on this element dynamicly, this rule make it look smoother
+  transition: height 100ms ease;
+
+  .navbar-footer {
+    display: none;
+  }
+  .navbar-collapse {
+    &:extend(.navbar-default .navbar-header + .navbar-collapse);
+  }
+
+  ::content {
+
+    primary-items {
+      display: inline-block;
+    }
+    secondary-items {
+      display: inline-block;
+    }
+
+    > .navbar {
+      // Inherit height from its child js calculated height
+      height: inherit;
+      box-shadow: 0 0 0 0 transparent;
+      transition: box-shadow 0.15s ease-in-out;
+    }
+    .navbar-nav.navbar-right:last-child {
+      margin-right: 1px;
+      -webkit-transition: margin-right 100ms ease;
+      -moz-transition: margin-right 100ms ease;
+      -o-transition: margin-right 100ms ease;
+      -ms-transition: margin-right 100ms ease;
+      transition: margin-right 100ms ease;
+    }
+    .more {
+      // Why is this actually set to "display: none;" ?
+      display: inline-block !important;
+
+      li {
+        display: none;
+      }
+      > a {
+        &:extend(.navbar-default .navbar-nav > li + li > a all);
+      }
+    }
+    .dropdown-menu {
+      max-height: 70vh;
+      overflow-y: scroll;
+    }
+  }
+}
+
+:host-context(.app) {
+
+  // Might wanna move this to nav-item or things in nav-item here later on...
+  ::content nav-item {
+
+    &:first-child a:before {
+      padding-left: 0;
+    }
+
+    a {
+      &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a);
+    }
+  }
+}
+
+:host-context(.header-is-sticky) {
+
+  ::content {
+
+    > .navbar {
+      position: fixed;
+      // In ie and ff the sub-nav´s position is calculated wrong by 0.5px adding a small gap
+      // between main and sub navigation, this for some reason solves that :O
+      top: -1px;
+      left: 0;
+      right: 0;
+      -webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
+      box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
+    }
+    .navbar-nav.navbar-right {
+      margin-right: 80px;
+    }
+  }
+}
+
+:host-context(body.fullscreen) {
+
+  ::content {
+
+    .navbar-nav.navbar-right {
+      margin-right: 1px; // If we use 0 a horizontal scrollbar will be shown... :O
+    }
+  }
+}
+
+:host-context(.app.header-is-sticky) {
+
+  ::content .navbar-nav.navbar-right {
+    margin-right: 60px;
+  }
+}
+
+@media (max-width: 991px) {
+  :host {
+
+    .navbar-footer {
+      height: 55px;
+
+      ::content nav-item {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0;
+
+        a {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+      }
+    }
+    .navbar-toggle {
+      display: inline-block;
+      float: left;
+      border: 1px solid #e2e2e2;
+      padding: 0;
+      margin: 0 0 -1px;
+      border-radius: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      ::content {
+
+        a {
+          padding: 19px;
+          font-size: 1.4em;
+
+          &:hover,
+          &:focus {
+            color: inherit;
+            outline: none;
+          }
+          &.collapsed .icon-expander:before {
+            content: "\e6b1";
+          }
+
+          > span {
+            padding: 0;
+            border-left: 0;
+          }
+          .icon-expander {
+            display: inline-block;
+            width: 18px;
+
+            &:before {
+              content: "\e60d";
+            }
+          }
+        }
+      }
+    }
+    nav .navbar-collapse {
+
+      &.collapsing {
+        overflow-y: hidden !important;
+
+        + .navbar-footer {
+          display: block;
+        }
+      }
+      &.collapse {
+        display: none !important;
+
+        &.in {
+          display: block !important;
+
+          + .navbar-footer {
+            display: block;
+          }
+        }
+      }
+      &.in {
+        height: 100% !important;
+        overflow-y: scroll !important;
+      }
+    }
+    > .navbar-default {
+      display: none;
+      min-height: 0;
+    }
+
+    ::content {
+
+      nav-item {
+
+        a {
+          padding-top: 25px;
+          padding-bottom: 25px;
+
+          &:focus {
+            color: inherit;
+          }
+
+          > span {
+            border-left: 0;
+            padding-left: 2rem;
+            padding-right: 2rem;
+
+            &[class^="icon-"] {
+              line-height: inherit;
+            }
+          }
+        }
+      }
+      primary-items {
+        display: block;
+
+        > nav-item {
+          background-color: #f5f5f5;
+          display: block;
+          position: relative;
+
+          > a:hover span {
+            text-decoration: none;
+          }
+        }
+      }
+      secondary-items {
+        display: block;
+
+        > nav-item {
+          padding: 0;
+
+          a {
+            padding: 10px 0;
+
+            span {
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      .nav {
+        float: none !important;
+      }
+      .navbar-left {
+
+        &:hover ::content {
+
+          nav-item a,
+          ~ c-navbar nav-item a,
+          ~ sub-navigation nav-item a {
+            color: #041e42;
+          }
+        }
+      }
+      .nav-collapse-container {
+        height: 100%;
+        background-color: #f5f5f5;
+        overflow-y: auto;
+        -ms-overflow-style: auto;
+      }
+      .more {
+        display: none !important;
+      }
+    }
+  }
+
+  :host-context(.navigation-open) {
+
+    > .navbar-default {
+      display: block;
+      height: 100vh;
+    }
+  }
+}

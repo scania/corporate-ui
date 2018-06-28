@@ -1,0 +1,66 @@
+//BUTTONS Custom-classes
+
+.btn-transparent {
+  border-width:1px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: #fff;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
+  }
+  &:focus,
+  &:active {
+    color: #fff;
+  }
+}
+
+.btn-close {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    i {
+        color: #000;
+        opacity: 0.7;
+    }
+}
+
+.btn.btn-icon {
+    background-color: transparent;
+    border: 0;
+    padding: 0 !important;
+
+    &:active,
+    &.active {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: gray;
+    }
+}
+
+.app {
+
+  .btn-link.btn-info {
+    font-family: 'Scania Sans Condensed';
+    font-weight: bold;
+    text-decoration: none;
+    color: @btn-info-bg;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:active,
+    &.active {
+      color: #6cabc3;
+      background-color: transparent;
+      border-color: transparent;
+    }
+
+    i {
+      font-size: 20px;
+    }
+  }
+}

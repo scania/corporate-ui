@@ -1,0 +1,65 @@
+
+// Form Sizing
+.input-sm {
+  height: 30px;
+  border-radius: 0;
+}
+
+.input-lg {
+  height: 39px;
+  border-radius: 0;
+}
+
+.table .form-control { .input-sm } //Forms in labels have input-sm-styling per default
+.table .input-group-btn .btn {
+  .input-sm;
+  margin: 0 0 0 -1px;
+}
+
+.form-condensed {
+
+  .form-group {
+    margin-bottom: 5px;
+  }
+  .form-control {
+    &:extend(.input-sm);
+  }
+}
+
+// Form related classes
+.form-group {
+  position: relative;
+}
+
+.input-icon{
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    right: 8px;
+    font-size: 22px;
+
+    .compact & {
+      font-size: 16px;
+    }
+
+    .app & {
+      font-size: 20px;
+      right: 15px;
+    }
+
+  &.icon-remove-sign {
+    cursor: pointer;
+  }
+}
+
+.headline {
+  overflow: hidden;
+
+  .button-container {
+    float: right;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+}

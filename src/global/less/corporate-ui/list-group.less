@@ -1,0 +1,43 @@
+.list-group {
+  font-family: 'Scania Sans';
+  font-weight: bold;
+  margin-bottom: 60px;
+
+  //list-group-light
+  &-light .list-group-item {
+    background-color: transparent;
+    border: 0;
+    padding: 10px 5px;
+  }
+}
+
+.list-group-item {
+  background-color: #fff;
+  position: relative;
+  padding: 20px;
+  border: 1px solid #e2e2e2;
+
+  &:first-child,
+  &:last-child {
+    border-radius: 0;
+  }
+
+  &.active {
+    z-index: 0;
+    background-color: @interaction-info;
+    border-color: @interaction-info;
+
+    &:hover,
+    &:focus {
+      z-index: 0;
+      background-color: @interaction-info;
+      border-color: @interaction-info;
+    }
+  }
+
+  &.submenu-item {
+    background-color: #e3edf0;
+    border-color: #e3edf0;
+    color: #000;
+  }
+}

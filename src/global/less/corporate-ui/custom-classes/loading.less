@@ -1,0 +1,96 @@
+.loading,
+.locked {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    display: block !important;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1150;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:after {
+    display: block !important;
+    position: absolute;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    z-index: 1160;
+    &:extend([class^="icon-"]);
+    // Issue with npm install for font-awesome@3.2.1 due to jekyll@1.0.2
+    // This makes it so that we cant extend things from font-awesome :(
+    // &:extend(.icon-spin);
+  }
+}
+
+.loading {
+
+  &:before {
+    background-color: rgba(250, 250, 250, 0.6);
+  }
+
+  &:after {
+    top: 50%;
+    font-size: 30px;
+    content:"\e6f3";
+
+    display: inline-block;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+  }
+
+  &.full:before,
+  &.full:after {
+    position: fixed;
+  }
+
+  html& {
+    opacity: 1 !important;
+  }
+}
+
+.locked {
+
+  &:before {
+    background-color: rgba(150, 130, 130, 0.6);
+  }
+
+  &:after {
+    content: "\e65e";
+    font-size: 100px;
+    color: #cc1040;
+    top: 40%;
+  }
+
+  &.locked-sm:after {
+    font-size: 50px;
+    top: 48%;
+  }
+
+  &.locked-xs:after {
+    font-size: 20px;
+    top: 50%;
+  }
+}
+
+.loadingContainer {
+  position: relative !important;
+  overflow: hidden;
+
+   > .loading {
+    position: static;
+
+    &:before {
+      width: inherit;
+      top: inherit;
+      left: inherit;
+    }
+  }
+}

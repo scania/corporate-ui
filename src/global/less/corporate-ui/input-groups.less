@@ -1,0 +1,158 @@
+.input-group {
+  border-radius: 0px;
+  box-shadow: none;
+  border-color: transparent;
+
+  .input-group-addon {
+    border-radius: 0px;
+    box-shadow: none;
+    border-color: transparent;
+    padding: 4px 18px;
+    font-size: 22px;
+    margin-right: 3px;
+    border-left: 3px solid #fff;
+
+    &:first-child {
+      border-left: 0;
+    }
+    &:not(:last-child) {
+      border-right: 3px solid #fff;
+    }
+
+    & input[type="radio"]  {
+      margin-top: 10px;
+      margin-right: -15px;
+
+      + span {
+        line-height: 0;
+        margin-bottom: 8px;
+
+        &:before {
+          border: 0.2em solid #eee;
+          vertical-align: inherit;
+        }
+      }
+    }
+
+    & input[type="checkbox"] {
+      // margin-top: 10px;
+      // margin-right: -20px;
+      // font-size: inherit;
+      // height: 20px;
+        margin-right: -35px;
+        height: 30px;
+        width: 30px;
+
+        .app & {
+        margin-right: -25px;
+        height: 20px;
+        width: 20px;
+      }
+
+      + span {
+
+        &:before {
+          margin:0px;
+        }
+      }
+    }
+    .app & {
+       // margin-right: -20px;
+       //  height: 20px;
+      padding: 0px 15px;
+      font-size: 17px;
+    }
+  }
+
+  & > .form-control {
+    padding: 20px 17px;
+    border-radius: 0px;
+    border: 1px solid transparent;
+
+    .app & {
+      padding: 8.4px 17px;
+    }
+  }
+
+  &-lg {
+
+    .input-group {
+
+      &-addon {
+
+        border-radius: 0px;
+        box-shadow: none;
+        border-color: transparent;
+        padding: 0px 25px;
+        font-size: 28px;
+
+        .app & {
+          padding: 0px 15px;
+          font-size: 20px;
+        }
+      }
+    }
+
+    & > .form-control {
+      padding: 40px 17px;
+
+      .app & {
+        padding: 23px 17px;
+      }
+    }
+  }
+
+  &-sm {
+
+    .input-group-addon {
+      padding-top: 2px;
+      padding-bottom: 2px;
+      height: auto;
+
+      .app & {
+        padding: 0px 7px;
+        font-size: 12px;
+      }
+    }
+
+    & > .form-control {
+      padding: 20px 17px;
+      .app & {
+        padding: 5px 17px;
+      }
+    }
+  }
+
+  .input-group-btn {
+    z-index: 2;
+
+    &:first-child > .btn-default:first-child {
+      margin-left: 0px;
+    }
+
+    &:not(:last-child) {
+      padding-right: 4px;
+    }
+
+    > .btn-default {
+      border-color: transparent;
+      background-color: #f5f5f5;
+      margin-left: 3px;
+      padding: 25px 15px 15px 15px;
+
+      .app & {
+        padding: 14px 10px 10px 10px;
+      }
+    }
+
+    .well & .btn-default {
+      background-color: #fff;
+      margin-left: 3px;
+    }
+
+    & .dropdown-toggle {
+      white-space: nowrap;
+    }
+  }
+}
+

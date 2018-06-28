@@ -1,0 +1,256 @@
+// TABLES
+
+@table-cell-padding: 25px;
+@table-cell-padding-app: 10px;
+
+table { //This is to override the Boostrap standard of "collapse" on all table elements
+  border-collapse: separate;
+  word-break: normal;
+}
+
+.table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
+  border-collapse: collapse;
+  color: #041e42;
+  border: 1px solid #dadada;
+
+  thead,
+  tbody,
+  tfoot {
+
+    > tr {
+
+      > td,
+      > th {
+        padding: @table-cell-padding;
+        border-color: #dadada;
+      }
+    }
+  }
+
+  thead {
+    background-color: @interaction-primary;
+    color: #fff;
+
+    > tr {
+
+      > th {
+        text-transform: uppercase;
+        border: 1px solid transparent;
+
+        input,
+        select {
+
+          &,
+          &.form-control {
+            font-weight: normal;
+            font-family: 'Scania Sans';
+
+            &::placeholder,
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,
+            &:moz-placeholder {
+              font-weight: normal;
+              font-family: 'Scania Sans';
+            }
+          }
+        }
+      }
+    }
+  }
+
+  tbody {
+
+    > tr {
+
+      > td {
+        color: #53565a;
+        vertical-align: middle;
+
+        ul {
+          margin: unset;
+        }
+      }
+    }
+  }
+
+  caption {
+    text-align: left;
+    text-transform: uppercase;
+    border: 0;
+    line-height: normal;
+    background-color: @interaction-primary;
+    color: #fff;
+    padding: 25px;
+
+    + thead {
+      background-color: inherit;
+      color: inherit;
+
+      > tr > th {
+        border: 1px solid #dadada;
+      }
+    }
+
+  }
+
+  i {
+    white-space: nowrap;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    text-transform: none;
+  }
+
+  &,
+  &.table-striped {
+    > tbody {
+
+      > tr,
+      > tr.active {
+        &.danger {
+          > td {
+            background-color: rgba(204, 16, 64, 0.12)
+          }
+        }
+
+        &.success {
+          > td {
+            background-color: rgba(68, 168, 120, 0.12);
+          }
+        }
+      }
+    }
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-hover {
+    > tbody {
+      > tr,
+      > tr.active {
+        &:hover{
+          > td,
+          > th {
+            background-color: #d9e8ef;
+          }
+        }
+      }
+    }
+  }
+
+.table-striped {
+
+  > tbody {
+
+    > tr {
+
+      > td {
+        border-top-color: transparent;
+      }
+
+      &:nth-child(odd) {
+
+        > td,
+        > th {
+          background-color: #ebf2f5;
+
+          // Striped table inside well
+          .well & {
+            background-color: #fdfdfd;
+          }
+        }
+      }
+    }
+  }
+}
+
+//tables in app mode
+.app {
+
+  .table {
+
+    thead,
+    tbody,
+    tfoot {
+
+      > tr {
+
+        > th {
+          text-transform: none;
+        }
+
+        > th,
+        > td, {
+          padding: @table-cell-padding-app;
+        }
+      }
+    }
+
+    caption {
+      padding: 10px;
+      &:extend(.table caption all);
+    }
+  }
+
+  .table-sm {
+    max-width: 100%;
+    margin: 20px 0;
+    border:none;
+
+    > thead {
+      background-color: transparent;
+      color: #b7b7b7;
+
+      > tr {
+
+        > th {
+          text-transform: none;
+          font-weight: normal;
+          font-family: 'Scania Sans Condensed Bold';
+          font-size: 1.2rem;
+          padding: 0 10px;
+          border-bottom: 1px solid #dadada;
+        }
+      }
+    }
+
+    > tbody {
+
+      > tr {
+
+        > td {
+          font-family: 'Scania Sans Condensed';
+          padding: 5px 10px;
+          border: none;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .table-condensed {
+    font-family: 'Scania Sans Condensed';
+
+    > tbody {
+      > tr {
+        > td {
+          padding-top: 8px;
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,268 @@
+
+//@import '../../resources/icons/scania/icons.css';
+//@import (less, reference) '../../resources/icons/scania/icons.css';
+
+.ux-lib {
+
+  &[version-notfound]:after {
+    content: "Version '" attr(version-notfound) "' was not found. Fallback to '" attr(data-env) "'";
+    font-family: 'Scania Sans Bold';
+    position: fixed;
+    z-index: 9000;
+    bottom: 40px;
+    right: 40px;
+    background-color: #d6001c;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    opacity: 1;
+    transition: opacity 500ms 4s ease;
+  }
+  &.done-loading[version-notfound]:after {
+    opacity: 0;
+  }
+
+  demo-component {
+
+    .modal {
+      position: relative;
+    }
+  }
+
+  .ux-sections img {
+    width: auto;
+    height: auto;
+    min-height: 128px;
+    min-width: 128px;
+    margin: 10% 5% 0;
+  }
+
+  @media (max-width: 991px) {
+    .ux-sections img {
+      width: 40%
+    }
+  }
+
+  .panel-group {
+
+    a {
+      color: #d6001c;
+    }
+  }
+
+  .main-item {
+    margin: 30px 0 50px 0;
+
+    h5 {
+      border-bottom: 1px #000 solid;
+      padding-bottom: 20px;
+      text-align: left;
+    }
+
+    i {
+      //.icon-mechanic-technician;
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/40_Mechanic_Technician-24-48px.svg');
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 30px 0 0;
+    }
+
+    .icon-Carousels {
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/20_Job_posting_info_Location_generic-24-48px.svg');
+    }
+    .icon-Contact {
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/72_See details-24-48px.svg');
+    }
+    .icon-Content_Teasers,
+    .icon-Content {
+      //.icon-tma;
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/59_TMA-24-48px.svg');
+    }
+    .icon-Find_a_dealer,
+    .icon-Find {
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/01_Find_a_dealer-24-48px.svg');
+    }
+    .icon-Listing_Components,
+    .icon-Listing {
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/72_See details-24-48px.svg');
+    }
+    .icon-Navigation {
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/02_Icon_search-24-48px.svg');
+    }
+    .icon-Social {
+      
+    }
+    .icon-Tables_Forms,
+    .icon-Tables {
+      background-image: url('http://static.scania.com/resources/icons/scania/SVG_POS/74_Warranty-24-48px.svg');
+    }
+    .icon-Tabs_Filters {
+      
+    }
+  }
+  .component, 
+  .template {
+    padding: 20px;
+
+    &:nth-child(5) {
+      clear: left;
+    }
+
+    span {
+      display: block;
+    }
+  }
+  .icon-info {
+    color: #000;
+    font-size: 1.2em;
+  }
+  .collapsed {
+
+    .icon-info {
+      color: #aaa;
+    }
+  }
+}
+
+
+
+.porsche .wordmark {
+  display: block;
+  float: left;
+  background: url('http://static.scania.com/resources/logotype/porsche/porsche-wordmark.png');
+  background: url('http://static.scania.com/resources/logotype/porsche/porsche-wordmark.svg');
+  background-repeat: no-repeat;
+  background-size: 200px 14px;
+  width: 200px !important;
+  height: 14px !important;
+  margin: 7px 5px 10px 20px;
+  padding: 5px;
+}
+.porsche .symbol {
+  display: block;
+  float: right;
+  background: url('http://static.scania.com/resources/logotype/porsche/porsche-symbol.png');
+  background-repeat: no-repeat;
+  background-size: 42px 46px;
+  width: 42px;
+  height: 46px;
+  margin: -2px 20px 10px 20px;
+}
+.porsche .symbol-small {
+  opacity: 1;
+  display: block;
+  float: right;
+  background: url('http://static.scania.com/resources/logotype/porsche/porsche-symbol.png');
+  background-repeat: no-repeat;
+  background-size: 40px 43px;
+  width: 40px;
+  height: 43px;
+  margin: 20px 20px 10px 1px;
+}
+.porsche .footer .wordmark {
+  background: url('http://static.scania.com/resources/logotype/porsche/porsche-wordmark-white.png');
+  background: url('http://static.scania.com/resources/logotype/porsche/porsche-wordmark-white.svg');
+  background-repeat: no-repeat;
+  background-size: 200px auto;
+  margin-top: -14px;;
+  width: 280px;
+  height: 20px;
+}
+
+.porsche .footer .footer-copy-text {display:none}
+
+
+
+.bentley .wordmark {
+  display: block;
+  float: left;
+  background: url('http://static.scania.com/resources/logotype/bentley/wordmark.png');
+  background-repeat: no-repeat;
+  background-size: 136px auto;
+  width: 157px !important;
+  height: 63px !important;
+  margin: -22px -40px 0 -13px; 
+
+}
+.bentley .symbol {
+  display: block;
+  float: right;
+  background: url('http://static.scania.com/resources/logotype/bentley/symbol.png');
+  background-repeat: no-repeat;
+  background-size: 129px 49px !important;
+  width: 120px !important;
+  height: 49px !important;
+  margin: -2px 2px 10px 20px;
+}
+.bentley .symbol-small {
+  opacity: 1;
+  display: block;
+  float: right;
+  background: url('http://static.scania.com/resources/logotype/bentley/symbol.png');
+  background-repeat: no-repeat;
+  background-size: 40px 43px;
+  width: 40px;
+  height: 43px;
+  margin: 20px 20px 10px 1px;
+}
+.bentley .footer .wordmark {
+  background: url('http://static.scania.com/resources/logotype/bentley/wordmark-white.png');
+  background-repeat: no-repeat;
+  background-size: 200px auto;
+  margin-top: -14px;;
+  width: 280px;
+  height: 20px;
+}
+
+.bentley .footer .footer-copy-text {display:none}
+
+
+
+
+
+.volkswagen .wordmark {
+  display: block;
+  float: left;
+  background: url('http://static.scania.com/resources/logotype/volkswagen/wordmark.png');
+  background-repeat: no-repeat;
+  background-size: 136px auto;
+  width: 157px !important;
+  height: 63px !important;
+  margin: -22px -40px 0 -13px; 
+
+}
+.volkswagen .symbol {
+  display: block;
+  float: right;
+  background: url('http://static.scania.com/resources/logotype/volkswagen/symbol.png');
+  background-repeat: no-repeat;
+  background-size: 129px 49px !important;
+  width: 120px !important;
+  height: 49px !important;
+  margin: -2px 2px 10px 20px;
+}
+.volkswagen .symbol-small {
+  opacity: 1;
+  display: block;
+  float: right;
+  background: url('http://static.scania.com/resources/logotype/volkswagen/symbol.png');
+  background-repeat: no-repeat;
+  background-size: 40px 43px;
+  width: 40px;
+  height: 43px;
+  margin: 20px 20px 10px 1px;
+}
+.volkswagen .footer .wordmark {
+  background: url('http://static.scania.com/resources/logotype/volkswagen/wordmark-white.png');
+  background-repeat: no-repeat;
+  background-size: 200px auto;
+  margin-top: -14px;;
+  width: 280px;
+  height: 20px;
+}
+
+.volkswagen .footer .footer-copy-text {display:none}
+
+
+

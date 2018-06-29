@@ -20,6 +20,8 @@
 
     tr.row-selected {
 
+      cursor: default;
+
       &.row-selectable > td,
       > td {
 
@@ -44,7 +46,7 @@
   }
 }
 
-// This is a separate rule to make this rule over rule the previous one.
+// This is a separate rule to make this rule over rule the previous one. 
 // This could be solved by using the specific unicode instead
 table.table {
 
@@ -86,8 +88,7 @@ table.table {
 
     > tr {
       border: 1px solid #dadada;
-      cursor: default;
-
+      cursor: pointer;
 
       &:hover,
       &.active:hover {

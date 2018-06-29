@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-default">
+<nav class$="navbar navbar-default{{dealer}}">
   <div class="navbar-header" short-name$="{{shortName}}">
     <template is="dom-if" if="{{hasMainNav}}">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
@@ -9,6 +9,10 @@
         <span class="icon-bar"></span>
       </button>
     </template>
+    <a href="{{dealerUrl}}" class="dealer">
+      <img alt$="{{dealerName}}" src$="{{dealerLogo}}">
+      <span>{{dealerName}}</span>
+    </a>
     <a href="{{siteUrl}}" class="navbar-brand"></a>
     {{siteName}}
     <a href="{{siteUrl}}" class$="navbar-symbol {{sticky}}"></a>

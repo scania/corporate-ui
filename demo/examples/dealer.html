@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en-GB" ng-app="CorporateUI">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta charset="utf-8">
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+    </noscript>
+
+    <title>Corporate UI</title>
+
+    <script src="/js/corporate-ui.js"></script>
+  </head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+
+  <body class="scania" ng-controller="Example as example">
+
+    <c-corporate-header site-name="Developers" site-url="/" dealer-name="{{example.dealerName}}" ng-attr-dealer-logo="{{example.dealerLogo}}" dealer-url="{{example.dealerUrl}}">
+      <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
+      <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
+    </c-corporate-header>
+
+    <c-main-content>
+      <c-main-navigation>
+        <primary-items>
+          <nav-item location="/" class="active">Home</nav-item>
+        </primary-items>
+      </c-main-navigation>
+
+      <section class="light">
+        <div class="container">
+          <h1>Dealer page</h1>
+          <p>A dealer dome page for testing corporate-header with dealer configuration.</p>
+
+          <form class="app">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="dealer-name" ng-model="example.dealerName">
+            </div>
+
+            <div class="form-group">
+              <label>Logo</label>
+              <input type="text" class="form-control" placeholder="dealer-logo" ng-model="example.dealerLogo">
+            </div>
+
+            <div class="form-group">
+              <label>URL</label>
+              <input type="text" class="form-control" placeholder="dealer-url" ng-model="example.dealerUrl">
+            </div>
+          </form>
+        </div>
+      </section>
+    </c-main-content>
+
+    <c-corporate-footer></c-corporate-footer>
+
+    <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+    <script>
+      angular
+        .module('CorporateUI', [])
+        .controller('Example', [Example])
+
+      function Example() {
+        var public = {
+          dealerName: 'Bilmetro',
+          dealerLogo: 'https://www.scania.com/content/dam/scanianoe/dealer-content-assets/sverige/bilmetro/bilmetro-logo.png',
+          dealerUrl: 'https://www.scania.com/se/sv/bilmetro'
+        }
+        Object.assign(this, public)
+      }
+    </script>
+  </body>
+</html>

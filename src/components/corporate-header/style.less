@@ -14,6 +14,55 @@
   .navbar-default {
     z-index: 1010;
   }
+  .is-dealer .navbar-header {
+
+    a.dealer {
+      display: inline-block;
+      margin: 20px -15px 20px 15px;
+      position: relative;
+
+      img {
+        height: 28px;
+      }
+
+      + .nav-brand {
+        display: none;
+      }
+    }
+    .navbar-brand:before {
+      display: none;
+    }
+    .navbar-symbol {
+      width: 230px;
+
+      &:before {
+        background-image:
+          url('/resources/logotype/scania/scania-symbol.svg'),
+          url('/resources/logotype/scania/scania-wordmark.svg');
+        background-position:
+          center left,
+          center right;
+        background-size:
+          contain,
+          170px 28px;
+      }
+    }
+  }
+  a.dealer {
+    display: none;
+
+    img {
+      display: none;
+
+      &[src]:not([src=""]) {
+        display: inline-block;
+
+        + span {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 :host-context(.header-is-sticky) {

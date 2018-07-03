@@ -303,19 +303,6 @@ function bsHandler() {
   })
 }
 
-/*function bsHandler() {
-  document.addEventListener('click', function(event:any) {
-    [].slice.call(event.target.parentNode.querySelectorAll('[data-toggle]')).map(function(elm) {
-      var dataToggle = elm.getAttribute('data-toggle') || '',
-          method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1);
-      if(method && window[method] && !elm[method]) {
-        window[method](elm)
-        elm.click()
-      }
-    })
-  })
-}*/
-
 function sysMessages() {
   if (window['protocol'] === 'http:') {
     console.warn('You are pointing to corporate-ui using "HTTP" protocol and its not supported please change to "HTTPS".');

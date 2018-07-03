@@ -147,7 +147,7 @@ function setGlobals() {
   };
 
   window['CorporateUi'].version = wv.version;
-  document.documentElement.setAttribute('cui-version', wv.version);
+  document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
   if (window['CorporateUi'].components) {
     wv.components.split(',').map(function(component) {
@@ -268,7 +268,14 @@ function appendExternals() {
   }
 
   if (window['params'].css !== 'custom') {
-    helpers.importScript(window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js', null, window['corporate_elm']);
+    var bsnUrl = window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js';
+    if(window['define']) {
+      window['requirejs']([bsnUrl], function(bsn) {
+        Object['assign'](window, bsn);
+      });
+    } else {
+      helpers.importScript(bsnUrl, null, window['corporate_elm']);
+    }
     helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }

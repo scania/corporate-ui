@@ -22,7 +22,7 @@ Polymer({
     }
   },
   created: function() {
-    this.classes = this.className; // Store default classlist without state included
+    this.mainNav = this.parentNode;
   },
   attached: function() {
     var child = this.firstChild,
@@ -57,6 +57,10 @@ Polymer({
   },
   onTap: function(e) {
     this.active = true;
+
+    var event = document.createEvent('Event');
+    event.initEvent('navigation-close', true, true);
+    this.mainNav.dispatchEvent(event);
   },
   setActive: function(newState) {
     if (newState.toString() == 'true') {
@@ -74,9 +78,8 @@ Polymer({
   },
   toggleExpand: function(e) {
     e.preventDefault();
-    var state = this.hasClass(this, 'expanded') ? ' collapsed' : ' expanded';
-    this.className = this.classes + state;
-    // this.mode = ['expand', 'collapse'].find(x => x !== this.mode); // Another way of doing the same :)
+    this.toggleClass('collapsed', this.hasClass(this, 'expanded'));
+    this.toggleClass('expanded');
   },
   AddIcon: function(icon) {
       var anchor = document.createElement('a');

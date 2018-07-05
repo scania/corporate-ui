@@ -169,7 +169,7 @@ function polymerInject() {
 
   /* Extending Polymer _ready method */
   /* We extend _ready and not ready because ready will be overridden when used in a component */
-  window['Polymer'].Base._orgReady = window['Polymer'].Base._ready;
+  var _orgReady = window['Polymer'].Base._ready;
   window['Polymer'].Base._ready = function() {
     var self = this;
 
@@ -206,7 +206,7 @@ function polymerInject() {
     }
 
     /* Execute the origional function and apply current this to it */
-    window['Polymer'].Base._orgReady.call(this);
+    _orgReady.call(this);
   }
 
   /* Makes Polymer apply component specific style in the end of head element */

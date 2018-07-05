@@ -40,14 +40,14 @@
       &:extend(.navbar-default .navbar-nav > li > a all);
       &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
 
-      &.mode-toggler {
-        display: none;
-      }
-
       // Align icons used in navigation correctly
       span {
         line-height: inherit;
       }
+    }
+
+    .mode-toggler {
+      display: none;
     }
   }
 }
@@ -136,8 +136,6 @@
   :host-context(c-main-navigation) {
 
     ::content {
-      display: flex;
-      flex-direction: column-reverse;
 
       a {
         // Needed to override extended style from bootstrap core
@@ -149,20 +147,20 @@
         top: 0;
         right: 0;
         z-index: 1;
+        padding: 0;
+        border: 0;
 
         &:before {
           display: inline-block;
-          content: "+" !important;
-          border: 0;
+          content: "+";
           font-size: medium;
-          line-height: 0;
-          padding: 10px 5px !important;
+          padding: 10px 15px;
         }
       }
     }
 
     &.expanded ::content sub-navigation + .mode-toggler:before {
-      content: "-" !important;
+      content: "-";
     }
   }
 

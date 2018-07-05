@@ -21,9 +21,6 @@ Polymer({
       observer: 'setActive'
     }
   },
-  created: function() {
-    this.mainNav = this.parentNode;
-  },
   attached: function() {
     var child = this.firstChild,
         texts = [];
@@ -42,7 +39,8 @@ Polymer({
       var anchor = document.createElement('a');
       anchor.innerText = text;
       anchor.href = this.location;
-      this.appendChild(anchor);
+      // this.appendChild(anchor);
+      this.insertBefore(anchor, this.firstChild)
     }
 
     if( this.hasClass(this, 'active') ) {
@@ -55,12 +53,12 @@ Polymer({
 
     this.listen(this, 'tap', 'onTap');
   },
-  onTap: function(e) {
+  onTap: function() {
     this.active = true;
 
     var event = document.createEvent('Event');
     event.initEvent('navigation-close', true, true);
-    this.mainNav.dispatchEvent(event);
+    this.dispatchEvent(event);
   },
   setActive: function(newState) {
     if (newState.toString() == 'true') {
@@ -77,16 +75,16 @@ Polymer({
     return element.className.split(' ').indexOf(className) > -1;
   },
   toggleExpand: function(e) {
-    e.preventDefault();
+    e.stopPropagation();
     this.toggleClass('collapsed', this.hasClass(this, 'expanded'));
     this.toggleClass('expanded');
   },
   AddIcon: function(icon) {
-      var anchor = document.createElement('a');
-      anchor.href = this.location;
-      this.appendChild(anchor);
-      var SpanIcon = document.createElement('span');
-      SpanIcon.classList.add('icon-' + icon);
-      anchor.appendChild(SpanIcon);
+    var anchor = document.createElement('a');
+    anchor.href = this.location;
+    this.appendChild(anchor);
+    var SpanIcon = document.createElement('span');
+    SpanIcon.classList.add('icon-' + icon);
+    anchor.appendChild(SpanIcon);
   }
 });

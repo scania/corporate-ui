@@ -135,9 +135,9 @@
       float: none;
       display: block;
       margin: auto;
-      margin-bottom: 22px;
+      padding-bottom: 22px;
       width: 113px;
-      height: 19px;
+      height: 40px;
     }
     .footer-copy-text {
       display: block;
@@ -227,6 +227,15 @@
       .caret{
         color: #1d1d1d;
       }
+    }
+  }
+
+  :host-context(.navigation-open) {
+    // We might wanna show this and have the corporate-header items shown here later on
+    display: none !important;
+
+    .footer-copy-text {
+      display: none;
     }
   }
 }

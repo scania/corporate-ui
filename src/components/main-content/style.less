@@ -53,3 +53,15 @@
     }
   }
 }
+@media (max-width: 991px) {
+
+  :host-context(.navigation-open) {
+    display: flex !important;
+    flex-direction: column;
+    flex-basis: 0;
+
+    > ::content section {
+      display: none;
+    }
+  }
+}

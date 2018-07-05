@@ -188,7 +188,8 @@ Polymer({
     });
   },
   navigationClose: function() {
-    new Collapse(this.header.querySelector('.navbar-toggle'));
+    var hamburger = this.header.querySelector('.navbar-toggle');
+    hamburger.Collapse.hide();
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,

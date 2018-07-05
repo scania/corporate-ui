@@ -223,7 +223,6 @@
 
         > nav-item {
           background-color: #f5f5f5;
-          display: block;
           position: relative;
 
           > a:hover span {
@@ -274,10 +273,10 @@
   }
 
   :host-context(.navigation-open) {
+    height: 100% !important;
 
     > .navbar-default {
       display: block;
-      height: 100vh;
     }
   }
 }

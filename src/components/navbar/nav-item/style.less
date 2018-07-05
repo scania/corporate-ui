@@ -40,14 +40,14 @@
       &:extend(.navbar-default .navbar-nav > li > a all);
       &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
 
-      &.mode-toggler {
-        display: none;
-      }
-
       // Align icons used in navigation correctly
       span {
         line-height: inherit;
       }
+    }
+
+    .mode-toggler {
+      display: none;
     }
   }
 }
@@ -135,16 +135,33 @@
 
   :host-context(c-main-navigation) {
 
-    ::content > a {
-      // Needed to override extended style from bootstrap core
-      padding: 10px 25px !important;
+    ::content {
+
+      a {
+        // Needed to override extended style from bootstrap core
+        padding: 10px 25px !important;
+      }
+      sub-navigation + .mode-toggler {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        padding: 0;
+        border: 0;
+
+        &:before {
+          display: inline-block;
+          content: "+";
+          font-size: medium;
+          padding: 10px 15px;
+        }
+      }
     }
 
-    .modToggler();
-  }
-
-  :host-context(.app c-main-navigation) {
-    .modToggler();
+    &.expanded ::content sub-navigation + .mode-toggler:before {
+      content: "-";
+    }
   }
 
   :host-context(sub-navigation) {
@@ -165,37 +182,6 @@
       > a {
         // Needed to override extended style from bootstrap core
         padding: 10px 35px !important;
-      }
-    }
-  }
-}
-
-.modToggler() {
-
-  &.expanded {
-    // TODO - Instead of a flex solution maybe change order of elements would be better
-    display: flex;
-    flex-direction: column-reverse;
-
-    ::content .mode-toggler:before {
-      content: "-";
-    }
-  }
-
-  ::content {
-
-    a.mode-toggler {
-      display: block;
-      position: relative;
-      z-index: 1;
-      float: right;
-      padding: 10px;
-      border: 0;
-
-      &:before {
-        content: "+";
-        padding: 10px;
-        border: 0;
       }
     }
   }

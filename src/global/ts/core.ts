@@ -150,8 +150,11 @@ function setGlobals() {
   document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
   if (window['CorporateUi'].components) {
-    wv.components.split(',').map(function(component) {
-      window['CorporateUi'].components[component] = window['version_root'] + '/components/' + component + '/' + component + '.html'
+    JSON.parse(wv.components).map(function(component) {
+      window['CorporateUi'].components[component.name] = {
+        ...component,
+        path: window['version_root'] + '/components/' + component.name + '/' + component.name + '.html'
+      }
     });
   }
 
@@ -169,7 +172,7 @@ function polymerInject() {
 
   /* Extending Polymer _ready method */
   /* We extend _ready and not ready because ready will be overridden when used in a component */
-  window['Polymer'].Base._orgReady = window['Polymer'].Base._ready;
+  var _orgReady = window['Polymer'].Base._ready;
   window['Polymer'].Base._ready = function() {
     var self = this;
 
@@ -206,7 +209,7 @@ function polymerInject() {
     }
 
     /* Execute the origional function and apply current this to it */
-    window['Polymer'].Base._orgReady.call(this);
+    _orgReady.call(this);
   }
 
   /* Makes Polymer apply component specific style in the end of head element */
@@ -236,7 +239,7 @@ function baseComponents(references) {
     }, window['corporate_elm']);
   }
 
-  helpers.importLink(window['CorporateUi'].components['main-content'], 'import', null, window['corporate_elm']);
+  helpers.importLink(window['CorporateUi'].components['main-content'].path, 'import', null, window['corporate_elm']);
 
   /*if (window['params'].preload === 'false') {
     window['ready_event'] = undefined;
@@ -244,9 +247,8 @@ function baseComponents(references) {
 
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
-    var url = window['CorporateUi'].components[resource] || resource;
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(url, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(resource.path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
     });
   });
 
@@ -272,15 +274,35 @@ function appendExternals() {
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
+        bsHandler();
       });
     } else {
-      helpers.importScript(bsnUrl, null, window['corporate_elm']);
+      helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
     helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 
   baseComponents(window['params'].preload === 'false' ? [] : undefined);
+}
+
+function bsHandler() {
+  document.addEventListener('click', function(event:any) {
+    var dataToggle = event.target.getAttribute('data-toggle') || '',
+        method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
+        elm = event.target.parentNode;
+    if(method && window[method]) {
+      if (dataToggle === 'tab') {
+        elm = elm.parentNode;
+      }
+      [].slice.call(elm.querySelectorAll('[data-toggle]')).map(function(_elm) {
+        if (!_elm[method]) {
+          new window[method](_elm);
+        }
+      });
+      event.target.click();
+    }
+  })
 }
 
 function sysMessages() {

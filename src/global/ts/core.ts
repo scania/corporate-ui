@@ -272,15 +272,35 @@ function appendExternals() {
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
+        bsHandler();
       });
     } else {
-      helpers.importScript(bsnUrl, null, window['corporate_elm']);
+      helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
     helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 
   baseComponents(window['params'].preload === 'false' ? [] : undefined);
+}
+
+function bsHandler() {
+  document.addEventListener('click', function(event:any) {
+    var dataToggle = event.target.getAttribute('data-toggle') || '',
+        method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
+        elm = event.target.parentNode;
+    if(method && window[method]) {
+      if (dataToggle === 'tab') {
+        elm = elm.parentNode;
+      }
+      [].slice.call(elm.querySelectorAll('[data-toggle]')).map(function(_elm) {
+        if (!_elm[method]) {
+          new window[method](_elm);
+        }
+      });
+      event.target.click();
+    }
+  })
 }
 
 function sysMessages() {

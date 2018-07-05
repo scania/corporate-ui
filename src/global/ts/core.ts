@@ -150,8 +150,11 @@ function setGlobals() {
   document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
   if (window['CorporateUi'].components) {
-    wv.components.split(',').map(function(component) {
-      window['CorporateUi'].components[component] = window['version_root'] + '/components/' + component + '/' + component + '.html'
+    JSON.parse(wv.components).map(function(component) {
+      window['CorporateUi'].components[component.name] = {
+        ...component,
+        path: window['version_root'] + '/components/' + component.name + '/' + component.name + '.html'
+      }
     });
   }
 
@@ -236,7 +239,7 @@ function baseComponents(references) {
     }, window['corporate_elm']);
   }
 
-  helpers.importLink(window['CorporateUi'].components['main-content'], 'import', null, window['corporate_elm']);
+  helpers.importLink(window['CorporateUi'].components['main-content'].path, 'import', null, window['corporate_elm']);
 
   /*if (window['params'].preload === 'false') {
     window['ready_event'] = undefined;
@@ -244,9 +247,8 @@ function baseComponents(references) {
 
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
-    var url = window['CorporateUi'].components[resource] || resource;
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(url, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(resource.path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
     });
   });
 

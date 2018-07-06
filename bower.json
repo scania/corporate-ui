@@ -1,0 +1,12 @@
+{
+  "name": "corporate-ui",
+  "version": "2.4.4",
+  "description": "corporate-ui",
+  "author": "Comon Design Service team",
+  "homepage": "https://scania.github.io/corporate-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.scania.com/Scania/corporate-ui.git"
+  },
+  "license": "MIT"
+}

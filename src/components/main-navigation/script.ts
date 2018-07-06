@@ -112,7 +112,7 @@ Polymer({
       headerHeight = elm.offsetHeight
     }
 
-    if( parseInt(this.style.height) != headerHeight ) {
+    if( parseInt(this.style.height) != parseInt(headerHeight) ) {
       this.style.cssText ='display: block; min-height: ' + headerHeight + (isNaN(Number(headerHeight)) ? ';' : 'px;');
     }
 

@@ -4,6 +4,13 @@
 
 :host {
   display: inline-block;
+
+  ::content {
+
+    .mode-toggler {
+      display: none;
+    }
+  }
 }
 
 :host-context(c-corporate-header) {
@@ -44,10 +51,6 @@
       span {
         line-height: inherit;
       }
-    }
-
-    .mode-toggler {
-      display: none;
     }
   }
 }

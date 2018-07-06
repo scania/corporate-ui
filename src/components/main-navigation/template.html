@@ -1,5 +1,27 @@
 <nav class="navbar navbar-default">
   <div class="collapse navbar-collapse" id="main-navigation">
+    <template is="dom-if" if="{{items}}">
+      <primary-items class="nav navbar-nav">
+        <template is="dom-repeat" items="{{items.primaryItems}}">
+          <nav-item location="{{item.location}}" active="{{item.active}}" html="{{item.html}}">
+            <a href="{{item.location}}">{{item.text}}</a>
+            <template is="dom-if" if="{{item.childs}}">
+              <sub-navigation>
+                <template is="dom-repeat" items="{{item.childs}}" as="subItem">
+                  <nav-item location="{{subItem.location}}">{{subItem.text}}</nav-item>
+                </template>
+              </sub-navigation>
+            </template>
+          </nav-item>
+        </template>
+      </primary-items>
+      <secondary-items class="nav navbar-nav navbar-right">
+        <template is="dom-repeat" items="{{items.secondaryItems}}">
+          <nav-item location="{{item.location}}">{{item.text}}</nav-item>
+        </template>
+      </secondary-items>
+    </template>
+
     <content select="primary-items"></content>
 
     <template is="dom-if" if="{{moreItemsAvailable}}">

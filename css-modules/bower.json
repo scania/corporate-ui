@@ -1,6 +1,15 @@
 {
   "name": "corporate-ui",
   "version": "2.4.4",
+  "main": [
+   "brands.html",
+    "core.html",
+    "corporate-ui.html",
+    "fonts.html",
+    "icons.html",
+    "ie-media-rules.html",
+    "ux-library.html"
+  ],
   "description": "corporate-ui",
   "author": "Comon Design Service team",
   "homepage": "https://scania.github.io/corporate-ui",

@@ -25,7 +25,7 @@
 
   <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
 
-  <link rel="stylesheet" href="css/ux-library.css">
+  <link rel="stylesheet" href="/css/ux-library.css">
 </head>
 <body class="scania ux-lib" data-env="dev" ng-controller="UxLib as uxlib">
 
@@ -39,8 +39,8 @@
       <primary-items>
         <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
         <nav-item location="/">Home</nav-item> 
-        <nav-item location="/components.html" active="true">Components</nav-item>
-        <nav-item location="/examples/">Examples</nav-item>
+        <nav-item location="/components.html">Components</nav-item>
+        <nav-item location="/examples/" active="true">Examples</nav-item>
         <nav-item location="/testing/testing.html">Testing</nav-item>
         <nav-item location="https://github.com/scania/corporate-ui/issues/new/choose">Report an Issue</nav-item>
         <nav-item location="https://scania.github.io/corporate-ui-docs/developer/support.html">Support</nav-item>
@@ -51,16 +51,15 @@
       <div class="container" ng-cloak>
         <h2>Components</h2>
 
-        <div class="main-item">
+        <div class="main-item" ng-repeat="category in uxlib.categories | filter: { name: '!starter-kit' }">
           <h5>
             <i ng-class="'icon-' + category.name" class="outline md"></i>
-            All components
+            {{category.name}}
           </h5>
           <div class="row">
             <!-- We ignore listing of main-content -->
-            <div ng-repeat="component in uxlib.components" class="col-sm-3 col-xs-6 component" ng-if="component.name !== 'main-content' && !component.extension">
-              <a href="/component.html?c={{component.name}}">{{component.name}}</a>
-              <span>{{component.variations}} variations</span>
+            <div ng-repeat="component in category.children" class="col-sm-3 col-xs-6 component">
+              <a href="{{component.path.substr(component.path.indexOf('/'), component.path.length)}}">{{component.name}}</a>
             </div>
           </div>
         </div>
@@ -78,11 +77,23 @@
       .controller('UxLib', [UxLib]);
 
     function UxLib() {
-      var vm = this;
-      vm.components = window.CorporateUi.components;
+      var vm = this,
+          other = { name: 'Other', children: [] };
+
+      vm.categories = [];
+
+      window.examples.map(function(example) {
+        if(example.type === 'directory') {
+          vm.categories.push(example)
+        } else {
+          other.children.push(example)
+        }
+      })
+
+      vm.categories.push(other);
     }
   </script>
 
-  <script src="js/ux-library.js"></script>
+  <script src="/js/ux-library.js"></script>
 </body>
 </html>

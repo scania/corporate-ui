@@ -59,6 +59,7 @@ function _less() {
 }
 function _ts() {
   var tree = dirTree('src/components'),
+      tree2 = dirTree('demo/examples', { normalizePath: true }),
       _components = [];
 
   tree.children.map(function(component) {
@@ -109,8 +110,30 @@ function _ts() {
   })
     .pipe(gulp.dest('dist/js'))
 
-  var stream2 = gulp.src('src/global/ts/ux-library.ts')
-    .pipe(typescript())
+  // We pipe webpack instead of typescript to bundle our modules
+  var stream2 = webpack({
+    watch: false,
+    entry: {
+      'ux-library': './src/global/ts/ux-library'
+    },
+    output: {
+      filename: '[name].js'
+    },
+    resolve: {
+      extensions: ['.ts']
+    },
+    module: {
+      loaders: [
+        { test: /\.ts$/, loader: 'ts-loader' }
+      ]
+    },
+    externals: {
+      // export components array to the view
+      'webpackVariables': `{
+        'examples': '${JSON.stringify(tree2.children)}'
+      }`
+    }
+  })
     .pipe(gulp.dest('dist/js'))
 
   return merge(stream1, stream2)

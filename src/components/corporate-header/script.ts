@@ -3,6 +3,21 @@ Polymer({
   properties: {
     siteName: String,
     shortName: String,
+    dealerName: {
+      type: String,
+      observer: 'initDealer'
+    },
+    dealerLogo: {
+      type: String,
+      observer: 'initDealer'
+    },
+    dealerUrl: {
+      type: String,
+      observer: 'initDealer'
+    },
+    dealer: {
+      type: String
+    },
     variation: 0,
     siteUrl: {
       type: String,
@@ -42,6 +57,8 @@ Polymer({
   },
   attached: function() {
     this.style.display = 'block';
+
+    this.initDealer();
     this.setSize();
     window.addEventListener('resize', this.setSize.bind(this));
   },
@@ -63,6 +80,13 @@ Polymer({
         }).bind(this), 100);
       }
       new Collapse(elm);
+    }
+  },
+  initDealer: function() {
+    this.dealer = '';
+
+    if ((this.dealerName || this.dealerLogo) && this.dealerUrl) {
+      this.dealer = ' is-dealer';
     }
   }
 });

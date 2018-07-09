@@ -4,6 +4,16 @@
   flex-shrink: 0;
   word-break: break-word;
 
+  &.scroll {
+    display: flex !important;
+    flex-direction: column;
+    flex-basis: 0;
+
+    ::content > section {
+      overflow: auto;
+    }
+  }
+
   /* Grid related style */
   .row.text-middle {
     font-size: 0;

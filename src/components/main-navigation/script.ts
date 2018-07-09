@@ -97,9 +97,9 @@ Polymer({
         elm2 = this.querySelector('.navbar-default'),
         elm3 = this.querySelector('nav-item.active sub-navigation');
 
-    // This is set to make height calculation correct.
-    // The height of the child is otherwise inherited by the parent
-    (this.children[1] || this.children[0]).style.height = 'auto';
+    // This is set to make min-height calculation correct.
+    // The min-height of the child is otherwise inherited by the parent
+    (this.children[1] || this.children[0]).style.minHeight = 'auto';
 
     if (elm2 && elm2.offsetHeight) {
       headerHeight = elm2.offsetHeight;
@@ -113,7 +113,7 @@ Polymer({
     }
 
     if( parseInt(this.style.height) != parseInt(headerHeight) ) {
-      this.style.cssText ='display: block; height: ' + headerHeight + (isNaN(Number(headerHeight)) ? ';' : 'px;');
+      this.style.cssText ='display: block; min-height: ' + headerHeight + (isNaN(Number(headerHeight)) ? ';' : 'px;');
     }
 
     this.querySelector('.navbar-default').removeAttribute('style');

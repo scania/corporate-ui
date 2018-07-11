@@ -219,6 +219,26 @@ input[type=checkbox] {
     }
   }
 
+
+  &:disabled {
+
+    &,
+    &:hover {
+
+      + span {
+
+        &:before {
+          background-color: #fff;
+          border: 1.1px solid #C8C9C7;
+        }
+      }
+    }
+  }
+
+  &:disabled:checked + span:before {
+    opacity: 0.2;
+  }
+
   &:hover + span:before {
   }
 
@@ -240,21 +260,6 @@ input[type=checkbox] {
         &:before {
           background-color: #033a6a;
           border: 1.1px solid #033a6a;
-        }
-      }
-    }
-  }
-
-  &:disabled {
-
-    &,
-    &:hover {
-
-      + span {
-
-        &:before {
-          background: #fff;
-          border: 1.1px solid #C8C9C7;
         }
       }
     }

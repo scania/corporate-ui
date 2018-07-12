@@ -150,6 +150,7 @@ fieldset {
   background-color: #F0F0F0;
   border: 1px solid #94999D;
 }
+
 // Radio and Checkboxes//
 
 .radio label {
@@ -162,6 +163,10 @@ fieldset {
   padding-left: 0px;
   margin-bottom: 0;
   cursor: default;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  display: none;
 }
 
 input[type=checkbox] {
@@ -190,10 +195,8 @@ input[type=checkbox] {
     line-height: 1;
     margin-left: -35px;
     cursor: pointer;
+
     .app & {
-        // margin-left:-23px;
-        // margin-left: -20px;
-        // right: 2px;
         margin-left: 0px;
         right: 3px;
     }
@@ -285,10 +288,6 @@ input[type=checkbox] {
   }
 }
 
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-  display: none;
-}
-
 input[type=radio] {
   // Zoom is used to make it smaller. Without zoom it cant be
   // smaller than 16px and use vertical-align: bottom;
@@ -314,8 +313,6 @@ input[type=radio] {
       border-radius: inherit;
       border: 0.3em solid #FFF;
       vertical-align: bottom;
-      // margin: 1px;
-
 
       .app & {
         width: 16px;
@@ -351,6 +348,7 @@ input[type=radio] {
 
     &:disabled + span:before {
       background-color: #C8C9C7;
+      cursor: not-allowed;
     }
 
     &:hover {
@@ -414,6 +412,7 @@ select {
     background-color: #FFFFFF;
   }
 }
+
 .custom-select {
   font-size: inherit;
   width: 100%;
@@ -449,6 +448,7 @@ select {
     background-size: 27px;
     background-position: calc(98%) center;
   }
+
   .well & {
     background-color: #FFFFFF;
   }

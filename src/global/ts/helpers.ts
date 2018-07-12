@@ -147,6 +147,7 @@ function urlInfo(url) {
   return {
     protocol  : ph.protocol, // => "http:"
     host      : ph.host,     // => "example.com:3000"
+    href      : ph.href,     // => "http://example.com:3000/pathname/"
     hostname  : ph.hostname, // => "example.com"
     port      : ph.port,     // => "3000"
     pathname  : pathname,    // => "/pathname/"

@@ -128,6 +128,8 @@ function setGlobals() {
       port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '',
       localhost = helpers.urlInfo(scriptUrl).hostname === 'localhost' || helpers.urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
+  window['cui_path'] = helpers.urlInfo(scriptUrl).href.substring(0, helpers.urlInfo(scriptUrl).href.lastIndexOf('/')+1);
+
   window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
   window['static_root'] = (localhost ? 'http://' : 'https://') + helpers.urlInfo(scriptUrl).hostname + port;
   window['version_root'] = (window['static_root'] + helpers.urlInfo(scriptUrl).pathname).replace('/js/corporate-ui.js', '');
@@ -233,7 +235,7 @@ function baseComponents(references) {
 
   // Adds support for Promise if non exist
   if (typeof(window['Promise']) === 'undefined') {
-    return helpers.importScript(window['static_root'] + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
+    return helpers.importScript(window['cui_path'] + '../libs/es6-promise/dist/es6-promise.js', function() {
       window['Promise'] = window['ES6Promise'];
       baseComponents(references);
     }, window['corporate_elm']);
@@ -266,11 +268,11 @@ function appendExternals() {
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
-    helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.js', null, window['corporate_elm']);
+    helpers.importScript(window['cui_path'] + '../libs/webcomponents.js/webcomponents-lite.js', null, window['corporate_elm']);
   }
 
   if (window['params'].css !== 'custom') {
-    var bsnUrl = window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js';
+    var bsnUrl = window['cui_path'] + '../libs/bootstrap.native/dist/bootstrap-native.js';
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
@@ -279,7 +281,7 @@ function appendExternals() {
     } else {
       helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
-    helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
+    helpers.importLink(window['cui_path'] + '../libs/bootstrap/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 

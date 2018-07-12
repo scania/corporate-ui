@@ -155,11 +155,13 @@ fieldset {
 .radio label {
   padding-left: -10px;
   margin-bottom: 0;
+  cursor: default;
 }
 
 .checkbox label {
   padding-left: 0px;
   margin-bottom: 0;
+  cursor: default;
 }
 
 input[type=checkbox] {
@@ -187,6 +189,7 @@ input[type=checkbox] {
     vertical-align: middle;
     line-height: 1;
     margin-left: -35px;
+    cursor: pointer;
     .app & {
         // margin-left:-23px;
         // margin-left: -20px;
@@ -242,7 +245,7 @@ input[type=checkbox] {
         &:before {
           background-color: #fff;
           border-color: #C8C9C7;
-           cursor: not-allowed;
+          cursor: not-allowed;
         }
       }
     }
@@ -301,6 +304,7 @@ input[type=radio] {
     zoom: .8;
     vertical-align: text-bottom;
     right: 2px;
+    cursor: pointer;
 
     &:before {
       content: "";

@@ -3,6 +3,7 @@
 legend {
   border: 0;
 }
+
 input[placeholder],
 textarea[placeholder] {
   color: inherit;
@@ -22,6 +23,7 @@ textarea[placeholder] {
     color: inherit;
   }
 }
+
 .form-control {
   color: #747472;
   padding: 20px 40px;
@@ -49,11 +51,13 @@ textarea[placeholder] {
       background: rgb(242, 247, 249);
     }
   }
+
   &[disabled] {
     opacity: 0.3;
     background-color: #dfdee1;
     border: 2px solid grey;
   }
+
   &:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -65,6 +69,7 @@ textarea[placeholder] {
     padding: 4px 12px;
     height: 46px;
   }
+
   .compact & {
     height:30px;
     padding: 12px 10px;
@@ -72,6 +77,7 @@ textarea[placeholder] {
     font-size: 12px;
   }
 }
+
 .form-condensed {
   .form-group {
     margin-bottom: 5px;
@@ -80,12 +86,14 @@ textarea[placeholder] {
     &:extend(.bootstrap .input-sm);
   }
 }
+
 .control-label {
   font-family: 'Scania Sans';
   font-weight: bold;
   font-size: 0.9em;
   white-space: normal;
 }
+
 .form-horizontal {
 
   .control-label,
@@ -96,6 +104,7 @@ textarea[placeholder] {
     padding-top: 9px;
   }
 }
+
 .form-inline {
 
   .radio + .radio,
@@ -103,21 +112,26 @@ textarea[placeholder] {
     margin-left: 10px;
   }
 }
+
 .form-control-static {
   padding-bottom: 0;
 }
+
 // Form Sizing
 .input-sm {
   height: 30px;
   border-radius: 0;
 }
+
 .input-lg {
   height: 39px;
   border-radius: 0;
 }
+
 .table .form-control {
   .input-sm
 }
+
 //Forms in labels have input-sm-styling per default
 .table .input-group-btn .btn {
   .input-sm;
@@ -125,42 +139,41 @@ textarea[placeholder] {
 }
 
 fieldset {
-    border: 2px dotted silver;
-    padding: 25px 25px 5px 5px;
-    margin-bottom: 30px;
-
-
+  border: 2px dotted silver;
+  padding: 25px 25px 5px 5px;
+  margin-bottom: 30px;
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-    opacity: 0.3;
-    color: initial;
-    background-color: #F0F0F0;
-    border: 1px solid #94999D;
+  opacity: 0.3;
+  color: initial;
+  background-color: #F0F0F0;
+  border: 1px solid #94999D;
 }
 // Radio and Checkboxes//
 
 .radio label {
-    padding-left: -10px;
-    margin-bottom: 0;
+  padding-left: -10px;
+  margin-bottom: 0;
+  cursor: default;
 }
 
 .checkbox label {
-    padding-left: 0px;
-    margin-bottom: 0;
+  padding-left: 0px;
+  margin-bottom: 0;
+  cursor: default;
 }
 
 input[type=checkbox] {
-    height: 26px;
-    width: 26px;
+  height: 26px;
+  width: 26px;
+  position: static;
+  display: inline-block;
+  vertical-align: text-bottom;
+
+  .checkbox & {
     position: static;
-    display: inline-block;
-    vertical-align: text-bottom;
-
-    .checkbox & {
-      position: static;
-    }
-
+  }
 
   .app & {
     height: 17px;
@@ -176,6 +189,7 @@ input[type=checkbox] {
     vertical-align: middle;
     line-height: 1;
     margin-left: -35px;
+    cursor: pointer;
     .app & {
         // margin-left:-23px;
         // margin-left: -20px;
@@ -200,9 +214,11 @@ input[type=checkbox] {
       }
     }
   }
+
   &:hover + span:before {
     background-color: #f2f7f9;
   }
+
   &:checked + span:before {
     content: "";
     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjM2Ljk4OCIgaGVpZ2h0PSIyMzYuOTg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8Zz4gIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4gIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIyMDIiIHdpZHRoPSIyMDIiIHk9Ii0xIiB4PSItMSIvPiA8L2c+IDxnPiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjE5OC4wOTgsMjQuMzI2IDg3LjU0MywxMzQuODgxIDM4Ljg5MSw4Ni4yMjkgMCwxMjUuMTIxIDg3LjU0MywyMTIuNjYyIDIzNi45ODgsNjMuMjE3ICIvPiAgPGcgaWQ9InN2Z18yIi8+ICA8ZyBpZD0ic3ZnXzMiLz4gIDxnIGlkPSJzdmdfNCIvPiAgPGcgaWQ9InN2Z181Ii8+ICA8ZyBpZD0ic3ZnXzYiLz4gIDxnIGlkPSJzdmdfNyIvPiAgPGcgaWQ9InN2Z184Ii8+ICA8ZyBpZD0ic3ZnXzkiLz4gIDxnIGlkPSJzdmdfMTAiLz4gIDxnIGlkPSJzdmdfMTEiLz4gIDxnIGlkPSJzdmdfMTIiLz4gIDxnIGlkPSJzdmdfMTMiLz4gIDxnIGlkPSJzdmdfMTQiLz4gIDxnIGlkPSJzdmdfMTUiLz4gIDxnIGlkPSJzdmdfMTYiLz4gPC9nPjwvc3ZnPg==);
@@ -219,7 +235,30 @@ input[type=checkbox] {
     }
   }
 
-  &:hover + span:before {
+  &:disabled {
+
+    &,
+    &:hover {
+
+      + span {
+
+        &:before {
+          background-color: #fff;
+          border-color: #C8C9C7;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &:checked + span:before {
+      opacity: 0.2;
+      border: none;
+    }
+
+    &:disabled:checked:hover + span:before {
+      background-color: #242424;
+      border: none;
+    }
   }
 
   &:checked {
@@ -244,25 +283,10 @@ input[type=checkbox] {
       }
     }
   }
-
-  &:disabled {
-
-    &,
-    &:hover {
-
-      + span {
-
-        &:before {
-          background: #fff;
-          border: 1.1px solid #C8C9C7;
-        }
-      }
-    }
-  }
 }
 
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-    display: none;
+  display: none;
 }
 
 input[type=radio] {
@@ -280,6 +304,7 @@ input[type=radio] {
     zoom: .8;
     vertical-align: text-bottom;
     right: 2px;
+    cursor: pointer;
 
     &:before {
       content: "";
@@ -305,65 +330,74 @@ input[type=radio] {
 
   /* Hover states */
 
-    &:hover + span:before {
-      background-color: #f2f7f9;
-      border-color: #f2f7f9;
+  &:hover + span:before {
+    background-color: #f2f7f9;
+    border-color: #f2f7f9;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:checked {
+
+    + span {
+      border-color: #242424;
+
+      &:before {
+        background-color: #242424;
+      }
     }
 
-    &:focus {
-          outline: none;
-        }
+    &:disabled + span:before {
+      background-color: #C8C9C7;
+    }
 
-    &:checked {
+    &:hover {
 
       + span {
-        border-color: #242424;
+        border-color: #033a6a;
 
         &:before {
-          background-color: #242424;
-        }
-      }
-
-      &:hover {
-
-        + span {
-          border-color: #033a6a;
-
-          &:before {
-            background-color: #033a6a;
-          }
-        }
-      }
-    }
-
-    &:disabled {
-
-      &,
-      &:hover {
-
-        + span {
-          border: 2px solid #C8C9C7;
-
-          &:before {
-            border: 2px solid #fff;
-            background: #fff;
-          }
+          background-color: #033a6a;
         }
       }
     }
   }
 
- .checkbox-inline {
-    padding-left: 0px;
+  &:disabled {
+
+    &:hover:checked + span:before {
+      background-color: #C8C9C7;
+    }
+
+    &,
+    &:hover {
+
+      + span {
+        border: 2px solid #C8C9C7;
+
+        &:before {
+          background: #fff;
+          border: 0.3em solid #FFF;
+        }
+      }
+    }
+  }
+}
+
+.checkbox-inline {
+  padding-left: 0px;
 }
 
 .radio-inline {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .nowrap {
   white-space: nowrap;
 }
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;

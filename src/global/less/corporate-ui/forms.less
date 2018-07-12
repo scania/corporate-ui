@@ -363,6 +363,10 @@ input[type=radio] {
 
   &:disabled {
 
+    &:hover:checked + span:before {
+      background-color: #C8C9C7;
+    }
+
     &,
     &:hover {
 
@@ -370,8 +374,8 @@ input[type=radio] {
         border: 2px solid #C8C9C7;
 
         &:before {
-          border: 2px solid #fff;
           background: #fff;
+          border: 0.3em solid #FFF;
         }
       }
     }

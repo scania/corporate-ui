@@ -100,7 +100,7 @@ function _ts() {
       filename: '[name].js'
     },
     resolve: {
-      extensions: ['.ts']
+      extensions: ['.ts', '.tsx', '.js', '.json']
     },
     module: {
       loaders: [

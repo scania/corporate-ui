@@ -494,20 +494,35 @@
   .navbar-default {
     font-size: 1.2rem;
 
+    &,
+    .app & {
+
       .navbar-toggle:hover,
       .navbar-toggle:focus {
         background-color: transparent;
-      }
-
-    &,
-    .app & {
+      }      
 
       .navbar-toggle {
         display: block;
         float: left;
         margin: -18px 0 -19px -18px;
-        padding: 24px 17px;
+        padding: 24px 17px 25px;
+        border: transparent;
+        border-right: 1px solid #e2e2e2;
         border-radius: 0;
+
+        .icon-bar {
+          background-color: #041e42;
+          width: 18px;
+          height: 1px;
+          border-radius: 0;
+          margin-left: 2px;
+          margin-right: 2px;
+
+          & + .icon-bar {
+             margin-top: 6px;
+          }
+        }
 
         &.collapsed {
 
@@ -520,12 +535,13 @@
           }
         }
         &:before {
-          font-family: 'corporate-icons';
-          content: "\e60d";
-          line-height: 14px;
-          height: 14px;
-          width: 22px;
           display: block;
+          background-image: url(https://static.scania.com/resources/icons/scania/SVG_POS/close-mobile-navigation.svg);
+          background-repeat: no-repeat;
+          background-size: 14px;
+          width: 14px;
+          height: 14px;
+          margin: 0 4px;
         }
         span {
           display: none;

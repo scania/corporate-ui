@@ -3,15 +3,19 @@
     {{label}}
   </template>
 
-  <template is="dom-if" if="{{fieldType('input', type)}}">
+  <template is="dom-if" if="{{fieldType('input')}}">
     <input type="{{type}}" name="{{name}}" class="form-control">
   </template>
 
-  <template is="dom-if" if="{{fieldType('textarea', type)}}">
+  <template is="dom-if" if="{{fieldType('radio')}}">
+    <span></span>
+  </template>
+
+  <template is="dom-if" if="{{fieldType('textarea')}}">
     <textarea name="{{name}}" class="form-control"></textarea>
   </template>
 
-  <template is="dom-if" if="{{fieldType('select', type)}}">
+  <template is="dom-if" if="{{fieldType('select')}}">
     <select name="{{name}}" class="form-control">
       <content></content>
     </select>

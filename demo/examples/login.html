@@ -15,47 +15,62 @@
 
   <script>
     document.addEventListener('login', Login, false);
-    document.addEventListener('showpage', showPage, false);
+    document.addEventListener('register', Register, false);
+    document.addEventListener('recover', Recover, false);
 
 
     function Login(event) {
-      var data;
-
-      if (event.status === 403) {
-        data = {
-          type: 'error',
-          message: 'Login failed'
-        }
-      } else {
-        data = {
-          type: 'success',
-          message: 'Login succeded'
-        }
-
-        setTimeout(function() {
-          AppEventStore.apply({ name: 'pages', action: 'showpage', data: { page: 'start', info: event.data } });
-        }, 2000);
-      }
-
-      AppEventStore.apply({ name: 'notification', action: 'notify', data: data });
+      setTimeout(function() {
+        console.log(event.type, event)
+        event.data.component.setView.call(event.data.component, event.data.action);
+      }, 1000);
     }
-
+    function Register(event) {
+      setTimeout(function() {
+        var success = true;
+        if (success) {
+          /*event.callback({
+            message: 'sdsadasddas',
+            type: success,
+            data: event.data
+          })*/
+          event.data.component.setView.call(event.data.component, event.data.action);
+        } else {
+          AppEventStore.apply({ name: 'notification', action: 'notify', data: { type: 'error', message: 'Register failed' } });
+        }
+      }, 1000);
+      console.log(event.type, event)
+    }
+    function Recover(event) {
+      setTimeout(function() {
+        console.log(event.type, event)
+        event.data.component.setView.call(event.data.component, event.data.action);
+      }, 1000);
+    }
     function showPage(event) {
       document.querySelector('c-login').style.display = 'none';
       document.getElementById(event.data.page).innerHTML = '<div class="container"><h2>Profile</h2><p>Loged in as: <strong>' + event.data.info.username + '</strong><br>With role: <strong>' + event.data.info.role + '</strong></p></div>';
     }
   </script>
 
+  <style>
+    c-main-content {
+      display: flex !important;
+      flex-direction: column;
+    }
+  </style>
+
   <link rel="import" href="../../../components/login/login.html">
 </head>
-<body class="scania">
-
-  <c-login headline="Welcome to Scania" description="To log in to the resource you requested, please select your account type and submit your username and password in the form.">
-    <form-field type="text" name="username" label="Username"></form-field>
-    <form-field type="password" name="password" label="Password"></form-field>
-  </c-login>
-
-  <div id="start"></div>
-
+<body class="scania app">
+  <c-corporate-header></c-corporate-header>
+  <c-main-content>
+    <c-login>
+      <form-field type="text" name="username" label="Username"></form-field>
+      <form-field type="password" name="password" label="Password"></form-field>
+      <button type="button" class="btn btn-link" on-click="forgotpassword">Forgot your password</button>
+    </c-login>
+  </c-main-content>
+  <c-corporate-footer></c-corporate-footer>
 </body>
 </html>

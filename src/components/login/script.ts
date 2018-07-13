@@ -2,11 +2,14 @@ Polymer({
   is: name,
   properties: {
     headline: {
-      type: String
+      type: String,
+      value: 'Log in to application'
     },
     description: {
       type: String
+      value: "Haven't registered yet?"
     },
+    variation: 0,
     // Should be moved to a notification component
     message: {
       type: String
@@ -14,33 +17,38 @@ Polymer({
     messageType: {
       type: String
     },
-    event: {
-      type: String,
-      value: 'login'
-    },
-    forgotpassword: {
-      type: Boolean,
-      value: false
-    },
     showMessage: {
       type: Boolean,
       value: false
+    },
+    view: {
+      type: String,
+      value: 'login'
     }
   },
   ready: function() {
     var self = this;
-    this.querySelector('form').addEventListener('submit', function(event) {
-      event.preventDefault();
+    /*this.querySelector('form.login')
+      .addEventListener('submit', function(event) {
+        event.preventDefault();
 
-      var inputs = this.querySelectorAll('input'),
-          data = {};
+        var inputs = this.querySelectorAll('input'),
+            data = {};
 
-      for (var i = 0; i < inputs.length; i++) {
-       data[inputs[i].name] = inputs[i].value;
-      }
+        for (var i = 0; i < inputs.length; i++) {
+         data[inputs[i].name] = inputs[i].value;
+        }
 
-      self.login(data);
-    });
+        self.action('login', data);
+      });*/
+
+    var forms = this.querySelectorAll('form');
+    for(var i=0; i<forms.length; i++) {
+      forms[i].addEventListener('submit', function(event) {
+        event.preventDefault();
+        self.action(this.id, { action: event.target.dataset.target, component: self });
+      });
+    }
 
     // Should be moved to a notification component
     document.addEventListener('notify', function(event:any) {
@@ -49,11 +57,13 @@ Polymer({
       self.messageType = event.data.type === 'error' ? 'danger' : event.data.type;
     });
   },
-  login: function(data) {
-    var self = this;
-    window['AppEventStore'].apply({ name: 'login', action: this.event, data: data });
+  action: function(action, data) {
+    /*var event = document.createEvent('Event');
+    event.initEvent(action, true, true);
+    this.dispatchEvent(event);*/
+    window['AppEventStore'].apply({ name: 'login', action: action, data: data || {} });
   },
-  forgotpassword: function() {
-    window['AppEventStore'].apply({ name: 'login', action: 'forgotpassword' });
+  setView: function(event) {
+    this.view = event.target ? event.target.dataset.target : event;
   }
 });

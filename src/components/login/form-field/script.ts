@@ -20,8 +20,8 @@ Polymer({
   labelExist: function(text) {
     return text
   },
-  fieldType: function(type, type2) {
-    type2 = !(type2 === 'select' || type2 === 'textarea') ? 'input' : type2;
-    return type === type2;
+  fieldType: function(type) {
+    this.type2 = !(this.type2 === 'select' || this.type2 === 'textarea') ? 'input' : this.type2;
+    return type === this.type2;
   }
 });

@@ -545,7 +545,7 @@
           width: 14px;
           height: 14px;
           margin: 0 4px;
-        }
+        }        
         span {
           display: none;
         }
@@ -626,6 +626,16 @@
           &:before {
             position: static;
           }
+
+          &:after {
+              position: fixed;
+              border-left: 1px solid #e2e2e2;
+              height: 64px;
+              content: " ";
+              top: 0;
+              right: 65px;
+          }
+
         }
         .navbar-brand,
         .navbar-nav {

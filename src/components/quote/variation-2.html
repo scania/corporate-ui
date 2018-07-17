@@ -1,0 +1,73 @@
+<!--
+
+##### varitation-2:
+
+Testimonials from business owners, operators, Scania experts or other people who are in some way connected with Scania.
+Title (h2) not recommended.
+
+<demo>
+  <c-quote image="https://static.scania.com/resources/images/demo/c-quote-full.jpg" variation="2">
+    <p>A very inspirational quote indeed</p>
+    <h3>A quoteable person</h3>
+    <h3>Quote company Inc.</h3>
+  </c-quote>
+</demo>
+
+-->
+<dom-module id="c-quote-variation-2">
+  <template>
+    <style>
+      /* Quote variation 2 */
+
+      :host {
+        display: block;
+
+        ::content {
+          .box {
+            border:0px;
+            background-color: #54565B;
+          }
+          .img-container {
+            max-width: 176px;
+            display: block;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            padding:4% 0 20px 0;
+            img {
+              border-radius: 50%;
+            }
+          }
+
+          .text-container {
+            padding:2% 14% 5% 14%;
+
+            h2 {
+              color: #fff;
+              font-size:36px;
+
+            }
+            h3 {
+              font-size:18px;
+              color:#fff;
+              margin-bottom: 15px;
+            }
+            p {
+              letter-spacing: 2px;
+              color:#fff;
+              margin-top:1%;
+              margin-bottom:4%;
+            }
+          }
+        }
+      }
+    </style>
+    <content></content>
+  </template>
+
+  <script>
+    Polymer({
+      is: "c-quote-variation-2"
+    })
+  </script>
+</dom-module>

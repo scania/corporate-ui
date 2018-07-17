@@ -23,6 +23,18 @@
     gtag('config', 'UA-110069805-1');
   </script>
 
+  <style>
+
+    .header-is-sticky c-corporate-header .navbar-symbol.should-stick, c-corporate-header.header-is-sticky .navbar-symbol.should-stick  {
+        width: 41px !important;
+        height: 37px !important;
+    }
+    .header-is-sticky c-corporate-header .navbar-symbol.should-stick, c-corporate-header.header-is-sticky .navbar-symbol.should-stick {
+        background-image: transparent !important;
+    }
+
+  </style>
+
   <body class="scania" ng-controller="Example as example">
 
     <c-corporate-header site-name="Developers" site-url="/" ng-attr-dealer-name="{{example.dealerName}}" ng-attr-dealer-logo="{{example.dealerLogo}}" ng-attr-dealer-url="{{example.dealerUrl}}">

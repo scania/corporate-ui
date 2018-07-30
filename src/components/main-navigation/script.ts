@@ -155,15 +155,20 @@ Polymer({
           availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0);
 
       primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
-      new Dropdown(dropdown);
 
-      [].slice.call(primary.querySelectorAll('nav-item')).map((function(item, index) {
+      for(var i=0; i<primary.children.length; i++) {
+        var item = primary.children[i],
+            node = item.querySelector('a');
+
+        if (item.nodeName !== 'NAV-ITEM') {
+          continue;
+        }
 
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
             @media (min-width: 991px) {\
-              c-main-navigation nav-item:nth-child(1n+' + index + ') { display: none; } \
-              c-main-navigation .more li:nth-child(1n+' + (index + 1) + ') { display: block; }\
+              c-main-navigation nav-item:nth-child(1n+' + i + ') { display: none; } \
+              c-main-navigation .more li:nth-child(1n+' + i + ') { display: block; } \
             }';
           if (styleElm.styleSheet){
             styleElm.styleSheet.cssText = css;
@@ -172,14 +177,13 @@ Polymer({
           }
         }
 
-        var node = item.querySelector('a');
         if (node) {
           this.push('moreItems', {
             text: node.text,
             href: node.getAttribute('href')
           });
         }
-      }).bind(this));
+      }
 
       primary.removeAttribute('style');
 

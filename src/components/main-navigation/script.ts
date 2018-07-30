@@ -64,7 +64,10 @@ Polymer({
 
     this.insertBefore(styleElm, this.children[0]);
 
-    window.addEventListener('scroll', this.sticky.bind(this));
+    window.addEventListener('scroll', (function() {
+      this.sticky.call(this)
+      this.setMoreItems.call(this);
+    }).bind(this));
     window.addEventListener('resize', (function() {
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
@@ -136,7 +139,7 @@ Polymer({
       if(itemsWidth >= this.offsetWidth) {
         this.moreItemsAvailable = true;
       }
-    }).bind(this), 100);
+    }).bind(this), 20);
   },
   initMoreItem: function(val) {
     if(!val) {
@@ -193,12 +196,17 @@ Polymer({
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,
-        scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY; // our current vertical position from the top
+        scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
+        isSticky = document.body.classList.contains('header-is-sticky');
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
-      document.body.classList.remove('header-is-sticky');
+      if (isSticky) {
+        document.body.classList.remove('header-is-sticky');
+      }
     } else {
-      document.body.classList.add('header-is-sticky');
+      if (!isSticky) {
+        document.body.classList.add('header-is-sticky');
+      }
     }
   }
 });

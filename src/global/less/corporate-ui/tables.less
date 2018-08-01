@@ -35,7 +35,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
       > th {
         text-transform: uppercase;
-        border: 1px solid transparent;
+        border: 1px solid @interaction-primary;
 
         input,
         select {
@@ -55,6 +55,17 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             }
           }
         }
+      }
+    }
+  }
+
+   > thead:first-child {
+
+    > tr:first-child {
+
+      th {
+        //override for border-top
+        border-top: 1px solid @interaction-primary;
       }
     }
   }
@@ -206,52 +217,53 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       padding: 10px;
       &:extend(.table caption all);
     }
-  }
 
-  .table-sm {
-    max-width: 100%;
-    margin: 20px 0;
-    border:none;
+    &.table-sm {
+      max-width: 100%;
+      margin: 20px 0;
+      border:none;
 
-    > thead {
-      background-color: transparent;
-      color: #b7b7b7;
+      > thead {
+        background-color: transparent;
+        color: #b7b7b7;
 
-      > tr {
+        > tr {
 
-        > th {
-          text-transform: none;
-          font-weight: normal;
-          font-family: 'Scania Sans Condensed Bold';
-          font-size: 1.2rem;
-          padding: 0 10px;
-          border-bottom: 1px solid #dadada;
+          > th {
+            text-transform: none;
+            font-weight: normal;
+            font-family: 'Scania Sans Condensed Bold';
+            font-size: 1.2rem;
+            padding: 0 10px;
+            border-color: transparent;
+            border-bottom: 1px solid #dadada;
+          }
+        }
+      }
+
+      > tbody {
+
+        > tr {
+
+          > td {
+            font-family: 'Scania Sans Condensed';
+            padding: 5px 10px;
+            border: none;
+            font-size: 1.2rem;
+          }
         }
       }
     }
 
-    > tbody {
+    .table-condensed {
+      font-family: 'Scania Sans Condensed';
 
-      > tr {
-
-        > td {
-          font-family: 'Scania Sans Condensed';
-          padding: 5px 10px;
-          border: none;
-          font-size: 1.2rem;
-        }
-      }
-    }
-  }
-
-  .table-condensed {
-    font-family: 'Scania Sans Condensed';
-
-    > tbody {
-      > tr {
-        > td {
-          padding-top: 8px;
-          padding-bottom: 5px;
+      > tbody {
+        > tr {
+          > td {
+            padding-top: 8px;
+            padding-bottom: 5px;
+          }
         }
       }
     }

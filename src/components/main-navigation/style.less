@@ -46,6 +46,15 @@
       > a {
         &:extend(.navbar-default .navbar-nav > li + li > a all);
       }
+
+      .dropdown-menu li a {
+          text-transform: uppercase;
+          padding-top: 9px;
+          padding-bottom: 9px;
+          &:hover {
+            background-color: transparent;
+          }
+      }
     }
     .dropdown-menu {
       max-height: 70vh;

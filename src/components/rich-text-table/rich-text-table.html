@@ -1,0 +1,559 @@
+<script type="text/javascript" src="https://static.scania.com/vendors/frameworks/jQuery/jQuery-ui/1.10.3/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="https://static.scania.com/vendors/components/jQuery/data-tables/1.10.11/dataTables.min.js"></script>
+<script type="text/javascript" src="https://static.scania.com/vendors/components/jQuery/slick/1.6.0/slick.min.js"></script>
+<script type="text/javascript" src="https://static.scania.com/vendors/components/jQuery/kinetic/2.2.1/jquery.kinetic.min.js"></script>
+
+<link rel="import" href="js/control-item.html">
+
+<link rel="import" href="variation-1.html">
+<link rel="import" href="variation-2.html">
+<link rel="import" href="variation-3.html">
+<!--
+
+`c-rich-text-table` displays a datatable with a title, table-headers, data and optional filter controls.
+
+
+@dev
+
+##### Todos:
+- Single variation, automatic enabling of features?
+- Keep controls disabled if datatables doesnt work.
+- Defaults
+- Fix the dialog of var-3
+- Also, fix all other css
+- Updata spec
+
+-->
+<dom-module id="c-rich-text-table">
+
+    <template>
+
+    <style>
+        :host {
+            .table-info {
+                text-align: center;
+                width: 60%;
+                margin: 0 auto 70px;
+            }
+            .grid {
+                position: relative;
+            }
+
+            ::content .info-text {
+                p {
+                    display: none;
+                }
+            }
+
+            ::content .ui-widget-overlay {
+                background-color: rgba(48, 48, 48, 0.8);
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                opacity: 1;
+                z-index: 900 !important;
+                width:100%;
+                height:100%;
+            }
+            ::content .ui-dialog {
+                z-index: 950;
+                background-color: #fff;
+                outline: none;
+                text-align: left;
+                font-size: inherit;
+                border: 0;
+                padding: 0;
+                border-radius: 0;
+                overflow: hidden;
+                position: absolute;
+                background: #ffffff 50% 50% repeat-x;
+                color: #222222;
+            }
+            ::content .ui-dialog-titlebar {
+                overflow: hidden;
+                background-color: transparent;
+                padding: 0;
+                border: 0;
+                background-image: none;
+                position: relative;
+                .ui-dialog-title {
+                    display: none;
+                    float: left;
+                    margin: .1em 0;
+                    white-space: nowrap;
+                    width: 90%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+            }
+            ::content .ui-dialog-titlebar-close {
+                display: inline-block;
+
+                font-family: "ScaniaSansBold", Helvetica, Arial, sans-serif;
+                text-align: center;
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                background-image: none;
+                border: 1px solid transparent;
+                text-transform: uppercase;
+                white-space: nowrap;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                line-height: 18px;
+                font-size: 14px;
+                letter-spacing: 0.04em;
+                border-color: transparent;
+                text-decoration: none;
+                background-color: transparent;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+        
+                font-weight: normal;
+                border-radius: 0;
+        
+                padding: 0px;
+                font-weight: normal;
+                border-radius: 0;
+                text-decoration: none;
+                padding: 0px;
+                float: right;
+                color: #1d1d1d;
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0;
+                width: auto;
+                height: auto;
+                .ui-icon {
+                    display:none;
+                }
+                .ui-button-text {
+                    float: right;
+                    color: #1d1d1d;
+                    position: relative;
+                    top: 0;
+                    right: 0;
+                    margin: 0;
+                    width: auto;
+                    height: auto;
+                }
+            }
+            ::content .ui-dialog-content {
+                background-color: #fff;
+                padding: 0;
+                position: relative;
+                border: 0;
+                background: none;
+                overflow: auto;
+                .info-text {
+                    p {
+                        display: inline-block;
+                    }
+                    
+                    background-color: #f7f7f7;
+                    padding: 30px;
+                }
+                img {
+                    background-color: #fff;
+                    width: 100%;
+                    margin-bottom: 30px;
+                    padding: 32px;
+                }
+            }
+            &.compact {
+                .richTable {
+                    ::content .table {
+                        td {
+                            padding:10px;
+                        }
+                        th {
+                        padding:10px;
+                        }
+                    }
+                }
+            }
+
+
+             .richTable {
+                margin: 55px auto;
+                ::content .table {
+                    color:#53565a;
+                    margin-top: 60px;
+                    text-align: left;
+                    color: #000;
+                    letter-spacing: 0.04em;
+                        td {
+                            padding: 25px;
+                            border: 1px solid #e8e7eb;
+                            font-size: 16px;
+                            color: #53565a;
+                            background-color: #fff;
+                        }
+                        th {
+                            padding: 25px;
+                            border: 1px solid #e8e7eb;
+                            text-transform: uppercase;
+                            font-size: 18px;
+                            color: #041e42;
+                            font-family: "Scania Sans Bold", Helvetica, Arial, sans-serif;
+                            text-align: left;
+                            background-color: #fff;
+                        }
+                        caption {
+                            text-align: left;
+                            text-transform: uppercase;
+                            border: 0;
+                            line-height: normal;
+                            font-size: 18px;
+                            font-family: "Scania Sans Bold", Helvetica, Arial, sans-serif;
+                            font-size: 19.5px;
+                            background: #041e42;
+                            color: #fff;
+                            padding: 25px;
+                        }
+                }
+                .table-responsive {
+                    border:0;
+                }
+                
+                .rich-text-filter {
+                    margin-top: 53px;
+                    text-align: right;
+                    div {
+                        display: inline-block;
+                        min-width: 140px;
+                        margin-left: 4px;
+                    }
+                    ::content [class*="col-"] {
+                        float:right;
+                        width: 260px;
+                    }
+                    .filter {
+                        /*float:left;*/
+                    }
+                }
+
+                ::content strong {
+                    display:block;
+                }
+
+               ::content .dd-label {
+                    font-family: "Scania Sans Regular", Helvetica, Arial, sans-serif;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    color: #041e42;
+                    padding: 18px 20px;
+                    display: block;
+                    line-height: normal;
+                    margin: 0;
+                    font-weight: bold;
+                }
+               ::content .dd-selected {
+                    background-color: #fff;
+                }
+                ::content .dd-container, .dd-select, .dd-options {
+                    min-width: 220px;
+                }
+                 ::content .dd-container {
+                    display: inline-block;
+                    vertical-align: middle;
+                    text-align: left;
+                    position: relative;
+                }
+                ::content .dd-select, .dd-optins {
+                    border: 1px solid #dbdbdb;
+                    box-shadow: none;
+                }
+            }
+
+        }
+    </style>
+        <div class="container">
+            <template is="dom-if" if="{{_info(headline, description)}}">
+                <div class="table-info">
+                <template is="dom-if" if="{{headline}}">
+                  <h1>{{headline}}</h1>
+                </template>
+        
+                <template is="dom-if" if="{{description}}">
+                  <p>{{description}}</p>
+                </template>
+              </div>
+            </template>
+
+            <div class$="richTable richTextTable {{variation}}" id="richtexttable">
+                <div class="table-controler">
+                <template is="dom-if" if="[[_isFilter]]">
+                    <div class="rich-text-filter">
+                        <div class="filter">
+                            <label class="dd-label">{{controlTitle}}</label>
+                        </div>
+
+                        <content select="control-item"></content>
+                    </div>
+                </template>
+                <div class="grid">
+                    <div class="table-responsive">
+                        <content select=":not(control-item)"></content>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </template>
+
+    <script>
+
+        Polymer({
+            is: 'c-rich-text-table',
+            properties: {
+                /** The variation in use. */
+                variation: {
+                    type: String,
+                    value: 'variation-2',
+                    observer: "_checkVariation"
+                },
+                /** The title of the table */
+                title: String,
+                /** The control promt */
+                controlTitle: {
+                    type: String,
+                    value: 'Filter by:'
+                },
+                /** Optional headline, displayed before table */
+                headline: String,
+                /** Optional description, displayed before table */
+                description: String,
+                _isFilter: {
+                    type: Boolean,
+                    value: false
+                }
+            },
+
+            /** Runs the appropiate functions once attached */
+            attached: function() {
+
+                if(this._isAttached)
+                    return
+                this._isAttached = true;
+                var childTable = this.queryAllEffectiveChildren('table');
+                this._makeKinetic();
+                if(this.title)
+                    this._makeCaption();
+                this.toggleClass('table', true, childTable[0]);
+                if(this.variation == "variation-2")
+                    this._makeDataTable();
+                if(this.variation == "variation-3")
+                    this._makeDialog();
+
+            },
+
+            /** returns true if variation = variation-2 */
+            _checkVariation: function(variation) {
+
+                if(this.variation == "variation-2")
+                    this._isFilter = true;
+
+            },
+
+            _info: function(headline, description) {
+                return headline || description;
+            },
+
+            /** Runs the kinetic-script if _isTouchDevice returns true. */
+            _makeKinetic: function() {
+                if (!this._isTouchDevice()) {
+                    $(this.$$('.table-responsive')).kinetic({
+                        cursor: 'auto'
+                    });
+                }
+            },
+
+            _makeCaption: function() {
+                var tables = $(this.queryEffectiveChildren('table'));
+                tables.prepend("<caption>" + this.title + "</caption>");
+            },
+
+            /** Runs ddslick on the controlers, _makeFilter and activates datatables */
+            _makeDataTable: function() {
+
+                var tables = $(this.queryEffectiveChildren('table'));
+
+                $('thead th', tables).each(function() {
+                    var index = $(this).index() + 1,
+                        cols = $('tbody td:nth-child(' + index + ')', tables);
+
+                    cols.addClass( this.className );
+                });
+                // Make dataTable
+                var dataTable = tables.DataTable({
+                    paging          : false,
+                    info            : false,
+                    ordering        : false,
+                });
+
+                // init filter
+                 var controlers = this.queryAllEffectiveChildren('control-item');
+                 self = this;
+                 $(controlers).each(function(index){
+                    var tmp = $(controlers[index].children[0].children);
+
+                    var obj = self._makeFilter(tmp, dataTable, tables);
+
+                    tmp.ddslick(obj);
+ 
+                 });
+
+                 tables.unwrap();
+                 
+            },
+
+            /** returns true if the device is a touch-device */
+            _isTouchDevice: function() {
+                return ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+            },
+
+            /** Operates the filter function */
+            _makeFilter: function(dropdown, dataTable, table) {
+                var index   = dropdown.data().columnIndex - 1,
+                    column  = dataTable.column(index),
+                    items   = [];
+
+                    table.cols = table.cols || [];
+                    table.cols.push(index);
+
+                    column.data().unique().sort().each( function(value) {
+                        if ( !( cleanUp(value) && items.indexOf( cleanUp(value) ) === -1 ) ) {
+                            return;
+                        }
+                        items.push( cleanUp(value) );
+                        dropdown.append( '<option value="' + cleanUp(value) + '">' + cleanUp(value) + '</option>' );
+                    });
+
+                    function cleanUp(value) {
+
+                        var temp = $('<div />').html(value);
+                        return $('div', temp).length ? $('center', temp).text().trim() : value;
+                    }
+                    function filter(data) {
+
+
+                        var value = cleanUp(data.selectedData.value),
+                            filteredData;
+        
+                        column
+                            .search(value)
+                            .draw();
+        
+                        // The following part is used for filtering the filters
+                        data.selectedItem.parent().addClass('filter-' + index);
+        
+                        // cleans hidden classes
+                        $('.dd-options li', table.parents('.table-controler') ).removeClass('hidden');
+        
+                        filteredData = table.DataTable().columns({ search: 'applied' }).data();
+        
+
+
+                        $(table.cols).each(function() {
+        
+                            var currentIndex = this,
+                                elm = $('.filter-' + this + ' li', table.parents('.table-controler') );
+
+        
+                            elm.removeClass('hidden');
+ 
+
+                            // Dont filter the current used filter it is used to filter
+                            if (data.selectedData.value && currentIndex == index) {
+                                return;
+                            }
+        
+                            $('input', elm).each(function() {
+        
+                                var option = this,
+                                    foundResults = 0;
+        
+                                $.each(filteredData[ currentIndex ], function() {
+                                    if ( this.indexOf( $(option).val() ) !== -1 ) {
+                                        foundResults++;
+                                    }
+                                })
+        
+                                if (foundResults === 0) {
+                                    $(option).parents('li').addClass('hidden');
+                                }
+        
+                            })
+                        })
+                    }
+                    return {
+                        onSelected: filter
+                    };
+            },
+
+            /**  */
+            _makeDialog: function() {
+
+                var element = this.$.richtexttable;
+                container = $('.grid', element);
+
+                $.ui.dialog.prototype._focusTabbable = function(){};
+    
+                $('<div />').dialog({
+                    appendTo        : container,
+                    modal           : true,
+                    closeOnEscape   : true,
+                    autoOpen        : false,
+                    resizable       : false,
+                    draggable       : false,
+                    width           : 500,
+                    height          : "auto",
+                    closeText       : 'X',
+                    show            : {
+                        effect          : 'drop',
+                        duration        : 500,
+                        easing          : 'easeOutExpo',
+                        direction       : 'up'
+                    },
+                    hide            : {
+                        effect          : 'drop',
+                        duration        : 500,
+                        easing          : 'easeInExpo',
+                        direction       : 'up'
+                    }
+                });
+    
+                $('td', element).each(function() {
+
+    
+                    $('img', this).on('click', function() {
+                        var self        = this,
+                            grid        = $(this).parents('.grid'),
+                            dialogElm   = $('.ui-dialog-content',  grid);
+    
+                        dialogElm
+                            .dialog('option', 'position', {
+                                of: grid
+                            })
+                            .html( $(this).parent().children().clone() )
+                            .removeAttr('id')
+                            .dialog('open')
+                            .dialog('instance')
+                                .overlay.on('click', function() {
+                                    dialogElm.dialog('close');
+                                });
+                    });
+                });
+            }
+        });
+    </script>
+</dom-module>

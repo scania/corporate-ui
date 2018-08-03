@@ -64,7 +64,10 @@ Polymer({
 
     this.insertBefore(styleElm, this.children[0]);
 
-    window.addEventListener('scroll', this.sticky.bind(this));
+    window.addEventListener('scroll', (function() {
+      this.sticky.call(this)
+      this.setMoreItems.call(this);
+    }).bind(this));
     window.addEventListener('resize', (function() {
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
@@ -136,7 +139,7 @@ Polymer({
       if(itemsWidth >= this.offsetWidth) {
         this.moreItemsAvailable = true;
       }
-    }).bind(this), 100);
+    }).bind(this), 20);
   },
   initMoreItem: function(val) {
     if(!val) {
@@ -155,15 +158,20 @@ Polymer({
           availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0);
 
       primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
-      new Dropdown(dropdown);
 
-      [].slice.call(primary.querySelectorAll('nav-item')).map((function(item, index) {
+      for(var i=0; i<primary.children.length; i++) {
+        var item = primary.children[i],
+            node = item.querySelector('a');
+
+        if (item.nodeName !== 'NAV-ITEM') {
+          continue;
+        }
 
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
             @media (min-width: 991px) {\
-              c-main-navigation nav-item:nth-child(1n+' + index + ') { display: none; } \
-              c-main-navigation .more li:nth-child(1n+' + (index + 1) + ') { display: block; }\
+              c-main-navigation nav-item:nth-child(1n+' + i + ') { display: none; } \
+              c-main-navigation .more li:nth-child(1n+' + i + ') { display: block; } \
             }';
           if (styleElm.styleSheet){
             styleElm.styleSheet.cssText = css;
@@ -172,14 +180,13 @@ Polymer({
           }
         }
 
-        var node = item.querySelector('a');
         if (node) {
           this.push('moreItems', {
             text: node.text,
             href: node.getAttribute('href')
           });
         }
-      }).bind(this));
+      }
 
       primary.removeAttribute('style');
 
@@ -193,12 +200,17 @@ Polymer({
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,
-        scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY; // our current vertical position from the top
+        scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
+        isSticky = document.body.classList.contains('header-is-sticky');
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
-      document.body.classList.remove('header-is-sticky');
+      if (isSticky) {
+        document.body.classList.remove('header-is-sticky');
+      }
     } else {
-      document.body.classList.add('header-is-sticky');
+      if (!isSticky) {
+        document.body.classList.add('header-is-sticky');
+      }
     }
   }
 });

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-GB" ng-app="CorporateUi">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Corporate UI - Developers</title>
+
+  <!-- <script src="/js/corporate-ui.js?preload=false"></script> -->
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+
+  <script>
+    window.users = [
+      {
+        id: 'awinny',
+        fname: 'Andreas',
+        lname: 'Wikström',
+        title: 'Legend'
+      },
+      {
+        id: 'abc123',
+        fname: 'Jesper',
+        lname: 'Karlsson',
+        title: 'Master'
+      }
+    ]
+  </script>
+</head>
+<body class="scania app" ng-controller="Example as example" ng-cloak>
+
+  <c-corporate-header site-name="store" ite-url="/">
+    <nav-item location="/">Global</nav-item>
+  </c-corporate-header>
+
+  <c-main-content>
+    <c-main-navigation>
+      <primary-items>
+        <nav-item>home</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-4">
+            <h3>Angular app</h3>
+
+            <form class="form-group" ng-submit="example.setUser()">
+              <label class="w-100">
+                <span class="control-label">User id:</span>
+                <input type="text" placeholder="userid" class="form-control" maxlength="6" ng-model="example.uid">
+              </label>
+              <label>
+                <input type="radio" ng-model="example.mode" value="attribute">
+                Attribute
+              </label>
+              <label>
+                <input type="radio" ng-model="example.mode" value="property">
+                Property
+              </label>
+              <button type="submit" class="btn btn-sm pull-right">set user</button>
+            </form>
+
+            <form class="form-group" ng-submit="example.setData()">
+              <label class="w-100">
+                <span class="control-label">User object:</span>
+                <textarea class="form-control w-100" ng-model="example.user"></textarea>
+              </label>
+              <button type="submit" class="btn btn-sm pull-right">set data</button>
+            </form>
+          </div>
+
+          <div class="col-xs-4">
+            <h3>Polymer component</h3>
+            <c-user uid="awinny"></c-user>
+          </div>
+
+          <div class="col-xs-4">
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+
+  <!-- Polymer example component -->
+
+  <link rel="import" href="../libs/Polymer/polymer.html"/>
+  <dom-module id="c-user">
+    <template>
+      <style>
+        ul {
+          display: table;
+        }
+        li {
+          display: table-row;
+        }
+        li:before {
+          display: table-cell;
+          content: attr(title) ":";
+          font-weight: bold;
+          text-align: right;
+          padding-right: 6px;
+        }
+      </style>
+
+      <ul class="list-unstyled">
+        <li title="id">{{user.id}}</li>
+        <li title="fname">{{user.lname}}</li>
+        <li title="lname">{{user.fname}}</li>
+        <li title="title">{{user.title}}</li>
+      </ul>
+
+      <form class="form-group">
+        <label class="w-100">
+          <span class="control-label">User id:</span>
+          <input type="text" placeholder="userid" class="form-control" maxlength="6" value="{{uid::input}}">
+        </label>
+      </form>
+    </template>
+    <script>
+      Polymer({
+        is: 'c-user',
+        properties: {
+          fullbleed: true,
+          variation: 0,
+          uid: {
+            type: String,
+            observer: 'setUser'
+          },
+          user: {
+            type: Object
+          }
+        },
+        ready: function() {
+          if (!this.user) {
+            this.setUser()
+          }
+        },
+        setUser: function() {
+          var user = this.getUser()
+          if (user) {
+            this.user = user
+          }
+        },
+        getUser: function() {
+          if (this.uid  && this.uid.length !== 6) {
+            return
+          }
+
+          // Will be retrive from API later on
+          return window.users.find(user => user.id === this.uid)
+        },
+        reducer: function(state, action) {
+          var state = state || [],
+              action = action || {}
+
+          switch (action.type) {
+            case 'persons/ADD_PERSON':
+              return [].concat(state, Object.assign({}, action.payload, { id: state.length + 1 }));
+            case 'persons/REMOVE_PERSON':
+              // We might wanna go for id later on, but that requires some restructuring
+              return [].concat(state.filter(person => person.name !== action.payload.name));
+            default:
+              return state;
+          }
+        }
+      });
+    </script>
+  </dom-module>
+
+
+  <!-- Angular example code -->
+
+  <script src="https://static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+  <script>
+    angular
+      .module('CorporateUi', [])
+      .controller('Example', [Example]);
+
+    function Example() {
+      var vm = this,
+          elm = document.querySelector('c-user')
+
+      vm.user = JSON.stringify(window.users.find(user => user.id === 'abc123'))
+      vm.mode = 'attribute'
+      vm.uid = elm.getAttribute('uid')
+      vm.setUser = function() {
+        elm.removeAttribute('uid')
+        if (vm.mode === 'attribute') {
+          elm.setAttribute('uid', vm.uid)
+        } else {
+          elm.uid = vm.uid
+        }
+      }
+      vm.setData = function() {
+        var user = JSON.parse(vm.user)
+        elm.removeAttribute('uid')
+        elm.uid = user.id
+        elm.user = user
+      }
+    }
+  </script>
+</body>
+</html>

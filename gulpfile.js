@@ -1,5 +1,6 @@
   
 var fs = require('fs'),
+    glob = require('glob'),
     path = require('path'),
     gulp = require('gulp'),
     del = require('del'),
@@ -14,7 +15,10 @@ var fs = require('fs'),
     webpack = require('webpack-stream'),
     dirTree = require('directory-tree'),
     server = require('./server'),
-    package = require('./package.json')
+    package = require('./package.json'),
+
+    tree = dirTree('src/components', { normalizePath: true, extensions: /\.ts/ }),
+    tree2 = dirTree('demo/examples', { normalizePath: true });
 
 /* Available tasks */
 gulp.task('clean', _clean)
@@ -65,9 +69,7 @@ function _less() {
     .pipe(gulp.dest('dist/css'))
 }
 function _ts() {
-  var tree = dirTree('src/components'),
-      tree2 = dirTree('demo/examples', { normalizePath: true }),
-      _components = [];
+  var _components = [];
 
   tree.children.map(function(component) {
     var variations = (component.children || []).find(function(sub) { return sub.name === 'variations' })
@@ -109,7 +111,7 @@ function _ts() {
     },
     externals: {
       // export components array to the view
-      'webpackVariables': `{
+      webpackVariables: `{
         'components': '${JSON.stringify(_components)}',
         'version': '${package.version}'
       }`
@@ -135,8 +137,8 @@ function _ts() {
       ]
     },
     externals: {
-      // export components array to the view
-      'webpackVariables': `{
+      // export examples array to the view
+      webpackVariables: `{
         'examples': '${JSON.stringify(tree2.children)}'
       }`
     }
@@ -151,12 +153,55 @@ function _lessComponent() {
     .pipe(gulp.dest('tmp/components'))
 }
 function _tsComponent() {
-  var tsProject = typescript.createProject('tsconfig.json'),
-      tsResult = tsProject.src()
-        .pipe(tsProject())
+  var entries = {}
 
-  return tsResult.js
-    .pipe(gulp.dest('tmp'))
+  // We go throught all components manually to make it possible for webpack to 
+  // generate separate script files for our webcomponents
+  tree.children.map(function(component) {
+    if (component.children.find(component => component.name === 'script.ts')) {
+      Object.assign(entries, renderEntries(component, entries))
+    }
+  })
+
+  function renderEntries(item, obj) {
+    entries[item.path.replace('src/', '') + '/script'] = './' + item.path + '/script'
+
+    item.children.find(function(file) {
+      if (file.type === 'directory') {
+        if (file.name === 'variations') {
+          file.children.map(function(variation) {
+            entries[variation.path.replace('src/', '') + '/script'] = './' + variation.path + '/script'
+          })
+        } else {
+          Object.assign(obj, renderEntries(file, obj))
+        }
+      }
+    })
+    return obj
+  }
+
+  return webpack({
+    entry: entries,
+    output: {
+      path: __dirname + '/tmp/',
+      filename: '[name].js'
+    },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.json']
+    },
+    module: {
+      loaders: [
+        { test: /\.ts$/, loader: 'ts-loader' }
+      ]
+    },
+    externals: {
+      // export components array to the view
+      webpackVariables: `{
+        'examples': '${JSON.stringify(tree2.children)}'
+      }`
+    }
+  })
+    .pipe(gulp.dest('tmp/'));
 }
 function _jadeComponent() {
   return gulp.src('src/components/**/*.{jade,html,md}')

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-GB" ng-app="CorporateUi">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Corporate UI - Developers</title>
+
+  <!-- <script src="/js/corporate-ui.js?preload=false"></script> -->
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+</head>
+<body class="scania app" ng-controller="Example as example" ng-cloak>
+
+  <c-corporate-header site-name="store" ite-url="/">
+    <nav-item location="/">Global</nav-item>
+  </c-corporate-header>
+
+  <c-main-content>
+    <c-main-navigation>
+      <primary-items>
+        <nav-item>home</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-4">
+            <h3>Angular app</h3>
+            <d-user-form></d-user-form>
+          </div>
+
+          <div class="col-xs-4">
+            <h3>Polymer component</h3>
+            <c-user></c-user>
+          </div>
+
+          <div class="col-xs-4">
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+
+  <!-- Polymer example component -->
+
+  <link rel="import" href="../libs/Polymer/polymer.html"/>
+  <dom-module id="c-user">
+    <template>
+      <style>
+        ul {
+          display: table;
+        }
+        li {
+          display: table-row;
+        }
+        li:before {
+          display: table-cell;
+          content: attr(title) ":";
+          font-weight: bold;
+          text-align: right;
+          padding-right: 6px;
+        }
+      </style>
+
+      <ul class="list-unstyled">
+        <!-- <li title="id">{{user.id}}</li>
+        <li title="fname">{{user.lname}}</li>
+        <li title="lname">{{user.fname}}</li>
+        <li title="title">{{user.title}}</li> -->
+        <template is="dom-repeat" items="{{userProps}}">
+          <li title$="{{item.key}}">{{item.value}}</li>
+        </template>
+      </ul>
+
+      <!-- <form class="form-group">
+        <label class="w-100">
+          <span class="control-label">User id:</span>
+          <input type="text" placeholder="userid" class="form-control" maxlength="6" value="{{uid::input}}">
+        </label>
+      </form> -->
+    </template>
+    <script>
+      Polymer({
+        is: 'c-user',
+        properties: {
+          fullbleed: true,
+          variation: 0,
+          user: {
+            type: Object
+          },
+          userProps: {
+            type: Array
+          }
+        },
+        ready: function() {
+          var store = CorporateUi.store,
+              watch = store.watch(store.getState, 'user')
+
+          store.subscribe(watch(this.setUser.bind(this)))
+        },
+        setUser: function(newData, oldData, objectPath) {
+          this.user = newData
+
+          // Used for demo purpose
+          this.userProps = Object.keys(this.user).map(function(key) {
+            return {
+              key: key,
+              value: newData[key]
+            }
+          })
+        }
+      });
+    </script>
+  </dom-module>
+
+
+  <!-- Angular example code -->
+
+  <script src="https://static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+  <script type="text/ng-template" id="user-form.html">
+    <form class="form-group" ng-submit="example.setUser()">
+      <label class="w-100">
+        <span class="control-label">User id:</span>
+        <input type="text" placeholder="userid" class="form-control" maxlength="6" ng-model="example.uid">
+      </label>
+      <label>
+        <input type="radio" ng-model="example.mode" value="attribute">
+        Attribute
+      </label>
+      <label>
+        <input type="radio" ng-model="example.mode" value="property">
+        Property
+      </label>
+      <button type="submit" class="btn btn-sm pull-right">set user</button>
+    </form>
+  </script>
+  <script>
+    angular
+      .module('CorporateUi', [])
+      .controller('Example', [Example])
+      .directive('dUserForm', dUserForm);
+
+    function Example() {
+      var vm = this,
+          elm = document.querySelector('c-user')
+
+      /*vm.user = JSON.stringify(window.users.find(user => user.id === 'abc123'))
+      vm.mode = 'attribute'
+      vm.uid = elm.getAttribute('uid')
+      vm.setUser = setUser
+      vm.setData = setData*/
+
+      /*CorporateUi.store.dispatch({
+        type: 'persons/ADD_PERSON',
+        payload: person
+      })*/
+
+      /*function setUser() {
+        elm.removeAttribute('uid')
+        if (vm.mode === 'attribute') {
+          elm.setAttribute('uid', vm.uid)
+        } else {
+          elm.uid = vm.uid
+        }
+      }
+      function setData() {
+        var user = JSON.parse(vm.user)
+        elm.removeAttribute('uid')
+        elm.uid = user.id
+        elm.user = user
+      }*/
+    }
+    function dUserForm() {
+      return {
+        templateUrl: 'user-form.html'
+      }
+    }
+  </script>
+
+  <script>
+    var initialState = {
+      id: 'awinny',
+      fname: 'Andreas',
+      lname: 'Wikström'
+    }
+
+    CorporateUi.store.register('user', reducer);
+
+    function reducer(state, action) {
+      var state = initialState || {},
+          action = action || {}
+
+      switch (action.type) {
+        case 'user/ADD_PROPERTY':
+          return Object.assign({}, state, action.payload);
+        case 'user/CHANGE_PROPERTY':
+          return Object.assign({}, state, action.payload);
+        default:
+          return state;
+      }
+    }
+  </script>
+</body>
+</html>

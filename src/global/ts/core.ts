@@ -1,6 +1,6 @@
 
 import * as helpers from './helpers';
-import { createStore } from 'redux';
+import { storeInit } from './store';
 
 const wv = require('webpackVariables');
 
@@ -9,14 +9,14 @@ export {
   setGlobals,
   polymerInject,
   applyBrand,
-  baseComponents,
-  store
+  baseComponents
 }
 
 function init() {
   addMetaAndHeaderSpecs();
   setGlobals();
   appendExternals();
+  storeInit();
 }
 
 function done(event) {
@@ -162,6 +162,10 @@ function setGlobals() {
     });
   }
 
+  /*store.subscribe(() =>
+    console.log(store.getState())
+  );*/
+
   /*window['Polymer'] = {
     dom: 'shadow'
   };*/
@@ -186,7 +190,7 @@ function polymerInject() {
 
         if (this.properties.variation !== 0) {
           /* Automatically wrapping component variation */
-          var variation = (this.attributes.variation ? this.attributes.variation.value : undefined) || (this.properties.variation ? this.properties.variation.value : 1);
+          var variation = (this.attributes.variation ? this.attributes.variation.value : undefined) || (this.properties.variation ? this.properties.variation.value || this.properties.variation : 1);
           var variation_container = document.createElement(this.localName + '-variation-' + variation);
 
           // Why does this happen sometimes?
@@ -198,7 +202,7 @@ function polymerInject() {
         }
 
         /* Automatically wrapping component inside a container */
-        var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : true);
+        var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value || this.properties.fullbleed : true);
 
         if(fullbleed !== true) {
           var container = document.createElement('div'),
@@ -294,6 +298,7 @@ function bsHandler() {
   document.addEventListener('click', function(event:any) {
     var dataToggle = event.target.getAttribute('data-toggle') || '',
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
+        // We used parent node to apply method on all connected elements
         elm = event.target.parentNode;
     if(method && window[method]) {
       if (dataToggle === 'tab') {
@@ -320,29 +325,5 @@ function sysMessages() {
 
   if (window['ready_event'] === 'timeout') {
     console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
-  }
-}
-
-function store() {
-  var _counter = createStore(counter)
-
-  _counter.subscribe(() =>
-    console.log(_counter.getState())
-  );
-
-  return {
-    createStore,
-    counter
-  };
-
-  function counter(state = 0, action) {
-    switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-    }
   }
 }

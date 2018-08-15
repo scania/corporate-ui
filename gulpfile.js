@@ -12,7 +12,10 @@ var fs = require('fs'),
     merge = require('merge-stream'),
     chalk = require('chalk'),
     server = require('./server'),
-    inject = require('gulp-inject');
+    inject = require('gulp-inject'),
+    replace = require('gulp-replace'),
+    postcss = require('postcss'),
+    postcssimport = require('postcss-import');
 
 /* Available tasks */
 gulp.task('clean', _clean)
@@ -25,9 +28,10 @@ gulp.task('jadeComponent', _jadeComponent)
 gulp.task('fullComponent', _fullComponent)
 gulp.task('fullCorporateUIHtml', _fullCorporateUIHtml)
 gulp.task('test', _test)
+gulp.task('cssModule', _cssModule)
 
 gulp.task('component', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series('clean', ['copy', 'less', 'component'], 'fullCorporateUIHtml', function(done) {
+gulp.task('build', gulp.series('clean', ['copy', 'less', 'component', 'cssModule'], 'fullCorporateUIHtml', function(done) {
     done();
 }))
 gulp.task('prepublish', gulp.series('test', 'build',  function(done) {
@@ -149,3 +153,22 @@ function _test(done) {
   done();
 }
 
+function _cssModule(done) {
+  var options = {
+    from: 'dist/css/corporate-ui.css',
+    to: 'tmp/css/corporate-ui.css',
+    map: { inline: true }
+  };
+  
+  postcss([postcssimport])
+  .process(fs.readFileSync('dist/css/corporate-ui.css', 'utf-8'), options)
+  .then(function(result) {
+    gulp.src('src/css-modules/corporate-ui.js')
+      .pipe(replace(/{%corporate-ui.css%}/ , result))
+      .pipe(gulp.dest('dist/css-modules'))
+      .on('end', done);
+  }, function(error) {
+    console.log(error);
+    done();
+  });
+}

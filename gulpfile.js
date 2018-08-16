@@ -165,7 +165,7 @@ function _cssModule(done) {
   .then(function(result) {
     gulp.src('src/css-modules/corporate-ui.js')
       .pipe(replace(/{%corporate-ui.css%}/ , result))
-      .pipe(gulp.dest('dist/css-modules'))
+      .pipe(gulp.dest('css-modules'))
       .on('end', done);
   }, function(error) {
     console.log(error);

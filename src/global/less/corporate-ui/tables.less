@@ -129,7 +129,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > tr.active {
         &.danger {
           > td {
-            background-color: rgba(204, 16, 64, 0.12)
+            background-color: rgba(204, 16, 64, 0.12);
           }
         }
 
@@ -155,7 +155,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tbody {
       > tr,
       > tr.active {
-        &:hover{
+
+        &:hover,
+        &:nth-child(odd):hover {
+
           > td,
           > th {
             background-color: #d9e8ef;

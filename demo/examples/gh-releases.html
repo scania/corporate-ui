@@ -67,8 +67,6 @@
       .controller('GH', ['$http', GH])
       .directive('markdown', markdown)
 
-    // '?access_token=3f2113e391007676a9facb70756b91a442daa531'
-
     function GH($http) {
       var vm = this
       vm.tags = JSON.parse(sessionStorage.getItem('tags')) || []

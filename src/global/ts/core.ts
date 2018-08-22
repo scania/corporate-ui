@@ -296,6 +296,7 @@ function bsHandler() {
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
         elm = event.target.parentNode;
     if(method && window[method]) {
+      event.preventDefault();
       if (dataToggle === 'tab') {
         elm = elm.parentNode;
       }

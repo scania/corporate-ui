@@ -12,6 +12,7 @@ var fs = require('fs'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
     webpack = require('webpack-stream'),
+    dirTree = require('directory-tree'),
     server = require('./server'),
     package = require('./package.json')
 
@@ -57,38 +58,82 @@ function _less() {
     .pipe(gulp.dest('dist/css'))
 }
 function _ts() {
-  var _components = dirs('src/components'),
-      // We pipe webpack instead of typescript to bundle our modules
-      stream1 = webpack({
-        watch: false,
-        devtool: 'inline-source-map',
-        entry: {
-          'corporate-ui': './src/global/ts/corporate-ui',
-          'corporate-ui-light': './src/global/ts/corporate-ui-light'
-        },
-        output: {
-          filename: '[name].js'
-        },
-        resolve: {
-          extensions: ['.ts']
-        },
-        module: {
-          loaders: [
-            { test: /\.ts$/, loader: 'ts-loader' }
-          ]
-        },
-        externals: {
-          // export components array to the view
-          'webpackVariables': `{
-            'components': '${_components}',
-            'version': '${package.version}'
-          }`
-        }
-      })
-        .pipe(gulp.dest('dist/js'))
+  var tree = dirTree('src/components'),
+      tree2 = dirTree('demo/examples', { normalizePath: true }),
+      _components = [];
 
-  var stream2 = gulp.src('src/global/ts/ux-library.ts')
-    .pipe(typescript())
+  tree.children.map(function(component) {
+    var variations = (component.children || []).find(function(sub) { return sub.name === 'variations' })
+    if (component.extension) {
+      return;
+    }
+
+    if (variations) {
+      variations = variations.children;
+    } else {
+      // Temporary until all components have been rewritten to new structure
+      variations = component.children.filter(function(file) { return file.name.indexOf('variation-') > -1 })
+    }
+
+    _components.push({
+      name: component.name,
+      variations: variations.length,
+    })
+  });
+
+  // We pipe webpack instead of typescript to bundle our modules
+  var stream1 = webpack({
+    watch: false,
+    devtool: 'inline-source-map',
+    entry: {
+      'corporate-ui': './src/global/ts/corporate-ui',
+      'corporate-ui-light': './src/global/ts/corporate-ui-light'
+    },
+    output: {
+      filename: '[name].js'
+    },
+    resolve: {
+      extensions: ['.ts']
+    },
+    module: {
+      loaders: [
+        { test: /\.ts$/, loader: 'ts-loader' }
+      ]
+    },
+    externals: {
+      // export components array to the view
+      'webpackVariables': `{
+        'components': '${JSON.stringify(_components)}',
+        'version': '${package.version}'
+      }`
+    }
+  })
+    .pipe(gulp.dest('dist/js'))
+
+  // We pipe webpack instead of typescript to bundle our modules
+  var stream2 = webpack({
+    watch: false,
+    entry: {
+      'ux-library': './src/global/ts/ux-library'
+    },
+    output: {
+      filename: '[name].js'
+    },
+    resolve: {
+      extensions: ['.ts']
+    },
+    module: {
+      loaders: [
+        { test: /\.ts$/, loader: 'ts-loader' }
+      ]
+    },
+    externals: {
+      // export components array to the view
+      'webpackVariables': `{
+        'examples': '${JSON.stringify(tree2.children)}'
+      }`
+    }
+  })
     .pipe(gulp.dest('dist/js'))
 
   return merge(stream1, stream2)
@@ -159,5 +204,3 @@ function exit(done) {
     process.exit(0)
   }
 }
-
-dirs = p => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory())

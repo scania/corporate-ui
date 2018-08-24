@@ -4,6 +4,16 @@
   flex-shrink: 0;
   word-break: break-word;
 
+  &.scroll {
+    display: flex !important;
+    flex-direction: column;
+    flex-basis: 0;
+
+    ::content > section {
+      overflow: auto;
+    }
+  }
+
   /* Grid related style */
   .row.text-middle {
     font-size: 0;
@@ -50,6 +60,18 @@
     > section {
       background-color: #f7f7f7;
       padding: 20px 0;
+    }
+  }
+}
+@media (max-width: 991px) {
+
+  :host-context(.navigation-open) {
+    display: flex !important;
+    flex-direction: column;
+    flex-basis: 0;
+
+    > ::content section {
+      display: none;
     }
   }
 }

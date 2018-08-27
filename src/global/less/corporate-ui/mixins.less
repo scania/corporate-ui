@@ -45,6 +45,20 @@
       background-color: @@color-panel;
     }
   }
+
+  .table-panel& {
+    border-color: #dadada;
+    > thead {
+      background-color: @@color-panel;
+      > tr,
+      > tr:first-child {
+        > th,
+        > th:first-child {
+          border-color: @@color-panel;
+        }
+      }
+    }
+  }
 }
 
 .label-mixin(@type) {

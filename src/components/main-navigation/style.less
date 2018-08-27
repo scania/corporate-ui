@@ -44,7 +44,15 @@
         display: none;
       }
       > a {
-        &:extend(.navbar-default .navbar-nav > li + li > a all);
+          text-transform: uppercase;
+          padding-top: 9px;
+          padding-bottom: 9px;
+
+          &:hover {
+           background-color: transparent;
+          }
+
+          &:extend(.navbar-default .navbar-nav > li + li > a all);
       }
     }
     .dropdown-menu {

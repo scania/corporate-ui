@@ -101,11 +101,12 @@ function _ts() {
     output: {
       filename: '[name].js'
     },
+    mode: 'production',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json']
     },
     module: {
-      loaders: [
+      rules: [
         { test: /\.ts$/, loader: 'ts-loader' }
       ]
     },
@@ -128,11 +129,12 @@ function _ts() {
     output: {
       filename: '[name].js'
     },
+    mode: 'production',
     resolve: {
       extensions: ['.ts']
     },
     module: {
-      loaders: [
+      rules: [
         { test: /\.ts$/, loader: 'ts-loader' }
       ]
     },
@@ -186,12 +188,13 @@ function _tsComponent() {
       path: __dirname + '/tmp/',
       filename: '[name].js'
     },
+    mode: 'production',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json']
     },
     module: {
-      loaders: [
-        { test: /\.ts$/, loader: 'ts-loader' }
+      rules: [
+        { test: /\.ts$/, loader: 'ts-loader', sideEffects: false }
       ]
     },
     externals: {

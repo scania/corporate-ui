@@ -2,6 +2,7 @@
 /*import { store } from '../../global/ts/core';
 import reducerRegistry from '../../global/ts/reducerRegistry';*/
 import { store } from '../../global/ts/store';
+import { createCookie } from '../../global/ts/helpers';
 
 Polymer({
   is: name,
@@ -67,6 +68,8 @@ Polymer({
     }
 
     store.register('navigation', reducer);
+
+    createCookie('apa', 'banan', 365)
   },
   attached: function() {
     this.style.display = 'block';

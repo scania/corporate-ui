@@ -252,7 +252,7 @@ function baseComponents(references) {
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(resource.path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(CorporateUi.components[resource], 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
     });
   });
 

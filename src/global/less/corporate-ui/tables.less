@@ -141,6 +141,22 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+
+  &.table-borderless {
+    border: 0;
+    > tbody,
+    > thead,
+    > tfoot {
+
+      > tr {
+
+        > td,
+        > th {
+          border: 0;
+        }
+      }
+    }
+  }
 }
 
 .table-responsive {

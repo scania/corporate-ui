@@ -30,17 +30,17 @@
     h3 {
       font-size: @h3-font-size-app * 1.5;
     }
+  }
 
-    h1,
-    h2,
-    h3 {
-      text-align: left;
+  h1,
+  h2,
+  h3 {
+    text-align: left;
 
-      small {
-        font-family: "Scania Sans";
-        font-weight: bold;
-        font-size: 0.6em;
-      }
+    small {
+      font-family: "Scania Sans";
+      font-weight: bold;
+      font-size: 0.6em;
     }
   }
 }
@@ -79,6 +79,10 @@ header.c-page-header {
       padding-left: 10px;
       border-left: 1px solid #041e42;
       padding-right: 0;
+
+      .app & {
+        font-family: 'Scania Sans Semi Condensed';
+      }
     }
 
     .row {

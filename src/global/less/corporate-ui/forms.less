@@ -31,7 +31,7 @@ textarea[placeholder] {
   box-shadow: none;
   border-radius: 0;
   border: 0;
-  font-size: inherit;
+  font-size: @form-control-app-font;
   font-weight: normal;
   background-color: #f5f5f5;
   border: 1px solid transparent;
@@ -47,28 +47,28 @@ textarea[placeholder] {
     background-repeat: no-repeat;
     background-size: 37px;
     background-position: calc(98%) center;
-     &:focus {
-    font-size: inherit;
-    width: 100%;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: 1px solid #4a8ba4;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==);
-    background-size: 31px;
-    background-position: calc(100% - 2px) center;
-    background-repeat: no-repeat;
-    background-color: #f2f7f9;
-  }
+    &:focus {
+      font-size: inherit;
+      width: 100%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: 1px solid #4a8ba4;
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==);
+      background-size: 31px;
+      background-position: calc(100% - 2px) center;
+      background-repeat: no-repeat;
+      background-color: #f2f7f9;
+    }
 
-  > option {
-    background: #f5f5f5;
-  }
+    > option {
+      background: #f5f5f5;
+    }
 
-  .app & {
-    background-size: 27px;
-    background-position: calc(98%) center;
-  }
+    .app & {
+      background-size: 27px;
+      background-position: calc(98%) center;
+    }
   }
 
   &[readonly] {
@@ -82,11 +82,11 @@ textarea[placeholder] {
       // box-shadow: none;
       // border: 1px solid rgb(74, 139, 164);
       // background: rgb(242, 247, 249);
-       .panel-inverse & {
-      cursor: default;
-      border: 1px solid transparent;
-      background: #ffffff;
-    }
+      .panel-inverse & {
+        cursor: default;
+        border: 1px solid transparent;
+        background: #ffffff;
+      }
     }
   }
 

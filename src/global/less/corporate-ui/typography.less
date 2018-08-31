@@ -243,6 +243,7 @@ address {
   h1 {
     font-size: @h1-font-size-app;
     font-family: "Scania Sans Semi Condensed Bold";
+    line-height: 32px;
   }
   h2 { font-size: @h2-font-size-app; }
   h3 { font-size: @h3-font-size-app; }
@@ -253,6 +254,7 @@ address {
   p {
     text-align: left;
     font-size: @font-size-app;
+    line-height: 24px;
   }
 
   td,
@@ -310,19 +312,56 @@ address {
 
   article {
     &:extend(article);
+    line-height: 26px;
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    p.lead {
+      font-family: "Scania Sans Semi Condensed";
+    }
 
     h1 {
-      font-family: "Scania Sans Headline";
-      font-weight: bold;
+      font-family: "Scania Sans Headline Bold";
+      line-height: 24px;
+      font-size: @h1-font-size-app-article;
       &:extend(article h1);
     }
 
-    h2 { &:extend(article h2); }
-    h3 { &:extend(article h3); }
-    h4 { &:extend(article h4); }
-    h5 { &:extend(article h5); }
-    h6 { &:extend(article h6); }
-    p { &:extend(article p); }
+    h2 {
+      font-size: @h2-font-size-app-article;
+      &:extend(article h2);
+    }
+
+    h3 {
+      font-size: @h3-font-size-app-article;
+      &:extend(article h3);
+    }
+    h4 {
+      font-size: @h4-font-size-app-article;
+      &:extend(article h4);
+    }
+    h5 {
+      font-size: @h5-font-size-app-article;
+      &:extend(article h5);
+    }
+    h6 {
+      font-size: @h6-font-size-app-article;
+      &:extend(article h6);
+    }
+    p {
+      font-size: @p-font-size-app-article;
+      line-height: 26px;
+      &:extend(article p);
+
+      &.lead {
+        font-size: @p-lead-font-size-app-article;
+        line-height: 30px;
+      }
+    }
   }
 
   &.compact {

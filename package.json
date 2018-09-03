@@ -67,7 +67,8 @@
     "dist/html",
     "dist/images",
     "dist/js",
-    "dist/less"
+    "dist/less",
+    "dist/css-modules"
   ],
   "author": "Comon Design Service team",
   "license": "ISC"

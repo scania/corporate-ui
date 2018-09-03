@@ -159,13 +159,13 @@ function _cssModule(done) {
     to: 'tmp/css/corporate-ui.css',
     map: { inline: true }
   };
-  
+
   postcss([postcssimport])
   .process(fs.readFileSync('dist/css/corporate-ui.css', 'utf-8'), options)
   .then(function(result) {
     gulp.src('src/css-modules/corporate-ui.js')
       .pipe(replace(/{%corporate-ui.css%}/ , result))
-      .pipe(gulp.dest('css-modules'))
+      .pipe(gulp.dest('dist/css-modules'))
       .on('end', done);
   }, function(error) {
     console.log(error);

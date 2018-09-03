@@ -51,7 +51,7 @@
     "start": "gulp",
     "prepublish": "gulp prepublish"
   },
-  "homepage": "https://scania.github.io/corporate-ui",
+  "homepage": "https://github.com/scania/corporate-ui/tree/npm-corporate-ui",
   "repository": {
     "type": "git",
     "url": "https://github.scania.com/Scania/corporate-ui.git"

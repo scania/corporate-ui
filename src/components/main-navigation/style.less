@@ -5,6 +5,7 @@
   display: none;
   // we set height on this element dynamicly, this rule make it look smoother
   transition: height 100ms ease;
+  --more-visibility: hidden;
 
   .navbar-footer {
     display: none;
@@ -29,7 +30,7 @@
       transition: box-shadow 0.15s ease-in-out;
     }
     .navbar-nav.navbar-right:last-child {
-      margin-right: 1px;
+      margin-right: 5px;
       -webkit-transition: margin-right 100ms ease;
       -moz-transition: margin-right 100ms ease;
       -o-transition: margin-right 100ms ease;
@@ -37,13 +38,21 @@
       transition: margin-right 100ms ease;
     }
     .more {
-      // Why is this actually set to "display: none;" ?
-      display: inline-block !important;
+      display: inline-block;
+      visibility: var(--more-visibility);
+
+      &.open ul {
+        display: block !important;
+      }
+
+      > a {
+        &:extend(.navbar-default .navbar-nav > li + li > a all);
+      }
 
       li {
         display: none;
-      }
-      > a {
+
+        a {
           text-transform: uppercase;
           padding-top: 9px;
           padding-bottom: 9px;
@@ -51,8 +60,7 @@
           &:hover {
            background-color: transparent;
           }
-
-          &:extend(.navbar-default .navbar-nav > li + li > a all);
+        }
       }
     }
     .dropdown-menu {
@@ -207,8 +215,6 @@
 
       nav-item {
 
-
-
         a {
           padding-top: 25px;
           padding-bottom: 25px;
@@ -227,11 +233,6 @@
             }
           }
         }
-        
-        &.active a {
-             border-left: 3px solid #d6001c;
-        }
-
       }
       primary-items {
         display: block;

@@ -23,15 +23,15 @@
         <span class="caret"></span>
       </a>
 
-      <template is="dom-if" if="{{moreItemsAvailable}}">
-        <ul class="dropdown-menu">
+      <ul class="dropdown-menu">
+        <template is="dom-if" if="{{moreItemsAvailable}}">
           <template is="dom-repeat" items="{{moreItems}}">
             <li class$="{{setActiveClass(item.active)}}">
               <a href="{{item.href}}" on-click="setMoreItemActive">{{item.text}}</a>
             </li>
           </template>
-        </ul>
-      </template>
+        </template>
+      </ul>
     </nav-item>
 
     <content select="secondary-items"></content>

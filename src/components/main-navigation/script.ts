@@ -91,6 +91,9 @@ Polymer({
   },
   ready: function() {
     var content = this.getContentChildren()[0];
+    if (!content) {
+      return
+    }
 
     while (content.firstChild) {
       content.parentNode.insertBefore(content.firstChild, content);
@@ -220,7 +223,7 @@ Polymer({
           var css = '\
             @media (min-width: 991px) {\
               c-main-navigation nav-item:nth-child(1n+' + i + ') > a { display: none; } \
-              c-main-navigation .more li:nth-child(1n+' + i + ') { display: block; } \
+              c-main-navigation .more li:nth-child(1n+' + i + ') { display: block !important; } \
             }';
           if (styleElm.styleSheet){
             styleElm.styleSheet.cssText = css;

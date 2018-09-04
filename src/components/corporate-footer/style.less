@@ -95,8 +95,10 @@
   }
 }
 
-:host-context(body.fullscreen) {
-  display: none !important;
+@media (min-width: 991px) {
+  :host-context(body.fullscreen) {
+    display: none !important;
+  }
 }
 
 @media (min-width: 991px) {

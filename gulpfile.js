@@ -31,7 +31,7 @@ gulp.task('test', _test)
 gulp.task('cssModule', _cssModule)
 
 gulp.task('component', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series('clean', ['copy', 'less', 'component', 'cssModule'], 'fullCorporateUIHtml', function(done) {
+gulp.task('build', gulp.series('clean', ['copy', 'less', 'component'], 'cssModule','fullCorporateUIHtml', function(done) {
     done();
 }))
 gulp.task('prepublish', gulp.series('test', 'build',  function(done) {

@@ -1,6 +1,5 @@
 
 import * as helpers from './helpers';
-import { createStore } from 'redux';
 
 const wv = require('webpackVariables');
 
@@ -9,8 +8,7 @@ export {
   setGlobals,
   polymerInject,
   applyBrand,
-  baseComponents,
-  store
+  baseComponents
 }
 
 function init() {
@@ -321,29 +319,5 @@ function sysMessages() {
 
   if (window['ready_event'] === 'timeout') {
     console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
-  }
-}
-
-function store() {
-  var _counter = createStore(counter)
-
-  _counter.subscribe(() =>
-    console.log(_counter.getState())
-  );
-
-  return {
-    createStore,
-    counter
-  };
-
-  function counter(state = 0, action) {
-    switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-    }
   }
 }

@@ -1,6 +1,6 @@
 
 import * as helpers from './helpers';
-import { init, baseComponents, store } from './core';
+import { init, baseComponents } from './core';
 
 window['CorporateUi'] = (function() {
 
@@ -8,7 +8,6 @@ window['CorporateUi'] = (function() {
   var _public = {
     ...helpers,
     baseComponents,
-    store,
     components: {}
   };
 

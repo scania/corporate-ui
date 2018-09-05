@@ -56,9 +56,11 @@ Polymer({
   onTap: function() {
     this.active = true;
 
-    var event = document.createEvent('Event');
-    event.initEvent('navigation-close', true, true);
-    this.dispatchEvent(event);
+    if(window.innerWidth < 991) {
+      var event = document.createEvent('Event');
+      event.initEvent('navigation-close', true, true);
+      this.dispatchEvent(event);
+    }
   },
   setActive: function(newState) {
     if (newState.toString() == 'true') {

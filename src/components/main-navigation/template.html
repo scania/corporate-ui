@@ -1,22 +1,38 @@
 <nav class="navbar navbar-default">
   <div class="collapse navbar-collapse" id="main-navigation">
-    <content select="primary-items"></content>
+    <primary-items>
+      <content select="primary-items"></content>
 
-    <template is="dom-if" if="{{moreItemsAvailable}}">
-      <nav-item class="dropdown more">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          More
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
+      <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
+        <nav-item location="{{item.location}}" active="{{item.active}}">
+          {{item.name}}
+          <template is="dom-if" if="{{item.children}}">
+            <sub-navigation caption="{{item.caption}}">
+              <template is="dom-repeat" items="{{item.children}}" as="subItem">
+                <nav-item location="{{subItem.location}}">{{subItem.name}}</nav-item>
+              </template>
+            </sub-navigation>
+          </template>
+        </nav-item>
+      </template>
+    </primary-items>
+
+    <nav-item class="dropdown more">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        More
+        <span class="caret"></span>
+      </a>
+
+      <ul class="dropdown-menu">
+        <template is="dom-if" if="{{moreItemsAvailable}}">
           <template is="dom-repeat" items="{{moreItems}}">
-            <li>
-              <a href="{{item.href}}">{{item.text}}</a>
+            <li class$="{{setActiveClass(item.active)}}">
+              <a href="{{item.href}}" on-click="setMoreItemActive">{{item.text}}</a>
             </li>
           </template>
-        </ul>
-      </nav-item>
-    </template>
+        </template>
+      </ul>
+    </nav-item>
 
     <content select="secondary-items"></content>
   </div>

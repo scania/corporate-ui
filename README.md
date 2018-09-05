@@ -1,4 +1,4 @@
-<h1>The Corporate UI Framework</h1>
+<h1>The Corporate UI Design System</h1>
 
 <p>In this repository you'll find all components described in <a href="https://scania.github.io/corporate-ui-docs/developer/">the UX Library</a>.</p>
 <p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository as well as <a href="https://scania.github.io/corporate-ui-docs/">the documentation</a>.</p>
@@ -34,8 +34,7 @@
 <h2>Starter Kit</h2>
 <p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components.
 <br>
-<a href="https://github.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
-
+<a href="https://github.com/scania/corporate-ui/tree/master/demo/examples/starter-kit">Learn more...</a>
 
 
 <h2>License</h2>

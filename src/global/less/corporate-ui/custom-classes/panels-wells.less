@@ -1,0 +1,40 @@
+.panel {
+
+  //Panel-inverse
+  &-inverse {
+    background-color: @dark-content-block;
+    border: 0px;
+    color: inherit;
+
+    &:first-child {
+      border: 1px solid #dadada;
+    }
+
+    &:first-child .panel-heading {
+     background-color: #FFFFFF;
+     color: #041e42;
+     border: 1px solid #dadada;
+
+     :first-child {
+        color: #041e42;
+      }
+    }
+
+    input[type=text] {
+      background-color: #fff;
+    }
+  }
+
+  // panel-onlyheading - Panels with just heading, transparent panel-body
+  &&-onlyheading {
+    background-color: transparent;
+
+    &,
+    > &-heading {
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      border-radius: 0px;
+    }
+  }
+
+}

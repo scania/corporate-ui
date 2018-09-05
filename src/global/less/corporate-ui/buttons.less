@@ -22,7 +22,9 @@
 
   // Remove browser-outline
   &:focus,
-  &:active:focus{
+  &.active,
+  &:active,
+  &:active:focus {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -54,7 +56,7 @@
 
   .app & {
     font-family: "Scania Sans Semi Condensed Bold";
-    padding: 6px 12px;
+    padding: 10px 15px;
     text-transform: none;
     font-size: @btn-font-size-app;
   }

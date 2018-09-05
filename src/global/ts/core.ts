@@ -30,7 +30,11 @@ function done(event) {
 
   document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
 
-  document.addEventListener("DOMContentLoaded", applyBrand);
+  if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", applyBrand);
+  } else {  // `DOMContentLoaded` already fired
+      applyBrand();
+  }
 
   var newEvent = document.createEvent('Event');
   newEvent.initEvent('CorporateUiLoaded', true, true);
@@ -252,7 +256,7 @@ function baseComponents(references) {
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(resource.path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
     });
   });
 
@@ -262,11 +266,7 @@ function baseComponents(references) {
 }
 
 function appendExternals() {
-  window['preLoadedComponents'] = [
-    window['CorporateUi'].components['corporate-header'],
-    window['CorporateUi'].components['corporate-footer'],
-    window['CorporateUi'].components['main-navigation']
-  ];
+  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation'];
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
@@ -296,6 +296,7 @@ function bsHandler() {
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
         elm = event.target.parentNode;
     if(method && window[method]) {
+      event.preventDefault();
       if (dataToggle === 'tab') {
         elm = elm.parentNode;
       }

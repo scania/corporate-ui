@@ -3,7 +3,7 @@
     <primary-items>
       <content select="primary-items"></content>
 
-      <template is="dom-repeat" items="{{primaryItems}}">
+      <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
         <nav-item location="{{item.location}}" active="{{item.active}}">
           {{item.name}}
           <template is="dom-if" if="{{item.children}}">

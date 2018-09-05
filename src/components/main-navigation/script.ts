@@ -20,8 +20,9 @@ Polymer({
       value: true
     },
     primaryItems: {
-      type: Object,
-      value: []
+      type: Array,
+      value: [],
+      observer: 'setItemIndex'
     }
   },
   listeners: {
@@ -222,7 +223,7 @@ Polymer({
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
             @media (min-width: 991px) {\
-              c-main-navigation nav-item:nth-child(1n+' + i + ') > a { display: none; } \
+              c-main-navigation primary-items > nav-item:nth-child(1n+' + i + ') > a { display: none; } \
               c-main-navigation .more li:nth-child(1n+' + i + ') { display: block !important; } \
             }';
           if (styleElm.styleSheet){
@@ -271,5 +272,31 @@ Polymer({
         document.body.classList.add('header-is-sticky');
       }
     }
+  },
+  setItemIndex: function(val, oldVal) {
+    if (oldVal && val.toString() != oldVal.toString()) {
+      this.primaryItems = val.map(function(item, key) {
+        item.orgIndex = key;
+        return item;
+      })
+    }
+  },
+  sort: function(a, b) {
+    // Compare item a and b origional index to
+    // decide what item is first
+    var order = a.orgIndex < b.orgIndex ? -1 : 1,
+        maxIndex = this.primaryItems.length;
+
+    // Check if item has a user set index or
+    // set a max index
+    a.index = a.index || maxIndex;
+    b.index = b.index || maxIndex;
+
+    // Compare user set index on item if they 
+    // dont match decide what item is first
+    if (a.index < b.index) order = -1;
+    if (a.index > b.index) order = 1;
+
+    return order;
   }
 });

@@ -192,7 +192,6 @@ fieldset {
 // Radio and Checkboxes//
 
 .radio label {
-  padding-left: -10px;
   margin-bottom: 0;
   cursor: default;
 }
@@ -322,173 +321,211 @@ input[type=checkbox] {
   }
 }
 
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+.checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
   display: none;
 }
 
-input[type=radio] {
-  // Zoom is used to make it smaller. Without zoom it cant be
-  // smaller than 16px and use vertical-align: bottom;
-  + span {
+// .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+//   display: none;
+// }
 
-    position: relative;
-    height: 23px;
-    margin-left: -20px;
-    display: inline-block;
-    border: 3px solid #041E42;
-    border-radius: 30px;
-    -moz-transform: scale(0.8);
-    -moz-transform-origin: 0 0;
-    zoom: 0.8;
-    vertical-align: middle;
-    // background: green;
+// _:-ms-fullscreen, :root input[type=radio] {
 
-    .radio-inverse & {
-      border: 3px solid #ffffff;
-      background-color: #041E42;
-      // background-color: green;
+//   + span {
+//     height: 17px;
+//     width: 17px;
+//     zoom: 1;
+//     &:before {
+//       border: 3px solid #fff;
+//     }
+//   }
+//  }
 
-      
-    }
+// input[type=radio] {
+//   // Zoom is used to make it smaller. Without zoom it cant be
+//   // smaller than 16px and use vertical-align: bottom;
+//   + span {
 
-    
+//     position: relative;
+//     height: 20px;
+//     width: 20px;
+//     margin-left: -20px;
+//     display: inline-block;
+//     border: thin solid #041E42;
+//     border-radius: 30px;
+//     -moz-transform: scale(0.8);
+//     -moz-transform-origin: 0 0;
+//     zoom: 0.8;
+//     vertical-align: text-top;
+//     box-shadow: none;
+
+//     // position: relative;
+//     // height: 23px;
+//     // margin-left: -20px;
+//     // display: inline-block;
+//     // // border: 3px solid #041E42;
+//     // border: thin solid #041E42;
+//     // border-radius: 30px;
+//     // -moz-transform: scale(0.8);
+//     // -moz-transform-origin: 0 0;
+//     // zoom: 0.8;
+//     // vertical-align: middle;
+//     // background: green;
+
+//     .radio-inverse & {
+//       border: thin solid #ffffff;
+//       background-color: #041E42;
+//       // background-color: green;
+//     }
+
+//     &:before {
+
+//     content: "";
+//     display: inline-block;
+//     // width: 31px;
+//     // height: 31px;
+//     width: 31px;
+//     height: 31px;
+//     border-radius: inherit;
+//     border: 4px solid #FFF;
+//     // vertical-align: unset;
+//       // content: "";
+//       // display: inline-block;
+//       // width: 31px;
+//       // height: 31px;
+//       // border-radius: inherit;
+//       // // border: 3px solid #FFF;
+//       // border: medium solid #FFF;
+//       // vertical-align: unset;
+
+//       .radio-inverse & {
+//         border: 4px solid #041E42;
+//       }
+
+//       .app & {
+//        width: 100%;
+//        height: 100%;
+//      }
+//    }
+
+//    .app & {
+//       border-radius: 30px;
+//     }
+//   }
+
+//   /* Hover states */
+//   &:hover + span:before {
+//     background-color: #f2f7f9;
+//     border-color: #f2f7f9;
+
+//     .radio-inverse & {
+//       border: 4px solid #041E42;
+//       background-color: #041E42;
+//     }
+//   }
+
+//   &:focus {
+//     outline: none;
+//   }
+
+//    &:disabled {
+//     + span {
+//       border: 3px solid #C8C9C7;
+//       .radio-inverse & {
+//         border-color: 4px solid yellow;
+//       }
+//     }
+//    }
+
+//  &:checked {
+
+//     + span {
+//       border-color: #242424;
+//       .radio-inverse & {
+//         border-color: #fff;;
+//       }
+
+//       &:before {
+//         background-color: #242424;
+//         .radio-inverse & {
+//           border-color: #041E42;
+//           background-color: #ffffff;
+//         }
+//       }
+//     }
+
+//     &:disabled + span:before {
+//       background-color: #C8C9C7;
+//       border-color: #041E42;
+//       cursor: not-allowed;
+//       .radio-inverse & {
+
+//         border-color: #041E42;
+//         background-color: #C8C9C7;
+//       }
+//     }
+
+//     &:hover {
+
+//       + span {
+//         border-color: #033a6a;
+//         .radio-inverse & {
+
+//          border-color: #ffffff;
+//          background-color: red;
+
+//        }
+
+//      &:before {
+//         background-color: #033a6a;
+//         .radio-inverse & {
+//           border-color: #041E42;
+//           background-color: #ffffff;
+//         }
+//       }
+//     }
+//   }
+
+//   &:disabled {
+
+//     + span {
+//       border: 3px solid #ffffff;
+
+//       .radio-inverse & {
+//         border: 3px solid #C8C9C7;
+//       }
+//     }
+
+//     &:hover:checked + span:before {
+//       background-color: #C8C9C7;
+//         // border: 4px solid red;
+//         .radio-inverse & {
+//           border: 3px solid #041E42;
+//           background-color: #C8C9C7;
+//         }
+
+//       }
+
+//       &:hover {
+
+//         + span {
+//           border: 3px solid #C8C9C7;
 
 
+//           &:before {
+//             // background: #fff;
+//             border: 3px solid #C8C9C7;
+//             .radio-inverse & {
+//               border: 3px solid #041E42;
+//               background-color: #041E42;
+//             }
 
-    &:before {
-      content: "";
-      display: inline-block;
-      width: 31px;
-      height: 31px;
-      border-radius: inherit;
-      border: 3px solid #FFF;
-      vertical-align: unset;
-
-      .radio-inverse & {
-        border: 3px solid #041E42;
-      }
-
-      .app & {
-       width: 17px;
-       height: 17px;
-     }
-   }
-
-   .app & {
-      border-radius: 30px;
-    }
-  }
-
-  /* Hover states */
-  &:hover + span:before {
-    background-color: #f2f7f9;
-    border-color: #f2f7f9;
-
-    .radio-inverse & {
-      border: 3px solid #041E42;
-      background-color: #041E42;
-    }
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-   &:disabled {
-    + span {
-      border: 3px solid #C8C9C7;
-    }
-   }
-
- &:checked {
-
-    + span {
-      border-color: #242424;
-      .radio-inverse & {
-        border-color: #fff;;
-      }
-
-      &:before {
-        background-color: #242424;
-        .radio-inverse & {
-          border-color: #041E42;
-          background-color: #ffffff;
-        }
-      }
-    }
-
-    &:disabled + span:before {
-      background-color: #C8C9C7;
-      border-color: #041E42;
-      cursor: not-allowed;
-      .radio-inverse & {
-
-        border-color: #041E42;
-        background-color: #C8C9C7;
-      }
-    }
-
-    &:hover {
-
-      + span {
-        border-color: #033a6a;
-        .radio-inverse & {
-
-         border-color: #ffffff;
-         background-color: red;
-
-       }
-
-     &:before {
-        background-color: #033a6a;
-        .radio-inverse & {
-          border-color: #041E42;
-          background-color: #ffffff;
-        }
-      }
-    }
-  }
-
-  &:disabled {
-
-    + span {
-      border: 3px solid #ffffff;
-
-      .radio-inverse & {
-        border: 3px solid #C8C9C7;
-      }
-    }
-
-    &:hover:checked + span:before {
-      background-color: #C8C9C7;
-        // border: 4px solid red;
-        .radio-inverse & {
-          border: 3px solid #041E42;
-          background-color: #C8C9C7;
-        }
-
-      }
-
-      &:hover {
-
-        + span {
-          border: 3px solid #C8C9C7;
-
-
-          &:before {
-            // background: #fff;
-            border: 3px solid #C8C9C7;
-            .radio-inverse & {
-              border: 3px solid #041E42;
-              background-color: #041E42;
-            }
-
-          }
-        }
-      }
-    }
-  }
-}
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 .checkbox-inline {
   padding-left: 0px;

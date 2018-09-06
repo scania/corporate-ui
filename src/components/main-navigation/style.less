@@ -5,6 +5,7 @@
   display: none;
   // we set height on this element dynamicly, this rule make it look smoother
   transition: height 100ms ease;
+  --more-visibility: hidden;
 
   .navbar-footer {
     display: none;
@@ -17,6 +18,8 @@
 
     primary-items {
       display: inline-block;
+      // We set fontsize 0 to remove extra spaces between nav-item
+      font-size: 0;
     }
     secondary-items {
       display: inline-block;
@@ -29,7 +32,7 @@
       transition: box-shadow 0.15s ease-in-out;
     }
     .navbar-nav.navbar-right:last-child {
-      margin-right: 1px;
+      margin-right: 10px;
       -webkit-transition: margin-right 100ms ease;
       -moz-transition: margin-right 100ms ease;
       -o-transition: margin-right 100ms ease;
@@ -37,13 +40,17 @@
       transition: margin-right 100ms ease;
     }
     .more {
-      // Why is this actually set to "display: none;" ?
-      display: inline-block !important;
+      display: inline-block;
+      visibility: var(--more-visibility);
+
+      > a {
+        &:extend(.navbar-default .navbar-nav > li + li > a all);
+      }
 
       li {
         display: none;
-      }
-      > a {
+
+        a {
           text-transform: uppercase;
           padding-top: 9px;
           padding-bottom: 9px;
@@ -51,8 +58,7 @@
           &:hover {
            background-color: transparent;
           }
-
-          &:extend(.navbar-default .navbar-nav > li + li > a all);
+        }
       }
     }
     .dropdown-menu {
@@ -193,10 +199,6 @@
           }
         }
       }
-      &.in {
-        height: 100% !important;
-        overflow-y: scroll !important;
-      }
     }
     > .navbar-default {
       display: none;
@@ -281,7 +283,6 @@
   }
 
   :host-context(.navigation-open) {
-    height: 100% !important;
 
     > .navbar-default {
       display: block;

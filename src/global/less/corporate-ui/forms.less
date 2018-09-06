@@ -24,6 +24,16 @@ textarea[placeholder] {
   }
 }
 
+.app {
+  .form-group {
+    label {
+      font-family: "Scania Sans Semi Condensed";
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+}
+
 .form-control {
   color: #747472;
   padding: 20px 40px;
@@ -31,7 +41,7 @@ textarea[placeholder] {
   box-shadow: none;
   border-radius: 0;
   border: 0;
-  font-size: inherit;
+  font-size: @form-control-app-font;
   font-weight: normal;
   background-color: #f5f5f5;
   border: 1px solid transparent;
@@ -125,16 +135,8 @@ textarea[placeholder] {
   }
 }
 
-.control-label {
-  font-family: 'Scania Sans';
-  font-weight: bold;
-  font-size: 0.9em;
-  white-space: normal;
-}
-
 .form-horizontal {
 
-  .control-label,
   .radio,
   .checkbox,
   .radio-inline,

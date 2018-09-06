@@ -22,7 +22,9 @@
 
   // Remove browser-outline
   &:focus,
-  &:active:focus{
+  &.active,
+  &:active,
+  &:active:focus {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;

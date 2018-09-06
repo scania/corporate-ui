@@ -14,6 +14,9 @@
     text-transform: uppercase;
     margin: -1px;
     border-bottom: none;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 
     h1,
     h2,
@@ -62,22 +65,6 @@
   .panel-body {
     padding: 30px 40px;
 
-    > h3 {
-      font-family: 'Scania Sans Condensed';
-      font-weight: bold;
-      font-size: 23px;
-      padding-top: 5px;
-      color: #041e42;
-    }
-
-    > h4 {
-      font-family: 'Scania Sans Condensed';
-      font-weight: bold;
-      color: @interaction-info;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-
     > p {
       font-size: 16px;
     }
@@ -96,6 +83,12 @@
   }
 
   .app & {
+
+    .panel-heading {
+      font-family: "Scania Sans Headline";
+      font-weight: bold;
+      font-size: 1.6rem;
+    }
 
     h1,
     h2,

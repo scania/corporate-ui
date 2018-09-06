@@ -44,7 +44,6 @@ h4 { font-size: @h4-font-size; }
 
 h5 {
   font-family: "Scania Sans";
-  font-weight: bold;
   font-size: @h5-font-size;
 }
 
@@ -55,7 +54,9 @@ h6 {
 }
 
 td,
-th { font-size: @td-font-size; }
+th {
+  font-size: @td-font-size;
+}
 
 p {
   text-align: center;
@@ -107,19 +108,6 @@ pre {
   font-size: inherit;
 }
 
-.text-center {
-  text-align: center !important;
-}
-
-.text-pale {
-  color: @text-pale-color;
-}
-
-b.text-pale,
-strong.text-pale {
-  color: @text-pale-strong-color;
-}
-
 article {
   text-align: left;
   font-size: @p-font-size-article;
@@ -138,7 +126,7 @@ article {
   h1 {
     font-size: @h1-font-size-article;
     text-align: inherit;
-    letter-spacing: normal;
+    letter-spacing: 0.03rem;
   }
 
   h2 {
@@ -162,6 +150,87 @@ article {
   }
 }
 
+nav a {
+  font-family: "Scania Sans";
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: @text-muted-color;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-pale {
+  color: @text-pale-color;
+}
+
+b.text-pale,
+strong.text-pale {
+  color: @text-pale-strong-color;
+}
+
+.breadcrumbs {
+  font-family: "Scania Sans";
+}
+
+article p.lead,
+p.lead,
+.app p.lead {
+  font-family: 'Scania Sans';
+  font-size: 1.26em;
+  color: @interaction-primary;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+address {
+  font-size: 1.2rem;
+
+  h4 {
+    font-family: 'Scania Sans Semi Condensed';
+    font-weight: bold;
+    font-size:  1.8rem;
+    color: #53565A;
+    margin-bottom: 1px;
+
+    &:first-child {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .app {
+
+    article {
+
+      h1 {
+        font-size:2.8rem;
+      }
+    }
+  }
+
+  h1 { font-size: @h1-font-size * 0.4; }
+  h2 { font-size: @h2-font-size * 0.5; }
+  h3 { font-size: @h3-font-size * 0.5; }
+
+  p { font-size: @font-size; }
+
+}
+
 .app {
 
   body,
@@ -170,7 +239,12 @@ article {
     font-family: 'Scania Sans Semi Condensed', 'Scania Sans Condensed', 'Scania Sans', Arial, Helvetica, sans-serif;
   }
 
-  h1 { font-size: @h1-font-size-app; }
+  h1 {
+    font-size: @h1-font-size-app;
+    font-family: "Scania Sans Semi Condensed";
+    font-weight: bold;
+    line-height: 32px;
+  }
   h2 { font-size: @h2-font-size-app; }
   h3 { font-size: @h3-font-size-app; }
   h4 { font-size: @h4-font-size-app; }
@@ -180,31 +254,12 @@ article {
   p {
     text-align: left;
     font-size: @font-size-app;
+    line-height: 24px;
   }
 
   td,
   th {
     font-size: @td-font-size-app;
-  }
-
-  &.compact {
-
-    body,
-    body& {
-      font-size: @font-size-app * 0.9;
-    }
-
-    h1 { font-size: @h1-font-size-app * 0.9; }
-    h2 { font-size: @h2-font-size-app * 0.9; }
-    h3 { font-size: @h3-font-size-app * 0.9; }
-    h4 { font-size: @h4-font-size-app * 0.9; }
-    h5 { font-size: @h5-font-size-app * 0.9; }
-    h6 { font-size: @h6-font-size-app * 0.9; }
-
-    p { text-align: left;}
-
-    td,
-    th { font-size: @td-font-size-app * 0.86; }
   }
 
   h2,
@@ -213,7 +268,7 @@ article {
   h5,
   h6,
   legend {
-    font-family: "Scania Sans Condensed";
+    font-family: "Scania Sans Semi Condensed";
     font-weight: bold;
     text-align: left;
 
@@ -222,7 +277,7 @@ article {
   h1,
   h2,
   h3 {
-    letter-spacing: 0.03rem;
+    letter-spacing: normal;
     text-align: left;
   }
 
@@ -257,20 +312,79 @@ article {
 
   article {
     &:extend(article);
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+       line-height: 26px;
+    }
+    p.lead {
+      font-family: "Scania Sans Semi Condensed";
+    }
 
     h1 {
       font-family: "Scania Sans Headline";
       font-weight: bold;
+      line-height: 24px;
+      font-size: @h1-font-size-app-article;
       &:extend(article h1);
     }
 
-    h2 { &:extend(article h2); }
-    h3 { &:extend(article h3); }
-    h4 { &:extend(article h4); }
-    h5 { &:extend(article h5); }
-    h6 { &:extend(article h6); }
-    p { &:extend(article p); }
+    h2 {
+      font-size: @h2-font-size-app-article;
+      &:extend(article h2);
+    }
+
+    h3 {
+      font-size: @h3-font-size-app-article;
+      &:extend(article h3);
+    }
+    h4 {
+      font-size: @h4-font-size-app-article;
+      &:extend(article h4);
+    }
+    h5 {
+      font-size: @h5-font-size-app-article;
+      &:extend(article h5);
+    }
+    h6 {
+      font-size: @h6-font-size-app-article;
+      &:extend(article h6);
+    }
+    p {
+      font-size: @p-font-size-app-article;
+      line-height: 26px;
+      &:extend(article p);
+
+      &.lead {
+        font-size: @p-lead-font-size-app-article;
+        line-height: 30px;
+      }
+    }
   }
+
+  &.compact {
+
+    body,
+    body& {
+      font-size: @font-size-app * 0.9;
+    }
+
+    h1 { font-size: @h1-font-size-app * 0.9; }
+    h2 { font-size: @h2-font-size-app * 0.9; }
+    h3 { font-size: @h3-font-size-app * 0.9; }
+    h4 { font-size: @h4-font-size-app * 0.9; }
+    h5 { font-size: @h5-font-size-app * 0.9; }
+    h6 { font-size: @h6-font-size-app * 0.9; }
+
+    p { text-align: left;}
+
+    td,
+    th { font-size: @td-font-size-app * 0.86; }
+  }
+
 }
 
 .public,
@@ -283,77 +397,4 @@ article {
   h5 { &:extend(h5); }
   h6 { &:extend(h6); }
   p { &:extend(p); }
-}
-
-nav a {
-  font-family: "Scania Sans";
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.text-muted {
-  color: @text-muted-color;
-}
-
-.text-left {
-    text-align: left !important;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.text-right {
-    text-align: right !important;
-}
-
-.breadcrumbs {
-  font-family: "Scania Sans";
-}
-
-article p.lead,
-p.lead,
-.app p.lead {
-  font-family: 'Scania Sans';
-  font-weight: bold;
-  font-size: 1.26em;
-  color: @interaction-primary;
-  font-weight: normal;
-  line-height: 1.4;
-}
-
-address {
-  font-size: 1.2rem;
-
-  h4 {
-    font-family: 'Scania Sans Condensed';
-    font-weight: bold;
-    font-size:  1.8rem;
-    color: #53565A;
-    margin-bottom: 1px;
-
-    &:first-child {
-      margin-top: 20px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-
-  .app {
-
-    article {
-
-      h1 {
-        font-size:2.8rem;
-      }
-    }
-  }
-
-  h1 { font-size: @h1-font-size * 0.4; }
-  h2 { font-size: @h2-font-size * 0.5; }
-  h3 { font-size: @h3-font-size * 0.5; }
-
-  p { font-size: @font-size; }
-
 }

@@ -1,103 +1,25 @@
+@import '../variables';
+@import '../mixins';
 
-
-.radio input[type="radio"], .radio-inline input[type="radio"] {
+.radio input[type="radio"],
+.radio input[type="radio"].radio-checkbox-inverse,
+.radio-inline input[type="radio"],
+.radio-inline input[type="radio"].radio-checkbox-inverse,
+.app .radio input[type="radio"],
+.app .radio input[type="radio"].radio-checkbox-inverse,
+.app .radio-inline input[type="radio"],
+.app .radio-inline input[type="radio"].radio-checkbox-inverse
+{
   display: none;
 }
 
+
 input[type=radio] {
   .config();
-  .output();
+  .radio-mixin();
 
-      &.radio-inverse {
+      &.radio-checkbox-inverse {
     .config(inverse);
-    .output();
+    .radio-mixin();
   }
-}
-
-
-.output() {
-  + span {
-    position: relative;
-    height: 30px;
-    width: 30px;
-    margin-left: -20px;
-    display: inline-block;
-    border: thin solid @radio_outer_border;
-    border-radius: 30px;
-    -moz-transform: scale(0.8);
-    // -ms-transform: scale(0.5,0.5);
-    -moz-transform-origin: 0 0;
-    zoom: 0.8;
-    vertical-align: text-top;
-
-    .app & {
-      width: 20px;
-      height: 20px;
-    }
-
-    &:before {
-      content: "";
-      display: inline-block;
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      border:  @radio_inner_border;
-    }
-    &:hover:before {
-      border-color:@radio_hover_border;
-      background-color: @radio_hover_background;
-    }
-  }
-
-  // States
-  &:checked + span {
-
-    &:before {
-      border-color:@radio_checked_border;
-      background-color: @radio_checked_background;
-    }
-    &:hover:before {
-      border-color: @radio_checked_hover_border;
-      background-color: @radio_checked_hover_background;
-    }
-  }
-  &:disabled + span {
-    border-color:@radio_disabled;
-
-    &:before {
-      border-color: #ffffff;
-      background-color: @radio_disabled;
-    }
-  }
-}
-
-.config() {
-  @radio_inner_border: 4px solid #ffffff;
-  @radio_outer_border: @color-brand-01;
-
-  @radio_hover_border: #f2f7f9;
-  @radio_hover_background: #f2f7f9;
-
-  @radio_checked_background:#033a6a;
-  @radio_checked_border:#ffffff;
-
-  @radio_checked_hover_background:#033a6a;
-  @radio_checked_hover_border:#ffffff;
-
-  @radio_disabled:#e2e2e2;
-}
-.config(@mode) when (@mode = inverse) {
-  @radio_inner_border: 4px solid @color-brand-01;
-  @radio_outer_border: #ffffff;
-
-  @radio_hover_border: #f2f7f9;
-  @radio_hover_background: #f2f7f9;
-
-  @radio_checked_background:#033a6a;
-  @radio_checked_border:#ffffff;
-
-  @radio_checked_hover_background:#ffffff 10%;
-  @radio_checked_hover_border:@color-brand-01;
-  
-  @radio_disabled:#94999d;
 }

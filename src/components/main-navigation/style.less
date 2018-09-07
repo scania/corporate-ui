@@ -12,17 +12,28 @@
   }
   .navbar-collapse {
     &:extend(.navbar-default .navbar-header + .navbar-collapse);
+
+    // We set fontsize 0 to remove extra spaces between nav-item
+    font-size: 0;
   }
 
   ::content {
 
     primary-items {
       display: inline-block;
-      // We set fontsize 0 to remove extra spaces between nav-item
-      font-size: 0;
     }
     secondary-items {
       display: inline-block;
+    }
+    primary-items,
+    secondary-items {
+      
+      > nav-item > a {
+        // Fixes issue where content could overflow its container.
+        // Making a horizontal scrollbar get displayed when a
+        // secondary navigation is available
+        overflow: hidden;
+      }
     }
 
     > .navbar {
@@ -32,12 +43,7 @@
       transition: box-shadow 0.15s ease-in-out;
     }
     .navbar-nav.navbar-right:last-child {
-      margin-right: 10px;
-      -webkit-transition: margin-right 100ms ease;
-      -moz-transition: margin-right 100ms ease;
-      -o-transition: margin-right 100ms ease;
-      -ms-transition: margin-right 100ms ease;
-      transition: margin-right 100ms ease;
+      margin-right: 0;
     }
     .more {
       display: inline-block;
@@ -45,6 +51,8 @@
 
       > a {
         &:extend(.navbar-default .navbar-nav > li + li > a all);
+
+        display: block;
       }
 
       li {
@@ -245,9 +253,10 @@
 
         > nav-item {
           padding: 0;
+          position: relative;
 
           a {
-            padding: 10px 0;
+            padding: 10px 30px;
 
             span {
               padding: 0;

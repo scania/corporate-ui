@@ -23,6 +23,10 @@ Polymer({
       type: Array,
       value: [],
       observer: 'setItemIndex'
+    },
+    secondaryItems: {
+      type: Array,
+      value: []
     }
   },
   listeners: {
@@ -91,33 +95,42 @@ Polymer({
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
   },
   ready: function() {
-    var content = this.getContentChildren()[0];
-    if (!content) {
+    this.unwrap(this.getContentChildren('#primary-items')[0]);
+    this.unwrap(this.getContentChildren('#secondary-items')[0]);
+  },
+  unwrap: function(node) {
+    if (!node) {
       return
     }
 
-    while (content.firstChild) {
-      content.parentNode.insertBefore(content.firstChild, content);
+    while (node.firstChild) {
+      node.parentNode.insertBefore(node.firstChild, node);
     }
-    for (var i = 0; i < content.attributes.length; i++) {
-      var attrs = content.attributes[i],
-          val = content.parentNode.getAttribute(attrs.name) || '';
-      content.parentNode.setAttribute(attrs.name, val + ' ' + attrs.value);
-      // content.parentNode[attrs.name] = attrs.value;
+    for (var i = 0; i < node.attributes.length; i++) {
+      var attrs = node.attributes[i],
+          val = node.parentNode.getAttribute(attrs.name) || '';
+      node.parentNode.setAttribute(attrs.name, val + ' ' + attrs.value);
+      // node.parentNode[attrs.name] = attrs.value;
     }
-    content.parentNode.removeChild(content);
+    node.parentNode.removeChild(node);
+  },
+  dashed: function(text) {
+    return text.toLowerCase().split(' ').join('-');
   },
   setItemActive: function(event) {
+    var parent = event.target.parentNode,
+        index = Array.prototype.indexOf.call(parent.children, event.target);
+
     // Stop here if current item is the more item
     if (event.target.classList.contains('more')) {
+      event.target.active = false;
       return
     }
 
-    var parent = event.target.parentNode,
-        index = Array.prototype.indexOf.call(parent.children, event.target)
     if (parent.preActive && parent.preActive !== event.target) {
       parent.preActive.active = false;
     }
+
     parent.preActive = event.target;
 
     if(this.moreItems) {
@@ -166,7 +179,6 @@ Polymer({
     var primary = this.querySelector('primary-items'),
         secondary = this.querySelector('secondary-items'),
         styleElm = this.querySelector('style') || {},
-        dropdown = this.querySelector('.dropdown-toggle'),
         itemsWidth;
 
     if (window['moreItemDelay']) {
@@ -181,7 +193,7 @@ Polymer({
       this.customStyle['--more-visibility'] = 'hidden';
       this.updateStyles();
 
-      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth + 2 : 0) + dropdown.offsetWidth;
+      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth + 2 : 0);
       if(itemsWidth >= this.offsetWidth) {
         this.moreItemsAvailable = true;
       }

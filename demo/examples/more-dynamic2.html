@@ -21,7 +21,7 @@
     
   <c-main-content>
 
-    <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}">
+    <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}">
       <primary-items>
         <nav-item location="#/start">start</nav-item>
       </primary-items>
@@ -275,6 +275,20 @@
           ]
         }
       ];
+
+      this.secondaryItems = [
+        {
+          name:'end', location:'#/end', caption: 'end',
+          children:[
+            { name:'first', location:'#/end/first' },
+            { name:'second', location:'#/end/second' },
+            { name:'third', location:'#/end/third' },
+            { name:'fourth', location:'#/end/fourth' },
+            { name:'fifth', location:'#/end/fifth' },
+            { name:'sixth', location:'#/end/sixth' }
+          ]
+        }
+      ]
     }
   </script>
 </body>

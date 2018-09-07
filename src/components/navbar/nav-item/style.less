@@ -141,30 +141,69 @@
 
     ::content {
 
-      a {
+      > a {
         // Needed to override extended style from bootstrap core
         padding: 10px 25px !important;
       }
-      sub-navigation + .mode-toggler {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        padding: 0;
-        border: 0;
+      .dropdown-toggle .caret {
+        display: none;
+      }
+      sub-navigation,
+      .dropdown-menu {
+        display: none;
 
-        &:before {
-          display: inline-block;
-          content: "+";
-          font-size: medium;
-          padding: 10px 15px;
+        + .mode-toggler,
+        + template + .mode-toggler {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 1;
+          padding: 0;
+          border: 0;
+
+          &:before {
+            display: inline-block;
+            content: "+";
+            font-size: medium;
+            padding: 10px 15px;
+          }
         }
       }
     }
 
-    &.expanded ::content sub-navigation + .mode-toggler:before {
-      content: "-";
+    &.collapsed ::content {
+
+      sub-navigation,
+      .dropdown-menu {
+        display: none;
+      }
+    }
+    &.expanded ::content {
+
+      sub-navigation,
+      .dropdown-menu {
+        display: block;
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        box-shadow: none;
+        float: none;
+        border: 0;
+        padding: 0;
+
+        li a {
+          font-family: @subLevelFont;
+        }
+
+        + .mode-toggler,
+        + template + .mode-toggler {
+
+          &:before {
+            content: "-";
+          }
+        }
+      }
     }
   }
 

@@ -18,6 +18,10 @@
     <a href="{{siteUrl}}" class$="navbar-symbol {{sticky}}"></a>
     <nav class="nav navbar-nav navbar-right">
       <content></content>
+
+      <template is="dom-repeat" items="{{items}}" sort="sort">
+        <nav-item location="{{item.location}}" active="{{item.active}}">{{item.name}}</nav-item>
+      </template>
     </nav>
   </div>
 </nav>

@@ -1,0 +1,28 @@
+@import '../variables';
+@import '../mixins';
+
+
+.checkbox input[type="checkbox"],
+.checkbox input[type="checkbox"].radio-checkbox-inverse,
+.checkbox-inline input[type="checkbox"],
+.checkbox-inline input[type="checkbox"].radio-checkbox-inverse,
+.app .checkbox input[type="checkbox"],
+.app .checkbox input[type="checkbox"].radio-checkbox-inverse,
+.app .checkbox-inline input[type="checkbox"],
+.app .checkbox-inline input[type="checkbox"].radio-checkbox-inverse
+{
+  display: none;
+}
+.radio label, .checkbox label {
+  padding-left: 0px;
+}
+
+input[type=checkbox] {
+  .config();
+  .checkbox-mixin();
+
+      &.radio-checkbox-inverse {
+    .config(inverse);
+    .checkbox-mixin();
+  }
+}

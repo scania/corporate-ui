@@ -6,7 +6,7 @@ Polymer({
       value: 'Log in to application'
     },
     description: {
-      type: String
+      type: String,
       value: "Haven't registered yet?"
     },
     variation: 0,
@@ -27,43 +27,24 @@ Polymer({
     }
   },
   ready: function() {
-    var self = this;
-    /*this.querySelector('form.login')
-      .addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        var inputs = this.querySelectorAll('input'),
-            data = {};
-
-        for (var i = 0; i < inputs.length; i++) {
-         data[inputs[i].name] = inputs[i].value;
-        }
-
-        self.action('login', data);
-      });*/
-
     var forms = this.querySelectorAll('form');
     for(var i=0; i<forms.length; i++) {
-      forms[i].addEventListener('submit', function(event) {
-        event.preventDefault();
-        self.action(this.id, { action: event.target.dataset.target, component: self });
-      });
+      forms[i].addEventListener('submit', this.action.bind(this));
     }
-
-    // Should be moved to a notification component
-    document.addEventListener('notify', function(event:any) {
-      self.showMessage = true;
-      self.message = event.data.message;
-      self.messageType = event.data.type === 'error' ? 'danger' : event.data.type;
-    });
   },
-  action: function(action, data) {
-    /*var event = document.createEvent('Event');
-    event.initEvent(action, true, true);
-    this.dispatchEvent(event);*/
-    window['AppEventStore'].apply({ name: 'login', action: action, data: data || {} });
+  action: function(event) {
+    event.preventDefault();
+
+    var action = ( event.target.action || '' ).split('/').pop(),
+        detail = { callback: this.currentView.bind(this), target: action + 'Confirm' },
+        _event = new CustomEvent(action, { detail: detail });
+
+    document.dispatchEvent(_event);
+  },
+  currentView: function(prop) {
+    this.view = prop.target;
   },
   setView: function(event) {
-    this.view = event.target ? event.target.dataset.target : event;
+    this.currentView(event.target.dataset);
   }
 });

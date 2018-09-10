@@ -5,6 +5,9 @@
   display: flex;
   flex-grow: 1;
 
+  section {
+    display: none;
+  }
   .sideimage {
     flex-grow: 1;
     background-image: url('https://static.scania.com/cds/prototypes/misc/general-login/img/side-image-test.jpg');
@@ -16,13 +19,11 @@
     background: #fff;
     padding: 30px;
   }
-  .sidebar {
-    display: none;
-  }
-  div.login > .sidebar:nth-child(1) { display: block; }
-  div.register > .sidebar:nth-child(2) { display: block; }
-  div.recover > .sidebar:nth-child(3) { display: block; }
-  div.confirm > .sidebar:nth-child(4) { display: block; }
+  .login section:nth-child(1) { display: block; }
+  .register section:nth-child(2) { display: block; }
+  .registerConfirm section:nth-child(3) { display: block; }
+  .recover section:nth-child(4) { display: block; }
+  .recoverConfirm section:nth-child(5) { display: block; }
 }
 .btn-text {
   font-size: 1.4rem;

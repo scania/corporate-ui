@@ -129,7 +129,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > tr.active {
         &.danger {
           > td {
-            background-color: rgba(204, 16, 64, 0.12)
+            background-color: rgba(204, 16, 64, 0.12);
           }
         }
 
@@ -137,6 +137,22 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           > td {
             background-color: rgba(68, 168, 120, 0.12);
           }
+        }
+      }
+    }
+  }
+
+  &.table-borderless {
+    border: 0;
+    > tbody,
+    > thead,
+    > tfoot {
+
+      > tr {
+
+        > td,
+        > th {
+          border: 0;
         }
       }
     }
@@ -155,7 +171,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tbody {
       > tr,
       > tr.active {
-        &:hover{
+
+        &:hover,
+        &:nth-child(odd):hover {
+
           > td,
           > th {
             background-color: #d9e8ef;
@@ -209,6 +228,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         > th,
         > td, {
           padding: @table-cell-padding-app;
+          font-family: "Scania Sans Semi Condensed";
+          font-size: @table-app-font-size;
         }
       }
     }
@@ -231,8 +252,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
           > th {
             text-transform: none;
-            font-weight: normal;
-            font-family: 'Scania Sans Condensed Bold';
+            font-family: 'Scania Sans Semi Condensed';
+            font-weight: bold;
             font-size: 1.2rem;
             padding: 0 10px;
             border-color: transparent;
@@ -246,7 +267,6 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         > tr {
 
           > td {
-            font-family: 'Scania Sans Condensed';
             padding: 5px 10px;
             border: none;
             font-size: 1.2rem;
@@ -255,7 +275,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
 
-    .table-condensed {
+    &.table-condensed {
       font-family: 'Scania Sans Condensed';
 
       > tbody {

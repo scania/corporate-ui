@@ -22,10 +22,16 @@
 
   // Remove browser-outline
   &:focus,
-  &:active:focus{
+  &.active,
+  &:active,
+  &:active:focus {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+
+  + .btn {
+    margin-left: 15px;
   }
 
   &-default {
@@ -54,7 +60,7 @@
 
   .app & {
     font-family: "Scania Sans Semi Condensed Bold";
-    padding: 10px 15px;
+    padding: 10px 18px;
     text-transform: none;
     font-size: @btn-font-size-app;
   }
@@ -65,7 +71,7 @@
   padding: 20px 40px;
   font-size: 14px;
   .app &{
-    padding: 14px 28px;
+    padding: 14px 22px;
     font-size: @btn-font-size-lg-app;
   }
 }
@@ -76,7 +82,7 @@
 
 .btn-sm {
   font-size: 12px;
-  padding: 7px 11px;
+  padding: 7px 15px;
   // Icons in btn-sm
   & [class^="icon-"],
   & [class*=" icon-"] {
@@ -85,7 +91,7 @@
     vertical-align: middle;
   }
   .app & {
-    padding: 5px 10px;
+    padding: 5px 14px;
     font-size: @btn-font-size-sm-app;
   }
 }

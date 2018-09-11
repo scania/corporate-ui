@@ -12,11 +12,21 @@ Polymer({
       observer: 'initMoreItem'
     },
     moreItems: {
-      type: Array
+      type: Array,
+      value: []
     },
     fullbleed: {
       type: Boolean,
       value: true
+    },
+    primaryItems: {
+      type: Array,
+      value: [],
+      observer: 'setItemIndex'
+    },
+    secondaryItems: {
+      type: Array,
+      value: []
     }
   },
   listeners: {
@@ -84,15 +94,59 @@ Polymer({
     // Set start collapse value - couldnt get this to work in a better way...
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
   },
+  ready: function() {
+    this.unwrap(this.getContentChildren('#primary-items')[0]);
+    this.unwrap(this.getContentChildren('#secondary-items')[0]);
+  },
+  unwrap: function(node) {
+    if (!node) {
+      return
+    }
+
+    while (node.firstChild) {
+      node.parentNode.insertBefore(node.firstChild, node);
+    }
+    for (var i = 0; i < node.attributes.length; i++) {
+      var attrs = node.attributes[i],
+          val = node.parentNode.getAttribute(attrs.name) || '';
+      node.parentNode.setAttribute(attrs.name, val + ' ' + attrs.value);
+      // node.parentNode[attrs.name] = attrs.value;
+    }
+    node.parentNode.removeChild(node);
+  },
+  dashed: function(text) {
+    return text.toLowerCase().split(' ').join('-');
+  },
   setItemActive: function(event) {
-    var parent = event.target.parentNode;
+    var parent = event.target.parentNode,
+        index = Array.prototype.indexOf.call(parent.children, event.target);
+
+    // Stop here if current item is the more item
+    if (event.target.classList.contains('more')) {
+      event.target.active = false;
+      return
+    }
+
     if (parent.preActive && parent.preActive !== event.target) {
       parent.preActive.active = false;
     }
+
     parent.preActive = event.target;
+
+    if(this.moreItems) {
+      this.moreItems.map((function(item, key) {
+        if (item.active) {
+          this.set('moreItems.' + key + '.active', false);
+        }
+      }).bind(this))
+      this.set('moreItems.' + index + '.active', true);
+    }
 
     // $('.navbar-toggle').trigger('click');
     this.setHeaderSize.call(this);
+  },
+  setActiveClass: function(active) {
+    return active ? 'active' : '';
   },
   setHeaderSize: function() {
     var headerHeight = 'auto',
@@ -102,7 +156,7 @@ Polymer({
 
     // This is set to make min-height calculation correct.
     // The min-height of the child is otherwise inherited by the parent
-    (this.children[1] || this.children[0]).style.minHeight = 'auto';
+    elm2.style.minHeight = 'auto';
 
     if (elm2 && elm2.offsetHeight) {
       headerHeight = elm2.offsetHeight;
@@ -135,7 +189,11 @@ Polymer({
     // doesnt flicker on resize
     window['moreItemDelay'] = setTimeout((function() {
       styleElm.innerText = '';
-      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth : 0);
+
+      this.customStyle['--more-visibility'] = 'hidden';
+      this.updateStyles();
+
+      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth + 2 : 0);
       if(itemsWidth >= this.offsetWidth) {
         this.moreItemsAvailable = true;
       }
@@ -146,8 +204,6 @@ Polymer({
       return;
     }
 
-    this.moreItems = [];
-
     // Async is used to make sure template has rerendered before
     // continuing. Else dropdown nav-item is not rendered
     this.async(function() {
@@ -155,7 +211,16 @@ Polymer({
           secondary = this.querySelector('secondary-items'),
           styleElm = this.querySelector('style'),
           dropdown = this.querySelector('.dropdown-toggle'),
-          availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0);
+          availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0),
+          // We have -1 here because we dont want to count the template element
+          itemsChanged = primary.children.length - 1 !== this.moreItems.length;
+
+      if (itemsChanged) {
+        this.moreItems = [];
+      }
+
+      this.customStyle['--more-visibility'] = 'visible';
+      this.updateStyles();
 
       primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
 
@@ -170,8 +235,8 @@ Polymer({
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
             @media (min-width: 991px) {\
-              c-main-navigation nav-item:nth-child(1n+' + i + ') { display: none; } \
-              c-main-navigation .more li:nth-child(1n+' + i + ') { display: block; } \
+              c-main-navigation primary-items > nav-item:nth-child(1n+' + i + ') > a { display: none; } \
+              c-main-navigation .more li:nth-child(1n+' + i + ') { display: block !important; } \
             }';
           if (styleElm.styleSheet){
             styleElm.styleSheet.cssText = css;
@@ -180,7 +245,8 @@ Polymer({
           }
         }
 
-        if (node) {
+        // We have -1 here because we dont want to count the template element
+        if (itemsChanged && node) {
           this.push('moreItems', {
             text: node.text,
             href: node.getAttribute('href')
@@ -193,6 +259,12 @@ Polymer({
       this.moreItemsAvailable = false;
       this.setHeaderSize.call(this);
     });
+  },
+  setMoreItemActive: function(event) {
+    var trigger = event.target.parentNode,
+        index = Array.prototype.indexOf.call(trigger.parentNode.children, trigger);
+
+    this.querySelector('primary-items').children[index].active = true;
   },
   navigationClose: function() {
     var hamburger = this.header.querySelector('.navbar-toggle');
@@ -212,5 +284,31 @@ Polymer({
         document.body.classList.add('header-is-sticky');
       }
     }
+  },
+  setItemIndex: function(val, oldVal) {
+    if (oldVal && val.toString() != oldVal.toString()) {
+      this.primaryItems = val.map(function(item, key) {
+        item.orgIndex = key;
+        return item;
+      })
+    }
+  },
+  sort: function(a, b) {
+    // Compare item a and b origional index to
+    // decide what item is first
+    var order = a.orgIndex < b.orgIndex ? -1 : 1,
+        maxIndex = this.primaryItems.length;
+
+    // Check if item has a user set index or
+    // set a max index
+    a.index = a.index || maxIndex;
+    b.index = b.index || maxIndex;
+
+    // Compare user set index on item if they 
+    // dont match decide what item is first
+    if (a.index < b.index) order = -1;
+    if (a.index > b.index) order = 1;
+
+    return order;
   }
 });

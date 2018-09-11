@@ -3,7 +3,7 @@
 
 <html lang="en-GB" ng-app="CorporateUI">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <noscript>
     <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
@@ -38,7 +38,7 @@
     <c-main-navigation>
       <primary-items>
         <!-- <nav-item location="/" ng-repeat="section in uxlib.sections.children">{{section.name}}</nav-item> -->
-        <nav-item location="/">Home</nav-item> 
+        <nav-item location="/">Home</nav-item>
         <nav-item location="/components.html">Components</nav-item>
         <nav-item location="/examples/" active="true">Examples</nav-item>
         <nav-item location="/testing/testing.html">Testing</nav-item>
@@ -68,7 +68,14 @@
 
   </c-main-content>
 
-  <c-corporate-footer></c-corporate-footer>
+  <c-corporate-footer>
+    <c-social-media>
+      <nav-item location="#" icon="facebook"></nav-item>
+      <nav-item location="#" icon="twitter"></nav-item>
+      <nav-item location="#" icon="youtube"></nav-item>
+      <nav-item location="#" icon="linkedin"></nav-item>
+    </c-social-media>
+  </c-corporate-footer>
 
   <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
 

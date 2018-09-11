@@ -46,6 +46,7 @@
       margin-right: 0;
     }
     .more {
+      display: inline-block;
       visibility: var(--more-visibility);
 
       li {
@@ -53,7 +54,6 @@
       }
     }
     .dropdown {
-      display: inline-block;
 
       > a {
         &:extend(.navbar-default .navbar-nav > li + li > a all);
@@ -132,6 +132,7 @@
 
 @media (max-width: 991px) {
   :host {
+    min-height: auto !important;
 
     .navbar-footer {
       height: 55px;
@@ -190,6 +191,7 @@
       }
     }
     nav .navbar-collapse {
+      overflow: visible;
 
       &.collapsing {
         overflow-y: hidden !important;
@@ -286,6 +288,10 @@
         background-color: #f5f5f5;
         overflow-y: auto;
         -ms-overflow-style: auto;
+      }
+      .dropdown .dropdown-menu {
+        max-height: auto;
+        overflow: visible;
       }
       .more {
         display: none !important;

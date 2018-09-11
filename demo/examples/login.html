@@ -21,35 +21,44 @@
 
     function Login(event) {
       setTimeout(function() {
-        console.log(event.type, event)
-        event.data.component.setView.call(event.data.component, event.data.action);
-      }, 1000);
+        var success = true;
+        if (success) {
+          document.querySelector('c-login').style.display = 'none';
+          document.querySelector('.application').style.display = 'block';
+
+          /*event.detail.callback({
+            status: 200,
+            message: 'User was successfully logged in',
+            target: event.detail.target
+          });*/
+        }
+      }, 1000)
     }
     function Register(event) {
       setTimeout(function() {
         var success = true;
         if (success) {
-          /*event.callback({
-            message: 'sdsadasddas',
-            type: success,
-            data: event.data
-          })*/
-          event.data.component.setView.call(event.data.component, event.data.action);
+          event.detail.callback({
+            status: 200,
+            message: 'User was successfully registered',
+            target: event.detail.target
+          });
         } else {
-          AppEventStore.apply({ name: 'notification', action: 'notify', data: { type: 'error', message: 'Register failed' } });
+          // AppEventStore.apply({ name: 'notification', action: 'notify', data: { type: 'error', message: 'Register failed' } });
         }
       }, 1000);
-      console.log(event.type, event)
     }
     function Recover(event) {
       setTimeout(function() {
-        console.log(event.type, event)
-        event.data.component.setView.call(event.data.component, event.data.action);
+        var success = true;
+        if (success) {
+          event.detail.callback({
+            status: 200,
+            message: 'User password has been reset successfully',
+            target: event.detail.target
+          });
+        }
       }, 1000);
-    }
-    function showPage(event) {
-      document.querySelector('c-login').style.display = 'none';
-      document.getElementById(event.data.page).innerHTML = '<div class="container"><h2>Profile</h2><p>Loged in as: <strong>' + event.data.info.username + '</strong><br>With role: <strong>' + event.data.info.role + '</strong></p></div>';
     }
   </script>
 
@@ -58,6 +67,7 @@
       display: flex !important;
       flex-direction: column;
     }
+    .application { display: none; }
   </style>
 
   <link rel="import" href="../../../components/login/login.html">
@@ -70,6 +80,12 @@
       <form-field type="password" name="password" label="Password"></form-field>
       <button type="button" class="btn btn-link" on-click="forgotpassword">Forgot your password</button>
     </c-login>
+    <div class="container application">
+      <section>
+        <h2 class="text-center">A super cool application is shown here</h2>
+        <p class="text-center mt-4">With some info displayed here.</p>
+      </section>
+    </div>
   </c-main-content>
   <c-corporate-footer></c-corporate-footer>
 </body>

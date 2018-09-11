@@ -1,10 +1,10 @@
-<div class$="{{view}} wrapper">
-  <div class="sidebar">
+<div class$="wrapper {{view}}">
+  <section>
     <h2 class="text-center">{{headline}}</h2>
     <p class="text-center mt-4">{{description}}
       <button class="sign-up-link btn-link btn-info btn-text" on-click="setView" data-target="register">Create an account.</button>
     </p>
-    <form id="login" data-target="confirm">
+    <form action="login">
       <content select="form-field">
         <form-field type="text" name="username" label="Username"></form-field>
         <form-field type="password" name="password" label="Password"></form-field>
@@ -24,13 +24,13 @@
       <button class="btn-link btn-info btn-text" on-click="setView" data-target="recover">forgotten your password?</button>
     </p>
     <p class="help-block text-center mt-5">This portal uses cookies. By logging in, you are allowing cookies to be saved on your computer.</p>
-  </div>
+  </section>
 
-  <div class="sidebar">
+  <section>
     <h2 class="text-center">Sign up for Scania Developer Portal</h2>
     <p class="text-center mt-4">Once the account has been created and verified, you will be able to access all Scania's API.</p>
     <!-- Registration form -->
-    <form id="register" data-target="confirm">
+    <form action="register">
       <div class="row">
         <div class="form-group col-sm-6">
           <label class="btn-block">First name
@@ -49,7 +49,7 @@
         </label>
       </div>
       <div class="form-group">
-        <button type="button" id="show-hide-registration" name="show-hide" class=" btn-link btn-info pull-right">Show
+        <button type="button" id="show-hide-registration" name="show-hide" class="btn-link btn-info pull-right">Show
           <i id="show-hide-icon"class="icon-eye-open"></i>
         </button>
         <label class="btn-block">Password
@@ -62,12 +62,22 @@
     <p class="text-center mt-5">By signing up you agree to
       <a href="#" class="regconf-form-link btn-link btn-info">terms and conditions.</label></a>
     </p>
-  </div>
+  </section>
 
-  <div class="sidebar">
+  <section>
+    <h2 class="text-center">Your user account has been created and needs to be activated.</h2>
+    <!--Header end -->
+    <p class="text-center mt-4">To activate your user account, please follow the link that has been sent to the following address</p>
+    <p class="text-center"><strong>Scania@scania.com</strong></p>
+    <!--!!! Add script to collect used address-->
+    <p class="text-center mt-5">If you do not receive this email, please check your spam filter or re-register.</p>
+    <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
+  </section>
+
+  <section>
     <h2 class="text-center">Password recovery</h2>
     <p class="text-center mt-4">Enter your email to recover your password.</p>
-    <form id="recover" data-target="confirm">
+    <form action="recover">
       <div class="form-group">
         <label class="btn-block">Email address
           <input type="email" class="form-control">
@@ -77,17 +87,15 @@
       <button type="submit" class="reg-form-submit btn btn-lg btn-block btn-warning mt-5">Recover password</button>
       <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
     </form>
-  </div>
+  </section>
 
-  <div class="sidebar">
-    <h2 class="text-center">Your user account has been created and needs to be activated.</h2>
+  <section>
+    <h2 class="text-center">Password recovery</h2>
     <!--Header end -->
-    <p class="text-center mt-4">To activate your user account, please follow the link that has been sent to the following address</p>
+    <p class="text-center mt-4">Your password have been reset and sent to your email.</p>
     <p class="text-center"><strong>Scania@scania.com</strong></p>
-    <!--!!! Add script to collect used address-->
-    <p class="text-center mt-5">If you do not receive this email, please check your spam filter or re-register.</p>
     <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
-  </div>
+  </section>
 </div>
 
 <aside class="sideimage hidden-xs hidden-sm"></aside>

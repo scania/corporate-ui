@@ -239,7 +239,7 @@ function baseComponents(references) {
 
   // Adds support for Promise if non exist
   if (typeof(window['Promise']) === 'undefined') {
-    return helpers.importScript(window['cui_path'] + '../libs/es6-promise/dist/es6-promise.js', function() {
+    return helpers.importScript(window['cui_path'] + '../es6-promise/dist/es6-promise.js', function() {
       window['Promise'] = window['ES6Promise'];
       baseComponents(references);
     }, window['corporate_elm']);
@@ -268,11 +268,11 @@ function appendExternals() {
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
-    helpers.importScript(window['cui_path'] + '../libs/webcomponents.js/webcomponents-lite.js', null, window['corporate_elm']);
+    helpers.importScript(window['cui_path'] + '../webcomponents.js/webcomponents-lite.js', null, window['corporate_elm']);
   }
 
   if (window['params'].css !== 'custom') {
-    var bsnUrl = window['cui_path'] + '../libs/bootstrap.native/dist/bootstrap-native.js';
+    var bsnUrl = window['cui_path'] + '../bootstrap.native/dist/bootstrap-native.js';
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
@@ -281,7 +281,7 @@ function appendExternals() {
     } else {
       helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
-    helpers.importLink(window['cui_path'] + '../libs/bootstrap/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
+    helpers.importLink(window['cui_path'] + '../bootstrap/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 

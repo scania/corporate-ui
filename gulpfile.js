@@ -30,7 +30,8 @@ gulp.task('fullComponent', _fullComponent)
 gulp.task('test', test)
 
 gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series(['clean', 'copy', 'libs', 'less', 'ts', 'components', 'test'], exit))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], exit))
+gulp.task('buildStatic', gulp.series(['build', 'libs'], exit))
 gulp.task('default', gulp.series(['build'], server))
 
 /* File watches */

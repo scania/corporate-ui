@@ -15,6 +15,7 @@ function server() {
 
   app.use(express.static(__dirname + '/demo'))
   app.use('/', express.static(__dirname + '/dist'))
+  app.use('/', express.static(__dirname + '/node_modules'))
 
   app.listen(app.get('port'), function() {
     console.log('UX-library is now running at http://%s:%d.', process.env.COMPUTERNAME, app.get('port'))

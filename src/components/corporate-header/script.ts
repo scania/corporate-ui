@@ -34,6 +34,9 @@ Polymer({
     },
     sticky: {
       type: String
+    },
+    items: {
+      type: Array
     }
   },
   created: function() {

@@ -26,7 +26,8 @@ Polymer({
     },
     secondaryItems: {
       type: Array,
-      value: []
+      value: [],
+      observer: 'setItemIndex'
     }
   },
   listeners: {
@@ -122,7 +123,7 @@ Polymer({
         index = Array.prototype.indexOf.call(parent.children, event.target);
 
     // Stop here if current item is the more item
-    if (event.target.classList.contains('more')) {
+    if (event.target.classList.contains('dropdown')) {
       event.target.active = false;
       return
     }
@@ -212,8 +213,8 @@ Polymer({
           styleElm = this.querySelector('style'),
           dropdown = this.querySelector('.dropdown-toggle'),
           availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0),
-          // We have -1 here because we dont want to count the template element
-          itemsChanged = primary.children.length - 1 !== this.moreItems.length;
+          // We have -2 here because we dont want to count the template element or "More" nav-item
+          itemsChanged = primary.children.length - 2 !== this.moreItems.length;
 
       if (itemsChanged) {
         this.moreItems = [];
@@ -224,7 +225,8 @@ Polymer({
 
       primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
 
-      for(var i=0; i<primary.children.length; i++) {
+      // We have -1 here to skip the "More" nav-item
+      for(var i=0; i<primary.children.length - 1; i++) {
         var item = primary.children[i],
             node = item.querySelector('a');
 
@@ -245,7 +247,6 @@ Polymer({
           }
         }
 
-        // We have -1 here because we dont want to count the template element
         if (itemsChanged && node) {
           this.push('moreItems', {
             text: node.text,
@@ -287,7 +288,7 @@ Polymer({
   },
   setItemIndex: function(val, oldVal) {
     if (oldVal && val.toString() != oldVal.toString()) {
-      this.primaryItems = val.map(function(item, key) {
+      val = val.map(function(item, key) {
         item.orgIndex = key;
         return item;
       })
@@ -297,7 +298,7 @@ Polymer({
     // Compare item a and b origional index to
     // decide what item is first
     var order = a.orgIndex < b.orgIndex ? -1 : 1,
-        maxIndex = this.primaryItems.length;
+        maxIndex = 100;
 
     // Check if item has a user set index or
     // set a max index

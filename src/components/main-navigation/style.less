@@ -49,29 +49,31 @@
       display: inline-block;
       visibility: var(--more-visibility);
 
+      li {
+        display: none;
+      }
+    }
+    .dropdown {
+
       > a {
         &:extend(.navbar-default .navbar-nav > li + li > a all);
 
         display: block;
       }
 
-      li {
-        display: none;
+      li a {
+        text-transform: uppercase;
+        padding-top: 9px;
+        padding-bottom: 9px;
 
-        a {
-          text-transform: uppercase;
-          padding-top: 9px;
-          padding-bottom: 9px;
-
-          &:hover {
-           background-color: transparent;
-          }
+        &:hover {
+         background-color: transparent;
         }
       }
-    }
-    .dropdown-menu {
-      max-height: 70vh;
-      overflow-y: scroll;
+      .dropdown-menu {
+        max-height: 70vh;
+        overflow-y: scroll;
+      }
     }
   }
 }
@@ -130,6 +132,7 @@
 
 @media (max-width: 991px) {
   :host {
+    min-height: auto !important;
 
     .navbar-footer {
       height: 55px;
@@ -188,6 +191,7 @@
       }
     }
     nav .navbar-collapse {
+      overflow: visible;
 
       &.collapsing {
         overflow-y: hidden !important;
@@ -284,6 +288,10 @@
         background-color: #f5f5f5;
         overflow-y: auto;
         -ms-overflow-style: auto;
+      }
+      .dropdown .dropdown-menu {
+        max-height: auto;
+        overflow: visible;
       }
       .more {
         display: none !important;

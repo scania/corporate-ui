@@ -38,13 +38,17 @@
       <content select="secondary-items" id="secondary-items"></content>
 
       <template is="dom-repeat" items="{{secondaryItems}}" sort="sort">
-        <nav-item location="{{item.location}}" active="{{item.active}}" class="dropdown" class$="{{dashed(item.name)}}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            {{item.name}}
-            <span class="caret"></span>
-          </a>
-      
-          <template is="dom-if" if="{{item.children}}">
+        <template is="dom-if" if="{{!item.children}}">
+          <nav-item location="{{item.location}}" class$="{{dashed(item.name)}}">{{item.name}}</nav-item>
+        </template>
+
+        <template is="dom-if" if="{{item.children}}">
+          <nav-item location="{{item.location}}" class$="dropdown {{dashed(item.name)}}" active="{{item.active}}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              {{item.name}}
+              <span class="caret"></span>
+            </a>
+        
             <ul class="dropdown-menu">
               <template is="dom-repeat" items="{{item.children}}" as="subItem">
                 <li class$="{{dashed(subItem.name)}} {{setActiveClass(subItem.active)}}">
@@ -52,9 +56,9 @@
                 </li>
               </template>
             </ul>
-          </template>
-        </nav-item>
+          </nav-item>
+        </template>
       </template>
-    </primary-items>
+    </secondary-items>
   </div>
 </nav>

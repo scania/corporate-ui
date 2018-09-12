@@ -2,8 +2,12 @@
 
   &-vertical {
 
-    > .btn:first-child:not(:last-child) {
-      border-radius: 0;
+    > .btn {
+
+      &:first-child:not(:last-child),
+      &:last-child:not(:first-child) {
+        border-radius: 0;
+      }
     }
   }
 
@@ -50,7 +54,6 @@
     }
   }
 }
-
 
 .btn-toolbar {
     margin-top: 15px;

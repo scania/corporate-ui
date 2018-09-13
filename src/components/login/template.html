@@ -1,12 +1,13 @@
-
-<div class="row public">
-  <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-    <h2>{{headline}}</h2>
-    <p>{{description}}</p>
-    <form class="well">
-      <content>
-        <c-form-field type="text" name="username" label="Username"></c-form-field>
-        <c-form-field type="password" name="password" label="Password"></c-form-field>
+<div class$="wrapper {{view}}">
+  <section>
+    <h2 class="text-center">{{headline}}</h2>
+    <p class="text-center mt-4">{{description}}
+      <button class="sign-up-link btn-link btn-info btn-text" on-click="setView" data-target="register">Create an account.</button>
+    </p>
+    <form action="login">
+      <content select="form-field">
+        <form-field type="text" name="username" label="Username"></form-field>
+        <form-field type="password" name="password" label="Password"></form-field>
       </content>
 
       <!-- Should show a notification component here instead -->
@@ -14,14 +15,89 @@
         <div class$="alert alert-{{messageType}}">{{message}}</div>
       </template>
 
-      <button type="submit" class="btn btn-primary">Log in</button>
-      <button type="button" class="btn btn-link" on-click="forgotpassword">Forgot your password</button>
+      <button type="submit" class="btn btn-success btn-lg btn-block">Log in</button>
+
+      <!-- <content select="button"></content> -->
+      <!-- <button type="button" class="btn btn-link" on-click="forgotpassword">Forgot your password</button> -->
     </form>
-  </div>
+    <p class="text-center mt-5">Have you
+      <button class="btn-link btn-info btn-text" on-click="setView" data-target="recover">forgotten your password?</button>
+    </p>
+    <p class="help-block text-center mt-5">This portal uses cookies. By logging in, you are allowing cookies to be saved on your computer.</p>
+  </section>
+
+<!-- Registration page Start-->
+  <section>
+    <h2 class="text-center">Sign up for Scania Developer Portal</h2>
+    <p class="text-center mt-4">Once the account has been created and verified, you will be able to access all Scania's API.</p>
+    <!-- Registration form -->
+    <form action="register">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label class="btn-block">First name
+            <input type="text" class="form-control" name="fname" autofocus>
+          </label>
+        </div>
+        <div class="form-group col-sm-6">
+          <label class="btn-block">Last name
+            <input type="text" class="form-control" name="lname">
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="btn-block">Email address
+          <input type="email" class="form-control" name="email">
+        </label>
+      </div>
+      <div class="form-group">
+        <button type="button" name="show-hide" class="btn-link btn-info pull-right">Show
+          <i id="show-hide-icon" class="icon-eye-open"></i>
+        </button>
+        <!-- <form-field type="password" name="password" label="Password"></form-field> -->
+        <label class="btn-block">Password
+          <input type="password" class="form-control" name="password">
+        </label>
+      </div>
+      <!-- Should be triggered from submit on form later on -->
+      <button type="submit" class="reg-form-submit btn btn-lg btn-block btn-success mt-5">Sign up</button>
+    </form>
+    <p class="text-center mt-5">By signing up you agree to
+      <a href="#" class="regconf-form-link btn-link btn-info">terms and conditions.</label></a>
+    </p>
+  </section>
+<!-- Registration page End -->
+  <section>
+    <h2 class="text-center">Your user account has been created and needs to be activated.</h2>
+    <!--Header end -->
+    <p class="text-center mt-4">To activate your user account, please follow the link that has been sent to the following address</p>
+    <p class="text-center"><strong>Scania@scania.com</strong></p>
+    <!--!!! Add script to collect used address-->
+    <p class="text-center mt-5">If you do not receive this email, please check your spam filter or re-register.</p>
+    <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
+  </section>
+
+  <section>
+    <h2 class="text-center">Password recovery</h2>
+    <p class="text-center mt-4">Enter your email to recover your password.</p>
+    <form action="recover">
+      <div class="form-group">
+        <label class="btn-block">Email address
+          <input type="email" class="form-control">
+        </label>
+      </div>
+      <!-- Should be triggered from submit on form later on -->
+      <button type="submit" class="reg-form-submit btn btn-lg btn-block btn-warning mt-5">Recover password</button>
+      <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5 ml-0" on-click="setView" data-target="login">Back to startpage</button>
+    </form>
+  </section>
+
+  <section>
+    <h2 class="text-center">Password recovery</h2>
+    <!--Header end -->
+    <p class="text-center mt-4">Your password have been reset and sent to your email.</p>
+    <p class="text-center"><strong>Scania@scania.com</strong></p>
+    <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
+  </section>
 </div>
 
-<!-- <template is="dom-if" if="{{link}}">
-  <div class="btn-container">
-    <a href="{{link}}" class="btn btn-primary">{{linkText}}</a>
-  </div>
-</template> -->
+<aside class="sideimage hidden-xs hidden-sm"></aside>

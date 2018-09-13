@@ -1,17 +1,28 @@
+<template is="dom-if" if="{{isPassword(type)}}">
+  <button type="button" name="show-hide" class="btn-link btn-info pull-right">
+    <span>Show</span>
+    <i class="icon-eye-open"></i>
+  </button>
+</template>
+
 <label class="form-group">
   <template is="dom-if" if="{{labelExist(label)}}">
     {{label}}
   </template>
 
-  <template is="dom-if" if="{{fieldType('input', type)}}">
+  <template is="dom-if" if="{{fieldType('input')}}">
     <input type="{{type}}" name="{{name}}" class="form-control">
   </template>
 
-  <template is="dom-if" if="{{fieldType('textarea', type)}}">
+  <template is="dom-if" if="{{fieldType('radio')}}">
+    <span></span>
+  </template>
+
+  <template is="dom-if" if="{{fieldType('textarea')}}">
     <textarea name="{{name}}" class="form-control"></textarea>
   </template>
 
-  <template is="dom-if" if="{{fieldType('select', type)}}">
+  <template is="dom-if" if="{{fieldType('select')}}">
     <select name="{{name}}" class="form-control">
       <content></content>
     </select>

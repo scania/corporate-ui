@@ -26,6 +26,7 @@
     <p class="help-block text-center mt-5">This portal uses cookies. By logging in, you are allowing cookies to be saved on your computer.</p>
   </section>
 
+<!-- Registration page Start-->
   <section>
     <h2 class="text-center">Sign up for Scania Developer Portal</h2>
     <p class="text-center mt-4">Once the account has been created and verified, you will be able to access all Scania's API.</p>
@@ -34,26 +35,27 @@
       <div class="row">
         <div class="form-group col-sm-6">
           <label class="btn-block">First name
-            <input type="text" class="form-control" autofocus>
+            <input type="text" class="form-control" name="fname" autofocus>
           </label>
         </div>
         <div class="form-group col-sm-6">
           <label class="btn-block">Last name
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" name="lname">
           </label>
         </div>
       </div>
       <div class="form-group">
         <label class="btn-block">Email address
-          <input type="email" class="form-control">
+          <input type="email" class="form-control" name="email">
         </label>
       </div>
       <div class="form-group">
-        <button type="button" id="show-hide-registration" name="show-hide" class="btn-link btn-info pull-right">Show
-          <i id="show-hide-icon"class="icon-eye-open"></i>
+        <button type="button" name="show-hide" class="btn-link btn-info pull-right">Show
+          <i id="show-hide-icon" class="icon-eye-open"></i>
         </button>
+        <!-- <form-field type="password" name="password" label="Password"></form-field> -->
         <label class="btn-block">Password
-          <input type="password" class="form-control">
+          <input type="password" class="form-control" name="password">
         </label>
       </div>
       <!-- Should be triggered from submit on form later on -->
@@ -63,7 +65,7 @@
       <a href="#" class="regconf-form-link btn-link btn-info">terms and conditions.</label></a>
     </p>
   </section>
-
+<!-- Registration page End -->
   <section>
     <h2 class="text-center">Your user account has been created and needs to be activated.</h2>
     <!--Header end -->
@@ -85,7 +87,7 @@
       </div>
       <!-- Should be triggered from submit on form later on -->
       <button type="submit" class="reg-form-submit btn btn-lg btn-block btn-warning mt-5">Recover password</button>
-      <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
+      <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5 ml-0" on-click="setView" data-target="login">Back to startpage</button>
     </form>
   </section>
 

@@ -35,6 +35,10 @@
       }, 1000)
     }
     function Register(event) {
+      var data = new FormData(event.target);
+      var pword = data.get('password')
+      var crypt = btoa(pword);
+      debugger
       setTimeout(function() {
         var success = true;
         if (success) {

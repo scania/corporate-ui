@@ -126,7 +126,7 @@ article {
   h1 {
     font-size: @h1-font-size-article;
     text-align: inherit;
-    letter-spacing: normal;
+    letter-spacing: 0.03rem;
   }
 
   h2 {
@@ -189,7 +189,6 @@ article p.lead,
 p.lead,
 .app p.lead {
   font-family: 'Scania Sans';
-  font-weight: bold;
   font-size: 1.26em;
   color: @interaction-primary;
   font-weight: normal;
@@ -200,7 +199,7 @@ address {
   font-size: 1.2rem;
 
   h4 {
-    font-family: 'Scania Sans Condensed';
+    font-family: 'Scania Sans Semi Condensed';
     font-weight: bold;
     font-size:  1.8rem;
     color: #53565A;
@@ -278,7 +277,7 @@ address {
   h1,
   h2,
   h3 {
-    letter-spacing: 0.03rem;
+    letter-spacing: normal;
     text-align: left;
   }
 
@@ -313,14 +312,16 @@ address {
 
   article {
     &:extend(article);
-    line-height: 26px;
+    font-family: 'Scania Sans Semi Condensed';
 
     h2,
     h3,
     h4,
     h5,
     h6,
-    p,
+    p {
+       line-height: 26px;
+    }
     p.lead {
       font-family: "Scania Sans Semi Condensed";
     }
@@ -355,8 +356,6 @@ address {
       &:extend(article h6);
     }
     p {
-      font-size: @p-font-size-app-article;
-      line-height: 26px;
       &:extend(article p);
 
       &.lead {

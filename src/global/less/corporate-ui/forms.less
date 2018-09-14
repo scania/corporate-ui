@@ -1,5 +1,13 @@
 // SCANIA BOOTSTRAP THEME
 // FORMS
+@import (reference) 'variables';
+// local variables for input colors
+
+//background color for default input
+@input-bg-color: @color-grey3;
+//background color for disabled input
+@input-bg-color-disabled: #f7f7f7;
+
 legend {
   border: 0;
 }
@@ -9,7 +17,6 @@ textarea[placeholder] {
   color: inherit;
 
   // Do not group these rules
-
   &::-webkit-input-placeholder {
     color: inherit;
   }
@@ -35,7 +42,7 @@ textarea[placeholder] {
 }
 
 .form-control {
-  color: #747472;
+  color: @main-font-color;
   padding: 20px 40px;
   height: 63px;
   box-shadow: none;
@@ -43,8 +50,8 @@ textarea[placeholder] {
   border: 0;
   font-size: @form-control-app-font;
   font-weight: normal;
-  background-color: #f5f5f5;
-  border: 1px solid transparent;
+  background-color: @input-bg-color;
+  border: 1px solid #e2e2e2;
 
   select& {
     cursor: pointer;
@@ -53,7 +60,7 @@ textarea[placeholder] {
     appearance: none;
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==);
     // background-position: center right;
-    background-color: #f5f5f5;
+    background-color: @input-bg-color;
     background-repeat: no-repeat;
     background-size: 37px;
     background-position: calc(98%) center;
@@ -72,7 +79,7 @@ textarea[placeholder] {
     }
 
     > option {
-      background: #f5f5f5;
+      background: #f0f0f0;
     }
 
     .app & {
@@ -89,9 +96,7 @@ textarea[placeholder] {
       cursor: default;
       border: 1px solid transparent;
       background: #f5f5f5;
-      // box-shadow: none;
-      // border: 1px solid rgb(74, 139, 164);
-      // background: rgb(242, 247, 249);
+
       .panel-inverse & {
         cursor: default;
         border: 1px solid transparent;
@@ -100,10 +105,10 @@ textarea[placeholder] {
     }
   }
 
-  &[disabled] {
-    opacity: 0.3;
-    background-color: #dfdee1;
-    border: 2px solid grey;
+  &[disabled][placeholder] {
+    background-color: @input-bg-color-disabled;
+    border: 0px solid transparent;
+    color:fade(#94999D,80%);
   }
 
   &:focus {
@@ -184,6 +189,10 @@ fieldset {
   margin-bottom: 30px;
 }
 
+.radio-inline, .checkbox-inline {
+  padding-left: 0px;
+}
+
 // .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
 //   opacity: 0.3;
 //   color: initial;
@@ -193,236 +202,344 @@ fieldset {
 
 // Radio and Checkboxes//
 
-.radio label {
-  padding-left: -10px;
-  margin-bottom: 0;
-  cursor: default;
-}
+// .radio label {
+//   margin-bottom: 0;
+//   cursor: default;
+// }
 
-.checkbox label {
-  padding-left: 0px;
-  margin-bottom: 0;
-  cursor: default;
-}
+// .checkbox label {
+//   padding-left: 0px;
+//   margin-bottom: 0;
+//   cursor: default;
+// }
 
-input[type=checkbox] {
-  height: 26px;
-  width: 26px;
-  position: static;
-  display: inline-block;
-  vertical-align: text-bottom;
 
-  .checkbox & {
-    position: static;
-  }
 
-  .app & {
-    height: 17px;
-    width: 20px;
-    position: static;
-    display: inline-block;
-    vertical-align: text-bottom;
-  }
 
-  + span {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1;
-    margin-left: -35px;
-    cursor: pointer;
+// input[type=checkbox] {
+//   height: 26px;
+//   width: 26px;
+//   position: static;
+//   display: inline-block;
+//   vertical-align: text-bottom;
 
-    .app & {
-        margin-left: 0px;
-        right: 3px;
-    }
+//   .checkbox & {
+//     position: static;
+//   }
 
-    &:before {
-        content: "";
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background-color: #fff;
-        border: 1.1px solid #6f6f70;
-        border-radius: 1.2px;
-        margin: 3px 1px 3px 3px;
+//   .app & {
+//     height: 17px;
+//     width: 20px;
+//     position: static;
+//     display: inline-block;
+//     vertical-align: text-bottom;
+//   }
 
-      .app & {
-        width: 18px;
-        height: 18px;
-      }
-    }
-  }
+//   + span {
+//     position: relative;
+//     display: inline-block;
+//     vertical-align: middle;
+//     line-height: 1;
+//     margin-left: -35px;
+//     cursor: pointer;
 
-  &:hover + span:before {
-    background-color: #f2f7f9;
-  }
+//     .app & {
+//       margin-left: 0px;
+//       right: 3px;
+//     }
 
-  &:checked + span:before {
-    content: "";
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjM2Ljk4OCIgaGVpZ2h0PSIyMzYuOTg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8Zz4gIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4gIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIyMDIiIHdpZHRoPSIyMDIiIHk9Ii0xIiB4PSItMSIvPiA8L2c+IDxnPiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjE5OC4wOTgsMjQuMzI2IDg3LjU0MywxMzQuODgxIDM4Ljg5MSw4Ni4yMjkgMCwxMjUuMTIxIDg3LjU0MywyMTIuNjYyIDIzNi45ODgsNjMuMjE3ICIvPiAgPGcgaWQ9InN2Z18yIi8+ICA8ZyBpZD0ic3ZnXzMiLz4gIDxnIGlkPSJzdmdfNCIvPiAgPGcgaWQ9InN2Z181Ii8+ICA8ZyBpZD0ic3ZnXzYiLz4gIDxnIGlkPSJzdmdfNyIvPiAgPGcgaWQ9InN2Z184Ii8+ICA8ZyBpZD0ic3ZnXzkiLz4gIDxnIGlkPSJzdmdfMTAiLz4gIDxnIGlkPSJzdmdfMTEiLz4gIDxnIGlkPSJzdmdfMTIiLz4gIDxnIGlkPSJzdmdfMTMiLz4gIDxnIGlkPSJzdmdfMTQiLz4gIDxnIGlkPSJzdmdfMTUiLz4gIDxnIGlkPSJzdmdfMTYiLz4gPC9nPjwvc3ZnPg==);
-    background-size: 20px;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    border-color: #041E42;
-    background-color: #041E42;
+//     &:before {
+//       content: "";
+//       display: inline-block;
+//       width: 30px;
+//       height: 30px;
+//       background-color: #fff;
+//       border: 1.1px solid #6f6f70;
+//       border-radius: 1.2px;
+//       margin: 3px 1px 3px 3px;
 
-    .app & {
-      font-size: 11px;
-      line-height: 12px;
-      background-size: 12px;
-    }
-  }
+//       .app & {
+//         width: 18px;
+//         height: 18px;
+//       }
+//     }
+//   }
 
-  &:disabled {
+//   &:hover + span:before {
+//     background-color: #f2f7f9;
+//   }
 
-    &,
-    &:hover {
+//   &:checked + span:before {
+//     content: "";
+//     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjM2Ljk4OCIgaGVpZ2h0PSIyMzYuOTg4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8Zz4gIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4gIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIyMDIiIHdpZHRoPSIyMDIiIHk9Ii0xIiB4PSItMSIvPiA8L2c+IDxnPiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPiAgPHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgaWQ9InN2Z18xIiBwb2ludHM9IjE5OC4wOTgsMjQuMzI2IDg3LjU0MywxMzQuODgxIDM4Ljg5MSw4Ni4yMjkgMCwxMjUuMTIxIDg3LjU0MywyMTIuNjYyIDIzNi45ODgsNjMuMjE3ICIvPiAgPGcgaWQ9InN2Z18yIi8+ICA8ZyBpZD0ic3ZnXzMiLz4gIDxnIGlkPSJzdmdfNCIvPiAgPGcgaWQ9InN2Z181Ii8+ICA8ZyBpZD0ic3ZnXzYiLz4gIDxnIGlkPSJzdmdfNyIvPiAgPGcgaWQ9InN2Z184Ii8+ICA8ZyBpZD0ic3ZnXzkiLz4gIDxnIGlkPSJzdmdfMTAiLz4gIDxnIGlkPSJzdmdfMTEiLz4gIDxnIGlkPSJzdmdfMTIiLz4gIDxnIGlkPSJzdmdfMTMiLz4gIDxnIGlkPSJzdmdfMTQiLz4gIDxnIGlkPSJzdmdfMTUiLz4gIDxnIGlkPSJzdmdfMTYiLz4gPC9nPjwvc3ZnPg==);
+//     background-size: 20px;
+//     background-position: 50%;
+//     background-repeat: no-repeat;
+//     border-color: #041E42;
+//     background-color: #041E42;
 
-      + span {
+//     .app & {
+//       font-size: 11px;
+//       line-height: 12px;
+//       background-size: 12px;
+//     }
+//   }
 
-        &:before {
-          background-color: #fff;
-          border-color: #C8C9C7;
-          cursor: not-allowed;
-        }
-      }
-    }
+//   &:disabled {
 
-    &:checked + span:before {
-      opacity: 0.2;
-      border: none;
-    }
+//     &,
+//     &:hover {
 
-    &:disabled:checked:hover + span:before {
-      background-color: #242424;
-      border: none;
-    }
-  }
+//       + span {
 
-  &:checked {
+//         &:before {
+//           background-color: #fff;
+//           border-color: #C8C9C7;
+//           cursor: not-allowed;
+//         }
+//       }
+//     }
 
-    + span {
-      border-color: #242424;
+//     &:checked + span:before {
+//       opacity: 0.2;
+//       border: none;
+//     }
 
-      &:before {
-        background-color: #242424;
-      }
-    }
+//     &:disabled:checked:hover + span:before {
+//       background-color: #242424;
+//       border: none;
+//     }
+//   }
 
-    &:hover {
+//   &:checked {
 
-      + span {
-        border-color: #033a6a;
+//     + span {
+//       border-color: #242424;
 
-        &:before {
-          background-color: #033a6a;
-          border: 1.1px solid #033a6a;
-        }
-      }
-    }
-  }
-}
+//       &:before {
+//         background-color: #242424;
+//       }
+//     }
 
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-  display: none;
-}
+//     &:hover {
 
-input[type=radio] {
-  // Zoom is used to make it smaller. Without zoom it cant be
-  // smaller than 16px and use vertical-align: bottom;
+//       + span {
+//         border-color: #033a6a;
 
-  + span {
-    position: relative;
-    margin-left: -20px; // -25 here instead of 20 beause of zoom
-    display: inline-block;
-    border: 2px solid #041E42;
-    background-color: #fff;
-    line-height: normal;
-    border-radius: 15px;
-    zoom: .8;
-    vertical-align: text-bottom;
-    right: 2px;
-    cursor: pointer;
+//         &:before {
+//           background-color: #033a6a;
+//           border: 1.1px solid #033a6a;
+//         }
+//       }
+//     }
+//   }
+// }
 
-    &:before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border-radius: inherit;
-      border: 0.3em solid #FFF;
-      vertical-align: bottom;
+// .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+//   display: none;
+// }
 
-      .app & {
-        width: 16px;
-        height: 16px;
-      }
-    }
+// .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+//   display: none;
+// }
 
-    .app & {
-      border-radius: 10px;
-    }
-  }
+// _:-ms-fullscreen, :root input[type=radio] {
 
-  /* Hover states */
+//   + span {
+//     height: 17px;
+//     width: 17px;
+//     zoom: 1;
+//     &:before {
+//       border: 3px solid #fff;
+//     }
+//   }
+//  }
 
-  &:hover + span:before {
-    background-color: #f2f7f9;
-    border-color: #f2f7f9;
-  }
+// input[type=radio] {
+//   // Zoom is used to make it smaller. Without zoom it cant be
+//   // smaller than 16px and use vertical-align: bottom;
+//   + span {
 
-  &:focus {
-    outline: none;
-  }
+//     position: relative;
+//     height: 20px;
+//     width: 20px;
+//     margin-left: -20px;
+//     display: inline-block;
+//     border: thin solid #041E42;
+//     border-radius: 30px;
+//     -moz-transform: scale(0.8);
+//     -moz-transform-origin: 0 0;
+//     zoom: 0.8;
+//     vertical-align: text-top;
+//     box-shadow: none;
 
-  &:checked {
+//     // position: relative;
+//     // height: 23px;
+//     // margin-left: -20px;
+//     // display: inline-block;
+//     // // border: 3px solid #041E42;
+//     // border: thin solid #041E42;
+//     // border-radius: 30px;
+//     // -moz-transform: scale(0.8);
+//     // -moz-transform-origin: 0 0;
+//     // zoom: 0.8;
+//     // vertical-align: middle;
+//     // background: green;
 
-    + span {
-      border-color: #242424;
+//     .radio-inverse & {
+//       border: thin solid #ffffff;
+//       background-color: #041E42;
+//       // background-color: green;
+//     }
 
-      &:before {
-        background-color: #242424;
-      }
-    }
+//     &:before {
 
-    &:disabled + span:before {
-      background-color: #C8C9C7;
-      cursor: not-allowed;
-    }
+//     content: "";
+//     display: inline-block;
+//     // width: 31px;
+//     // height: 31px;
+//     width: 31px;
+//     height: 31px;
+//     border-radius: inherit;
+//     border: 4px solid #FFF;
+//     // vertical-align: unset;
+//       // content: "";
+//       // display: inline-block;
+//       // width: 31px;
+//       // height: 31px;
+//       // border-radius: inherit;
+//       // // border: 3px solid #FFF;
+//       // border: medium solid #FFF;
+//       // vertical-align: unset;
 
-    &:hover {
+//       .radio-inverse & {
+//         border: 4px solid #041E42;
+//       }
 
-      + span {
-        border-color: #033a6a;
+//       .app & {
+//        width: 100%;
+//        height: 100%;
+//      }
+//    }
 
-        &:before {
-          background-color: #033a6a;
-        }
-      }
-    }
-  }
+//    .app & {
+//       border-radius: 30px;
+//     }
+//   }
 
-  &:disabled {
+//   /* Hover states */
+//   &:hover + span:before {
+//     background-color: #f2f7f9;
+//     border-color: #f2f7f9;
 
-    &:hover:checked + span:before {
-      background-color: #C8C9C7;
-    }
+//     .radio-inverse & {
+//       border: 4px solid #041E42;
+//       background-color: #041E42;
+//     }
+//   }
 
-    &,
-    &:hover {
+//   &:focus {
+//     outline: none;
+//   }
 
-      + span {
-        border: 2px solid #C8C9C7;
+//    &:disabled {
+//     + span {
+//       border: 3px solid #C8C9C7;
+//       .radio-inverse & {
+//         border-color: 4px solid yellow;
+//       }
+//     }
+//    }
 
-        &:before {
-          background: #fff;
-          border: 0.3em solid #FFF;
-        }
-      }
-    }
-  }
-}
+//  &:checked {
+
+//     + span {
+//       border-color: #242424;
+//       .radio-inverse & {
+//         border-color: #fff;;
+//       }
+
+//       &:before {
+//         background-color: #242424;
+//         .radio-inverse & {
+//           border-color: #041E42;
+//           background-color: #ffffff;
+//         }
+//       }
+//     }
+
+//     &:disabled + span:before {
+//       background-color: #C8C9C7;
+//       border-color: #041E42;
+//       cursor: not-allowed;
+//       .radio-inverse & {
+
+//         border-color: #041E42;
+//         background-color: #C8C9C7;
+//       }
+//     }
+
+//     &:hover {
+
+//       + span {
+//         border-color: #033a6a;
+//         .radio-inverse & {
+
+//          border-color: #ffffff;
+//          background-color: red;
+
+//        }
+
+//      &:before {
+//         background-color: #033a6a;
+//         .radio-inverse & {
+//           border-color: #041E42;
+//           background-color: #ffffff;
+//         }
+//       }
+//     }
+//   }
+
+//   &:disabled {
+
+//     + span {
+//       border: 3px solid #ffffff;
+
+//       .radio-inverse & {
+//         border: 3px solid #C8C9C7;
+//       }
+//     }
+
+//     &:hover:checked + span:before {
+//       background-color: #C8C9C7;
+//         // border: 4px solid red;
+//         .radio-inverse & {
+//           border: 3px solid #041E42;
+//           background-color: #C8C9C7;
+//         }
+
+//       }
+
+//       &:hover {
+
+//         + span {
+//           border: 3px solid #C8C9C7;
+
+
+//           &:before {
+//             // background: #fff;
+//             border: 3px solid #C8C9C7;
+//             .radio-inverse & {
+//               border: 3px solid #041E42;
+//               background-color: #041E42;
+//             }
+
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
 .checkbox-inline {
   padding-left: 0px;

@@ -12,17 +12,28 @@
   }
   .navbar-collapse {
     &:extend(.navbar-default .navbar-header + .navbar-collapse);
+
+    // We set fontsize 0 to remove extra spaces between nav-item
+    font-size: 0;
   }
 
   ::content {
 
     primary-items {
       display: inline-block;
-      // We set fontsize 0 to remove extra spaces between nav-item
-      font-size: 0;
     }
     secondary-items {
       display: inline-block;
+    }
+    primary-items,
+    secondary-items {
+      
+      > nav-item > a {
+        // Fixes issue where content could overflow its container.
+        // Making a horizontal scrollbar get displayed when a
+        // secondary navigation is available
+        overflow: hidden;
+      }
     }
 
     > .navbar {
@@ -32,38 +43,37 @@
       transition: box-shadow 0.15s ease-in-out;
     }
     .navbar-nav.navbar-right:last-child {
-      margin-right: 5px;
-      -webkit-transition: margin-right 100ms ease;
-      -moz-transition: margin-right 100ms ease;
-      -o-transition: margin-right 100ms ease;
-      -ms-transition: margin-right 100ms ease;
-      transition: margin-right 100ms ease;
+      margin-right: 0;
     }
     .more {
       display: inline-block;
       visibility: var(--more-visibility);
 
-      > a {
-        &:extend(.navbar-default .navbar-nav > li + li > a all);
-      }
-
       li {
         display: none;
-
-        a {
-          text-transform: uppercase;
-          padding-top: 9px;
-          padding-bottom: 9px;
-
-          &:hover {
-           background-color: transparent;
-          }
-        }
       }
     }
-    .dropdown-menu {
-      max-height: 70vh;
-      overflow-y: scroll;
+    .dropdown {
+
+      > a {
+        &:extend(.navbar-default .navbar-nav > li + li > a all);
+
+        display: block;
+      }
+
+      li a {
+        text-transform: uppercase;
+        padding-top: 9px;
+        padding-bottom: 9px;
+
+        &:hover {
+         background-color: transparent;
+        }
+      }
+      .dropdown-menu {
+        max-height: 70vh;
+        overflow-y: scroll;
+      }
     }
   }
 }
@@ -122,6 +132,7 @@
 
 @media (max-width: 991px) {
   :host {
+    min-height: auto !important;
 
     .navbar-footer {
       height: 55px;
@@ -180,6 +191,7 @@
       }
     }
     nav .navbar-collapse {
+      overflow: visible;
 
       &.collapsing {
         overflow-y: hidden !important;
@@ -198,10 +210,6 @@
             display: block;
           }
         }
-      }
-      &.in {
-        height: 100% !important;
-        overflow-y: scroll !important;
       }
     }
     > .navbar-default {
@@ -249,9 +257,10 @@
 
         > nav-item {
           padding: 0;
+          position: relative;
 
           a {
-            padding: 10px 0;
+            padding: 10px 30px;
 
             span {
               padding: 0;
@@ -280,6 +289,10 @@
         overflow-y: auto;
         -ms-overflow-style: auto;
       }
+      .dropdown .dropdown-menu {
+        max-height: auto;
+        overflow: visible;
+      }
       .more {
         display: none !important;
       }
@@ -287,7 +300,6 @@
   }
 
   :host-context(.navigation-open) {
-    height: 100% !important;
 
     > .navbar-default {
       display: block;

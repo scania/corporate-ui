@@ -26,9 +26,8 @@
 <li>Clone the Corporate UI repo</li>
 <li>Download and install node.js: https://nodejs.org/en/</li>
 <li>If you're behind a firewall, CONFIGURE THE PROXY
-<li>INSTALL GULP (from command line): <b>npm install gulp-cli -g</b></li>
-<li>INSTALLING DEPENDENCIES (from command line): <b>npm install</b> from the corporate-ui folder.</li>
-<li>Start Gulp (from command line, as administrator on windows): <b>gulp</b></li>
+<li>INSTALLING DEPENDENCIES (from command line): <b>npm i</b> from the corporate-ui folder.</li>
+<li>Start the local setup by running <b>npm start</b></li>
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
 <h2>Starter Kit</h2>

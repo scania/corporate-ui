@@ -34,6 +34,9 @@ Polymer({
     },
     sticky: {
       type: String
+    },
+    items: {
+      type: Array
     }
   },
   created: function() {
@@ -64,7 +67,7 @@ Polymer({
   },
   setSize: function() {
     this.style.padding = '';
-    if(window.innerWidth < 991) {
+    if(window.innerWidth <= 991) {
       // TODO - We should use height, but then we need to add flex-grow & flex-shrink
       this.style.paddingTop = this.querySelector('.navbar-default').offsetHeight + 'px';
     }

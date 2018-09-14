@@ -14,7 +14,7 @@ function server() {
   })
 
   app.use(express.static(__dirname + '/demo'))
-  app.use('/', express.static(__dirname + '/dist'))
+  app.use('/corporate-ui/dist', express.static(__dirname + '/dist'))
   app.use('/', express.static(__dirname + '/node_modules'))
 
   app.listen(app.get('port'), function() {

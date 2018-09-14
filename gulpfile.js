@@ -45,13 +45,13 @@ function _clean() {
   return del(['tmp', 'dist'])
 }
 function _copy() {
-  return gulp.src(['src/global/**'])
+  return gulp.src('src/global/**')
     .pipe(gulp.dest('dist'))
 }
 function _libs() {
   var libs = Object.keys(package.dependencies)
 
-  return gulp.src(['node_modules/{' + libs.join() + '}/**/*'])
+  return gulp.src('node_modules/{' + libs.join() + '}/**/*')
     .pipe(gulp.dest('dist/libs'))
 }
 function _less() {
@@ -171,7 +171,7 @@ function _fullComponent() {
           isVariation = !isNaN( parseFloat(name) ),
           isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4,
           prefix = 'c-',
-          rootpath = '../../'
+          rootpath = '../../../../'
 
       if (isVariation) {
         var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
@@ -184,7 +184,7 @@ function _fullComponent() {
         if (isSubComponent) {
           // console.log(name)
           prefix = ''
-          rootpath += '../'
+          rootpath += '../../../'
         }
       }
 

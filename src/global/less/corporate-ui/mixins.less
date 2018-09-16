@@ -63,11 +63,11 @@
 }
 
 .label-mixin(@type) {
-  @color-label: 'interaction-@{type}';
+  @color-label: 'label-@{type}-app-bg';
 
-  background-color: lighten(@@color-label, 10%);
+  background-color: @@color-label;
   color: #fff;
-  border: 1px solid lighten(@@color-label, 10%);
+  border: 1px solid @@color-label;
 }
 
 .icon-mixin(@icon @content) {

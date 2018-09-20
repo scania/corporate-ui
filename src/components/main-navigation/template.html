@@ -17,10 +17,10 @@
       </template>
 
       <nav-item class="dropdown more">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
           More
           <span class="caret"></span>
-        </a>
+        </button>
 
         <ul class="dropdown-menu">
           <template is="dom-if" if="{{moreItemsAvailable}}">
@@ -44,10 +44,10 @@
 
         <template is="dom-if" if="{{item.children}}">
           <nav-item location="{{item.location}}" class$="dropdown {{dashed(item.name)}}" active="{{item.active}}">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
               {{item.name}}
               <span class="caret"></span>
-            </a>
+            </button>
         
             <ul class="dropdown-menu">
               <template is="dom-repeat" items="{{item.children}}" as="subItem">

@@ -5,7 +5,8 @@
 
       <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
         <nav-item location="{{item.location}}" active="{{item.active}}" class$="{{dashed(item.name)}}">
-          {{item.name}}
+          <a href="{{item.location}}">{{item.name}}</a>
+
           <template is="dom-if" if="{{item.children}}">
             <sub-navigation caption="{{item.caption}}">
               <template is="dom-repeat" items="{{item.children}}" as="subItem">

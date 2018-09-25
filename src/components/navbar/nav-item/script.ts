@@ -10,7 +10,8 @@ Polymer({
       type: String
     },
     location: {
-      type: String
+      type: String,
+      value: ''
     },
     icon: {
       type: String,
@@ -43,12 +44,20 @@ Polymer({
       this.insertBefore(anchor, this.firstChild)
     }
 
+    var _anchor = this.querySelector('a');
+
+    if (_anchor && _anchor.attributes.href && !_anchor.attributes.href.value) {
+      _anchor.onclick = function(event) {
+        event.preventDefault();
+      }
+    }
+
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
 
     if (this.active && this.active.toString() == 'true') {
-      this.classList.add('active');
+      this.setActive(true);
     }
 
     this.listen(this, 'tap', 'onTap');

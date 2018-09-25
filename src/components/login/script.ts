@@ -34,9 +34,9 @@ Polymer({
   },
   action: function(event) {
     event.preventDefault();
-
     var action = ( event.target.action || '' ).split('/').pop(),
-        detail = { callback: this.currentView.bind(this), target: action + 'Confirm' },
+        data = new FormData(event.target),
+        detail = { callback: this.currentView.bind(this), target: action + 'Confirm', data: data },
         _event = new CustomEvent(action, { detail: detail });
 
     document.dispatchEvent(_event);

@@ -5,12 +5,12 @@
 
       <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
         <nav-item location="{{item.location}}" active="{{item.active}}" class$="{{dashed(item.name)}}">
-          <a href="{{item.location}}">{{item.name}}</a>
+          <a href$="{{item.location}}">{{item.name}}</a>
 
           <template is="dom-if" if="{{item.children}}">
             <sub-navigation caption="{{item.caption}}">
               <template is="dom-repeat" items="{{item.children}}" as="subItem">
-                <nav-item location="{{subItem.location}}" class$="{{dashed(subItem.name)}}">{{subItem.name}}</nav-item>
+                <nav-item location="{{subItem.location}}" active="{{subItem.active}}" class$="{{dashed(subItem.name)}}">{{subItem.name}}</nav-item>
               </template>
             </sub-navigation>
           </template>

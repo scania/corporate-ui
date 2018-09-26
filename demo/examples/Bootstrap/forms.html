@@ -9,12 +9,25 @@
     <script src="../../../js/corporate-ui.js"></script>
     <script src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.js"></script>
     <script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/select2.js"></script>
+    <script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/glass.js"></script>
          <script>
-          $(document).ready(function() {
-         $( ".select2" ).select2( {
-            width: "100%",
-          });
-         });
+         //  $(document).ready(function() {
+         // $( ".select2" ).select2( {
+         //    width: "100%",
+         //  });
+         // });
+
+         $( document ).ready(function() {
+
+      $('.select2').select2().on('.select2', function() {
+        debugger
+        $('.select2-offscreen').remove();
+    });
+
+    $(document).click(function() {
+        $(".select2-container").select2('close');
+    });
+});
 </script>
 <style>
 .radio-checkbox-test { background-color: gray; padding: 40px; }
@@ -35,7 +48,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Edit job</h3>
-              <span>Brödleverans, ICA Åtvidaberg</span>
+              <span>Bread Delivery, ICA Åtvidaberg</span>
             </div>
             <div class="panel-body">
               <form id="form" action="" method="get">
@@ -44,7 +57,7 @@
                     <div class="form-group">
                       <label class="control-label">Name of job
                       </label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="Brödleverans">
+                      <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-8">
@@ -156,7 +169,7 @@
           <div class="panel panel-primary panel-inverse">
             <div class="panel-heading">
               <h3 class="panel-title">Edit job</h3>
-              <span>Brödleverans, ICA Åtvidaberg</span>
+              <span>Bread Delivery, ICA Åtvidaberg</span>
             </div>
             <div class="panel-body">
               <form id="form" action="" method="get">
@@ -165,7 +178,7 @@
                     <div class="form-group">
                       <label class="control-label">Name of job
                       </label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="Brödleverans">
+                      <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-8">
@@ -416,7 +429,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Placeholder single</p>
-              <select multiple data-placeholder="Select an option" data-allow-clear="true" class="form-control select2">
+              <select multiple data-placeholder="Select an option" data-allow-clear="true" class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -434,7 +447,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic single</p>
-              <select class="form-control select2">
+              <select class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -451,7 +464,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic search minimum</p>
-              <select data-minimum-input-range="3" class="form-control select2">
+              <select data-minimum-input-range="3" class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -468,7 +481,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic multiple</p>
-              <select multiple class="form-control select2">
+              <select multiple class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -485,7 +498,7 @@
             <div class="col-md-6">
               <h4>select</h4>
               <p>Basic multiple limit</p>
-              <select multiple data-maximum-selection-length="2" class="form-control select2">
+              <select multiple data-maximum-selection-length="2" class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -506,7 +519,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic css only inside well</p>
-            <select class="custom-select form-control">
+            <select class="form-control">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -515,7 +528,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic css only inside well</p>
-            <select class="custom-select form-control">
+            <select class="form-control">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -526,7 +539,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic multiple limit well</p>
-            <select multiple class="form-control select2">
+            <select multiple class="select2">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -535,7 +548,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic multiple</p>
-            <select multiple class="form-control select2">
+            <select multiple class="select2">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

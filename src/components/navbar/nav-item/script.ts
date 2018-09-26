@@ -7,11 +7,13 @@ Polymer({
       value: true
     },
     text: {
-      type: String
+      type: String,
+      observer: 'renderNode'
     },
     location: {
       type: String,
-      value: ''
+      value: '',
+      observer: 'renderNode'
     },
     icon: {
       type: String,
@@ -23,6 +25,9 @@ Polymer({
     }
   },
   attached: function() {
+    this.renderNode();
+  },
+  renderNode: function() {
     var child = this.firstChild,
         texts = [];
 
@@ -34,7 +39,7 @@ Polymer({
       child = child.nextSibling;
     }
 
-    var text = texts.join('').trim();
+    var text = this.text || texts.join('').trim();
 
     if (text) {
       var anchor = document.createElement('a');

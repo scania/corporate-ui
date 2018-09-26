@@ -82,6 +82,7 @@ Polymer({
           this.initCollapsable(newState);
         }).bind(this), 100);
       }
+      window['Collapse'] = window['Collapse'] || function() {};
       new Collapse(elm);
     }
   },

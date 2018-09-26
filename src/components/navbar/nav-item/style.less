@@ -28,18 +28,13 @@
 
 :host-context(c-main-navigation) {
 
+  &:first-child ::content a:before {
+    border-left: 0;
+  }
+
   ::content {
     font-size: 1.4rem;
     vertical-align: middle;
-
-    + nav-item,
-    + template + nav-item {
-
-      a,
-      .dropdown-toggle {
-        &:extend(.navbar-default .navbar-nav > li + li > a all);
-      }
-    }
 
     a,
     .dropdown-toggle {
@@ -53,7 +48,14 @@
       // Corporate-ui
       &:extend(.navbar-nav > li > a);
       &:extend(.navbar-default .navbar-nav > li > a all);
+      &:extend(.navbar-default .navbar-nav > li + li > a all);
       &:extend(.navbar-default .navbar-header + .navbar-collapse .navbar-nav a all);
+
+      &:active,
+      &:focus,
+      &:hover {
+        text-decoration: none;
+      }
 
       // Align icons used in navigation correctly
       span {

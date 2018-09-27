@@ -25,6 +25,16 @@ Polymer({
     });
     this.properties.navItems.value = items.length;
   },
+  ready: function(){
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-corporate-footer', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Corporate footer'  //categorizing events
+      });
+    }
+  },
   attached: function() {
     this.style.display = 'block';
   }

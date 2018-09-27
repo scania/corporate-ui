@@ -62,7 +62,7 @@ Highcharts.Polymer_BaseBehavior = {
         }
       },this.xZoom||this.yZoom?{zoomType: (this.xZoom&&"x")+(this.yZoom&&"y")}:{},this.chartOptions),
       //Properties
-  
+
       title: {
         text: this.title,
         style: {
@@ -189,5 +189,14 @@ Polymer({
     });
 
     this.__createChart();
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-highcharts', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Highcharts'  //categorizing events
+      });
+    }
+
   }
 })

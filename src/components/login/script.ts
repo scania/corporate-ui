@@ -31,6 +31,15 @@ Polymer({
     for(var i=0; i<forms.length; i++) {
       forms[i].addEventListener('submit', this.action.bind(this));
     }
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-login', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Login'  //categorizing events
+      });
+    }
+
   },
   action: function(event) {
     event.preventDefault();

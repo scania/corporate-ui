@@ -13,6 +13,17 @@ Polymer({
     id: String
   },
   class: 'test',
+  ready: function(){
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-modal', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Modal ' //categorizing events
+      });
+    }
+
+  },
   attached: function() {
     /*this.className += ' modal fade';
     this.id = this.id;*/

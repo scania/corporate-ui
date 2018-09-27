@@ -24,11 +24,11 @@ Polymer({
 
 		var videoId = new Date().getUTCMilliseconds()+Math.random().toString(16).slice(2);
 		$(this.$.richmedia).attr("id", videoId);
-		
+
 		if(this.url) {
 			this._mediaInit(this.$$('.video-js'));
 		}
-		
+
 	},
 
 	getPoster: function() {
@@ -64,7 +64,7 @@ Polymer({
 
 		if (navigator.userAgent.toLowerCase().indexOf("iphone") > -1 || navigator.userAgent.toLowerCase().indexOf("ipad") > -1) {
 
-    		this.lfunction(e, t); 
+    		this.lfunction(e, t);
 		}
 
 		else if (t) {
@@ -123,7 +123,7 @@ Polymer({
 		        }
 		    });
 
-		    
+
 		} else
 		    videojs(e)
 
@@ -255,6 +255,17 @@ Polymer({
 			        t[e].initPlayer()
 			}
 			;
-			
+
+		},
+		ready: function(){
+			if(window['params'].monitoring){
+				ga('send', {
+		      hitType: 'event',
+		      eventCategory: 'c-rich-media', //the object that user interact with on the page
+		      eventAction: 'loaded', // type of interaction with the object
+		      eventLabel: 'Rich media'  //categorizing events
+		    });
+			}
+
 		}
 })

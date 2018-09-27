@@ -57,6 +57,16 @@ Polymer({
       var url = this.resolveUrl('../navbar/nav-item/nav-item.html');
       this.importHref(url);
     }
+
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-corporate-header', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Corporate header'  //categorizing events
+      });
+    }
+
   },
   attached: function() {
     this.style.display = 'block';

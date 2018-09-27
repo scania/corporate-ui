@@ -98,6 +98,15 @@ Polymer({
   ready: function() {
     this.unwrap(this.getContentChildren('#primary-items')[0]);
     this.unwrap(this.getContentChildren('#secondary-items')[0]);
+
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-main-navigation', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Main navigation'  //categorizing events
+      });
+    }
   },
   unwrap: function(node) {
     if (!node) {
@@ -186,7 +195,7 @@ Polymer({
       clearTimeout(window['moreItemDelay']);
     }
 
-    // We have a delay here to make sure the navigation 
+    // We have a delay here to make sure the navigation
     // doesnt flicker on resize
     window['moreItemDelay'] = setTimeout((function() {
       styleElm.innerText = '';
@@ -305,7 +314,7 @@ Polymer({
     a.index = a.index || maxIndex;
     b.index = b.index || maxIndex;
 
-    // Compare user set index on item if they 
+    // Compare user set index on item if they
     // dont match decide what item is first
     if (a.index < b.index) order = -1;
     if (a.index > b.index) order = 1;

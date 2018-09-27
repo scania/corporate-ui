@@ -155,7 +155,7 @@ Polymer({
       this.latitude = center.lat();
       this.longitude = center.lng();
     }.bind(this));
-    
+
 
     this.fire('google-map-ready');
 
@@ -208,7 +208,18 @@ Polymer({
     if (this.getAttribute('draggable') != null) {
       mapOptions.draggable = this.draggable
     }
-    
+
     return mapOptions;
+  },
+  ready: function(){
+    if(window['params'].monitoring){
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'c-map', //the object that user interact with on the page
+        eventAction: 'loaded', // type of interaction with the object
+        eventLabel: 'Map'  //categorizing events
+      });
+    }
+
   }
 })

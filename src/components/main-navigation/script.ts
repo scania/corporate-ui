@@ -116,11 +116,12 @@ Polymer({
     node.parentNode.removeChild(node);
   },
   dashed: function(text) {
-    return text.toLowerCase().split(' ').join('-');
+    return (text || '').toLowerCase().split(' ').join('-');
   },
   setItemActive: function(event) {
     var parent = event.target.parentNode,
-        index = Array.prototype.indexOf.call(parent.children, event.target);
+        index = Array.prototype.indexOf.call(parent.children, event.target),
+        firstSubItem = event.target.querySelector('sub-navigation nav-item');
 
     // Stop here if current item is the more item
     if (event.target.classList.contains('dropdown')) {
@@ -130,6 +131,10 @@ Polymer({
 
     if (parent.preActive && parent.preActive !== event.target) {
       parent.preActive.active = false;
+    }
+
+    if (firstSubItem) {
+      firstSubItem.active = true;
     }
 
     parent.preActive = event.target;
@@ -287,12 +292,14 @@ Polymer({
     }
   },
   setItemIndex: function(val, oldVal) {
-    if (oldVal && val.toString() != oldVal.toString()) {
+    val = val || []
+    if (val.toString() != (oldVal || []).toString()) {
       val = val.map(function(item, key) {
         item.orgIndex = key;
         return item;
       })
     }
+    this.setMoreItems();
   },
   sort: function(a, b) {
     // Compare item a and b origional index to

@@ -4,13 +4,12 @@
       <content select="primary-items" id="primary-items"></content>
 
       <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
-        <nav-item location="{{item.location}}" active="{{item.active}}" class$="{{dashed(item.name)}}">
-          <a href$="{{item.location}}">{{item.name}}</a>
-
+        <nav-item location="{{item.location}}" text="{{item.text}}" active="{{item.active}}" class$="{{dashed(item.text)}}">
+          {{item.text}}
           <template is="dom-if" if="{{item.children}}">
             <sub-navigation caption="{{item.caption}}">
               <template is="dom-repeat" items="{{item.children}}" as="subItem">
-                <nav-item location="{{subItem.location}}" active="{{subItem.active}}" class$="{{dashed(subItem.name)}}">{{subItem.name}}</nav-item>
+                <nav-item location="{{subItem.location}}" active="{{subItem.active}}" class$="{{dashed(subItem.text)}}">{{subItem.text}}</nav-item>
               </template>
             </sub-navigation>
           </template>
@@ -40,20 +39,20 @@
 
       <template is="dom-repeat" items="{{secondaryItems}}" sort="sort">
         <template is="dom-if" if="{{!item.children}}">
-          <nav-item location="{{item.location}}" class$="{{dashed(item.name)}}">{{item.name}}</nav-item>
+          <nav-item location="{{item.location}}" class$="{{dashed(item.text)}}">{{item.text}}</nav-item>
         </template>
 
         <template is="dom-if" if="{{item.children}}">
-          <nav-item location="{{item.location}}" class$="dropdown {{dashed(item.name)}}" active="{{item.active}}">
+          <nav-item location="{{item.location}}" class$="dropdown {{dashed(item.text)}}" active="{{item.active}}">
             <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-              {{item.name}}
+              {{item.text}}
               <span class="caret"></span>
             </button>
         
             <ul class="dropdown-menu">
               <template is="dom-repeat" items="{{item.children}}" as="subItem">
-                <li class$="{{dashed(subItem.name)}} {{setActiveClass(subItem.active)}}">
-                  <a href="{{subItem.location}}" on-click="setMoreItemActive">{{subItem.name}}</a>
+                <li class$="{{dashed(subItem.text)}} {{setActiveClass(subItem.active)}}">
+                  <a href="{{subItem.location}}" on-click="setMoreItemActive">{{subItem.text}}</a>
                 </li>
               </template>
             </ul>

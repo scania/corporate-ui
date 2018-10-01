@@ -5,18 +5,7 @@ phases:
     commands:
       - echo Installing
       - npm install
-  pre_build:
+  build:
     commands:
       - echo Installing source NPM dependencies...
       - npm start
-  build:
-    commands:
-      - echo Build started on `date`
-      - echo Compiling the Node.js code
-      - mocha HelloWorld.js
-  post_build:
-    commands:
-      - echo Build completed on `date`
-artifacts:
-  files:
-    - HelloWorld.js

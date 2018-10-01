@@ -36,5 +36,5 @@
 <a href="https://github.com/scania/corporate-ui/tree/master/demo/examples/starter-kit">Learn more...</a>
 
 
-<h2>License</h2>
+<h3>License</h3>
 <p>All CSS, HTML and JS code are available under the MIT licens. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.</p>

@@ -1,63 +1,22 @@
 version: 0.2
 
-env:
-  variables:
-    key: "value"
-    key: "value"
-  parameter-store:
-    key: "value"
-    key: "value"
-            
 phases:
   install:
     commands:
-      - command
-      - command
-    finally:
-      - command
-      - command
+      - echo Installing Mocha...
+      - npm install -g mocha
   pre_build:
     commands:
-      - command
-      - command
-    finally:
-      - command
-      - command
+      - echo Installing source NPM dependencies...
+      - npm install unit.js
   build:
     commands:
-      - command
-      - command
-    finally:
-      - command
-      - command
+      - echo Build started on `date`
+      - echo Compiling the Node.js code
+      - mocha HelloWorld.js
   post_build:
     commands:
-      - command
-      - command
-    finally:
-      - command
-      - command
+      - echo Build completed on `date`
 artifacts:
   files:
-    - location
-    - location
-    - name
-  discard-paths: yes
-  base-directory: location
-  secondary-artifacts:
-    artifactIdentifier:
-      files:
-        - location
-        - location
-      discard-paths: yes
-      base-directory: location
-    artifactIdentifier:
-      files:
-        - location
-        - location
-      discard-paths: yes
-      base-directory: location
-cache:
-  paths:
-    - path
-    - path
+    - HelloWorld.js

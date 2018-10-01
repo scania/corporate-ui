@@ -3,12 +3,12 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing Mocha...
-      - npm install -g mocha
+      - echo Installing
+      - npm install
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - npm install unit.js
+      - npm start
   build:
     commands:
       - echo Build started on `date`

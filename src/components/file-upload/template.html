@@ -1,0 +1,8 @@
+<div class="upload-file-wrapper">
+  <button class="btn">+ Upload files</button>
+  <input type="file" name={{name}} value="" on-change="handleChange" multiple>
+  <template is="dom-repeat" items={{filenames}}>
+    <p>{{item.name}}</p>
+  </template>
+  <content></content>
+</div>

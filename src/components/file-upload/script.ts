@@ -26,8 +26,13 @@ Polymer({
       this.filenames=[];
     }
     var files = e.srcElement.files;
+    var filesize = 0;
     for(var i=0; i<files.length; i++){
-      this.push('filenames',{name: files[i].name});
+      filesize = Math.round(files[i].size/1024);
+      this.push('filenames',{
+        name: files[i].name,
+        size: filesize
+      });
     }
     if(this.filenames!=[]) this._isFiles=true;
   }

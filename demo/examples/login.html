@@ -20,49 +20,52 @@
 
 
     function Login(event) {
-      setTimeout(function() {
-        var success = true;
-        if (success) {
-          document.querySelector('c-login').style.display = 'none';
-          document.querySelector('.application').style.display = 'block';
-
-          /*event.detail.callback({
-            status: 200,
-            message: 'User was successfully logged in',
-            target: event.detail.target
-          });*/
+      var oReq = new XMLHttpRequest();
+      oReq.open('POST', '/login', true);
+      oReq.onload = function(oEvent) {
+        if (oReq.status != 200) {
+          console.error('Login failed');
+          // return
         }
-      }, 1000)
+
+        document.querySelector('c-login').style.display = 'none';
+        document.querySelector('.application').style.display = 'block';
+      }
+      oReq.send(event.detail.data);
     }
     function Register(event) {
-      var data = new FormData(event.target);
-      var pword = data.get('password')
-      var crypt = btoa(pword);
-      debugger
-      setTimeout(function() {
-        var success = true;
-        if (success) {
-          event.detail.callback({
-            status: 200,
-            message: 'User was successfully registered',
-            target: event.detail.target
-          });
-        } else {
-          // AppEventStore.apply({ name: 'notification', action: 'notify', data: { type: 'error', message: 'Register failed' } });
+      var oReq = new XMLHttpRequest();
+      oReq.open('POST', '/register', true);
+      oReq.onload = function(oEvent) {
+        if (oReq.status != 200) {
+          console.error('Register failed');
+          // return
         }
-      }, 1000);
+
+        event.detail.callback({
+          status: 200,
+          message: 'User was successfully registered',
+          target: event.detail.target
+        });
+      }
+      oReq.send(event.detail.data);
     }
     function Recover(event) {
-      setTimeout(function() {
-        var success = true;
-        if (success) {
-          event.detail.callback({
-            status: 200,
-            message: 'User password has been reset successfully',
-            target: event.detail.target
-          });
+      var oReq = new XMLHttpRequest();
+      oReq.open('POST', '/recover', true);
+      oReq.onload = function(oEvent) {
+        if (oReq.status != 200) {
+          console.error('Recover failed');
+          // return 
         }
-      }, 1000);
+
+        event.detail.callback({
+          status: 200,
+          message: 'User password has been reset successfully',
+          target: event.detail.target
+        });
+      }
+      oReq.send(event.detail.data);
     }
   </script>
 

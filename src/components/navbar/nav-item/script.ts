@@ -19,7 +19,11 @@ Polymer({
       value: ''
     },
     children: {
-      type: Array
+      type: Array,
+      observer: 'toggleModeToggler'
+    },
+    haveChildren: {
+      type: Boolean
     },
     icon: {
       type: String,
@@ -76,9 +80,15 @@ Polymer({
       this.toggleExpand(this._getEvent());
     }
 
+    if(this.querySelector('sub-navigation')) {
+      this.haveChildren = true;
+    }
+
     if (this.active && this.active.toString() == 'true') {
       this.setActive(true);
     }
+
+    this.toggleClass('expanded', this.hasClass(this, 'active'));
 
     this.listen(this, 'tap', 'onTap');
   },
@@ -145,5 +155,8 @@ Polymer({
   },
   setActiveClass: function(active) {
     return active ? 'active' : '';
+  },
+  toggleModeToggler: function(items) {
+    this.haveChildren = !!items.length;
   }
 });

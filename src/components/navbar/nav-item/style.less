@@ -177,23 +177,21 @@
       sub-navigation,
       .dropdown-menu {
         display: none;
+      }
+      .mode-toggler {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        padding: 0;
+        border: 0;
 
-        + .mode-toggler,
-        + template + .mode-toggler {
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
-          z-index: 1;
-          padding: 0;
-          border: 0;
-
-          &:before {
-            display: inline-block;
-            content: "+";
-            font-size: medium;
-            padding: 10px 15px;
-          }
+        &:before {
+          display: inline-block;
+          content: "+";
+          font-size: medium;
+          padding: 10px 15px;
         }
       }
     }

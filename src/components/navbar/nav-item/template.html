@@ -34,4 +34,6 @@
   </template>
 </template>
 
-<button on-tap="toggleExpand" class="btn btn-link mode-toggler"></button>
+<template is="dom-if" if="{{haveChildren}}">
+  <button on-tap="toggleExpand" class="btn btn-link mode-toggler"></button>
+</template>

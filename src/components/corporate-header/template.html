@@ -1,6 +1,6 @@
 
 <nav class$="navbar navbar-default{{dealer}}">
-  <div class="navbar-header" short-name$="{{shortName}}">
+  <div class="navbar-header" short-name="{{shortName}}">
     <template is="dom-if" if="{{hasMainNav}}">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -10,7 +10,7 @@
       </button>
     </template>
     <a href="{{dealerUrl}}" class="dealer">
-      <img alt$="{{dealerName}}" src$="{{dealerLogo}}">
+      <img alt="{{dealerName}}" src="{{dealerLogo}}">
       <span>{{dealerName}}</span>
     </a>
     <a href="{{siteUrl}}" class="navbar-brand"></a>
@@ -20,7 +20,7 @@
       <content></content>
 
       <template is="dom-repeat" items="{{items}}">
-        <nav-item location="{{item.location}}" active="{{item.active}}">{{item.name}}</nav-item>
+        <nav-item location="{{item.location}}" active="{{item.active}}" name="{{item.name}}"></nav-item>
       </template>
     </nav>
   </div>

@@ -21,17 +21,15 @@
     
   <c-main-content>
 
-    <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}">
+    <c-main-navigation>
       <primary-items>
         <nav-item location="#/start" text="start"></nav-item>
+        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" active="{{item.active}}" ng-attr-children="{{item.children}}" caption="{{item.text}}" ng-repeat="item in app.primaryItems"></nav-item>
       </primary-items>
 
       <secondary-items>
-        <nav-item>
-          <a href="#/profile">
-            <span class="icon-user"></span>
-          </a>
-        </nav-item>
+        <nav-item text="user" location="#/profile"></nav-item>
+        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" ng-attr-children="{{item.children}}" ng-attr-dropdown="{{item.dropdown}}" ng-repeat="item in app.secondaryItems"></nav-item>
       </secondary-items>
     </c-main-navigation>
 
@@ -287,7 +285,7 @@
           text:'first', location:'#/first'
         },
         {
-          text:'second', location:'#/second',
+          text:'second', dropdown: true,
           children:[
             { text:'first', location:'#/end/first' },
             { text:'second', location:'#/end/second' },

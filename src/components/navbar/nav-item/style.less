@@ -5,6 +5,10 @@
 :host {
   display: inline-block;
 
+  &.open {
+    position: relative;
+  }
+
   ::content {
 
     .mode-toggler {
@@ -60,6 +64,18 @@
       // Align icons used in navigation correctly
       span {
         line-height: inherit;
+      }
+    }
+    .dropdown-toggle {
+
+      &:after {
+        display: inline-block;
+        vertical-align: middle;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+        padding: 0;
+        margin: 0 25px 3px 10px;
       }
     }
   }

@@ -1,18 +1,18 @@
 <div class="upload-file-wrapper">
-  <button class="btn">+ Upload files</button>
+  <button class="btn btn-default select-button">+ Upload files</button>
   <input type="file" name={{name}} value="" on-change="handleChange" multiple$={{multiple}}>
   <div class="selected-files">
     <template is="dom-if" if={{_isFiles}}>
       <p>Files selected to upload</p>
     </template>
 
-    <template is="dom-repeat" items={{filenames}}>
-      <p>{{item.name}} - {{item.size}} KB <button type="button" name="button" class="close">&times;</button> </p>
+    <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
+      <p>{{item.file.name}} - {{item.size}} KB <button id="{{item.id}}" type="button" name="button" class="close" on-click="removeFile">&times;</button> </p>
     </template>
   </div>
 
   <template is="dom-if" if={{_isFiles}}>
-    <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-default">Upload</button>
+    <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-sm btn-default">Upload</button>
   </template>
 
   <content></content>

@@ -17,6 +17,9 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
+**Version of Corporate-ui**
+What version of corporate-ui are you using.
+
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 

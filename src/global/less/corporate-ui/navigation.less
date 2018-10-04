@@ -372,6 +372,10 @@
 //nav-pills
 .nav-pills {
 
+  li.active {  
+    outline: 1px solid @interaction-info;
+  }
+
   li {
 
     &.active > a {
@@ -401,7 +405,8 @@
       > .badge {
         margin-left: 10px;
         vertical-align: top;
-        line-height: 0.9;
+        line-height: 1.2;
+        background-color: @interaction-info;
       }
     }
   }

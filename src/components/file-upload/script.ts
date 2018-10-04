@@ -44,6 +44,7 @@ Polymer({
       });
     }
     this.updateIsFiles();
+    e.target.value = null;
     console.log(this.fileList);
   },
   removeFile: function(e){

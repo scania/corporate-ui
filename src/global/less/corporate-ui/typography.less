@@ -79,7 +79,7 @@ dt {
 dd,
 strong,
 button {
-  font-family: "Scania Sans";
+  font-family: "Scania Sans Semi Condensed";
   color: @interaction-primary;
   font-weight: bold;
 }
@@ -312,6 +312,8 @@ address {
 
   article {
     &:extend(article);
+    font-family: 'Scania Sans Semi Condensed';
+
     h2,
     h3,
     h4,
@@ -354,8 +356,6 @@ address {
       &:extend(article h6);
     }
     p {
-      font-size: @p-font-size-app-article;
-      line-height: 26px;
       &:extend(article p);
 
       &.lead {

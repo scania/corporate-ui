@@ -2,8 +2,12 @@
 
   &-vertical {
 
-    > .btn:first-child:not(:last-child) {
-      border-radius: 0;
+    > .btn {
+
+      &:first-child:not(:last-child),
+      &:last-child:not(:first-child) {
+        border-radius: 0;
+      }
     }
   }
 
@@ -49,10 +53,32 @@
       &:extend(.btn-lg all);
     }
   }
-}
 
+  + .btn-group,
+  + .btn {
+      margin-left: 7px;
+      float: none;
+  }
+
+  + .btn + .btn,
+  + .btn + .btn-group,
+  + .btn-group + .btn,
+  + .btn-group + .btn-group {
+      margin-left: -1px;
+      float: left;
+  }
+
+}
 
 .btn-toolbar {
-    margin-top: 15px;
+    font-size: 0;
     margin-bottom: 15px;
+    
+    > .btn,
+    > .btn-group,
+    > .input-group {
+        margin-left: 7px;
+  }
 }
+
+

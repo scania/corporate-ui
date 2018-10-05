@@ -7,10 +7,13 @@ Polymer({
       value: true
     },
     text: {
-      type: String
+      type: String,
+      observer: 'renderNode'
     },
     location: {
-      type: String
+      type: String,
+      value: '',
+      observer: 'renderNode'
     },
     icon: {
       type: String,
@@ -22,6 +25,9 @@ Polymer({
     }
   },
   attached: function() {
+    this.renderNode();
+  },
+  renderNode: function() {
     var child = this.firstChild,
         texts = [];
 
@@ -33,7 +39,7 @@ Polymer({
       child = child.nextSibling;
     }
 
-    var text = texts.join('').trim();
+    var text = this.text || texts.join('').trim();
 
     if (text) {
       var anchor = document.createElement('a');
@@ -43,12 +49,20 @@ Polymer({
       this.insertBefore(anchor, this.firstChild)
     }
 
+    var _anchor = this.querySelector('a');
+
+    if (_anchor && _anchor.attributes.href && !_anchor.attributes.href.value) {
+      _anchor.onclick = function(event) {
+        event.preventDefault();
+      }
+    }
+
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
 
     if (this.active && this.active.toString() == 'true') {
-      this.classList.add('active');
+      this.setActive(true);
     }
 
     this.listen(this, 'tap', 'onTap');

@@ -1,5 +1,13 @@
 // SCANIA BOOTSTRAP THEME
 // FORMS
+@import (reference) 'variables';
+// local variables for input colors
+
+//background color for default input
+@input-bg-color: @color-grey3;
+//background color for disabled input
+@input-bg-color-disabled: #f7f7f7;
+
 legend {
   border: 0;
 }
@@ -9,7 +17,6 @@ textarea[placeholder] {
   color: #53565A;
 
   // Do not group these rules
-
   &::-webkit-input-placeholder {
     color: inherit;
   }
@@ -76,7 +83,7 @@ textarea[placeholder] {
 
     .app & {
       background-size: 27px;
-      background-position: calc(99%) center;
+      background-position: calc(98%) center;
     }
   }
 
@@ -181,8 +188,7 @@ fieldset {
 }
 
 .radio-inline, .checkbox-inline {
-    
-    padding-left: 0px;
+  padding-left: 0px;
 }
 
 .checkbox-inline {

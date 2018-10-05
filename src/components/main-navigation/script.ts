@@ -23,6 +23,11 @@ Polymer({
       type: Array,
       value: [],
       observer: 'setItemIndex'
+    },
+    secondaryItems: {
+      type: Array,
+      value: [],
+      observer: 'setItemIndex'
     }
   },
   listeners: {
@@ -91,33 +96,47 @@ Polymer({
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
   },
   ready: function() {
-    var content = this.getContentChildren()[0];
-    if (!content) {
+    this.unwrap(this.getContentChildren('#primary-items')[0]);
+    this.unwrap(this.getContentChildren('#secondary-items')[0]);
+  },
+  unwrap: function(node) {
+    if (!node) {
       return
     }
 
-    while (content.firstChild) {
-      content.parentNode.insertBefore(content.firstChild, content);
+    while (node.firstChild) {
+      node.parentNode.insertBefore(node.firstChild, node);
     }
-    for (var i = 0; i < content.attributes.length; i++) {
-      var attrs = content.attributes[i],
-          val = content.parentNode.getAttribute(attrs.name) || '';
-      content.parentNode.setAttribute(attrs.name, val + ' ' + attrs.value);
-      // content.parentNode[attrs.name] = attrs.value;
+    for (var i = 0; i < node.attributes.length; i++) {
+      var attrs = node.attributes[i],
+          val = node.parentNode.getAttribute(attrs.name) || '';
+      node.parentNode.setAttribute(attrs.name, val + ' ' + attrs.value);
+      // node.parentNode[attrs.name] = attrs.value;
     }
-    content.parentNode.removeChild(content);
+    node.parentNode.removeChild(node);
+  },
+  dashed: function(text) {
+    return (text || '').toLowerCase().split(' ').join('-');
   },
   setItemActive: function(event) {
+    var parent = event.target.parentNode,
+        index = Array.prototype.indexOf.call(parent.children, event.target),
+        firstSubItem = event.target.querySelector('sub-navigation nav-item');
+
     // Stop here if current item is the more item
-    if (event.target.classList.contains('more')) {
+    if (event.target.classList.contains('dropdown')) {
+      event.target.active = false;
       return
     }
 
-    var parent = event.target.parentNode,
-        index = Array.prototype.indexOf.call(parent.children, event.target)
     if (parent.preActive && parent.preActive !== event.target) {
       parent.preActive.active = false;
     }
+
+    if (firstSubItem) {
+      firstSubItem.active = true;
+    }
+
     parent.preActive = event.target;
 
     if(this.moreItems) {
@@ -166,7 +185,6 @@ Polymer({
     var primary = this.querySelector('primary-items'),
         secondary = this.querySelector('secondary-items'),
         styleElm = this.querySelector('style') || {},
-        dropdown = this.querySelector('.dropdown-toggle'),
         itemsWidth;
 
     if (window['moreItemDelay']) {
@@ -181,7 +199,7 @@ Polymer({
       this.customStyle['--more-visibility'] = 'hidden';
       this.updateStyles();
 
-      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth + 2 : 0) + dropdown.offsetWidth;
+      itemsWidth = primary.offsetWidth + (secondary ? secondary.offsetWidth + 2 : 0);
       if(itemsWidth >= this.offsetWidth) {
         this.moreItemsAvailable = true;
       }
@@ -200,8 +218,8 @@ Polymer({
           styleElm = this.querySelector('style'),
           dropdown = this.querySelector('.dropdown-toggle'),
           availableSpace = this.offsetWidth - (secondary ? secondary.offsetWidth + 2 : 0),
-          // We have -1 here because we dont want to count the template element
-          itemsChanged = primary.children.length - 1 !== this.moreItems.length;
+          // We have -2 here because we dont want to count the template element or "More" nav-item
+          itemsChanged = primary.children.length - 2 !== this.moreItems.length;
 
       if (itemsChanged) {
         this.moreItems = [];
@@ -212,7 +230,8 @@ Polymer({
 
       primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
 
-      for(var i=0; i<primary.children.length; i++) {
+      // We have -1 here to skip the "More" nav-item
+      for(var i=0; i<primary.children.length - 1; i++) {
         var item = primary.children[i],
             node = item.querySelector('a');
 
@@ -233,7 +252,6 @@ Polymer({
           }
         }
 
-        // We have -1 here because we dont want to count the template element
         if (itemsChanged && node) {
           this.push('moreItems', {
             text: node.text,
@@ -274,18 +292,20 @@ Polymer({
     }
   },
   setItemIndex: function(val, oldVal) {
-    if (oldVal && val.toString() != oldVal.toString()) {
-      this.primaryItems = val.map(function(item, key) {
+    val = val || []
+    if (val.toString() != (oldVal || []).toString()) {
+      val = val.map(function(item, key) {
         item.orgIndex = key;
         return item;
       })
     }
+    this.setMoreItems();
   },
   sort: function(a, b) {
     // Compare item a and b origional index to
     // decide what item is first
     var order = a.orgIndex < b.orgIndex ? -1 : 1,
-        maxIndex = this.primaryItems.length;
+        maxIndex = 100;
 
     // Check if item has a user set index or
     // set a max index

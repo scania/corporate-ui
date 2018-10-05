@@ -1,44 +1,88 @@
 //SCANIA BOOSTRAP
 //FEEDBACK AND ERRORS
 
-.has-success .form-control,
-.has-success.form-control,
-table.has-success tr td,
-tr.has-success td {
-  border-color: #468847;
-  color: #468847;
-  background-color: #dff0d8;
+.has-success {
+
+  .control-label {
+    color: #44A878;
+  }
+
+  .form-control,
+  &.form-control,{
+    color: #53565a;
+    background-color: #F2F9F5;
+    border-color: #44A878;
+
+    &:focus {
+      background-color: #F2F9F5;
+      border-color: #44A878;
+      box-shadow: none;
+    }
+  }
 }
 
-.has-warning .form-control,
-.has-warning.form-control,
-table.has-warning tr td,
-tr.has-warning td {
-  border-color: #c09853;
-  background: #fcf8e3;
-  color: #c09853;
+
+.has-warning {
+
+  .control-label {
+    color: #F2855F;
+  }
+
+  .form-control,
+  &.form-control {
+    color: #53565a;
+    background-color: #FEF6F4;
+    border-color: #F2855F;
+
+    &:focus {
+      background-color: #FEF6F4;
+      border-color: #F2855F;
+      box-shadow: none;
+    }
+  }
 }
 
-.has-error .form-control,
-.has-error.form-control,
-.has-danger .form-control,
-.has-danger.form-control,
-table.has-danger tr td,
-tr.has-danger td {
-  border-color: #b94a48;
-  background: #f6e8e8;
-  color: #a94442;
+
+.has-error {
+
+  .control-label {
+    color: #cc1040;
+  }
+
+  .form-control,
+  &.form-control {
+    color: #53565a;
+    background-color: #FAEEED;
+    border-color: #CC1040;
+    &:focus {
+      background-color: #FAEEED;
+      border-color: #CC1040;
+      box-shadow: none;
+    }
+  }
 }
 
-.has-info .form-control,
-.has-info.form-control,
-table.has-info tr td,
-tr.has-info td {
-  border-color: #3a87ad;
-  background: #d9edf7;
-  color: #3a87ad;
+.has-info {
+
+  .control-label {
+    color: #4a8ba4;
+  }
+
+  .form-control,
+  &.form-control {
+    color: #53565a;
+    background-color: #f6f9fa;
+    border-color: #4a8ba4;
+
+    &:focus {
+      background-color: #f6f9fa;
+      border-color: #4a8ba4;
+      box-shadow: none;
+    }
+  }
 }
 
+//should this be here?
 .dropdown-menu a.has-danger {
   background: #f2dede;
   color: #b94a48;

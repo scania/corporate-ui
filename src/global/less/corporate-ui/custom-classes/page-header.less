@@ -50,16 +50,20 @@ header.c-page-header {
 
   .page-header {
 
-    h1,
-    h2,
-    h3 {
-      padding-top: 0;
-      margin-bottom: 0.2rem;
-      letter-spacing: 0.03rem;
+    h1 {
       font-family: "Scania Sans Headline" !important;
       font-weight: bold;
+      font-size: 2.2rem;      
+      padding-top: 0;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.05rem;
+      padding-right: 10px;      
+
     }
 
+    h2 {
+      font-size: 2rem;
+    }
     h3,
     h4 {
       display: inline;
@@ -68,7 +72,6 @@ header.c-page-header {
 
     h3 {
       font-size: 1.6rem;
-      padding-right: 10px;
     }
 
     h4 {
@@ -76,7 +79,7 @@ header.c-page-header {
       font-weight: bold;
       font-size: 1.6rem;
       padding-left: 10px;
-      border-left: 1px solid #041e42;
+      border-left: 1px solid @interaction-primary;
       padding-right: 0;
     }
 
@@ -86,7 +89,8 @@ header.c-page-header {
   }
 
   .btn-toolbar {
-      margin-top: 0;
+    margin-top: 0;
+    margin-bottom: 15px;
   }
 
   .form-control {

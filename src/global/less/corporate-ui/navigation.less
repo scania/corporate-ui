@@ -401,7 +401,8 @@
       > .badge {
         margin-left: 10px;
         vertical-align: top;
-        line-height: 0.9;
+        line-height: 1.2;
+        background-color: @interaction-info;
       }
     }
   }
@@ -648,7 +649,20 @@
       }
     }
   }
+
+  .nav-pills {
+
+        > li {
+          display: block;
+          float: none;
+
+         + li {
+          margin-bottom: -1px;
+      }         
+    }  
+  }
 }
+
 @media (max-width: 767px) {
 
   .navbar-nav {

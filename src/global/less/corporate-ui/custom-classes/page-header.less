@@ -62,16 +62,24 @@ header.c-page-header {
     }
 
     h2 {
+      font-family: 'Scania Sans Headline';
+      letter-spacing: 0.05rem;      
+      font-weight: bold;      
       font-size: 2rem;
+      padding-right: 10px;      
     }
     h3,
     h4 {
+      font-weight: bold;
       display: inline;
       vertical-align: middle;
     }
 
     h3 {
+      font-family: 'Scania Sans Headline';
+      letter-spacing: 0.05rem;    
       font-size: 1.6rem;
+      padding-right: 10px;      
     }
 
     h4 {
@@ -91,16 +99,10 @@ header.c-page-header {
   .btn-toolbar {
     margin-top: 0;
     margin-bottom: 15px;
+    float: right;
   }
 
   .form-control {
-
-    &:focus {
-      -webkit-box-shadow: none;
-      box-shadow: none;
-      background: rgb(242, 247, 249);
-      border: 1px solid rgb(74, 139, 164);
-    }
 
     .app & {
       background-color: #FFF;
@@ -109,7 +111,46 @@ header.c-page-header {
   }
 }
 
-html body.scania .page-header {
-  border: none;
-  margin-top: 0;
+@media (max-width: 991px) {
+
+  header.c-page-header {
+
+    .page-header {
+      padding-bottom: 0;
+      margin-bottom: 20px;
+
+      h4 {
+        font-weight: normal;
+        padding-left: 0;
+        border-left: none;
+        display: block;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .btn-toolbar {
+      margin-top: 0;
+      margin-bottom: 10px;
+      float: left !important;  //Temporary important, until FMP is cleaned
+    }
+
+    ul.nav.nav-pills {
+        margin-top: 5px;
+
+         > li {
+            display: block;
+            float: none;
+            margin-bottom: -1px;
+
+          + li {
+            margin-left: 0;
+            margin-bottom: -1px;
+        }         
+      }  
+    }
+  }
 }
+

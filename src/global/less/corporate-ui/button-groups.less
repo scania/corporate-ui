@@ -1,15 +1,5 @@
 .btn-group {
-
-  &-vertical {
-
-    > .btn {
-
-      &:first-child:not(:last-child),
-      &:last-child:not(:first-child) {
-        border-radius: 0;
-      }
-    }
-  }
+  font-size: 0;
 
   &.open .dropdown-toggle {
     box-shadow: none;
@@ -62,12 +52,37 @@
 
   + .btn + .btn,
   + .btn + .btn-group,
-  + .btn-group + .btn,
-  + .btn-group + .btn-group {
+  + .btn-group + .btn {
       margin-left: -1px;
       float: left;
   }
 
+  + .btn-group {
+      margin-left: 7px !important;
+      float: none;
+  }
+
+  + .btn-group + .btn-group  {
+      float: none;
+  }
+
+  &-vertical {
+
+    > .btn {
+
+      &:first-child:not(:last-child),
+      &:last-child:not(:first-child) {
+        border-radius: 0;
+      }
+    }
+
+    + .btn + .btn,
+    + .btn + .btn-group,
+    + .btn-group + .btn,
+    + .btn-group + .btn-group {
+        margin-left: 0;
+    }   
+  }
 }
 
 .btn-toolbar {

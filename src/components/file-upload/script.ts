@@ -26,26 +26,34 @@ Polymer({
     fileIdCounter: {
       type: Number,
       value: 0
+    },
+    maxFileSize: {
+      type: Number
     }
   },
   handleChange: function(e){
     if(this.multiple==false){
       this.fileList=[];
     }
+    var fileExceed = false;
     var files = e.srcElement.files;
     var filesize = 0;
     for(var i=0; i<files.length; i++){
       filesize = Math.round(files[i].size/1024);
       this.fileIdCounter++;
+      if(this.maxFileSize){
+        fileExceed = this.updateFileSizeInfo(files[i].size);
+      }
       this.push('fileList',{
         file: files[i],
         size: filesize,
-        id: this.fileIdCounter
+        id: this.fileIdCounter,
+        fileSizeStatus: fileExceed
       });
     }
+    console.log(this.fileList);
     this.updateIsFiles();
     e.target.value = null;
-    console.log(this.fileList);
   },
   removeFile: function(e){
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
@@ -57,11 +65,16 @@ Polymer({
       }
 
     }
-    console.log(e);
     this.updateIsFiles();
   },
   updateIsFiles: function(){
     this._isFiles = (this.fileList.length!=0) ? true : false;
+    // remove file from fileList if exceed max size
+    for(var k=0; k < this.fileList.length; k++){
+      if(this.fileList[k].fileSizeStatus==true){
+        this.fileList.splice(k,1);
+      }
+    }
   },
   sortFilenames: function(a,b){
     var aId = a.id;
@@ -74,5 +87,8 @@ Polymer({
       return 1;
     }
     return 0;
+  },
+  updateFileSizeInfo: function(fileSize){
+      return fileSize > this.maxFileSize ? true : false;
   }
 });

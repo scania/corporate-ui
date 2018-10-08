@@ -7,7 +7,12 @@
     </template>
 
     <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
-      <p>{{item.file.name}} - {{item.size}} KB <button id="{{item.id}}" type="button" name="button" class="close" on-click="removeFile">&times;</button> </p>
+      <p>{{item.file.name}} - {{item.size}} KB
+        <template is="dom-if" if="{{item.fileSizeStatus}}">
+          <span> - File exceed limitation</span>
+        </template>
+          <button id="{{item.id}}" type="button" name="button" class="close" on-click="removeFile">&times;</button>
+      </p>
     </template>
   </div>
 

@@ -1,15 +1,5 @@
 .btn-group {
-
-  &-vertical {
-
-    > .btn {
-
-      &:first-child:not(:last-child),
-      &:last-child:not(:first-child) {
-        border-radius: 0;
-      }
-    }
-  }
+  font-size: 0;
 
   &.open .dropdown-toggle {
     box-shadow: none;
@@ -62,22 +52,61 @@
 
   + .btn + .btn,
   + .btn + .btn-group,
-  + .btn-group + .btn,
-  + .btn-group + .btn-group {
+  + .btn-group + .btn {
       margin-left: -1px;
       float: left;
   }
 
+  + .btn-group {
+      margin-left: 7px;
+      float: none;
+  }
+
+  + .btn-group + .btn-group  {
+      float: none;
+  }
+
+  &-vertical {
+
+    > .btn {
+
+      &:first-child:not(:last-child),
+      &:last-child:not(:first-child) {
+        border-radius: 0;
+      }
+    }
+
+    + .btn + .btn,
+    + .btn + .btn-group,
+    + .btn-group + .btn,
+    + .btn-group + .btn-group {
+        margin-left: 0;
+    }
+
+    > .btn-group + .btn + .btn,
+    > .btn-group + .btn + .btn-group,
+    > .btn-group + .btn-group + .btn {
+      margin-left: 0;
+      margin-bottom: -1px;
+    }
+  }
 }
 
 .btn-toolbar {
     font-size: 0;
     margin-bottom: 15px;
-    
+    margin-left: 0px;
+
     > .btn,
     > .btn-group,
     > .input-group {
-        margin-left: 7px;
+      margin-left: 7px;
+    }
+
+    > .btn:first-child,
+    > .btn-group:first-child,
+    > .input-group:first-child {
+       margin-left: 0;
   }
 }
 

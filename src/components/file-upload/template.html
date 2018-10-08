@@ -9,7 +9,7 @@
     <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
       <p>{{item.file.name}} - {{item.size}} KB
         <template is="dom-if" if="{{item.fileSizeStatus}}">
-          <span> - File exceed limitation</span>
+          <span> - File is too large. Maximum file size is {{maxFileSize}} KB </span>
         </template>
           <button id="{{item.id}}" type="button" name="button" class="close" on-click="removeFile">&times;</button>
       </p>

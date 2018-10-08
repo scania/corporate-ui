@@ -89,6 +89,7 @@ Polymer({
     return 0;
   },
   updateFileSizeInfo: function(fileSize){
-      return fileSize > this.maxFileSize ? true : false;
+      var max = this.maxFileSize * 1024;
+      return fileSize > max ? true : false;
   }
 });

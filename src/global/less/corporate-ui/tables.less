@@ -47,7 +47,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           &,
           &.form-control {
             font-weight: normal;
-            font-family: 'Scania Sans';
+            font-family: 'Scania Sans Semi Condensed';
+            color: @color-primary-03;
 
             &::placeholder,
             &::-webkit-input-placeholder,
@@ -55,9 +56,14 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             &:-ms-input-placeholder,
             &:moz-placeholder {
               font-weight: normal;
-              font-family: 'Scania Sans';
+              font-family: 'Scania Sans Semi Condensed';
+              color: @color-primary-03;
             }
           }
+        }
+
+        .form-group i {
+          color: @color-primary-03;
         }
       }
     }

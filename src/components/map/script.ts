@@ -210,16 +210,5 @@ Polymer({
     }
 
     return mapOptions;
-  },
-  ready: function(){
-    if(window['params'].monitoring){
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'c-map', //the object that user interact with on the page
-        eventAction: 'loaded', // type of interaction with the object
-        eventLabel: 'Map'  //categorizing events
-      });
-    }
-
   }
 })

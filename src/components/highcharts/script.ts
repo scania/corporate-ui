@@ -189,14 +189,6 @@ Polymer({
     });
 
     this.__createChart();
-    if(window['params'].monitoring){
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'c-highcharts', //the object that user interact with on the page
-        eventAction: 'loaded', // type of interaction with the object
-        eventLabel: 'Highcharts'  //categorizing events
-      });
-    }
 
   }
 })

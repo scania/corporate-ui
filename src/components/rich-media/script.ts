@@ -256,16 +256,5 @@ Polymer({
 			}
 			;
 
-		},
-		ready: function(){
-			if(window['params'].monitoring){
-				ga('send', {
-		      hitType: 'event',
-		      eventCategory: 'c-rich-media', //the object that user interact with on the page
-		      eventAction: 'loaded', // type of interaction with the object
-		      eventLabel: 'Rich media'  //categorizing events
-		    });
-			}
-
 		}
 })

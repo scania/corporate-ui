@@ -98,15 +98,6 @@ Polymer({
   ready: function() {
     this.unwrap(this.getContentChildren('#primary-items')[0]);
     this.unwrap(this.getContentChildren('#secondary-items')[0]);
-
-    if(window['params'].monitoring){
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'c-main-navigation', //the object that user interact with on the page
-        eventAction: 'loaded', // type of interaction with the object
-        eventLabel: 'Main navigation'  //categorizing events
-      });
-    }
   },
   unwrap: function(node) {
     if (!node) {

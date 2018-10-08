@@ -42,15 +42,6 @@ Polymer({
     this.parentNode.setAttribute('btntext', this.attributes.btnText.value)
     this.parentNode.setAttribute('imgarray', JSON.stringify(this.imgarray))
 
-    if(window['params'].monitoring){
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'c-tiled-display', //the object that user interact with on the page
-        eventAction: 'loaded', // type of interaction with the object
-        eventLabel: 'Tiled display'  //categorizing events
-      });
-    }
-
   },
   // function for checking variation, builds corresponding dom-if template.
   checkVariation: function(variation) {

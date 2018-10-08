@@ -109,7 +109,7 @@ Polymer({
     }
   },
   setActive: function(newState) {
-    if (newState.toString() == 'true') {
+    if (newState && newState.toString() == 'true') {
       this.classList.add('active');
 
       this.async(function() {
@@ -157,6 +157,6 @@ Polymer({
     return active ? 'active' : '';
   },
   toggleModeToggler: function(items) {
-    this.haveChildren = !!items.length;
+    this.haveChildren = !!(items || []).length;
   }
 });

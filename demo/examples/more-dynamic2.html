@@ -39,6 +39,9 @@
       <div class="container">
         <h1>headline</h1>
         <p>paragraph</p>
+        <button>Set fmp data - attr</button>
+        <button class="button2">Set fmp data - prop</button>
+        <button ng-click="app.primaryItems = app.fmpItems">Set fmp data - angular</button>
       </div>
     </section>
 
@@ -49,10 +52,13 @@
   <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
 
   <script>
-    angular.module('CorporateUI', [])
-      .controller('App', [App]);
+      var fmpItems = [{"state":"dashboard","text":"Start","location":"#/","active":true},{"state":"fleetPosition.vehicle.map","text":"Fleet position","location":"#/positioning/fleet-position/map","active":false,"children":[{"state":"fleetPosition.vehicle.map","text":"Map","location":"#/positioning/fleet-position/map","active":false},{"state":"fleetPosition.vehicle.list","text":"Vehicles","location":"#/positioning/fleet-position/vehicle-list","active":false},{"state":"eventList","text":"Events","location":"#/positioning/fleet-position/event-list","active":false},{"state":"fleetPosition.geozone.list","text":"Geofence zones","location":"#/positioning/fleet-position/geozone/list","active":false},{"state":"fleetPosition.locations.list","text":"Locations","location":"#/positioning/fleet-position/locations","active":false},{"state":"settings.fleetPosition","text":"Settings","location":"#/settings/fleet-position","active":false}]},{"state":"servicePlanning.toDo","text":"Service planning","location":"#/service-planning/to-do","active":false,"children":[{"state":"servicePlanning.toDo","text":"To do","location":"#/service-planning/to-do","active":false},{"state":"servicePlanning.calendar","text":"Calendar","location":"#/service-planning/calendar","active":false},{"state":"servicePlanning.defect.list","text":"Defect reports","location":"#/service-planning/defect/list","active":false},{"state":"servicePlanning.occasion.list","text":"Service activities","location":"#/service-planning/occasion/list","active":false},{"state":"servicePlanning.workshop.history","text":"Workshop history","location":"#/service-planning/workshop/history","active":false}]},{"state":"messaging.messagingArchive","text":"Messages","location":"#/messaging/messaging-archive","active":false},{"state":"driverEvaluation.home","text":"Driver evaluation","location":"#/driver-evaluation/home","active":false,"children":[{"state":"driverEvaluation.ranking","text":"Result","location":"#/driver-evaluation/results","active":false},{"state":"driverEvaluation.fuelConsumption","text":"Fuel consumption","location":"#/driver-evaluation/fuel-consumption","active":false},{"state":"driverEvaluation.driverData","text":"Driver data","location":"#/driver-evaluation/driver-data","active":false}]},{"state":"vehiclePerformance.overview","text":"Vehicle performance","location":"#/vehicle-performance/overview","active":false,"children":[{"state":"vehiclePerformance.overview","text":"Overview","location":"#/vehicle-performance/overview","active":false},{"state":"vehiclePerformance.details","text":"Details","location":"#/vehicle-performance/details","active":false},{"state":"vehiclePerformance.compare","text":"Compare","location":"#/vehicle-performance/compare","active":false},{"state":"vehiclePerformance.environmentalReport","text":"Environmental report","location":"#/vehicle-performance/environmental-report","active":false},{"state":"vehiclePerformance.fuelReport","text":"Fuel report","location":"#/vehicle-performance/fuel-report","active":false}]},{"state":"accelerate.scania","text":"Accelerate Scania data","location":"#/accelerate/scania","active":false},{"state":"accelerate.open","text":"Accelerate open data","location":"#/accelerate/open","active":false}];
 
-    function App() {
+    angular.module('CorporateUI', [])
+      .value('fmpItems', fmpItems)
+      .controller('App', ['fmpItems', App]);
+
+    function App(fmpItems) {
       this.topItems = [
         {
           text:'first', location:'#/first'
@@ -287,7 +293,7 @@
           text:'first', location:'#/first'
         },
         {
-          text:'second', location:'#/second',
+          text:'second',
           children:[
             { text:'first', location:'#/end/first' },
             { text:'second', location:'#/end/second' },
@@ -298,6 +304,16 @@
           ]
         }
       ];
+
+      this.fmpItems = fmpItems;
+    }
+
+    document.querySelector('section button').onclick = function(e) {
+      document.querySelector('c-main-navigation').setAttribute('primary-items', JSON.stringify(fmpItems));
+    }
+
+    document.querySelector('section .button2').onclick = function(e) {
+      document.querySelector('c-main-navigation').primaryItems = fmpItems;
     }
   </script>
 </body>

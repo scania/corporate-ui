@@ -6,6 +6,9 @@
   <template is="dom-if" if="{{location}}">
     <a href$="{{location}}">
       <content></content>
+      <template is="dom-if" if="{{icon}}">
+        <span class$="icon-{{icon}}"></span>
+      </template>
     </a>
   </template>
 

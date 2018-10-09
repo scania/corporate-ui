@@ -26,8 +26,7 @@ Polymer({
       type: Boolean
     },
     icon: {
-      type: String,
-      observer: 'AddIcon'
+      type: String
     },
     active: {
       type: String,
@@ -141,14 +140,6 @@ Polymer({
     e.stopPropagation();
     this.toggleClass('collapsed', this.hasClass(this, 'expanded'));
     this.toggleClass('expanded');
-  },
-  AddIcon: function(icon) {
-    var anchor = document.createElement('a');
-    anchor.href = this.location;
-    this.appendChild(anchor);
-    var SpanIcon = document.createElement('span');
-    SpanIcon.classList.add('icon-' + icon);
-    anchor.appendChild(SpanIcon);
   },
   dashed: function(text) {
     return (text || '').toLowerCase().split(' ').join('-');

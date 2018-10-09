@@ -2,6 +2,8 @@
 name: Bug report
 about: Create a report to help us improve
 
+---
+
 **Version of Corporate-ui**<br/>
 What version of corporate-ui are you using. You'll find what version of Corporate UI is un use by pressing F12 when looking at a page in the browser. The version is then visible withing the first few lines of the new window.
 

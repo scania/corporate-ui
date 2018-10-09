@@ -62,7 +62,7 @@ Highcharts.Polymer_BaseBehavior = {
         }
       },this.xZoom||this.yZoom?{zoomType: (this.xZoom&&"x")+(this.yZoom&&"y")}:{},this.chartOptions),
       //Properties
-  
+
       title: {
         text: this.title,
         style: {
@@ -189,5 +189,6 @@ Polymer({
     });
 
     this.__createChart();
+
   }
 })

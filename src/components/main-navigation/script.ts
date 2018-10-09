@@ -200,7 +200,7 @@ Polymer({
       clearTimeout(window['moreItemDelay']);
     }
 
-    // We have a delay here to make sure the navigation 
+    // We have a delay here to make sure the navigation
     // doesnt flicker on resize
     window['moreItemDelay'] = setTimeout((function() {
       styleElm.innerText = '';
@@ -323,7 +323,7 @@ Polymer({
     a.index = a.index || maxIndex;
     b.index = b.index || maxIndex;
 
-    // Compare user set index on item if they 
+    // Compare user set index on item if they
     // dont match decide what item is first
     if (a.index < b.index) order = -1;
     if (a.index > b.index) order = 1;

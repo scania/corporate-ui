@@ -9,6 +9,7 @@
     "webcomponents.js": "0.7.24"
   },
   "devDependencies": {
+    "@types/google.analytics": "0.0.39",
     "@types/node": "7.0.12",
     "angular": "1.5.5",
     "bootstrap-datepicker": "1.6.4",

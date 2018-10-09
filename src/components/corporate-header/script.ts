@@ -57,6 +57,7 @@ Polymer({
       var url = this.resolveUrl('../navbar/nav-item/nav-item.html');
       this.importHref(url);
     }
+
   },
   attached: function() {
     this.style.display = 'block';

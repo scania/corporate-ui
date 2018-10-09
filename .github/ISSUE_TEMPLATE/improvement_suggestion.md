@@ -1,6 +1,6 @@
 ---
 name: Improvement suggestion
-about: Use this option when you've have defined an existing area of Corporate UI that can be improved. Please attach relevant research documentation so that your issue can be handled at the User Experience Management Group.
+about: Use this option when you've have defined an existing area that can be improved. Please attach relevant research documentation so that your issue can be handled at the UX Management Group.
 
 ---
 

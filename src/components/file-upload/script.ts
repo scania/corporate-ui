@@ -39,7 +39,7 @@ Polymer({
     var files = e.srcElement.files;
     var filesize = 0;
     for(var i=0; i<files.length; i++){
-      filesize = Math.round(files[i].size/1024);
+      filesize = this.calcFileSize(files[i].size);
       this.fileIdCounter++;
       if(this.maxFileSize){
         fileExceed = this.updateFileSizeInfo(files[i].size);
@@ -54,6 +54,15 @@ Polymer({
     console.log(this.fileList);
     this.updateIsFiles();
     e.target.value = null;
+  },
+  calcFileSize: function(number){
+    if(number < 1024) {
+      return number + 'bytes';
+    } else if(number >= 1024 && number < 1048576) {
+      return (number/1024).toFixed(1) + 'KB';
+    } else if(number >= 1048576) {
+      return (number/1048576).toFixed(1) + 'MB';
+    }
   },
   removeFile: function(e){
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);

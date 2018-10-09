@@ -7,7 +7,7 @@
     </template>
 
     <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
-      <p>{{item.file.name}} - {{item.size}} KB
+      <p>{{item.file.name}} - {{item.size}}
         <template is="dom-if" if="{{item.fileSizeStatus}}">
           <span> - File is too large. Maximum file size is {{maxFileSize}} KB </span>
         </template>

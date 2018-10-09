@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Use this option when you've found an error caused by Corporate UI.
 
 ---
 

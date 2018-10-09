@@ -32,6 +32,7 @@ Polymer({
   },
   listeners: {
     'navItem-active': 'setItemActive',
+    'navItemDropdown-active': 'setMoreItemActive',
     'subNavigation-attached': 'setHeaderSize',
     'fullscreen-toggled': 'setHeaderSize',
     'moreItem-toggled': 'setMoreItems',
@@ -120,32 +121,40 @@ Polymer({
   },
   setItemActive: function(event) {
     var parent = event.target.parentNode,
+        gParent = event.target.parentNode.parentNode,
         index = Array.prototype.indexOf.call(parent.children, event.target),
         firstSubItem = event.target.querySelector('sub-navigation nav-item');
 
     // Stop here if current item is the more item
-    if (event.target.classList.contains('dropdown')) {
+    /*if (event.target.dropdown) {
       event.target.active = false;
       return
-    }
+    }*/
+    /*parent.querySelector('.more').setActive()
+    if(this.moreItems) {
+      this.set('moreItems.' + index + '.active', true);
+    }*/
 
-    if (parent.preActive && parent.preActive !== event.target) {
-      parent.preActive.active = false;
+    if (gParent.preActive && gParent.preActive !== event.target) {
+      gParent.preActive.active = false;
     }
 
     if (firstSubItem) {
       firstSubItem.active = true;
     }
 
-    parent.preActive = event.target;
+    gParent.preActive = event.target;
 
-    if(this.moreItems) {
-      this.moreItems.map((function(item, key) {
-        if (item.active) {
-          this.set('moreItems.' + key + '.active', false);
-        }
-      }).bind(this))
-      this.set('moreItems.' + index + '.active', true);
+    // We should probably re think this interaction later on...
+    if (gParent.id === 'main-navigation') {
+      if(this.moreItems) {
+        this.moreItems.map((function(item, key) {
+          if (item.active) {
+            this.set('moreItems.' + key + '.active', false);
+          }
+        }).bind(this))
+        this.set('moreItems.' + index + '.active', true);
+      }
     }
 
     // $('.navbar-toggle').trigger('click');
@@ -191,7 +200,7 @@ Polymer({
       clearTimeout(window['moreItemDelay']);
     }
 
-    // We have a delay here to make sure the navigation 
+    // We have a delay here to make sure the navigation
     // doesnt flicker on resize
     window['moreItemDelay'] = setTimeout((function() {
       styleElm.innerText = '';
@@ -255,7 +264,7 @@ Polymer({
         if (itemsChanged && node) {
           this.push('moreItems', {
             text: node.text,
-            href: node.getAttribute('href')
+            location: node.getAttribute('href')
           });
         }
       }
@@ -267,10 +276,12 @@ Polymer({
     });
   },
   setMoreItemActive: function(event) {
-    var trigger = event.target.parentNode,
-        index = Array.prototype.indexOf.call(trigger.parentNode.children, trigger);
+    if (event.detail.navItem.classList.contains('more')) {
+      var trigger = event.target.parentNode,
+          index = Array.prototype.indexOf.call(trigger.parentNode.children, trigger);
 
-    this.querySelector('primary-items').children[index].active = true;
+      this.querySelector('primary-items').children[index].active = true;
+    }
   },
   navigationClose: function() {
     var hamburger = this.header.querySelector('.navbar-toggle');
@@ -312,7 +323,7 @@ Polymer({
     a.index = a.index || maxIndex;
     b.index = b.index || maxIndex;
 
-    // Compare user set index on item if they 
+    // Compare user set index on item if they
     // dont match decide what item is first
     if (a.index < b.index) order = -1;
     if (a.index > b.index) order = 1;

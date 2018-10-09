@@ -61,5 +61,6 @@ Polymer({
         expand: false,
         minimize: false
       });
+
   }
 });

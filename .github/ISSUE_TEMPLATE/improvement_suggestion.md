@@ -1,11 +1,11 @@
 ---
-name: Bug report
-about: Use this option when you've found an error caused by Corporate UI.
+name: Improvement suggestion
+about: Use this option when you've have defined an existing area of Corporate UI that can be improved. Please attach relevant research documentation so that your issue can be handled at the User Experience Management Group.
 
 ---
 
 **Version of Corporate-ui**<br/>
-What version of corporate-ui are you using. You'll find what version of Corporate UI is un use by pressing F12 when looking at a page in the browser. The version is then visible withing the first few lines of the new window.
+What version of Corporate UI are you using. You'll find out what version of Corporate UI is in use by pressing F12 when looking at a page in the browser. The version then is visible on the first few lines of code in the new window.
 
 **Describe the bug**<br/>
 A clear and concise description of what the bug is.

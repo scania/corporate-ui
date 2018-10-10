@@ -3,9 +3,9 @@
 </template>
 
 <template is="dom-if" if="{{!text}}">
-  <content select="sub-navigation"></content>
-
   <template is="dom-if" if="{{location}}">
+    <content select="sub-navigation"></content>
+
     <a href$="{{location}}">
       <content></content>
 

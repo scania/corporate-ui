@@ -41,7 +41,7 @@
       <content select="secondary-items" id="secondary-items"></content>
 
       <template is="dom-repeat" items="{{secondaryItems}}" sort="sort">
-        <nav-item location="{{item.location}}" text="{{item.text}}" class$="dropdown {{dashed(item.text)}}" active="{{item.active}}" children="{{item.children}}" dropdown="true"></nav-item>
+        <nav-item location="{{item.location}}" text="{{item.text}}" class$="dropdown {{dashed(item.text)}}" active="{{item.active}}" children="{{item.children}}" dropdown="{{item.children.length}}"></nav-item>
       </template>
     </secondary-items>
   </div>

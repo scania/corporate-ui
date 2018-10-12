@@ -290,15 +290,20 @@ Polymer({
   sticky: function() {
     var stickyNavTop = this.offsetTop,
         scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
-        isSticky = document.body.classList.contains('header-is-sticky');
+        isSticky = document.body.classList.contains('header-is-sticky'),
+        event = document.createEvent('Event');
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
       if (isSticky) {
         document.body.classList.remove('header-is-sticky');
+        event.initEvent('navigation-not-sticky', true, true);
+        this.dispatchEvent(event);
       }
     } else {
       if (!isSticky) {
         document.body.classList.add('header-is-sticky');
+        event.initEvent('navigation-is-sticky', true, true);
+        this.dispatchEvent(event);
       }
     }
   },

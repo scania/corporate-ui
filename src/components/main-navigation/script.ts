@@ -309,17 +309,18 @@ Polymer({
       return item;
     });
     val.sort(this.sort);
+    this.header.hasMainNav = !!val.length;
     return val;
   },
   setPriItemIndex: function(val, oldVal) {
-    val = val || []
+    val = val || [];
     if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
       this.primaryItems = this.setItemIndex(val);
     }
     this.setMoreItems();
   },
   setSecItemIndex: function(val, oldVal) {
-    val = val || []
+    val = val || [];
     if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
       this.secondaryItems = this.setItemIndex(val);
     }

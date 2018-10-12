@@ -5,17 +5,34 @@
     display: inline-block;
     cursor: pointer;
   }
-  .select-button{
-    width: 200px;
-    height: 80px;
-  }
   input[type="file"]{
     position: absolute;
     left: 0;
     top:0;
     opacity: 0;
     width: 200px;
-    height: 80px;
+    height: 60px;
     cursor: pointer;
+  }
+  .close{
+    position: absolute;
+    right: 40px;
+    top:20px;
+    z-index: 100;
+  }
+  .files-wrapper{
+    margin-bottom: 10px;
+  }
+  .activate{
+    animation: progressBar 1s 1s normal forwards;
+  }
+}
+
+@keyframes progressBar {
+  from{
+    width: 0%;
+  }
+  to{
+    width: 100%;
   }
 }

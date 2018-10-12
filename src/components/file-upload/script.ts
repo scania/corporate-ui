@@ -29,6 +29,19 @@ Polymer({
     },
     maxFileSize: {
       type: Number
+    },
+    uploaded: {
+      type: Boolean,
+      value: false
+    }
+  },
+  calcFileSize: function(number){
+    if(number < 1024) {
+      return number + 'bytes';
+    } else if(number >= 1024 && number < 1048576) {
+      return (number/1024).toFixed(1) + 'KB';
+    } else if(number >= 1048576) {
+      return (number/1048576).toFixed(1) + 'MB';
     }
   },
   handleChange: function(e){
@@ -55,15 +68,6 @@ Polymer({
     this.updateIsFiles();
     e.target.value = null;
   },
-  calcFileSize: function(number){
-    if(number < 1024) {
-      return number + 'bytes';
-    } else if(number >= 1024 && number < 1048576) {
-      return (number/1024).toFixed(1) + 'KB';
-    } else if(number >= 1048576) {
-      return (number/1048576).toFixed(1) + 'MB';
-    }
-  },
   removeFile: function(e){
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
     var fileId = e.target.id;
@@ -75,15 +79,6 @@ Polymer({
 
     }
     this.updateIsFiles();
-  },
-  updateIsFiles: function(){
-    this._isFiles = (this.fileList.length!=0) ? true : false;
-    // remove file from fileList if exceed max size
-    for(var k=0; k < this.fileList.length; k++){
-      if(this.fileList[k].fileSizeStatus==true){
-        this.fileList.splice(k,1);
-      }
-    }
   },
   sortFilenames: function(a,b){
     var aId = a.id;
@@ -100,5 +95,20 @@ Polymer({
   updateFileSizeInfo: function(fileSize){
       var max = this.maxFileSize * 1024;
       return fileSize > max ? true : false;
+  },
+  updateIsFiles: function(){
+    this._isFiles = (this.fileList.length!=0) ? true : false;
+    // remove file from fileList if exceed max size
+    for(var k=0; k < this.fileList.length; k++){
+      if(this.fileList[k].fileSizeStatus==true){
+        this.fileList.splice(k,1);
+      }
+    }
+  },
+  uploadFiles: function(e){
+    this.uploaded = true;
+    console.log(this.activate);
+    this.activate = 'activate';
+    console.log(this.activate);
   }
 });

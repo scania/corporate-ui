@@ -22,6 +22,12 @@ Polymer({
       type: Array,
       observer: 'toggleModeToggler'
     },
+    props: {
+      type: Object
+    },
+    attrs: {
+      type: Object
+    },
     haveChildren: {
       type: Boolean
     },
@@ -83,8 +89,20 @@ Polymer({
       this.haveChildren = true;
     }
 
-    if (this.active && this.active.toString() == 'true') {
+    if(this.active && this.active.toString() == 'true') {
       this.setActive(true);
+    }
+
+    if(this.props) {
+      Object.keys(this.props).map(function(prop) {
+        this[prop] = this.props[prop];
+      }, this);
+    }
+
+    if(this.attrs) {
+      Object.keys(this.attrs).map(function(attr) {
+        this.setAttribute(attr, this.attrs[attr]);
+      }, this);
     }
 
     this.toggleClass('expanded', this.hasClass(this, 'active'));

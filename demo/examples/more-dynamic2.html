@@ -21,17 +21,14 @@
     
   <c-main-content>
 
-    <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}">
-      <primary-items>
-        <nav-item location="#/start" text="start"></nav-item>
-      </primary-items>
-
+    <!-- <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}"> -->
+    <c-main-navigation items-data>
       <secondary-items>
-        <nav-item>
+        <div>
           <a href="#/profile">
             <span class="icon-user"></span>
           </a>
-        </nav-item>
+        </div>
       </secondary-items>
     </c-main-navigation>
 
@@ -41,7 +38,7 @@
         <p>paragraph</p>
         <button>Set fmp data - attr</button>
         <button class="button2">Set fmp data - prop</button>
-        <button ng-click="app.primaryItems = app.fmpItems">Set fmp data - angular</button>
+        <button ng-click="app.primaryItems = app.itemsFmp">Set fmp data - angular</button>
       </div>
     </section>
 
@@ -52,13 +49,14 @@
   <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
 
   <script>
-      var fmpItems = [{"state":"dashboard","text":"Start","location":"#/","active":true},{"state":"fleetPosition.vehicle.map","text":"Fleet position","location":"#/positioning/fleet-position/map","active":false,"children":[{"state":"fleetPosition.vehicle.map","text":"Map","location":"#/positioning/fleet-position/map","active":false},{"state":"fleetPosition.vehicle.list","text":"Vehicles","location":"#/positioning/fleet-position/vehicle-list","active":false},{"state":"eventList","text":"Events","location":"#/positioning/fleet-position/event-list","active":false},{"state":"fleetPosition.geozone.list","text":"Geofence zones","location":"#/positioning/fleet-position/geozone/list","active":false},{"state":"fleetPosition.locations.list","text":"Locations","location":"#/positioning/fleet-position/locations","active":false},{"state":"settings.fleetPosition","text":"Settings","location":"#/settings/fleet-position","active":false}]},{"state":"servicePlanning.toDo","text":"Service planning","location":"#/service-planning/to-do","active":false,"children":[{"state":"servicePlanning.toDo","text":"To do","location":"#/service-planning/to-do","active":false},{"state":"servicePlanning.calendar","text":"Calendar","location":"#/service-planning/calendar","active":false},{"state":"servicePlanning.defect.list","text":"Defect reports","location":"#/service-planning/defect/list","active":false},{"state":"servicePlanning.occasion.list","text":"Service activities","location":"#/service-planning/occasion/list","active":false},{"state":"servicePlanning.workshop.history","text":"Workshop history","location":"#/service-planning/workshop/history","active":false}]},{"state":"messaging.messagingArchive","text":"Messages","location":"#/messaging/messaging-archive","active":false},{"state":"driverEvaluation.home","text":"Driver evaluation","location":"#/driver-evaluation/home","active":false,"children":[{"state":"driverEvaluation.ranking","text":"Result","location":"#/driver-evaluation/results","active":false},{"state":"driverEvaluation.fuelConsumption","text":"Fuel consumption","location":"#/driver-evaluation/fuel-consumption","active":false},{"state":"driverEvaluation.driverData","text":"Driver data","location":"#/driver-evaluation/driver-data","active":false}]},{"state":"vehiclePerformance.overview","text":"Vehicle performance","location":"#/vehicle-performance/overview","active":false,"children":[{"state":"vehiclePerformance.overview","text":"Overview","location":"#/vehicle-performance/overview","active":false},{"state":"vehiclePerformance.details","text":"Details","location":"#/vehicle-performance/details","active":false},{"state":"vehiclePerformance.compare","text":"Compare","location":"#/vehicle-performance/compare","active":false},{"state":"vehiclePerformance.environmentalReport","text":"Environmental report","location":"#/vehicle-performance/environmental-report","active":false},{"state":"vehiclePerformance.fuelReport","text":"Fuel report","location":"#/vehicle-performance/fuel-report","active":false}]},{"state":"accelerate.scania","text":"Accelerate Scania data","location":"#/accelerate/scania","active":false},{"state":"accelerate.open","text":"Accelerate open data","location":"#/accelerate/open","active":false}];
+    var itemsFmp = [{"state":"dashboard","text":"Start","location":"#/","active":true},{"state":"fleetPosition.vehicle.map","text":"Fleet position","location":"#/positioning/fleet-position/map","active":false,"children":[{"state":"fleetPosition.vehicle.map","text":"Map","location":"#/positioning/fleet-position/map","active":false},{"state":"fleetPosition.vehicle.list","text":"Vehicles","location":"#/positioning/fleet-position/vehicle-list","active":false},{"state":"eventList","text":"Events","location":"#/positioning/fleet-position/event-list","active":false},{"state":"fleetPosition.geozone.list","text":"Geofence zones","location":"#/positioning/fleet-position/geozone/list","active":false},{"state":"fleetPosition.locations.list","text":"Locations","location":"#/positioning/fleet-position/locations","active":false},{"state":"settings.fleetPosition","text":"Settings","location":"#/settings/fleet-position","active":false}]},{"state":"servicePlanning.toDo","text":"Service planning","location":"#/service-planning/to-do","active":false,"children":[{"state":"servicePlanning.toDo","text":"To do","location":"#/service-planning/to-do","active":false},{"state":"servicePlanning.calendar","text":"Calendar","location":"#/service-planning/calendar","active":false},{"state":"servicePlanning.defect.list","text":"Defect reports","location":"#/service-planning/defect/list","active":false},{"state":"servicePlanning.occasion.list","text":"Service activities","location":"#/service-planning/occasion/list","active":false},{"state":"servicePlanning.workshop.history","text":"Workshop history","location":"#/service-planning/workshop/history","active":false}]},{"state":"messaging.messagingArchive","text":"Messages","location":"#/messaging/messaging-archive","active":false},{"state":"driverEvaluation.home","text":"Driver evaluation","location":"#/driver-evaluation/home","active":false,"children":[{"state":"driverEvaluation.ranking","text":"Result","location":"#/driver-evaluation/results","active":false},{"state":"driverEvaluation.fuelConsumption","text":"Fuel consumption","location":"#/driver-evaluation/fuel-consumption","active":false},{"state":"driverEvaluation.driverData","text":"Driver data","location":"#/driver-evaluation/driver-data","active":false}]},{"state":"vehiclePerformance.overview","text":"Vehicle performance","location":"#/vehicle-performance/overview","active":false,"children":[{"state":"vehiclePerformance.overview","text":"Overview","location":"#/vehicle-performance/overview","active":false},{"state":"vehiclePerformance.details","text":"Details","location":"#/vehicle-performance/details","active":false},{"state":"vehiclePerformance.compare","text":"Compare","location":"#/vehicle-performance/compare","active":false},{"state":"vehiclePerformance.environmentalReport","text":"Environmental report","location":"#/vehicle-performance/environmental-report","active":false},{"state":"vehiclePerformance.fuelReport","text":"Fuel report","location":"#/vehicle-performance/fuel-report","active":false}]},{"state":"accelerate.scania","text":"Accelerate Scania data","location":"#/accelerate/scania","active":false},{"state":"accelerate.open","text":"Accelerate open data","location":"#/accelerate/open","active":false}];
 
     angular.module('CorporateUI', [])
-      .value('fmpItems', fmpItems)
-      .controller('App', ['fmpItems', App]);
+      .value('itemsFmp', itemsFmp)
+      .directive('itemsData', itemsData)
+      .controller('App', ['itemsFmp', App]);
 
-    function App(fmpItems) {
+    function App(itemsFmp) {
       this.topItems = [
         {
           text:'first', location:'#/first'
@@ -111,7 +109,10 @@
           ]
         },
         {
-          text:'fifth', location:'#/fifth', caption: 'fifth',
+          text:'fifth', location:'#/fifth', caption: 'fifth', props: {
+            onclick: function(e) { console.log('Event triggered from prop on:', e.currentTarget) },
+            className: 'some-class',
+          },
           children:[
             { text:'first', location:'#/fifth/first' },
             { text:'second', location:'#/fifth/second' },
@@ -122,7 +123,10 @@
           ]
         },
         {
-          text:'sixth', location:'#/sixth', caption: 'sixth',
+          text:'sixth', location:'#/sixth', caption: 'sixth', attrs: {
+            onclick: '(function(t) { console.log("Event triggered from attr on:", t) }(this))',
+            class: 'some-class',
+          },
           children:[
             { text:'first', location:'#/sixth/first' },
             { text:'second', location:'#/sixth/second' },
@@ -305,15 +309,25 @@
         }
       ];
 
-      this.fmpItems = fmpItems;
+      this.itemsFmp = itemsFmp;
+    }
+
+    function itemsData() {
+      return {
+        restrict: 'A',
+        link: function(scope, el, attrs) {
+          el[0].primaryItems = scope.app.primaryItems;
+          el[0].secondaryItems = scope.app.secondaryItems;
+        }
+      }
     }
 
     document.querySelector('section button').onclick = function(e) {
-      document.querySelector('c-main-navigation').setAttribute('primary-items', JSON.stringify(fmpItems));
+      document.querySelector('c-main-navigation').setAttribute('primary-items', JSON.stringify(itemsFmp));
     }
 
     document.querySelector('section .button2').onclick = function(e) {
-      document.querySelector('c-main-navigation').primaryItems = fmpItems;
+      document.querySelector('c-main-navigation').primaryItems = itemsFmp;
     }
   </script>
 </body>

@@ -4,7 +4,7 @@
       <content select="primary-items" id="primary-items"></content>
 
       <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
-        <nav-item text="{{item.text}}" location="{{item.location}}" active="{{item.active}}" children="{{item.children}}" class$="{{dashed(item.text)}}" caption="{{item.text}}"></nav-item>
+        <nav-item text="{{item.text}}" location="{{item.location}}" active="{{item.active}}" children="{{item.children}}" props="{{item.props}}" attrs="{{item.attrs}}" class$="{{dashed(item.text)}}" caption="{{item.text}}"></nav-item>
         <!-- <nav-item active$="{{item.active}}" class$="{{dashed(item.text)}}">
           <a href$="{{item.location}}">{{item.text}}</a>
 

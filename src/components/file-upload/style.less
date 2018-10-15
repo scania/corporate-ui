@@ -3,25 +3,34 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
-    cursor: pointer;
   }
   input[type="file"]{
     position: absolute;
     left: 0;
     top:0;
     opacity: 0;
-    width: 200px;
-    height: 60px;
+    width: 128px;
+    height: 42px;
     cursor: pointer;
   }
-  .close{
+  .time:after{
+    content:'\00d7';
     position: absolute;
-    right: 40px;
-    top:20px;
-    z-index: 100;
+    left: 0;
+    top:0;
   }
-  .files-wrapper{
-    margin-bottom: 10px;
+  .file-list{
+    padding-left: 20px;
+  }
+  .done:after{
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    top:0;
+  }
+  p, h5{
+    text-align: left;
+    padding-left: 20px;
   }
   .activate{
     animation: progressBar 1s 1s normal forwards;

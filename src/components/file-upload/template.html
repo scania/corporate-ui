@@ -1,31 +1,38 @@
-<div class="upload-file-wrapper">
-  <button class="btn btn-default">+ Upload files</button>
-  <input type="file" name={{name}} value="" on-change="handleChange" multiple$={{multiple}}>
-
-    <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
-      <div class="col-xs-12 files-wrapper">
-        <input type="text" name="" value="{{item.file.name}} - {{item.size}}" class="form-control" readonly>
-        <button id="{{item.id}}" type="button" name="button" class="close" on-click="removeFile">&times;</button>
-
-        <template is="dom-if" if="{{item.fileSizeStatus}}">
-          <div class="alert alert-danger">
-          File is too large. Maximum file size is {{maxFileSize}} KB
-          </div>
-        </template>
-
-        <template is="dom-if" if="{{uploaded}}">
-          <span>&#10004;</span>
-          <div class="progress">
-            <div class="progress-bar progress-bar-success"></div>
-          </div>
-        </template>
-
-        <template is="dom-if" if={{_isFiles}}>
-          <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-sm btn-success" on-click="uploadFiles">Upload</button>
-        </template>
+  <div class="upload-file-wrapper col-xs-12">
+      <div class="form-group">
+        <button class="btn btn-default">+ Upload files</button>
+        <input type="file" name={{name}} value="" on-change="handleChange" multiple$={{multiple}}>
       </div>
 
-    </template>
+      <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
+        <div class="form-group">
 
-  <content></content>
-</div>
+            <div class="file-list">
+              <button id="{{item.id}}" type="button" name="button" class$="{{statussymbol}} close pull-left" on-click="removeFile"></button>
+              {{item.file.name}} - {{item.size}}
+              <template is="dom-if" if="{{uploaded}}">
+                <div class="progress">
+                  <div class="activate progress-bar progress-bar-success"></div>
+                </div>
+              </template>
+            </div>
+
+          <template is="dom-if" if="{{item.fileSizeStatus}}">
+            <div class="alert alert-danger">
+            File is too large. Maximum file size is {{maxFileSize}} KB
+            </div>
+          </template>
+
+
+        </div>
+      </template>
+
+      <template is="dom-if" if={{_isFiles}}>
+        <div class="form-group">
+          <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-success" on-click="uploadFiles">Upload</button>
+        </div>
+
+      </template>
+
+    <content></content>
+  </div>

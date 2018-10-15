@@ -33,6 +33,10 @@ Polymer({
     uploaded: {
       type: Boolean,
       value: false
+    },
+    statussymbol: {
+      type: String,
+      value: 'time'
     }
   },
   calcFileSize: function(number){
@@ -64,7 +68,6 @@ Polymer({
         fileSizeStatus: fileExceed
       });
     }
-    console.log(this.fileList);
     this.updateIsFiles();
     e.target.value = null;
   },
@@ -107,8 +110,7 @@ Polymer({
   },
   uploadFiles: function(e){
     this.uploaded = true;
-    console.log(this.activate);
-    this.activate = 'activate';
-    console.log(this.activate);
+    // this.statussymbol = '&#10004;'; &time;
+    this.statussymbol = 'done';
   }
 });

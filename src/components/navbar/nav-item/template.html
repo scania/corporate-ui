@@ -4,8 +4,14 @@
 
 <template is="dom-if" if="{{!text}}">
   <template is="dom-if" if="{{location}}">
+    <content select="sub-navigation"></content>
+
     <a href$="{{location}}">
       <content></content>
+
+      <template is="dom-if" if="{{icon}}">
+        <span class$="icon-{{icon}}"></span>
+      </template>
     </a>
   </template>
 

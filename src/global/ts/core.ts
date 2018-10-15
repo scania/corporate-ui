@@ -62,7 +62,7 @@ function addMetaAndHeaderSpecs() {
 
 function applyBrand() {
 
-  var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'bad-UX', 'mockup'];
+  var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'traton', 'bad-UX', 'mockup'];
   var subDomain = window['location'].hostname.split('.')[0];
   var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
 

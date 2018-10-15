@@ -22,12 +22,12 @@ Polymer({
     primaryItems: {
       type: Array,
       value: [],
-      observer: 'setItemIndex'
+      observer: 'setPriItemIndex'
     },
     secondaryItems: {
       type: Array,
       value: [],
-      observer: 'setItemIndex'
+      observer: 'setSecItemIndex'
     }
   },
   listeners: {
@@ -290,38 +290,50 @@ Polymer({
   sticky: function() {
     var stickyNavTop = this.offsetTop,
         scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
-        isSticky = document.body.classList.contains('header-is-sticky');
+        isSticky = document.body.classList.contains('header-is-sticky'),
+        event = document.createEvent('Event');
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
       if (isSticky) {
         document.body.classList.remove('header-is-sticky');
+        event.initEvent('navigation-not-sticky', true, true);
+        this.dispatchEvent(event);
       }
     } else {
       if (!isSticky) {
         document.body.classList.add('header-is-sticky');
+        event.initEvent('navigation-is-sticky', true, true);
+        this.dispatchEvent(event);
       }
     }
   },
-  setItemIndex: function(val, oldVal) {
+  setItemIndex: function(val) {
+    val = val.map(function(item, key) {
+      item.index = item.index || 0;
+      item.orgIndex = key;
+      return item;
+    });
+    val.sort(this.sort);
+    return val;
+  },
+  setPriItemIndex: function(val, oldVal) {
     val = val || []
-    if (val.toString() != (oldVal || []).toString()) {
-      val = val.map(function(item, key) {
-        item.orgIndex = key;
-        return item;
-      })
+    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
+      this.primaryItems = this.setItemIndex(val);
+    }
+    this.setMoreItems();
+  },
+  setSecItemIndex: function(val, oldVal) {
+    val = val || []
+    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
+      this.secondaryItems = this.setItemIndex(val);
     }
     this.setMoreItems();
   },
   sort: function(a, b) {
     // Compare item a and b origional index to
     // decide what item is first
-    var order = a.orgIndex < b.orgIndex ? -1 : 1,
-        maxIndex = 100;
-
-    // Check if item has a user set index or
-    // set a max index
-    a.index = a.index || maxIndex;
-    b.index = b.index || maxIndex;
+    var order = a.orgIndex < b.orgIndex ? -1 : 1;
 
     // Compare user set index on item if they
     // dont match decide what item is first

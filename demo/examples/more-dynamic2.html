@@ -23,12 +23,16 @@
 
     <!-- <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}"> -->
     <c-main-navigation items-data>
+      <primary-items>
+        <nav-item location="#/start" text="start"></nav-item>
+      </primary-items>
+
       <secondary-items>
-        <div>
+        <nav-item>
           <a href="#/profile">
             <span class="icon-user"></span>
           </a>
-        </div>
+        </nav-item>
       </secondary-items>
     </c-main-navigation>
 

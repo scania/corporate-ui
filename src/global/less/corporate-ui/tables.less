@@ -34,6 +34,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
     > tr {
 
+    
+
       > td {
         border: 1px solid @interaction-primary;
       }
@@ -41,6 +43,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > th {
         text-transform: uppercase;
         border: 1px solid @interaction-primary;
+        vertical-align: top;
 
         input,
         select {
@@ -50,6 +53,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             font-weight: normal;
             font-family: 'Scania Sans Semi Condensed';
             color: @color-primary-03;
+            height: 30px;
+            border: 1px solid #E2E2E2;
 
             &::placeholder,
             &::-webkit-input-placeholder,

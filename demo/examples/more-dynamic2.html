@@ -21,7 +21,7 @@
     
   <c-main-content>
 
-    <c-main-navigation ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}">
+    <c-main-navigation more-text="{{app.moreText}}" ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}">
       <primary-items>
         <nav-item location="#/start" text="start"></nav-item>
       </primary-items>
@@ -61,6 +61,8 @@
       .controller('App', ['fmpItems', App]);
 
     function App(fmpItems) {
+      this.moreText = 'More 2';
+
       this.topItems = [
         {
           text:'First', location:'#/First'

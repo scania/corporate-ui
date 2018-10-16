@@ -10,6 +10,12 @@ Polymer({
       type: String,
       value: ''
     },
+    template: {
+      type: String
+    },
+    classes: {
+      type: String
+    },
     location: {
       type: String,
       value: ''
@@ -105,6 +111,14 @@ Polymer({
       }, this);
     }
 
+    if (this.classes) {
+      this.classList.add.apply(this.classList, this.classes.split(' '));
+    }
+
+    if (this.template) {
+      this.addTemplate();
+    }
+
     this.toggleClass('expanded', this.hasClass(this, 'active'));
 
     this.listen(this, 'tap', 'onTap');
@@ -150,6 +164,13 @@ Polymer({
     this.active = true;
     this.fire('navItemDropdown-active', {navItem: this}, {node: e.target});
     e.stopPropagation();
+  },
+  addTemplate: function() {
+    var div = document.createElement('div')
+    div.innerHTML = this.template;
+    while (div.firstChild) {
+      this.appendChild(div.firstChild);
+    }
   },
   hasClass: function(element, className) {
     return element.className.split(' ').indexOf(className) > -1;

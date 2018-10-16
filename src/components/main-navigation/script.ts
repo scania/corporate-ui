@@ -15,6 +15,10 @@ Polymer({
       type: Array,
       value: []
     },
+    moreText: {
+      type: String,
+      value: 'More'
+    },
     fullbleed: {
       type: Boolean,
       value: true

@@ -15,6 +15,10 @@ Polymer({
       type: Array,
       value: []
     },
+    moreText: {
+      type: String,
+      value: 'More'
+    },
     fullbleed: {
       type: Boolean,
       value: true
@@ -49,11 +53,6 @@ Polymer({
       this.querySelector('secondary-items').classList.add('navbar-right');
     }
 
-    // Show hamburger menu if item exist in main-navigation
-    if (this.querySelectorAll('nav-item').length) {
-      this.header.hasMainNav = true;
-    }
-
     // The timeout here is used to delay the callback until template is fully rendered
     setTimeout((function() {
       this.sticky.call(this);
@@ -70,6 +69,8 @@ Polymer({
     if (this.header) {
       this.header.sticky = 'should-stick';
     }
+
+    this.itemsExist();
 
     var nav = this.querySelector('#main-navigation'),
         styleElm = document.createElement('style');
@@ -290,16 +291,32 @@ Polymer({
   sticky: function() {
     var stickyNavTop = this.offsetTop,
         scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
-        isSticky = document.body.classList.contains('header-is-sticky');
+        isSticky = document.body.classList.contains('header-is-sticky'),
+        event = document.createEvent('Event');
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
       if (isSticky) {
         document.body.classList.remove('header-is-sticky');
+        event.initEvent('navigation-not-sticky', true, true);
+        this.dispatchEvent(event);
       }
     } else {
       if (!isSticky) {
         document.body.classList.add('header-is-sticky');
+        event.initEvent('navigation-is-sticky', true, true);
+        this.dispatchEvent(event);
       }
+    }
+  },
+  itemsExist: function() {
+    var priItems = (this.primaryItems || []).length,
+        secItems = (this.secondaryItems || []).length,
+        items = this.querySelectorAll('nav-item').length + priItems + secItems;
+
+    // Show hamburger menu if item exist in main-navigation
+    // One item is the "More item"
+    if (items > 1) {
+      this.header.hasMainNav = true;
     }
   },
   setItemIndex: function(val) {
@@ -309,17 +326,18 @@ Polymer({
       return item;
     });
     val.sort(this.sort);
+    this.itemsExist();
     return val;
   },
   setPriItemIndex: function(val, oldVal) {
-    val = val || []
+    val = val || [];
     if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
       this.primaryItems = this.setItemIndex(val);
     }
     this.setMoreItems();
   },
   setSecItemIndex: function(val, oldVal) {
-    val = val || []
+    val = val || [];
     if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
       this.secondaryItems = this.setItemIndex(val);
     }

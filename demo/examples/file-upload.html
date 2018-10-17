@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>UX Library</title>
+
+  <script src="../../../js/corporate-ui.js"></script>
+  <link rel="import" href="../../../components/file-upload/file-upload.html">
+</head>
+<body class="app scania ux-lib">
+  <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
+
+  </c-corporate-header>
+
+  <c-main-content>
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-lg-8">
+
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <h3 class="panel-title">File upload demo</h3>
+              </div>
+
+              <div class="panel-body">
+                <form class="" action="" method="post">
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label class="control-label">Fullname
+                        </label>
+                        <input type="text" value='' autofocus class="form-control" placeholder="An example of input file">
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <label>Upload file
+                        </label>
+                        <c-file-upload name="uxlib-file-input" accept="image/*" max-file-size=1000 multiple></c-file-upload>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12 text-right">
+                      <div class="form-group">
+                        <button class="btn btn-success" type="submit">Save changes</button>
+                        <button class="btn btn-default" type="reset">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </c-main-content>
+
+
+
+</body>
+</html>

@@ -5,39 +5,65 @@ Polymer({
       type: Boolean,
       value: true
     },
-    name: {
-      type: String
-    },
-    fileList: {
-      type: Array,
-      value: []
-    },
     _isFiles: {
       type: Boolean,
       value: false
     },
-    multiple: {
-      type: Boolean,
-      value: false
-    },
-    itemKey: {
-      type: Number
+    accept: {
+      type: String
     },
     fileIdCounter: {
       type: Number,
       value: 0
     },
+    files: {
+      type: Array,
+      value: []
+    },
+    itemKey: {
+      type: Number
+    },
     maxFileSize: {
       type: Number
     },
-    uploaded: {
+    multiple: {
       type: Boolean,
       value: false
+    },
+    name: {
+      type: String
     },
     statussymbol: {
       type: String,
       value: 'time'
+    },
+    uploaded: {
+      type: Boolean,
+      value: false
     }
+  },
+  addFiles: function(files){
+    Array.prototype.forEach.call(files, this.addFile.bind(this));
+    this.updateIsFiles();
+  },
+  addFile: function(file){
+    this.fileIdCounter++;
+    var fileSizeStatus;
+    if(this.maxFileSize){
+      fileSizeStatus = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
+    }
+    if(fileSizeStatus){file.fileSizeStatus = 'File is too big!'}
+
+    this.unshift('files', file);
+    console.log(this.files);
+    console.log(file);
+    //
+    // this.push('files',{
+    //   file: file,
+    //   size: this.calcFileSize(file.size),
+    //   id: this.fileIdCounter,
+    //   fileSizeStatus: fileSizeStatus
+    // });
   },
   calcFileSize: function(number){
     if(number < 1024) {
@@ -50,34 +76,18 @@ Polymer({
   },
   handleChange: function(e){
     if(this.multiple==false){
-      this.fileList=[];
+      this.files=[];
     }
-    var fileExceed = false;
-    var files = e.srcElement.files;
-    var filesize = 0;
-    for(var i=0; i<files.length; i++){
-      filesize = this.calcFileSize(files[i].size);
-      this.fileIdCounter++;
-      if(this.maxFileSize){
-        fileExceed = this.updateFileSizeInfo(files[i].size);
-      }
-      this.push('fileList',{
-        file: files[i],
-        size: filesize,
-        id: this.fileIdCounter,
-        fileSizeStatus: fileExceed
-      });
-    }
-    this.updateIsFiles();
+    this.addFiles(e.srcElement.files);
     e.target.value = null;
   },
   removeFile: function(e){
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
     var fileId = e.target.id;
 
-    for(var j=0; j<this.fileList.length; j++){
-      if(this.fileList[j].id == fileId){
-        this.fileList.splice(j,1);
+    for(var j=0; j<this.files.length; j++){
+      if(this.files[j].id == fileId){
+        this.files.splice(j,1);
       }
 
     }
@@ -100,11 +110,11 @@ Polymer({
       return fileSize > max ? true : false;
   },
   updateIsFiles: function(){
-    this._isFiles = (this.fileList.length!=0) ? true : false;
-    // remove file from fileList if exceed max size
-    for(var k=0; k < this.fileList.length; k++){
-      if(this.fileList[k].fileSizeStatus==true){
-        this.fileList.splice(k,1);
+    this._isFiles = (this.files.length!=0) ? true : false;
+    // remove file from files[] if exceed max size
+    for(var k=0; k < this.files.length; k++){
+      if(this.files[k].fileSizeStatus==true){
+        this.files.splice(k,1);
       }
     }
   },

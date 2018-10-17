@@ -1,38 +1,36 @@
   <div class="upload-file-wrapper col-xs-12">
       <div class="form-group">
         <button class="btn btn-default">+ Upload files</button>
-        <input type="file" name={{name}} value="" on-change="handleChange" multiple$={{multiple}}>
+        <input type="file" name={{name}} value="" on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}">
+        <span class="upload-info">
+        <template is="dom-if" if="{{maxFileSize}}">
+          <content>Maximum file size {{maxFileSize}} KB</content>
+        </template>
+        </span>
       </div>
 
-      <template is="dom-repeat" items={{fileList}} sort="sortFilenames">
+      <template is="dom-repeat" items={{files}} sort="sortFilenames">
         <div class="form-group">
 
             <div class="file-list">
               <button id="{{item.id}}" type="button" name="button" class$="{{statussymbol}} close pull-left" on-click="removeFile"></button>
-              {{item.file.name}} - {{item.size}}
+              {{item.name}} - {{item.size}}
               <template is="dom-if" if="{{uploaded}}">
                 <div class="progress">
                   <div class="activate progress-bar progress-bar-success"></div>
                 </div>
               </template>
-            </div>
 
-          <template is="dom-if" if="{{item.fileSizeStatus}}">
-            <div class="alert alert-danger">
-            File is too large. Maximum file size is {{maxFileSize}} KB
+              <p class="alert alert-danger">{{item.fileSizeStatus}}</p>
             </div>
-          </template>
-
 
         </div>
       </template>
 
       <template is="dom-if" if={{_isFiles}}>
         <div class="form-group">
-          <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-success" on-click="uploadFiles">Upload</button>
+          <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">Upload all</button>
         </div>
 
       </template>
-
-    <content></content>
   </div>

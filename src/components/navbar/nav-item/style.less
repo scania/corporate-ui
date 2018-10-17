@@ -178,7 +178,7 @@
       .dropdown-menu {
         display: none;
       }
-      .mode-toggler {
+      .btn.mode-toggler {
         display: block;
         position: absolute;
         top: 0;
@@ -228,6 +228,17 @@
             content: "-";
           }
         }
+      }
+    }
+  }
+
+  :host-context(.app c-main-navigation) {
+
+    ::content {
+
+      .btn.mode-toggler:before {
+        padding-top: 8px;
+        padding-bottom: 8px;
       }
     }
   }

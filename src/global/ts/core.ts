@@ -151,12 +151,12 @@ function setGlobals() {
     company: 'Scania'
   };
 
-  window['CorporateUi'].version = wv.version;
+  CorporateUi.version = wv.version;
   document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
-  if (window['CorporateUi'].components) {
+  if (CorporateUi.components) {
     JSON.parse(wv.components).map(function(component) {
-      window['CorporateUi'].components[component.name] = {
+      CorporateUi.components[component.name] = {
         ...component,
         path: window['version_root'] + '/components/' + component.name + '/' + component.name + '.html'
       }
@@ -244,7 +244,11 @@ function baseComponents(references) {
     }, window['corporate_elm']);
   }
 
-  helpers.importLink(window['CorporateUi'].components['main-content'].path, 'import', null, window['corporate_elm']);
+  if (!CorporateUi.components['main-content'].loaded) {
+    helpers.importLink(CorporateUi.components['main-content'].path, 'import', function(e) {
+      CorporateUi.components['main-content'].loaded = true;
+    }, window['corporate_elm']);
+  }
 
   /*if (window['params'].preload === 'false') {
     window['ready_event'] = undefined;
@@ -252,8 +256,16 @@ function baseComponents(references) {
 
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
+    if (!CorporateUi.components[resource]) {
+      console.error('The component "' + resource + '" does not seem to exist.');
+      return;
+    }
+
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) {
+        CorporateUi.components[resource].loaded = true;
+        resolve(e.target)
+      }, window['corporate_elm']);
     });
   });
 

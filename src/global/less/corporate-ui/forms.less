@@ -44,7 +44,7 @@ textarea[placeholder] {
     font-size: 15px;
     right: 6px;
     padding: 2px 0px;
-  }  
+  }
 }
 
 .form-control {
@@ -98,14 +98,18 @@ textarea[placeholder] {
 
   &[readonly] {
     cursor: default;
-    background: #f5f5f5;
+    background: #ffffff;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #e2e2e2;
     &:focus {
       cursor: default;
-      background: #f6f9fa;
-      border: 1px solid #4a8ba4;
+      background: #ffffff;
+      border: 1px solid transparent;
+      border-bottom: 1px solid #e2e2e2;
       .panel-inverse & {
         cursor: default;
         border: 1px solid transparent;
+        border-bottom: 1px solid #e2e2e2;
         background: #ffffff;
       }
     }
@@ -138,11 +142,6 @@ textarea[placeholder] {
   }
 }
 
-.app table th select.form-control {
-    background-size: 18px;
-    background-position: calc(98%) center;
-}
-
 .form-condensed {
   .form-group {
     margin-bottom: 5px;
@@ -160,6 +159,21 @@ textarea[placeholder] {
   .checkbox-inline {
     padding-top: 9px;
   }
+}
+
+
+.app table thead > tr > th select.form-control,
+.app table thead > tr > th select.form-control:focus {
+    padding: 0;
+    padding-left: inherit;
+    background-size: 19px;
+    padding: 0;
+    padding-left: inherit;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==);
+    background-repeat: no-repeat;
+    background-position: calc(98%) center;
+
+
 }
 
 .form-inline {
@@ -183,10 +197,6 @@ textarea[placeholder] {
 .input-lg {
   height: 39px;
   border-radius: 0;
-}
-
-.table .form-control {
-  .input-sm
 }
 
 //Forms in labels have input-sm-styling per default

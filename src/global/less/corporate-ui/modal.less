@@ -44,9 +44,48 @@
     max-width: 1440px;
   }
 
+  &-xxl {
+    width: 99%;
+    max-width: none;
+  }
+
+  &-fullscreen {
+    margin: 0;
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+
+    .modal-content {
+      height: 100vh;
+      border: none;
+      border-radius: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    .modal-body {
+      height: 100vh;
+    }
+  }  
+
   .modal-body.scroll-y  {
       max-height: calc(100vh - 200px);
       overflow-y: auto;
   } 
   
 }
+
+@media (max-width: 991px) {
+  .modal {
+      top: 64px;
+
+      &-fullscreen {
+
+        .modal-content {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          width: 98vw;
+      }
+    }
+  }
+} 

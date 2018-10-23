@@ -1,0 +1,13 @@
+<template is="dom-if" if="{{label}}">
+  <label for$="select-{{name}}">{{label}}</label>
+</template>
+
+<template is="dom-if" if="{{options.items}}">
+  <input type="text" name="{{name}}" id$="select-{{name}}" class="node">
+</template>
+
+<template is="dom-if" if="{{options.choices}}">
+  <select name="{{name}}" id$="select-{{name}}" class="node" multiple="{{multiple}}">
+    <content></content>
+  </select>
+</template>

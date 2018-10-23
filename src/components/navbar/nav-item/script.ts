@@ -133,7 +133,7 @@ Polymer({
 
     this.active = true;
 
-    if(window.innerWidth < 991) {
+    if(window.innerWidth < 992) {
       var event = document.createEvent('Event');
       event.initEvent('navigation-close', true, true);
       this.dispatchEvent(event);

@@ -251,7 +251,7 @@ Polymer({
 
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
-            @media (min-width: 991px) {\
+            @media (min-width: 992px) {\
               c-main-navigation primary-items > nav-item:nth-child(1n+' + i + ') > a { display: none; } \
               c-main-navigation .more li:nth-child(1n+' + i + ') { display: block !important; } \
             }';

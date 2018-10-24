@@ -3,7 +3,13 @@ Polymer({
   properties: {
     name: String,
     text: String,
-    expire: Number
+    expire: Number,
+    path: String,
+    lang: {
+      type: String,
+      value: 'en-gb',
+      observer: '_langSupport'
+    }
   },
   attached: function(){
     /* Sets Cookie using https://github.com/js-cookie/js-cookie/tree/v2.2.0 */
@@ -27,7 +33,11 @@ Polymer({
     }
   },
   _CookieAddFunction: function(CookieMessage, Cookie) {
-    Cookies.set(Cookie.name , CookieMessage, {expires: this.expire || 900, path: ''});
+    Cookies.set(Cookie.name , CookieMessage, {expires: Cookie.expire || 900, path: Cookie.path || '.scania.com'});
     Cookie.style.display = "none";
+  },
+  _langSupport: function(lang, string){
+    // Sets the cookie to specific language to modal
+    return lang == string;
   }
 });

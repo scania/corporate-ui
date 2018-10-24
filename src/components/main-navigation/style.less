@@ -28,16 +28,11 @@
     primary-items,
     secondary-items {
       
-      > nav-item {
-        display: flex;
-        flex-direction: column;
-
-        > a {
-          // Fixes issue where content could overflow its container.
-          // Making a horizontal scrollbar get displayed when a
-          // secondary navigation is available
-          overflow: hidden;
-        }
+      > nav-item > a {
+        // Fixes issue where content could overflow its container.
+        // Making a horizontal scrollbar get displayed when a
+        // secondary navigation is available
+        overflow: hidden;
       }
     }
 
@@ -280,6 +275,14 @@
               padding: 0;
             }
           }
+        }
+      }
+      primary-items,
+      secondary-items {
+        
+        > nav-item {
+          display: flex;
+          flex-direction: column;
         }
       }
 

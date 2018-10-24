@@ -115,9 +115,12 @@
           // SET PROGRESS BAR VALUE HERE DEPENDS ON YOUR OWN APPLICATION SETTING
           fileUploadComp.setProgressBarValue(file,progress);
         });
-      task
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => console.log(url));
+      task.then(function(snapshot){
+        var url = snapshot.ref.getDownloadURL();
+        console.log(url);
+      });
+        // .then(snapshot => snapshot.ref.getDownloadURL())
+        // .then(url => console.log(url));
 
     }
   </script>

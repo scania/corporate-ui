@@ -3,19 +3,39 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
-    border: 1px dashed #ccc;
     padding: 20px;
     margin-bottom: 15px;
   }
-  .upload-info{
-    margin-left: 10px;
+  #dropArea{
+    width: 280px;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    &.highlight{
+      background-color: #f0f0f0;
+      color: #033a6a;
+    }
+    .cloud-icon{
+      font-size: 4rem;
+    }
+    p, h1{
+      text-align: center;
+      padding-top: 0;
+      margin-bottom: 0;
+      color: inherit;
+    }
+    .label-browse{
+      color: #4a8ba4;
+      font-weight: normal;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
   }
   input[type="file"]{
-    position: absolute;
-    left: 0;
-    top:0;
-    opacity: 0;
-    cursor: pointer;
+    display: none;
   }
   .time:after{
     content:'\00d7';
@@ -41,14 +61,7 @@
     }
   }
   #fileerror{
-    color: #cc1040;
+    div{color: #cc1040;}
+    p{margin-bottom: 5px; }
   }
-}
-.btn+input[type="file"]{
-  width: 200px;
-  height: 62px;
-}
-.app .btn+input[type="file"]{
-  width: 128px;
-  height: 42px;
 }

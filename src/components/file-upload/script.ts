@@ -78,6 +78,20 @@ Polymer({
       return (number/1048576).toFixed(1) + 'MB';
     }
   },
+  allowDrop: function(ev){
+    ev.preventDefault();
+    Polymer.dom(this.$.dropArea).classList.add('highlight');
+    ev.dataTransfer.dropEffect = "move";
+  },
+  dropFile: function(ev){
+    ev.preventDefault();
+    this.removeHighlight();
+    var dt = ev.dataTransfer;
+    this.addFiles(dt.files);
+  },
+  removeHighlight: function(){
+    Polymer.dom(this.$.dropArea).classList.remove('highlight');
+  },
   handleChange: function(e){
     if(this.multiple==false){
       this.files=[];
@@ -86,7 +100,7 @@ Polymer({
     e.target.value = null;
   },
   removeFile: function(e){
-  
+
     var _id = e.target.id;
     var toRemove = '#setPb'+_id;
     this.$$(toRemove).parentNode.removeChild(this.$$(toRemove));

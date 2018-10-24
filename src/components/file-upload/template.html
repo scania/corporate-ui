@@ -1,13 +1,18 @@
   <div class="upload-file-wrapper col-xs-12">
 
-      <div class="form-group">
-        <button class="btn btn-default">+ Select files</button>
-        <input type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required={{required}}>
-        <span class="upload-info">
-        <template is="dom-if" if="{{maxFileSize}}">
-          <content>{{fileLimitInfo}}</content>
-        </template>
-        </span>
+      <div id="dropArea" class="form-group"
+          on-dragenter="allowDrop" on-dragover="allowDrop"
+          on-drop="dropFile"
+          on-dragleave="removeHighlight" on-dragexit="removeHighlight">
+        <h1 class="cloud-icon"><i class="fal fa-cloud-upload"></i></h1>
+        <h1>Drag & drop here</h1>
+        <p>to upload your files, <label class="label-browse" for="fileinput">or browse</label></p>
+        <p class="upload-info">
+          <template is="dom-if" if="{{maxFileSize}}">
+            <content>{{fileLimitInfo}}</content>
+          </template>
+        </p>
+        <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required={{required}}>
       </div>
 
       <template is="dom-repeat" items={{files}} sort="sortFilenames">
@@ -21,13 +26,13 @@
         </div>
       </template>
 
-      <div class="form-group" hidden$={{!isFiles}}>
+      <div class="form-group">
         <button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">Upload</button>
+        <label for="fileinput" type="button" name="button" class="btn btn-sm btn-default">Browse</label>
       </div>
 
-      <div class="status">
-        {{errorTitle}}
+      <div id="fileerror">
+        <p>{{errorTitle}}</p>
       </div>
-      <div id="fileerror"></div>
 
   </div>

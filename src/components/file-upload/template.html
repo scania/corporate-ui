@@ -27,8 +27,8 @@
       </template>
 
       <div class="form-group">
-        <button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">Upload</button>
-        <label for="fileinput" type="button" name="button" class="btn btn-sm btn-default">Browse</label>
+        <span hidden$={{!isFiles}}><button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">{{uploadBtnText}}</button></span>
+        <span hidden$={{!browseButton}}><label for="fileinput" type="button" class="btn btn-sm btn-default">Browse</label></span>
       </div>
 
       <div id="fileerror">

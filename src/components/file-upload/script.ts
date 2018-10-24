@@ -8,6 +8,10 @@ Polymer({
     accept: {
       type: String
     },
+    browseButton: {
+      type: Boolean,
+      value: false
+    },
     files: {
       type: Array,
       value: []
@@ -34,6 +38,9 @@ Polymer({
       value: false
     },
     name: {
+      type: String
+    },
+    uploadBtnText: {
       type: String
     }
   },
@@ -68,6 +75,7 @@ Polymer({
       this.unshift('files', file);
       this.fileId++;
     }
+    this.browseButton = true;
   },
   calcFileSize: function(number){
     if(number < 1024) {
@@ -121,14 +129,14 @@ Polymer({
     }
     elId = '#setPb'+f.id+' c-progress-bar';
     document.querySelector(elId).setAttribute('value',p);
-
+    this.uploadBtnText = 'Uploading... ';
     if(p==100){
       this.$$(par).querySelector('.fa-check-circle').classList.remove('hidden');
       this.$$(par).querySelector('.fa-times').classList.add('hidden');
       var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
       this.files.splice(elementPos, 1);
+      this.updateIsFiles();
     }
-    this.updateIsFiles();
   },
   sortFilenames: function(a,b){
     var aId = a.id;
@@ -147,6 +155,7 @@ Polymer({
       return fileSize > max ? true : false;
   },
   updateIsFiles: function(){
+    this.uploadBtnText = 'Upload '+this.files.length+ (this.files.length==1?' file':' files');
     this.isFiles = (this.files.length!=0) ? true : false;
   },
   uploadFiles: function(event){

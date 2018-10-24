@@ -6,6 +6,8 @@
   "dependencies": {
     "Polymer": "1.4.0",
     "bootstrap": "3.2.0",
+    "bootstrap.native": "2.0.21",
+    "choices.js": "3.0.4",
     "webcomponents.js": "0.7.24"
   },
   "devDependencies": {
@@ -14,7 +16,6 @@
     "@types/node": "7.0.12",
     "angular": "1.5.5",
     "bootstrap-datepicker": "1.6.4",
-    "bootstrap.native": "2.0.21",
     "del": "3.0.0",
     "directory-tree": "2.1.0",
     "es6-promise": "4.1.0",
@@ -27,7 +28,6 @@
     "gulp-rename": "1.2.2",
     "gulp-sourcemaps": "2.4.1",
     "gulp-typescript": "3.1.6",
-    "highcharts": "5.0.14",
     "hydrolysis": "1.25.0",
     "jquery": "3.0.0",
     "jquery-ui": "1.12.1",

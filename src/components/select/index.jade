@@ -1,0 +1,21 @@
+
+extends ../component
+
+append style_dependencies
+  link(href='/vendors/components/pure-js/choices.js/3.0.4/assets/styles/css/choices.min.css' rel='stylesheet')
+
+append dependencies
+  script(src="/vendors/components/pure-js/choices.js/3.0.4/assets/scripts/dist/choices.min.js")
+  link(rel="import" href="variation-1.html")
+
+block comment
+  include comment.md
+
+block style
+  include style.css
+
+append template
+  include template.html
+
+block script
+  include script.js

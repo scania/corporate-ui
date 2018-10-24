@@ -15,6 +15,10 @@ Polymer({
       type: Array,
       value: []
     },
+    moreText: {
+      type: String,
+      value: 'More'
+    },
     fullbleed: {
       type: Boolean,
       value: true
@@ -22,16 +26,17 @@ Polymer({
     primaryItems: {
       type: Array,
       value: [],
-      observer: 'setItemIndex'
+      observer: 'setPriItemIndex'
     },
     secondaryItems: {
       type: Array,
       value: [],
-      observer: 'setItemIndex'
+      observer: 'setSecItemIndex'
     }
   },
   listeners: {
     'navItem-active': 'setItemActive',
+    'navItemDropdown-active': 'setMoreItemActive',
     'subNavigation-attached': 'setHeaderSize',
     'fullscreen-toggled': 'setHeaderSize',
     'moreItem-toggled': 'setMoreItems',
@@ -46,11 +51,6 @@ Polymer({
 
     if (this.querySelector('secondary-items')) {
       this.querySelector('secondary-items').classList.add('navbar-right');
-    }
-
-    // Show hamburger menu if item exist in main-navigation
-    if (this.querySelectorAll('nav-item').length) {
-      this.header.hasMainNav = true;
     }
 
     // The timeout here is used to delay the callback until template is fully rendered
@@ -69,6 +69,8 @@ Polymer({
     if (this.header) {
       this.header.sticky = 'should-stick';
     }
+
+    this.itemsExist();
 
     var nav = this.querySelector('#main-navigation'),
         styleElm = document.createElement('style');
@@ -120,32 +122,40 @@ Polymer({
   },
   setItemActive: function(event) {
     var parent = event.target.parentNode,
+        gParent = event.target.parentNode.parentNode,
         index = Array.prototype.indexOf.call(parent.children, event.target),
         firstSubItem = event.target.querySelector('sub-navigation nav-item');
 
     // Stop here if current item is the more item
-    if (event.target.classList.contains('dropdown')) {
+    /*if (event.target.dropdown) {
       event.target.active = false;
       return
-    }
+    }*/
+    /*parent.querySelector('.more').setActive()
+    if(this.moreItems) {
+      this.set('moreItems.' + index + '.active', true);
+    }*/
 
-    if (parent.preActive && parent.preActive !== event.target) {
-      parent.preActive.active = false;
+    if (gParent.preActive && gParent.preActive !== event.target) {
+      gParent.preActive.active = false;
     }
 
     if (firstSubItem) {
       firstSubItem.active = true;
     }
 
-    parent.preActive = event.target;
+    gParent.preActive = event.target;
 
-    if(this.moreItems) {
-      this.moreItems.map((function(item, key) {
-        if (item.active) {
-          this.set('moreItems.' + key + '.active', false);
-        }
-      }).bind(this))
-      this.set('moreItems.' + index + '.active', true);
+    // We should probably re think this interaction later on...
+    if (gParent.id === 'main-navigation') {
+      if(this.moreItems) {
+        this.moreItems.map((function(item, key) {
+          if (item.active) {
+            this.set('moreItems.' + key + '.active', false);
+          }
+        }).bind(this))
+        this.set('moreItems.' + index + '.active', true);
+      }
     }
 
     // $('.navbar-toggle').trigger('click');
@@ -191,7 +201,7 @@ Polymer({
       clearTimeout(window['moreItemDelay']);
     }
 
-    // We have a delay here to make sure the navigation 
+    // We have a delay here to make sure the navigation
     // doesnt flicker on resize
     window['moreItemDelay'] = setTimeout((function() {
       styleElm.innerText = '';
@@ -241,7 +251,7 @@ Polymer({
 
         if(item.offsetTop && !styleElm.innerText) {
           var css = '\
-            @media (min-width: 991px) {\
+            @media (min-width: 992px) {\
               c-main-navigation primary-items > nav-item:nth-child(1n+' + i + ') > a { display: none; } \
               c-main-navigation .more li:nth-child(1n+' + i + ') { display: block !important; } \
             }';
@@ -255,7 +265,7 @@ Polymer({
         if (itemsChanged && node) {
           this.push('moreItems', {
             text: node.text,
-            href: node.getAttribute('href')
+            location: node.getAttribute('href')
           });
         }
       }
@@ -267,10 +277,12 @@ Polymer({
     });
   },
   setMoreItemActive: function(event) {
-    var trigger = event.target.parentNode,
-        index = Array.prototype.indexOf.call(trigger.parentNode.children, trigger);
+    if (event.detail.navItem.classList.contains('more')) {
+      var trigger = event.target.parentNode,
+          index = Array.prototype.indexOf.call(trigger.parentNode.children, trigger);
 
-    this.querySelector('primary-items').children[index].active = true;
+      this.querySelector('primary-items').children[index].active = true;
+    }
   },
   navigationClose: function() {
     var hamburger = this.header.querySelector('.navbar-toggle');
@@ -279,40 +291,64 @@ Polymer({
   sticky: function() {
     var stickyNavTop = this.offsetTop,
         scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
-        isSticky = document.body.classList.contains('header-is-sticky');
+        isSticky = document.body.classList.contains('header-is-sticky'),
+        event = document.createEvent('Event');
 
     if (scrollTop <= Math.max(stickyNavTop, 0)) {
       if (isSticky) {
         document.body.classList.remove('header-is-sticky');
+        event.initEvent('navigation-not-sticky', true, true);
+        this.dispatchEvent(event);
       }
     } else {
       if (!isSticky) {
         document.body.classList.add('header-is-sticky');
+        event.initEvent('navigation-is-sticky', true, true);
+        this.dispatchEvent(event);
       }
     }
   },
-  setItemIndex: function(val, oldVal) {
-    val = val || []
-    if (val.toString() != (oldVal || []).toString()) {
-      val = val.map(function(item, key) {
-        item.orgIndex = key;
-        return item;
-      })
+  itemsExist: function() {
+    var priItems = (this.primaryItems || []).length,
+        secItems = (this.secondaryItems || []).length,
+        items = this.querySelectorAll('nav-item').length + priItems + secItems;
+
+    // Show hamburger menu if item exist in main-navigation
+    // One item is the "More item"
+    if (items > 1) {
+      this.header.hasMainNav = true;
+    }
+  },
+  setItemIndex: function(val) {
+    val = val.map(function(item, key) {
+      item.index = item.index || 0;
+      item.orgIndex = key;
+      return item;
+    });
+    val.sort(this.sort);
+    this.itemsExist();
+    return val;
+  },
+  setPriItemIndex: function(val, oldVal) {
+    val = val || [];
+    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
+      this.primaryItems = this.setItemIndex(val);
+    }
+    this.setMoreItems();
+  },
+  setSecItemIndex: function(val, oldVal) {
+    val = val || [];
+    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
+      this.secondaryItems = this.setItemIndex(val);
     }
     this.setMoreItems();
   },
   sort: function(a, b) {
     // Compare item a and b origional index to
     // decide what item is first
-    var order = a.orgIndex < b.orgIndex ? -1 : 1,
-        maxIndex = 100;
+    var order = a.orgIndex < b.orgIndex ? -1 : 1;
 
-    // Check if item has a user set index or
-    // set a max index
-    a.index = a.index || maxIndex;
-    b.index = b.index || maxIndex;
-
-    // Compare user set index on item if they 
+    // Compare user set index on item if they
     // dont match decide what item is first
     if (a.index < b.index) order = -1;
     if (a.index > b.index) order = 1;

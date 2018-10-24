@@ -9,6 +9,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 }
 
 .table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
+
   border-collapse: collapse;
   color: #041e42;
   border: 1px solid #dadada;
@@ -33,6 +34,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
     > tr {
 
+    
+
       > td {
         border: 1px solid @interaction-primary;
       }
@@ -40,6 +43,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > th {
         text-transform: uppercase;
         border: 1px solid @interaction-primary;
+        vertical-align: top;
 
         input,
         select {
@@ -47,7 +51,11 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           &,
           &.form-control {
             font-weight: normal;
-            font-family: 'Scania Sans';
+            font-family: 'Scania Sans Semi Condensed';
+            color: @color-primary-03;
+            height: 30px;
+            font-size: 1.2rem;
+            border: 1px solid #E2E2E2;
 
             &::placeholder,
             &::-webkit-input-placeholder,
@@ -55,12 +63,17 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             &:-ms-input-placeholder,
             &:moz-placeholder {
               font-weight: normal;
-              font-family: 'Scania Sans';
+              font-family: 'Scania Sans Semi Condensed';
+              color: @color-primary-03;
             }
           }
         }
+
+        .form-group i {
+          color: @color-primary-03;
+        }
       }
-    }
+    }    
   }
 
    > thead:first-child {
@@ -87,6 +100,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         }
       }
     }
+
+  .table {
+    border: none;
+    }   
   }
 
   caption {

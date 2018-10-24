@@ -71,6 +71,80 @@
   .modal-body.scroll-y  {
       max-height: ~"calc(100vh - 200px)";
       overflow-y: auto;
+  }    
+
+  .scroll-y  {
+
+    .modal-body {
+      max-height: ~"calc(100vh - 200px)";
+      overflow-y: auto;
+      height: 40vh;
+      margin-right: 50px;
+      padding: 10px 160px 30px 60px;
+    }
+
+    .modal-header {
+        padding: 30px 30px 20px 60px;
+        border-bottom: none;
+    }
+
+    .modal-header .modal-title {
+        font-family: 'Scania Sans Semi Condensed';
+        font-weight: bold;
+        color: #242424;
+        font-size: 2.0rem;
+        margin-top: 30px;
+    }
+
+    .modal-footer {
+        padding: 30px 30px 50px 60px;
+        text-align: left;
+        border-top: none;
+    }
+
+    /* width of scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+        padding-right: 40px;
+    }
+
+    /* button */
+    ::-webkit-scrollbar-button {
+        background: #fbfbfb; 
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #98989896; 
+        border-radius: 4px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #49864c;  
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #d8d8d8; 
+        border-radius: 4px;
+    }
+
+    /* The track NOT covered by the handle.*/
+    ::-webkit-scrollbar-track-piece {
+        background: #000; 
+    }
+
+    /* Corner */
+    ::-webkit-scrollbar-corner {
+        background: #999; 
+    }
+
+    /* Resizer */
+    ::-webkit-resizer {
+        background: #111; 
+    }
+
   } 
 
   modal-header .close {
@@ -101,9 +175,3 @@
     }
   }
 } 
-
-
-
-
-
-

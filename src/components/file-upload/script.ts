@@ -5,23 +5,26 @@ Polymer({
       type: Boolean,
       value: true
     },
-    _isFiles: {
-      type: Boolean,
-      value: false
-    },
     accept: {
       type: String
-    },
-    fileIdCounter: {
-      type: Number,
-      value: 0
     },
     files: {
       type: Array,
       value: []
     },
-    itemKey: {
-      type: Number
+    fileLimitInfo: {
+      type: String
+    },
+    errorTitle: {
+      type: String
+    },
+    fileId: {
+      type:Number,
+      value: 0
+    },
+    isFiles: {
+      type: Boolean,
+      value: false
     },
     maxFileSize: {
       type: Number
@@ -32,14 +35,11 @@ Polymer({
     },
     name: {
       type: String
-    },
-    statussymbol: {
-      type: String,
-      value: 'time'
-    },
-    uploaded: {
-      type: Boolean,
-      value: false
+    }
+  },
+  ready: function(){
+    if(this.maxFileSize){
+      this.fileLimitInfo = 'Maximum file size ' + this.maxFileSize + 'KB';
     }
   },
   addFiles: function(files){
@@ -47,23 +47,27 @@ Polymer({
     this.updateIsFiles();
   },
   addFile: function(file){
-    this.fileIdCounter++;
     var fileSizeStatus;
+
     if(this.maxFileSize){
       fileSizeStatus = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
     }
-    if(fileSizeStatus){file.fileSizeStatus = 'File is too big!'}
 
-    this.unshift('files', file);
-    console.log(this.files);
-    console.log(file);
-    //
-    // this.push('files',{
-    //   file: file,
-    //   size: this.calcFileSize(file.size),
-    //   id: this.fileIdCounter,
-    //   fileSizeStatus: fileSizeStatus
-    // });
+    if(fileSizeStatus){
+      this.errorTitle = 'Unable to upload following files';
+      file.fileSizeStatus = 'Size exceeds permissible upload limit';
+      var errorFiles = document.createElement('div');
+      errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileSizeStatus;
+      Polymer.dom(this.$.fileerror).appendChild(errorFiles);
+
+      // if file type not allowed show error
+
+    } else {
+      file.id = this.fileId;
+      file.fileSize = this.calcFileSize(file.size);
+      this.unshift('files', file);
+      this.fileId++;
+    }
   },
   calcFileSize: function(number){
     if(number < 1024) {
@@ -82,14 +86,33 @@ Polymer({
     e.target.value = null;
   },
   removeFile: function(e){
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-    var fileId = e.target.id;
+  
+    var _id = e.target.id;
+    var toRemove = '#setPb'+_id;
+    this.$$(toRemove).parentNode.removeChild(this.$$(toRemove));
 
     for(var j=0; j<this.files.length; j++){
-      if(this.files[j].id == fileId){
-        this.files.splice(j,1);
+      if(this.files[j].id == _id){
+        this.splice('files', j, 1);
       }
+    }
 
+    this.updateIsFiles();
+  },
+  setProgressBarValue: function(f,p){
+    var elId, par;
+    par = '#setPb'+f.id;
+    if(p==0){
+      this.$$(par).querySelector('c-progress-bar').classList.remove('hidden');
+    }
+    elId = '#setPb'+f.id+' c-progress-bar';
+    document.querySelector(elId).setAttribute('value',p);
+
+    if(p==100){
+      this.$$(par).querySelector('.fa-check-circle').classList.remove('hidden');
+      this.$$(par).querySelector('.fa-times').classList.add('hidden');
+      var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
+      this.files.splice(elementPos, 1);
     }
     this.updateIsFiles();
   },
@@ -110,17 +133,11 @@ Polymer({
       return fileSize > max ? true : false;
   },
   updateIsFiles: function(){
-    this._isFiles = (this.files.length!=0) ? true : false;
-    // remove file from files[] if exceed max size
-    for(var k=0; k < this.files.length; k++){
-      if(this.files[k].fileSizeStatus==true){
-        this.files.splice(k,1);
-      }
-    }
+    this.isFiles = (this.files.length!=0) ? true : false;
   },
-  uploadFiles: function(e){
-    this.uploaded = true;
-    // this.statussymbol = '&#10004;'; &time;
-    this.statussymbol = 'done';
+  uploadFiles: function(event){
+    var detail= {files: this.files},
+        evt = new CustomEvent('uploadFiles', {detail: detail});
+    document.dispatchEvent(evt);
   }
 });

@@ -1,36 +1,33 @@
   <div class="upload-file-wrapper col-xs-12">
+
       <div class="form-group">
-        <button class="btn btn-default">+ Upload files</button>
-        <input type="file" name={{name}} value="" on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}">
+        <button class="btn btn-default">+ Select files</button>
+        <input type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required={{required}}>
         <span class="upload-info">
         <template is="dom-if" if="{{maxFileSize}}">
-          <content>Maximum file size {{maxFileSize}} KB</content>
+          <content>{{fileLimitInfo}}</content>
         </template>
         </span>
       </div>
 
       <template is="dom-repeat" items={{files}} sort="sortFilenames">
-        <div class="form-group">
-
-            <div class="file-list">
-              <button id="{{item.id}}" type="button" name="button" class$="{{statussymbol}} close pull-left" on-click="removeFile"></button>
-              {{item.name}} - {{item.size}}
-              <template is="dom-if" if="{{uploaded}}">
-                <div class="progress">
-                  <div class="activate progress-bar progress-bar-success"></div>
-                </div>
-              </template>
-
-              <p class="alert alert-danger">{{item.fileSizeStatus}}</p>
+        <div id="setPb{{item.id}}" class="form-group file-list" hidden$={{item.fileSizeStatus}}>
+            <div class="file-meta" >
+              <i class="fal fa-check-circle hidden"></i>
+              <i id="{{item.id}}" class="fal fa-times" on-click="removeFile"></i>
+              <span class="file-name">{{item.name}}</span> - <span>{{item.fileSize}}</span>
             </div>
-
+            <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
         </div>
       </template>
 
-      <template is="dom-if" if={{_isFiles}}>
-        <div class="form-group">
-          <button dom-if="{{_isFiles}}" type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">Upload all</button>
-        </div>
+      <div class="form-group" hidden$={{!isFiles}}>
+        <button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">Upload</button>
+      </div>
 
-      </template>
+      <div class="status">
+        {{errorTitle}}
+      </div>
+      <div id="fileerror"></div>
+
   </div>

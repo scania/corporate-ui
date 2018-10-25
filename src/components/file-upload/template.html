@@ -1,6 +1,6 @@
   <div class="upload-file-wrapper col-xs-12">
 
-      <div id="dropArea" class="form-group"
+      <div id="dropArea" class="form-group" hidden$="{{!showDropArea}}"
           on-dragenter="allowDrop" on-dragover="allowDrop"
           on-drop="dropFile"
           on-dragleave="removeHighlight" on-dragexit="removeHighlight">
@@ -21,14 +21,18 @@
       <template is="dom-repeat" items={{files}} sort="sortFilenames">
         <div id="setPb{{item.id}}" class="form-group file-list" hidden$={{item.fileSizeStatus}}>
             <div class="file-meta" >
-              <i class="fal fa-check-circle hidden"></i>
-              <i id="{{item.id}}" class="fal fa-times" on-click="removeFile"></i>
-              <span class="file-name">{{item.name}}</span> - <span>{{item.fileSize}}</span>
+              <p class="file-name"><strong>{{item.name}}</strong></p>
+              <p class="file-size">{{item.fileSize}}</p>
+              <div class="file-status-icon">
+                <i class="fal fa-check"></i>
+                <i class="fal fa-spinner"></i>
+                <i id="{{item.id}}" class="fal fa-times" on-click="removeFile"></i>
+              </div>
             </div>
-            <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
         </div>
       </template>
 
+      <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
       <div class="form-group">
         <span hidden$={{!isFiles}}><button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">{{uploadBtnText}}</button></span>
         <span hidden$={{!browseButton}}><label for="fileinput" type="button" class="btn btn-sm btn-default">Browse</label></span>

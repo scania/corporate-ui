@@ -12,6 +12,10 @@ Polymer({
       type: Boolean,
       value: false
     },
+    showDropArea: {
+      type: Boolean,
+      value: true
+    },
     files: {
       type: Array,
       value: []
@@ -42,6 +46,13 @@ Polymer({
     },
     name: {
       type: String
+    },
+    totalFileUpload: {
+      type: Number
+    },
+    totalProgress: {
+      type: Number,
+      value: 0
     },
     uploadBtnText: {
       type: String
@@ -111,7 +122,23 @@ Polymer({
     ev.preventDefault();
     this.removeHighlight();
     var dt = ev.dataTransfer;
-    this.addFiles(dt.files);
+    var totalFiles = dt.files.length;
+
+    if(this.multiple){
+      this.addFiles(dt.files);
+    } else {
+      if(totalFiles==1){
+        if(this.files.length>0){
+          this.files=[];
+        }
+        this.addFiles(dt.files);
+      } else {
+        // reject drop
+        ev.dataTransfer.clearData();
+        // show warning
+        console.log('No multiple files allowed');
+      }
+    }
   },
   removeHighlight: function(){
     Polymer.dom(this.$.dropArea).classList.remove('highlight');
@@ -138,20 +165,24 @@ Polymer({
     this.updateIsFiles();
   },
   setProgressBarValue: function(f,p){
-    var elId, par;
-    par = '#setPb'+f.id;
+    var parentEl = '#setPb'+f.id;
+    this.totalProgress += p;
+    var pbVal = (this.totalProgress/this.totalFileUpload*100) ;
+
     if(p==0){
-      this.$$(par).querySelector('c-progress-bar').classList.remove('hidden');
+      this.$$('c-progress-bar').classList.remove('hidden');
     }
-    elId = '#setPb'+f.id+' c-progress-bar';
-    document.querySelector(elId).setAttribute('value',p);
+    this.$$('c-progress-bar').setAttribute('value',pbVal);
+    this.$$(parentEl).querySelector('.file-meta').classList.add('uploading');
+
     this.uploadBtnText = 'Uploading... ';
+    this.$$(parentEl).querySelector('.file-size').innerHTML = 'Uploading...';
     if(p==100){
-      this.$$(par).querySelector('.fa-check-circle').classList.remove('hidden');
-      this.$$(par).querySelector('.fa-times').classList.add('hidden');
-      var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
-      this.files.splice(elementPos, 1);
-      this.updateIsFiles();
+      this.uploadFileDone(f,parentEl);
+      this.$$(parentEl).querySelector('.file-size').innerHTML = 'Uploaded';
+    }
+    if(pbVal==100){
+      this.uploadFilesDone();
     }
   },
   sortFilenames: function(a,b){
@@ -178,5 +209,19 @@ Polymer({
     var detail= {files: this.files},
         evt = new CustomEvent('uploadFiles', {detail: detail});
     document.dispatchEvent(evt);
+    this.totalFileUpload = this.files.length*100;
+    this.totalProgress = 0;
+  },
+  uploadFileDone: function(f,parentEl){
+    this.$$(parentEl).querySelector('.file-meta').classList.add('done');
+    var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
+    this.files.splice(elementPos, 1);
+    this.updateIsFiles();
+  },
+  uploadFilesDone: function(){
+    if(!this.multiple){
+      this.browseButton = false;
+      this.showDropArea = false;
+    }
   }
 });

@@ -41,16 +41,66 @@
   .file-list{
     border-bottom: 1px solid #ececec;
     padding-bottom: 5px;
-    p{text-align: left;}
-    .file-name{
-      margin-left: 5px;
-    }
+
     .file-meta{
+      position: relative;
       margin-bottom: 10px;
+      p{
+        margin: 0;
+        padding:0;
+        text-align: left;
+      }
+      .file-status-icon{
+        position: absolute;
+        right: 10px;
+        top:5px;
+        font-size: 1.3em
+      }
+      .fa-check{
+        display: none;
+      }
+      .fa-spinner{
+        color: #033a6a;
+        display: none;
+      }
+      &.uploading{
+        .fa-times{
+          display: none;
+        }
+        .fa-spinner{
+          display: block;
+          animation: rotate 1s infinite forwards;
+        }
+      }
+      &.done{
+        .fa-spinner{
+          display: none;
+        }
+        .fa-times{
+          display: none;
+        }
+        .fa-check{
+          color: #44a878;
+          display: block;
+        }
+        p{
+          opacity: 0.4;
+        }
+      }
     }
+
   }
   #fileerror{
     div{color: #cc1040;}
     p{margin-bottom: 5px; }
   }
+}
+
+@keyframes rotate {
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
 }

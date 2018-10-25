@@ -19,6 +19,9 @@ Polymer({
     fileLimitInfo: {
       type: String
     },
+    fileAcceptInfo: {
+      type: String
+    },
     errorTitle: {
       type: String
     },
@@ -48,27 +51,40 @@ Polymer({
     if(this.maxFileSize){
       this.fileLimitInfo = 'Maximum file size ' + this.maxFileSize + 'KB';
     }
+    if(this.accept){
+      this.fileAcceptInfo = 'Only '+this.accept+' files are allowed';
+    }
   },
   addFiles: function(files){
     Array.prototype.forEach.call(files, this.addFile.bind(this));
     this.updateIsFiles();
   },
   addFile: function(file){
-    var fileSizeStatus;
+    var fileExceedsMax, fileExt, regex, allowFileType;
 
+    // if maximum file size is set
     if(this.maxFileSize){
-      fileSizeStatus = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
+      fileExceedsMax = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
+    }
+    // if file accept attribute is set
+    if(this.accept){
+      // javascript regex syntax https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+      // match all characters after . at the end of input
+      fileExt = file.name.match(/\.[^\.]*$|$/)[0];
+      // for example accept="image/*" will create regex = /^(image\/.*)$/i
+      regex = new RegExp('^(' + this.accept.replace(/[, ]+/g, '|').replace(/\/\*/g, '/.*') + ')$', 'i');
+      allowFileType = (regex.test(file.type) || regex.test(fileExt));
     }
 
-    if(fileSizeStatus){
+    if(fileExceedsMax || !allowFileType){
+
+      if(fileExceedsMax) file.fileErrorMessage = 'Size exceeds permissible upload limit';
+      if(!allowFileType) file.fileErrorMessage = 'File type not allowed';
+
       this.errorTitle = 'Unable to upload following files';
-      file.fileSizeStatus = 'Size exceeds permissible upload limit';
       var errorFiles = document.createElement('div');
-      errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileSizeStatus;
+      errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileErrorMessage;
       Polymer.dom(this.$.fileerror).appendChild(errorFiles);
-
-      // if file type not allowed show error
-
     } else {
       file.id = this.fileId;
       file.fileSize = this.calcFileSize(file.size);

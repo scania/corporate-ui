@@ -7,11 +7,14 @@
         <h1 class="cloud-icon"><i class="fal fa-cloud-upload"></i></h1>
         <h1>Drag & drop here</h1>
         <p>to upload your files, <label class="label-browse" for="fileinput">or browse</label></p>
-        <p class="upload-info">
+        <div class="upload-info">
           <template is="dom-if" if="{{maxFileSize}}">
-            <content>{{fileLimitInfo}}</content>
+            <p>{{fileLimitInfo}}</p>
           </template>
-        </p>
+          <template is="dom-if" if="{{accept}}">
+            <p>{{fileAcceptInfo}}</p>
+          </template>
+        </div>
         <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required={{required}}>
       </div>
 

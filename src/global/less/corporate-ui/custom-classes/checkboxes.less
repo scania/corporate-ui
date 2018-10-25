@@ -13,46 +13,57 @@
 {
   display: none;
 }
-.app label.radio,
-.app .checkbox label,
-.app .form-group label.radio,
-.app .form-group .checkbox label,{
-  	font-family: Scania Sans Semi Condensed;
-    padding-left: 0px;
-    color: #53565A;
-    font-size: 1.3rem;
+
+label.radio,
+.checkbox label {
+  font-family: Scania Sans Semi Condensed;
+  padding-left: 0px;
+  color: #53565A;
+  font-size: 1.3rem;
+  font-weight: normal;
+
+   .app .form-group & {
     font-weight: normal;
+  }
 }
 
-.app .table-panel thead,
-.app .table-primary thead tr th label.radio,
-.app .panel-primary .panel-heading,
-.app .bg-brand-01,
-.app .bg-brand-03,
-.app .bg-primary-02,
-.app .bg-primary-03,
-.app .bg-primary-04,
-.app .bg-secondary-01,
-.app .bg-secondary-02,
-.app .bg-secondary-03,
-.app .bg-secondary-04,
-.app .bg-tertiary-01,
-.app .bg-tertiary-02,
-.app .bg-tertiary-03,
-.app .bg-tertiary-04,
-.app .bg-tertiary-05,
-.app .bg-tertiary-06,
-.app .bg-tertiary-07,
-.app .bg-grey6,
-.app .bg-grey7,
-.app .bg-grey8,
-.app .bg-grey9,
-.app .bg-primary .form-group .checkbox label,
-.app .bg-success,
-.app .bg-warning,
-.app .bg-danger,
-.app .bg-info {
-	color: #fff;
+.table-panel,
+.table-primary,
+.panel-primary,
+.bg-brand-01,
+.bg-brand-03,
+.bg-primary-02,
+.bg-primary-03,
+.bg-primary-04,
+.bg-secondary-01,
+.bg-secondary-02,
+.bg-secondary-03,
+.bg-secondary-04,
+.bg-tertiary-01,
+.bg-tertiary-02,
+.bg-tertiary-03,
+.bg-tertiary-04,
+.bg-tertiary-05,
+.bg-tertiary-06,
+.bg-tertiary-07,
+.bg-grey6,
+.bg-grey7,
+.bg-grey8,
+.bg-grey9,
+.bg-primary,
+.bg-success
+,.bg-warning,
+.bg-danger,
+.bg-info,
+.btn-success,
+.btn-warning,
+.btn-danger,
+.btn-info {
+  thead,
+  .checkbox label,
+  label.radio {
+    color: #fff;
+  }
 }
 
 
@@ -60,7 +71,7 @@ input[type=checkbox] {
   .config();
   .checkbox-mixin();
 
-      &.radio-checkbox-inverse {
+  &.radio-checkbox-inverse {
     .config(inverse);
     .checkbox-mixin();
   }

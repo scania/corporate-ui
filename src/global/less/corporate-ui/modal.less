@@ -18,6 +18,7 @@
 
   &-content {
     border-radius: 0;
+    top: 65px;
   }
 
   &-title {
@@ -66,12 +67,12 @@
     .modal-body {
       height: 100vh;
     }
-  }  
+  }
 
   .modal-body.scroll-y  {
       max-height: ~"calc(100vh - 200px)";
       overflow-y: auto;
-  }    
+  }
 
   .scroll-y  {
 
@@ -110,42 +111,42 @@
 
     /* button */
     ::-webkit-scrollbar-button {
-        background: #fbfbfb; 
+        background: #fbfbfb;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-        background: #98989896; 
+        background: #98989896;
         border-radius: 4px;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: #49864c;  
+        background: #49864c;
     }
 
     /* Track */
     ::-webkit-scrollbar-track {
-        background: #d8d8d8; 
+        background: #d8d8d8;
         border-radius: 4px;
     }
 
     /* The track NOT covered by the handle.*/
     ::-webkit-scrollbar-track-piece {
-        background: #000; 
+        background: #000;
     }
 
     /* Corner */
     ::-webkit-scrollbar-corner {
-        background: #999; 
+        background: #999;
     }
 
     /* Resizer */
     ::-webkit-resizer {
-        background: #111; 
+        background: #111;
     }
 
-  } 
+  }
 
   modal-header .close {
       margin-top: -6px;
@@ -153,7 +154,6 @@
       font-weight: normal;
       text-shadow: none;
   }
-  
 }
 
 @media (max-width: 991px) {
@@ -163,7 +163,7 @@
       &-md,
       &-lg  {
         width: 96vw;
-      }  
+      }
 
       &-fullscreen {
         width: 98vw;
@@ -171,7 +171,7 @@
         .modal-content {
           -webkit-box-shadow: none;
           box-shadow: none;
-      }   
+      }
     }
   }
-} 
+}

@@ -191,7 +191,9 @@
           display: inline-block;
           content: "+";
           font-size: medium;
-          padding: 10px 15px;
+          padding: 8px 0;
+          // We use width instead of padding to make + and - align the same
+          width: 40px;
         }
       }
     }
@@ -201,6 +203,9 @@
       sub-navigation,
       .dropdown-menu {
         display: none;
+        // We have order here to make sure sub-nav is always displayed 
+        // as the last item, even though its rendered above the link
+        order: 1;
       }
     }
     &.expanded ::content {
@@ -220,13 +225,12 @@
           font-family: @subLevelFont;
           text-transform: none;
         }
+      }
 
-        + .mode-toggler,
-        + template + .mode-toggler {
+      .mode-toggler {
 
-          &:before {
-            content: "-";
-          }
+        &:before {
+          content: "-";
         }
       }
     }

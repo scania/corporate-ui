@@ -24,7 +24,7 @@
   <template is="dom-if" if="{{children.length}}">
     <sub-navigation caption="{{caption}}">
       <template is="dom-repeat" items="{{children}}">
-        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}"></nav-item>
+        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}" dropdown="{{item.dropdown}}" children="{{item.children}}"></nav-item>
       </template>
     </sub-navigation>
   </template>

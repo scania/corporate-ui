@@ -1,0 +1,103 @@
+<div>
+  <span class="text-cookie">
+    <template is="dom-if" if="{{_langSupport(lang, 'en-gb')}}">
+      Scania uses cookies on our websites in order to ensure the performance and user experience. If you continue to browse without changing your web browser cookie settings, you are agreeing to our use of cookies. Find out more by reading our cookie guidelines in the footer link. English <!-- {{text}} -->
+      <a href="#" data-toggle="modal" data-target="#cookieAgreement"> Read More</a>
+    </template>
+    <template is="dom-if" if="{{_langSupport(lang, 'se')}}">
+      När du visar den här webbplatsen eller någon annan webbplats som länkas från den här webbplatsen kan vi spara lite information på din dator i form av en ”cookie”. 
+      Scania använder bland annat cookies för att registrera besökarstatistik och för att låta användaren välja språk när han eller hon söker efter ett begagnat fordon på vår webbplats.
+
+      Du kan ställa in datorn på att blockera cookies. Det innebär dock att vi inte kan garantera att alla delar av webbplatsen fungerar som de ska. Hur du blockerar cookies beror på vilken webbläsare du använder. Välj ”Hjälp” eller en motsvarande meny i webbläsaren om du behöver anvisningar. <!-- {{text}} -->
+      <a href="#" data-toggle="modal" data-target="#cookieAgreement"> Läs mer</a>
+    </template>
+    <template is="dom-if" if="{{_langSupport(lang, 'de')}}">
+       Scania verwendet Cookies, um Ihnen ein besseres Nutzererlebnis zu bieten. Durch Nutzung dieser Website stimmen Sie unserer Verwendung von Cookies zu. Weitere Informationen hierzu finden Sie in der <!-- {{text}} -->
+      <a href="#" data-toggle="modal" data-target="#cookieAgreement">Weiterlesen</a>
+    </template>
+    <template is="dom-if" if="{{_langSupport(lang, 'es')}}">
+      Esta página web y otras relacionadas pueden almacenar algunos datos sobre su equipo en forma de “cookie”, lo que nos permite adaptar nuestras páginas web a sus intereses y preferencias. Al navegar en esta página está aceptando nuestra política de cookies. Spanish <!-- {{text}} -->
+      <a href="#" data-toggle="modal" data-target="#cookieAgreement">Lee mas</a>
+    </template>
+  </span>
+  <span class="close-cookie pull-right btn btn-transparent" >Accept</span>
+</div>
+
+<div id="cookieAgreement" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          Cookies
+        </div>
+      </div>
+      <div class="modal-body scroll-y">
+        <article>
+        <template is="dom-if" if="{{_langSupport(lang, 'en-gb')}}">
+          <p>Our website uses cookies. Below, you will find further information on these cookies; what they are, what cookies we use, what our purpose is for using them, and how you go about blocking or deleting cookies.</p>
+          <p>With the exception of cookies that are strictly necessary to enable you to move around the website and use its features, we will only use cookies if you have allowed us to do so by checking the box “Yes, I accept your use of cookies”. Please be advised that if you do not allow us to use cookies, it may negatively affect your browsing experience.</p>
+          <h3>What is a cookie?</h3>
+          <p>Cookies are text files containing small amounts of information, which are downloaded to your device when you visit a website. Cookies are then sent back to the originating website on each subsequent visit, or to another website that recognises that cookie. Cookies are useful because they allow a website to recognise a user’s device.</p>
+          <p>One type of cookie will save a file permanently on your computer. It can thereafter be used to customise this website based on your choices and interests. Another common type of cookie is the “session cookie”. When you visit a website, session cookies are sent between your computer and the server to collect information. Session cookies are not saved after you close your internet browser. You can find more information about cookies at <a href="http://www.allaboutcookies.org/">www.allaboutcookies.org</a>.</p>
+          <h3>What do we use cookies for?</h3>
+          <p>We use cookies to enhance the functionality of our website. For example, cookies help authenticate the user if the user logs in to a secure area of the website, to determine what information is made available on a particular webpage. Also, login information can be stored in a cookie, so the user can enter and leave the website without having to re-enter the same authentication information over and over. Cookies are also used to help you save certain information on the website, such as favourite products etc. They are also used for collecting anonymous statistics about user behaviour to enable us to improve the website experience.</p>
+          <h3>Cookies used on our website</h3>
+          <p>We use the following categories of cookies on this website:</p>
+          <ul style="list-style-position: inside;">
+          <li>Permanent cookies. Permanent cookies remain on the user's computer/device for a pre-defined period of time. Permanent cookies are used to collect identifying information about the user, such as browsing behaviour or user preferences for a specific website.</li>
+          <li>Session cookies. Session cookies are temporarily stored in your internet browser, and are erased when the browser is closed.</li>
+          <li>Third party cookies: Third party cookies allow third parties to download cookies to your device. They may be used to track your browsing history, or allow you to send a page from our website to your social media account such as Facebook or Twitter.</li>
+          </ul>
+          <p>For more information regarding what cookies we use please see our detailed cookie-list (below).&nbsp;</p>
+          <h3>How to block and/or delete cookies</h3>
+          <p>If you do not wish to accept cookies you can change your web browser settings to automatically block the storage of cookies or to inform you when a website wants to store cookies on your computer. Previously stored cookies can also be deleted through your web browser. More information can be found through your web browser’s support pages. If you use several different devices to access our website (computer, tablet or smartphone), you will have to change the browser settings on all devices.</p>
+        </template>
+        <template is="dom-if" if="{{_langSupport(lang, 'de')}}">
+          <h2>Cookies</h2>
+          <p><span>WENN SIE SICH DIESE HOMEPAGE ODER EINE ANDERE HOMEPAGE ANSCHAUEN, DIE MIT UNSERER HOMEPAGE ÜBER EINEN LINK VERBUNDEN IST, SPEICHERN WIR MÖGLICHERWEISE INFORMATIONEN AUF IHREM COMPUTER IN FORM EINES "COOKIES". EIN SOLCHES COOKIE GIBT UNS DIE MÖGLICHKEIT, DIE INFORMATIONEN AUF UNSERER HOMEPAGE BESSER IHREN INTERESSEN UND WÜNSCHEN ANZUPASSEN.</span><br> </p>
+          <p><span>Ein Cookie ist eine kleine Textdatei, die die von Ihnen besuchte Homepage auf Ihrem Computer hinterlegt. Cookies werden von vielen Anbietern im Internet genutzt, um ihren Besuchern Zugriff auf verschiedene Funktionen zu geben. Die Informationen in der Cookie-Datei lassen sich auch verwenden, um das Surfverhalten eines Anwenders zu dokumentieren.</span><br> </p>
+          <p><span>Es gibt zwei Arten von Cookies. Bei der einen Art von Cookie wird über einen längeren Zeitraum hinweg eine Datei auf Ihrem Computer gespeichert und z. B. für Funktionen verwendet, die beschreiben, welche Informationen seit Ihrem letzten Besuch auf dieser Homepage hinzugekommen sind. Ein zweiter Typ von Cookie ist ein sog. "Session Cookie". Ein Session Cookie wird vorübergehend auf Ihrem Computers gespeichert und zwar, während Sie diese Homepage besuchen und auf einer Seite surfen. Solche Informationen werden z. B. dazu genutzt, um zu erfassen, welche Sprache Sie gewählt haben. Session Cookies werden nicht längere Zeit hindurch auf Ihrem Computer gespeichert, sondern sofort gelöscht, wenn Sie Ihren Internet-Browser schließen.</span><br> </p>
+          <p><span>Unter anderem verwendet Scania Cookies, um Besuchsstatistiken zu erstellen und seine Anwender in die Lage zu versetzten, bei der Suche nach einem Gebrauchtfahrzeug auf unserer Homepage eine bestimmte Sprache zu wählen.</span><br> </p>
+          <p><span>Sie können Ihren Computer so einstellen, dass er Cookies blockiert. Dies führt jedoch dazu, dass wir nicht garantieren können, dass sämtliche Bereiche unserer Homepage ordnungsgemäß funktionieren. Die Art und Weise, wie Sie Cookies blockieren können, ist abhängig von Ihrem Internet-Browser. Schauen Sie sich dazu bitte den Abschnitt "Hilfe" oder das jeweilige Menü in Ihrem Browser genauer an, wo Sie Anweisungen erhalten.</span><br> </p>
+          <p><span>Scania behält sich die Möglichkeit vor, Informationen jederzeit zu überarbeiten und zu aktualisieren.</span><br> </p>
+        </template>
+        <template is="dom-if" if="{{_langSupport(lang, 'es')}}">
+          <h2>Cookies</h2>
+          <p>Cuando vea este sitio o cualquier otro sitio vinculado desde este sitio, podemos almacenar algunos datos sobre su equipo en forma de "cookie", lo que nos permite adaptar nuestros sitios web a sus intereses y preferencias.</p>
+          <p>Una cookie es un pequeño archivo de texto que guarda en su equipo el sitio que está visitando. Muchos sitios web emplean las cookies para ofrecer a los visitantes acceso a varias funciones. La información que contiene la cookie puede utilizarse para supervisar el comportamiento de navegación por Internet de un usuario.&nbsp;</p>
+          <p>Existen dos tipos de cookies. El primer tipo guarda un archivo durante un periodo de tiempo en su equipo y se utiliza, por ejemplo, con funciones que describen qué información es nueva desde la última vez que visitó ese sitio en particular. El segundo tipo se conoce como "cookie de sesión". Se almacena temporalmente en la memoria de su equipo mientras visita el sitio y navega por una página y se utiliza, por ejemplo, para determinar qué idioma ha elegido. Las cookies de sesión no se almacenan en su equipo durante un tiempo, sino que se eliminan al cerrar el navegador.</p>
+          <p>Entre otras cosas, Scania utiliza las cookies para registrar las estadísticas de visitantes y permitir al usuario que seleccione una opción de idioma al buscar un vehículo de segunda mano en nuestro sitio.</p>
+          <p>Puede configurar su equipo para que bloquee las cookies. Sin embargo, de este modo no podemos garantizarle que todas las áreas de nuestro sitio web vayan a funcionar tal y como está previsto. El procedimiento para bloquear las cookies dependerá del navegador que utilice. Vaya a la sección de "Ayuda" o al menú adecuado en su navegador para obtener instrucciones.</p>
+          <p>Scania puede revisar en cualquier momento esta información y actualizarla.</p>
+          <h4>Contacto</h4>
+          <p>Si tiene alguna pregunta, no dude en ponerse en contacto con nosotros: contact@scania.com<br><br></p>
+          <p><br><br></p>
+        </template>
+        <template is="dom-if" if="{{_langSupport(lang, 'se')}}">
+          <p>På vår hemsida används cookies. Nedan finner du information om dessa cookies; vad cookies är, vilka cookies vi använder, vilket syfte vi använder dem för och hur du kan blockera eller radera cookies.</p>
+          <p>Med undantag av de cookies som är strikt nödvändiga för att navigera på webbplatsen och använda dess funktioner använder vi cookies endast om du har tillåtit oss att göra det genom att kryssa i rutan ”Ja, jag godkänner användning av cookies”. Lägg märke till att det kan försämra online-upplevelsen om du inte godkänner cookies.</p>
+          <h3><p><b>Vad är en cookie?</b></p> </h3>
+          <p>Cookies är textfiler som innehåller en liten mängd information som laddas ned till din enhet när du besöker en webbplats. Cookies skickas tillbaka till den ursprungliga webbplatsen vid varje senare besök, eller till någon annan webbplats som känner igen cookien. Cookies används för att en webbplats ska kunna känna igen användarens enhet.</p>
+          <p>En typ av cookie gör att en fil sparas permanent på din dator. Den används sedan för att skräddarsy webbplatsen enligt dina preferenser och intressen. En annan vanlig typ av cookie är ”sessionscookien”. När du besöker en webbplats skickas sessionscookies mellan din dator och servern för att inhämta information. Sessionscookies sparas inte efter att du har stängt webbläsaren. För mer information om cookies se <a href="http://www.allaboutcookies.org/">www.allaboutcookies.org</a>.</p>
+          <h3><p><b>Vad använder vi cookies till?</b></p> </h3>
+          <p>Vi använder cookies för att förbättra webbplatsens funktionalitet. Cookies används till exempel för att autentisera en användare som loggar in på en säker plats på hemsidan, eller för att avgöra vilken information som ska vara tillgänglig på en viss webbsida. Det går även att spara inloggningsinformation i en cookie, så att användaren kan lämna webbplatsen och inte behöver ange samma information vid nästa besök. Cookies används också för du ska kunna spara en del information på webbplatsen, till exempel favoritprodukter osv. De används också för att inhämta anonym användningsstatistik så att vi ska kunna förbättra webbplatsupplevelsen.</p>
+          <h3><p><b>Cookies på vår webbplats</b></p> </h3>
+          <p>Följande typer av cookies används på den här webbplatsen:</p>
+          <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Permanenta cookies sparas på användarens dator/enhet under en definierad tidsperiod. De används för att inhämta ID-information om användaren, till exempel hemsidesanvändning eller användarens inställningar för en viss webbplats.</p>
+          <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sessionscookies lagras temporärt i din webbläsare och raderas när webbläsaren stängs.</p>
+          <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cookies från tredje part tillåter tredje part att ladda ner cookies till din enhet. De kan användas för att spåra din webbhistorik, eller tillåter att du skickar en sida från vår webbplats till ditt konto på sociala medier, till exempel Facebook eller Twitter.</p>
+          <p>För mer information om de cookies vi använder, se vår detaljerade cookie-lista.</p>
+          <h3><p><b>Blockera och/eller radera cookies</b></p> </h3>
+          <p>Om du inte vill godkänna cookies kan du ställa in webbläsaren på att automatiskt hindra cookies från att sparas, eller informera dig när en webbplats vill spara cookies på din dator. Cookies som redan sparats kan även raderas i webbläsaren. För mer information, se supportsidorna för din webbläsare. Om du använder flera olika enheter för att gå in på vår webbplats (dator, surfplatta eller mobiltelefon) måste du ändra webbläsarens inställningar på samtliga dessa.</p>
+        </template>
+        </article>
+      </div>
+      <div class="modal-footer btn-toolbar">
+        <button type="button" class="close-cookie btn btn-success" data-dismiss="modal" aria-hidden="true">I agree</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

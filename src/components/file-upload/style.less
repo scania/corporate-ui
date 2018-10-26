@@ -3,14 +3,19 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
-    padding: 20px;
+    padding:0px;
     margin-bottom: 15px;
+    box-shadow: 0px 4px 24px rgba(0,0,0,0.08);
+    .form-group{
+      margin: 0 20px;
+    }
   }
   #dropArea{
     width: 280px;
     background-color: #fff;
     text-align: center;
     padding: 20px 0;
+    margin-top: 20px;
     border-radius: 24px;
     -webkit-border-radius: 24px;
     -moz-border-radius: 24px;
@@ -18,21 +23,28 @@
       background-color: #f0f0f0;
       color: #033a6a;
     }
-    .cloud-icon{
-      font-size: 4rem;
-    }
     p, h1{
       text-align: center;
       padding-top: 0;
       margin-bottom: 0;
       color: inherit;
+      font-size: 16px;
+    }
+    .label-big{
+      font-size: 24px;
+      margin-bottom:5px;
+    }
+    .cloud-icon{
+      font-size: 4rem;
+      margin-bottom:15px;
     }
     .label-browse{
       color: #4a8ba4;
       font-weight: normal;
-      font-size: 1.4rem;
+      font-size: 1em;
       cursor: pointer;
     }
+    //endof #dropArea
   }
   input[type="file"]{
     display: none;
@@ -40,21 +52,30 @@
   label.btn{color: #033a6a;}
   .file-list{
     border-bottom: 1px solid #ececec;
-    padding-bottom: 5px;
+    padding:8px 0;
+    display: flex;
+    flex-direction: row;
 
     .file-meta{
+      flex-grow: 2;
+      padding-left: 20px;
       position: relative;
-      margin-bottom: 10px;
       p{
         margin: 0;
         padding:0;
         text-align: left;
+      }
+      .file-size{
+        color: #94999d;
       }
       .file-status-icon{
         position: absolute;
         right: 10px;
         top:5px;
         font-size: 1.3em
+      }
+      .fa-times{
+        cursor: pointer;
       }
       .fa-check{
         display: none;
@@ -88,11 +109,24 @@
         }
       }
     }
-
+    //endof .file-list
   }
   #fileerror{
+    margin-top: 20px;
+    margin-bottom: 20px;
     div{color: #cc1040;}
-    p{margin-bottom: 5px; }
+    p{margin-bottom: 5px; text-align: left;}
+  }
+  .action-btn-wrapper{
+    border-right-width: 1px;
+    border-style: solid;
+    border-color: #f0f0f0;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: #ffffff;
+    background-size: cover;
+    box-shadow: 0px -4px 16px rgba(0,0,0,0.08);
+    padding: 25px 20px 20px;
   }
 }
 

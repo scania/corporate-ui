@@ -62,7 +62,7 @@
                       <div class="form-group">
                         <label>Upload file
                         </label>
-                        <c-file-upload name="uxlib-file-input" accept="image/*" multiple required max-file-size=1000></c-file-upload>
+                        <c-file-upload name="uxlib-file-input" multiple max-file-size=1000></c-file-upload>
                       </div>
                     </div>
                   </div>
@@ -111,7 +111,6 @@
       task
         .on('state_changed', function(snapshot){
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
           // SET PROGRESS BAR VALUE HERE DEPENDS ON YOUR OWN APPLICATION SETTING
           fileUploadComp.setProgressBarValue(file,progress);
         });
@@ -119,8 +118,6 @@
         var url = snapshot.ref.getDownloadURL();
         console.log(url);
       });
-        // .then(snapshot => snapshot.ref.getDownloadURL())
-        // .then(url => console.log(url));
 
     }
   </script>

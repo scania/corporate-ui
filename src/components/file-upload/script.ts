@@ -72,16 +72,17 @@ Polymer({
   },
   addFile: function(file){
     var fileExceedsMax, fileExt, regex, allowFileType;
+    // javascript regex syntax https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+    // match all characters after . at the end of input
+    fileExt = file.name.match(/\.[^\.]*$|$/)[0];
 
+    file.extension = fileExt;
     // if maximum file size is set
     if(this.maxFileSize){
       fileExceedsMax = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
     } else {fileExceedsMax=false;}
     // if file accept attribute is set
     if(this.accept){
-      // javascript regex syntax https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
-      // match all characters after . at the end of input
-      fileExt = file.name.match(/\.[^\.]*$|$/)[0];
       // for example accept="image/*" will create regex = /^(image\/.*)$/i
       regex = new RegExp('^(' + this.accept.replace(/[, ]+/g, '|').replace(/\/\*/g, '/.*') + ')$', 'i');
       allowFileType = (regex.test(file.type) || regex.test(fileExt));

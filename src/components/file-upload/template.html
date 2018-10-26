@@ -4,8 +4,8 @@
           on-dragenter="allowDrop" on-dragover="allowDrop"
           on-drop="dropFile"
           on-dragleave="removeHighlight" on-dragexit="removeHighlight">
-        <h1 class="cloud-icon"><i class="fal fa-cloud-upload"></i></h1>
-        <h1>Drag & drop here</h1>
+        <p class="cloud-icon"><i class="fal fa-cloud-upload"></i></p>
+        <p class="label-big">Drag & drop here</p>
         <p>to upload your files, <label class="label-browse" for="fileinput">or browse</label></p>
         <div class="upload-info">
           <template is="dom-if" if="{{maxFileSize}}">
@@ -18,28 +18,31 @@
         <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required={{required}}>
       </div>
 
+      <div id="fileerror" class="form-group">
+        <p>{{errorTitle}}</p>
+      </div>
+
       <template is="dom-repeat" items={{files}} sort="sortFilenames">
-        <div id="setPb{{item.id}}" class="form-group file-list" hidden$={{item.fileSizeStatus}}>
-            <div class="file-meta" >
-              <p class="file-name"><strong>{{item.name}}</strong></p>
-              <p class="file-size">{{item.fileSize}}</p>
-              <div class="file-status-icon">
-                <i class="fal fa-check"></i>
-                <i class="fal fa-spinner"></i>
-                <i id="{{item.id}}" class="fal fa-times" on-click="removeFile"></i>
-              </div>
+        <div id="setPb{{item.id}}" class="form-group row file-list" hidden$={{item.fileSizeStatus}}>
+          <div class="file-icon">
+            <file-icon filename="{{item.name}}"></file-icon>
+          </div>
+          <div class="file-meta">
+            <p class="file-name"><strong>{{item.name}}</strong></p>
+            <p class="file-size">{{item.fileSize}}</p>
+            <div class="file-status-icon">
+              <i class="fal fa-check"></i>
+              <i class="fal fa-spinner"></i>
+              <i id="{{item.id}}" class="fal fa-times" on-click="removeFile"></i>
             </div>
+          </div>
         </div>
       </template>
 
-      <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
-      <div class="form-group">
+      <div class="action-btn-wrapper" hidden$={{!browseButton}}>
+        <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
         <span hidden$={{!isFiles}}><button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">{{uploadBtnText}}</button></span>
-        <span hidden$={{!browseButton}}><label for="fileinput" type="button" class="btn btn-sm btn-default">Browse</label></span>
-      </div>
-
-      <div id="fileerror">
-        <p>{{errorTitle}}</p>
+        <span><label for="fileinput" type="button" class="btn btn-sm btn-default">Browse</label></span>
       </div>
 
   </div>

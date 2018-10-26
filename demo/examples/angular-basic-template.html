@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en-GB" ng-app="CorporateUI">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name=”robots” content=”noindex”>
+ 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+  <title>Corporate UI - Angular Basic Template</title>
+
+  <script src="/js/corporate-ui.js"></script>
+
+  <style>
+    .navbar-default .dropdown-menu {
+      -webkit-box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
+      box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
+      overflow-y: auto;
+    }
+
+    sub-navigation nav-item ul.dropdown-menu a:after {
+      border-bottom: none;
+    }
+
+    sub-navigation nav-item ul.dropdown-menu  {
+      background-color: #f5f5f5;
+    }
+
+    a:focus {
+      outline: 0;
+    }
+  </style>
+</head>
+
+<body class="scania app ux-lib" data-env="Test" ng-controller="ThisSite as thissite">
+
+  <c-corporate-header site-name="Master Branch" site-url="/corporate-ui/">
+    <nav-item location="/corporate-ui/">UX Library</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+    <c-main-navigation items-data ng-cloak></c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <article>
+        <h2>Angular Corporate UI Demo</h2>
+          <p>This is a demopage using AngularJS togheter with Corporate UI. Populating the main navigation can be solved in meny differnet ways and this is a very basic sample. It is not intended to use "as is" rather than to give you ideas and samples of how to pair Corporate UI with the framework of your choice. Use <a href="/corporate-ui-docs/master-branch/developer/bootstrap-original-docs.html">Scania Bootstrap</a> to apply the Scania Brand Identity to your application.</p>
+          <p>Learn why <a href="/corporate-ui-docs/master-branch/developer/uiaas.html">you shouldn't include Corporate UI in your build</a> rather than fetch it from the Scania CDN in real time.</p> 
+          <a href="angular-basic-template.html" download class="btn btn-default btn-lg">Download this template</a>
+        </article>  
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer>
+    <c-social-media>
+      <nav-item icon="facebook" onclick=window.open("https://www.facebook.com/scaniagroup/")></nav-item>
+      <nav-item location="#" icon="twitter"></nav-item>
+      <nav-item location="#" icon="youtube"></nav-item>
+      <nav-item location="#" icon="linkedin"></nav-item>
+    </c-social-media>
+
+    <nav-item location="/corporate-ui-docs/master-branch/developer/support.html">Support</nav-item>
+    <nav-item location="mailto:corporate-ui@scania.com">Contact</nav-item>
+  </c-corporate-footer>
+
+  <script src="https://static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('ThisSite', [ThisSite])
+      .directive('itemsData', itemsData);
+
+    function ThisSite() {
+      var vm = this;
+
+      vm.primaryItems = [
+        { text: 'Home', location: '/corporate-ui/' },
+        { text: 'Style Guide', location: '/corporate-ui/styleguide/', children: [
+          { text: 'Logotype', location: '/corporate-ui/logotype/' },
+          { text: 'Icons', location: '/corporate-ui/icons/' },
+          { text: 'Colours', location: '/corporate-ui/colours/' },
+          { text: 'Typography', location: '/corporate-ui/typography/' }
+        ] },
+        { text: 'Web Applications', location: '/corporate-ui/developer/', children: [
+          { text: 'Corporate UI', location: '/corporate-ui/developer/' },
+          { text: 'Caching', location: '/corporate-ui/developer/caching.html' },
+          { text: 'Scania Bootstrap', location: '/corporate-ui/developer/scania-bootstrap.html' },
+          { text: 'Support', location: '/corporate-ui/template/html-copy-paste/html-copy-paste.html' }
+        ] },
+        { text: 'Mobile Apps', location: '/corporate-ui/mobile-apps/' },
+        { text: 'Report an Issue', location: '/scania/corporate-ui/issues' },
+        { text: 'Support', location: '/corporate-ui/developer/support.html' },
+        { text: 'Sub menu', caption: 'Style Guide', children: [
+            { text: 'Logotype', location: '/corporate-ui-docs/master-branch/logotype/' },
+            { text: 'Icons', location: '/corporate-ui-docs/master-branch/icons/' },
+            { text: 'Colours', location: '/corporate-ui-docs/master-branch/colours/' },
+            { text: 'Dropdown', dropdown: true, children: [
+              { text: 'Home', location: '#' },
+              { text: 'Home2', location: '#' },
+              { text: 'Home4', location: '#' }
+            ] }
+          ]
+        }
+      ];
+
+      vm.primaryItems.map(function(item) {
+        item.props = { onclick: changeView };
+      });
+
+      vm.secondaryItems = [
+        { text: 'Dropdown 1', children: [
+            { text: 'Home' },
+            { text: 'Home2' },
+            { text: 'Home4'}
+          ]
+        },
+        { text: 'Dropdown 2', children: [
+            { text: 'Home' },
+            { text: 'Home2' },
+            { text: 'Home4'}
+          ]
+        }
+      ]
+
+      function changeView($event) {
+        $event.preventDefault();
+      }
+    }
+
+    function itemsData() {
+      return {
+        restrict: 'A',
+        link: function(scope, el, attrs) {
+          el[0].primaryItems = scope.thissite.primaryItems;
+          el[0].secondaryItems = scope.thissite.secondaryItems;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

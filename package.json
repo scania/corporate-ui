@@ -6,14 +6,16 @@
   "dependencies": {
     "Polymer": "1.4.0",
     "bootstrap": "3.2.0",
+    "bootstrap.native": "2.0.21",
+    "choices.js": "3.0.4",
     "webcomponents.js": "0.7.24"
   },
   "devDependencies": {
     "@types/google.analytics": "0.0.39",
+    "@types/js-cookie": "2.2.0",
     "@types/node": "7.0.12",
     "angular": "1.5.5",
     "bootstrap-datepicker": "1.6.4",
-    "bootstrap.native": "2.0.21",
     "del": "3.0.0",
     "directory-tree": "2.1.0",
     "es6-promise": "4.1.0",
@@ -30,6 +32,7 @@
     "jquery": "3.0.0",
     "jquery-ui": "1.12.1",
     "jquery.hotkeys": "0.1.0",
+    "js-cookie": "2.2.0",
     "less": "2.7.2",
     "merge-stream": "1.0.1",
     "moment": "2.19.3",

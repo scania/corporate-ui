@@ -123,7 +123,9 @@ Polymer({
 
     this.listen(this, 'tap', 'onTap');
   },
-  onTap: function() {
+  onTap: function(event) {
+    event.stopPropagation();
+
     if (this.dropdown) {
       if (!this.classList.contains('more') && !this.active) {
         this.reSetActive();
@@ -133,10 +135,10 @@ Polymer({
 
     this.active = true;
 
-    if(window.innerWidth < 991) {
-      var event = document.createEvent('Event');
-      event.initEvent('navigation-close', true, true);
-      this.dispatchEvent(event);
+    if(window.innerWidth < 992) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('navigation-close', true, true);
+      this.dispatchEvent(_event);
     }
   },
   setActive: function(newState) {

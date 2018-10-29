@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Multi Select</title>
+
+  <script src="../../../js/corporate-ui.js"></script>
+
+  <link rel="import" href="../../../components/select/select.html">
+</head>
+<body class="scania ux-lib" ng-app="CorporateUI" ng-controller="App as app">
+
+  <c-corporate-header site-name="Multi Select" site-url="/">
+    <nav-item location="https://www.scania.com/world/#/" text="World Entry"></nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items>
+        <nav-item location="#/start" text="start"></nav-item>
+      </primary-items>
+
+      <secondary-items>
+        <nav-item>
+          <a href="#/profile">
+            <span class="icon-user"></span>
+          </a>
+        </nav-item>
+      </secondary-items>
+    </c-main-navigation>
+
+    <section>
+      <div class="container">
+        <h1>headline</h1>
+        <p>paragraph</p>
+
+        <c-select name="single" ng-attr-label="{{app.label1}}" ng-attr-options='{{app.options1}}'>
+          <option value="blop">fish</option>
+        </c-select>
+
+        <c-select name="multi" ng-attr-label="{{app.label2}}" ng-attr-options='{{app.options2}}'></c-select>
+
+        <c-select name="multi" ng-attr-label="{{app.label3}}" ng-attr-options='{{app.options3}}'>
+          <option value="blop">fish</option>
+        </c-select>
+
+        <c-select name="multi_grouped" ng-attr-label="{{app.label4}}" ng-attr-options='{{app.options4}}'>
+          <optgroup label="fishes">
+            <option value="blop">guppy</option>
+          </optgroup>
+        </c-select>
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer>
+    <nav-item location="#/test">test</nav-item>
+  </c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('App', [App]);
+
+    function App() {
+      this.label1 = 'Animals - select (html)';
+      this.options1 = {
+        placeholderValue: 'Pick a animal'
+      };
+
+      this.label2 = 'Animals - input (items)';
+      this.options2 = {
+        placeholderValue: 'Pick a animal',
+        items: [
+          {label:'cat', value:'mjau'},
+          {label:'dog', value:'woof'}
+        ]
+      };
+
+      this.label3 = 'Animals - select (choices)';
+      this.options3 = {
+        placeholderValue: 'Pick a animal',
+        choices: [
+          {label:'cat', value:'mjau'},
+          {label:'dog', value:'woof'}
+        ]
+      };
+
+      this.label4 = 'Animals - select (choices grouped)';
+      this.options4 = {
+        placeholderValue: 'Pick a animal',
+        choices: [
+          {label: 'cats', choices: [
+            {label: 'perser', value: 'mjau'},
+            {label: 'ragdoll', value: 'mjow'},
+            {label: 'siames', value: 'miaao'}
+          ]},
+          {label: 'dogs', choices: [
+            {label: 'labrador', value: 'woof'},
+            {label: 'bulldog', value: 'woof woof'},
+            {label: 'schäfer', value: 'WoofWoof'}
+          ]}
+        ]
+      };
+    }
+  </script>
+</body>
+</html>

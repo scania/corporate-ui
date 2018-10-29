@@ -198,10 +198,6 @@
       .dropdown-toggle .caret {
         display: none;
       }
-      sub-navigation,
-      .dropdown-menu {
-        display: none;
-      }
       .btn.mode-toggler {
         display: block;
         position: absolute;
@@ -220,6 +216,18 @@
           width: 40px;
         }
       }
+
+      sub-navigation,
+      .dropdown-menu {
+        display: none;
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        box-shadow: none;
+        float: none;
+        border: 0;
+        padding: 0;
+      }
     }
 
     &.collapsed ::content {
@@ -237,13 +245,6 @@
       sub-navigation,
       .dropdown-menu {
         display: block;
-        position: static;
-        max-height: none;
-        overflow-y: visible;
-        box-shadow: none;
-        float: none;
-        border: 0;
-        padding: 0;
 
         li a {
           font-family: @subLevelFont;

@@ -5,6 +5,9 @@ Polymer({
       type: Boolean,
       value: true
     },
+    colorGroup: {
+      type: String
+    },
     filename: {
       type: String
     },
@@ -13,7 +16,7 @@ Polymer({
     }
   },
   getExtension: function(){
-    this.extension = this.filename.match(/\.[^\.]*$|$/)[0];
+    this.extension = this.filename.match(/[^\.]*$|$/)[0];
   },
   ready: function(){
     this.getExtension();

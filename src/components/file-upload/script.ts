@@ -215,6 +215,7 @@ Polymer({
   },
   uploadFileDone: function(f,parentEl){
     this.$$(parentEl).querySelector('.file-meta').classList.add('done');
+    this.$$(parentEl).querySelector('.file-icon').classList.add('done');
     var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
     this.files.splice(elementPos, 1);
     this.updateIsFiles();

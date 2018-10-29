@@ -56,6 +56,10 @@
     display: flex;
     flex-direction: row;
 
+    .file-icon.done{
+      opacity: 0.4;
+    }
+
     .file-meta{
       flex-grow: 2;
       padding-left: 20px;
@@ -111,6 +115,10 @@
     }
     //endof .file-list
   }
+  .files-to-upload{
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
   #fileerror{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -126,7 +134,9 @@
     background-color: #ffffff;
     background-size: cover;
     box-shadow: 0px -4px 16px rgba(0,0,0,0.08);
-    padding: 25px 20px 20px;
+    .buttons{
+      margin: 25px 20px;
+    }
   }
 }
 

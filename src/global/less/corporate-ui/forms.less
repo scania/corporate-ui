@@ -245,15 +245,18 @@ select {
   }
 }
 
-.app textarea& {
-  height: auto;
-}
+.app {
+  textarea& {
+    height: auto;
+  }
 
-.app select[multiple], .app select[size]  {
-  height: auto;
-  background-image: none;
-}
+  select[multiple],
+  select[size] {
+    height: auto;
+    background-image: none;
+  }
 
-.app select[multiple] option {
-  background: transparent;
+  select[multiple] option {
+    background: transparent;
+  }
 }

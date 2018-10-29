@@ -1,11 +1,13 @@
 /*** MODAL SIZES ***/
 .modal {
 
-  &-header &-title {
+  &-header {
     font-family: 'Scania Sans Headline';
     font-weight: bold;
     color: @color-brand-01;
   }
+
+  &-title
 
   &-open & {
     overflow-x: hidden;
@@ -18,7 +20,6 @@
 
   &-content {
     border-radius: 0;
-    top: 65px;
   }
 
   &-title {
@@ -62,24 +63,50 @@
       border-radius: 0;
       -webkit-box-shadow: none;
       box-shadow: none;
+      top: 0;
     }
+  }  
 
-    .modal-body {
-      height: 100vh;
-    }
-  }
-
+  // This one can be removed
   .modal-body.scroll-y  {
       max-height: ~"calc(100vh - 200px)";
       overflow-y: auto;
-  }
+  }    
 
   .scroll-y  {
 
     .modal-body {
       max-height: ~"calc(100vh - 200px)";
       overflow-y: auto;
-      height: 40vh;
+      margin-right: 34px;
+    }  
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-button {
+        background: #ddd;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #9c9c9c;
+        
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #797979;
+    }
+    ::-webkit-scrollbar-track {
+      background: #d8d8d8;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background: #d8d8d8;
+    }
+
+  } 
+
+
+  .spacious {
+
+    .modal-body {
       margin-right: 50px;
       padding: 10px 160px 30px 60px;
     }
@@ -89,81 +116,34 @@
         border-bottom: none;
     }
 
-    .modal-header .modal-title {
-        font-family: 'Scania Sans Semi Condensed';
-        font-weight: bold;
-        color: #242424;
-        font-size: 2.0rem;
-        margin-top: 30px;
-    }
-
     .modal-footer {
         padding: 30px 30px 50px 60px;
         text-align: left;
         border-top: none;
-    }
+    }  
+  }  
 
-    /* width of scrollbar */
-    ::-webkit-scrollbar {
-        width: 6px;
-        padding-right: 40px;
-    }
-
-    /* button */
-    ::-webkit-scrollbar-button {
-        background: #fbfbfb;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #98989896;
-        border-radius: 4px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #49864c;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #d8d8d8;
-        border-radius: 4px;
-    }
-
-    /* The track NOT covered by the handle.*/
-    ::-webkit-scrollbar-track-piece {
-        background: #000;
-    }
-
-    /* Corner */
-    ::-webkit-scrollbar-corner {
-        background: #999;
-    }
-
-    /* Resizer */
-    ::-webkit-resizer {
-        background: #111;
-    }
-
-  }
-
-  modal-header .close {
-      margin-top: -6px;
+  .modal-header .close {
+      margin-top: -4px;
       font-size: 30px;
       font-weight: normal;
       text-shadow: none;
   }
+  
 }
 
 @media (max-width: 991px) {
   .modal {
 
+      .modal-content {
+        top: 65px;
+      }
+
       &-sm,
       &-md,
       &-lg  {
         width: 96vw;
-      }
+      }  
 
       &-fullscreen {
         width: 98vw;
@@ -171,7 +151,7 @@
         .modal-content {
           -webkit-box-shadow: none;
           box-shadow: none;
-      }
+      }   
     }
   }
-}
+} 

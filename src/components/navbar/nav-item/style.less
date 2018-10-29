@@ -227,6 +227,10 @@
         float: none;
         border: 0;
         padding: 0;
+
+        // We have order here to make sure sub-nav is always displayed 
+        // as the last item, even though its rendered above the link
+        order: 1;
       }
     }
 
@@ -235,9 +239,6 @@
       sub-navigation,
       .dropdown-menu {
         display: none;
-        // We have order here to make sure sub-nav is always displayed 
-        // as the last item, even though its rendered above the link
-        order: 1;
       }
     }
     &.expanded ::content {

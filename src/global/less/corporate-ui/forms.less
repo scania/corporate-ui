@@ -244,3 +244,19 @@ select {
     display: none;
   }
 }
+
+.app {
+  textarea& {
+    height: auto;
+  }
+
+  select[multiple],
+  select[size] {
+    height: auto;
+    background-image: none;
+  }
+
+  select[multiple] option {
+    background: transparent;
+  }
+}

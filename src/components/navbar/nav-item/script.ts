@@ -10,6 +10,12 @@ Polymer({
       type: String,
       value: ''
     },
+    template: {
+      type: String
+    },
+    classes: {
+      type: String
+    },
     location: {
       type: String,
       value: ''
@@ -21,6 +27,12 @@ Polymer({
     children: {
       type: Array,
       observer: 'toggleModeToggler'
+    },
+    props: {
+      type: Object
+    },
+    attrs: {
+      type: Object
     },
     haveChildren: {
       type: Boolean
@@ -83,15 +95,37 @@ Polymer({
       this.haveChildren = true;
     }
 
-    if (this.active && this.active.toString() == 'true') {
+    if(this.active && this.active.toString() == 'true') {
       this.setActive(true);
+    }
+
+    if(this.props) {
+      Object.keys(this.props).map(function(prop) {
+        this[prop] = this.props[prop];
+      }, this);
+    }
+
+    if(this.attrs) {
+      Object.keys(this.attrs).map(function(attr) {
+        this.setAttribute(attr, this.attrs[attr]);
+      }, this);
+    }
+
+    if (this.classes) {
+      this.classList.add.apply(this.classList, this.classes.split(' '));
+    }
+
+    if (this.template) {
+      this.addTemplate();
     }
 
     this.toggleClass('expanded', this.hasClass(this, 'active'));
 
     this.listen(this, 'tap', 'onTap');
   },
-  onTap: function() {
+  onTap: function(event) {
+    event.stopPropagation();
+
     if (this.dropdown) {
       if (!this.classList.contains('more') && !this.active) {
         this.reSetActive();
@@ -101,10 +135,10 @@ Polymer({
 
     this.active = true;
 
-    if(window.innerWidth < 991) {
-      var event = document.createEvent('Event');
-      event.initEvent('navigation-close', true, true);
-      this.dispatchEvent(event);
+    if(window.innerWidth < 992) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('navigation-close', true, true);
+      this.dispatchEvent(_event);
     }
   },
   setActive: function(newState) {
@@ -132,6 +166,13 @@ Polymer({
     this.active = true;
     this.fire('navItemDropdown-active', {navItem: this}, {node: e.target});
     e.stopPropagation();
+  },
+  addTemplate: function() {
+    var div = document.createElement('div')
+    div.innerHTML = this.template;
+    while (div.firstChild) {
+      this.appendChild(div.firstChild);
+    }
   },
   hasClass: function(element, className) {
     return element.className.split(' ').indexOf(className) > -1;

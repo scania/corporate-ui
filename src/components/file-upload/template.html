@@ -7,6 +7,7 @@
         <p class="cloud-icon"><i class="fal fa-cloud-upload"></i></p>
         <p class="label-big">Drag & drop here</p>
         <p>to upload your files, <label class="label-browse" for="fileinput">or browse</label></p>
+        <label class="btn-mobile btn btn-default" for="fileinput">Select file</label>
         <div class="upload-info">
           <template is="dom-if" if="{{maxFileSize}}">
             <p>{{fileLimitInfo}}</p>
@@ -41,9 +42,9 @@
         </div>
       </template>
 
-      <div class="action-btn-wrapper" hidden$={{!browseButton}}>
+      <div class="action-btn-wrapper">
         <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
-        <div class="buttons">
+        <div class="buttons" hidden$={{!browseButton}}>
           <span hidden$={{!isFiles}}><button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">{{uploadBtnText}}</button></span>
           <span><label for="fileinput" type="button" class="btn btn-sm btn-default">Browse</label></span>
         </div>

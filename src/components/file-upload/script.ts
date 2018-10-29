@@ -137,7 +137,7 @@ Polymer({
         // reject drop
         ev.dataTransfer.clearData();
         // show warning
-        console.log('No multiple files allowed');
+        this.errorTitle = "No multiple files allowed";
       }
     }
   },

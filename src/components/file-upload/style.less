@@ -11,14 +11,17 @@
     }
   }
   #dropArea{
-    width: 280px;
+    max-width: 300px;
     background-color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px;
     margin-top: 20px;
     border-radius: 24px;
     -webkit-border-radius: 24px;
     -moz-border-radius: 24px;
+    .btn-mobile{
+      margin-bottom: 15px;
+    }
     &.highlight{
       background-color: #f0f0f0;
       color: #033a6a;
@@ -147,4 +150,14 @@
     100%{
       transform: rotate(360deg);
     }
+}
+
+@media (min-width: 992px) {
+  #dropArea .btn-mobile{display: none;}
+}
+@media (max-width: 991px) {
+  #dropArea{
+    >p{display: none;}
+    .btn-mobile{display: inline-block;}
+  }
 }

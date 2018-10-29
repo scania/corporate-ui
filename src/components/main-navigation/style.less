@@ -28,15 +28,11 @@
     primary-items,
     secondary-items {
       
-      > nav-item {
-
-        > a,
-        > .dropdown-toggle {
-          // Fixes issue where content could overflow its container.
-          // Making a horizontal scrollbar get displayed when a
-          // secondary navigation is available
-          overflow: hidden;
-        }
+      > nav-item > a {
+        // Fixes issue where content could overflow its container.
+        // Making a horizontal scrollbar get displayed when a
+        // secondary navigation is available
+        overflow: hidden;
       }
     }
 
@@ -50,36 +46,34 @@
       margin-right: 0;
     }
     .more {
-      display: inline-block;
       visibility: var(--more-visibility);
 
-      li {
-        display: none;
-      }
-    }
-    .dropdown {
-
       > a {
-        &:extend(.navbar-default .navbar-nav > li + li > a all);
-
         display: block;
       }
+      li {
+        display: none;
 
-      li a {
-        text-transform: uppercase;
+        a {
+          text-transform: uppercase;
+        }
+      }
+    }
+    .dropdown-menu {
+      max-height: 70vh;
+      overflow-y: auto;
+      z-index: 1001;
+      -webkit-box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
+      box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
+
+      a {
         padding-top: 9px;
         padding-bottom: 9px;
+        text-transform: none;
 
         &:hover {
          background-color: transparent;
         }
-      }
-      .dropdown-menu {
-        max-height: 70vh;
-        overflow-y: auto;
-        z-index: 1001;
-        -webkit-box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
-        box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
       }
     }
   }
@@ -94,9 +88,16 @@
       padding-left: 0;
     }
 
-    a,
-    .dropdown-toggle {
+    a {
       &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a);
+    }
+
+    .dropdown-menu {
+
+      a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
     }
   }
 }
@@ -229,8 +230,7 @@
 
       nav-item {
 
-        a,
-        .dropdown-toggle {
+        a {
           padding-top: 25px;
           padding-bottom: 25px;
 
@@ -268,14 +268,21 @@
           padding: 0;
           position: relative;
 
-          a,
-          .dropdown-toggle {
+          a {
             padding: 10px 30px;
 
             span {
               padding: 0;
             }
           }
+        }
+      }
+      primary-items,
+      secondary-items {
+        
+        > nav-item {
+          display: flex;
+          flex-direction: column;
         }
       }
 

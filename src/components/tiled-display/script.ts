@@ -27,9 +27,9 @@ Polymer({
       this.imgarray = [
         {first: this.getAttribute('img1')},
         {first: this.getAttribute('img2')}
-      ];   
+      ];
     }
-    else if (this.getAttribute('img3') != null && this.getAttribute('img4') != null) {  
+    else if (this.getAttribute('img3') != null && this.getAttribute('img4') != null) {
       this.imgarray = [
         {first: this.getAttribute('img1'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn1')},
         {first: this.getAttribute('img2'), title: this.getAttribute('var2title1'), text: this.getAttribute('var2text1'), btn: this.getAttribute('var2btn2')},
@@ -41,7 +41,7 @@ Polymer({
     this.parentNode.setAttribute('description', this.attributes.description.value)
     this.parentNode.setAttribute('btntext', this.attributes.btnText.value)
     this.parentNode.setAttribute('imgarray', JSON.stringify(this.imgarray))
-    
+
   },
   // function for checking variation, builds corresponding dom-if template.
   checkVariation: function(variation) {
@@ -52,10 +52,10 @@ Polymer({
     return headline || description;
   }
 });
-//function for Slick. Initializes Slick functionality if window size is below 480.  
+//function for Slick. Initializes Slick functionality if window size is below 480.
 function createSlick(){
   var windowWidth = $(window).width();
-  if(windowWidth < 480){  
+  if(windowWidth < 480){
     $(".slick-scroll").not('.slick-initialized').slick({
       infinite:true, //these settings are configurable with additional functionality such as autoplay.
       dots:true
@@ -68,8 +68,8 @@ function createSlick(){
     if ($(".slick-scroll").hasClass('slick-initialized')) { //removes slick, but only if it have been initialized before. This conditional removes errors.
       $('.slick-scroll').slick('unslick');
     }
-  } 
+  }
 }
-     
+
 $(window).on( 'load resize', createSlick );
 createSlick();

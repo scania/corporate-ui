@@ -1,63 +1,20 @@
 <nav class="navbar navbar-default">
   <div class="collapse navbar-collapse" id="main-navigation">
-    <primary-items>
+    <primary-items class="nav navbar-nav">
       <content select="primary-items" id="primary-items"></content>
 
-      <template is="dom-repeat" items="{{primaryItems}}" sort="sort">
-        <nav-item location="{{item.location}}" text="{{item.text}}" active="{{item.active}}" class$="{{dashed(item.text)}}">
-          {{item.text}}
-          <template is="dom-if" if="{{item.children}}">
-            <sub-navigation caption="{{item.caption}}">
-              <template is="dom-repeat" items="{{item.children}}" as="subItem">
-                <nav-item location="{{subItem.location}}" active="{{subItem.active}}" class$="{{dashed(subItem.text)}}">{{subItem.text}}</nav-item>
-              </template>
-            </sub-navigation>
-          </template>
-        </nav-item>
+      <template is="dom-repeat" items="{{primaryItems}}">
+        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" children="{{item.children}}" props="{{item.props}}" attrs="{{item.attrs}}" classes="{{item.classes}}" class$="{{dashed(item.text)}}" caption="{{item.text}}" dropdown="{{item.dropdown}}"></nav-item>
       </template>
 
-      <nav-item class="dropdown more">
-        <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-          More
-          <span class="caret"></span>
-        </button>
-
-        <ul class="dropdown-menu">
-          <template is="dom-if" if="{{moreItemsAvailable}}">
-            <template is="dom-repeat" items="{{moreItems}}">
-              <li class$="{{setActiveClass(item.active)}}">
-                <a href="{{item.href}}" on-click="setMoreItemActive">{{item.text}}</a>
-              </li>
-            </template>
-          </template>
-        </ul>
-      </nav-item>
+      <nav-item text="{{moreText}}" children="{{moreItems}}" dropdown="true" class="more"></nav-item>
     </primary-items>
 
-    <secondary-items>
+    <secondary-items class="nav navbar-nav navbar-right">
       <content select="secondary-items" id="secondary-items"></content>
 
-      <template is="dom-repeat" items="{{secondaryItems}}" sort="sort">
-        <template is="dom-if" if="{{!item.children}}">
-          <nav-item location="{{item.location}}" class$="{{dashed(item.text)}}">{{item.text}}</nav-item>
-        </template>
-
-        <template is="dom-if" if="{{item.children}}">
-          <nav-item location="{{item.location}}" class$="dropdown {{dashed(item.text)}}" active="{{item.active}}">
-            <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-              {{item.text}}
-              <span class="caret"></span>
-            </button>
-        
-            <ul class="dropdown-menu">
-              <template is="dom-repeat" items="{{item.children}}" as="subItem">
-                <li class$="{{dashed(subItem.text)}} {{setActiveClass(subItem.active)}}">
-                  <a href="{{subItem.location}}" on-click="setMoreItemActive">{{subItem.text}}</a>
-                </li>
-              </template>
-            </ul>
-          </nav-item>
-        </template>
+      <template is="dom-repeat" items="{{secondaryItems}}">
+        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" children="{{item.children}}" classes="{{item.classes}}" class$="dropdown {{dashed(item.text)}}" dropdown="{{item.children.length}}"></nav-item>
       </template>
     </secondary-items>
   </div>

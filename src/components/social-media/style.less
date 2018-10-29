@@ -42,19 +42,24 @@
 
         a {
           display: inline-block;
-          padding: 10px 0;
-          width: 55px;
           text-align: center;
           margin-left: 10px;
           border: 2px solid #fff;
           border-radius: 50%;
           background-color: transparent;
+          padding: 8px 0;
+          height: 45px;
+          width: 45px;
 
           &:hover,
           &:focus {
             background-color: #fff;
             color: #000;
             text-decoration: none;
+
+            span {
+              color: #1d1d1b;
+            }
           }
 
           span {
@@ -63,7 +68,7 @@
         }
       }
 
-      @media (max-width: 991px) {
+    @media (max-width: 991px) {
       margin-bottom: 18px;
 
       a {
@@ -83,21 +88,6 @@
             font-size: 18px;
           }
         }
-      }
-    }
-  }
-}
-
-
-:host-context(.app) {
-  ::content {
-
-    nav-item a {
-      padding: 7px 0;
-      width: 40px;
-
-      span {
-        font-size: 18px;
       }
     }
   }

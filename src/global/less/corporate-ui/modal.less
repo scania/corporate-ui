@@ -1,11 +1,13 @@
 /*** MODAL SIZES ***/
 .modal {
 
-  &-header &-title {
+  &-header {
     font-family: 'Scania Sans Headline';
     font-weight: bold;
     color: @color-brand-01;
   }
+
+  &-title
 
   &-open & {
     overflow-x: hidden;
@@ -43,4 +45,113 @@
     width: 99%;
     max-width: 1440px;
   }
+
+  &-xxl {
+    width: 99%;
+    max-width: none;
+  }
+
+  &-fullscreen {
+    margin: 0;
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+
+    .modal-content {
+      height: 100vh;
+      border: none;
+      border-radius: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      top: 0;
+    }
+  }  
+
+  // This one can be removed
+  .modal-body.scroll-y  {
+      max-height: ~"calc(100vh - 200px)";
+      overflow-y: auto;
+  }    
+
+  .scroll-y  {
+
+    .modal-body {
+      max-height: ~"calc(100vh - 200px)";
+      overflow-y: auto;
+      margin-right: 34px;
+    }  
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-button {
+        background: #ddd;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #9c9c9c;
+        
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #797979;
+    }
+    ::-webkit-scrollbar-track {
+      background: #d8d8d8;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background: #d8d8d8;
+    }
+
+  } 
+
+
+  .spacious {
+
+    .modal-body {
+      margin-right: 50px;
+      padding: 10px 160px 30px 60px;
+    }
+
+    .modal-header {
+        padding: 30px 30px 20px 60px;
+        border-bottom: none;
+    }
+
+    .modal-footer {
+        padding: 30px 30px 50px 60px;
+        text-align: left;
+        border-top: none;
+    }  
+  }  
+
+  .modal-header .close {
+      margin-top: -4px;
+      font-size: 30px;
+      font-weight: normal;
+      text-shadow: none;
+  }
+  
 }
+
+@media (max-width: 991px) {
+  .modal {
+
+      .modal-content {
+        top: 65px;
+      }
+
+      &-sm,
+      &-md,
+      &-lg  {
+        width: 96vw;
+      }  
+
+      &-fullscreen {
+        width: 98vw;
+
+        .modal-content {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+      }   
+    }
+  }
+} 

@@ -1,4 +1,45 @@
+<template is="dom-if" if="{{text}}">
+  <a href href$="{{location}}">{{text}}</a>
+</template>
 
-<content></content>
+<template is="dom-if" if="{{!text}}">
+  <template is="dom-if" if="{{location}}">
+    <content select="sub-navigation"></content>
 
-<button on-tap="toggleExpand" class="btn btn-link mode-toggler"></button>
+    <a href$="{{location}}">
+      <content></content>
+
+      <template is="dom-if" if="{{icon}}">
+        <span class$="fa fa-{{icon}}"></span>
+      </template>
+    </a>
+  </template>
+
+  <template is="dom-if" if="{{!location}}">
+    <content></content>
+  </template>
+</template>
+
+<template is="dom-if" if="{{!dropdown}}">
+  <template is="dom-if" if="{{children.length}}">
+    <sub-navigation caption="{{caption}}">
+      <template is="dom-repeat" items="{{children}}">
+        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}" dropdown="{{item.dropdown}}" children="{{item.children}}"></nav-item>
+      </template>
+    </sub-navigation>
+  </template>
+</template>
+
+<template is="dom-if" if="{{dropdown}}">
+  <ul class="dropdown-menu">
+    <template is="dom-repeat" items="{{children}}">
+      <li class$="{{dashed(item.text)}} {{setActiveClass(item.active)}}">
+        <a href$="{{item.location}}" on-tap="setDropdownItemActive">{{item.text}}</a>
+      </li>
+    </template>
+  </ul>
+</template>
+
+<template is="dom-if" if="{{haveChildren}}">
+  <button on-tap="toggleExpand" class="btn btn-link mode-toggler"></button>
+</template>

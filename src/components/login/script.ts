@@ -31,6 +31,7 @@ Polymer({
     for(var i=0; i<forms.length; i++) {
       forms[i].addEventListener('submit', this.action.bind(this));
     }
+
   },
   action: function(event) {
     event.preventDefault();

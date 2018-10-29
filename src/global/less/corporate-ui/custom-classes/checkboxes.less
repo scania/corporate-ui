@@ -13,15 +13,65 @@
 {
   display: none;
 }
-.radio label, .checkbox label {
+
+label.radio,
+.checkbox label {
+  font-family: Scania Sans Semi Condensed;
   padding-left: 0px;
+  color: #53565A;
+  font-size: 1.3rem;
+  font-weight: normal;
+
+   .app .form-group & {
+    font-weight: normal;
+  }
 }
+
+.table-panel,
+.table-primary,
+.panel-primary,
+.bg-brand-01,
+.bg-brand-03,
+.bg-primary-02,
+.bg-primary-03,
+.bg-primary-04,
+.bg-secondary-01,
+.bg-secondary-02,
+.bg-secondary-03,
+.bg-secondary-04,
+.bg-tertiary-01,
+.bg-tertiary-02,
+.bg-tertiary-03,
+.bg-tertiary-04,
+.bg-tertiary-05,
+.bg-tertiary-06,
+.bg-tertiary-07,
+.bg-grey6,
+.bg-grey7,
+.bg-grey8,
+.bg-grey9,
+.bg-primary,
+.bg-success
+,.bg-warning,
+.bg-danger,
+.bg-info,
+.btn-success,
+.btn-warning,
+.btn-danger,
+.btn-info {
+  thead,
+  .checkbox label,
+  label.radio {
+    color: #fff;
+  }
+}
+
 
 input[type=checkbox] {
   .config();
   .checkbox-mixin();
 
-      &.radio-checkbox-inverse {
+  &.radio-checkbox-inverse {
     .config(inverse);
     .checkbox-mixin();
   }

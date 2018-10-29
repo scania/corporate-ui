@@ -5,6 +5,10 @@
 :host {
   display: inline-block;
 
+  &.open {
+    position: relative;
+  }
+
   ::content {
 
     .mode-toggler {
@@ -63,6 +67,17 @@
       }
     }
   }
+
+  .dropdown-toggle {
+
+    &:after {
+      font-family: "Font Awesome 5 Pro";
+      font-size: 1.2rem;
+      content: "\f107";
+      margin: 0 25px 0 10px;
+      padding: 0;
+    }
+  }
 }
 
 :host-context(.app c-main-navigation) {
@@ -103,6 +118,31 @@
       &:before {
         display: none;
       }
+    }
+  }
+
+  .dropdown-toggle {
+    text-transform: none;
+  }
+
+  &.active .dropdown-toggle,
+  .dropdown-toggle:hover {
+
+    &:before {
+      display: block;
+      content: "";
+      border-bottom: 2px solid #d6001c;
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      margin-bottom: -2px;
+    }
+    &:after {
+      border: 0;
+      position: static;
+      // We should solve this is a better way later on...
+      margin-right: -17px;
     }
   }
 }
@@ -161,23 +201,23 @@
       sub-navigation,
       .dropdown-menu {
         display: none;
+      }
+      .btn.mode-toggler {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        padding: 0;
+        border: 0;
 
-        + .mode-toggler,
-        + template + .mode-toggler {
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
-          z-index: 1;
-          padding: 0;
-          border: 0;
-
-          &:before {
-            display: inline-block;
-            content: "+";
-            font-size: medium;
-            padding: 10px 15px;
-          }
+        &:before {
+          display: inline-block;
+          content: "+";
+          font-size: medium;
+          padding: 8px 0;
+          // We use width instead of padding to make + and - align the same
+          width: 40px;
         }
       }
     }
@@ -187,6 +227,9 @@
       sub-navigation,
       .dropdown-menu {
         display: none;
+        // We have order here to make sure sub-nav is always displayed 
+        // as the last item, even though its rendered above the link
+        order: 1;
       }
     }
     &.expanded ::content {
@@ -206,14 +249,24 @@
           font-family: @subLevelFont;
           text-transform: none;
         }
+      }
 
-        + .mode-toggler,
-        + template + .mode-toggler {
+      .mode-toggler {
 
-          &:before {
-            content: "-";
-          }
+        &:before {
+          content: "-";
         }
+      }
+    }
+  }
+
+  :host-context(.app c-main-navigation) {
+
+    ::content {
+
+      .btn.mode-toggler:before {
+        padding-top: 8px;
+        padding-bottom: 8px;
       }
     }
   }

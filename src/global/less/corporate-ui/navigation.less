@@ -33,14 +33,14 @@
   }
 
   .dropdown-menu a {
-    text-transform: none;
     color: #909090;
 
-      &:before {
-        border: none;
-        padding-left: 0;
-        padding-right: 0;
-      }
+    &:before,
+    &:after {
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   > .container-fluid {
@@ -359,6 +359,10 @@
     }
   }
 
+  .nav-justified > li > a {
+    border-radius: 0;
+  }
+
   .panel-heading & {
     display: flex;
     margin: -10px -15px -11px;
@@ -401,7 +405,8 @@
       > .badge {
         margin-left: 10px;
         vertical-align: top;
-        line-height: 0.9;
+        line-height: 1.2;
+        background-color: @interaction-info;
       }
     }
   }
@@ -467,7 +472,7 @@
     > li {
 
       > a {
-        padding: 11px 15px;
+        padding: 10px 15px;
         font-size:1.4rem;
       }
     }
@@ -648,7 +653,24 @@
       }
     }
   }
+
+  ul.nav.nav-pills {
+
+        > li {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          float: none;
+          margin-bottom: -1px;
+
+         + li {
+          margin-left: 0;
+          margin-bottom: -1px;
+      }         
+    }  
+  }
 }
+
 @media (max-width: 767px) {
 
   .navbar-nav {
@@ -667,6 +689,10 @@
         margin-top: 0px;
       }
     }
+  }
+
+  .nav-tabs.nav-justified > li > a {
+    border-radius: 0;
   }
 }
 

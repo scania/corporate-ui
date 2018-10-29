@@ -15,6 +15,7 @@ function init() {
   addMetaAndHeaderSpecs();
   setGlobals();
   appendExternals();
+  appendGa();
 }
 
 function done(event) {
@@ -61,7 +62,7 @@ function addMetaAndHeaderSpecs() {
 
 function applyBrand() {
 
-  var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'bad-UX', 'mockup'];
+  var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'traton', 'bad-UX', 'mockup'];
   var subDomain = window['location'].hostname.split('.')[0];
   var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
 
@@ -150,12 +151,12 @@ function setGlobals() {
     company: 'Scania'
   };
 
-  window['CorporateUi'].version = wv.version;
+  CorporateUi.version = wv.version;
   document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
-  if (window['CorporateUi'].components) {
+  if (CorporateUi.components) {
     JSON.parse(wv.components).map(function(component) {
-      window['CorporateUi'].components[component.name] = {
+      CorporateUi.components[component.name] = {
         ...component,
         path: window['version_root'] + '/components/' + component.name + '/' + component.name + '.html'
       }
@@ -243,7 +244,11 @@ function baseComponents(references) {
     }, window['corporate_elm']);
   }
 
-  helpers.importLink(window['CorporateUi'].components['main-content'].path, 'import', null, window['corporate_elm']);
+  if (!CorporateUi.components['main-content'].loaded) {
+    helpers.importLink(CorporateUi.components['main-content'].path, 'import', function(e) {
+      CorporateUi.components['main-content'].loaded = true;
+    }, window['corporate_elm']);
+  }
 
   /*if (window['params'].preload === 'false') {
     window['ready_event'] = undefined;
@@ -251,8 +256,16 @@ function baseComponents(references) {
 
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
+    if (!CorporateUi.components[resource]) {
+      console.error('The component "' + resource + '" does not seem to exist.');
+      return;
+    }
+
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) {
+        CorporateUi.components[resource].loaded = true;
+        resolve(e.target)
+      }, window['corporate_elm']);
     });
   });
 
@@ -317,5 +330,17 @@ function sysMessages() {
 
   if (window['ready_event'] === 'timeout') {
     console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
+  }
+}
+
+function appendGa(){
+  if(window['params'].monitoring){
+    var trackID = (window['params'].monitoring=='true') ? 'UA-125640614-1' : window['params'].monitoring;
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date().getTime();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', trackID, 'auto');
+         ga('send', 'pageview');
   }
 }

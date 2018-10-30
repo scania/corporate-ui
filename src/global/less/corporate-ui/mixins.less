@@ -123,12 +123,26 @@
       background-color: @radio-check-9 ;
     }
   }
-  &:disabled + span {
-    border-color:@radio-check-7;
+
+  &:disabled:checked + span:before {
+      background-color: #cacaca;
+    }
+
+    &:disabled:checked:hover + span:before {
+      background-color: #cacaca;
+    }
+
+    &:disabled + span {
+      border-color:@radio-check-7;
+
+    &:hover:before {
+      // background-color: transparent;
+      border: 3px solid @radio-check-1;
+    }
 
     &:before {
-      border-color: @radio-check-1;
-      background-color: @radio-check-7 ;
+      background-color: transparent;
+        cursor: not-allowed;
     }
   }
 }
@@ -220,13 +234,11 @@
           background-position: 50%;
           background-repeat: no-repeat;
           cursor: not-allowed;
-          opacity: 0.3;
         }
       }
     }
 
     &:checked + span:before {
-      opacity: 0.3;
       background:@radio-check-checkmark;
       background-color: #e2e2e2;
       background-size: 13px;

@@ -7,6 +7,18 @@
     color: @color-brand-01;
     font-size: 1.6rem;
     letter-spacing: 0.05rem;
+
+    .close {
+      margin-top: -4px;
+      font-size: 30px;
+      font-weight: normal;
+      text-shadow: none;
+
+      &:hover,
+      &:focus  {
+        outline: none;
+      }
+    } 
   }
 
   &-open & {
@@ -68,7 +80,7 @@
       box-shadow: none;
       top: 0;
     }
-  }  
+  }
 
   // This one can be removed
   .modal-body.scroll-y  {
@@ -135,14 +147,6 @@
         border-top: none;
     }  
   }  
-
-  .modal-header .close {
-      margin-top: -4px;
-      font-size: 30px;
-      font-weight: normal;
-      text-shadow: none;
-  }
-  
 }
 
 @media (max-width: 991px) {
@@ -169,3 +173,4 @@
     }
   }
 } 
+

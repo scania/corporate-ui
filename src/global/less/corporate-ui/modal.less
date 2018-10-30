@@ -5,9 +5,21 @@
     font-family: 'Scania Sans Headline';
     font-weight: bold;
     color: @color-brand-01;
-  }
+    font-size: 1.6rem;
+    letter-spacing: 0.05rem;
 
-  &-title
+    .close {
+      margin-top: -4px;
+      font-size: 30px;
+      font-weight: normal;
+      text-shadow: none;
+
+      &:hover,
+      &:focus  {
+        outline: none;
+      }
+    } 
+  }
 
   &-open & {
     overflow-x: hidden;
@@ -24,6 +36,9 @@
 
   &-title {
     padding: 0;
+    font-family: 'Scania Sans Semi Condensed';
+    font-weight: bold;
+    color: @color-brand-01;
   }
 
   &-sm {
@@ -65,20 +80,23 @@
       box-shadow: none;
       top: 0;
     }
-  }  
+  }
 
   // This one can be removed
   .modal-body.scroll-y  {
-      max-height: ~"calc(100vh - 200px)";
+      max-height: ~"calc(100vh - 240px)";
       overflow-y: auto;
   }    
 
   .scroll-y  {
 
     .modal-body {
-      max-height: ~"calc(100vh - 200px)";
+      max-height: ~"calc(100vh - 240px)";
       overflow-y: auto;
-      margin-right: 34px;
+      margin-right: 3%;
+      padding: 0 25px 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }  
 
     ::-webkit-scrollbar {
@@ -89,6 +107,7 @@
     }
     ::-webkit-scrollbar-thumb {
       background: #9c9c9c;
+      border-radius: 4px;
         
     }
     ::-webkit-scrollbar-thumb:hover {
@@ -104,16 +123,22 @@
   } 
 
 
-  .spacious {
+  .modal-article {
 
     .modal-body {
       margin-right: 50px;
       padding: 10px 160px 30px 60px;
-    }
+      max-height: ~"calc(100vh - 380px)";
+   }
 
     .modal-header {
-        padding: 30px 30px 20px 60px;
+        padding: 30px 30px 0px 60px;
         border-bottom: none;
+    }
+
+    .modal-title {
+        margin-top: 20px;
+        font-size: 2rem;
     }
 
     .modal-footer {
@@ -122,14 +147,6 @@
         border-top: none;
     }  
   }  
-
-  .modal-header .close {
-      margin-top: -4px;
-      font-size: 30px;
-      font-weight: normal;
-      text-shadow: none;
-  }
-  
 }
 
 @media (max-width: 991px) {
@@ -143,6 +160,7 @@
       &-md,
       &-lg  {
         width: 96vw;
+        max-width: none;
       }  
 
       &-fullscreen {
@@ -155,3 +173,4 @@
     }
   }
 } 
+

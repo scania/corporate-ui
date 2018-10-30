@@ -1,8 +1,6 @@
 /*** MODAL SIZES ***/
 .modal {
 
-  background-color: white; 
-
   &-header {
     font-family: 'Scania Sans Headline';
     font-weight: bold;
@@ -113,21 +111,22 @@
   } 
 
 
-  .spacious {
+  .modal-article {
 
     .modal-body {
       margin-right: 50px;
       padding: 10px 160px 30px 60px;
-      max-height: ~"calc(100vh - 300px)";
+      max-height: ~"calc(100vh - 380px)";
    }
 
     .modal-header {
-        padding: 30px 30px 20px 60px;
+        padding: 30px 30px 0px 60px;
         border-bottom: none;
     }
 
     .modal-title {
         margin-top: 20px;
+        font-size: 2rem;
     }
 
     .modal-footer {
@@ -157,6 +156,7 @@
       &-md,
       &-lg  {
         width: 96vw;
+        max-width: none;
       }  
 
       &-fullscreen {

@@ -210,10 +210,10 @@
         }
       }
       &.collapse {
-        display: none !important;
+        display: none;
 
         &.in {
-          display: block !important;
+          display: block;
 
           + .navbar-footer {
             display: block;
@@ -306,12 +306,22 @@
         overflow-y: auto;
         -ms-overflow-style: auto;
       }
-      .dropdown .dropdown-menu {
-        max-height: auto;
-        overflow: visible;
-      }
       .more {
         display: none !important;
+      }
+      .dropdown-menu {
+        overflow: visible;
+        box-shadow: none;
+        border: 0;
+        padding: 0;
+
+        a {
+          &:extend(.navbar-nav > li > a);
+
+          border-bottom: 1px solid #e2e2e2;
+          padding-left: 25px;
+          padding-right: 25px;
+        }
       }
     }
   }

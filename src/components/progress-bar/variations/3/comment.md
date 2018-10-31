@@ -1,1 +1,0 @@
-### Variation 3

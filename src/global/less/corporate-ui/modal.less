@@ -1,6 +1,8 @@
 /*** MODAL SIZES ***/
 .modal {
 
+  z-index: 1200;
+
   &-header {
     font-family: 'Scania Sans Headline';
     font-weight: bold;
@@ -67,6 +69,7 @@
 
     .modal-content {
       height: 100vh;
+      width: 100vw;
       border: none;
       border-radius: 0;
       -webkit-box-shadow: none;
@@ -159,17 +162,22 @@
 
       &-sm,
       &-md,
-      &-lg  {
-        width: 96vw;
-        max-width: none;
+      &-lg,
+      &-xl  {
+        width: 99vw;
+        max-width: 99vw;
+        margin: 2px auto;
       }  
 
       &-fullscreen {
-        width: 98vw;
+        width: 100vw;
+        height: 100vw;
 
         .modal-content {
+          width: 100vw;
+          height: 100vw;
           -webkit-box-shadow: none;
-          box-shadow: none;
+          box-shadow: none;                
       }   
     }
   }

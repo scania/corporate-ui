@@ -35,7 +35,7 @@ Polymer({
     }
 
     if (!globalTrigger) {
-      // This will bubble from current node and down, but if this happens 
+      // This will bubble from current node and down, but if this happens
       // from outside we should only trigger the event globally
       this.async(function() {
         this.fire('fullscreen-toggled');

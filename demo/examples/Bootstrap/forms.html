@@ -9,13 +9,31 @@
     <script src="../../../js/corporate-ui.js"></script>
     <script src="/vendors/frameworks/jQuery/2.2.2/dist/jquery.js"></script>
     <script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/select2.js"></script>
+    <script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/glass.js"></script>
          <script>
-          $(document).ready(function() {
-         $( ".select2" ).select2( {
-            width: "100%",
-          });
-         });
+         //  $(document).ready(function() {
+         // $( ".select2" ).select2( {
+         //    width: "100%",
+         //  });
+         // });
+
+         $( document ).ready(function() {
+
+      $('.select2').select2().on('.select2', function() {
+   
+        $('.select2-offscreen').remove();
+    });
+
+    $(document).click(function() {
+        $(".select2-container").select2('close');
+    });
+});
 </script>
+<style>
+.radio-checkbox-test { background-color: gray; padding: 40px; }
+.radio-checkbox-test .form-group { background-color: lightgray; }
+.blue { background-color: #041e42; }
+</style>
 </head>
   <body class="scania app">
     <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
@@ -30,7 +48,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Edit job</h3>
-              <span>Brödleverans, ICA Åtvidaberg</span>
+              <span>Bread Delivery, ICA Åtvidaberg</span>
             </div>
             <div class="panel-body">
               <form id="form" action="" method="get">
@@ -39,7 +57,7 @@
                     <div class="form-group">
                       <label class="control-label">Name of job
                       </label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="Brödleverans">
+                      <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-8">
@@ -151,7 +169,7 @@
           <div class="panel panel-primary panel-inverse">
             <div class="panel-heading">
               <h3 class="panel-title">Edit job</h3>
-              <span>Brödleverans, ICA Åtvidaberg</span>
+              <span>Bread Delivery, ICA Åtvidaberg</span>
             </div>
             <div class="panel-body">
               <form id="form" action="" method="get">
@@ -160,7 +178,7 @@
                     <div class="form-group">
                       <label class="control-label">Name of job
                       </label>
-                      <input type="text" value='' autofocus class="form-control" placeholder="Brödleverans">
+                      <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
                     </div>
                   </div>
                   <div class="col-xs-12 col-md-8">
@@ -292,6 +310,86 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="well">
+            <h4>Input-group-btn checkbox</h4>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"><span></span>
+                  </label>
+                </div>
+              </span>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="well">
+            <h4>Input-group-btn radiobutton</h4>
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-addon">
+                <div class="radio">
+                  <label>
+                    <input type="radio"><span></span>
+                  </label>
+                </div>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      <!--   <div class="col-md-6">
+          <div class="well">
+            <h4>Input-group-btn inside well</h4>
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div> -->
+      </div>
+<div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Input-group-btn</h4>
+              <div class="input-group">
+                 <span class="input-group-addon">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"><span></span>
+                  </label>
+                </div>
+              </span>
+
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4>Input-group-btn</h4>
+              <div class="input-group">
+                <input type="text" class="form-control">
+
+                <span class="input-group-addon">
+                <div class="radio">
+                  <label>
+                    <input type="radio"><span></span>
+                  </label>
+                </div>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <div class="panel panel-primary">
         <div class="panel-body">
           <div class="row">
@@ -322,7 +420,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic css only</p>
-              <select class="custom-select form-control">
+              <select class="form-control">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -331,7 +429,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Placeholder single</p>
-              <select multiple data-placeholder="Select an option" data-allow-clear="true" class="form-control select2">
+              <select multiple data-placeholder="Select an option" data-allow-clear="true" class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -349,7 +447,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic single</p>
-              <select class="form-control select2">
+              <select class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -366,7 +464,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic search minimum</p>
-              <select data-minimum-input-range="3" class="form-control select2">
+              <select data-minimum-input-range="3" class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -383,7 +481,7 @@
             <div class="col-md-6">
               <h4>Select</h4>
               <p>Basic multiple</p>
-              <select multiple class="form-control select2">
+              <select multiple class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -400,7 +498,7 @@
             <div class="col-md-6">
               <h4>select</h4>
               <p>Basic multiple limit</p>
-              <select multiple data-maximum-selection-length="2" class="form-control select2">
+              <select multiple data-maximum-selection-length="2" class="select2">
                 <option>Option 1</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
@@ -421,7 +519,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic css only inside well</p>
-            <select class="custom-select form-control">
+            <select class="form-control">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -430,7 +528,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic css only inside well</p>
-            <select class="custom-select form-control">
+            <select class="form-control">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -441,7 +539,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic multiple limit well</p>
-            <select multiple class="form-control select2">
+            <select multiple class="select2">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -450,7 +548,7 @@
           <div class="col-md-6">
             <h4>Select</h4>
             <p>Basic multiple</p>
-            <select multiple class="form-control select2">
+            <select multiple class="select2">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -490,7 +588,6 @@
                     Checkbox
                   </label>
                 </div>
-
               </div>
               <div class="col-xs-12 col-lg-6">
                 <h4>Custom Radiobutton</h4>
@@ -501,7 +598,6 @@
                     Radiobutton
                   </label>
                 </div>
-
               </div>
             </div>
             <div class="row">
@@ -511,6 +607,12 @@
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" disabled> <span></span>
+                    Checkbox
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" disabled checked> <span></span>
                     Checkbox
                   </label>
                 </div>
@@ -525,7 +627,12 @@
                     Radiobutton
                   </label>
                 </div>
-
+                <div class="radio">
+                  <label>
+                    <input type="radio" disabled checked> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -538,7 +645,6 @@
                     Checkbox
                   </label>
                 </div>
-
               </div>
               <div class="col-xs-12 col-lg-6">
                 <h4>Custom Radiobutton unchecked hover</h4>
@@ -549,7 +655,6 @@
                     Radiobutton
                   </label>
                 </div>
-
               </div>
             </div>
              <div class="row">
@@ -562,7 +667,6 @@
                     Checkbox
                   </label>
                 </div>
-
               </div>
               <div class="col-xs-12 col-lg-6">
                 <h4>Custom Radiobutton checked hover</h4>
@@ -595,23 +699,272 @@
               <div class="col-xs-6 col-lg-6">
                 <h4>inline Radiobuttons</h4>
                 <p>Add span to get custom styling</p>
+                <div class="form-group">
                 <label class="radio-inline">
-                    <input type="radio" id="inlineradio1" value="option1"> 1
+                    <input type="radio" id="inlineradio1" value="option1">
                     <span></span>
+                    1
                     </label>
                     <label class="radio-inline">
-                    <input type="radio" id="inlineradio2" value="option2"> 2
+                    <input type="radio" id="inlineradio2" value="option2">
                     <span></span>
+                    2
                     </label>
                     <label class="radio-inline">
-                    <input type="radio" id="inlineradio3" value="option3"> 3
+                    <input type="radio" id="inlineradio3" value="option3">
                     <span></span>
+                    3
                     </label>
-              </div>
-              </div>
                   </div>
                 </div>
+              </div>
+
+          <!--   </div>
+          </div>
+        </div> -->
+        </div>      
+      </div>
+
+
+                  <div class="col-xs-12 col-lg-12">
+                    <div class="well">
+                    <div class="radio-checkbox-test">
+                    <div class="row">
+    <div class="form-group">
+        <div class="radio">
+            <label>
+                <input type="radio">
+                <span></span>
+                Radio #1
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio">
+                <span></span>
+                Radio #2
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="radio-inline">
+            <input type="radio">
+            <span></span>
+            Radio inline #1
+        </label>
+        <label class="radio-inline">
+            <input type="radio">
+            <span></span>
+            Radio inline #2
+        </label>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox">
+                <span></span>
+                Checkbox #1
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox">
+                <span></span>
+                Checkbox #2
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="checkbox-inline">
+            <input type="checkbox">
+            <span></span>
+            Checkbox inline #1
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox">
+            <span></span>
+            Checkbox inline #2
+        </label>
+    </div>
+
+</div>
+<!-- <div class="row"> -->
+
+<!--   <div class="col-xs-6 col-lg-6">
+                <h4>inline Checkboxes</h4>
+                <p>Add span to get custom styling</p>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+                    <span></span>
+                    </label>
+                    <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+                    <span></span>
+                    </label>
+                    <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+                    <span></span>
+                    </label>
+              </div> -->
+  
+ <!--  </div> -->
+</div>
+ </div>
+  <div class="row">
+
+   <div class="col-xs-12 col-lg-12">
+    <div class="panel panel-primary">
+          <div class="panel-body blue">
+    <h1>blabla</h1>
+
+            <div class="row">
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Checkbox</h4>
+                <p>Add span to get custom styling</p>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> <span></span>
+                    Checkbox
+                  </label>
                 </div>
-            <c-main-content>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Radiobutton</h4>
+                <p>Add span to get custom styling</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio"> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Checkbox disabled</h4>
+                <p>Add span to get custom styling</p>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" disabled> <span></span>
+                    Checkbox
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" disabled checked> <span></span>
+                    Checkbox
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Radiobutton disabled</h4>
+                <p>Add span to get custom styling</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" disabled> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" disabled checked> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Checkbox unchecked hover</h4>
+                <p>Add span to get custom styling</p>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> <span></span>
+                    Checkbox
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Radiobutton unchecked hover</h4>
+                <p>Add span to get custom styling</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio"> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Checkbox checked hover</h4>
+                <p>Add span to get custom styling</p>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" checked> <span></span>
+                    Checkbox
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                <h4>Custom Radiobutton checked hover</h4>
+                <p>Add span to get custom styling</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" checked> <span></span>
+                    Radiobutton
+                  </label>
+                </div>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-xs-6 col-lg-6">
+                <h4>inline Checkboxes</h4>
+                <p>Add span to get custom styling</p>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+                    <span></span>
+                    </label>
+                    <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+                    <span></span>
+                    </label>
+                    <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+                    <span></span>
+                    </label>
+              </div>
+              <div class="col-xs-6 col-lg-6">
+                <h4>inline Radiobuttons</h4>
+                <p>Add span to get custom styling</p>
+                <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" id="inlineradio1" value="option1">
+                    <span></span>
+                    1
+                    </label>
+                    <label class="radio-inline">
+                    <input type="radio" id="inlineradio2" value="option2">
+                    <span></span>
+                    2
+                    </label>
+                    <label class="radio-inline">
+                    <input type="radio" id="inlineradio3" value="option3">
+                    <span></span>
+                    3
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+          <!--   </div>
+          </div>
+        </div> -->
+        </div>
+</div>
+</div>
+</div>
+<c-main-content>
   <body>
 <html>

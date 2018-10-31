@@ -2,22 +2,35 @@
 //@import (reference) '../../../global/less/corporate-ui/buttons.less';
 
 :host {
-  display: block;
+  display: flex;
+  flex-grow: 1;
 
-  .well {
-    background-color: #f8f8f8;
-    max-width: 600px;
-    margin: 15px auto 60px;
-    padding: 60px;
+  section {
+    display: none;
   }
-  .btn {
-    display: block;
-    width: 50%;
-    padding: 20px;
-    margin: 15px auto 0;
+  .sideimage {
+    flex-grow: 1;
+    background-image: url('https://static.scania.com/cds/prototypes/misc/general-login/img/side-image-test.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+  .wrapper {
+    width: 445px;
+    background: #fff;
+    padding: 30px;
+  }
+  .login section:nth-child(1) { display: block; }
+  .register section:nth-child(2) { display: block; }
+  .registerConfirm section:nth-child(3) { display: block; }
+  .recover section:nth-child(4) { display: block; }
+  .recoverConfirm section:nth-child(5) { display: block; }
+}
+.btn-text {
+  font-size: 1.4rem;
+  padding-left: 0px;
+  padding-right: 0px;
+}
 
-    + .btn {
-      margin-top: 0;
-    }
-  }
+h2 {
+    font-family: "Scania Sans Semi Condensed" !important;
 }

@@ -1,4 +1,6 @@
-<h1>The Corporate UI Framework</h1>
+<h1>The Corporate UI Design System</h1>
+
+[![Build Status](https://travis-ci.com/scania/corporate-ui.svg?branch=master)](https://travis-ci.com/scania/corporate-ui)
 
 <p>In this repository you'll find all components described in <a href="https://scania.github.io/corporate-ui-docs/developer/">the UX Library</a>.</p>
 <p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository as well as <a href="https://scania.github.io/corporate-ui-docs/">the documentation</a>.</p>
@@ -26,16 +28,14 @@
 <li>Clone the Corporate UI repo</li>
 <li>Download and install node.js: https://nodejs.org/en/</li>
 <li>If you're behind a firewall, CONFIGURE THE PROXY
-<li>INSTALL GULP (from command line): <b>npm install gulp-cli -g</b></li>
-<li>INSTALLING DEPENDENCIES (from command line): <b>npm install</b> from the corporate-ui folder.</li>
-<li>Start Gulp (from command line, as administrator on windows): <b>gulp</b></li>
+<li>INSTALLING DEPENDENCIES (from command line): <b>npm i</b> from the corporate-ui folder.</li>
+<li>Start the local setup by running <b>npm start</b></li>
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
 <h2>Starter Kit</h2>
 <p>The starter kit might be the fastest way to understand Corporate UI and the use and development of web components.
 <br>
-<a href="https://github.com/Scania/corporate-ui/tree/master/src/starter-kit">Learn more...</a>
-
+<a href="https://github.com/scania/corporate-ui/tree/master/demo/examples/starter-kit">Learn more...</a>
 
 
 <h2>License</h2>

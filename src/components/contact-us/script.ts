@@ -7,7 +7,7 @@ Polymer({
     cta: String, /* label for cta */
     link: String /* link for cta */
   },
-  haslink: function() {   
+  haslink: function() {
     return this.getAttribute('link') != null;
   },
   attached: function() {

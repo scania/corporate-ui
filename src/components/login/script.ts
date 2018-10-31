@@ -2,11 +2,14 @@ Polymer({
   is: name,
   properties: {
     headline: {
-      type: String
+      type: String,
+      value: 'Log in to application'
     },
     description: {
-      type: String
+      type: String,
+      value: "Haven't registered yet?"
     },
+    variation: 0,
     // Should be moved to a notification component
     message: {
       type: String
@@ -14,46 +17,35 @@ Polymer({
     messageType: {
       type: String
     },
-    event: {
-      type: String,
-      value: 'login'
-    },
-    forgotpassword: {
-      type: Boolean,
-      value: false
-    },
     showMessage: {
       type: Boolean,
       value: false
+    },
+    view: {
+      type: String,
+      value: 'login'
     }
   },
   ready: function() {
-    var self = this;
-    this.querySelector('form').addEventListener('submit', function(event) {
-      event.preventDefault();
+    var forms = this.querySelectorAll('form');
+    for(var i=0; i<forms.length; i++) {
+      forms[i].addEventListener('submit', this.action.bind(this));
+    }
 
-      var inputs = this.querySelectorAll('input'),
-          data = {};
-
-      for (var i = 0; i < inputs.length; i++) {
-       data[inputs[i].name] = inputs[i].value;
-      }
-
-      self.login(data);
-    });
-
-    // Should be moved to a notification component
-    document.addEventListener('notify', function(event:any) {
-      self.showMessage = true;
-      self.message = event.data.message;
-      self.messageType = event.data.type === 'error' ? 'danger' : event.data.type;
-    });
   },
-  login: function(data) {
-    var self = this;
-    window['AppEventStore'].apply({ name: 'login', action: this.event, data: data });
+  action: function(event) {
+    event.preventDefault();
+    var action = ( event.target.action || '' ).split('/').pop(),
+        data = new FormData(event.target),
+        detail = { callback: this.currentView.bind(this), target: action + 'Confirm', data: data },
+        _event = new CustomEvent(action, { detail: detail });
+
+    document.dispatchEvent(_event);
   },
-  forgotpassword: function() {
-    window['AppEventStore'].apply({ name: 'login', action: 'forgotpassword' });
+  currentView: function(prop) {
+    this.view = prop.target;
+  },
+  setView: function(event) {
+    this.currentView(event.target.dataset);
   }
 });

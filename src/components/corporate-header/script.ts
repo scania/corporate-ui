@@ -34,6 +34,9 @@ Polymer({
     },
     sticky: {
       type: String
+    },
+    items: {
+      type: Array
     }
   },
   created: function() {
@@ -54,6 +57,7 @@ Polymer({
       var url = this.resolveUrl('../navbar/nav-item/nav-item.html');
       this.importHref(url);
     }
+
   },
   attached: function() {
     this.style.display = 'block';
@@ -64,7 +68,7 @@ Polymer({
   },
   setSize: function() {
     this.style.padding = '';
-    if(window.innerWidth < 991) {
+    if(window.innerWidth < 992) {
       // TODO - We should use height, but then we need to add flex-grow & flex-shrink
       this.style.paddingTop = this.querySelector('.navbar-default').offsetHeight + 'px';
     }
@@ -79,6 +83,7 @@ Polymer({
           this.initCollapsable(newState);
         }).bind(this), 100);
       }
+      window['Collapse'] = window['Collapse'] || function() {};
       new Collapse(elm);
     }
   },

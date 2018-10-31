@@ -55,15 +55,12 @@
   <c-main-content>
     <c-main-navigation>
       <primary-items>
-        <nav-item>
-          <a href="/">{{'home' | i18n}}</a>
-          <sub-navigation>
-            <nav-item>text</nav-item>
-          </sub-navigation>
+        <nav-item text="{{'home' | i18n}}">
+          <!-- <sub-navigation>
+            <nav-item text="text"></nav-item>
+          </sub-navigation> -->
         </nav-item>
-        <nav-item ng-repeat="item in example.items">
-          <a href="{{item.url}}" ng-if="example.cond($index+1)">{{item.name}}</a>
-        </nav-item>
+        <nav-item location="{{item.url}}" ng-attr-text="{{item.name}}" ng-repeat="item in example.items" ng-if="example.cond($index+1)"></nav-item>
       </primary-items>
 
       <secondary-items>
@@ -75,11 +72,8 @@
           <nav-item ng-repeat="item in example.itemsSelected" ng-bind="item.name"></nav-item>
           <nav-item ng-repeat="item in example.itemsSelected">{{item.name}}</nav-item>
         -->
-        <nav-item>
-          <a href="/hello">{{'hello' | i18n}}</a>
-        </nav-item>
-        <nav-item location="#" ng-if="!example.auth" ng-click="example.auth = !example.auth">login</nav-item>
-        <nav-item location="#" ng-if="example.auth" ng-click="example.auth = !example.auth">logout</nav-item>
+        <nav-item location="/hello">{{'hello' | i18n}}</nav-item>
+        <nav-item location="#" ng-click="example.auth = !example.auth" ng-attr-text="{{example.auth ? 'logout' : 'login'}}"></nav-item>
       </secondary-items>
     </c-main-navigation>
 

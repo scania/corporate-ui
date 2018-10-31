@@ -9,6 +9,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 }
 
 .table { //This is to set the border-collapse back to "collapse" for all Bootstrap-tables (.table)
+
   border-collapse: collapse;
   color: #041e42;
   border: 1px solid #dadada;
@@ -33,9 +34,16 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
 
     > tr {
 
+    
+
+      > td {
+        border: 1px solid @interaction-primary;
+      }
+
       > th {
         text-transform: uppercase;
-        border: 1px solid transparent;
+        border: 1px solid @interaction-primary;
+        vertical-align: top;
 
         input,
         select {
@@ -43,7 +51,11 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
           &,
           &.form-control {
             font-weight: normal;
-            font-family: 'Scania Sans';
+            font-family: 'Scania Sans Semi Condensed';
+            color: @color-primary-03;
+            height: 30px;
+            font-size: 1.2rem;
+            border: 1px solid #E2E2E2;
 
             &::placeholder,
             &::-webkit-input-placeholder,
@@ -51,10 +63,26 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             &:-ms-input-placeholder,
             &:moz-placeholder {
               font-weight: normal;
-              font-family: 'Scania Sans';
+              font-family: 'Scania Sans Semi Condensed';
+              color: @color-primary-03;
             }
           }
         }
+
+        .form-group i {
+          color: @color-primary-03;
+        }
+      }
+    }    
+  }
+
+   > thead:first-child {
+
+    > tr:first-child {
+
+      th {
+        //override for border-top
+        border-top: 1px solid @interaction-primary;
       }
     }
   }
@@ -72,6 +100,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         }
       }
     }
+
+  .table {
+    border: none;
+    }   
   }
 
   caption {
@@ -118,7 +150,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       > tr.active {
         &.danger {
           > td {
-            background-color: rgba(204, 16, 64, 0.12)
+            background-color: rgba(204, 16, 64, 0.12);
           }
         }
 
@@ -130,17 +162,40 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       }
     }
   }
+
+  &.table-borderless {
+    border: 0;
+    > tbody,
+    > thead,
+    > tfoot {
+
+      > tr {
+
+        > td,
+        > th {
+          border: 0;
+        }
+      }
+    }
+  }
 }
 
 .table-responsive {
   overflow-x: auto;
+
+    thead th {
+      white-space: nowrap;
+    }
 }
 
 .table-hover {
     > tbody {
       > tr,
       > tr.active {
-        &:hover{
+
+        &:hover,
+        &:nth-child(odd):hover {
+
           > td,
           > th {
             background-color: #d9e8ef;
@@ -194,6 +249,8 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         > th,
         > td, {
           padding: @table-cell-padding-app;
+          font-family: "Scania Sans Semi Condensed";
+          font-size: @table-app-font-size;
         }
       }
     }
@@ -202,52 +259,52 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
       padding: 10px;
       &:extend(.table caption all);
     }
-  }
 
-  .table-sm {
-    max-width: 100%;
-    margin: 20px 0;
-    border:none;
+    &.table-sm {
+      max-width: 100%;
+      margin: 20px 0;
+      border:none;
 
-    > thead {
-      background-color: transparent;
-      color: #b7b7b7;
+      > thead {
+        background-color: transparent;
+        color: #b7b7b7;
 
-      > tr {
+        > tr {
 
-        > th {
-          text-transform: none;
-          font-weight: normal;
-          font-family: 'Scania Sans Condensed Bold';
-          font-size: 1.2rem;
-          padding: 0 10px;
-          border-bottom: 1px solid #dadada;
+          > th {
+            text-transform: none;
+            font-family: 'Scania Sans Semi Condensed';
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 0 10px;
+            border-color: transparent;
+            border-bottom: 1px solid #dadada;
+          }
+        }
+      }
+
+      > tbody {
+
+        > tr {
+
+          > td {
+            padding: 5px 10px;
+            border: none;
+            font-size: 1.2rem;
+          }
         }
       }
     }
 
-    > tbody {
+    &.table-condensed {
+      font-family: 'Scania Sans Condensed';
 
-      > tr {
-
-        > td {
-          font-family: 'Scania Sans Condensed';
-          padding: 5px 10px;
-          border: none;
-          font-size: 1.2rem;
-        }
-      }
-    }
-  }
-
-  .table-condensed {
-    font-family: 'Scania Sans Condensed';
-
-    > tbody {
-      > tr {
-        > td {
-          padding-top: 8px;
-          padding-bottom: 5px;
+      > tbody {
+        > tr {
+          > td {
+            padding-top: 8px;
+            padding-bottom: 5px;
+          }
         }
       }
     }

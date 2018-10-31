@@ -1,10 +1,19 @@
 /*** MODAL SIZES ***/
 .modal {
 
-  &-header &-title {
+  z-index: 1200;
+
+  &-header {
     font-family: 'Scania Sans Headline';
     font-weight: bold;
     color: @color-brand-01;
+    font-size: 1.6rem;
+    letter-spacing: 0.05rem;
+
+    .close:focus,
+    .close:hover {
+      outline: none;
+    }
   }
 
   &-open & {
@@ -22,6 +31,9 @@
 
   &-title {
     padding: 0;
+    font-family: 'Scania Sans Semi Condensed';
+    font-weight: bold;
+    color: @color-brand-01;
   }
 
   &-sm {
@@ -43,4 +55,130 @@
     width: 99%;
     max-width: 1440px;
   }
+
+  &-xxl {
+    width: 99%;
+    max-width: none;
+  }
+
+  &-fullscreen {
+    margin: 0;
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+
+    .modal-content {
+      height: 100vh;
+      width: 100vw;
+      border: none;
+      border-radius: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      top: 0;
+    }
+  }  
+
+  // This one can be removed
+  .modal-body.scroll-y  {
+      max-height: ~"calc(100vh - 240px)";
+      overflow-y: auto;
+  }    
+
+  .scroll-y  {
+
+    .modal-body {
+      max-height: ~"calc(100vh - 240px)";
+      overflow-y: auto;
+      margin-right: 3%;
+      padding: 0 25px 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }  
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-button {
+        background: #ddd;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #9c9c9c;
+      border-radius: 4px;
+        
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #797979;
+    }
+    ::-webkit-scrollbar-track {
+      background: #d8d8d8;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background: #d8d8d8;
+    }
+
+  } 
+
+
+  .modal-article {
+
+    .modal-body {
+      margin-right: 50px;
+      padding: 10px 160px 30px 60px;
+      max-height: ~"calc(100vh - 380px)";
+   }
+
+    .modal-header {
+        padding: 30px 30px 0px 60px;
+        border-bottom: none;
+    }
+
+    .modal-title {
+        margin-top: 20px;
+        font-size: 2rem;
+    }
+
+    .modal-footer {
+        padding: 30px 30px 50px 60px;
+        text-align: left;
+        border-top: none;
+    }  
+  }  
+
+  .modal-header .close {
+      margin-top: -4px;
+      font-size: 30px;
+      font-weight: normal;
+      text-shadow: none;
+  }
+  
 }
+
+@media (max-width: 991px) {
+  .modal {
+
+      .modal-content {
+        top: 65px;
+      }
+
+      &-sm,
+      &-md,
+      &-lg,
+      &-xl  {
+        width: 99vw;
+        max-width: 99vw;
+        margin: 2px auto;
+      }  
+
+      &-fullscreen {
+        width: 100vw;
+        height: 100vw;
+
+        .modal-content {
+          width: 100vw;
+          height: 100vw;
+          -webkit-box-shadow: none;
+          box-shadow: none;                
+      }   
+    }
+  }
+} 

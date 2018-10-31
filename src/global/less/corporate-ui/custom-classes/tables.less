@@ -2,6 +2,10 @@
 
 .table {
 
+  thead tr:nth-child(2) th {
+    padding-top: 0;
+  }
+
   tbody {
     tr.row-selected > td,
     tr.row-selectable:hover > td {
@@ -167,13 +171,11 @@ table.table {
 
 .table-panel {
   background-color: white;
-  border: 1px solid;
-  border-collapse: inherit;
 
   > thead {
     word-break: normal;
     text-transform: uppercase;
-    font-family: 'Scania Sans Condensed';
+    font-family: 'Scania Sans Semi Condensed';
   }
 }
 
@@ -389,6 +391,21 @@ table.table {
         padding-top: 19px;
         padding-bottom: 19px;
         text-transform: none;
+      }
+    }
+  }
+
+  .table-lg {
+
+    > tbody,
+    > thead,
+    > tfoot {
+      > tr {
+        > td,
+        > th {
+          padding-top: 19px;
+          padding-bottom: 19px;
+        }
       }
     }
   }

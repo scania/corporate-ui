@@ -17,6 +17,7 @@ function init() {
   setGlobals();
   appendExternals();
   storeInit();
+  appendGa();
 }
 
 function done(event) {
@@ -30,7 +31,11 @@ function done(event) {
 
   document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
 
-  document.addEventListener("DOMContentLoaded", applyBrand);
+  if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", applyBrand);
+  } else {  // `DOMContentLoaded` already fired
+      applyBrand();
+  }
 
   var newEvent = document.createEvent('Event');
   newEvent.initEvent('CorporateUiLoaded', true, true);
@@ -59,7 +64,7 @@ function addMetaAndHeaderSpecs() {
 
 function applyBrand() {
 
-  var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'bad-UX', 'mockup'];
+  var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'traton', 'bad-UX', 'mockup'];
   var subDomain = window['location'].hostname.split('.')[0];
   var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
 
@@ -150,12 +155,12 @@ function setGlobals() {
     company: 'Scania'
   };
 
-  window['CorporateUi'].version = wv.version;
+  CorporateUi.version = wv.version;
   document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
-  if (window['CorporateUi'].components) {
+  if (CorporateUi.components) {
     JSON.parse(wv.components).map(function(component) {
-      window['CorporateUi'].components[component.name] = {
+      CorporateUi.components[component.name] = {
         ...component,
         path: window['version_root'] + '/components/' + component.name + '/' + component.name + '.html'
       }
@@ -241,13 +246,17 @@ function baseComponents(references) {
 
   // Adds support for Promise if non exist
   if (typeof(window['Promise']) === 'undefined') {
-    return helpers.importScript(window['cui_path'] + '../libs/es6-promise/dist/es6-promise.js', function() {
+    return helpers.importScript(window['static_root'] + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
       window['Promise'] = window['ES6Promise'];
       baseComponents(references);
     }, window['corporate_elm']);
   }
 
-  helpers.importLink(window['CorporateUi'].components['main-content'].path, 'import', null, window['corporate_elm']);
+  if (!CorporateUi.components['main-content'].loaded) {
+    helpers.importLink(CorporateUi.components['main-content'].path, 'import', function(e) {
+      CorporateUi.components['main-content'].loaded = true;
+    }, window['corporate_elm']);
+  }
 
   /*if (window['params'].preload === 'false') {
     window['ready_event'] = undefined;
@@ -255,8 +264,16 @@ function baseComponents(references) {
 
   // Maybe we should change importLink to return a promise instead
   var resources = (references || window['preLoadedComponents']).map(function(resource) {
+    if (!CorporateUi.components[resource]) {
+      console.error('The component "' + resource + '" does not seem to exist.');
+      return;
+    }
+
     return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(resource.path, 'import', function(e) { resolve(e.target) }, window['corporate_elm']);
+      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) {
+        CorporateUi.components[resource].loaded = true;
+        resolve(e.target)
+      }, window['corporate_elm']);
     });
   });
 
@@ -266,19 +283,15 @@ function baseComponents(references) {
 }
 
 function appendExternals() {
-  window['preLoadedComponents'] = [
-    window['CorporateUi'].components['corporate-header'],
-    window['CorporateUi'].components['corporate-footer'],
-    window['CorporateUi'].components['main-navigation']
-  ];
+  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation'];
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
-    helpers.importScript(window['cui_path'] + '../libs/webcomponents.js/webcomponents-lite.js', null, window['corporate_elm']);
+    helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.js', null, window['corporate_elm']);
   }
 
   if (window['params'].css !== 'custom') {
-    var bsnUrl = window['cui_path'] + '../libs/bootstrap.native/dist/bootstrap-native.js';
+    var bsnUrl = window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js';
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
@@ -287,7 +300,7 @@ function appendExternals() {
     } else {
       helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
-    helpers.importLink(window['cui_path'] + '../libs/bootstrap/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
+    helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 
@@ -301,6 +314,7 @@ function bsHandler() {
         // We used parent node to apply method on all connected elements
         elm = event.target.parentNode;
     if(method && window[method]) {
+      event.preventDefault();
       if (dataToggle === 'tab') {
         elm = elm.parentNode;
       }
@@ -325,5 +339,17 @@ function sysMessages() {
 
   if (window['ready_event'] === 'timeout') {
     console.warn('"WebComponentsReady" have not yet been triggered (10sec). Fallback has been initialized.');
+  }
+}
+
+function appendGa(){
+  if(window['params'].monitoring){
+    var trackID = (window['params'].monitoring=='true') ? 'UA-125640614-1' : window['params'].monitoring;
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date().getTime();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', trackID, 'auto');
+         ga('send', 'pageview');
   }
 }

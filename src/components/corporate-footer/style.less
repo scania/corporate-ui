@@ -39,7 +39,7 @@
       font-size: 1.3rem;
 
       &:first-child a {
-        margin-left: 7px;
+        margin-left: 0px;
       }
 
       a {
@@ -90,16 +90,14 @@
 
     .footer-copy-text {
       padding: 0;
-      margin-left: 7px;
     }
   }
 }
 
-:host-context(body.fullscreen) {
-  display: none !important;
-}
-
-@media (min-width: 991px) {
+@media (min-width: 992px) {
+  :host-context(body.fullscreen) {
+    display: none !important;
+  }
 
   :host {
 
@@ -114,9 +112,9 @@
         float: none;
 
         a {
-           font-family: "Scania Sans", Helvetica, Arial, sans-serif;
-           font-size: 14px;
-           font-weight: bold;
+          font-family: "Scania Sans", Helvetica, Arial, sans-serif;
+          font-size: 14px;
+          font-weight: bold;
         }
       }
     }
@@ -167,6 +165,14 @@
 
         a {
           color: #1d1d1d;
+
+          &:first-child {
+            margin-left:0;
+          }
+
+          &:hover {
+            color: #1d1d1d;
+          }
         }
 
         .dropdown-menu {
@@ -177,6 +183,7 @@
           border-radius: 0;
           margin: 0;
           box-shadow: none;
+          text-align: center;
         }
       }
       .footer-links {

@@ -155,7 +155,7 @@ Polymer({
       this.latitude = center.lat();
       this.longitude = center.lng();
     }.bind(this));
-    
+
 
     this.fire('google-map-ready');
 
@@ -208,7 +208,7 @@ Polymer({
     if (this.getAttribute('draggable') != null) {
       mapOptions.draggable = this.draggable
     }
-    
+
     return mapOptions;
   }
 })

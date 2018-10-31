@@ -1,6 +1,6 @@
 .pagination {
   border-radius: 0;
-  background-color: #fff;
+  background-color: transparent;
 
   &-light {
     background-color: transparent;
@@ -38,24 +38,24 @@
     > span,
     > a:hover,
     > a:focus,
-    > span:hover, 
+    > span:hover,
     > span:focus {
       color: @interaction-primary;
       background-color: transparent;
-      border-color: transparent; 
+      border-color: transparent;
     }
 
     &.active {
-      
+
       > a,
       > span,
       > a:hover,
       > a:focus,
-      > span:hover, 
+      > span:hover,
       > span:focus {
         color: @interaction-primary;
         background-color: transparent;
-        border-color: transparent; 
+        border-color: transparent;
         text-decoration: underline;
       }
 
@@ -81,6 +81,21 @@
       > strong {
         font-family: "Scania Sans";
         color: inherit;
+      }
+    }
+  }
+}
+
+.app .pagination {
+
+  > li {
+
+    > a,
+    > span {
+        font-family: "Scania Sans Semi Condensed";
+
+      > strong {
+        font-family: "Scania Sans Semi Condensed";
       }
     }
   }

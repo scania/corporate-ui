@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>Corporate UI - Developers</title>
+
+  <!-- <script src="/js/corporate-ui.js?preload=false"></script> -->
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+
+  <style>
+    .demo .form .form-control { height: auto; padding: 6px 12px; }
+    .demo label button { color: #fff; }
+  </style>
+</head>
+<body class="scania app demo" ng-app="CorporateUi">
+
+  <c-corporate-header site-name="store" ite-url="/">
+    <nav-item location="/">Global</nav-item>
+  </c-corporate-header>
+
+  <c-main-content>
+    <c-main-navigation>
+      <primary-items>
+        <nav-item>home</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container" ng-controller="GH as gh">
+        <ul>
+          <li ng-repeat="item in gh.tags">
+            {{item.name}}
+            <div ng-if="gh.releases[item.name]">
+              <time>{{gh.releases[item.name].published_at | date: 'fullDate'}}</time>
+              <div data-markdown="{{gh.releases[item.name].body}}"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="https://static.scania.com/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+  <script>
+    angular
+      .module('CorporateUi', [])
+      .controller('GH', ['$http', GH])
+      .directive('markdown', markdown)
+
+    function GH($http) {
+      var vm = this
+      vm.tags = JSON.parse(sessionStorage.getItem('tags')) || []
+      vm.releases = JSON.parse(sessionStorage.getItem('releases')) || {}
+
+      if (!vm.tags.length) {
+        $http.get('https://api.github.com/repos/scania/corporate-ui/tags')
+          .then(function(res) {
+            vm.tags = res.data.filter(function(item) {
+              return item.name.match(/^\d.\d.\d$/)
+            })
+            sessionStorage.setItem('tags', JSON.stringify(vm.tags))
+          }, function(res) {
+            console.error(res)
+          });
+      }
+
+      if (!Object.keys(vm.releases).length) {
+        $http.get('https://api.github.com/repos/scania/corporate-ui/releases')
+          .then(function(res) {
+            res.data.map(function(item) {
+              vm.releases[item.tag_name] = item
+            })
+            sessionStorage.setItem('releases', JSON.stringify(vm.releases))
+          }, function(res) {
+            console.error(res)
+          });
+      }
+    }
+
+    function markdown() {
+      var converter = new Showdown.converter();
+      return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+          var htmlText = converter.makeHtml(attrs.markdown || element.text());
+          element.html(htmlText);
+        }
+      };
+    };
+  </script>
+</body>
+</html>

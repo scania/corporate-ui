@@ -7,61 +7,143 @@ Polymer({
       value: true
     },
     text: {
+      type: String,
+      value: ''
+    },
+    template: {
+      type: String
+    },
+    classes: {
       type: String
     },
     location: {
-      type: String
+      type: String,
+      value: ''
+    },
+    caption: {
+      type: String,
+      value: ''
+    },
+    children: {
+      type: Array,
+      observer: 'toggleModeToggler'
+    },
+    props: {
+      type: Object
+    },
+    attrs: {
+      type: Object
+    },
+    haveChildren: {
+      type: Boolean
     },
     icon: {
-      type: String,
-      observer: 'AddIcon'
+      type: String
     },
     active: {
       type: String,
       observer: 'setActive'
+    },
+    dropdown: {
+      type: Boolean
+    }
+  },
+  listeners: {
+    'dom-change': 'render'
+  },
+  render: function() {
+    var anchors = this.querySelectorAll('a[href=""]');
+
+    for (var i = 0; i < anchors.length; i++) {
+      var anchor = anchors[i];
+      if (!anchor.attributes.href.value) {
+        anchor.onclick = function(event) {
+          event.preventDefault();
+        }
+      }
+    }
+
+    var a = this.querySelector('a');
+
+    var attrs = [].slice.call(this.attributes).filter(function(item) {
+      if (item.name.indexOf('attr-') == 0) {
+        return true;
+      }
+    });
+
+    if (a) {
+      for(var i=0; i<attrs.length; i++) {
+        var key = attrs[i].name,
+            attr = key.replace('attr-', '');
+
+        a.setAttribute(attr, this.attributes[key].value);
+      }
+
+      if(this.children && this.dropdown) {
+        a.classList.add('dropdown-toggle');
+        a.setAttribute('data-toggle', 'dropdown');
+      }
     }
   },
   attached: function() {
-    var child = this.firstChild,
-        texts = [];
-
-    while (child) {
-      if (child.nodeType == 3) {
-        texts.push(child.data);
-        child.data = '';
-      }
-      child = child.nextSibling;
-    }
-
-    var text = texts.join('').trim();
-
-    if (text) {
-      var anchor = document.createElement('a');
-      anchor.innerText = text;
-      anchor.href = this.location;
-      // this.appendChild(anchor);
-      this.insertBefore(anchor, this.firstChild)
-    }
+    this.dropdown = !!this.dropdown;
 
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }
 
-    if (this.active && this.active.toString() == 'true') {
-      this.classList.add('active');
+    if(this.querySelector('sub-navigation')) {
+      this.haveChildren = true;
     }
+
+    if(this.active && this.active.toString() == 'true') {
+      this.setActive(true);
+    }
+
+    if(this.props) {
+      Object.keys(this.props).map(function(prop) {
+        this[prop] = this.props[prop];
+      }, this);
+    }
+
+    if(this.attrs) {
+      Object.keys(this.attrs).map(function(attr) {
+        this.setAttribute(attr, this.attrs[attr]);
+      }, this);
+    }
+
+    if (this.classes) {
+      this.classList.add.apply(this.classList, this.classes.split(' '));
+    }
+
+    if (this.template) {
+      this.addTemplate();
+    }
+
+    this.toggleClass('expanded', this.hasClass(this, 'active'));
 
     this.listen(this, 'tap', 'onTap');
   },
-  onTap: function() {
+  onTap: function(event) {
+    event.stopPropagation();
+
+    if (this.dropdown) {
+      if (!this.classList.contains('more') && !this.active) {
+        this.reSetActive();
+      }
+      return;
+    }
+
     this.active = true;
 
-    var event = document.createEvent('Event');
-    event.initEvent('navigation-close', true, true);
-    this.dispatchEvent(event);
+    if(window.innerWidth < 992) {
+      var _event = document.createEvent('Event');
+      _event.initEvent('navigation-close', true, true);
+      this.dispatchEvent(_event);
+    }
   },
   setActive: function(newState) {
-    if (newState.toString() == 'true') {
+    if (newState && newState.toString() == 'true') {
       this.classList.add('active');
 
       this.async(function() {
@@ -69,6 +151,28 @@ Polymer({
       });
     } else {
       this.classList.remove('active');
+    }
+  },
+  reSetActive: function() {
+    this.children.map(function(item, key) {
+      if (item.active) {
+        this.set('children.' + key + '.active', false);
+      }
+    }, this);
+  },
+  setDropdownItemActive: function(e) {
+    this.reSetActive();
+
+    e.model.set('item.active', true);
+    this.active = true;
+    this.fire('navItemDropdown-active', {navItem: this}, {node: e.target});
+    e.stopPropagation();
+  },
+  addTemplate: function() {
+    var div = document.createElement('div')
+    div.innerHTML = this.template;
+    while (div.firstChild) {
+      this.appendChild(div.firstChild);
     }
   },
   hasClass: function(element, className) {
@@ -79,12 +183,13 @@ Polymer({
     this.toggleClass('collapsed', this.hasClass(this, 'expanded'));
     this.toggleClass('expanded');
   },
-  AddIcon: function(icon) {
-    var anchor = document.createElement('a');
-    anchor.href = this.location;
-    this.appendChild(anchor);
-    var SpanIcon = document.createElement('span');
-    SpanIcon.classList.add('icon-' + icon);
-    anchor.appendChild(SpanIcon);
+  dashed: function(text) {
+    return (text || '').toLowerCase().split(' ').join('-');
+  },
+  setActiveClass: function(active) {
+    return active ? 'active' : '';
+  },
+  toggleModeToggler: function(items) {
+    this.haveChildren = !!(items || []).length;
   }
 });

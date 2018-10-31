@@ -5,12 +5,16 @@
   display: none;
   // we set height on this element dynamicly, this rule make it look smoother
   transition: height 100ms ease;
+  --more-visibility: hidden;
 
   .navbar-footer {
     display: none;
   }
   .navbar-collapse {
     &:extend(.navbar-default .navbar-header + .navbar-collapse);
+
+    // We set fontsize 0 to remove extra spaces between nav-item
+    font-size: 0;
   }
 
   ::content {
@@ -21,6 +25,16 @@
     secondary-items {
       display: inline-block;
     }
+    primary-items,
+    secondary-items {
+      
+      > nav-item > a {
+        // Fixes issue where content could overflow its container.
+        // Making a horizontal scrollbar get displayed when a
+        // secondary navigation is available
+        overflow: hidden;
+      }
+    }
 
     > .navbar {
       // Inherit min-height from its parent js calculated min-height
@@ -29,27 +43,38 @@
       transition: box-shadow 0.15s ease-in-out;
     }
     .navbar-nav.navbar-right:last-child {
-      margin-right: 1px;
-      -webkit-transition: margin-right 100ms ease;
-      -moz-transition: margin-right 100ms ease;
-      -o-transition: margin-right 100ms ease;
-      -ms-transition: margin-right 100ms ease;
-      transition: margin-right 100ms ease;
+      margin-right: 0;
     }
     .more {
-      // Why is this actually set to "display: none;" ?
-      display: inline-block !important;
+      visibility: var(--more-visibility);
 
+      > a {
+        display: block;
+      }
       li {
         display: none;
-      }
-      > a {
-        &:extend(.navbar-default .navbar-nav > li + li > a all);
+
+        a {
+          text-transform: uppercase;
+        }
       }
     }
     .dropdown-menu {
       max-height: 70vh;
-      overflow-y: scroll;
+      overflow-y: auto;
+      z-index: 1001;
+      -webkit-box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
+      box-shadow: 0 9px 12px rgba(0, 0, 0, .175);
+
+      a {
+        padding-top: 9px;
+        padding-bottom: 9px;
+        text-transform: none;
+
+        &:hover {
+         background-color: transparent;
+        }
+      }
     }
   }
 }
@@ -65,6 +90,14 @@
 
     a {
       &:extend(.app .navbar-default .navbar-header + .navbar-collapse .navbar-nav a);
+    }
+
+    .dropdown-menu {
+
+      a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
     }
   }
 }
@@ -84,7 +117,7 @@
       box-shadow: 0 2px 10px 0 rgba(0,0,0,0.15);
     }
     .navbar-nav.navbar-right {
-      margin-right: 80px;
+      padding-right: 80px;
     }
   }
 }
@@ -102,12 +135,13 @@
 :host-context(.app.header-is-sticky) {
 
   ::content .navbar-nav.navbar-right {
-    margin-right: 60px;
+    padding-right: 60px;
   }
 }
 
 @media (max-width: 991px) {
   :host {
+    min-height: auto !important;
 
     .navbar-footer {
       height: 55px;
@@ -166,6 +200,7 @@
       }
     }
     nav .navbar-collapse {
+      overflow: visible;
 
       &.collapsing {
         overflow-y: hidden !important;
@@ -175,19 +210,15 @@
         }
       }
       &.collapse {
-        display: none !important;
+        display: none;
 
         &.in {
-          display: block !important;
+          display: block;
 
           + .navbar-footer {
             display: block;
           }
         }
-      }
-      &.in {
-        height: 100% !important;
-        overflow-y: scroll !important;
       }
     }
     > .navbar-default {
@@ -235,14 +266,23 @@
 
         > nav-item {
           padding: 0;
+          position: relative;
 
           a {
-            padding: 10px 0;
+            padding: 10px 30px;
 
             span {
               padding: 0;
             }
           }
+        }
+      }
+      primary-items,
+      secondary-items {
+        
+        > nav-item {
+          display: flex;
+          flex-direction: column;
         }
       }
 
@@ -269,11 +309,24 @@
       .more {
         display: none !important;
       }
+      .dropdown-menu {
+        overflow: visible;
+        box-shadow: none;
+        border: 0;
+        padding: 0;
+
+        a {
+          &:extend(.navbar-nav > li > a);
+
+          border-bottom: 1px solid #e2e2e2;
+          padding-left: 25px;
+          padding-right: 25px;
+        }
+      }
     }
   }
 
   :host-context(.navigation-open) {
-    height: 100% !important;
 
     > .navbar-default {
       display: block;

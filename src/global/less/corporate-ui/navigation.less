@@ -26,22 +26,17 @@
   }
 
   .dropdown-menu {
-    margin: 0 0 0;
-    border-radius: 0;
-    border: 1px solid #d3d3d3;
-    border-top: none;
-  }
 
-  .dropdown-menu a {
-    text-transform: none;
-    color: #909090;
+    a {
 
-      &:before {
+      &:before,
+      &:after {
         border: none;
         padding-left: 0;
         padding-right: 0;
       }
-  }  
+    }
+  }
 
   > .container-fluid {
     padding-left: 0;
@@ -130,31 +125,31 @@
           color: inherit;
           text-decoration: underline;
           background-color: transparent;
-        }        
+        }
       }
 
     .dropdown-menu {
-        border: 1px solid #d3d3d3;
-        padding: 0;
+      border: 1px solid #d3d3d3;
+      padding: 0;
 
-        a {
-        cursor: pointer;
-        padding: 12px 15px;
+      a {
+      cursor: pointer;
+      padding: 12px 15px;
 
-          &:hover {
-            text-decoration: none;
-            color: #fff;
-            background-color: #041e42;
+        &:hover {
+          text-decoration: none;
+          color: #fff;
+          background-color: #041e42;
 
-          }
-          
-          &:focus {
-            color: inherit;
-            text-decoration: none;
-            background-color: transparent;
-          }        
-      }    
-    } 
+        }
+
+        &:focus {
+          color: inherit;
+          text-decoration: none;
+          background-color: transparent;
+        }
+      }
+    }
 
     }
 
@@ -359,6 +354,10 @@
     }
   }
 
+  .nav-justified > li > a {
+    border-radius: 0;
+  }
+
   .panel-heading & {
     display: flex;
     margin: -10px -15px -11px;
@@ -401,7 +400,8 @@
       > .badge {
         margin-left: 10px;
         vertical-align: top;
-        line-height: 0.9;
+        line-height: 1.2;
+        background-color: @interaction-info;
       }
     }
   }
@@ -412,7 +412,7 @@
     padding: 0;
     margin: 0;
 
-    li {
+    > li {
       border: 1px solid @interaction-info;
       background-color: #fff;
 
@@ -467,7 +467,8 @@
     > li {
 
       > a {
-        font-size:1.2rem;
+        padding: 10px 15px;
+        font-size:1.4rem;
       }
     }
   }
@@ -477,7 +478,7 @@
 
   padding: 10px 15px;
   margin-bottom: 0px;
-  
+
   > .active {
     color: #999;
   }
@@ -497,12 +498,34 @@
     &,
     .app & {
 
+      .navbar-toggle:hover,
+      .navbar-toggle:focus {
+        background-color: transparent;
+      }
+
       .navbar-toggle {
         display: block;
         float: left;
         margin: -18px 0 -19px -18px;
-        padding: 24px 17px;
+        padding: 24px 17px 25px;
+        border: transparent;
+        border-right: 1px solid #e2e2e2;
         border-radius: 0;
+
+        .icon-bar {
+          background-color: #041e42;
+          width: 20px;
+          border-radius: 0;
+          margin-left: 1px;
+          margin-right: 1px;
+          height: 1px;
+          margin-top: 1px;
+
+          & + .icon-bar {
+             margin-top: 5px;
+          }
+
+        }
 
         &.collapsed {
 
@@ -515,13 +538,15 @@
           }
         }
         &:before {
-          font-family: 'corporate-icons';
-          content: "\e60d";
-          line-height: 14px;
-          height: 14px;
-          width: 22px;
+          content: " ";
           display: block;
-        }
+          background-image: url(https://static.scania.com/resources/icons/scania/SVG_POS/close-mobile-navigation.svg);
+          background-repeat: no-repeat;
+          background-size: 14px;
+          width: 14px;
+          height: 14px;
+          margin: 0 4px;
+        }        
         span {
           display: none;
         }
@@ -602,6 +627,16 @@
           &:before {
             position: static;
           }
+
+          &:after {
+              position: fixed;
+              border-left: 1px solid #e2e2e2;
+              height: 64px;
+              content: " ";
+              top: 0;
+              right: 65px;
+          }
+
         }
         .navbar-brand,
         .navbar-nav {
@@ -613,7 +648,24 @@
       }
     }
   }
+
+  ul.nav.nav-pills {
+
+        > li {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          float: none;
+          margin-bottom: -1px;
+
+         + li {
+          margin-left: 0;
+          margin-bottom: -1px;
+      }         
+    }  
+  }
 }
+
 @media (max-width: 767px) {
 
   .navbar-nav {
@@ -632,6 +684,10 @@
         margin-top: 0px;
       }
     }
+  }
+
+  .nav-tabs.nav-justified > li > a {
+    border-radius: 0;
   }
 }
 

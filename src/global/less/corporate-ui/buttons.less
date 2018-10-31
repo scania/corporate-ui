@@ -22,10 +22,23 @@
 
   // Remove browser-outline
   &:focus,
-  &:active:focus{
+  &.active,
+  &:active,
+  &:active:focus {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
+  }
+
+  + .btn,
+  + .btn-group {
+    margin-left: 7px;
+    float: none;
+  }
+
+  &.btn-block + &.btn-block {
+    margin-top: 7px;
+    margin-left: 0;
   }
 
   &-default {
@@ -53,10 +66,11 @@
   }
 
   .app & {
-    font-family: "Scania Sans Semi Condensed Bold";
-    padding: 6px 12px;
+    font-family: "Scania Sans Semi Condensed";
+    padding: 10px 18px;
     text-transform: none;
     font-size: @btn-font-size-app;
+    font-weight: bold;
   }
 }
 
@@ -65,7 +79,7 @@
   padding: 20px 40px;
   font-size: 14px;
   .app &{
-    padding: 14px 28px;
+    padding: 14px 22px;
     font-size: @btn-font-size-lg-app;
   }
 }
@@ -76,7 +90,7 @@
 
 .btn-sm {
   font-size: 12px;
-  padding: 7px 11px;
+  padding: 7px 15px;
   // Icons in btn-sm
   & [class^="icon-"],
   & [class*=" icon-"] {
@@ -85,17 +99,17 @@
     vertical-align: middle;
   }
   .app & {
-    padding: 5px 10px;
+    padding: 5px 14px;
     font-size: @btn-font-size-sm-app;
   }
 }
 
 .btn-xs {
   font-size: 11px;
-  padding: 3px 6px;
+  padding: 3px 6px 2px;
 
   .app & {
-    padding: 1px 5px;
+    padding: 2px 8px 1px;
     font-size: @btn-font-size-xs-app;
   }
 }
@@ -107,8 +121,8 @@
   &:active,
   &.active,
   .open .dropdown-toggle& {
-    color: lighten(@btn-default-border, 10%);
-    border-color: lighten(@btn-default-border, 10%);
+    color: lighten(@btn-default-border, 5%);
+    border-color: lighten(@btn-default-border, 5%);
     background-color: #f5f5f5;
   }
 }
@@ -124,8 +138,8 @@
     &:active,
     &.active,
     .open .dropdown-toggle& {
-      background-color: lighten(@interaction-primary-app, 10%);
-      border-color: lighten(@interaction-primary-app, 10%);
+      background-color: lighten(@interaction-primary-app, 5%);
+      border-color: lighten(@interaction-primary-app, 5%);
     }
   }
 }
@@ -149,7 +163,6 @@
 
 
 //disabled button states
-
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {

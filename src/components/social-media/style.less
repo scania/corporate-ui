@@ -13,7 +13,8 @@
       margin-left: 20px;
       background-color: @interaction-primary;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: #fff;
         text-decoration: none;
 
@@ -41,19 +42,24 @@
 
         a {
           display: inline-block;
-          padding: 10px 0;
-          width: 55px;
           text-align: center;
           margin-left: 10px;
           border: 2px solid #fff;
-          border-radius: 45px;
+          border-radius: 50%;
           background-color: transparent;
+          padding: 8px 0;
+          height: 45px;
+          width: 45px;
 
           &:hover,
           &:focus {
             background-color: #fff;
             color: #000;
             text-decoration: none;
+
+            span {
+              color: #1d1d1b;
+            }
           }
 
           span {
@@ -62,33 +68,27 @@
         }
       }
 
-      @media (max-width: 991px) {
+    @media (max-width: 991px) {
       margin-bottom: 18px;
 
       a {
         border: 1px solid #fff;
         border-radius:28px;
-        margin: 0 10px 0 10px;
+        margin: 5px 0px;
       }
 
       nav-item {
-
+        display:inline-block;
         a {
           height: 31px;
           width: 31px;
-          padding: 2px 4px 0px 4px;
+          padding:4px 0px;
 
           span {
-            font-size: 21px;
+            font-size: 18px;
           }
         }
       }
     }
-  }
-}
-
-:host-context(.app) {
-  ::content {
-    display:none;
   }
 }

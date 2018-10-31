@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>More</title>
+
+  <script src="../../../js/corporate-ui.js"></script>
+</head>
+<body class="scania ux-lib" ng-app="CorporateUI" ng-controller="App as app">
+
+  <c-corporate-header site-name="More" site-url="/" ng-attr-items="{{app.topItems}}">
+    <nav-item location="https://www.scania.com/world/#/" text="World Entry"></nav-item>
+    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items>
+        <nav-item location="#/start" text="start"></nav-item>
+        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" active="{{item.active}}" ng-attr-children="{{item.children}}" caption="{{item.text}}" ng-repeat="item in app.primaryItems"></nav-item>
+      </primary-items>
+
+      <secondary-items>
+        <nav-item text="user" location="#/profile"></nav-item>
+        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" ng-attr-children="{{item.children}}" ng-attr-dropdown="{{item.dropdown}}" ng-repeat="item in app.secondaryItems"></nav-item>
+      </secondary-items>
+    </c-main-navigation>
+
+    <section>
+      <div class="container">
+        <h1>headline</h1>
+        <p>paragraph</p>
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('App', [App]);
+
+    function App() {
+      this.topItems = [
+        {
+          text:'first', location:'#/first'
+        }
+      ];
+
+      this.primaryItems = [
+        {
+          text:'first', location:'#/first', caption: 'first', active: true,
+          children:[
+            { text:'first', location:'#/first/first', active: true },
+            { text:'second', location:'#/first/second' },
+            { text:'third', location:'#/first/third' },
+            { text:'fourth', location:'#/first/fourth' },
+            { text:'fifth', location:'#/first/fifth' },
+            { text:'sixth', location:'#/first/sixth' }
+          ]
+        },
+        {
+          text:'second', location:'', caption: 'second', index: 2,
+          children:[
+            { text:'first', location:'#/second/first' },
+            { text:'second', location:'#/second/second' },
+            { text:'third', location:'#/second/third' },
+            { text:'fourth', location:'#/second/fourth' },
+            { text:'fifth', location:'#/second/fifth' },
+            { text:'sixth', location:'#/second/sixth' }
+          ]
+        },
+        {
+          text:'third', location:'#/third', caption: 'third', index: 1,
+          children:[
+            { text:'first', location:'#/third/first' },
+            { text:'second', location:'#/third/second' },
+            { text:'third', location:'#/third/third' },
+            { text:'fourth', location:'#/third/fourth' },
+            { text:'fifth', location:'#/third/fifth' },
+            { text:'sixth', location:'#/third/sixth' }
+          ]
+        },
+        {
+          text:'fourth', location:'#/fourth', caption: 'fourth',
+          children:[
+            { text:'first', location:'#/fourth/first' },
+            { text:'second', location:'#/fourth/second' },
+            { text:'third', location:'#/fourth/third' },
+            { text:'fourth', location:'#/fourth/fourth' },
+            { text:'fifth', location:'#/fourth/fifth' },
+            { text:'sixth', location:'#/fourth/sixth' }
+          ]
+        },
+        {
+          text:'fifth', location:'#/fifth', caption: 'fifth',
+          children:[
+            { text:'first', location:'#/fifth/first' },
+            { text:'second', location:'#/fifth/second' },
+            { text:'third', location:'#/fifth/third' },
+            { text:'fourth', location:'#/fifth/fourth' },
+            { text:'fifth', location:'#/fifth/fifth' },
+            { text:'sixth', location:'#/fifth/sixth' }
+          ]
+        },
+        {
+          text:'sixth', location:'#/sixth', caption: 'sixth',
+          children:[
+            { text:'first', location:'#/sixth/first' },
+            { text:'second', location:'#/sixth/second' },
+            { text:'third', location:'#/sixth/third' },
+            { text:'fourth', location:'#/sixth/fourth' },
+            { text:'fifth', location:'#/sixth/fifth' },
+            { text:'sixth', location:'#/sixth/sixth' }
+          ]
+        },
+        {
+          text:'seventh', location:'#/seventh', caption: 'seventh',
+          children:[
+            { text:'first', location:'#/seventh/first' },
+            { text:'second', location:'#/seventh/second' },
+            { text:'third', location:'#/seventh/third' },
+            { text:'fourth', location:'#/seventh/fourth' },
+            { text:'fifth', location:'#/seventh/fifth' },
+            { text:'sixth', location:'#/seventh/sixth' }
+          ]
+        },
+        {
+          text:'eighth', location:'#/eighth', caption: 'eighth',
+          children:[
+            { text:'first', location:'#/eighth/first' },
+            { text:'second', location:'#/eighth/second' },
+            { text:'third', location:'#/eighth/third' },
+            { text:'fourth', location:'#/eighth/fourth' },
+            { text:'fifth', location:'#/eighth/fifth' },
+            { text:'sixth', location:'#/eighth/sixth' }
+          ]
+        },
+        {
+          text:'ninth', location:'#/ninth', caption: 'ninth',
+          children:[
+            { text:'first', location:'#/ninth/first' },
+            { text:'second', location:'#/ninth/second' },
+            { text:'third', location:'#/ninth/third' },
+            { text:'fourth', location:'#/ninth/fourth' },
+            { text:'fifth', location:'#/ninth/fifth' },
+            { text:'sixth', location:'#/ninth/sixth' }
+          ]
+        },
+        {
+          text:'tenth', location:'#/tenth', caption: 'tenth',
+          children:[
+            { text:'first', location:'#/tenth/first' },
+            { text:'second', location:'#/tenth/second' },
+            { text:'third', location:'#/tenth/third' },
+            { text:'fourth', location:'#/tenth/fourth' },
+            { text:'fifth', location:'#/tenth/fifth' },
+            { text:'sixth', location:'#/tenth/sixth' }
+          ]
+        },
+        {
+          text:'eleventh', location:'#/eleventh', caption: 'eleventh',
+          children:[
+            { text:'first', location:'#/eleventh/first' },
+            { text:'second', location:'#/eleventh/second' },
+            { text:'third', location:'#/eleventh/third' },
+            { text:'fourth', location:'#/eleventh/fourth' },
+            { text:'fifth', location:'#/eleventh/fifth' },
+            { text:'sixth', location:'#/eleventh/sixth' }
+          ]
+        },
+        {
+          text:'twelfth', location:'#/twelfth', caption: 'twelfth',
+          children:[
+            { text:'first', location:'#/twelfth/first' },
+            { text:'second', location:'#/twelfth/second' },
+            { text:'third', location:'#/twelfth/third' },
+            { text:'fourth', location:'#/twelfth/fourth' },
+            { text:'fifth', location:'#/twelfth/fifth' },
+            { text:'sixth', location:'#/twelfth/sixth' }
+          ]
+        },
+        {
+          text:'thirteenth', location:'#/thirteenth', caption: 'thirteenth',
+          children:[
+            { text:'first', location:'#/thirteenth/first' },
+            { text:'second', location:'#/thirteenth/second' },
+            { text:'third', location:'#/thirteenth/third' },
+            { text:'fourth', location:'#/thirteenth/fourth' },
+            { text:'fifth', location:'#/thirteenth/fifth' },
+            { text:'sixth', location:'#/thirteenth/sixth' }
+          ]
+        },
+        {
+          text:'fourteenth', location:'#/fourteenth', caption: 'fourteenth',
+          children:[
+            { text:'first', location:'#/fourteenth/first' },
+            { text:'second', location:'#/fourteenth/second' },
+            { text:'third', location:'#/fourteenth/third' },
+            { text:'fourth', location:'#/fourteenth/fourth' },
+            { text:'fifth', location:'#/fourteenth/fifth' },
+            { text:'sixth', location:'#/fourteenth/sixth' }
+          ]
+        },
+        {
+          text:'fifteenth', location:'#/fifteenth', caption: 'fifteenth',
+          children:[
+            { text:'first', location:'#/fifteenth/first' },
+            { text:'second', location:'#/fifteenth/second' },
+            { text:'third', location:'#/fifteenth/third' },
+            { text:'fourth', location:'#/fifteenth/fourth' },
+            { text:'fifth', location:'#/fifteenth/fifth' },
+            { text:'sixth', location:'#/fifteenth/sixth' }
+          ]
+        },
+        {
+          text:'sixteenth', location:'#/sixteenth', caption: 'sixteenth',
+          children:[
+            { text:'first', location:'#/sixteenth/first' },
+            { text:'second', location:'#/sixteenth/second' },
+            { text:'third', location:'#/sixteenth/third' },
+            { text:'fourth', location:'#/sixteenth/fourth' },
+            { text:'fifth', location:'#/sixteenth/fifth' },
+            { text:'sixth', location:'#/sixteenth/sixth' }
+          ]
+        },
+        {
+          text:'seventeenth', location:'#/seventeenth', caption: 'seventeenth',
+          children:[
+            { text:'first', location:'#/seventeenth/first' },
+            { text:'second', location:'#/seventeenth/second' },
+            { text:'third', location:'#/seventeenth/third' },
+            { text:'fourth', location:'#/seventeenth/fourth' },
+            { text:'fifth', location:'#/seventeenth/fifth' },
+            { text:'sixth', location:'#/seventeenth/sixth' }
+          ]
+        },
+        {
+          text:'eighteenth', location:'#/eighteenth', caption: 'eighteenth',
+          children:[
+            { text:'first', location:'#/eighteenth/first' },
+            { text:'second', location:'#/eighteenth/second' },
+            { text:'third', location:'#/eighteenth/third' },
+            { text:'fourth', location:'#/eighteenth/fourth' },
+            { text:'fifth', location:'#/eighteenth/fifth' },
+            { text:'sixth', location:'#/eighteenth/sixth' }
+          ]
+        },
+        {
+          text:'nineteenth', location:'#/nineteenth', caption: 'nineteenth',
+          children:[
+            { text:'first', location:'#/nineteenth/first' },
+            { text:'second', location:'#/nineteenth/second' },
+            { text:'third', location:'#/nineteenth/third' },
+            { text:'fourth', location:'#/nineteenth/fourth' },
+            { text:'fifth', location:'#/nineteenth/fifth' },
+            { text:'sixth', location:'#/nineteenth/sixth' }
+          ]
+        },
+        {
+          text:'twentieth', location:'#/twentieth', caption: 'twentieth',
+          children:[
+            { text:'first', location:'#/twentieth/first' },
+            { text:'second', location:'#/twentieth/second' },
+            { text:'third', location:'#/twentieth/third' },
+            { text:'fourth', location:'#/twentieth/fourth' },
+            { text:'fifth', location:'#/twentieth/fifth' },
+            { text:'sixth', location:'#/twentieth/sixth' }
+          ]
+        }
+      ];
+
+      this.secondaryItems = [
+        {
+          text:'first', location:'#/first'
+        },
+        {
+          text:'second', dropdown: true,
+          children:[
+            { text:'first', location:'#/end/first' },
+            { text:'second', location:'#/end/second' },
+            { text:'third', location:'#/end/third' },
+            { text:'fourth', location:'#/end/fourth' },
+            { text:'fifth', location:'#/end/fifth' },
+            { text:'sixth', location:'#/end/sixth' }
+          ]
+        }
+      ];
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="en-GB" class="corporate-ui">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>More</title>
+
+  <script src="../../../js/corporate-ui.js"></script>
+</head>
+<body class="scania ux-lib" ng-app="CorporateUI" ng-controller="App as app">
+
+  <c-corporate-header site-name="More" site-url="/">
+    <nav-item lo cation="https://www.scania.com/world/#/">World Entry</nav-item>
+    <nav-item lo cation="https://www.scania.com/group/en/">Scania Group</nav-item>
+  </c-corporate-header>
+    
+  <c-main-content>
+
+    <c-main-navigation>
+      <primary-items nav-items="app.items"></primary-items>
+
+      <secondary-items>
+        <nav-item lo cation="#/profile">
+          <span class="icon-user"></span>
+        </nav-item>
+      </secondary-items>
+    </c-main-navigation>
+
+    <section>
+      <div class="container">
+        <h1>headline</h1>
+        <p>paragraph</p>
+      </div>
+    </section>
+
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+
+  <script>
+    angular.module('CorporateUI', [])
+      .controller('App', [App])
+      .directive('navItems', [navItems]);
+
+    function App(argument) {
+      this.items = [
+        {
+          name:'first',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'second',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'third',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'fourth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'fifth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'sixth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'seventh',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'eighth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'ninth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'tenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'eleventh',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'twelfth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'thirteenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'fourteenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'fifteenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'sixteenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'seventeenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'eighteenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'nineteenth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        },
+        {
+          name:'twentieth',
+          children:[
+            { name:'first' },
+            { name:'second' },
+            { name:'third' },
+            { name:'fourth' },
+            { name:'fifth' },
+            { name:'sixth' }
+          ]
+        }
+      ];
+    }
+
+    function navItems() {
+      return {
+        restrict: 'A',
+        template: '<nav-item location="#/{{item.name}}" ng-repeat="item in items">\
+        {{item.name}}<sub-navigation nav-items="item.children"></sub-navigation>\
+        </nav-item>',
+        scope: {
+          items: "=navItems",
+        },
+        /*controllerAs: 'item',*/
+        link: function(scope, elm, attr) {
+          console.log(scope.items)
+        }
+      }
+    }
+  </script>
+</body>
+</html>

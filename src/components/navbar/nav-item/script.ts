@@ -45,8 +45,7 @@ Polymer({
       observer: 'setActive'
     },
     dropdown: {
-      type: Boolean,
-      value: false
+      type: Boolean
     }
   },
   listeners: {
@@ -87,6 +86,8 @@ Polymer({
     }
   },
   attached: function() {
+    this.dropdown = !!this.dropdown;
+
     if( this.hasClass(this, 'active') ) {
       this.toggleExpand(this._getEvent());
     }

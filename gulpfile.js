@@ -23,7 +23,6 @@ var fs = require('fs'),
 /* Available tasks */
 gulp.task('clean', _clean)
 gulp.task('copy', _copy)
-gulp.task('libs', _libs)
 gulp.task('less', _less)
 gulp.task('ts', _ts)
 gulp.task('lessComponent', _lessComponent)
@@ -34,7 +33,7 @@ gulp.task('fullComponent', _fullComponent)
 gulp.task('test', test)
 
 gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series(['clean', 'copy', 'libs', 'less', 'ts', 'components', 'test'], exit))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], exit))
 gulp.task('default', gulp.series(['build'], server))
 
 /* File watches */
@@ -50,12 +49,6 @@ function _clean() {
 function _copy() {
   return gulp.src(['src/global/**'])
     .pipe(gulp.dest('dist'))
-}
-function _libs() {
-  var libs = Object.keys(package.dependencies)
-
-  return gulp.src(['node_modules/{' + libs.join() + '}/**/*'])
-    .pipe(gulp.dest('dist/libs'))
 }
 function _less() {
   return gulp.src(['src/global/less/*.less', 'src/global/less/corporate-ui/{core,fonts,icons,brands}.less'])

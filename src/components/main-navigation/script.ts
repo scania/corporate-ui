@@ -1,8 +1,4 @@
-// import reedux from 'reedux';
-/*import { store } from '../../global/ts/core';
-import reducerRegistry from '../../global/ts/reducerRegistry';*/
 import { store } from '../../global/ts/store';
-import { createCookie } from '../../global/ts/helpers';
 
 Polymer({
   is: name,
@@ -65,22 +61,6 @@ Polymer({
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
     }).bind(this));
-
-    // reducer
-    function reducer(state = [], action:any = {}) {
-      switch (action.type) {
-        case 'navigation/ADD_NAV_ITEM':
-          return [...state, { ...action.payload, id: state.length+1 }];
-        case 'navigation/REMOVE_NAV_ITEM':
-          return state.slice(1);
-        default:
-          return state;
-      }
-    }
-
-    store.register('navigation', reducer);
-
-    createCookie('apa', 'banan', 365)
   },
   attached: function() {
     this.style.display = 'block';

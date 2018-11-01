@@ -300,7 +300,7 @@ function appendExternals() {
     } else {
       helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
-    helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
+    helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 

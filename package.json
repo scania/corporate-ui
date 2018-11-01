@@ -54,8 +54,7 @@
     "build": "gulp build",
     "prepare": "gulp build",
     "release": "pmm",
-    "test": "gulp test",
-    "apa": "gulp tsComponent"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",

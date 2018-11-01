@@ -210,8 +210,7 @@ function _fullComponent() {
           name = path.dirname(file.path).substring(index),
           isVariation = !isNaN( parseFloat(name) ),
           isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4,
-          prefix = 'c-',
-          rootpath = '../../'
+          prefix = 'c-';
 
       if (isVariation) {
         var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
@@ -224,11 +223,10 @@ function _fullComponent() {
         if (isSubComponent) {
           // console.log(name)
           prefix = ''
-          rootpath += '../'
         }
       }
 
-      return { name: prefix + name || 'test', rootpath: rootpath };
+      return { name: prefix + name || 'test' };
     }))
     .pipe(jade({ pretty: true }))
     .pipe(rename(function(_path) {

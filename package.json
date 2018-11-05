@@ -26,6 +26,7 @@
     "gulp-jade": "1.1.0",
     "gulp-less": "3.3.0",
     "gulp-rename": "1.2.2",
+    "gulp-replace": "^1.0.0",
     "gulp-sourcemaps": "2.4.1",
     "gulp-typescript": "3.1.6",
     "hydrolysis": "1.25.0",
@@ -37,6 +38,8 @@
     "merge-stream": "1.0.1",
     "moment": "2.19.3",
     "pmm": "2.0.0",
+    "postcss": "^7.0.5",
+    "postcss-import": "^12.0.1",
     "react": "15.4.2",
     "react-datetime": "2.8.8",
     "react-dom": "15.4.2",
@@ -50,8 +53,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "prepare": "gulp build",
-    "release": "pmm",
+    "prepare": "gulp prepublish",
     "test": "gulp test"
   },
   "repository": {
@@ -63,6 +65,16 @@
     "bootstrap",
     "polymer",
     "angular"
+  ],
+  "files": [
+    "dist/components",
+    "dist/css",
+    "dist/css-modules",
+    "dist/images",
+    "dist/html",
+    "dist/js",
+    "dist/less",
+    "dist/ts"
   ],
   "author": "Comon Design Service team",
   "license": "ISC"

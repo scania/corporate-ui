@@ -14,7 +14,10 @@ var fs = require('fs'),
     webpack = require('webpack-stream'),
     dirTree = require('directory-tree'),
     server = require('./server'),
-    package = require('./package.json')
+    package = require('./package.json'),
+    replace = require('gulp-replace'),
+    postcss = require('postcss'),
+    postcssimport = require('postcss-import')
 
 /* Available tasks */
 gulp.task('clean', _clean)
@@ -25,12 +28,17 @@ gulp.task('lessComponent', _lessComponent)
 gulp.task('tsComponent', _tsComponent)
 gulp.task('jadeComponent', _jadeComponent)
 gulp.task('fullComponent', _fullComponent)
+gulp.task('cssModule', _cssModule)
 
 gulp.task('test', test)
 
 gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], exit))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], 'cssModule', exit))
 gulp.task('default', gulp.series(['build'], server))
+gulp.task('prepublish', gulp.series('test', 'build', function(done) {
+  done();
+  process.exit(0);
+}))
 
 /* File watches */
 gulp.watch('src/global/ts/*', gulp.series(['ts']))
@@ -203,4 +211,24 @@ function exit(done) {
   if (process.argv.indexOf('build') > -1) {
     process.exit(0)
   }
+}
+
+function _cssModule(done) {
+  var options = {
+    from: 'dist/css/core.css',
+    to: 'tmp/css/core.css',
+    map: { inline: true }
+  };
+
+  postcss([postcssimport])
+  .process(fs.readFileSync('dist/css/core.css', 'utf-8'), options)
+  .then(function(result) {
+    gulp.src('src/css-modules/scania-corporate-ui.js')
+      .pipe(replace(/{%corporate-ui.css%}/, result))
+      .pipe(gulp.dest('dist/css-modules'))
+      .on('end', done);
+  }, function(error) {
+    console.log(error);
+    done();
+  });
 }

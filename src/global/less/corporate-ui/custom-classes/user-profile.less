@@ -1,0 +1,58 @@
+/*** User Profile Classes ***/
+
+.user-profile {
+
+  &.user-menu {
+    padding: 10px;
+    background: #041e42;
+    overflow: hidden;
+    cursor: pointer;
+
+    .user-profile-picture {
+      width: 32px;
+      height: 32px;
+      font-size: 16px;
+      box-sizing: border-box;
+      padding: 6px 0;
+      color: #041e42;
+      background: #fafafa;
+      background-size: 32px;
+      border-radius: 50%;
+      vertical-align: middle;
+      text-align: center;
+      float: right;
+      background-position: center center;
+    }
+
+    .user-name {
+      font-size: 12px;
+      font-weight: bold;    
+      color: #fafafa;
+      text-transform: initial;
+      word-break: initial;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-right: 10px;
+      text-align: right;
+      float: left;
+    }
+
+    small {
+        display: block;
+        font-weight: normal;
+        font-size: 85%;
+    }
+  }  
+}
+
+nav.navbar.navbar-default .user-profile + ul.dropdown-menu  {
+    padding: 8px 0 !important;
+}
+
+nav.navbar.navbar-default .user-profile + ul.dropdown-menu > li > a {
+    text-transform: initial !important;
+    padding: 6px 14px !important;
+    font-family: 'Scania Sans Semi Condensed';
+    font-weight: bold;
+}
+

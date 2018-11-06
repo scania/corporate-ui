@@ -24,7 +24,7 @@
   <template is="dom-if" if="{{items.length}}">
     <sub-navigation caption="{{caption}}">
       <template is="dom-repeat" items="{{items}}">
-        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}" dropdown="{{item.dropdown}}" items="{{item.items}}"></nav-item>
+        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}" dropdown="{{item.dropdown}}" items="{{item.items}}" props="{{item.props}}" attrs="{{item.attrs}}"></nav-item>
       </template>
     </sub-navigation>
   </template>

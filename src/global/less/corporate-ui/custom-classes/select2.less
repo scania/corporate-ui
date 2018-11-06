@@ -284,16 +284,16 @@
     .select2-result-selectable {
         border-bottom: 1px solid rgb(240, 240, 240);
         padding: 10px;
+        color:  #909090;
 
         &:first-child {
             padding: 10px;
         }
     }
     .select2-highlighted {
-        border: 1px solid #e4eef1;
         background-color: rgb(234, 241, 244);
-        color: #2d2926;
-        font-weight: bold;
+        color: #041e42;
+        font-weight: normal;
     }
 }
 .select2-display-none {
@@ -328,6 +328,8 @@
             line-height: unset;
             border: 1px solid #e2e2e2;
             background: #f5f5f5;
+
+            }
 
             abbr {
                 right: 15%;
@@ -379,13 +381,17 @@
         margin: 0px;
         padding: 0px;
     }
+    table .select2-container {
 
-    table .select2-container,
-    table .select2-container .select2-choice  {
+    .select2-choice  {
         height: 30px!important;
         vertical-align: inherit!important;
+        .select2-chosen {
+            font-size: 1.2rem;
+        }
     }
 }
+
 
 // Compact mode specifics
 .compact {

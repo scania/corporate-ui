@@ -49,6 +49,23 @@ table.table > thead.thead-light:first-child > tr:first-child th {
 }    
 
 
+/* Some Bootstrap 4 Colours */
+
+.text-white { color: #fff !important; }
+
+.text-muted { color: #6c757d!important; }
+
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.bg-dark  { color: #041e42 !important; }
+
+
 /* Adjustments for Cards */
 
 .card,
@@ -84,4 +101,23 @@ h5.card-title {
 
 .app .card .btn {
     padding: 6px 14px;
+}
+
+
+div + a.anchorjs-link {
+    display: none;
+}
+
+.card ul.nav.nav-pills li + li {
+  margin-bottom: 0;
+}
+
+.card h1, 
+.card h2, 
+.card h3, 
+.card h4, 
+.card h5, 
+.card h6,
+p {
+  color: inherit;
 }

@@ -304,8 +304,9 @@ function bsHandler() {
     var dataToggle = event.target.getAttribute('data-toggle') || '',
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
         elm = event.target.parentNode;
-    if(method && window[method]) {
+    if(method && window[method] && !elm.init) {
       event.preventDefault();
+      elm.init = true;
       if (dataToggle === 'tab') {
         elm = elm.parentNode;
       }
@@ -314,7 +315,9 @@ function bsHandler() {
           new window[method](_elm);
         }
       });
-      event.target.click();
+      setTimeout(function() {
+        event.target.click();
+      }, 100);
     }
   })
 }

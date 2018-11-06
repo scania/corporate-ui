@@ -44,8 +44,8 @@
       <primary-items>
         <nav-item ng-repeat="item in uxlib.items" location="{{item.url}}" active="{{item.active}}" ng-click="uxlib.changeView($event, item)">
           {{item.name}}
-          <sub-navigation ng-if="item.active && item.children" item="item" sub-navigation>
-            <nav-item ng-repeat="subItem in item.children" location="{{item.url}}">{{subItem.name}}</nav-item>
+          <sub-navigation ng-if="item.active && item.items" item="item" sub-navigation>
+            <nav-item ng-repeat="subItem in item.items" location="{{item.url}}">{{subItem.name}}</nav-item>
           </sub-navigation>
         </nav-item>
       </primary-items>
@@ -77,11 +77,11 @@
 
       vm.items = [
         { name: 'home', location: '/', active: true },
-        { name: 'libs', location: '/libs/', children: [
+        { name: 'libs', location: '/libs/', items: [
           { name: 'angular', location: '/libs/angular/' },
           { name: 'react', location: '/libs/react/' }
         ] },
-        { name: 'gallery', location: '/gallery/', children: [
+        { name: 'gallery', location: '/gallery/', items: [
           { name: 'sport', location: '/gallery/sport/' },
           { name: 'motor', location: '/gallery/motor/' }
         ] },
@@ -97,8 +97,8 @@
         },
         template: '\
           <a href="{{item.location}}" ng-click="changeView($event)">{{item.name}}</a> \
-          <sub-navigation caption="{{item.name}}" ng-if="item.children">\
-            <nav-item ng-repeat="subItem in item.children" location="{{subItem.location}}" item="subItem"></nav-item>\
+          <sub-navigation caption="{{item.name}}" ng-if="item.items">\
+            <nav-item ng-repeat="subItem in item.items" location="{{subItem.location}}" item="subItem"></nav-item>\
           </sub-navigation>',
         link: function($scope, element, attrs) {
           element.active = $scope.item.active;

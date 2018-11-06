@@ -34,7 +34,31 @@ label.radio,
 
 .table-panel,
 .table-primary,
+{
+  thead {
+    .checkbox label,
+    .radio label,
+    label.radio {
+      color: #fff;
+    }
+  }
+}
+
 .panel-primary,
+.panel-warning,
+.panel-success,
+.panel-danger,
+.panel-info
+{
+  .panel-heading {
+    .checkbox label,
+    .radio label,
+    label.radio {
+      color: #fff;
+    }
+  }
+}
+
 .bg-brand-01,
 .bg-brand-03,
 .bg-primary-02,
@@ -56,21 +80,20 @@ label.radio,
 .bg-grey8,
 .bg-grey9,
 .bg-primary,
-.bg-success
-,.bg-warning,
+.bg-success,
+.bg-warning,
 .bg-danger,
 .bg-info,
 .btn-success,
 .btn-warning,
 .btn-danger,
 .btn-info {
-  thead,
-  .checkbox label,
-  label.radio {
+   .checkbox label,
+   .radio label,
+   label.radio {
     color: #fff;
   }
 }
-
 
 input[type=checkbox] {
   .config();

@@ -53,7 +53,7 @@
       this.items = [
         {
           name:'first',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -64,7 +64,7 @@
         },
         {
           name:'second',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -75,7 +75,7 @@
         },
         {
           name:'third',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -86,7 +86,7 @@
         },
         {
           name:'fourth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -97,7 +97,7 @@
         },
         {
           name:'fifth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -108,7 +108,7 @@
         },
         {
           name:'sixth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -119,7 +119,7 @@
         },
         {
           name:'seventh',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -130,7 +130,7 @@
         },
         {
           name:'eighth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -141,7 +141,7 @@
         },
         {
           name:'ninth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -152,7 +152,7 @@
         },
         {
           name:'tenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -163,7 +163,7 @@
         },
         {
           name:'eleventh',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -174,7 +174,7 @@
         },
         {
           name:'twelfth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -185,7 +185,7 @@
         },
         {
           name:'thirteenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -196,7 +196,7 @@
         },
         {
           name:'fourteenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -207,7 +207,7 @@
         },
         {
           name:'fifteenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -218,7 +218,7 @@
         },
         {
           name:'sixteenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -229,7 +229,7 @@
         },
         {
           name:'seventeenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -240,7 +240,7 @@
         },
         {
           name:'eighteenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -251,7 +251,7 @@
         },
         {
           name:'nineteenth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -262,7 +262,7 @@
         },
         {
           name:'twentieth',
-          children:[
+          items:[
             { name:'first' },
             { name:'second' },
             { name:'third' },
@@ -278,7 +278,7 @@
       return {
         restrict: 'A',
         template: '<nav-item location="#/{{item.name}}" ng-repeat="item in items">\
-        {{item.name}}<sub-navigation nav-items="item.children"></sub-navigation>\
+        {{item.name}}<sub-navigation nav-items="item.items"></sub-navigation>\
         </nav-item>',
         scope: {
           items: "=navItems",

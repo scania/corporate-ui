@@ -75,6 +75,12 @@
       box-shadow: none;
       top: 0;
     }
+    .modal-body {
+    	margin:0px;
+    	padding:0px;
+    	height:  ~"calc(100vh - 53px)";
+    	overflow:hidden;
+    }    
   }  
 
   // This one can be removed
@@ -177,6 +183,7 @@
         height: 100vw;
 
         .modal-content {
+          top: 0px;
           width: 100vw;
           height: 100vw;
           -webkit-box-shadow: none;
@@ -193,7 +200,7 @@
       .modal-body {
         margin-right: 38px;
         padding: 10px 24px 30px 32px;
-        max-height: calc(100vh - 340px);
+        max-height:  ~"calc(100vh - 340px)";
       } 
 
       .modal-footer {

@@ -8,15 +8,15 @@ Polymer({
     accept: {
       type: String
     },
-    browseButton: {
-      type: Boolean,
-      value: false
-    },
     showDropArea: {
       type: Boolean,
       value: true
     },
     files: {
+      type: Array,
+      value: []
+    },
+    filesUploaded: {
       type: Array,
       value: []
     },
@@ -71,39 +71,49 @@ Polymer({
     this.updateIsFiles();
   },
   addFile: function(file){
-    var fileExceedsMax, fileExt, regex, allowFileType;
-    // javascript regex syntax https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
-    // match all characters after . at the end of input
-    fileExt = file.name.match(/\.[^\.]*$|$/)[0];
+    // check if file has been added or uploaded before
+    var fileExist = this.isFileExist(file);
 
-    file.extension = fileExt;
-    // if maximum file size is set
-    if(this.maxFileSize){
-      fileExceedsMax = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
-    } else {fileExceedsMax=false;}
-    // if file accept attribute is set
-    if(this.accept){
-      // for example accept="image/*" will create regex = /^(image\/.*)$/i
-      regex = new RegExp('^(' + this.accept.replace(/[, ]+/g, '|').replace(/\/\*/g, '/.*') + ')$', 'i');
-      allowFileType = (regex.test(file.type) || regex.test(fileExt));
-    } else {allowFileType=true;}
+    if(!fileExist){
+      var fileExceedsMax, fileExt, regex, allowFileType;
+      // javascript regex syntax https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+      // match all characters after . at the end of input
+      fileExt = file.name.match(/\.[^\.]*$|$/)[0];
 
-    if(fileExceedsMax || !allowFileType){
+      file.extension = fileExt;
+      // if maximum file size is set
+      if(this.maxFileSize){
+        fileExceedsMax = (this.updateFileSizeInfo(file.size)==true) ? true : false ;
+      } else {fileExceedsMax=false;}
+      // if file accept attribute is set
+      if(this.accept){
+        // for example accept="image/*" will create regex = /^(image\/.*)$/i
+        regex = new RegExp('^(' + this.accept.replace(/[, ]+/g, '|').replace(/\/\*/g, '/.*') + ')$', 'i');
+        allowFileType = (regex.test(file.type) || regex.test(fileExt));
+      } else {allowFileType=true;}
 
-      if(fileExceedsMax) file.fileErrorMessage = 'Size exceeds permissible upload limit';
-      if(!allowFileType) file.fileErrorMessage = 'File type not allowed';
+      if(fileExceedsMax || !allowFileType){
 
-      this.errorTitle = 'Unable to upload following files';
-      var errorFiles = document.createElement('div');
-      errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileErrorMessage;
-      Polymer.dom(this.$.fileerror).appendChild(errorFiles);
-    } else {
-      file.id = this.fileId;
-      file.fileSize = this.calcFileSize(file.size);
-      this.unshift('files', file);
-      this.fileId++;
+        if(fileExceedsMax) file.fileErrorMessage = 'Size exceeds permissible upload limit';
+        if(!allowFileType) file.fileErrorMessage = 'File type not allowed';
+
+        this.errorTitle = 'Unable to upload following files';
+        var errorFiles = document.createElement('div');
+        errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileErrorMessage;
+        Polymer.dom(this.$.fileerror).appendChild(errorFiles);
+      } else {
+        file.id = this.fileId;
+        file.fileSize = this.calcFileSize(file.size);
+        this.unshift('files', file);
+        this.fileId++;
+      }
     }
-    this.browseButton = true;
+
+  },
+  allowDrop: function(ev){
+    ev.preventDefault();
+    Polymer.dom(this.$.dropArea).classList.add('highlight');
+    ev.dataTransfer.dropEffect = "move";
   },
   calcFileSize: function(number){
     if(number < 1024) {
@@ -113,11 +123,6 @@ Polymer({
     } else if(number >= 1048576) {
       return (number/1048576).toFixed(1) + 'MB';
     }
-  },
-  allowDrop: function(ev){
-    ev.preventDefault();
-    Polymer.dom(this.$.dropArea).classList.add('highlight');
-    ev.dataTransfer.dropEffect = "move";
   },
   dropFile: function(ev){
     ev.preventDefault();
@@ -141,15 +146,30 @@ Polymer({
       }
     }
   },
-  removeHighlight: function(){
-    Polymer.dom(this.$.dropArea).classList.remove('highlight');
-  },
   handleChange: function(e){
     if(this.multiple==false){
       this.files=[];
     }
     this.addFiles(e.srcElement.files);
-
+  },
+  isFileExist: function(f){
+    var returnVal = false;
+    for(var j=0; j<this.files.length; j++){
+      if(this.files[j].name == f.name && this.files[j].size == f.size){
+        returnVal = true;
+      }
+    }
+    if(this.filesUploaded.length>0){
+      for(var i=0; i<this.filesUploaded.length; i++){
+        if(this.filesUploaded[i].name == f.name && this.filesUploaded[i].size == f.size){
+          returnVal = true;
+        }
+      }
+    }
+    return returnVal;
+  },
+  removeHighlight: function(){
+    Polymer.dom(this.$.dropArea).classList.remove('highlight');
   },
   removeFile: function(e){
 
@@ -217,11 +237,11 @@ Polymer({
     this.$$(parentEl).classList.add('done');
     var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
     this.files.splice(elementPos, 1);
+    this.unshift('filesUploaded', f);
     this.updateIsFiles();
   },
   uploadFilesDone: function(){
     if(!this.multiple){
-      this.browseButton = false;
       this.showDropArea = false;
     }
   }

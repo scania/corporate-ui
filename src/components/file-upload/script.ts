@@ -149,7 +149,7 @@ Polymer({
       this.files=[];
     }
     this.addFiles(e.srcElement.files);
-    e.target.value = null;
+    
   },
   removeFile: function(e){
 

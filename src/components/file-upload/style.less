@@ -9,6 +9,38 @@
     .form-group{
       margin: 0 20px;
     }
+    .files-to-upload{
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .upload-info{
+      margin-top: 20px;
+    }
+    #fileerror{
+      margin-bottom: 20px;
+      div{color: #cc1040;}
+      p{margin-bottom: 5px; text-align: left;}
+    }
+    .files-collection{
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #9c9c9c;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #797979;
+    }
+    ::-webkit-scrollbar-track {
+      background: #d8d8d8;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background: #d8d8d8;
+    }
   }
   #dropArea{
     max-width: 300px;
@@ -34,7 +66,7 @@
       font-size: 16px;
     }
     .label-big{
-      font-size: 24px;
+      font-size: 20px;
       margin-bottom:5px;
     }
     .cloud-icon{
@@ -50,7 +82,11 @@
     //endof #dropArea
   }
   input[type="file"]{
-    display: none;
+    display: block;
+    position: absolute;
+    z-index: -1000;
+    opacity: 0;
+    &.hide{display: none;}
   }
   label.btn{color: #033a6a;}
   .file-list{
@@ -117,16 +153,6 @@
       }
     }
     //endof .file-list
-  }
-  .files-to-upload{
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  #fileerror{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    div{color: #cc1040;}
-    p{margin-bottom: 5px; text-align: left;}
   }
   .action-btn-wrapper{
     border-right-width: 1px;

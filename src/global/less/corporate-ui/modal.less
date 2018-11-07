@@ -193,19 +193,33 @@
 
     .modal-article {
 
-      .modal-header {
-        padding: 30px 30px 0px 32px;
+        .modal-header {
+          padding: 16px 20px 0px 30px;
+          border-bottom: none;
+
+          .close {
+              margin-top: 0px;
+              margin-right: 0px;
+          }
       }
 
+      .modal-title {
+          margin-top: 16px;
+          font-size: 2rem;
+          letter-spacing: 0;
+      }
+      
       .modal-body {
-        margin-right: 38px;
-        padding: 10px 24px 30px 32px;
-        max-height:  ~"calc(100vh - 340px)";
-      } 
+        margin-right: 25px;
+        padding: 10px 40px 5px 30px;
+        max-height: ~"calc(100vh - 240px)";
+     }
 
       .modal-footer {
-        padding: 30px 30px 50px 32px;         
+          padding: 5px 30px 30px 30px;
+          text-align: left;
+          border-top: none;
       }
     }
-  }      
-} 
+  }
+}

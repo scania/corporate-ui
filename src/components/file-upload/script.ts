@@ -149,7 +149,7 @@ Polymer({
       this.files=[];
     }
     this.addFiles(e.srcElement.files);
-    
+
   },
   removeFile: function(e){
 
@@ -171,9 +171,9 @@ Polymer({
     var pbVal = (this.totalProgress/this.totalFileUpload*100) ;
 
     if(p==0){
-      this.$$('c-progress-bar').classList.remove('hidden');
+      this.$$(parentEl).querySelector('c-progress-bar').classList.remove('hidden');
     }
-    this.$$('c-progress-bar').setAttribute('value',pbVal);
+    this.$$(parentEl).querySelector('c-progress-bar').setAttribute('value',p);
     this.$$(parentEl).querySelector('.file-meta').classList.add('uploading');
 
     this.uploadBtnText = 'Uploading... ';
@@ -214,8 +214,7 @@ Polymer({
     this.totalProgress = 0;
   },
   uploadFileDone: function(f,parentEl){
-    this.$$(parentEl).querySelector('.file-meta').classList.add('done');
-    this.$$(parentEl).querySelector('.file-icon').classList.add('done');
+    this.$$(parentEl).classList.add('done');
     var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
     this.files.splice(elementPos, 1);
     this.updateIsFiles();

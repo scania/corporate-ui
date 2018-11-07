@@ -43,12 +43,14 @@
                 <i id="{{item.id}}" class="fal fa-times" on-click="removeFile"></i>
               </div>
             </div>
+            <div class="pb-wrapper">
+              <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
+            </div>
           </div>
         </template>
       </div>
 
       <div class="action-btn-wrapper">
-        <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
         <div class="buttons" hidden$={{!isFiles}}>
           <span><button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">{{uploadBtnText}}</button></span>
         </div>

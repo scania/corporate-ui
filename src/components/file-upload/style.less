@@ -94,6 +94,15 @@
     padding:8px 0;
     display: flex;
     flex-direction: row;
+    flex-flow: row wrap;
+
+    .pb-wrapper{
+      flex: 1 100%;
+      margin-top: 10px;
+      opacity: 1;
+      margin-bottom: -28px;
+      transition: all 0.8s 1s;
+    }
 
     .file-icon.done{
       opacity: 0.4;
@@ -114,7 +123,7 @@
       .file-status-icon{
         position: absolute;
         right: 10px;
-        top:5px;
+        top:15px;
         font-size: 1.3em
       }
       .fa-times{
@@ -136,20 +145,24 @@
           animation: rotate 1s infinite forwards;
         }
       }
-      &.done{
-        .fa-spinner{
-          display: none;
-        }
-        .fa-times{
-          display: none;
-        }
-        .fa-check{
-          color: #44a878;
-          display: block;
-        }
-        p{
-          opacity: 0.4;
-        }
+    }
+    &.done{
+      .file-meta .fa-spinner{
+        display: none;
+      }
+      .file-meta .fa-times{
+        display: none;
+      }
+      .file-meta .fa-check{
+        color: #44a878;
+        display: block;
+      }
+      .file-icon, p{
+        opacity: 0.4;
+      }
+      .pb-wrapper{
+        opacity: 0;
+        margin-bottom: -42px;
       }
     }
     //endof .file-list

@@ -131,12 +131,14 @@ Polymer({
     var totalFiles = dt.files.length;
 
     if(this.multiple){
+      Polymer.dom(this.$.dropArea).querySelector('#fileinput').files = dt.files;
       this.addFiles(dt.files);
     } else {
       if(totalFiles==1){
         if(this.files.length>0){
           this.files=[];
         }
+        Polymer.dom(this.$.dropArea).querySelector('#fileinput').files = dt.files;
         this.addFiles(dt.files);
       } else {
         // reject drop
@@ -184,6 +186,9 @@ Polymer({
     }
 
     this.updateIsFiles();
+    if(!this.isFiles && this.filesUploaded.length==0){
+      Polymer.dom(this.$.dropArea).querySelector('#fileinput').value = null;
+    }
   },
   setProgressBarValue: function(f,p){
     var parentEl = '#setPb'+f.id;

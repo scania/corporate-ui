@@ -55,7 +55,7 @@
   <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
 
   <script>
-    var itemsFmp = [{"state":"dashboard","text":"Start","location":"#/","active":true},{"state":"fleetPosition.vehicle.map","text":"Fleet position","location":"#/positioning/fleet-position/map","active":false,"children":[{"state":"fleetPosition.vehicle.map","text":"Map","location":"#/positioning/fleet-position/map","active":false},{"state":"fleetPosition.vehicle.list","text":"Vehicles","location":"#/positioning/fleet-position/vehicle-list","active":false},{"state":"eventList","text":"Events","location":"#/positioning/fleet-position/event-list","active":false},{"state":"fleetPosition.geozone.list","text":"Geofence zones","location":"#/positioning/fleet-position/geozone/list","active":false},{"state":"fleetPosition.locations.list","text":"Locations","location":"#/positioning/fleet-position/locations","active":false},{"state":"settings.fleetPosition","text":"Settings","location":"#/settings/fleet-position","active":false}]},{"state":"servicePlanning.toDo","text":"Service planning","location":"#/service-planning/to-do","active":false,"children":[{"state":"servicePlanning.toDo","text":"To do","location":"#/service-planning/to-do","active":false},{"state":"servicePlanning.calendar","text":"Calendar","location":"#/service-planning/calendar","active":false},{"state":"servicePlanning.defect.list","text":"Defect reports","location":"#/service-planning/defect/list","active":false},{"state":"servicePlanning.occasion.list","text":"Service activities","location":"#/service-planning/occasion/list","active":false},{"state":"servicePlanning.workshop.history","text":"Workshop history","location":"#/service-planning/workshop/history","active":false}]},{"state":"messaging.messagingArchive","text":"Messages","location":"#/messaging/messaging-archive","active":false},{"state":"driverEvaluation.home","text":"Driver evaluation","location":"#/driver-evaluation/home","active":false,"children":[{"state":"driverEvaluation.ranking","text":"Result","location":"#/driver-evaluation/results","active":false},{"state":"driverEvaluation.fuelConsumption","text":"Fuel consumption","location":"#/driver-evaluation/fuel-consumption","active":false},{"state":"driverEvaluation.driverData","text":"Driver data","location":"#/driver-evaluation/driver-data","active":false}]},{"state":"vehiclePerformance.overview","text":"Vehicle performance","location":"#/vehicle-performance/overview","active":false,"children":[{"state":"vehiclePerformance.overview","text":"Overview","location":"#/vehicle-performance/overview","active":false},{"state":"vehiclePerformance.details","text":"Details","location":"#/vehicle-performance/details","active":false},{"state":"vehiclePerformance.compare","text":"Compare","location":"#/vehicle-performance/compare","active":false},{"state":"vehiclePerformance.environmentalReport","text":"Environmental report","location":"#/vehicle-performance/environmental-report","active":false},{"state":"vehiclePerformance.fuelReport","text":"Fuel report","location":"#/vehicle-performance/fuel-report","active":false}]},{"state":"accelerate.scania","text":"Accelerate Scania data","location":"#/accelerate/scania","active":false},{"state":"accelerate.open","text":"Accelerate open data","location":"#/accelerate/open","active":false}];
+    var itemsFmp = [{"state":"dashboard","text":"Start","location":"#/","active":true},{"state":"fleetPosition.vehicle.map","text":"Fleet position","location":"#/positioning/fleet-position/map","active":false,"items":[{"state":"fleetPosition.vehicle.map","text":"Map","location":"#/positioning/fleet-position/map","active":false},{"state":"fleetPosition.vehicle.list","text":"Vehicles","location":"#/positioning/fleet-position/vehicle-list","active":false},{"state":"eventList","text":"Events","location":"#/positioning/fleet-position/event-list","active":false},{"state":"fleetPosition.geozone.list","text":"Geofence zones","location":"#/positioning/fleet-position/geozone/list","active":false},{"state":"fleetPosition.locations.list","text":"Locations","location":"#/positioning/fleet-position/locations","active":false},{"state":"settings.fleetPosition","text":"Settings","location":"#/settings/fleet-position","active":false}]},{"state":"servicePlanning.toDo","text":"Service planning","location":"#/service-planning/to-do","active":false,"items":[{"state":"servicePlanning.toDo","text":"To do","location":"#/service-planning/to-do","active":false},{"state":"servicePlanning.calendar","text":"Calendar","location":"#/service-planning/calendar","active":false},{"state":"servicePlanning.defect.list","text":"Defect reports","location":"#/service-planning/defect/list","active":false},{"state":"servicePlanning.occasion.list","text":"Service activities","location":"#/service-planning/occasion/list","active":false},{"state":"servicePlanning.workshop.history","text":"Workshop history","location":"#/service-planning/workshop/history","active":false}]},{"state":"messaging.messagingArchive","text":"Messages","location":"#/messaging/messaging-archive","active":false},{"state":"driverEvaluation.home","text":"Driver evaluation","location":"#/driver-evaluation/home","active":false,"items":[{"state":"driverEvaluation.ranking","text":"Result","location":"#/driver-evaluation/results","active":false},{"state":"driverEvaluation.fuelConsumption","text":"Fuel consumption","location":"#/driver-evaluation/fuel-consumption","active":false},{"state":"driverEvaluation.driverData","text":"Driver data","location":"#/driver-evaluation/driver-data","active":false}]},{"state":"vehiclePerformance.overview","text":"Vehicle performance","location":"#/vehicle-performance/overview","active":false,"items":[{"state":"vehiclePerformance.overview","text":"Overview","location":"#/vehicle-performance/overview","active":false},{"state":"vehiclePerformance.details","text":"Details","location":"#/vehicle-performance/details","active":false},{"state":"vehiclePerformance.compare","text":"Compare","location":"#/vehicle-performance/compare","active":false},{"state":"vehiclePerformance.environmentalReport","text":"Environmental report","location":"#/vehicle-performance/environmental-report","active":false},{"state":"vehiclePerformance.fuelReport","text":"Fuel report","location":"#/vehicle-performance/fuel-report","active":false}]},{"state":"accelerate.scania","text":"Accelerate Scania data","location":"#/accelerate/scania","active":false},{"state":"accelerate.open","text":"Accelerate open data","location":"#/accelerate/open","active":false}];
 
     angular.module('CorporateUI', [])
       .value('itemsFmp', itemsFmp)
@@ -74,7 +74,7 @@
       this.primaryItems = [
         {
           text:'First', location:'#/First', caption: 'First', active: true, classes: 'first-item',
-          children:[
+          items:[
             { text:'First', location:'#/First/First', active: true },
             { text:'Second', location:'#/First/Second' },
             { text:'Third', location:'#/First/Third' },
@@ -86,7 +86,7 @@
         },
         {
           text:'Second', location:'', caption: 'Second', index: -2,
-          children:[
+          items:[
             { text:'First', location:'#/Second/First' },
             { text:'Second', location:'#/Second/Second' },
             { text:'Third', location:'#/Second/Third' },
@@ -97,7 +97,7 @@
         },
         {
           text:'Third', location:'#/Third', caption: 'Third', index: -1,
-          children:[
+          items:[
             { text:'First', location:'#/Third/First' },
             { text:'Second', location:'#/Third/Second' },
             { text:'Third', location:'#/Third/Third' },
@@ -108,7 +108,7 @@
         },
         {
           text:'Fourth', location:'#/Fourth', caption: 'Fourth', index: 1,
-          children:[
+          items:[
             { text:'First', location:'#/Fourth/First' },
             { text:'Second', location:'#/Fourth/Second' },
             { text:'Third', location:'#/Fourth/Third' },
@@ -122,7 +122,7 @@
             onclick: function(e) { console.log('Event triggered from prop on:', e.currentTarget) },
             className: 'some-class',
           },
-          children:[
+          items:[
             { text:'First', location:'#/Fifth/First' },
             { text:'Second', location:'#/Fifth/Second' },
             { text:'Third', location:'#/Fifth/Third' },
@@ -136,7 +136,7 @@
             onclick: '(function(t) { console.log("Event triggered from attr on:", t) }(this))',
             class: 'some-class',
           },
-          children:[
+          items:[
             { text:'First', location:'#/Sixth/First' },
             { text:'Second', location:'#/Sixth/Second' },
             { text:'Third', location:'#/Sixth/Third' },
@@ -147,7 +147,7 @@
         },
         {
           text:'Seventh', location:'#/Seventh', caption: 'Seventh',
-          children:[
+          items:[
             { text:'First', location:'#/Seventh/First' },
             { text:'Second', location:'#/Seventh/Second' },
             { text:'Third', location:'#/Seventh/Third' },
@@ -158,7 +158,7 @@
         },
         {
           text:'Eighth', location:'#/Eighth', caption: 'Eighth',
-          children:[
+          items:[
             { text:'First', location:'#/Eighth/First' },
             { text:'Second', location:'#/Eighth/Second' },
             { text:'Third', location:'#/Eighth/Third' },
@@ -169,7 +169,7 @@
         },
         {
           text:'Ninth', location:'#/Ninth', caption: 'Ninth',
-          children:[
+          items:[
             { text:'First', location:'#/Ninth/First' },
             { text:'Second', location:'#/Ninth/Second' },
             { text:'Third', location:'#/Ninth/Third' },
@@ -180,7 +180,7 @@
         },
         {
           text:'Tenth', location:'#/Tenth', caption: 'Tenth',
-          children:[
+          items:[
             { text:'First', location:'#/Tenth/First' },
             { text:'Second', location:'#/Tenth/Second' },
             { text:'Third', location:'#/Tenth/Third' },
@@ -191,7 +191,7 @@
         },
         {
           text:'Eleventh', location:'#/Eleventh', caption: 'Eleventh',
-          children:[
+          items:[
             { text:'First', location:'#/Eleventh/First' },
             { text:'Second', location:'#/Eleventh/Second' },
             { text:'Third', location:'#/Eleventh/Third' },
@@ -202,7 +202,7 @@
         },
         {
           text:'Twelfth', location:'#/Twelfth', caption: 'Twelfth',
-          children:[
+          items:[
             { text:'First', location:'#/Twelfth/First' },
             { text:'Second', location:'#/Twelfth/Second' },
             { text:'Third', location:'#/Twelfth/Third' },
@@ -213,7 +213,7 @@
         },
         {
           text:'Thirteenth', location:'#/Thirteenth', caption: 'Thirteenth',
-          children:[
+          items:[
             { text:'First', location:'#/Thirteenth/First' },
             { text:'Second', location:'#/Thirteenth/Second' },
             { text:'Third', location:'#/Thirteenth/Third' },
@@ -224,7 +224,7 @@
         },
         {
           text:'Fourteenth', location:'#/Fourteenth', caption: 'Fourteenth',
-          children:[
+          items:[
             { text:'First', location:'#/Fourteenth/First' },
             { text:'Second', location:'#/Fourteenth/Second' },
             { text:'Third', location:'#/Fourteenth/Third' },
@@ -235,7 +235,7 @@
         },
         {
           text:'Fifteenth', location:'#/Fifteenth', caption: 'Fifteenth',
-          children:[
+          items:[
             { text:'First', location:'#/Fifteenth/First' },
             { text:'Second', location:'#/Fifteenth/Second' },
             { text:'Third', location:'#/Fifteenth/Third' },
@@ -246,7 +246,7 @@
         },
         {
           text:'Sixteenth', location:'#/Sixteenth', caption: 'Sixteenth',
-          children:[
+          items:[
             { text:'First', location:'#/Sixteenth/First' },
             { text:'Second', location:'#/Sixteenth/Second' },
             { text:'Third', location:'#/Sixteenth/Third' },
@@ -257,7 +257,7 @@
         },
         {
           text:'Seventeenth', location:'#/Seventeenth', caption: 'Seventeenth',
-          children:[
+          items:[
             { text:'First', location:'#/Seventeenth/First' },
             { text:'Second', location:'#/Seventeenth/Second' },
             { text:'Third', location:'#/Seventeenth/Third' },
@@ -268,7 +268,7 @@
         },
         {
           text:'Eighteenth', location:'#/Eighteenth', caption: 'Eighteenth',
-          children:[
+          items:[
             { text:'First', location:'#/Eighteenth/First' },
             { text:'Second', location:'#/Eighteenth/Second' },
             { text:'Third', location:'#/Eighteenth/Third' },
@@ -279,7 +279,7 @@
         },
         {
           text:'Nineteenth', location:'#/Nineteenth', caption: 'Nineteenth',
-          children:[
+          items:[
             { text:'First', location:'#/Nineteenth/First' },
             { text:'Second', location:'#/Nineteenth/Second' },
             { text:'Third', location:'#/Nineteenth/Third' },
@@ -290,7 +290,7 @@
         },
         {
           text:'Twentieth', location:'#/Twentieth', caption: 'Twentieth',
-          children:[
+          items:[
             { text:'First', location:'#/Twentieth/First' },
             { text:'Second', location:'#/Twentieth/Second' },
             { text:'Third', location:'#/Twentieth/Third' },
@@ -307,7 +307,7 @@
         },
         {
           text:'Second',
-          children:[
+          items:[
             { text:'First', location:'#/end/First' },
             { text:'Second', location:'#/end/Second' },
             { text:'Third', location:'#/end/Third' },

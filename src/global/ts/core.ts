@@ -313,8 +313,9 @@ function bsHandler() {
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
         // We used parent node to apply method on all connected elements
         elm = event.target.parentNode;
-    if(method && window[method]) {
+    if(method && window[method] && !elm.init) {
       event.preventDefault();
+      elm.init = true;
       if (dataToggle === 'tab') {
         elm = elm.parentNode;
       }
@@ -323,7 +324,9 @@ function bsHandler() {
           new window[method](_elm);
         }
       });
-      event.target.click();
+      setTimeout(function() {
+        event.target.click();
+      }, 100);
     }
   })
 }

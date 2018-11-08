@@ -25,11 +25,11 @@ On the example below, the component will have capabilities to select only one fi
 
 `<c-file-upload name="uxlib-file-input" max-file-size=1000 accept="image/*, application/pdf"></c-file-upload>`
 
-### Event
+#### Event
 
 - `uploadFiles` : CustomEvent. Fired when upload button inside the component is pressed.
 
-### Method
+#### Method
 
 - `setProgressBarValue(file, progress)` . Triggers visual cues for upload progress such as progress bar and loading spinner.
 

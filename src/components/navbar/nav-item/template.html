@@ -21,10 +21,10 @@
 </template>
 
 <template is="dom-if" if="{{!dropdown}}">
-  <template is="dom-if" if="{{children.length}}">
+  <template is="dom-if" if="{{items.length}}">
     <sub-navigation caption="{{caption}}">
-      <template is="dom-repeat" items="{{children}}">
-        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}" dropdown="{{item.dropdown}}" children="{{item.children}}"></nav-item>
+      <template is="dom-repeat" items="{{items}}">
+        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" classes="{{item.classes}}" dropdown="{{item.dropdown}}" items="{{item.items}}"></nav-item>
       </template>
     </sub-navigation>
   </template>
@@ -32,7 +32,7 @@
 
 <template is="dom-if" if="{{dropdown}}">
   <ul class="dropdown-menu">
-    <template is="dom-repeat" items="{{children}}">
+    <template is="dom-repeat" items="{{items}}">
       <li class$="{{dashed(item.text)}} {{setActiveClass(item.active)}}">
         <a href$="{{item.location}}" on-tap="setDropdownItemActive">{{item.text}}</a>
       </li>
@@ -40,6 +40,6 @@
   </ul>
 </template>
 
-<template is="dom-if" if="{{haveChildren}}">
+<template is="dom-if" if="{{haveItems}}">
   <button on-tap="toggleExpand" class="btn btn-link mode-toggler"></button>
 </template>

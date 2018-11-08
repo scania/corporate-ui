@@ -263,43 +263,40 @@ select {
 }
 
 .help-block {
-  background-color: #ffffff;
-  color: #53565a;
-  border-radius: 0;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
-  text-align: left;
-  width: 100%;
-  margin-bottom: 3px;
   font-size: 1.2rem;
   font-weight: normal;
   padding: 8px;
-  margin-top:2px;
+  text-align: left;
+  background-color: #fff;
   border: 1px solid #f0f0f0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top:2px;
 
   .help-block.label-success {
-       border-left: 4px solid #4eb785;  
+       border-left: 4px solid @interaction-success;  
   } 
 
   .help-block.label-danger {
-       border-left: 4px solid #e41247
+       border-left: 4px solid @interaction-danger;
   }    
 
   .help-block.label-info {
-       border-left: 4px solid #5598b2  
+       border-left: 4px solid @interaction-info;  
   }    
 
   .help-block.label-warning {
-       border-left: 4px solid #f2855f;
+       border-left: 4px solid @interaction-warning;
   } 
 
   .help-block.label-primary {
-      border-left: 4px solid #033a6a;
+      border-left: 4px solid @interaction-primary-app;
   }
 
   .help-block.label-default {
-      border-left: 4px double  #033a6a;
+      border-left: 4px double @interaction-primary-app;
   } 
 }
-
-      

@@ -1,6 +1,8 @@
 // This basically is Toast styling for the Toastr component but we can add other solutions here as well
 // https://codeseven.github.io/toastr/demo.html
 
+// Should be lessified
+
 #toast-container {
     font-family: "Scania Sans Semi Condensed";
     border-radius: 0;
@@ -58,6 +60,19 @@
     background-color: #cc1040;
 }
 
+
+// These 2 rules are suggested. They'll display a left border if there are no title present
+
+// #toast-container>.toast-error > .toast-message  {
+//     border-left: 6px solid #cc1040;
+//     border-radius:0
+// }
+
+// #toast-container>.toast-error > .toast-title + .toast-message  {
+//      border-left: none;
+// }
+
+
 #toast-container>.toast.toast-error,
 #toast-container>.toast.toast-success,
 #toast-container>.toast.toast-info,
@@ -66,10 +81,10 @@
 }
 
 
-#toast-container>:hover {
-    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.16);
-    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.16);
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.16);
+#toast-container > div:hover {
+    -moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.16);
+    -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.16);
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.16);
     opacity: 1;
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     filter: alpha(opacity=100);

@@ -122,9 +122,9 @@ Polymer({
 
     this.toggleClass('expanded', this.hasClass(this, 'active'));
 
-    this.listen(this, 'tap', 'onTap');
+    this.onclick = onclick;
   },
-  onTap: function(event) {
+  onclick: function(event) {
     event.stopPropagation();
 
     if (this.dropdown) {

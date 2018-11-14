@@ -122,25 +122,22 @@ Polymer({
 
     this.toggleClass('expanded', this.hasClass(this, 'active'));
 
-    this.onclick = onclick;
-  },
-  onclick: function(event) {
-    event.stopPropagation();
-
-    if (this.dropdown) {
-      if (!this.classList.contains('more') && !this.active) {
-        this.reSetActive();
+    this.addEventListener('click', function() {
+      if (this.dropdown) {
+        if (!this.classList.contains('more') && !this.active) {
+          this.reSetActive();
+        }
+        return;
       }
-      return;
-    }
 
-    this.active = true;
+      this.active = true;
 
-    if(window.innerWidth < 992) {
-      var _event = document.createEvent('Event');
-      _event.initEvent('navigation-close', true, true);
-      this.dispatchEvent(_event);
-    }
+      if(window.innerWidth < 992) {
+        var _event = document.createEvent('Event');
+        _event.initEvent('navigation-close', true, true);
+        this.dispatchEvent(_event);
+      }
+    });
   },
   setActive: function(newState) {
     if (newState && newState.toString() == 'true') {

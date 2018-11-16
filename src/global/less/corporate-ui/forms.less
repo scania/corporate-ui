@@ -66,7 +66,6 @@ textarea[placeholder] {
   padding: 20px 40px;
   height: 63px;
   box-shadow: none;
-  border-radius: 0;
   border: 0;
   font-size: 1.4rem;
   font-weight: normal;
@@ -177,6 +176,10 @@ textarea[placeholder] {
     font-size: 2.6rem;
   }
 
+  .app textarea& {
+    height: auto;
+  }
+
   .app & {
     padding: 10px 12px;
     height: 42px;
@@ -192,6 +195,7 @@ textarea[placeholder] {
     }
 
   }
+
 }
 
 .form-condensed {

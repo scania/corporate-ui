@@ -24,7 +24,7 @@ Polymer({
       type: String,
       value: ''
     },
-    children: {
+    items: {
       type: Array,
       observer: 'toggleModeToggler'
     },
@@ -34,7 +34,7 @@ Polymer({
     attrs: {
       type: Object
     },
-    haveChildren: {
+    haveItems: {
       type: Boolean
     },
     icon: {
@@ -79,7 +79,7 @@ Polymer({
         a.setAttribute(attr, this.attributes[key].value);
       }
 
-      if(this.children && this.dropdown) {
+      if(this.items && this.dropdown) {
         a.classList.add('dropdown-toggle');
         a.setAttribute('data-toggle', 'dropdown');
       }
@@ -93,7 +93,7 @@ Polymer({
     }
 
     if(this.querySelector('sub-navigation')) {
-      this.haveChildren = true;
+      this.haveItems = true;
     }
 
     if(this.active && this.active.toString() == 'true') {
@@ -154,9 +154,9 @@ Polymer({
     }
   },
   reSetActive: function() {
-    this.children.map(function(item, key) {
+    this.items.map(function(item, key) {
       if (item.active) {
-        this.set('children.' + key + '.active', false);
+        this.set('items.' + key + '.active', false);
       }
     }, this);
   },
@@ -190,6 +190,6 @@ Polymer({
     return active ? 'active' : '';
   },
   toggleModeToggler: function(items) {
-    this.haveChildren = !!(items || []).length;
+    this.haveItems = !!(items || []).length;
   }
 });

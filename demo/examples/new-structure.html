@@ -24,12 +24,12 @@
     <c-main-navigation>
       <primary-items>
         <nav-item location="#/start" text="start"></nav-item>
-        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" active="{{item.active}}" ng-attr-children="{{item.children}}" caption="{{item.text}}" ng-repeat="item in app.primaryItems"></nav-item>
+        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" active="{{item.active}}" ng-attr-items="{{item.items}}" caption="{{item.text}}" ng-repeat="item in app.primaryItems"></nav-item>
       </primary-items>
 
       <secondary-items>
         <nav-item text="user" location="#/profile"></nav-item>
-        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" ng-attr-children="{{item.children}}" ng-attr-dropdown="{{item.dropdown}}" ng-repeat="item in app.secondaryItems"></nav-item>
+        <nav-item location="{{item.location}}" ng-attr-text="{{item.text}}" ng-attr-items="{{item.items}}" ng-attr-dropdown="{{item.dropdown}}" ng-repeat="item in app.secondaryItems"></nav-item>
       </secondary-items>
     </c-main-navigation>
 
@@ -60,7 +60,7 @@
       this.primaryItems = [
         {
           text:'first', location:'#/first', caption: 'first', active: true,
-          children:[
+          items:[
             { text:'first', location:'#/first/first', active: true },
             { text:'second', location:'#/first/second' },
             { text:'third', location:'#/first/third' },
@@ -71,7 +71,7 @@
         },
         {
           text:'second', location:'', caption: 'second', index: 2,
-          children:[
+          items:[
             { text:'first', location:'#/second/first' },
             { text:'second', location:'#/second/second' },
             { text:'third', location:'#/second/third' },
@@ -82,7 +82,7 @@
         },
         {
           text:'third', location:'#/third', caption: 'third', index: 1,
-          children:[
+          items:[
             { text:'first', location:'#/third/first' },
             { text:'second', location:'#/third/second' },
             { text:'third', location:'#/third/third' },
@@ -93,7 +93,7 @@
         },
         {
           text:'fourth', location:'#/fourth', caption: 'fourth',
-          children:[
+          items:[
             { text:'first', location:'#/fourth/first' },
             { text:'second', location:'#/fourth/second' },
             { text:'third', location:'#/fourth/third' },
@@ -104,7 +104,7 @@
         },
         {
           text:'fifth', location:'#/fifth', caption: 'fifth',
-          children:[
+          items:[
             { text:'first', location:'#/fifth/first' },
             { text:'second', location:'#/fifth/second' },
             { text:'third', location:'#/fifth/third' },
@@ -115,7 +115,7 @@
         },
         {
           text:'sixth', location:'#/sixth', caption: 'sixth',
-          children:[
+          items:[
             { text:'first', location:'#/sixth/first' },
             { text:'second', location:'#/sixth/second' },
             { text:'third', location:'#/sixth/third' },
@@ -126,7 +126,7 @@
         },
         {
           text:'seventh', location:'#/seventh', caption: 'seventh',
-          children:[
+          items:[
             { text:'first', location:'#/seventh/first' },
             { text:'second', location:'#/seventh/second' },
             { text:'third', location:'#/seventh/third' },
@@ -137,7 +137,7 @@
         },
         {
           text:'eighth', location:'#/eighth', caption: 'eighth',
-          children:[
+          items:[
             { text:'first', location:'#/eighth/first' },
             { text:'second', location:'#/eighth/second' },
             { text:'third', location:'#/eighth/third' },
@@ -148,7 +148,7 @@
         },
         {
           text:'ninth', location:'#/ninth', caption: 'ninth',
-          children:[
+          items:[
             { text:'first', location:'#/ninth/first' },
             { text:'second', location:'#/ninth/second' },
             { text:'third', location:'#/ninth/third' },
@@ -159,7 +159,7 @@
         },
         {
           text:'tenth', location:'#/tenth', caption: 'tenth',
-          children:[
+          items:[
             { text:'first', location:'#/tenth/first' },
             { text:'second', location:'#/tenth/second' },
             { text:'third', location:'#/tenth/third' },
@@ -170,7 +170,7 @@
         },
         {
           text:'eleventh', location:'#/eleventh', caption: 'eleventh',
-          children:[
+          items:[
             { text:'first', location:'#/eleventh/first' },
             { text:'second', location:'#/eleventh/second' },
             { text:'third', location:'#/eleventh/third' },
@@ -181,7 +181,7 @@
         },
         {
           text:'twelfth', location:'#/twelfth', caption: 'twelfth',
-          children:[
+          items:[
             { text:'first', location:'#/twelfth/first' },
             { text:'second', location:'#/twelfth/second' },
             { text:'third', location:'#/twelfth/third' },
@@ -192,7 +192,7 @@
         },
         {
           text:'thirteenth', location:'#/thirteenth', caption: 'thirteenth',
-          children:[
+          items:[
             { text:'first', location:'#/thirteenth/first' },
             { text:'second', location:'#/thirteenth/second' },
             { text:'third', location:'#/thirteenth/third' },
@@ -203,7 +203,7 @@
         },
         {
           text:'fourteenth', location:'#/fourteenth', caption: 'fourteenth',
-          children:[
+          items:[
             { text:'first', location:'#/fourteenth/first' },
             { text:'second', location:'#/fourteenth/second' },
             { text:'third', location:'#/fourteenth/third' },
@@ -214,7 +214,7 @@
         },
         {
           text:'fifteenth', location:'#/fifteenth', caption: 'fifteenth',
-          children:[
+          items:[
             { text:'first', location:'#/fifteenth/first' },
             { text:'second', location:'#/fifteenth/second' },
             { text:'third', location:'#/fifteenth/third' },
@@ -225,7 +225,7 @@
         },
         {
           text:'sixteenth', location:'#/sixteenth', caption: 'sixteenth',
-          children:[
+          items:[
             { text:'first', location:'#/sixteenth/first' },
             { text:'second', location:'#/sixteenth/second' },
             { text:'third', location:'#/sixteenth/third' },
@@ -236,7 +236,7 @@
         },
         {
           text:'seventeenth', location:'#/seventeenth', caption: 'seventeenth',
-          children:[
+          items:[
             { text:'first', location:'#/seventeenth/first' },
             { text:'second', location:'#/seventeenth/second' },
             { text:'third', location:'#/seventeenth/third' },
@@ -247,7 +247,7 @@
         },
         {
           text:'eighteenth', location:'#/eighteenth', caption: 'eighteenth',
-          children:[
+          items:[
             { text:'first', location:'#/eighteenth/first' },
             { text:'second', location:'#/eighteenth/second' },
             { text:'third', location:'#/eighteenth/third' },
@@ -258,7 +258,7 @@
         },
         {
           text:'nineteenth', location:'#/nineteenth', caption: 'nineteenth',
-          children:[
+          items:[
             { text:'first', location:'#/nineteenth/first' },
             { text:'second', location:'#/nineteenth/second' },
             { text:'third', location:'#/nineteenth/third' },
@@ -269,7 +269,7 @@
         },
         {
           text:'twentieth', location:'#/twentieth', caption: 'twentieth',
-          children:[
+          items:[
             { text:'first', location:'#/twentieth/first' },
             { text:'second', location:'#/twentieth/second' },
             { text:'third', location:'#/twentieth/third' },
@@ -286,7 +286,7 @@
         },
         {
           text:'second', dropdown: true,
-          children:[
+          items:[
             { text:'first', location:'#/end/first' },
             { text:'second', location:'#/end/second' },
             { text:'third', location:'#/end/third' },

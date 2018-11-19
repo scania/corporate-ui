@@ -66,12 +66,16 @@ textarea[placeholder] {
   padding: 20px 40px;
   height: 63px;
   box-shadow: none;
-  border-radius: 0;
   border: 0;
   font-size: 1.4rem;
   font-weight: normal;
-  background-color: #f0f0f0;
-  border: 1px solid #e2e2e2;
+  background-color: #fff;
+  border: 1px solid #94999d;
+  border-radius: 2px;
+
+  .panel-inverse &:focus {
+        background: #f6f9fa;
+      }
 
   select& {
     cursor: pointer;
@@ -96,7 +100,8 @@ textarea[placeholder] {
       background-position: ~'calc(100% - 10px)' center;
 
       background-repeat: no-repeat;
-      background-color: #f2f7f9;
+      background-color: #f6f9fa;
+
     }
 
     > option {
@@ -151,6 +156,7 @@ textarea[placeholder] {
     color:#94999d;
     background-color: #f7f7f7;
     border: 1px solid transparent;
+    border-radius: 2px;
   }
 
   &:focus {
@@ -170,6 +176,10 @@ textarea[placeholder] {
     font-size: 2.6rem;
   }
 
+  .app textarea& {
+    height: auto;
+  }
+
   .app & {
     padding: 10px 12px;
     height: 42px;
@@ -177,7 +187,6 @@ textarea[placeholder] {
     &.input-sm {
     height: 30px;
     font-size: 1.2rem;
-    
     }
 
     &.input-lg {
@@ -186,6 +195,7 @@ textarea[placeholder] {
     }
 
   }
+
 }
 
 .form-condensed {

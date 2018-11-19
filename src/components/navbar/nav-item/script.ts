@@ -28,6 +28,10 @@ Polymer({
       type: Array,
       observer: 'toggleModeToggler'
     },
+    item: {
+      type: Object,
+      observer: 'setItem'
+    },
     props: {
       type: Object
     },
@@ -141,6 +145,11 @@ Polymer({
       _event.initEvent('navigation-close', true, true);
       this.dispatchEvent(_event);
     }
+  },
+  setItem: function(item) {
+    Object.keys(item).map(function(prop) {
+      this[prop] = item[prop];
+    }, this);
   },
   setActive: function(newState) {
     if (newState && newState.toString() == 'true') {

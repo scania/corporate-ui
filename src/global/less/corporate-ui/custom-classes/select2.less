@@ -1,485 +1,504 @@
-
+@import '../variables';
+@import '../mixins';
 /**
-    We are also dependent on select2.css from select2 jQuery 
-    plugin. This is linked in corporate-ui.css
+  We are also dependent on select2.css from select2 jQuery
+  plugin. This is linked in corporate-ui.css
 **/
 
 // This is the part that is displayed from start
 .select2-container {
-    display: block;
-    margin-bottom: 10px;
-    font-family: "Scania Sans Semi Condensed";
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Scania Sans Semi Condensed";
 
-    &.form-control {
-        padding: 0;
+  &.form-control {
+    padding: 0;
+  }
+  &-active {
+
+    .select2-choice,
+    .select2-choices {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border: 1px solid rgb(74, 139, 164);
+      background: rgb(242, 247, 249);
     }
-    &-active {
-
-        .select2-choice,
-        .select2-choices {
-            outline: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-            border: 1px solid rgb(74, 139, 164);
-            background: rgb(242, 247, 249);
-        }
-    }
-    &-disabled {
-
-        .select2-choice {
-            background-color: #F7F7F7;
-            border: none;
-
-            .select2-arrow {
-                background-color: transparent;
-            }
-        }
-    }
-    &-multi {
-        width: 100%;
-        display: table;
-        overflow: hidden;
-
-        .select2-choices {
-            min-height: 42px;
-            padding: 0px;
-            margin: 0;
-            border: 1px solid #E2E2E2;
-            width: 100%;
-            font-size: 0;
-            background: #f5f5f5;
-            line-height: inherit;
-            height: 42px;
-
-            .select2-search-field {
-                margin: 0;
-                padding: 0;
-                white-space: nowrap;
-
-                input {
-                    padding: 5px;
-                    margin: 4px 0px;
-                    font-family: "Scania Sans Semi Condensed";
-                    font-size: 100%;
-                    color: #2d2926;
-                    outline: 0;
-                    border: 0;
-                    background-image: none;
-                    box-shadow: none;
-                    background: transparent !important;
-                    -webkit-box-shadow: none;
-                }
-            }
-            .select2-search-choice {
-                border: none;
-                position: static;
-                float: none;
-                display: inline-block;
-                height: auto;
-                font-family: "Scania Sans Semi Condensed";
-                background: #ffffff;
-                color: #333;
-                direction: rtl;
-                font-size: 1.4rem;
-                line-height: inherit;
-
-                > div {
-                    display: table-cell;
-                    padding-left: 4px;
-                }
-
-                .select2-search-choice-close {
-                    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMi4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGFnZXJfMTMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTYgMjU2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+Cjxwb2x5Z29uIHN0eWxlPSJmaWxsOiMwNDFFNDI7IiBwb2ludHM9IjE4Ny41MzUsNzUuNTU2IDE4MC40NjUsNjguNDgzIDEyNy45OTIsMTIwLjk0NCA3NS41MzIsNjguNDcyIDY4LjQ2LDc1LjU0MiAxMjAuOTIsMTI4LjAxNCAKCTY4LjQ0OCwxODAuNDc1IDc1LjUxOSwxODcuNTQ3IDEyNy45OTEsMTM1LjA4NiAxODAuNDUxLDE4Ny41NTkgMTg3LjUyMywxODAuNDg4IDEzNS4wNjMsMTI4LjAxNiAiLz4KPC9zdmc+Cg==');
-                    background-position: center center;
-                    background-size: 20px;
-                    background-repeat: no-repeat;
-
-                    &:hover {
-                        opacity: 1;
-                        background-position: center;
-                    }
-                }
-            }
-            .select2-search-choice-focus {
-                background: #d4d4d4;
-            }
-        }
-        &.select2-container-active .select2-choices {
-            outline: none;
-            background-image: none;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
-    }
+  }
+  &-disabled {
 
     .select2-choice {
-        border: none;
-        white-space: nowrap;
-        border-radius: 0px;
-        background: #f5f5f5;
-        background-image: none;
-        overflow: auto;
-        position: static;
-        line-height: unset;
-        font-weight: normal;
+      background-color: #F7F7F7;
+      border: none;
 
-        &:focus {
-            outline: none;
-        }
-
-        abbr {
-            right: 22%;
-            top: 40%;
-        }
-
-        .select2-chosen {
-            display: table-cell;
-            vertical-align: middle;
-            color: #444;
-            padding: 4px 10px;
-        }
-        .select2-arrow {
-            background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==");
-            color: #53565A;
-            width: 25px;
-            background-position: left center;
-            background-size: 40px;
-            background-repeat: no-repeat;
-            outline: none;
-            padding: 0;
-            border-color: #ccc;
-            border-radius: 0px;
-            font-family: "Scania Sans Semi Condensed", Helvetica, Arial, sans-serif;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-            border-left: none;
-            position: static;
-            line-height: unset;
-
-            b {
-                display: none;
-            }
-        }
+      .select2-arrow {
+        background-color: transparent;
+      }
     }
+  }
+
+  &-multi {
+    width: 100%;
+    display: table;
+    overflow: hidden;
+
+    .select2-choices {
+      min-height: 42px;
+      padding: 0px;
+      margin: 0;
+      border: 1px solid #94999d;
+      border-radius: 2px;
+      width: 100%;
+      font-size: 0;
+      background: #fff;
+      line-height: inherit;
+      height: 42px;
+
+    .select2-search-field {
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+
+      input {
+        padding: 5px;
+        margin: 4px 0px;
+        font-family: "Scania Sans Semi Condensed";
+        font-size: 100%;
+        color: #2d2926;
+        outline: 0;
+        border: 0;
+        background-image: none;
+        box-shadow: none;
+        background: transparent !important;
+        -webkit-box-shadow: none;
+      }
+    }
+    .select2-search-choice {
+      border: none;
+      position: static;
+      float: none;
+      display: inline-block;
+      height: auto;
+      font-family: "Scania Sans Semi Condensed";
+      background: #dce8ed;
+      color: #333;
+      direction: rtl;
+      font-size: 1.4rem;
+      line-height: inherit;
+
+      > div {
+        display: table-cell;
+        padding-left: 4px;
+      }
+
+      .select2-search-choice-close {
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMi4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGFnZXJfMTMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTYgMjU2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+Cjxwb2x5Z29uIHN0eWxlPSJmaWxsOiMwNDFFNDI7IiBwb2ludHM9IjE4Ny41MzUsNzUuNTU2IDE4MC40NjUsNjguNDgzIDEyNy45OTIsMTIwLjk0NCA3NS41MzIsNjguNDcyIDY4LjQ2LDc1LjU0MiAxMjAuOTIsMTI4LjAxNCAKCTY4LjQ0OCwxODAuNDc1IDc1LjUxOSwxODcuNTQ3IDEyNy45OTEsMTM1LjA4NiAxODAuNDUxLDE4Ny41NTkgMTg3LjUyMywxODAuNDg4IDEzNS4wNjMsMTI4LjAxNiAiLz4KPC9zdmc+Cg==');
+        background-position: center center;
+        background-size: 20px;
+        background-repeat: no-repeat;
+
+        &:hover {
+          opacity: 1;
+          background-position: center;
+        }
+      }
+    }
+    .select2-search-choice-focus {
+      background: #d4d4d4;
+    }
+  }
+
+  &.select2-container-active .select2-choices {
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #f6f9fa!important;
+    }
+  }
+
+  .select2-choice {
+    border: none;
+    white-space: nowrap;
+    border-radius: 0px;
+    background: #f5f5f5;
+    background-image: none;
+    overflow: auto;
+    position: static;
+    line-height: unset;
+    font-weight: normal;
+
+    &:focus {
+      outline: none;
+    }
+
+    abbr {
+      right: 22%;
+      top: 40%;
+    }
+
+    .select2-chosen {
+      display: table-cell;
+      vertical-align: middle;
+      color: #444;
+      padding: 4px 10px;
+    }
+    .select2-arrow {
+      background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgNzM2cTAgMTMtMTAgMjNsLTQ2NiA0NjZxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNDY2LTQ2NnEtMTAtMTAtMTAtMjN0MTAtMjNsNTAtNTBxMTAtMTAgMjMtMTB0MjMgMTBsMzkzIDM5MyAzOTMtMzkzcTEwLTEwIDIzLTEwdDIzIDEwbDUwIDUwcTEwIDEwIDEwIDIzeiIvPjwvc3ZnPg==");
+      color: #53565A;
+      width: 25px;
+      background-position: left center;
+      background-size: 40px;
+      background-repeat: no-repeat;
+      outline: none;
+      padding: 0;
+      border-color: #ccc;
+      border-radius: 0px;
+      font-family: "Scania Sans Semi Condensed", Helvetica, Arial, sans-serif;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border-left: none;
+      position: static;
+      line-height: unset;
+
+      b {
+        display: none;
+      }
+    }
+  }
 }
 
 // This is the part that is displayed when interacting with the select item
 .select2-drop {
-    margin-top: 5px;
-    top: 100%;
-    background: #fff;
-    color: #000;
-    border: 1px solid #f5f5f5;
+  margin-top: 5px;
+  top: 100%;
+  background: #fff;
+  color: #000;
+  border: 1px solid #f5f5f5;
+  border-radius: 0px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+
+  &.select2-drop-above {
+    margin-top: 1px;
+    border-top: 1px solid #aaa;
+    border-bottom: 0;
     border-radius: 0px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 
-    &.select2-drop-above {
-        margin-top: 1px;
-        border-top: 1px solid #aaa;
-        border-bottom: 0;
-        border-radius: 0px;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-
-        &.select2-drop-active {
-            box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
-            border: none;
-            margin-top: -5px;
-        }
-
-        .select2-choice {
-            border-radius: 0 0 0px 0px;
-            background-image: none;
-        }
+    &.select2-drop-active {
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 8px;
+      border: none;
+      margin-top: -5px;
     }
+
+    .select2-choice {
+      border-radius: 0 0 0px 0px;
+      background-image: none;
+    }
+  }
 }
 .select2-dropdown-open {
 
-    .select2-choice {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        background-color: #eee;
+  .select2-choice {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #f6f9fa!important;
 
-        .select2-arrow {
-            background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgMTE4NHEwIDEzLTEwIDIzbC01MCA1MHEtMTAgMTAtMjMgMTB0LTIzLTEwbC0zOTMtMzkzLTM5MyAzOTNxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNTAtNTBxLTEwLTEwLTEwLTIzdDEwLTIzbDQ2Ni00NjZxMTAtMTAgMjMtMTB0MjMgMTBsNDY2IDQ2NnExMCAxMCAxMCAyM3oiLz48L3N2Zz4=);
+    .select2-arrow {
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHdpZHRoPSIxNzkyIiBoZWlnaHQ9IjE3OTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzOTUgMTE4NHEwIDEzLTEwIDIzbC01MCA1MHEtMTAgMTAtMjMgMTB0LTIzLTEwbC0zOTMtMzkzLTM5MyAzOTNxLTEwIDEwLTIzIDEwdC0yMy0xMGwtNTAtNTBxLTEwLTEwLTEwLTIzdDEwLTIzbDQ2Ni00NjZxMTAtMTAgMjMtMTB0MjMgMTBsNDY2IDQ2NnExMCAxMCAxMCAyM3oiLz48L3N2Zz4=);
 
-            b {
-                 display: none;
-            }
-        }
-    }
-    .select2-drop-above {
+      b {
+       display: none;
+     }
+   }
+ }
+ .select2-drop-above {
 
-        .select2-choice,
-        .select2-choices {
-            border: 1px solid rgb(74, 139, 164);
-            background-color: #f5f5f5;
-            background-image: none;
-        }
-    }
+  .select2-choice,
+  .select2-choices {
+    border: 1px solid rgb(74, 139, 164);
+    background-color: #f5f5f5;
+    background-image: none;
+  }
+}
 }
 .select2-search {
-    border-top: none;
-    border-bottom: 2px solid rgb(240, 240, 240);
-    background-image: none;
-    padding: 10px 10px 10px 40px;
-    border: 8px solid #fff;
-    background-color: #f5f5f5;
-    background-image: url("https://static.scania.com/resources/icons/scania/SVG_POS/02_Icon_search-54-72px.svg");
-    background-repeat: no-repeat;
-    background-size: 28px;
-    background-position: 8px center;
+  border-top: none;
+  border-bottom: 2px solid rgb(240, 240, 240);
+  background-image: none;
+  padding: 10px 10px 10px 40px;
+  border: 8px solid #fff;
+  background-color: #f5f5f5;
+  background-image: url("https://static.scania.com/resources/icons/scania/SVG_POS/02_Icon_search-54-72px.svg");
+  background-repeat: no-repeat;
+  background-size: 28px;
+  background-position: 8px center;
 
-    input {
-        min-height: 26px;
-        margin: 0;
-        padding: 4px 5px;
-        border: none;
-        border-radius: 0;
-        outline: 0;
-        background-color: #f5f5f5;
-        font-size: 1.4rem;
-        color: #2d2926;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        background-image: none;
-    }
-    i {
-        display: none;
-    }
-}
-.select2-results {
-    margin: 0px;
-    font-family: "Scania Sans Semi Condensed";
-    padding: 0px;
-    color: #53565A;
+  input {
+    min-height: 26px;
+    margin: 0;
+    padding: 4px 5px;
+    border: none;
+    border-radius: 0;
+    outline: 0;
+    background-color: #f5f5f5;
+    font-size: 1.4rem;
+    color: #2d2926;
     -webkit-box-shadow: none;
     box-shadow: none;
-    font-size: 1.4rem;
+    background-image: none;
+  }
+  i {
+    display: none;
+  }
+}
+.select2-results {
+  margin: 0px;
+  font-family: "Scania Sans Semi Condensed";
+  padding: 0px;
+  color: #53565A;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 1.4rem;
 
-    &::-webkit-scrollbar {
-        width: 13px;
-        height: 6px;
-    }
-    &::-webkit-scrollbar-track {
-        background: #ffffff;
-        background-clip: content-box;
-    }
-    &::-webkit-scrollbar-thumb {
-        border-radius: 60px;
-        background: #f5f5f5;
-        border: 3px solid #ffffff;
-        height: 5px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: #f5f5f5;
-    }
+  &::-webkit-scrollbar {
+    width: 13px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 60px;
+    background: #f5f5f5;
+    border: 3px solid #ffffff;
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #f5f5f5;
+  }
 
-    .select2-result-label {
-        padding: 0px;
-    }
-    .select2-selected {
-        display: none;
-    }
-    .select2-result-selectable {
-        border-bottom: 1px solid rgb(240, 240, 240);
-        padding: 10px;
+  .select2-result-label {
+    padding: 0px;
+  }
+  .select2-selected {
+    display: none;
+  }
+  .select2-result-selectable {
+    border-bottom: 1px solid rgb(240, 240, 240);
+    padding: 10px;
+    color:  #909090;
 
-        &:first-child {
-            padding: 10px;
-        }
+    &:first-child {
+      padding: 10px;
     }
-    .select2-highlighted {
-        border: 1px solid #e4eef1;
-        background-color: rgb(234, 241, 244);
-        color: #2d2926;
-        font-weight: bold;
-    }
+  }
+  .select2-highlighted {
+    background-color: rgb(234, 241, 244);
+    color: @interaction-primary;
+    font-weight: normal;
+  }
 }
 .select2-display-none {
-    display: none;
+  display: none;
 }
 
 // App mode specifics
 .app {
 
-    .select2-container {
+  table .select2-container .select2-choice {
+    border-style: hidden;
+    box-shadow: 0 0 0 1px #94999d;
+    border-radius: 1px;
+    height: 28px!important;
+    margin: 1px 0px 0px 0px;
+  }
 
-        &-disabled {
-            cursor: not-allowed;
-            opacity: 0.8;
-            color: #94999d;
-            background-color: #f7f7f7;
-            border: 1px solid transparent;
-        }
+  .select2-container {
 
-        &.form-control {
-            padding: 0;
-            border: none;
-        }
 
-        .select2-choice {
-            margin: 0;
-            padding: 0;
-            border: 1px solid #E2E2E2;
-            display: table;
-            height: 42px;
-            width: 100%;
-            line-height: unset;
-            border: 1px solid #e2e2e2;
-            background: #f5f5f5;
-
-            abbr {
-                right: 15%;
-                top: 35%;
-            }
-
-            .select2-arrow {
-                width: 32px;
-                vertical-align: middle;
-                display: table-cell;
-                background-size: 27px;
-                line-height: unset;
-            }
-        }
-    }
-    .select2-container-multi {
-        width: 100%;
-        display: block;
-        overflow: hidden;
-        margin: 0;
-
-        .select2-choices {
-
-            .select2-search-field input {
-                display: table-cell;
-                padding-left: 4px;
-                width: 10px;
-                padding: 0px;
-                margin: 0px 0px;
-            }
-            .select2-search-choice {
-                font-size: 1.4rem;
-                padding: 5px 5px 5px 5px;
-                margin: 5px 5px 5px 5px;
-
-                .select2-search-choice-close {
-                    display: table-cell;
-                    position: static;
-                    width: 10px;
-                    height: auto;
-                }
-            }
-        }
-    }
-    .select2-search {
-        padding: 7px 7px 7px 40px;
-    }
-    .select2-results {
-        margin: 0px;
-        padding: 0px;
+    &-disabled {
+      cursor: not-allowed;
+      opacity: 0.8;
+      color: #94999d;
+      background-color: #f7f7f7;
+      border: 1px solid transparent;
     }
 
-    table .select2-container,
-    table .select2-container .select2-choice  {
-        height: 30px!important;
-        vertical-align: inherit!important;
+    &.form-control {
+      padding: 0;
+      border: none;
     }
+
+    .select2-choice {
+      margin: 0;
+      padding: 0;
+      display: table;
+      height: 42px;
+      width: 100%;
+      line-height: unset;
+      border: 1px solid #94999d;
+      border-radius: 2px;
+      background: #fff;
+
+    }
+
+    abbr {
+      right: 15%;
+      top: 35%;
+    }
+
+    .select2-arrow {
+      width: 32px;
+      vertical-align: middle;
+      display: table-cell;
+      background-size: 27px;
+      line-height: unset;
+    }
+  }
 }
+.select2-container-multi {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+
+  .select2-choices {
+
+    .select2-search-field input {
+      display: table-cell;
+      padding-left: 4px;
+      width: 10px;
+      padding: 0px;
+      margin: 0px 0px;
+    }
+    .select2-search-choice {
+      font-size: 1.4rem;
+      padding: 5px 5px 5px 5px;
+      margin: 5px 5px 5px 5px;
+      box-shadow: none;
+
+      .select2-search-choice-close {
+        display: table-cell;
+        position: static;
+        width: 10px;
+        height: auto;
+      }
+    }
+  }
+}
+.select2-search {
+  padding: 7px 7px 7px 40px;
+}
+.select2-results {
+  margin: 0px;
+  padding: 0px;
+}
+table .select2-container {
+
+  .select2-choice  {
+    height: 29px!important;
+    vertical-align: inherit!important;
+    .select2-chosen {
+      font-size: 1.2rem;
+    }
+  }
+}
+
 
 // Compact mode specifics
 .compact {
 
-    .select2-container .select2-choice {
-        height: 34px;
-        padding: 0 0 0 10px;
+  .select2-container .select2-choice {
+    height: 34px;
+    padding: 0 0 0 10px;
 
-        abbr {
-            right: 15%;
-            top: 30%;
-        }
+    abbr {
+      right: 15%;
+      top: 30%;
+    }
 
-        .select2-arrow {
-            width: 10%;
-            background-size: 20px;
-        }
+    .select2-arrow {
+      width: 10%;
+      background-size: 20px;
     }
-    .select2-search {
-        padding: 1px;
-    }
-    .select2-results {
-        margin: 0px;
-        padding: 0px;
-        font-size: 1.2rem;
-    }
-    .select2-container-multi .select2-choices {
-        padding: 0 0 0 10px;
+  }
+  .select2-search {
+    padding: 1px;
+  }
+  .select2-results {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2rem;
+  }
+  .select2-container-multi .select2-choices {
+    padding: 0 0 0 10px;
 
-        .select2-search-field input {
-            padding: 5px;
-            margin: 4px 0px;
-            font-size: 70%;
-        }
-        .select2-search-choice {
-            padding: 8px 10px 9px 20px;
-            margin: 5px 0 0px 5px;
-            font-size: 1.2rem;
-
-            .select2-search-choice-close {
-                background-size: 19px;
-                left: 4px;
-                top: 4px;
-            }
-        }
+    .select2-search-field input {
+      padding: 5px;
+      margin: 4px 0px;
+      font-size: 70%;
     }
+    .select2-search-choice {
+      padding: 8px 10px 9px 20px;
+      margin: 5px 0 0px 5px;
+      font-size: 1.2rem;
+
+      .select2-search-choice-close {
+        background-size: 19px;
+        left: 4px;
+        top: 4px;
+      }
+    }
+  }
 }
 
 // Header component specifics
 header.c-page-header {
 
-    .select2-container-active {
+  .select2-container-active {
 
-        .select2-choices,
-        .select2-search-field {
-            background: rgb(242, 247, 249)!important;
-        }
+    .select2-choices,
+    .select2-search-field {
+      background: rgb(242, 247, 249)!important;
     }
-    .select2-container-multi {
+  }
+  .select2-container-multi {
 
-        .select2-choices {
-            background-color: #FFFFFF;
+    .select2-choices {
+      background-color: #FFFFFF;
 
-            .select2-search-choice {
-                border: 1px solid #e2e2e2;
-                padding: 4px 5px 5px 5px;
-                margin: 4px 5px 5px 5px;
-                background-color: #f0f0f0;
-            }
-            .select2-search-field {
-                background-color: #FFFFFF;
-            }
-        }
-        &.select2-container-active .select2-choices {
-             background-color: #FFFFFF;
-        }
+      .select2-search-choice {
+        border: 1px solid #e2e2e2;
+        padding: 4px 5px 5px 5px;
+        margin: 4px 5px 5px 5px;
+        background-color: #f0f0f0;
+      }
+      .select2-search-field {
+        background-color: #FFFFFF;
+      }
     }
+    &.select2-container-active .select2-choices {
+     background-color: #FFFFFF;
+   }
+ }
 }
 .app header.c-page-header {
 
-    .select2-container {
+  .select2-container {
 
-        .select2-choice {
-            background-color: #FFF;
-            border: 1px solid #E2E2E2;
-        }
-        .select2-choice {
-             background: #FFFFFF;
-        }
+    .select2-choice {
+      background-color: #FFF;
+      border: 1px solid #E2E2E2;
     }
-    .select2-container-multi .select2-choices {
-        background-color: #FFFFFF;
-    }
+    .select2-choice {
+     background: #FFFFFF;
+   }
+ }
+ .select2-container-multi .select2-choices {
+  background-color: #FFFFFF;
+}
 }
 .compact header.c-page-header .select2-container-multi .select2-choices {
-    background-color: #FFFFFF;
+  background-color: #FFFFFF;
 }

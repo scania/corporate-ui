@@ -28,12 +28,9 @@ Polymer({
       type: Array,
       observer: 'toggleModeToggler'
     },
-    item: {
-      type: Object,
-      observer: 'setItem'
-    },
     props: {
-      type: Object
+      type: Object,
+      observer: 'setProps'
     },
     attrs: {
       type: Object
@@ -104,12 +101,6 @@ Polymer({
       this.setActive(true);
     }
 
-    if(this.props) {
-      Object.keys(this.props).map(function(prop) {
-        this[prop] = this.props[prop];
-      }, this);
-    }
-
     if(this.attrs) {
       Object.keys(this.attrs).map(function(attr) {
         this.setAttribute(attr, this.attrs[attr]);
@@ -146,9 +137,9 @@ Polymer({
       this.dispatchEvent(_event);
     }
   },
-  setItem: function(item) {
-    Object.keys(item).map(function(prop) {
-      this[prop] = item[prop];
+  setProps: function(props) {
+    Object.keys(props).map(function(prop) {
+      this[prop] = props[prop];
     }, this);
   },
   setActive: function(newState) {

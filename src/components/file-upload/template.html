@@ -1,11 +1,11 @@
-  <div class="upload-file-wrapper col-xs-12">
+<div class="upload-file-wrapper col-xs-12">
 
       <div id="dropArea" class="form-group" hidden$="{{!showDropArea}}"
           on-dragenter="allowDrop" on-dragover="allowDrop"
           on-drop="dropFile"
           on-dragleave="removeHighlight" on-dragexit="removeHighlight">
         <p class="cloud-icon"><i class="fal fa-cloud-upload"></i></p>
-        <p class="label-big">Drag & drop here <label class="label-browse" for="fileinput">or browse</label></p>
+        <p class="lead">Drag & drop here <label class="text-info" for="fileinput">or browse</label></p>
         <p>to upload your files</p>
         <label class="btn-mobile btn btn-default" for="fileinput">Select file</label>
         <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required$={{required}}>
@@ -50,8 +50,8 @@
         </template>
       </div>
 
-      <div class="action-btn-wrapper">
-        <div class="buttons" hidden$={{!isFiles}}>
+      <div class="action-btn-wrapper" hidden$={{!isFiles}}>
+        <div class="buttons">
           <span><button type="button" name="button" class="btn btn-sm btn-primary" on-click="uploadFiles">{{uploadBtnText}}</button></span>
         </div>
       </div>

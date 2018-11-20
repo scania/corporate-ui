@@ -254,7 +254,7 @@ Polymer({
       this.customStyle['--more-visibility'] = 'visible';
       this.updateStyles();
 
-      primary.style.width = ( availableSpace - dropdown.offsetWidth ) + 'px';
+      primary.style.width = ( availableSpace - (dropdown ? dropdown.offsetWidth : 0) ) + 'px';
 
       // We have -1 here to skip the "More" nav-item
       for(var i=0; i<primary.children.length - 1; i++) {
@@ -331,7 +331,7 @@ Polymer({
 
     // Show hamburger menu if item exist in main-navigation
     // One item is the "More item"
-    if (items > 1) {
+    if (this.header && items > 1) {
       this.header.hasMainNav = true;
     }
   },

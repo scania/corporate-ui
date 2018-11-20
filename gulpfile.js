@@ -1,11 +1,10 @@
 
 var fs = require('fs'),
-    glob = require('glob'),
     path = require('path'),
     gulp = require('gulp'),
     del = require('del'),
     child = require('child_process'),
-    less = require('gulp-less'),
+    gulpLess = require('gulp-less'),
     jade = require('gulp-jade'),
     typescript = require('gulp-typescript'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -14,46 +13,50 @@ var fs = require('fs'),
     merge = require('merge-stream'),
     webpack = require('webpack-stream'),
     dirTree = require('directory-tree'),
-    server = require('./server'),
+    express = require('express'),
     package = require('./package.json'),
 
     tree = dirTree('src/components', { normalizePath: true, extensions: /\.ts/ }),
     tree2 = dirTree('demo/examples', { normalizePath: true });
 
 /* Available tasks */
-gulp.task('clean', _clean)
-gulp.task('copy', _copy)
-gulp.task('less', _less)
-gulp.task('ts', _ts)
-gulp.task('lessComponent', _lessComponent)
-gulp.task('tsComponent', _tsComponent)
-gulp.task('jadeComponent', _jadeComponent)
-gulp.task('fullComponent', _fullComponent)
+gulp.task(clean)
+gulp.task(copy)
+gulp.task(less)
+gulp.task(ts)
+gulp.task(watch)
+gulp.task(test)
+gulp.task(server)
+gulp.task(lessComponent)
+gulp.task(tsComponent)
+gulp.task(jadeComponent)
+gulp.task(fullComponent)
+gulp.task(cleanComponent)
 
-gulp.task('test', test)
-
-gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent'], cleanComponent))
-gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test'], exit))
-gulp.task('default', gulp.series(['build'], server))
-
-/* File watches */
-gulp.watch('src/global/ts/*', gulp.series(['ts']))
-gulp.watch('src/global/less/**/*', gulp.series(['less']))
-gulp.watch('src/components/**/*', gulp.series(['components']))
-gulp.watch('src/global/{images,less}/*', gulp.series(['copy']))
+gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent', 'cleanComponent']))
+gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test']))
+gulp.task('default', gulp.series(['build', 'watch', 'server']))
 
 /* Methods */
-function _clean() {
+function watch(done) {
+  gulp.watch('src/global/ts/*', gulp.series(['ts']))
+  gulp.watch('src/global/less/**/*', gulp.series(['less']))
+  gulp.watch('src/components/**/*', gulp.series(['components']))
+  gulp.watch('src/global/{images,less}/*', gulp.series(['copy']))
+
+  done()
+}
+function clean() {
   return del(['tmp', 'dist'])
 }
-function _copy() {
+function copy() {
   return gulp.src(['src/global/**'])
     .pipe(gulp.dest('dist'))
 }
-function _less() {
+function less() {
   return gulp.src(['src/global/less/*.less', 'src/global/less/corporate-ui/{core,fonts,icons,brands}.less'])
     .pipe(sourcemaps.init())
-    .pipe(less({
+    .pipe(gulpLess({
       globalVars: {
         lib_path: 'node_modules'
       }
@@ -61,7 +64,7 @@ function _less() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }
-function _ts() {
+function ts() {
   var _components = [];
 
   tree.children.map(function(component) {
@@ -142,12 +145,12 @@ function _ts() {
 
   return merge(stream1, stream2)
 }
-function _lessComponent() {
+function lessComponent() {
   return gulp.src('src/components/**/*.less')
-    .pipe(less())
+    .pipe(gulpLess())
     .pipe(gulp.dest('tmp/components'))
 }
-function _tsComponent() {
+function tsComponent() {
   var entries = {}
 
   // We go throught all components manually to make it possible for webpack to 
@@ -199,11 +202,11 @@ function _tsComponent() {
   })
     .pipe(gulp.dest('tmp/'));
 }
-function _jadeComponent() {
+function jadeComponent() {
   return gulp.src('src/components/**/*.{jade,html,md}')
     .pipe(gulp.dest('tmp/components'))
 }
-function _fullComponent() {
+function fullComponent() {
   return gulp.src('tmp/**/**/index.jade')
     .pipe(data(function(file) {
       var index = path.dirname(file.path).lastIndexOf(path.sep) + 1,
@@ -245,10 +248,34 @@ function test(done) {
   /* We will have some tests here later on */
   done()
 }
-function exit(done) {
-  done()
-  // Running exit to end the gulp process if current task is build
-  if (process.argv.indexOf('build') > -1) {
-    process.exit(0)
-  }
+function server() {
+  var app = express();
+
+  app.set('port', process.env.PORT || 1337)
+  app.set('host', process.env.COMPUTERNAME || '0.0.0.0')
+
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+  })
+
+  app.use(express.static(__dirname + '/demo'))
+  app.use('/', express.static(__dirname + '/dist'))
+
+  app.use('/vendors/:type/:dependency/:version/*', function(req, res) {
+    path = req.params[0].replace('bootstrap-org', 'bootstrap')
+    dependency = req.params.dependency
+    if (!req.params.version.match(/\d.\d.\d/g)) {
+      path = path.substring(path.indexOf("/") + 1)
+      dependency = req.params.version
+    }
+    res.sendFile(__dirname + '/node_modules/' + dependency + '/' + path)
+  })
+
+  app.use('/resources/logotype/scania', express.static(__dirname + '/dist/images') )
+
+  app.listen(app.get('port'), function() {
+    console.log('UX-library is now running at http://%s:%d.', app.get('host'), app.get('port'))
+  })
 }

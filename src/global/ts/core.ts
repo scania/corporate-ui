@@ -311,19 +311,23 @@ function bsHandler() {
   document.addEventListener('click', function(event:any) {
     var dataToggle = event.target.getAttribute('data-toggle') || '',
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
-        // We used parent node to apply method on all connected elements
-        elm = event.target.parentNode;
-    if(method && window[method] && !elm.init) {
+        options:any = {};
+
+    if(method && window[method] && !event.target[method]) {
       event.preventDefault();
-      elm.init = true;
-      if (dataToggle === 'tab') {
-        elm = elm.parentNode;
+
+      if (event.target.dataset.target) {
+        options.target = event.target.dataset.target;
       }
-      [].slice.call(elm.querySelectorAll('[data-toggle]')).map(function(_elm) {
-        if (!_elm[method]) {
-          new window[method](_elm);
-        }
-      });
+
+      if (dataToggle === 'tab') {
+        [].slice.call(event.target.parentNode.parentNode.children).map(function(item) {
+          new window[method](item.children[0], options);
+        });
+      } else {
+        new window[method](event.target, options);
+      }
+
       setTimeout(function() {
         event.target.click();
       }, 100);

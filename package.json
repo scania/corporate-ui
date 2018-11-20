@@ -36,7 +36,6 @@
     "less": "2.7.2",
     "merge-stream": "1.0.1",
     "moment": "2.19.3",
-    "pmm": "2.0.0",
     "react": "15.4.2",
     "react-datetime": "2.8.8",
     "react-dom": "15.4.2",
@@ -50,15 +49,14 @@
     "webpack-stream": "5.1.1"
   },
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
     "prepare": "gulp build",
-    "release": "pmm",
+    "build": "gulp build",
+    "start": "gulp",
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.scania.com:Scania/corporate-ui.git"
+    "url": "git@github.com:scania/corporate-ui.git"
   },
   "keywords": [
     "webcomponents",

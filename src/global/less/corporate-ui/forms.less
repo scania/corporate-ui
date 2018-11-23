@@ -271,3 +271,43 @@ select {
     background: transparent;
   }
 }
+
+.help-block {
+  font-size: 1.2rem;
+  font-weight: normal;
+  padding: 8px;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top:2px;
+  white-space: normal;
+
+  .label-success {
+       border-left: 4px solid @interaction-success;  
+  } 
+
+  .label-danger {
+       border-left: 4px solid @interaction-danger;
+  }    
+
+  .label-info {
+       border-left: 4px solid @interaction-info;  
+  }    
+
+  .label-warning {
+       border-left: 4px solid @interaction-warning;
+  } 
+
+  .label-primary {
+      border-left: 4px solid @interaction-primary-app;
+  }
+
+  .label-default {
+      border-left: 4px double @interaction-primary-app;
+  } 
+}

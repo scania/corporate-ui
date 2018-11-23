@@ -80,8 +80,7 @@
             { text:'Third', location:'#/First/Third' },
             { text:'Fourth', location:'#/First/Fourth' },
             { text:'Fifth', location:'#/First/Fifth' },
-            { text:'Sixth', location:'#/First/Sixth' },
-            { template:'<c-fullscreen></c-fullscreen>' }
+            { text:'Sixth', location:'#/First/Sixth' }
           ]
         },
         {
@@ -301,6 +300,10 @@
         }
       ];
 
+      this.primaryItems.map(function(item) {
+        item.items.push({ template:'<c-fullscreen></c-fullscreen>', classes:'pull-right hidden-sm hidden-xs' })
+      });
+
       this.secondaryItems = [
         {
           text:'First', location:'#/First'
@@ -316,7 +319,7 @@
             { text:'Sixth', location:'#/end/Sixth' }
           ]
         },
-        { template:'<c-fullscreen></c-fullscreen>', classes: 'pull-right' }
+        { template:'<c-fullscreen></c-fullscreen>', classes: 'pull-right hidden-sm hidden-xs' }
       ];
 
       this.itemsFmp = itemsFmp;

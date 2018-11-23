@@ -22,7 +22,7 @@
   <c-main-content>
 
     <!-- <c-main-navigation more-text="{{app.moreText}}" ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}"> -->
-    <c-main-navigation more-text="{{app.moreText}}" items-data>
+    <c-main-navigation variation="2" more-text="{{app.moreText}}" items-data>
       <primary-items>
         <nav-item location="#/start" text="start"></nav-item>
       </primary-items>
@@ -43,6 +43,7 @@
         <button>Set fmp data - attr</button>
         <button class="button2">Set fmp data - prop</button>
         <button ng-click="app.primaryItems = app.itemsFmp">Set fmp data - angular</button>
+        <c-fullscreen></c-fullscreen>
       </div>
     </section>
 
@@ -145,7 +146,7 @@
           ]
         },
         {
-          text:'Seventh', location:'#/Seventh', caption: 'Seventh',
+          text:'Seventh', location:'#/Seventh', caption: 'Seventh', dropdown: true,
           items:[
             { text:'First', location:'#/Seventh/First' },
             { text:'Second', location:'#/Seventh/Second' },

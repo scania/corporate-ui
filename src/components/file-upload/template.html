@@ -1,5 +1,14 @@
-<div class="upload-file-wrapper col-xs-12">
+<div class$="upload-file-wrapper col-xs-12 {{display}}">
 
+      <div class="input-group input-file-simple">
+          <input type="text" class="form-control" on-click="clickFileInput" placeholder="Select file" value="{{simpleInputVal}}">
+          <i class="fal fa-times" on-click="resetInput"></i>
+          <i class="fal fa-check"></i>
+          <i class="fal fa-spinner"></i>
+          <span class="input-group-btn">
+          <button class$="btn btn-default {{disableSimpleBtn}}" type="button" on-click="uploadFiles">Upload</button>
+          </span>
+      </div><!-- /input-group -->
       <div id="dropArea" class="form-group" hidden$="{{!showDropArea}}"
           on-dragenter="allowDrop" on-dragover="allowDrop"
           on-drop="dropFile"
@@ -21,8 +30,8 @@
         </template>
         </p>
       </div>
-      <div id="fileerror" class="form-group">
-        <p>{{errorTitle}}</p>
+      <div id="fileerror" class="callout callout-danger hidden">
+        <h4>{{errorTitle}}</h4>
       </div>
       <div class="form-group" hidden$={{!isFiles}}>
         <p class="files-to-upload">File(s) to upload</p>

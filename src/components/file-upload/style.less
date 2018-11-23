@@ -5,6 +5,7 @@
     display: inline-block;
     padding:0px;
     margin-bottom: 15px;
+    .input-file-simple{display: none;}
     .form-group{
       margin: 0 20px;
     }
@@ -163,6 +164,24 @@
   .action-btn-wrapper{
     padding: 15px;
     box-shadow: 0px -4px 16px rgba(0,0,0,0.08);
+  }
+
+  .upload-file-wrapper.inline{
+    #dropArea, .upload-info, .files-collection, .fileerror, .files-to-upload, .action-btn-wrapper{
+      display: none;
+    }
+    .input-file-simple{
+      display: table;
+      i{
+        position: absolute;
+        top: 14px;
+        right: 98px;
+        z-index: 2;
+        cursor: pointer;
+        &.fa-check, &.fa-spinner{display: none;}
+      }
+    }
+  // endof upload file wrapper inline
   }
 // endof :host
 }

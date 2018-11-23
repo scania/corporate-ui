@@ -49,33 +49,12 @@
 
               <div class="panel-body">
                 <form class="" action="" method="post">
-
-                  <div class="row">
-                    <!-- <div class="col-xs-12">
-                      <div class="form-group">
-                        <label class="control-label">Fullname
-                        </label>
-                        <input type="text" value='' autofocus class="form-control" placeholder="An example of input file" disabled="disabled">
-                      </div>
-                    </div> -->
-                    <div class="col-xs-12">
-                      <div class="form-group">
-                        <label>Upload file
-                        </label>
-                        <c-file-upload name="uxlib-file-input" multiple max-file-size=1000 accept="image/*, application/pdf" required></c-file-upload>
-                      </div>
-                    </div>
+                  <c-file-upload name="uxlib-file-input" multiple max-file-size=1000 accept="image/*, application/pdf" required display="inline"></c-file-upload>
+                  <div class="form-group text-right">
+                    <button class="btn btn-success" type="submit">Save changes</button>
+                    <button class="btn btn-default" type="reset">Cancel</button>
                   </div>
-
-                  <div class="row">
-                    <div class="col-md-12 text-right">
-                      <div class="form-group">
-                        <button class="btn btn-success" type="submit">Save changes</button>
-                        <button class="btn btn-default" type="reset">Cancel</button>
-                      </div>
-                    </div>
-                  </div>
-
+                  
                 </form>
               </div>
 

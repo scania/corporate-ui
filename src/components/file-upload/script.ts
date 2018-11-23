@@ -8,9 +8,15 @@ Polymer({
     accept: {
       type: String
     },
-    showDropArea: {
-      type: Boolean,
-      value: true
+    display: {
+      type: String
+    },
+    disableSimpleBtn: {
+      type: String,
+      value:'disabled'
+    },
+    errorTitle: {
+      type: String
     },
     files: {
       type: Array,
@@ -24,9 +30,6 @@ Polymer({
       type: String
     },
     fileAcceptInfo: {
-      type: String
-    },
-    errorTitle: {
       type: String
     },
     fileId: {
@@ -46,6 +49,14 @@ Polymer({
     },
     name: {
       type: String
+    },
+    showDropArea: {
+      type: Boolean,
+      value: true
+    },
+    simpleInputVal: {
+      type: String,
+      value:""
     },
     totalFileUpload: {
       type: Number
@@ -68,6 +79,13 @@ Polymer({
   },
   addFiles: function(files){
     Array.prototype.forEach.call(files, this.addFile.bind(this));
+
+    if(files.length==1){
+      this.simpleInputVal = files[0].name;
+    } else {
+      this.simpleInputVal = this.files.length + ' files';
+    }
+
     this.updateIsFiles();
   },
   addFile: function(file){
@@ -93,7 +111,6 @@ Polymer({
       } else {allowFileType=true;}
 
       if(fileExceedsMax || !allowFileType){
-
         if(fileExceedsMax) file.fileErrorMessage = 'Size exceeds permissible upload limit';
         if(!allowFileType) file.fileErrorMessage = 'File type not allowed';
 
@@ -101,6 +118,7 @@ Polymer({
         var errorFiles = document.createElement('div');
         errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileErrorMessage;
         Polymer.dom(this.$.fileerror).appendChild(errorFiles);
+        Polymer.dom(this.$.fileerror).classList.remove('hidden');
       } else {
         file.id = this.fileId;
         file.fileSize = this.calcFileSize(file.size);
@@ -123,6 +141,9 @@ Polymer({
     } else if(number >= 1048576) {
       return (number/1048576).toFixed(1) + 'MB';
     }
+  },
+  clickFileInput: function(e){
+      Polymer.dom(this.$.dropArea).querySelector('#fileinput').click();
   },
   dropFile: function(ev){
     ev.preventDefault();
@@ -149,7 +170,7 @@ Polymer({
     }
   },
   handleChange: function(e){
-    if(this.multiple==false){
+    if(this.multiple==false || this.display=='inline'){
       this.files=[];
     }
     this.addFiles(e.srcElement.files);
@@ -190,6 +211,12 @@ Polymer({
       Polymer.dom(this.$.dropArea).querySelector('#fileinput').value = null;
     }
   },
+  resetInput: function(){
+    this.simpleInputVal = '';
+    this.files=[];
+    Polymer.dom(this.$.dropArea).querySelector('#fileinput').value = null;
+    this.updateIsFiles();
+  },
   setProgressBarValue: function(f,p){
     var parentEl = '#setPb'+f.id;
     this.totalProgress += p;
@@ -229,6 +256,12 @@ Polymer({
   },
   updateIsFiles: function(){
     this.uploadBtnText = 'Upload '+this.files.length+ (this.files.length==1?' file':' files');
+
+    if(this.files.length==0){
+      this.simpleInputVal = '';
+      this.disableSimpleBtn = 'disabled';
+    } else { this.disableSimpleBtn = '';}
+
     this.isFiles = (this.files.length!=0) ? true : false;
   },
   uploadFiles: function(event){

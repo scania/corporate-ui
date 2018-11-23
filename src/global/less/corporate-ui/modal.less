@@ -67,7 +67,8 @@
     height: 100vh;
 
     .modal-content {
-      height: 100vh;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
       width: 100vw;
       border: none;
       border-radius: 0;
@@ -75,19 +76,34 @@
       box-shadow: none;
       top: 0;
     }
-    .modal-body {
-    	margin:0px;
-    	padding:0px;
-    	height:  ~"calc(100vh - 53px)";
-    	overflow:hidden;
-    }    
-  }  
 
-  // This one can be removed
-  .modal-body.scroll-y  {
-      max-height: ~"calc(100vh - 240px)";
-      overflow-y: auto;
-  }    
+    .modal-dialog {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      min-height: 100%;
+      max-height: 100vh;
+      background-color: #fff; 
+    }  
+
+    .modal-body {
+      overflow-x: hidden;  
+      overflow-y: scroll; 
+      height: ~"calc(100vh - 110px)";
+      padding: 0 15px;
+    } 
+
+   .modal-fullscreen .modal-footer {
+      position: fixed;    
+      width: 100%;           
+      bottom: 0px;
+      text-align: left;
+      padding: 0;
+      background-color: #fff;              
+    }        
+  }  
 
   .scroll-y  {
 
@@ -180,21 +196,10 @@
 
       &-fullscreen {
         width: 100vw;
-        height: 100vw;
 
         .modal-content {
-          top: 0px;
-          width: 100vw;
-          height: 100vw;
-          -webkit-box-shadow: none;
-          box-shadow: none;                
+          top: 0px;            
       }  
-        .modal-body {
-          margin: 0px;
-          padding: 0px;
-          height: calc(100vh - 53px);
-          overflow: hidden; 
-      }
     }
 
     .modal-article {

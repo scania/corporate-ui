@@ -5,7 +5,6 @@ Polymer({
     siteUrl: String,
     showSearch: false,
     dealerLocator: false,
-    variation: 0,
     moreItemsAvailable: {
       type: Boolean,
       value: false,

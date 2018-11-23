@@ -14,7 +14,7 @@ legend {
 
 input[placeholder],
 textarea[placeholder] {
-  color: #53565A;
+  color: @main-font-color;
 
   // Do not group these rules
   &::-webkit-input-placeholder {
@@ -61,7 +61,7 @@ textarea[placeholder] {
 }
 
 .form-control {
-  color: #53565A;
+  color: @main-font-color;
   padding: 20px 40px;
   height: 63px;
   box-shadow: none;
@@ -73,7 +73,7 @@ textarea[placeholder] {
   border-radius: 2px;
 
   .panel-inverse &:focus {
-        background: #f6f9fa;
+    background: #f6f9fa;
   }
 
   select& {
@@ -271,7 +271,7 @@ select {
     z-index: 0;
     top: 6px;
     background-color: #ffffff;
-    color: #53565a;
+    color: @main-font-color;
     border-radius: 0;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);

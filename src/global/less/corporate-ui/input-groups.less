@@ -4,6 +4,7 @@
    font-size: inherit;
    color: #555;
    border: 1px solid #94999d;
+   background-color: #fff;
    border-radius: 0px;
    padding-right: 15px;
    padding-left: 15px;
@@ -46,30 +47,27 @@
      &:first-child > .btn {
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
+      &.btn-default {
       border-right: 0;
       &:hover {
         border: 1px solid #94999d;
         border-right: 0;
       }
-     }
-     &:last-child > .btn {
+    }
+   }
+     &:last-child > .btn{
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
-      border-left: 0px;
+      &.btn-default {
       &:hover {
         border: 1px solid #94999d;
-        border-left: 0px;
       }
      }
+   }
      & > .btn,
      & > .btn-group {
        margin-right: 0px;
        margin-left: 0px;
-       // border: 1px solid #94999d;
-
-       &:hover {
-        border: 1px solid #e2e2e2;
-       }
      }
    }
 }

@@ -1,24 +1,19 @@
 :host{
+  display: inline-block;
+  width: 100%;
   .upload-file-wrapper{
     position: relative;
     overflow: hidden;
     display: inline-block;
     padding:0px;
-    margin-bottom: 15px;
-    .input-file-simple{display: none;}
+    .input-file-simple{
+      display: none;
+    }
     .form-group{
       margin: 0 20px;
     }
-    .files-to-upload{
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    .upload-info{
-      margin-top: 20px;
-    }
     #fileerror{
       margin-bottom: 20px;
-      div{color: #cc1040;}
       p{margin-bottom: 5px; text-align: left;}
     }
     .files-collection{
@@ -41,6 +36,13 @@
     ::-webkit-scrollbar-track-piece {
       background: #d8d8d8;
     }
+  }
+  .files-to-upload{
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .upload-info{
+    margin-top: 20px;
   }
   #dropArea{
     max-width: 300px;
@@ -93,73 +95,17 @@
     .pb-wrapper{
       flex: 1 100%;
       margin-top: 10px;
-      opacity: 1;
       margin-bottom: -28px;
-      transition: all 0.8s 1s;
     }
 
     .file-icon.done{
       opacity: 0.4;
     }
-
-    .file-meta{
-      flex-grow: 2;
-      padding-left: 20px;
-      position: relative;
-      p{
-        margin: 0;
-        padding:0;
-        text-align: left;
-      }
-      .file-size{
-        color: #94999d;
-      }
-      .file-status-icon{
-        position: absolute;
-        right: 10px;
-        top:15px;
-        font-size: 1.3em
-      }
-      .fa-times{
-        cursor: pointer;
-      }
-      .fa-check{
-        display: none;
-      }
-      .fa-spinner{
-        color: #033a6a;
-        display: none;
-      }
-      &.uploading{
-        .fa-times{
-          display: none;
-        }
-        .fa-spinner{
-          display: block;
-          animation: rotate 1s infinite forwards;
-        }
-      }
-    }
-    &.done{
-      .file-meta .fa-spinner{
-        display: none;
-      }
-      .file-meta .fa-times{
-        display: none;
-      }
-      .file-meta .fa-check{
-        color: #44a878;
-        display: block;
-      }
-      .file-icon, p{
-        opacity: 0.4;
-      }
-      .pb-wrapper{
-        opacity: 0;
-        margin-bottom: -42px;
-      }
-    }
     //endof .file-list
+  }
+  .pb-wrapper{
+    opacity: 1;
+    transition: all 0.8s 1s;
   }
   .action-btn-wrapper{
     padding: 15px;
@@ -170,18 +116,94 @@
     #dropArea, .upload-info, .files-collection, .fileerror, .files-to-upload, .action-btn-wrapper{
       display: none;
     }
+    .pb-wrapper{
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      z-index: 2;
+      height: 6px;
+      overflow: hidden;
+    }
     .input-file-simple{
       display: table;
+      input[type="text"]{
+        cursor: pointer;
+        color : transparent;
+        text-shadow : 0 0 0 #53565a;
+      }
       i{
         position: absolute;
         top: 14px;
-        right: 98px;
+        right: 15px;
         z-index: 2;
         cursor: pointer;
-        &.fa-check, &.fa-spinner{display: none;}
       }
     }
   // endof upload file wrapper inline
+  }
+
+  .file-meta{
+    flex-grow: 2;
+    padding-left: 20px;
+    position: relative;
+    p{
+      margin: 0;
+      padding:0;
+      text-align: left;
+    }
+    .file-size{
+      color: #94999d;
+    }
+    .file-status-icon{
+      position: absolute;
+      right: 10px;
+      top:15px;
+      font-size: 1.3em
+    }
+    .fa-times{
+      cursor: pointer;
+    }
+    .fa-check{
+      display: none;
+    }
+    .fa-spinner{
+      color: #033a6a;
+      display: none;
+    }
+    &.uploading{
+      .fa-times{
+        display: none;
+      }
+      .fa-spinner{
+        display: block;
+        animation: rotate 1s infinite forwards;
+      }
+    }
+  }
+  .done{
+    .file-meta .fa-spinner{
+      display: none;
+    }
+    .file-meta .fa-times{
+      display: none;
+    }
+    .file-meta .fa-check{
+      color: #44a878;
+      display: block;
+    }
+    .file-icon, p{
+      opacity: 0.4;
+    }
+    .pb-wrapper{
+      opacity:0;
+      margin-bottom: -42px;
+    }
+  }
+  .upload-file-wrapper.inline .done{
+    .pb-wrapper{
+      margin-bottom: 0px;
+    }
   }
 // endof :host
 }

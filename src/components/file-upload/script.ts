@@ -143,7 +143,7 @@ Polymer({
     }
   },
   clickFileInput: function(e){
-      Polymer.dom(this.$.dropArea).querySelector('#fileinput').click();
+      Polymer.dom(this.root).querySelector('#fileinput').click();
   },
   dropFile: function(ev){
     ev.preventDefault();
@@ -152,14 +152,14 @@ Polymer({
     var totalFiles = dt.files.length;
 
     if(this.multiple){
-      Polymer.dom(this.$.dropArea).querySelector('#fileinput').files = dt.files;
+      Polymer.dom(this.root).querySelector('#fileinput').files = dt.files;
       this.addFiles(dt.files);
     } else {
       if(totalFiles==1){
         if(this.files.length>0){
           this.files=[];
         }
-        Polymer.dom(this.$.dropArea).querySelector('#fileinput').files = dt.files;
+        Polymer.dom(this.root).querySelector('#fileinput').files = dt.files;
         this.addFiles(dt.files);
       } else {
         // reject drop
@@ -208,35 +208,53 @@ Polymer({
 
     this.updateIsFiles();
     if(!this.isFiles && this.filesUploaded.length==0){
-      Polymer.dom(this.$.dropArea).querySelector('#fileinput').value = null;
+      Polymer.dom(this.root).querySelector('#fileinput').value = null;
     }
   },
   resetInput: function(){
     this.simpleInputVal = '';
     this.files=[];
-    Polymer.dom(this.$.dropArea).querySelector('#fileinput').value = null;
+    Polymer.dom(this.root).querySelector('#fileinput').value = null;
     this.updateIsFiles();
   },
-  setProgressBarValue: function(f,p){
-    var parentEl = '#setPb'+f.id;
-    this.totalProgress += p;
-    var pbVal = (this.totalProgress/this.totalFileUpload*100) ;
+  setProgressBarValue: function(file,progress){
+    var parentEl, pbVal;
 
-    if(p==0){
+    if(this.display=='inline'){
+      parentEl = '#simpleInput';
+      pbVal = ((this.totalProgress+progress)/this.totalFileUpload) * 100;
+    } else {
+      parentEl = '#setPb'+file.id;
+      pbVal = progress;
+      this.uploadBtnText = 'Uploading... ';
+      this.$$(parentEl).querySelector('.file-size').innerHTML = 'Uploading...';
+    }
+
+    if(pbVal==0){
       this.$$(parentEl).querySelector('c-progress-bar').classList.remove('hidden');
     }
-    this.$$(parentEl).querySelector('c-progress-bar').setAttribute('value',p);
+
+    this.$$(parentEl).querySelector('c-progress-bar').setAttribute('value',pbVal);
     this.$$(parentEl).querySelector('.file-meta').classList.add('uploading');
 
-    this.uploadBtnText = 'Uploading... ';
-    this.$$(parentEl).querySelector('.file-size').innerHTML = 'Uploading...';
-    if(p==100){
-      this.uploadFileDone(f,parentEl);
-      this.$$(parentEl).querySelector('.file-size').innerHTML = 'Uploaded';
+    if(progress==100){
+      this.totalProgress += progress;
+      this.uploadFileDone(file);
+      if(this.display!='inline'){
+        this.$$(parentEl).classList.add('done');
+        this.$$(parentEl).querySelector('.file-size').innerHTML = 'Uploaded';
+      }
     }
+
     if(pbVal==100){
+      this.$$(parentEl).classList.add('done');
       this.uploadFilesDone();
+      if(this.display=='inline'){
+        this.simpleInputVal = 'Files uploaded';
+        this.$$(parentEl).querySelector('input[type="text"]').setAttribute('disabled','disabled') ;
+      }
     }
+
   },
   sortFilenames: function(a,b){
     var aId = a.id;
@@ -271,11 +289,10 @@ Polymer({
     this.totalFileUpload = this.files.length*100;
     this.totalProgress = 0;
   },
-  uploadFileDone: function(f,parentEl){
-    this.$$(parentEl).classList.add('done');
-    var elementPos = this.files.map(function(x) {return x.id; }).indexOf(f.id);
+  uploadFileDone: function(file){
+    var elementPos = this.files.map(function(x) {return x.id; }).indexOf(file.id);
     this.files.splice(elementPos, 1);
-    this.unshift('filesUploaded', f);
+    this.unshift('filesUploaded', file);
     this.updateIsFiles();
   },
   uploadFilesDone: function(){

@@ -1,14 +1,21 @@
 <div class$="upload-file-wrapper col-xs-12 {{display}}">
+      <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required$={{required}}>
 
-      <div class="input-group input-file-simple">
+      <div id="simpleInput" class="input-group input-file-simple">
           <input type="text" class="form-control" on-click="clickFileInput" placeholder="Select file" value="{{simpleInputVal}}">
-          <i class="fal fa-times" on-click="resetInput"></i>
-          <i class="fal fa-check"></i>
-          <i class="fal fa-spinner"></i>
+          <div class="file-meta">
+            <i class="fal fa-times" on-click="resetInput"></i>
+            <i class="fal fa-check"></i>
+            <i class="fal fa-spinner"></i>
+          </div>
+          <div class="pb-wrapper">
+            <c-progress-bar value="0" context="success" class="hidden"></c-progress-bar>
+          </div>
           <span class="input-group-btn">
-          <button class$="btn btn-default {{disableSimpleBtn}}" type="button" on-click="uploadFiles">Upload</button>
+            <button class$="btn btn-default {{disableSimpleBtn}}" type="button" on-click="uploadFiles">Upload</button>
           </span>
-      </div><!-- /input-group -->
+      </div>
+      <!-- /input-group -->
       <div id="dropArea" class="form-group" hidden$="{{!showDropArea}}"
           on-dragenter="allowDrop" on-dragover="allowDrop"
           on-drop="dropFile"
@@ -17,7 +24,6 @@
         <p class="lead">Drag & drop here <label class="text-info" for="fileinput">or browse</label></p>
         <p>to upload your files</p>
         <label class="btn-mobile btn btn-default" for="fileinput">Select file</label>
-        <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required$={{required}}>
       </div>
       <div class="upload-info form-group">
         <p>
@@ -30,7 +36,7 @@
         </template>
         </p>
       </div>
-      <div id="fileerror" class="callout callout-danger hidden">
+      <div id="fileerror" class="callout callout-warning hidden">
         <h4>{{errorTitle}}</h4>
       </div>
       <div class="form-group" hidden$={{!isFiles}}>
@@ -65,4 +71,4 @@
         </div>
       </div>
 
-  </div>
+</div>

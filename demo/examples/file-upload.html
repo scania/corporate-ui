@@ -49,12 +49,27 @@
 
               <div class="panel-body">
                 <form class="" action="" method="post">
-                  <c-file-upload name="uxlib-file-input" multiple max-file-size=1000 accept="image/*, application/pdf" required display="inline"></c-file-upload>
+                  <div class="form-group">
+                    <label>First name</label>
+                    <input type="text" class="form-control" placeholder="Enter first name">
+                  </div>
+                  <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text" class="form-control" placeholder="Enter last name">
+                  </div>
+                  <div class="form-group">
+                    <label>Upload your file (this label is not a part of the component)</label>
+                      <c-file-upload name="uxlib-file-input" multiple max-file-size=1000 accept="image/*, application/pdf" required display="inline"></c-file-upload>
+                  </div>
+                  <div class="form-group">
+                    <label>Another field</label>
+                    <input type="text" class="form-control" placeholder="Just a random field">
+                  </div>
                   <div class="form-group text-right">
                     <button class="btn btn-success" type="submit">Save changes</button>
                     <button class="btn btn-default" type="reset">Cancel</button>
                   </div>
-                  
+
                 </form>
               </div>
 

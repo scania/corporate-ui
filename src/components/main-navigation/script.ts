@@ -27,10 +27,16 @@ Polymer({
       value: [],
       observer: 'setPriItemIndex'
     },
+    _primaryItems: {
+      type: Array
+    },
     secondaryItems: {
       type: Array,
       value: [],
       observer: 'setSecItemIndex'
+    },
+    _secondaryItems: {
+      type: Array
     }
   },
   listeners: {
@@ -328,18 +334,12 @@ Polymer({
     this.itemsExist();
     return val;
   },
-  setPriItemIndex: function(val, oldVal) {
-    val = val || [];
-    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
-      this.primaryItems = this.setItemIndex(val);
-    }
+  setPriItemIndex: function(val=[]) {
+    this._primaryItems = this.setItemIndex(val);
     this.setMoreItems();
   },
-  setSecItemIndex: function(val, oldVal) {
-    val = val || [];
-    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
-      this.secondaryItems = this.setItemIndex(val);
-    }
+  setSecItemIndex: function(val=[]) {
+    this._secondaryItems = this.setItemIndex(val);
     this.setMoreItems();
   },
   sort: function(a, b) {

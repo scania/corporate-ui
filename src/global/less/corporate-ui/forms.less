@@ -158,6 +158,10 @@ textarea[placeholder] {
     background-color: #f7f7f7;
     border: 1px solid transparent;
     border-radius: 3px;
+
+    & fieldset[disabled] {
+
+    }
   }
 
   &:focus {
@@ -236,6 +240,15 @@ fieldset {
   border: 2px dotted silver;
   padding: 25px 25px 5px 5px;
   margin-bottom: 30px;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.8;
+    .form-control {
+      border: none;
+      background-color: #f7f7f7;
+    }
+  }
 }
 
 .radio-inline, .checkbox-inline {
@@ -313,11 +326,11 @@ p.help-block,
 }
 
 .has-success .help-block {
-    border-left: 4px solid @interaction-success;  
+    border-left: 4px solid @interaction-success;
 }
 
 .has-warning .help-block {
-    border-left: 4px solid @interaction-warning;  
+    border-left: 4px solid @interaction-warning;
 }
 
 .has-danger .help-block,

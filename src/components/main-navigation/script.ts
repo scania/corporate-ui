@@ -335,12 +335,26 @@ Polymer({
     return val;
   },
   setPriItemIndex: function(val=[]) {
-    this._primaryItems = this.setItemIndex(val);
+    if (!val.length) {
+      return;
+    }
+    this._primaryItems = [];
+    this.async((function() {
+      this._primaryItems = this.setItemIndex(val);
+    }).bind(this));
     this.setMoreItems();
+    this.primaryItems = [];
   },
   setSecItemIndex: function(val=[]) {
-    this._secondaryItems = this.setItemIndex(val);
+    if (!val.length) {
+      return;
+    }
+    this._secondaryItems = [];
+    this.async((function() {
+      this._secondaryItems = this.setItemIndex(val);
+    }).bind(this));
     this.setMoreItems();
+    this.secondaryItems = [];
   },
   sort: function(a, b) {
     // Compare item a and b origional index to

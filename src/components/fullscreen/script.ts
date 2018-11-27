@@ -12,20 +12,26 @@ Polymer({
     }
   },
   registered: function() {
-    document.addEventListener('toggle-fullscreen', this.toggleFullscreen.bind(this), false);
+    document.addEventListener('fullscreen-toggle', (function(e) {
+      this.fullscreenToggle.call(e.target);
+    }).bind(this), false);
   },
   attached: function() {
     var mode = sessionStorage.getItem(this.name);
     if(mode) {
       document.body.classList.add(this.name);
     }
-  },
-  toggleFullscreen: function(e) {
-    var globalTrigger = !this.name,
-        className = 'fullscreen';
+    this.addEventListener('click', (function(e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    e.preventDefault();
-    e.stopPropagation();
+      this.async(function() {
+        this.fire('fullscreen-toggle');
+      });
+    }).bind(this), false);
+  },
+  fullscreenToggle: function(e) {
+    var className = 'fullscreen';
 
     document.body.classList.toggle(className);
     sessionStorage.setItem(className, 'true');
@@ -34,14 +40,8 @@ Polymer({
       sessionStorage.removeItem(className);
     }
 
-    if (!globalTrigger) {
-      // This will bubble from current node and down, but if this happens
-      // from outside we should only trigger the event globally
-      this.async(function() {
-        this.fire('fullscreen-toggled');
-      });
-    } else {
-      window['AppEventStore'].apply({ name: 'fullscreen', action: 'fullscreen-toggled' });
-    }
+    this.async(function() {
+      this.fire('fullscreen-toggled');
+    });
   }
 });

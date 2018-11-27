@@ -37,7 +37,6 @@ Polymer({
     'navItem-active': 'setItemActive',
     'navItemDropdown-active': 'setMoreItemActive',
     'subNavigation-attached': 'setHeaderSize',
-    'fullscreen-toggled': 'setHeaderSize',
     'moreItem-toggled': 'setMoreItems',
     'navigation-close': 'navigationClose'
   },
@@ -84,6 +83,7 @@ Polymer({
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
     }).bind(this));
+    document.addEventListener('fullscreen-toggled', this.fullscreenToggle.bind(this));
     nav.addEventListener('show.bs.collapse', function() {
       window.scrollTo(0, 0);
       document.body.classList.add('navigation-open');
@@ -286,6 +286,10 @@ Polymer({
   navigationClose: function() {
     var hamburger = this.header.querySelector('.navbar-toggle');
     hamburger.Collapse.hide();
+  },
+  fullscreenToggle: function() {
+    this.setHeaderSize();
+    this.setMoreItems();
   },
   sticky: function() {
     var stickyNavTop = this.offsetTop,

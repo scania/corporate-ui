@@ -65,12 +65,12 @@ textarea[placeholder] {
   padding: 20px 40px;
   height: 63px;
   box-shadow: none;
-  border: 0;
+  // border: 0;
   font-size: 1.4rem;
   font-weight: normal;
   background-color: #fff;
   border: 1px solid #94999d;
-  border-radius: 3px;
+  border-radius: @input-border-radius;
 
   .panel-inverse &:focus {
     background: #f6f9fa;
@@ -108,26 +108,27 @@ textarea[placeholder] {
 
     &.input-sm {
       background-size: 27px;
-      border-radius: 3px;
+      border-radius: @input-border-radius;
       }
 
       &.input-lg {
        background-size: 50px;
-       border-radius: 3px;
+       border-radius: @input-border-radius;
       }
 
     .app & {
       background-size: 27px;
       padding-right: 28px;
+      border-radius: @input-border-radius;
 
       &.input-sm {
       background-size: 20px;
-      border-radius: 3px;
+      border-radius: @input-border-radius;
       }
 
       &.input-lg {
       background-size: 50px;
-      border-radius: 3px;
+      border-radius: @input-border-radius;
       }
     }
   }

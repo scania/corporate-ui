@@ -175,16 +175,16 @@ Polymer({
     }
     this.addFiles(e.srcElement.files);
   },
-  isFileExist: function(f){
+  isFileExist: function(file){
     var returnVal = false;
     for(var j=0; j<this.files.length; j++){
-      if(this.files[j].name == f.name && this.files[j].size == f.size){
+      if(this.files[j].name == file.name && this.files[j].size == file.size){
         returnVal = true;
       }
     }
     if(this.filesUploaded.length>0){
       for(var i=0; i<this.filesUploaded.length; i++){
-        if(this.filesUploaded[i].name == f.name && this.filesUploaded[i].size == f.size){
+        if(this.filesUploaded[i].name == file.name && this.filesUploaded[i].size == file.size){
           returnVal = true;
         }
       }

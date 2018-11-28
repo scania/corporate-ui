@@ -1,6 +1,11 @@
 **Describe pull-request**</br>
 Describe what the pull-request is about
 
+**Browser tested**<br/>
+- [ ] Chrome
+- [ ] Firefox
+- [ ] Internet Explorer
+
 **Describe how to test it**</br>
 Describe how to test the solution
 
@@ -10,7 +15,3 @@ Add which issue this pull-request solves by adding # plus the number of the issu
 **Additional context**<br/>
 Add any other context about the pull-request here.
 
-**Browser tested**<br/>
-- [ ] Chrome
-- [ ] Firefox
-- [ ] Internet Explorer

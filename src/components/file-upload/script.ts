@@ -114,9 +114,10 @@ Polymer({
         if(fileExceedsMax) file.fileErrorMessage = 'Size exceeds permissible upload limit';
         if(!allowFileType) file.fileErrorMessage = 'File type not allowed';
 
-        this.errorTitle = 'Unable to upload following files';
-        var errorFiles = document.createElement('div');
+        // this.errorTitle = 'Unable to upload following files';
+        var errorFiles = document.createElement('p');
         errorFiles.innerHTML = file.name + '- '+ this.calcFileSize(file.size) + ' - ' + file.fileErrorMessage;
+        errorFiles.classList.add('help-block');
         Polymer.dom(this.$.fileerror).appendChild(errorFiles);
         Polymer.dom(this.$.fileerror).classList.remove('hidden');
       } else {

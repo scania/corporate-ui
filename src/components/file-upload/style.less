@@ -1,7 +1,7 @@
 :host{
   display: inline-block;
   width: 100%;
-  margin-bottom: -5px;
+  margin-bottom: -6px;
   .upload-file-wrapper{
     position: relative;
     overflow: hidden;
@@ -13,13 +13,10 @@
     .form-group{
       margin: 0 20px;
     }
-    #fileerror{
-      margin-bottom: 20px;
-      p{margin-bottom: 5px; text-align: left;}
-    }
     .files-collection{
       max-height: 300px;
       overflow-y: auto;
+      margin-top: 10px;
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -37,14 +34,15 @@
     ::-webkit-scrollbar-track-piece {
       background: #d8d8d8;
     }
+    .files-to-upload{
+      font-weight: bold;
+      margin: 15px 0 0 0;
+    }
+    .upload-info{
+      margin-top: 20px;
+    }
   }
-  .files-to-upload{
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  .upload-info{
-    margin-top: 20px;
-  }
+
   #dropArea{
     max-width: 300px;
     background-color: #fff;

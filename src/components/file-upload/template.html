@@ -36,13 +36,9 @@
         </template>
         </p>
       </div>
-      <div id="fileerror" class="callout callout-warning hidden">
-        <h4>{{errorTitle}}</h4>
-      </div>
-      <div class="form-group" hidden$={{!isFiles}}>
-        <p class="files-to-upload">File(s) to upload</p>
-      </div>
+      <div id="fileerror" class="has-warning"></div>
 
+      <p class="files-to-upload" hidden$={{!isFiles}}>File(s) to upload</p>
       <div class="files-collection scroll-y">
         <template is="dom-repeat" items={{files}} sort="sortFilenames">
           <div id="setPb{{item.id}}" class="form-group row file-list" hidden$={{item.fileSizeStatus}}>

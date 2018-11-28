@@ -1,6 +1,34 @@
 @import (reference) 'variables';
 
 .input-group {
+
+&&-lg {
+  height: @input-lg-height;
+  border-radius:@input-border-radius;
+   & > .input-group-btn > .btn {
+      height: 100%;
+  }
+  & > .form-control {
+    height: inherit;
+  }
+}
+&&-sm {
+  height: 30px;
+  line-height: 0;
+  border-radius:@input-border-radius;
+
+   & > .input-group-addon {
+      line-height: 0;
+   }
+   & > .input-group-btn > .btn {
+      height: 100%;
+
+    }
+   & > .form-control {
+      height: inherit;
+    }
+  }
+
  &-addon {
    padding: 0px;
    font-size: inherit;

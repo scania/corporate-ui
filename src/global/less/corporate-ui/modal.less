@@ -68,6 +68,17 @@
     width: 100vw;
     height: 100vh;
 
+    &.modal-dialog {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      min-height: 100%;
+      max-height: 100vh;
+      background-color: #fff; 
+    }      
+
     .modal-content {
       overflow: hidden;
       -webkit-overflow-scrolling: touch;
@@ -79,31 +90,25 @@
       top: 0;
     }
 
-    .modal-dialog {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      min-height: 100%;
-      max-height: 100vh;
-      background-color: #fff; 
-    }  
+    .modal-header {
+      border-bottom: none;             
+    } 
 
     .modal-body {
       overflow-x: hidden;  
       overflow-y: scroll; 
-      height: ~"calc(100vh - 110px)";
+      height: ~"calc(100vh - 104px)";
       padding: 0;
     } 
 
-   .modal-fullscreen .modal-footer {
+    .modal-footer {
       position: fixed;    
       width: 100%;           
       bottom: 0px;
       text-align: left;
       padding: 0;
-      background-color: #fff;              
+      background-color: #fff; 
+      border-top: none;             
     }        
   }  
 

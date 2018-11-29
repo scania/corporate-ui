@@ -301,16 +301,21 @@ function appendExternals() {
 
 function bsHandler() {
   document.addEventListener('click', function(event:any) {
+    bsAutoHandler(event, function() {
+      setTimeout(function() {
+        event.target.click();
+      }, 100)
+    });
+  });
+  document.addEventListener('mouseover', bsAutoHandler);
+
+  function bsAutoHandler(event, cb=function(){}) {
     var dataToggle = event.target.getAttribute('data-toggle') || '',
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
-        options:any = {};
+        options = event.target.dataset;
 
     if(method && window[method] && !event.target[method]) {
       event.preventDefault();
-
-      if (event.target.dataset.target) {
-        options.target = event.target.dataset.target;
-      }
 
       if (dataToggle === 'tab') {
         [].slice.call(event.target.parentNode.parentNode.children).map(function(item) {
@@ -320,11 +325,9 @@ function bsHandler() {
         new window[method](event.target, options);
       }
 
-      setTimeout(function() {
-        event.target.click();
-      }, 100);
+      cb();
     }
-  })
+  }
 }
 
 function sysMessages() {

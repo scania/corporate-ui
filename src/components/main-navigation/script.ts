@@ -27,10 +27,16 @@ Polymer({
       value: [],
       observer: 'setPriItemIndex'
     },
+    _primaryItems: {
+      type: Array
+    },
     secondaryItems: {
       type: Array,
       value: [],
       observer: 'setSecItemIndex'
+    },
+    _secondaryItems: {
+      type: Array
     }
   },
   listeners: {
@@ -332,19 +338,27 @@ Polymer({
     this.itemsExist();
     return val;
   },
-  setPriItemIndex: function(val, oldVal) {
-    val = val || [];
-    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
-      this.primaryItems = this.setItemIndex(val);
+  setPriItemIndex: function(val=[]) {
+    if (!val.length) {
+      return;
     }
+    this._primaryItems = [];
+    this.async((function() {
+      this._primaryItems = this.setItemIndex(val);
+    }).bind(this));
     this.setMoreItems();
+    this.primaryItems = [];
   },
-  setSecItemIndex: function(val, oldVal) {
-    val = val || [];
-    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
-      this.secondaryItems = this.setItemIndex(val);
+  setSecItemIndex: function(val=[]) {
+    if (!val.length) {
+      return;
     }
+    this._secondaryItems = [];
+    this.async((function() {
+      this._secondaryItems = this.setItemIndex(val);
+    }).bind(this));
     this.setMoreItems();
+    this.secondaryItems = [];
   },
   sort: function(a, b) {
     // Compare item a and b origional index to

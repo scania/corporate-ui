@@ -3,7 +3,7 @@
     <primary-items class="nav navbar-nav">
       <content select="primary-items" id="primary-items"></content>
 
-      <template is="dom-repeat" items="{{primaryItems}}">
+      <template is="dom-repeat" items="{{_primaryItems}}">
         <nav-item props="{{item}}" class$="{{dashed(item.text)}}"></nav-item>
       </template>
 
@@ -13,7 +13,7 @@
     <secondary-items class="nav navbar-nav navbar-right">
       <content select="secondary-items" id="secondary-items"></content>
 
-      <template is="dom-repeat" items="{{secondaryItems}}">
+      <template is="dom-repeat" items="{{_secondaryItems}}">
         <nav-item props="{{item}}" class$="dropdown {{dashed(item.text)}}" dropdown="{{item.items.length}}"></nav-item>
       </template>
     </secondary-items>

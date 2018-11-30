@@ -85,15 +85,15 @@
     display: inline-block;
     border: thin solid @radio-check-11;
     border-radius: 30px;
-    -moz-transform: scale(0.8);
-    -ms-transform: scale(1);
-    -moz-transform-origin: 0 0;
+    // -moz-transform: scale(0.8);
+    // -ms-transform: scale(0.9);
+    // -moz-transform-origin: 0 0;
     // zoom: 0.8;
-    vertical-align: text-bottom;
+    vertical-align: middle;
 
     .app & {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
     }
 
     &:before {
@@ -162,25 +162,24 @@
     width: 20px;
     position: static;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: text-bottom;
   }
 
   + span {
     position: relative;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     line-height: 1;
-    margin-right: 0px;
+    margin-right: 3px;
     cursor: pointer;
-    border: 1px solid transparent;
 
     .app & {
-          margin-left: 0px;
-    margin-right: 0px;    }
+      margin-left: 0px;
+    }
 
     &:before {
       content: "";
-      display: table;
+      display: inline-block;
       width: 30px;
       height: 30px;
       background-color: @radio-check-1-checkbox;
@@ -189,10 +188,9 @@
       -moz-transform: scale(0.8);
       -ms-transform: scale(0.9);
       -moz-transform-origin: 0 0;
-      // margin-bottom: 3px;
+      margin-bottom: 3px;
       
       zoom: 0.8;
-      box-sizing: border-box;
       .app & {
         width: 20px;
         height: 20px;
@@ -258,7 +256,7 @@
   &:checked {
 
     + span {
-      border-color: transparent;
+      border-color: @radio-check-4-checkbox;
 
       &:before {
         background-color: @radio-check-4-checkbox;
@@ -268,7 +266,7 @@
     &:hover {
 
       + span {
-        border-color: transparent;
+        border-color: @radio-check-5-checkbox;
 
         &:before {
           background-color: @radio-check-5-checkbox;

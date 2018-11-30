@@ -1,30 +1,30 @@
-<div>
+<div class="cookie-short-message">
   <span class="text-cookie">
     <template is="dom-if" if="{{_langSupport(lang, 'en-gb')}}">
-      Scania uses cookies on our websites in order to ensure the performance and user experience. If you continue to browse without changing your web browser cookie settings, you are agreeing to our use of cookies. Find out more by reading our cookie guidelines in the footer link. English <!-- {{text}} -->
-      <a href="#" data-toggle="modal" data-target="#cookieAgreement"> Read More</a>
+      Scania uses cookies on our websites in order to ensure the performance and user experience. If you continue to browse without changing your web browser cookie settings, you are agreeing to our use of cookies. <!-- {{text}} -->
     </template>
     <template is="dom-if" if="{{_langSupport(lang, 'se')}}">
       När du visar den här webbplatsen eller någon annan webbplats som länkas från den här webbplatsen kan vi spara lite information på din dator i form av en ”cookie”. 
-      Scania använder bland annat cookies för att registrera besökarstatistik och för att låta användaren välja språk när han eller hon söker efter ett begagnat fordon på vår webbplats.
+      Vi använder bland annat cookies för att registrera besökarstatistik och för att låta användaren välja språk när han eller hon söker efter ett information på vår webbplats.<br/><br/>
 
-      Du kan ställa in datorn på att blockera cookies. Det innebär dock att vi inte kan garantera att alla delar av webbplatsen fungerar som de ska. Hur du blockerar cookies beror på vilken webbläsare du använder. Välj ”Hjälp” eller en motsvarande meny i webbläsaren om du behöver anvisningar. <!-- {{text}} -->
+      Du kan ställa in datorn på att blockera cookies. Det innebär dock att vi inte kan garantera att alla delar av webbplatsen fungerar som de ska. Hur du blockerar cookies beror på vilken webbläsare du använder. Välj ”Hjälp” eller en motsvarande meny i webbläsaren om du behöver anvisningar.<!-- {{text}} -->
       <a href="#" data-toggle="modal" data-target="#cookieAgreement"> Läs mer</a>
     </template>
     <template is="dom-if" if="{{_langSupport(lang, 'de')}}">
-       Scania verwendet Cookies, um Ihnen ein besseres Nutzererlebnis zu bieten. Durch Nutzung dieser Website stimmen Sie unserer Verwendung von Cookies zu. Weitere Informationen hierzu finden Sie in der <!-- {{text}} -->
+       Scania verwendet Cookies, um Ihnen ein besseres Nutzererlebnis zu bieten. Durch Nutzung dieser Website stimmen Sie unserer Verwendung von Cookies zu. Weitere Informationen hierzu finden Sie in der.<!-- {{text}} -->
       <a href="#" data-toggle="modal" data-target="#cookieAgreement">Weiterlesen</a>
     </template>
     <template is="dom-if" if="{{_langSupport(lang, 'es')}}">
-      Esta página web y otras relacionadas pueden almacenar algunos datos sobre su equipo en forma de “cookie”, lo que nos permite adaptar nuestras páginas web a sus intereses y preferencias. Al navegar en esta página está aceptando nuestra política de cookies. Spanish <!-- {{text}} -->
+      Esta página web y otras relacionadas pueden almacenar algunos datos sobre su equipo en forma de “cookie”, lo que nos permite adaptar nuestras páginas web a sus intereses y preferencias. Al navegar en esta página está aceptando nuestra política de cookies.<!-- {{text}} -->
       <a href="#" data-toggle="modal" data-target="#cookieAgreement">Lee mas</a>
     </template>
   </span>
-  <span class="close-cookie pull-right btn btn-transparent" >Accept</span>
+  <span class="btn btn-transparent pull-right" data-toggle="modal" data-target="#cookieAgreement">Learn more</span>  
+  <span class="btn btn-transparent close-cookie pull-right">Accept</span>
 </div>
 
 <div id="cookieAgreement" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl ">
+  <div class="modal-dialog modal-xl scroll-y">
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-title">
@@ -32,7 +32,7 @@
           Cookies
         </div>
       </div>
-      <div class="modal-body scroll-y">
+      <div class="modal-body">
         <article>
         <template is="dom-if" if="{{_langSupport(lang, 'en-gb')}}">
           <p>Our website uses cookies. Below, you will find further information on these cookies; what they are, what cookies we use, what our purpose is for using them, and how you go about blocking or deleting cookies.</p>

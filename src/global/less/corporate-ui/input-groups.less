@@ -1,20 +1,48 @@
+@import (reference) 'variables';
+
 .input-group {
+
+&&-lg {
+  height: @input-lg-height;
+  border-radius:@input-border-radius;
+   & > .input-group-btn > .btn {
+      height: 100%;
+  }
+  & > .form-control {
+    height: inherit;
+  }
+}
+&&-sm {
+  height: 30px;
+  line-height: 0;
+  border-radius:@input-border-radius;
+
+   & > .input-group-addon {
+      line-height: 0;
+   }
+   & > .input-group-btn > .btn {
+      height: 100%;
+
+    }
+   & > .form-control {
+      height: inherit;
+    }
+  }
+
  &-addon {
-   padding: 0px;
    font-size: inherit;
    color: #555;
    border: 1px solid #94999d;
    background-color: #fff;
    border-radius: 0px;
-   padding-right: 15px;
    padding-left: 15px;
     &:first-child {
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: @input-border-radius;
+      border-bottom-left-radius: @input-border-radius;
     }
     &:last-child {
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-top-right-radius: @input-border-radius;
+      border-bottom-right-radius: @input-border-radius;
     }
    .radio, .checkbox {
      position: relative;
@@ -45,8 +73,8 @@
         border: 1px solid #94999d;
       }
      &:first-child > .btn {
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: @input-border-radius;
+      border-bottom-left-radius: @input-border-radius;
       &.btn-default {
       border-right: 0;
       &:hover {
@@ -56,8 +84,8 @@
     }
    }
      &:last-child > .btn{
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-top-right-radius: @input-border-radius;
+      border-bottom-right-radius: @input-border-radius;
       &.btn-default {
       &:hover {
         border: 1px solid #94999d;

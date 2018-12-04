@@ -275,7 +275,7 @@ function baseComponents(references) {
 }
 
 function appendExternals() {
-  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation'];
+  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation', 'cookie-message', 'fullscreen', 'main-hero' ];
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {

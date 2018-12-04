@@ -22,7 +22,7 @@
   <c-main-content>
 
     <!-- <c-main-navigation more-text="{{app.moreText}}" ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}"> -->
-    <c-main-navigation more-text="{{app.moreText}}" items-data>
+    <c-main-navigation variation="2" more-text="{{app.moreText}}" items-data>
       <primary-items>
         <nav-item location="#/start" text="start"></nav-item>
       </primary-items>
@@ -43,6 +43,18 @@
         <button>Set fmp data - attr</button>
         <button class="button2">Set fmp data - prop</button>
         <button ng-click="app.primaryItems = app.itemsFmp">Set fmp data - angular</button>
+        <c-fullscreen></c-fullscreen>
+        <ul class="list-inline">
+          <li ng-repeat="item in app.primaryItems" class="mt-3">
+            <input type="text" name="item_{{$index}}" ng-model="item.text">
+            <button ng-click="app.primaryItems.splice($index, 1)">x</button>
+          </li>
+          <li class="mt-3">
+            <input type="text" name="item_new" ng-model="app.new.text">
+            <button ng-click="app.primaryItems.push(app.new); app.new={}">+</button>
+          </li>
+        </ul>
+        <button type="button" ng-click="app.update()">update</button>
       </div>
     </section>
 
@@ -64,6 +76,7 @@
 
     function App(itemsFmp) {
       this.moreText = 'More 2';
+      this.new = {};
 
       this.topItems = [
         {
@@ -145,7 +158,7 @@
           ]
         },
         {
-          text:'Seventh', location:'#/Seventh', caption: 'Seventh',
+          text:'Seventh', location:'#/Seventh', caption: 'Seventh', dropdown: true,
           items:[
             { text:'First', location:'#/Seventh/First' },
             { text:'Second', location:'#/Seventh/Second' },
@@ -323,14 +336,24 @@
       ];
 
       this.itemsFmp = itemsFmp;
+
+      this.update = update;
+    }
+
+    function update() {
+      document.querySelector('c-main-navigation').primaryItems = this.primaryItems;
     }
 
     function itemsData() {
       return {
         restrict: 'A',
         link: function(scope, el, attrs) {
-          el[0].primaryItems = scope.app.primaryItems;
-          el[0].secondaryItems = scope.app.secondaryItems;
+          scope.$watch("app.primaryItems",function(newValue, oldValue) {
+            el[0].primaryItems = scope.app.primaryItems;
+          });
+          scope.$watch("app.secondaryItems",function(newValue, oldValue) {
+            el[0].secondaryItems = scope.app.secondaryItems;
+          });
         }
       }
     }

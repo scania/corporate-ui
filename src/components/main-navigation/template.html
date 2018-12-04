@@ -3,8 +3,8 @@
     <primary-items class="nav navbar-nav">
       <content select="primary-items" id="primary-items"></content>
 
-      <template is="dom-repeat" items="{{primaryItems}}">
-        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" items="{{item.items}}" props="{{item.props}}" attrs="{{item.attrs}}" classes="{{item.classes}}" class$="{{dashed(item.text)}}" dropdown="{{item.dropdown}}" caption="{{item.text}}"></nav-item>
+      <template is="dom-repeat" items="{{_primaryItems}}">
+        <nav-item props="{{item}}" class$="{{dashed(item.text)}}"></nav-item>
       </template>
 
       <nav-item text="{{moreText}}" items="{{moreItems}}" dropdown="true" class="more"></nav-item>
@@ -13,8 +13,8 @@
     <secondary-items class="nav navbar-nav navbar-right">
       <content select="secondary-items" id="secondary-items"></content>
 
-      <template is="dom-repeat" items="{{secondaryItems}}">
-        <nav-item text="{{item.text}}" template="{{item.template}}" location="{{item.location}}" active="{{item.active}}" items="{{item.items}}" props="{{item.props}}" attrs="{{item.attrs}}" classes="{{item.classes}}" class$="dropdown {{dashed(item.text)}}" dropdown="{{item.items.length}}"></nav-item>
+      <template is="dom-repeat" items="{{_secondaryItems}}">
+        <nav-item props="{{item}}" class$="dropdown {{dashed(item.text)}}" dropdown="{{item.items.length}}"></nav-item>
       </template>
     </secondary-items>
   </div>

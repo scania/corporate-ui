@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+:host-context(body.fullscreen) {
+
+  &.hideMain {
+
+    ::content {
+
+      c-main-navigation {
+        min-height: auto !important;
+
+        primary-items {
+          width: 100%;
+        }
+        secondary-items {
+          display: none;
+        }
+        primary-items,
+        secondary-items {
+
+          > nav-item {
+            display: none;
+
+            &.active {
+              display: block;
+
+              > a {
+                display: none;
+              }
+              > sub-navigation {
+                position: static;
+              }
+              nav-item {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

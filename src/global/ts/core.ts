@@ -176,10 +176,10 @@ function setGlobals() {
   };*/
 }
 
-function polymerInject() {
+function polymerInject(cb=function(){}) {
   if (!(window['Polymer'] && window['Polymer'].StyleUtil)) {
     clearTimeout(window['polymerTimer']);
-    window['polymerTimer'] = setTimeout(polymerInject, 10);
+    window['polymerTimer'] = setTimeout(polymerInject.bind(cb), 10);
     return;
   }
 
@@ -225,6 +225,8 @@ function polymerInject() {
     _orgReady.call(this);
   }
 
+  cb();
+
   /* Makes Polymer apply component specific style in the end of head element */
   /*window['Polymer'].StyleUtil.orgApplyCss = window['Polymer'].StyleUtil.applyCss;
   window['Polymer'].StyleUtil.applyCss = function(cssText, moniker, target, contextNod) {
@@ -242,8 +244,6 @@ function polymerInject() {
 }
 
 function baseComponents(references) {
-  polymerInject();
-
   // Adds support for Promise if non exist
   if (typeof(window['Promise']) === 'undefined') {
     return helpers.importScript(window['static_root'] + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
@@ -283,11 +283,21 @@ function baseComponents(references) {
 }
 
 function appendExternals() {
-  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation'];
+  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation', 'cookie-message', 'fullscreen', 'main-hero' ];
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
     helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.js', null, window['corporate_elm']);
+  }
+
+  // Adds Polymer and then extend it with some extra corporate specific handling
+  if (window['params'].polymer !== 'false') {
+    helpers.importLink(window['static_root'] + '/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', function() {
+      polymerInject(function() {
+        baseComponents(window['params'].preload === 'false' ? [] : undefined);
+      })
+    },
+    window['corporate_elm']);
   }
 
   if (window['params'].css !== 'custom') {
@@ -303,22 +313,25 @@ function appendExternals() {
     helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
-
-  baseComponents(window['params'].preload === 'false' ? [] : undefined);
 }
 
 function bsHandler() {
   document.addEventListener('click', function(event:any) {
+    bsAutoHandler(event, function() {
+      setTimeout(function() {
+        event.target.click();
+      }, 100)
+    });
+  });
+  document.addEventListener('mouseover', bsAutoHandler);
+
+  function bsAutoHandler(event, cb=function(){}) {
     var dataToggle = event.target.getAttribute('data-toggle') || '',
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
-        options:any = {};
+        options = event.target.dataset;
 
     if(method && window[method] && !event.target[method]) {
       event.preventDefault();
-
-      if (event.target.dataset.target) {
-        options.target = event.target.dataset.target;
-      }
 
       if (dataToggle === 'tab') {
         [].slice.call(event.target.parentNode.parentNode.children).map(function(item) {
@@ -328,11 +341,9 @@ function bsHandler() {
         new window[method](event.target, options);
       }
 
-      setTimeout(function() {
-        event.target.click();
-      }, 100);
+      cb();
     }
-  })
+  }
 }
 
 function sysMessages() {

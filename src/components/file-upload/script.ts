@@ -20,11 +20,11 @@ Polymer({
     },
     files: {
       type: Array,
-      value: []
+      value: function(){return [];}
     },
     filesUploaded: {
       type: Array,
-      value: []
+      value: function(){return [];}
     },
     fileLimitInfo: {
       type: String
@@ -35,6 +35,9 @@ Polymer({
     fileId: {
       type:Number,
       value: 0
+    },
+    handleChangeFired: {
+      type:Boolean
     },
     isFiles: {
       type: Boolean,
@@ -78,6 +81,7 @@ Polymer({
     }
   },
   addFiles: function(files){
+
     Array.prototype.forEach.call(files, this.addFile.bind(this));
 
     if(files.length==1){
@@ -144,7 +148,7 @@ Polymer({
     }
   },
   clickFileInput: function(e){
-      Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').click();
+    Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').click();
   },
   dropFile: function(ev){
     ev.preventDefault();
@@ -154,14 +158,16 @@ Polymer({
 
     if(this.multiple){
       Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').files = dt.files;
-      this.addFiles(dt.files);
+      // Chrome trigger change event on changing "files" objects
+      // but the behavior on IE & FF is different, change event is not triggered
+      if(!this.handleChangeFired){this.addFiles(dt.files);}
     } else {
       if(totalFiles==1){
         if(this.files.length>0){
           this.files=[];
         }
         Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').files = dt.files;
-        this.addFiles(dt.files);
+        if(!this.handleChangeFired){this.addFiles(dt.files);}
       } else {
         // reject drop
         ev.dataTransfer.clearData();
@@ -171,6 +177,7 @@ Polymer({
     }
   },
   handleChange: function(e){
+    this.handleChangeFired = true;
     if(this.multiple==false || this.display=='inline'){
       this.files=[];
     }

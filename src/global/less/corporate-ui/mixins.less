@@ -85,15 +85,11 @@
     display: inline-block;
     border: thin solid @radio-check-11;
     border-radius: 30px;
-    -moz-transform: scale(0.8);
-    -ms-transform: scale(1);
-    -moz-transform-origin: 0 0;
-    // zoom: 0.8;
     vertical-align: text-bottom;
 
     .app & {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
     }
 
     &:before {
@@ -103,6 +99,7 @@
       height: 100%;
       border-radius: inherit;
       border: 3px solid @radio-check-1;
+      margin-top:0px;
     }
     &:hover:before {
       border-color:@radio-check-5;
@@ -151,7 +148,6 @@
   width: 26px;
   position: static;
   display: inline-block;
-  vertical-align: text-bottom;
 
   .checkbox & {
     position: static;
@@ -162,25 +158,22 @@
     width: 20px;
     position: static;
     display: inline-block;
-    vertical-align: middle;
   }
 
   + span {
     position: relative;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     line-height: 1;
-    margin-right: 0px;
     cursor: pointer;
-    border: 1px solid transparent;
 
     .app & {
-          margin-left: 0px;
-    margin-right: 0px;    }
+      margin-left: 0px;
+    }
 
     &:before {
       content: "";
-      display: table;
+      display: inline-block;
       width: 30px;
       height: 30px;
       background-color: @radio-check-1-checkbox;
@@ -189,10 +182,9 @@
       -moz-transform: scale(0.8);
       -ms-transform: scale(0.9);
       -moz-transform-origin: 0 0;
-      // margin-bottom: 3px;
+       margin: 0px;
       
       zoom: 0.8;
-      box-sizing: border-box;
       .app & {
         width: 20px;
         height: 20px;
@@ -202,6 +194,7 @@
 
   &:hover + span:before {
     background-color: @radio-check-2-checkbox;
+    margin: 0px;
   }
 
   &:checked + span:before {
@@ -212,11 +205,13 @@
     background-repeat: no-repeat;
     border-color: @radio-check-4-checkbox;
     background-color: @radio-check-4-checkbox;
+    margin: 0px;
 
     .app & {
       font-size: 11px;
       line-height: 12px;
       background-size: 15px;
+      margin: 0px;
     }
   }
 
@@ -258,7 +253,7 @@
   &:checked {
 
     + span {
-      border-color: transparent;
+      border-color: @radio-check-4-checkbox;
 
       &:before {
         background-color: @radio-check-4-checkbox;
@@ -268,7 +263,7 @@
     &:hover {
 
       + span {
-        border-color: transparent;
+        border-color: @radio-check-5-checkbox;
 
         &:before {
           background-color: @radio-check-5-checkbox;

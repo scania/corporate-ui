@@ -108,9 +108,8 @@ function generateMeta(name, content) {
   head.appendChild(meta);
 }
 
-function importLink(href, type, callback, target, attrs=undefined) {
-  var link:any = document.createElement('link'),
-      target = target || document.head;
+function importLink(href, type='stylesheet', callback=function(e){}, target=document.head, attrs=undefined) {
+  var link:any = document.createElement('link');
 
   if ( !('onload' in link) ) {
     let imgTag = document.createElement('img');
@@ -118,8 +117,8 @@ function importLink(href, type, callback, target, attrs=undefined) {
     imgTag.src = href;
   }
 
-  link.onload = (callback || function(){});
-  link.rel = type || 'stylesheet';
+  link.onload = callback;
+  link.rel = type;
   link.href = href;
 
   if (typeof attrs === 'object') {

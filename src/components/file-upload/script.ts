@@ -144,7 +144,7 @@ Polymer({
     }
   },
   clickFileInput: function(e){
-      Polymer.dom(this.root).querySelector('#fileinput').click();
+      Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').click();
   },
   dropFile: function(ev){
     ev.preventDefault();
@@ -153,14 +153,14 @@ Polymer({
     var totalFiles = dt.files.length;
 
     if(this.multiple){
-      Polymer.dom(this.root).querySelector('#fileinput').files = dt.files;
+      Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').files = dt.files;
       this.addFiles(dt.files);
     } else {
       if(totalFiles==1){
         if(this.files.length>0){
           this.files=[];
         }
-        Polymer.dom(this.root).querySelector('#fileinput').files = dt.files;
+        Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').files = dt.files;
         this.addFiles(dt.files);
       } else {
         // reject drop
@@ -209,13 +209,13 @@ Polymer({
 
     this.updateIsFiles();
     if(!this.isFiles && this.filesUploaded.length==0){
-      Polymer.dom(this.root).querySelector('#fileinput').value = null;
+      Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').value = null;
     }
   },
   resetInput: function(){
     this.simpleInputVal = '';
     this.files=[];
-    Polymer.dom(this.root).querySelector('#fileinput').value = null;
+    Polymer.dom(this.root).querySelector('input[name="'+this.name+'"]').value = null;
     this.updateIsFiles();
   },
   setProgressBarValue: function(file,progress){

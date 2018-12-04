@@ -1,5 +1,5 @@
 <div class$="upload-file-wrapper col-xs-12 {{display}}">
-      <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required$={{required}}>
+
       <div id="simpleInput" class="input-group input-file-simple">
           <input type="text" class="form-control" on-click="clickFileInput" placeholder="Select file" value="{{simpleInputVal}}">
           <div class="file-meta">
@@ -24,6 +24,7 @@
           Drag & drop here
           <label on-click="clickFileInput" class="text-info">
             or browse
+            <input type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required$={{required}}>
           </label>
         </p>
         <p>to upload your files</p>

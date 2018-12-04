@@ -59,7 +59,15 @@
                   </div>
                   <div class="form-group">
                     <label>Upload your file (this label is not a part of the component)</label>
-                      <c-file-upload name="uxlib-file-input" multiple max-file-size=1000 accept="image/*, application/pdf" required display="inline"></c-file-upload>
+                      <c-file-upload name="upload1" multiple max-file-size=1000 accept="image/*, application/pdf" required display="inline"></c-file-upload>
+                  </div>
+                  <div class="form-group">
+                    <label>Another field</label>
+                    <input type="text" class="form-control" placeholder="Just a random field">
+                  </div>
+                  <div class="form-group">
+                    <label>Upload your file (this label is not a part of the component)</label>
+                      <c-file-upload name="upload2" multiple max-file-size=1000 accept="image/*, application/pdf" required display="default"></c-file-upload>
                   </div>
                   <div class="form-group">
                     <label>Another field</label>
@@ -85,28 +93,32 @@
   <script type="text/javascript">
 
     // ACCESS THE COMPONENT TO HANDLE PROGRESS BAR
-    var fileUploadComp = document.querySelector('c-file-upload');
+    var fileUploadComp = document.querySelector('c-file-upload[name="upload1"]');
+    var fileUploadComp2 = document.querySelector('c-file-upload[name="upload2"]');
     // ADD EVENT LISTENER TO HAVE UPLOAD FUNCTION WORKS IN YOUR APPLICATION SETTING
     document.addEventListener('uploadFiles',Upload, false);
 
     function Upload(event){
       for(var i=0; i<event.detail.files.length; i++){
-        uploadSingleFile(event.detail.files[i]);
+        console.log(event.detail);
+        uploadSingleFile(event.detail.files[i],event.detail.name);
       }
     }
 
-    function uploadSingleFile(file){
+    function uploadSingleFile(file,name){
       var ref = firebase.storage().ref();
-      const name = file.name;
+      const filename = file.name;
       const metadata = {contentType: file.type};
 
-      const task = ref.child(name).put(file,metadata);
+      const task = ref.child(filename).put(file,metadata);
 
       task
         .on('state_changed', function(snapshot){
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           // SET PROGRESS BAR VALUE HERE DEPENDS ON YOUR OWN APPLICATION SETTING
-          fileUploadComp.setProgressBarValue(file,progress);
+          if(name=='upload1'){fileUploadComp.setProgressBarValue(file,progress);}
+          else {fileUploadComp2.setProgressBarValue(file,progress);}
+
         });
       task.then(function(snapshot){
         var url = snapshot.ref.getDownloadURL();

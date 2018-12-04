@@ -1,6 +1,5 @@
 <div class$="upload-file-wrapper col-xs-12 {{display}}">
       <input id="fileinput" type="file" name={{name}} on-change="handleChange" multiple$={{multiple}} accept$="{{accept}}" required$={{required}}>
-
       <div id="simpleInput" class="input-group input-file-simple">
           <input type="text" class="form-control" on-click="clickFileInput" placeholder="Select file" value="{{simpleInputVal}}">
           <div class="file-meta">
@@ -21,9 +20,14 @@
           on-drop="dropFile"
           on-dragleave="removeHighlight" on-dragexit="removeHighlight">
         <p class="cloud-icon"><i class="fal fa-cloud-upload"></i></p>
-        <p class="lead">Drag & drop here <label class="text-info" for="fileinput">or browse</label></p>
+        <p class="lead">
+          Drag & drop here
+          <label on-click="clickFileInput" class="text-info">
+            or browse
+          </label>
+        </p>
         <p>to upload your files</p>
-        <label class="btn-mobile btn btn-default" for="fileinput">Select file</label>
+        <label on-click="clickFileInput" class="btn-mobile btn btn-default">Select file</label>
       </div>
       <div class="upload-info form-group">
         <p>

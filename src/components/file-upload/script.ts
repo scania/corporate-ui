@@ -220,7 +220,6 @@ Polymer({
   },
   setProgressBarValue: function(file,progress){
     var parentEl, pbVal;
-
     if(this.display=='inline'){
       parentEl = '#simpleInput';
       pbVal = ((this.totalProgress+progress)/this.totalFileUpload) * 100;
@@ -284,7 +283,7 @@ Polymer({
     this.isFiles = (this.files.length!=0) ? true : false;
   },
   uploadFiles: function(event){
-    var detail= {files: this.files},
+    var detail= {files: this.files, name: this.name},
         evt = new CustomEvent('uploadFiles', {detail: detail});
     document.dispatchEvent(evt);
     this.totalFileUpload = this.files.length*100;

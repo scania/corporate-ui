@@ -79,20 +79,28 @@
   <link rel="import" href="/vendors/frameworks/polymer/1.4.0/polymer.html"/>
   <dom-module id="c-user">
     <template>
-      <template is="dom-repeat" items="{{userProps}}">
-        <label class="w-100">
-          <span class="control-label">{{item.key}}</span>
-          <div class="input-group">
-            <input type="text" class="form-control" value$="{{item.value}}" disabled>
-            <div class="input-group-btn">
-              <button class="btn btn-danger" type="button" on-click="removeProp">x</button>
+      <form class="form">
+        <template is="dom-repeat" items="{{userProps}}">
+          <label class="w-100">
+            <span class="control-label">{{item.key}}</span>
+            <div class="input-group">
+              <input type="text" class="form-control" value$="{{item.value}}" disabled>
+              <div class="input-group-btn">
+                <button class="btn btn-danger" type="button" on-click="removeProp">x</button>
+              </div>
             </div>
-          </div>
-        </label>
-      </template>
+          </label>
+        </template>
+      </form>
     </template>
     <script>
-      addEventListener('WebComponentsReady', function() {
+      if ('import' in document.createElement('link')) {
+        cUserInit();
+      } else {
+        addEventListener('WebComponentsReady', cUserInit);
+      }
+
+      function cUserInit() {
         Polymer({
           is: 'c-user',
           properties: {
@@ -105,7 +113,7 @@
               type: Array
             }
           },
-          attached: function() {
+          ready: function() {
             var store = CorporateUi.store,
                 watch = store.watch(store.getState, 'user')
 
@@ -132,7 +140,7 @@
             })
           }
         });
-      });
+      }
     </script>
   </dom-module>
 
@@ -140,7 +148,7 @@
   <!-- Angular example code -->
 
   <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
-  <script type="text/ng-template" id="prop-form-angular">
+  <script type="text/ng-template" id="prop-form">
     <form class="form" ng-submit="setUser()">
       <label class="w-100">
         <span class="control-label">Prop name:</span>
@@ -161,7 +169,7 @@
     function dAddProps() {
       return {
         restrict: 'E',
-        templateUrl: 'prop-form-angular',
+        templateUrl: 'prop-form',
         controllerAs: 'uf',
         link: function(scope) {
           scope.pName = 'title'
@@ -234,7 +242,13 @@
   <!-- Store example code -->
 
   <script>
-    addEventListener('WebComponentsReady', function() {
+    if ('import' in document.createElement('link')) {
+      init();
+    } else {
+      addEventListener('WebComponentsReady', init);
+    }
+
+    function init() {
       window.initialState = JSON.parse(localStorage.getItem('user')) || {
         id: 'awinny',
         fname: 'Andreas',
@@ -244,12 +258,11 @@
       CorporateUi.store.register('user', reducer);
 
       document.addEventListener('click', dispatcher);
-
       /*document.addEventListener('input', dispatcher);
       [].slice.call(document.querySelectorAll('[data-action]')).map(function(node) {
         dispatcher(node);
       })*/
-    });
+    }
 
     function reducer(state, action) {
       var state = state || initialState || {},

@@ -14,7 +14,10 @@ var fs = require('fs'),
     webpack = require('webpack-stream'),
     dirTree = require('directory-tree'),
     express = require('express'),
-    package = require('./package.json')
+    package = require('./package.json'),
+
+    tree = dirTree('src/components', { normalizePath: true, extensions: /\.ts/ }),
+    tree2 = dirTree('demo/examples', { normalizePath: true });
 
 /* Available tasks */
 gulp.task(clean)
@@ -62,9 +65,7 @@ function less() {
     .pipe(gulp.dest('dist/css'))
 }
 function ts() {
-  var tree = dirTree('src/components'),
-      tree2 = dirTree('demo/examples', { normalizePath: true }),
-      _components = [];
+  var _components = [];
 
   tree.children.map(function(component) {
     var variations = (component.children || []).find(function(sub) { return sub.name === 'variations' })
@@ -96,17 +97,18 @@ function ts() {
     output: {
       filename: '[name].js'
     },
+    mode: 'production',
     resolve: {
-      extensions: ['.ts']
+      extensions: ['.ts', '.tsx', '.js', '.json']
     },
     module: {
-      loaders: [
+      rules: [
         { test: /\.ts$/, loader: 'ts-loader' }
       ]
     },
     externals: {
       // export components array to the view
-      'webpackVariables': `{
+      webpackVariables: `{
         'components': '${JSON.stringify(_components)}',
         'version': '${package.version}'
       }`
@@ -123,17 +125,18 @@ function ts() {
     output: {
       filename: '[name].js'
     },
+    mode: 'production',
     resolve: {
       extensions: ['.ts']
     },
     module: {
-      loaders: [
+      rules: [
         { test: /\.ts$/, loader: 'ts-loader' }
       ]
     },
     externals: {
-      // export components array to the view
-      'webpackVariables': `{
+      // export examples array to the view
+      webpackVariables: `{
         'examples': '${JSON.stringify(tree2.children)}'
       }`
     }
@@ -142,21 +145,62 @@ function ts() {
 
   return merge(stream1, stream2)
 }
-function cleanComponent() {
-  return del('tmp')
-}
 function lessComponent() {
   return gulp.src('src/components/**/*.less')
     .pipe(gulpLess())
     .pipe(gulp.dest('tmp/components'))
 }
 function tsComponent() {
-  var tsProject = typescript.createProject('tsconfig.json'),
-      tsResult = tsProject.src()
-        .pipe(tsProject())
+  var entries = {}
 
-  return tsResult.js
-    .pipe(gulp.dest('tmp'))
+  // We go throught all components manually to make it possible for webpack to 
+  // generate separate script files for our webcomponents
+  tree.children.map(function(component) {
+    if (component.children.find(component => component.name === 'script.ts')) {
+      Object.assign(entries, renderEntries(component, entries))
+    }
+  })
+
+  function renderEntries(item, obj) {
+    entries[item.path.replace('src/', '') + '/script'] = './' + item.path + '/script'
+
+    item.children.find(function(file) {
+      if (file.type === 'directory') {
+        if (file.name === 'variations') {
+          file.children.map(function(variation) {
+            entries[variation.path.replace('src/', '') + '/script'] = './' + variation.path + '/script'
+          })
+        } else {
+          Object.assign(obj, renderEntries(file, obj))
+        }
+      }
+    })
+    return obj
+  }
+
+  return webpack({
+    entry: entries,
+    output: {
+      path: __dirname + '/tmp/',
+      filename: '[name].js'
+    },
+    mode: 'production',
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.json']
+    },
+    module: {
+      rules: [
+        { test: /\.ts$/, loader: 'ts-loader', sideEffects: false }
+      ]
+    },
+    externals: {
+      // export components array to the view
+      webpackVariables: `{
+        'examples': '${JSON.stringify(tree2.children)}'
+      }`
+    }
+  })
+    .pipe(gulp.dest('tmp/'));
 }
 function jadeComponent() {
   return gulp.src('src/components/**/*.{jade,html,md}')
@@ -168,7 +212,7 @@ function fullComponent() {
       var index = path.dirname(file.path).lastIndexOf(path.sep) + 1,
           name = path.dirname(file.path).substring(index),
           isVariation = !isNaN( parseFloat(name) ),
-          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4;
+          isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4,
           prefix = 'c-';
 
       if (isVariation) {
@@ -196,6 +240,9 @@ function fullComponent() {
       }
     }))
     .pipe(gulp.dest('dist'))
+}
+function cleanComponent() {
+  return del('tmp')
 }
 function test(done) {
   /* We will have some tests here later on */

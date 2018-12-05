@@ -79,59 +79,59 @@
   <link rel="import" href="/vendors/frameworks/polymer/1.4.0/polymer.html"/>
   <dom-module id="c-user">
     <template>
-      <form class="form">
-        <template is="dom-repeat" items="{{userProps}}">
-          <label class="w-100">
-            <span class="control-label">{{item.key}}</span>
-            <div class="input-group">
-              <input type="text" class="form-control" value$="{{item.value}}" disabled>
-              <div class="input-group-btn">
-                <button class="btn btn-danger" on-click="removeProp">x</button>
-              </div>
+      <template is="dom-repeat" items="{{userProps}}">
+        <label class="w-100">
+          <span class="control-label">{{item.key}}</span>
+          <div class="input-group">
+            <input type="text" class="form-control" value$="{{item.value}}" disabled>
+            <div class="input-group-btn">
+              <button class="btn btn-danger" type="button" on-click="removeProp">x</button>
             </div>
-          </label>
-        </template>
-      </form>
+          </div>
+        </label>
+      </template>
     </template>
     <script>
-      Polymer({
-        is: 'c-user',
-        properties: {
-          fullbleed: true,
-          variation: 0,
-          user: {
-            type: Object
-          },
-          userProps: {
-            type: Array
-          }
-        },
-        ready: function() {
-          var store = CorporateUi.store,
-              watch = store.watch(store.getState, 'user')
-
-          store.subscribe(watch(this.setUser.bind(this)))
-        },
-        setUser: function(newData, oldData, objectPath) {
-          this.user = newData
-
-          // Used for demo purpose
-          this.userProps = Object.keys(this.user).map(function(key) {
-            return {
-              key: key,
-              value: newData[key]
+      addEventListener('WebComponentsReady', function() {
+        Polymer({
+          is: 'c-user',
+          properties: {
+            fullbleed: true,
+            variation: 0,
+            user: {
+              type: Object
+            },
+            userProps: {
+              type: Array
             }
-          })
+          },
+          attached: function() {
+            var store = CorporateUi.store,
+                watch = store.watch(store.getState, 'user')
 
-          // This is only for demo purposes
-          localStorage.setItem('user', JSON.stringify(this.user))
-        },
-        removeProp: function(event) {
-          CorporateUi.store.dispatch({
-            type: 'user/REMOVE_PROPERTY',
-            payload: event.model.item.key
-          })
-        }
+            store.subscribe(watch(this.setUser.bind(this)))
+          },
+          setUser: function(newData, oldData, objectPath) {
+            this.user = newData
+
+            // Used for demo purpose
+            this.userProps = Object.keys(this.user).map(function(key) {
+              return {
+                key: key,
+                value: newData[key]
+              }
+            })
+
+            // This is only for demo purposes
+            localStorage.setItem('user', JSON.stringify(this.user))
+          },
+          removeProp: function(event) {
+            CorporateUi.store.dispatch({
+              type: 'user/REMOVE_PROPERTY',
+              payload: event.model.item.key
+            })
+          }
+        });
       });
     </script>
   </dom-module>
@@ -140,7 +140,7 @@
   <!-- Angular example code -->
 
   <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
-  <script type="text/ng-template" id="prop-form">
+  <script type="text/ng-template" id="prop-form-angular">
     <form class="form" ng-submit="setUser()">
       <label class="w-100">
         <span class="control-label">Prop name:</span>
@@ -161,7 +161,7 @@
     function dAddProps() {
       return {
         restrict: 'E',
-        templateUrl: 'prop-form',
+        templateUrl: 'prop-form-angular',
         controllerAs: 'uf',
         link: function(scope) {
           scope.pName = 'title'
@@ -234,13 +234,22 @@
   <!-- Store example code -->
 
   <script>
-    var initialState = JSON.parse(localStorage.getItem('user')) || {
-      id: 'awinny',
-      fname: 'Andreas',
-      lname: 'Wikström'
-    };
+    addEventListener('WebComponentsReady', function() {
+      window.initialState = JSON.parse(localStorage.getItem('user')) || {
+        id: 'awinny',
+        fname: 'Andreas',
+        lname: 'Wikström'
+      };
 
-    CorporateUi.store.register('user', reducer);
+      CorporateUi.store.register('user', reducer);
+
+      document.addEventListener('click', dispatcher);
+
+      /*document.addEventListener('input', dispatcher);
+      [].slice.call(document.querySelectorAll('[data-action]')).map(function(node) {
+        dispatcher(node);
+      })*/
+    });
 
     function reducer(state, action) {
       var state = state || initialState || {},
@@ -269,12 +278,6 @@
     function resetStore() {
       localStorage.removeItem('user')
     }
-
-    document.addEventListener('click', dispatcher);
-    /*document.addEventListener('input', dispatcher);
-    [].slice.call(document.querySelectorAll('[data-action]')).map(function(node) {
-      dispatcher(node);
-    })*/
 
     function dispatcher(event) {
       var data = event.target.dataset;

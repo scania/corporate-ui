@@ -353,7 +353,7 @@ function sysMessages() {
 }
 
 function appendGa(){
-  if(window['params'].monitoring){
+  if(window['params'].monitoring!='false' && window['params'].monitoring!=null){
     var trackID = (window['params'].monitoring=='true') ? 'UA-125640614-1' : window['params'].monitoring;
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date().getTime();a=s.createElement(o),

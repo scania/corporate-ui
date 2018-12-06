@@ -12,12 +12,18 @@
     }
 
     .icon-fullscreen {
+      font-family: "Font Awesome 5 Pro";
       line-height: 19px;
       vertical-align: middle;
-      font-size:1.5em;
+      font-weight: 800;
+      font-size: 1.3em;
 
       &:before {
-        content: "\e72f";
+        content: "\f424";
+        padding: 4px 5px;
+        border-radius: 4px;
+        background-color: @interaction-primary-app;
+        color: @inverted-font-color;        
       }
     }
   }
@@ -29,17 +35,29 @@
   a {
 
     .icon-fullscreen:before {
-      content: "\e784";
+      content: "\f422";
+      padding: 4px 5px;
+      border-radius: 4px;
+      background-color: @color-primary-02;
+      color: @inverted-font-color;             
     }
   }
 }
 
+/* As the subnavigation has padding and main navigation has not, we need to compensate for that. */
+
 :host-context(c-main-navigation) {
-  margin-right:13px;
+
+  a {
+     padding: 16px 4px 0 15px;
+  }
 }
 
 :host-context(sub-navigation) {
-  margin-right:26px;
+
+  a {
+    padding: 12px 15px 0 15px;
+  }
 }
 
 // TODO fix the issue in app-mode in a more clean way

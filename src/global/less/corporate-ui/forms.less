@@ -59,18 +59,17 @@ textarea[placeholder] {
     }
   }
 }
-
 .form-control {
   color: @main-font-color;
   padding: 20px 40px;
   height: 63px;
   box-shadow: none;
-  border: 0;
+  // border: 0;
   font-size: 1.4rem;
   font-weight: normal;
   background-color: #fff;
   border: 1px solid #94999d;
-  border-radius: 3px;
+  border-radius: @input-border-radius;
 
   .panel-inverse &:focus {
     background: #f6f9fa;
@@ -104,30 +103,33 @@ textarea[placeholder] {
     > option {
       background: #f5f5f5;
       font-size: 1.4rem;
+      width: 100%;
     }
 
     &.input-sm {
       background-size: 27px;
-      border-radius: 3px;
+      border-radius: @input-border-radius;
       }
 
       &.input-lg {
        background-size: 50px;
-       border-radius: 3px;
+       border-radius: @input-border-radius;
       }
 
     .app & {
       background-size: 27px;
       padding-right: 28px;
+      border-radius: @input-border-radius;
+      padding: 12px 12px;
 
       &.input-sm {
       background-size: 20px;
-      border-radius: 3px;
+      border-radius: @input-border-radius;
       }
 
       &.input-lg {
       background-size: 50px;
-      border-radius: 3px;
+      border-radius: @input-border-radius;
       }
     }
   }
@@ -157,6 +159,7 @@ textarea[placeholder] {
     background-color: #f7f7f7;
     border: 1px solid transparent;
     border-radius: 3px;
+
   }
 
   &:focus {
@@ -167,7 +170,7 @@ textarea[placeholder] {
   }
 
   &.input-sm {
-    height: 42px;
+    height: @input-default-height;
     font-size: 1.4rem;
     border-radius: 3px;
   }
@@ -184,21 +187,22 @@ textarea[placeholder] {
 
   .app & {
     padding: 10px 12px;
-    height: 42px;
+    height: @input-default-height;
 
     &.input-sm {
-    height: 30px;
+    height: @input-sm-height;
     font-size: 1.2rem;
     border-radius: 3px;
     }
 
     &.input-lg {
-      height: 63px;
+      height: @input-lg-height;
       font-size: 2.1rem;
       border-radius: 3px;
     }
   }
 }
+
 
 .form-condensed {
   .form-group {
@@ -235,6 +239,14 @@ fieldset {
   border: 2px dotted silver;
   padding: 25px 25px 5px 5px;
   margin-bottom: 30px;
+
+  &[disabled] {
+    opacity: 0.8;
+    .form-control {
+      border: none;
+      background-color: #f7f7f7;
+    }
+  }
 }
 
 .radio-inline, .checkbox-inline {
@@ -319,11 +331,11 @@ span.help-block,
 }
 
 .has-success .help-block {
-    border-left: 4px solid @interaction-success;  
+    border-left: 4px solid @interaction-success;
 }
 
 .has-warning .help-block {
-    border-left: 4px solid @interaction-warning;  
+    border-left: 4px solid @interaction-warning;
 }
 
 .has-danger .help-block,

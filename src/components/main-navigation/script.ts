@@ -1,3 +1,5 @@
+// import { store } from '../../global/ts/store';
+
 Polymer({
   is: name,
   properties: {
@@ -27,17 +29,22 @@ Polymer({
       value: [],
       observer: 'setPriItemIndex'
     },
+    _primaryItems: {
+      type: Array
+    },
     secondaryItems: {
       type: Array,
       value: [],
       observer: 'setSecItemIndex'
+    },
+    _secondaryItems: {
+      type: Array
     }
   },
   listeners: {
     'navItem-active': 'setItemActive',
     'navItemDropdown-active': 'setMoreItemActive',
     'subNavigation-attached': 'setHeaderSize',
-    'fullscreen-toggled': 'setHeaderSize',
     'moreItem-toggled': 'setMoreItems',
     'navigation-close': 'navigationClose'
   },
@@ -58,6 +65,20 @@ Polymer({
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
     }).bind(this));
+
+    // reducer
+    /*function reducer(state = [], action:any = {}) {
+      switch (action.type) {
+        case 'navigation/ADD_NAV_ITEM':
+          return [...state, { ...action.payload, id: state.length+1 }];
+        case 'navigation/REMOVE_NAV_ITEM':
+          return state.slice(1);
+        default:
+          return state;
+      }
+    }
+
+    store.register('navigation', reducer);*/
   },
   attached: function() {
     this.style.display = 'block';
@@ -84,6 +105,7 @@ Polymer({
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
     }).bind(this));
+    document.addEventListener('fullscreen-toggled', this.fullscreenToggle.bind(this));
     nav.addEventListener('show.bs.collapse', function() {
       window.scrollTo(0, 0);
       document.body.classList.add('navigation-open');
@@ -287,6 +309,10 @@ Polymer({
     var hamburger = this.header.querySelector('.navbar-toggle');
     hamburger.Collapse.hide();
   },
+  fullscreenToggle: function() {
+    this.setHeaderSize();
+    this.setMoreItems();
+  },
   sticky: function() {
     var stickyNavTop = this.offsetTop,
         scrollTop = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY, // our current vertical position from the top
@@ -328,19 +354,27 @@ Polymer({
     this.itemsExist();
     return val;
   },
-  setPriItemIndex: function(val, oldVal) {
-    val = val || [];
-    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
-      this.primaryItems = this.setItemIndex(val);
+  setPriItemIndex: function(val=[]) {
+    if (!val.length) {
+      return;
     }
+    this._primaryItems = [];
+    this.async((function() {
+      this._primaryItems = this.setItemIndex(val);
+    }).bind(this));
     this.setMoreItems();
+    this.primaryItems = [];
   },
-  setSecItemIndex: function(val, oldVal) {
-    val = val || [];
-    if (JSON.stringify(val) != JSON.stringify(oldVal || [])) {
-      this.secondaryItems = this.setItemIndex(val);
+  setSecItemIndex: function(val=[]) {
+    if (!val.length) {
+      return;
     }
+    this._secondaryItems = [];
+    this.async((function() {
+      this._secondaryItems = this.setItemIndex(val);
+    }).bind(this));
     this.setMoreItems();
+    this.secondaryItems = [];
   },
   sort: function(a, b) {
     // Compare item a and b origional index to

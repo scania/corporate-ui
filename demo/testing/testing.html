@@ -24,10 +24,10 @@
   <link rel="stylesheet" href="/css/ux-library.css">
 </head>
 
-<body class="scania ux-lib" data-env="dev">
+<body class="scania ux-lib app" data-env="dev">
 
   <c-corporate-header site-name="Developers" site-url="/">
-    <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
+    <nav-item location="#" onclick="window.open('https://github.scania.com/pages/Scania/ux-library/')">UX Library</nav-item>
     <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
   </c-corporate-header>
 
@@ -39,6 +39,7 @@
         <nav-item location="/testing/testing.html" active="true">Testing
           <sub-navigation caption="Testing">
             <nav-item location="/examples/advanced-tables.html">Advanced Tables</nav-item>
+            <nav-item class="pull-right"><c-fullscreen></c-fullscreen></nav-item>
           </sub-navigation>
         </nav-item>
         <nav-item location="https://github.com/scania/corporate-ui/issues/new/choose">Report an Issue</nav-item>

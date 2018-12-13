@@ -5,7 +5,13 @@
   display: inline-block;
 
   // Used for when fullscreen is used in sub-nav, might be that this should be located there instead
+
+
+
   a {
+
+    padding-top: 6px;
+    padding-bottom: 0;
 
     &:hover:after {
       border: 0;
@@ -66,9 +72,19 @@
 // }
 
 :host-context(.app) {
-  ::content {
-    .c-fullscreen {
+
+  a {
+    padding-top: 6px;
+    padding-bottom: 0;
+
+    .icon-fullscreen {
+      font-size: 1em;
       margin-right:-7px;
+
+      &:before {
+        padding: 2px 5px;
+        border-radius: 3px;     
+      }
     }
   }
 }

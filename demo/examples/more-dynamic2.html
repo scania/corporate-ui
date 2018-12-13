@@ -24,15 +24,15 @@
     <!-- <c-main-navigation more-text="{{app.moreText}}" ng-attr-primary-items="{{app.primaryItems}}" ng-attr-secondary-items="{{app.secondaryItems}}"> -->
     <c-main-navigation variation="2" more-text="{{app.moreText}}" items-data>
       <primary-items>
-        <nav-item location="#/start" text="start"></nav-item>
+        <!-- <nav-item location="#/start" text="start"></nav-item> -->
       </primary-items>
 
       <secondary-items>
-        <nav-item>
+        <!-- <nav-item>
           <a href="#/profile">
             <span class="icon-user"></span>
           </a>
-        </nav-item>
+        </nav-item> -->
       </secondary-items>
     </c-main-navigation>
 
@@ -334,6 +334,15 @@
         },
         { template:'<c-fullscreen></c-fullscreen>', classes: 'pull-right hidden-sm hidden-xs' }
       ];
+
+      this._primaryItems = this.primaryItems;
+      this._secondaryItems = this.secondaryItems;
+
+      this.primaryItems = [];
+      this.secondaryItems = [];
+
+      this.primaryItems = this._primaryItems;
+      this.secondaryItems = this._secondaryItems;
 
       this.itemsFmp = itemsFmp;
 

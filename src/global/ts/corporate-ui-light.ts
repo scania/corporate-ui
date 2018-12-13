@@ -1,15 +1,12 @@
 
-import { importScript, importLink, generateMeta, urlInfo } from './helpers';
-import { setGlobals, polymerInject, applyBrand } from './core';
+import * as helpers from './helpers';
+import { addMetaAndHeaderSpecs, setGlobals, appendGa, done } from './core';
 
 window['CorporateUi'] = (function() {
 
   /*** Public proporties ***/
   var _public = {
-    importScript,
-    importLink,
-    generateMeta,
-    urlInfo
+    ...helpers
   };
 
   return _public;
@@ -17,6 +14,7 @@ window['CorporateUi'] = (function() {
 }());
 
 /*** This starts everything ***/
+addMetaAndHeaderSpecs();
 setGlobals();
-polymerInject();
-document.addEventListener("DOMContentLoaded", applyBrand);
+appendGa();
+done();

@@ -2,6 +2,7 @@
 const wv = require('webpackVariables');
 
 window['examples'] = JSON.parse(wv.examples);
+window['components'] = JSON.parse(wv.components);
 
 // Demo for porsche
 // if (typeof(jQuery) !== 'undefined') {

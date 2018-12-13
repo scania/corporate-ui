@@ -1,16 +1,14 @@
 
 import * as helpers from './helpers';
-import { store } from './store';
-import { init, baseComponents } from './core';
+import { store, storeInit } from './store';
+import { addMetaAndHeaderSpecs, setGlobals, done, baseComponents, appendGa } from './core';
 
 window['CorporateUi'] = (function() {
 
   /*** Public proporties ***/
   var _public = {
     ...helpers,
-    baseComponents,
-    store,
-    components: {}
+    store
   };
 
   return _public;
@@ -18,4 +16,9 @@ window['CorporateUi'] = (function() {
 }());
 
 /*** This starts everything ***/
-init();
+addMetaAndHeaderSpecs();
+setGlobals();
+storeInit();
+appendGa();
+baseComponents();
+done();

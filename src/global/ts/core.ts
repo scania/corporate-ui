@@ -1,40 +1,24 @@
 
 import * as helpers from './helpers';
-import { storeInit } from './store';
 
 const wv = require('webpackVariables');
 
 export {
-  init,
-  setGlobals,
-  polymerInject,
+  done,
+  addMetaAndHeaderSpecs,
   applyBrand,
-  baseComponents
+  setGlobals,
+  baseComponents,
+  appendGa
 }
 
-function init() {
-  addMetaAndHeaderSpecs();
-  setGlobals();
-  appendExternals();
-  storeInit();
-  appendGa();
-}
-
-function done(event) {
-  if (window['ready_event']) {
-    return;
-  }
-
-  window['ready_event'] = event ? 'load' : 'timeout'; // Timeout have no params sent so it will be undefined
-
-  clearTimeout(window['fallback']);
-
-  document.documentElement.className = document.documentElement.className.replace(/\bloading\b/, '');
+function done() {
+  document.documentElement.classList.remove('loading');
 
   if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", applyBrand);
-  } else {  // `DOMContentLoaded` already fired
-      applyBrand();
+    document.addEventListener("DOMContentLoaded", applyBrand);
+  } else {
+    applyBrand();
   }
 
   var newEvent = document.createEvent('Event');
@@ -47,7 +31,7 @@ function done(event) {
 function addMetaAndHeaderSpecs() {
   helpers.generateMeta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 
-  document.documentElement.className += ' loading';
+  document.documentElement.classList.add('loading');
   // We create this dynamically to make sure this style is always rendered before things in body
   var style = document.createElement('style');
   style.appendChild(document.createTextNode('\
@@ -158,15 +142,6 @@ function setGlobals() {
   CorporateUi.version = wv.version;
   document.documentElement.setAttribute('corporate-ui-version', wv.version);
 
-  if (CorporateUi.components) {
-    JSON.parse(wv.components).map(function(component) {
-      CorporateUi.components[component.name] = {
-        ...component,
-        path: window['version_root'] + '/components/' + component.name + '/' + component.name + '.html'
-      }
-    });
-  }
-
   /*store.subscribe(() =>
     console.log(store.getState())
   );*/
@@ -243,65 +218,35 @@ function polymerInject(cb=function(){}) {
   }*/
 }
 
-function baseComponents(references) {
-  // Adds support for Promise if non exist
-  if (typeof(window['Promise']) === 'undefined') {
-    return helpers.importScript(window['static_root'] + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
-      window['Promise'] = window['ES6Promise'];
-      baseComponents(references);
-    }, window['corporate_elm']);
+function renderPath(dependency) {
+  var path = window['cui_path'] + '../../../' + dependency,
+      dependencies = JSON.parse(wv.dependencies),
+      version = dependencies[dependency].split('#')[1] || dependencies[dependency];
+
+  version = version.replace('v', '');
+
+  if (wv.env == 'aws') {
+    path = 'https://static.scania.com/vendors/frameworks/' + dependency + '/' + version;
   }
 
-  if (!CorporateUi.components['main-content'].loaded) {
-    helpers.importLink(CorporateUi.components['main-content'].path, 'import', function(e) {
-      CorporateUi.components['main-content'].loaded = true;
-    }, window['corporate_elm']);
-  }
-
-  /*if (window['params'].preload === 'false') {
-    window['ready_event'] = undefined;
-  }*/
-
-  // Maybe we should change importLink to return a promise instead
-  var resources = (references || window['preLoadedComponents']).map(function(resource) {
-    if (!CorporateUi.components[resource]) {
-      console.error('The component "' + resource + '" does not seem to exist.');
-      return;
-    }
-
-    return new window['Promise'](function(resolve, reject) {
-      helpers.importLink(CorporateUi.components[resource].path, 'import', function(e) {
-        CorporateUi.components[resource].loaded = true;
-        resolve(e.target)
-      }, window['corporate_elm']);
-    });
-  });
-
-  window['fallback'] = setTimeout(done, 10000);
-
-  window['Promise'].all(resources).then(done);
+  return path;
 }
 
-function appendExternals() {
-  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation', 'cookie-message', 'fullscreen', 'main-hero' ];
-
+function baseComponents() {
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
-    helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.js', null, window['corporate_elm']);
+    return helpers.importScript(renderPath('webcomponents.js') + '/webcomponents-lite.js', baseComponents, window['corporate_elm']);
   }
 
-  // Adds Polymer and then extend it with some extra corporate specific handling
-  if (window['params'].polymer !== 'false') {
-    helpers.importLink(window['static_root'] + '/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', function() {
-      polymerInject(function() {
-        baseComponents(window['params'].preload === 'false' ? [] : undefined);
-      })
-    },
-    window['corporate_elm']);
-  }
+  helpers.importLink(renderPath('polymer') + '/polymer.html', 'import', function() {
+    polymerInject(function() {
+      helpers.importLink(window['cui_path'] + '../components/full.html', 'import', undefined, window['corporate_elm']);
+    });
+  },
+  window['corporate_elm']);
 
   if (window['params'].css !== 'custom') {
-    var bsnUrl = window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js';
+    var bsnUrl = renderPath('bootstrap.native') + '/dist/bootstrap-native.js';
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
@@ -310,8 +255,8 @@ function appendExternals() {
     } else {
       helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
-    helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
-    helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
+
+    helpers.importLink(window['cui_path'] + '../css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 }
 

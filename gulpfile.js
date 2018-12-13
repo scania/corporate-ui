@@ -17,7 +17,13 @@ var fs = require('fs'),
     package = require('./package.json'),
 
     tree = dirTree('src/components', { normalizePath: true, extensions: /\.ts/ }),
-    tree2 = dirTree('demo/examples', { normalizePath: true });
+    tree2 = dirTree('demo/examples', { normalizePath: true }),
+    commands = {};
+
+process.argv.slice(2).map(function(item) {
+  var command = item.split('=')
+  commands[command[0].slice(2)] = command[1]
+})
 
 /* Available tasks */
 gulp.task(clean)
@@ -31,9 +37,10 @@ gulp.task(lessComponent)
 gulp.task(tsComponent)
 gulp.task(jadeComponent)
 gulp.task(fullComponent)
+gulp.task(packComponents)
 gulp.task(cleanComponent)
 
-gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent', 'cleanComponent']))
+gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent', 'packComponents', 'cleanComponent']))
 gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test']))
 gulp.task('default', gulp.series(['build', 'watch', 'server']))
 
@@ -58,41 +65,20 @@ function less() {
     .pipe(sourcemaps.init())
     .pipe(gulpLess({
       globalVars: {
-        lib_path: 'node_modules'
+        rootPath: '"../../../"'
       }
     }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }
 function ts() {
-  var _components = [];
-
-  tree.children.map(function(component) {
-    var variations = (component.children || []).find(function(sub) { return sub.name === 'variations' })
-    if (component.extension) {
-      return;
-    }
-
-    if (variations) {
-      variations = variations.children;
-    } else {
-      // Temporary until all components have been rewritten to new structure
-      variations = component.children.filter(function(file) { return file.name.indexOf('variation-') > -1 })
-    }
-
-    _components.push({
-      name: component.name,
-      variations: variations.length,
-    })
-  });
-
-  // We pipe webpack instead of typescript to bundle our modules
-  var stream1 = webpack({
+  return webpack({
     watch: false,
     devtool: 'inline-source-map',
     entry: {
       'corporate-ui': './src/global/ts/corporate-ui',
-      'corporate-ui-light': './src/global/ts/corporate-ui-light'
+      'corporate-ui-light': './src/global/ts/corporate-ui-light',
+      'ux-library': './src/global/ts/ux-library'
     },
     output: {
       filename: '[name].js'
@@ -109,41 +95,15 @@ function ts() {
     externals: {
       // export components array to the view
       webpackVariables: `{
-        'components': '${JSON.stringify(_components)}',
-        'version': '${package.version}'
-      }`
-    }
-  })
-    .pipe(gulp.dest('dist/js'))
-
-  // We pipe webpack instead of typescript to bundle our modules
-  var stream2 = webpack({
-    watch: false,
-    entry: {
-      'ux-library': './src/global/ts/ux-library'
-    },
-    output: {
-      filename: '[name].js'
-    },
-    mode: 'production',
-    resolve: {
-      extensions: ['.ts']
-    },
-    module: {
-      rules: [
-        { test: /\.ts$/, loader: 'ts-loader' }
-      ]
-    },
-    externals: {
-      // export examples array to the view
-      webpackVariables: `{
+        'env': '${commands.env}',
+        'version': '${package.version}',
+        'dependencies': '${JSON.stringify(package.dependencies)}',
+        'components': '${JSON.stringify(tree.children)}',
         'examples': '${JSON.stringify(tree2.children)}'
       }`
     }
   })
     .pipe(gulp.dest('dist/js'))
-
-  return merge(stream1, stream2)
 }
 function lessComponent() {
   return gulp.src('src/components/**/*.less')
@@ -213,7 +173,8 @@ function fullComponent() {
           name = path.dirname(file.path).substring(index),
           isVariation = !isNaN( parseFloat(name) ),
           isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4,
-          prefix = 'c-';
+          prefix = 'c-',
+          rootPath = '../../../../polymer';
 
       if (isVariation) {
         var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
@@ -224,12 +185,16 @@ function fullComponent() {
       } else {
 
         if (isSubComponent) {
-          // console.log(name)
-          prefix = ''
+          prefix = '';
+          rootPath = '../../../../../polymer';
         }
       }
 
-      return { name: prefix + name || 'test' };
+      if (commands.env == 'aws') {
+        rootPath = 'https://static.scania.com/vendors/frameworks/polymer/1.4.0'
+      }
+
+      return { name: prefix + name || 'test', rootPath: rootPath };
     }))
     .pipe(jade({ pretty: true }))
     .pipe(rename(function(_path) {
@@ -240,6 +205,25 @@ function fullComponent() {
       }
     }))
     .pipe(gulp.dest('dist'))
+}
+function packComponents() {
+  var stream1 = gulp.src('tmp/components/components.jade')
+    .pipe(data(function() {
+      return { components: tree.children };
+    }))
+    .pipe(jade({ pretty: true }))
+    .pipe(rename({ basename: 'full' }))
+    .pipe(gulp.dest('dist/components'))
+
+  var stream2 = gulp.src('tmp/components/components.jade')
+    .pipe(data(function() {
+      return { components: [{name:'corporate-header'}, {name:'corporate-footer'}, {name:'main-navigation'}, {name:'main-content'}] };
+    }))
+    .pipe(jade({ pretty: true }))
+    .pipe(rename({ basename: 'base' }))
+    .pipe(gulp.dest('dist/components'))
+
+  return merge(stream1, stream2)
 }
 function cleanComponent() {
   return del('tmp')
@@ -261,19 +245,21 @@ function server() {
   })
 
   app.use(express.static(__dirname + '/demo'))
-  app.use('/', express.static(__dirname + '/dist'))
+  app.use('/dist', express.static(__dirname + '/dist'))
+  app.use('/', express.static(__dirname + '/node_modules'))
 
   app.use('/vendors/:type/:dependency/:version/*', function(req, res) {
-    var url = req.params[0].replace('bootstrap-org', 'bootstrap')
+    var url = req.params[0]
+
     dependency = req.params.dependency
     if (!req.params.version.match(/\d.\d.\d/g)) {
-      url = url.substring(url.indexOf("/") + 1)
+      url = url.substring(url.indexOf('/') + 1)
       dependency = req.params.version
     }
     res.sendFile(__dirname + '/node_modules/' + dependency + '/' + url)
   })
 
-  app.use('/resources/logotype/scania', express.static(__dirname + '/dist/images') )
+  // app.use('/resources/logotype/scania', express.static(__dirname + '/dist/images') )
 
   app.listen(app.get('port'), function() {
     console.log('UX-library is now running at http://%s:%d.', app.get('host'), app.get('port'))

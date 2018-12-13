@@ -1,4 +1,4 @@
-link(rel="import" href="/vendors/frameworks/polymer/1.4.0/polymer.html")
+link(rel="import" href="#{rootPath}/polymer.html")
 
 | <!--
 block comment
@@ -23,7 +23,7 @@ block root
     script
       | var name = '#{name}';
       block script
-    
+
     script.
       if(window['params'].monitoring){
         ga('send', {
@@ -35,5 +35,3 @@ block root
           nonInteraction: true
         });
       }
-      
-      

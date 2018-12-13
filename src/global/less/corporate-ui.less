@@ -1,30 +1,16 @@
-/*!
- * Corporate UI
- * Maintained and developed by IXCC : corporate-ui.slack.com
- */
 
- //Insert Compile Date
-.css_compiled_at:before {content: "`new Date()`";}
-
-// Import Logotype
-@import url("https://static.scania.com/resources/logotype/scania/logotype-stylesheet/scania-logotype.css");
-
-// Import Fonts
-@import url("https://static.scania.com/resources/fonts/scania-sans/scania-fonts.css");
-//@import url("/css/fonts.css");
+@import url("@{rootPath}bootstrap/dist/css/bootstrap.css");
 
 // Import Icons
-@import url("https://static.scania.com/resources/fonts/font-awesome/font-awesome.css");
-@import url("https://static.scania.com/resources/icons/scania/icons.css");
+@import url("@{rootPath}font-awesome/css/font-awesome.css");
 
 // We are running Font Awesome 3 and 5 during a change period
+// @import url("@{rootPath}@fortawesome/fontawesome-free/css/all.min.css");
+// @import url("@{rootPath}@fortawesome/fontawesome-free/css/v4-shims.min.css");
 @import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/all.min.css");
 @import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/v4-shims.min.css");
 
 // Added select2 dependency
-@import url("https://static.scania.com/vendors/components/jQuery/select2/3.5.2/css/select2.css");
+@import url("@{rootPath}select2/select2.css");
 
-//@import url("/css/icons.css");
-
-// Bootstrap related stuff
-@import url("core.css");
+@import 'corporate-ui-light';

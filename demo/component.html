@@ -9,7 +9,7 @@
 
     <title>DEV Corporate UI</title>
 
-    <script src="/js/corporate-ui.js"></script>
+    <script src="/dist/js/corporate-ui.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
@@ -23,7 +23,7 @@
     
     <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
     <link rel="import" href="/scania-doc/scania-doc.html">
-    <link rel="stylesheet" href="/css/ux-library.css">
+    <link rel="stylesheet" href="/dist/css/ux-library.css">
   </head>
   <body class="scania ux-lib" data-env="dev">
 
@@ -49,7 +49,7 @@
     <c-corporate-footer></c-corporate-footer>
 
     <script>
-      var html_root = '/components',
+      var html_root = '/dist/components',
       component = CorporateUi.getUrlParameter('c'),
       path = [html_root, component, component].join('/') + '.html';
 
@@ -62,6 +62,6 @@
       docElm.setAttribute('src', path);
     </script>
 
-    <script src="/js/ux-library.js"></script>
+    <script src="/dist/js/ux-library.js"></script>
   </body>
 </html>

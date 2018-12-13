@@ -14,30 +14,34 @@ Polymer({
   ready: function(){
     /* Sets Cookie using https://github.com/js-cookie/js-cookie/tree/v2.2.0 */
     var Cookie = this,
-      CookieMessage = Cookie.text || Cookie.querySelector('.c-cookie-message').innerText,
       CookieElm = document.querySelector("c-cookie-message"),
-      CookieClose = CookieElm.querySelector(".close-cookie"),
-      CookieClose2 = CookieElm.querySelector(".modal .close-cookie");
-      this._CookieCheckFunction(CookieClose, CookieClose2, CookieMessage, Cookie);
-  },
-  _CookieCheckFunction: function(CookieClose, CookieClose2, CookieMessage, Cookie) {
-    var oldCookie = Cookies.get(Cookie.name);
+      CookieData = Cookie.text ? Cookie.querySelector('.c-cookie-message').innerText : 'Ingen text',
+      CookieCloseButtons = CookieElm.querySelectorAll('.close-cookie');
 
-    // If cookie exist
-    if(CookieMessage != oldCookie) {
-      CookieClose.addEventListener('click', function(){
-        Cookie._CookieAddFunction(CookieMessage, Cookie);
-      });
-      CookieClose2.addEventListener('click', function(){
-        Cookie._CookieAddFunction(CookieMessage, Cookie);
-      });
-    } else if(this) {
-      Cookie.parentNode.removeChild(Cookie)
+    this._CookieCheckFunction(CookieCloseButtons, CookieData, Cookie);
+  },
+  _CookieCheckFunction: function(CookieCloseButtons, CookieData, Cookie) {
+    // If cookie data exist
+    if(Cookies.get(Cookie.name) != CookieData) {
+      Cookie. _CookieAddEvent(Cookie, CookieCloseButtons, CookieData);
+    } else if(Cookie) {
+      Cookie._CookieRemove(Cookie);
     }
   },
-  _CookieAddFunction: function(CookieMessage, Cookie) {
-    Cookies.set(Cookie.name , CookieMessage, {expires: Cookie.expire || 900, path: Cookie.path || '.scania.com'});
-    Cookie.parentNode.removeChild(Cookie)
+  _CookieAddFunction: function(CookieData, Cookie) {
+    // Sets the cookie => {Key, value, expire, path}
+    Cookies.set(Cookie.name, CookieData, {expires: Cookie.expire || 900, path: Cookie.path || '/'});
+    Cookie._CookieRemove(Cookie);
+  },
+  _CookieAddEvent(Cookie, CookieCloseButtons, CookieData) {
+    CookieCloseButtons.forEach(function(elem) {
+      elem.addEventListener("click", function() {
+        Cookie._CookieAddFunction(CookieData, Cookie);
+      });
+    });
+  },
+  _CookieRemove(Cookie) {
+    Cookie.parentNode.removeChild(Cookie);
   },
   _langSupport: function(lang, string){
     // Sets the cookie to specific language to modal

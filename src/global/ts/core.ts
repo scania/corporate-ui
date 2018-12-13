@@ -240,7 +240,7 @@ function baseComponents() {
 
   helpers.importLink(renderPath('polymer') + '/polymer.html', 'import', function() {
     polymerInject(function() {
-      helpers.importLink(window['cui_path'] + '../components/full.html', 'import', undefined, window['corporate_elm']);
+      helpers.importLink(window['cui_path'] + '../components/base.html', 'import', undefined, window['corporate_elm']);
     });
   },
   window['corporate_elm']);

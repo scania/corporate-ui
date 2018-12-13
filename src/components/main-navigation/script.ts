@@ -361,9 +361,9 @@ Polymer({
     this._primaryItems = [];
     this.async((function() {
       this._primaryItems = this.setItemIndex(val);
+      this.setMoreItems();
+      this.primaryItems = [];
     }).bind(this));
-    this.setMoreItems();
-    this.primaryItems = [];
   },
   setSecItemIndex: function(val=[]) {
     if (!val.length) {
@@ -372,9 +372,9 @@ Polymer({
     this._secondaryItems = [];
     this.async((function() {
       this._secondaryItems = this.setItemIndex(val);
+      this.setMoreItems();
+      this.secondaryItems = [];
     }).bind(this));
-    this.setMoreItems();
-    this.secondaryItems = [];
   },
   sort: function(a, b) {
     // Compare item a and b origional index to

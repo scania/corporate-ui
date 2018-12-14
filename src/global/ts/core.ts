@@ -1,5 +1,6 @@
 
 import * as helpers from './helpers';
+import { storeInit } from './store';
 
 const wv = require('webpackVariables');
 
@@ -15,6 +16,7 @@ function init() {
   addMetaAndHeaderSpecs();
   setGlobals();
   appendExternals();
+  storeInit();
   appendGa();
 }
 
@@ -133,6 +135,8 @@ function setGlobals() {
       port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '',
       localhost = helpers.urlInfo(scriptUrl).hostname === 'localhost' || helpers.urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
+  window['cui_path'] = helpers.urlInfo(scriptUrl).href.substring(0, helpers.urlInfo(scriptUrl).href.lastIndexOf('/')+1);
+
   window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
   window['static_root'] = (localhost ? 'http://' : 'https://') + helpers.urlInfo(scriptUrl).hostname + port;
   window['version_root'] = (window['static_root'] + helpers.urlInfo(scriptUrl).pathname).replace('/js/corporate-ui.js', '');
@@ -163,6 +167,10 @@ function setGlobals() {
     });
   }
 
+  /*store.subscribe(() =>
+    console.log(store.getState())
+  );*/
+
   /*window['Polymer'] = {
     dom: 'shadow'
   };*/
@@ -187,7 +195,7 @@ function polymerInject(cb=function(){}) {
 
         if (this.properties.variation !== 0) {
           /* Automatically wrapping component variation */
-          var variation = (this.attributes.variation ? this.attributes.variation.value : undefined) || (this.properties.variation ? this.properties.variation.value : 1);
+          var variation = (this.attributes.variation ? this.attributes.variation.value : undefined) || (this.properties.variation ? this.properties.variation.value || this.properties.variation : 1);
           var variation_container = document.createElement(this.localName + '-variation-' + variation);
 
           // Why does this happen sometimes?
@@ -199,7 +207,7 @@ function polymerInject(cb=function(){}) {
         }
 
         /* Automatically wrapping component inside a container */
-        var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value : true);
+        var fullbleed = (this.attributes.fullbleed ? this.attributes.fullbleed.specified : undefined) || (this.properties.fullbleed ? this.properties.fullbleed.value || this.properties.fullbleed : true);
 
         if(fullbleed !== true) {
           var container = document.createElement('div'),

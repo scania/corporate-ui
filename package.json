@@ -54,7 +54,7 @@
     "webpack-stream": "5.1.1"
   },
   "scripts": {
-    "prepare": "gulp build",
+    "prepublishOnly": "npm build",
     "build": "gulp build",
     "start": "gulp",
     "test": "gulp test"

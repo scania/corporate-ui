@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+    </noscript>
+
+    <title>DEV Corporate UI</title>
+
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/v4-shims.min.css">
+    <link rel="stylesheet" href="/Select2/select2.css">
+    <link rel="stylesheet" href="/dist/css/corporate-ui-light.css">
+    <link rel="stylesheet" href="/dist/css/ux-library.css">
+
+    <script src="/webcomponents.js/webcomponents.js"></script>
+    <script src="/bootstrap.native/dist/bootstrap-native.js"></script>
+    <script src="/dist/js/corporate-ui-light.js"></script>
+
+    <link rel="import" href="/dist/components/base.html">
+  </head>
+  <body class="scania ux-lib" data-env="dev">
+    <c-corporate-header site-name="Developers" site-url="/">
+      <nav-item location="https://github.scania.com/pages/Scania/ux-library/">UX Library</nav-item>
+      <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
+    </c-corporate-header>
+
+    <c-main-content>
+      <c-main-navigation>
+        <primary-items>
+          <nav-item location="/" class="active">Home</nav-item>
+        </primary-items>
+      </c-main-navigation>
+
+      <section class="light">
+        <div class="container">
+          <h1>Corporate UI Light</h1>
+          <p>Demo page for corpoerate ui light</p>
+        </div>
+      </section>
+    </c-main-content>
+
+    <c-corporate-footer></c-corporate-footer>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110069805-1');
+    </script>
+  </body>
+</html>

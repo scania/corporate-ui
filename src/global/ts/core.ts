@@ -234,7 +234,8 @@ function renderPath(dependency) {
 
 function baseComponents() {
   // Adds support for webcomponents if non exist
-  if (!('import' in document.createElement('link'))) {
+  if (!('import' in document.createElement('link') || window['webcomponents.js'])) {
+    window['webcomponents.js'] = true;
     return helpers.importScript(renderPath('webcomponents.js') + '/webcomponents-lite.js', baseComponents, window['corporate_elm']);
   }
 

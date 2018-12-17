@@ -2,6 +2,10 @@
 
 .input-group {
 
+  & .form-control[disabled]  {
+        border: 1px solid #e2e2e2;
+      }
+
 &&-lg {
   height: @input-lg-height;
   border-radius:@input-border-radius;
@@ -32,7 +36,7 @@
  &-addon {
    font-size: inherit;
    color: #555;
-   border: 1px solid #94999d;
+   border: 1px solid #e2e2e2;
    background-color: #fff;
    border-radius: 0px;
    padding-left: 15px;
@@ -63,23 +67,25 @@
       margin: 0px;
     }
    }
-   input[type=radio] + span:before {
+   input[type=radio] + span {
+    margin: 3px;
+   &:before {
     border: none;
+    margin-right: 0px;
    }
  }
+}
  &-btn {
 
       .btn-default {
-        border: 1px solid #94999d;
+        border: 1px solid #e2e2e2;
       }
      &:first-child > .btn {
       border-top-left-radius: @input-border-radius;
       border-bottom-left-radius: @input-border-radius;
       &.btn-default {
-      border-right: 0;
       &:hover {
-        border: 1px solid #94999d;
-        border-right: 0;
+        border: 1px solid #e2e2e2;
       }
     }
    }
@@ -88,7 +94,7 @@
       border-bottom-right-radius: @input-border-radius;
       &.btn-default {
       &:hover {
-        border: 1px solid #94999d;
+        border: 1px solid #e2e2e2;
       }
      }
    }

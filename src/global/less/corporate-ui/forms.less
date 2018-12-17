@@ -68,7 +68,7 @@ textarea[placeholder] {
   font-size: 1.4rem;
   font-weight: normal;
   background-color: #fff;
-  border: 1px solid #e2e2e2;
+  border: 1px solid @color-grey5;
   border-radius: @input-border-radius;
 
   .panel-inverse &:focus {
@@ -136,19 +136,19 @@ textarea[placeholder] {
 
   &[readonly] {
     cursor: default;
-    background: #ffffff;
+    background: #fff;
     border: 1px solid transparent;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid @color-grey5;
     &:focus {
       cursor: default;
-      background: #ffffff;
+      background: #fff;
       border: 1px solid transparent;
-      border-bottom: 1px solid #e2e2e2;
+      border-bottom: 1px solid @color-grey5;
       .panel-inverse & {
         cursor: default;
         border: 1px solid transparent;
-        border-bottom: 1px solid #e2e2e2;
-        background: #ffffff;
+        border-bottom: 1px solid @color-grey5;
+        background: #fff;
       }
     }
   }
@@ -156,7 +156,7 @@ textarea[placeholder] {
   &[disabled] {
     opacity: 0.8;
     color:#94999d;
-    background-color: #f7f7f7;
+    background-color: @input-bg-color-disabled;
     border: 1px solid transparent;
     border-radius: @input-border-radius;
 
@@ -166,7 +166,7 @@ textarea[placeholder] {
     -webkit-box-shadow: none;
     box-shadow: none;
     background: #f6f9fa;
-    border: 1px solid #4a8ba4;
+    border: 1px solid @interaction-info;
   }
 
   &.input-sm {
@@ -290,7 +290,7 @@ select {
     position: relative;
     z-index: 0;
     top: 6px;
-    background-color: #ffffff;
+    background-color: #fff;
     color: @main-font-color;
     border-radius: 0;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Lager_12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="841.889px" height="595.281px" viewBox="0 0 841.889 595.281" enable-background="new 0 0 841.889 595.281"
+	 xml:space="preserve">
+<desc xmlns:myfoo="http://example.org/myfoo">
+      <myfoo:title>This is a financial report</myfoo:title>
+      <myfoo:descr>The global description uses markup from the
+        <myfoo:emph>myfoo</myfoo:emph> namespace.</myfoo:descr>
+      <myfoo:scene><myfoo:what>widget $growth</myfoo:what>
+      <myfoo:contains>$three $graph-bar</myfoo:contains>
+        <myfoo:when>1998 $through 2000</myfoo:when> </myfoo:scene>
+</desc>	 
+<g>
+	<path fill="#041E42" d="M571.828,105.92c-83.214-83.211-218.604-83.211-301.815,0c-83.213,83.216-83.213,218.616,0.121,301.952
+		l150.797,144.637l150.9-144.758C655.045,324.537,655.045,189.134,571.828,105.92z M560.44,396.126L420.928,529.958L281.522,396.246
+		c-76.868-76.871-76.868-201.947,0-278.815C319.951,79,370.437,59.784,420.919,59.784c50.481,0,100.965,19.216,139.4,57.647
+		C637.19,194.298,637.19,319.375,560.44,396.126z"/>
+	<path fill="#041E42" d="M420.928,173.224c-46.104,0-83.61,37.507-83.61,83.611c0,46.096,37.508,83.596,83.61,83.596
+		c46.095,0,83.596-37.5,83.596-83.596C504.524,210.731,467.023,173.224,420.928,173.224z M420.928,324.154
+		c-37.128,0-67.334-30.199-67.334-67.318c0-37.128,30.206-67.334,67.334-67.334c37.119,0,67.317,30.206,67.317,67.334
+		C488.245,293.955,458.047,324.154,420.928,324.154z"/>
+</g>
+</svg>

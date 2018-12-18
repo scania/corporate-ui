@@ -4,20 +4,12 @@
  * Maintained and developed by IXCC : corporate-ui.slack.com
  */
 
- //Insert Compile Date
-.css_compiled_at:before {content: "`new Date()`";}
+// Insert Compile Date
+@compiled_at: `new Date()`;
+.compiled_at {content: "@{compiled_at}";}
 
-// Import Logotype
-@import url("https://static.scania.com/resources/logotype/scania/logotype-stylesheet/scania-logotype.css");
+// This should be removed from here and we should load individual brands from the script
+@import url('brands.css');
 
-// Import Fonts
-@import url("https://static.scania.com/resources/fonts/scania-sans/scania-fonts.css");
-@import url("https://static.scania.com/resources/fonts/corporate-icons/style.css");
-//@import url("/css/fonts.css");
-
-// Import Icons
-@import url("https://static.scania.com/resources/icons/scania/icons.css");
-//@import url("/css/icons.css");
-
-// Bootstrap related stuff
-@import url("core.css");
+// Corporate core
+@import 'corporate-ui/index';

@@ -1,16 +1,25 @@
 
+/*!
+ * Corporate UI
+ * Maintained and developed by IXCC : corporate-ui.slack.com
+ */
+
+// Insert Compile Date
+@compiled_at: `new Date()`;
+.compiled_at {content: "@{compiled_at}";}
+
 @import url("@{rootPath}bootstrap/dist/css/bootstrap.css");
 
 // Import Icons
 @import url("@{rootPath}font-awesome/css/font-awesome.css");
 
 // We are running Font Awesome 3 and 5 during a change period
-// @import url("@{rootPath}@fortawesome/fontawesome-free/css/all.min.css");
-// @import url("@{rootPath}@fortawesome/fontawesome-free/css/v4-shims.min.css");
 @import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/all.min.css");
-@import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/v4-shims.min.css");
+// @import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/v4-shims.min.css");
+// @import url("@{rootPath}@fortawesome/fontawesome-free/css/all.min.css");
+@import url("@{rootPath}@fortawesome/fontawesome-free/css/v4-shims.min.css");
 
 // Added select2 dependency
 @import url("@{rootPath}select2/select2.css");
 
-@import 'corporate-ui-light';
+@import url('corporate-ui-light.css');

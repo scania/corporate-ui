@@ -81,9 +81,9 @@ function applyBrand() {
 
   document.body.className = bodyClasses;
 
-  helpers.importLink('https://static.scania.com/resources/brands/css/' + brand + '.css', 'stylesheet', null, window['corporate_elm']);
+  // helpers.importLink(window['cui_path'] + '../css/brands/' + brand + '.css', 'stylesheet', null, window['corporate_elm']);
 
-  var favicon_root = "https://static.scania.com/resources/logotype/" + brand + "/favicon/";
+  var favicon_root = window['cui_path'] + '../brands/' + brand + "/favicon/";
 
   helpers.importLink(favicon_root + 'favicon.ico', 'shortcut icon', null, window['corporate_elm'].parentNode);
 

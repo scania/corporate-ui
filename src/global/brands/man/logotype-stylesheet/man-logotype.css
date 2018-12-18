@@ -1,0 +1,46 @@
+
+/* 
+The man Logotype Stylesheet
+The man symbol and wordmark should be used in accordance to the guidelines specified in the Brand manual. 
+We do not want our logotype to be downloaded to local servers as updates to the logotype is made to these 
+centraly stored versions.
+
+How to use
+Include this stylesheet in you application by copying this line of code to your HEAD section:
+
+<link rel="stylesheet" type="text/css" href="https://static.man.com/resources/logotype/man/logotype-stylesheet/man-logotype.css">
+
+Use these HTML tags to show the symbol and wordmark.
+<span class="man wordmark"></span>
+<span class="man symbol"></span>
+<span class="man symbol neg"></span>  For a white wordmark
+<span class="man logotype-vertical-lockup"></span>
+*/
+
+// .man .symbol, .man.symbol {
+//     display: inline-block;
+//     vertical-align: middle;
+//     background-image: url('https://static.man.com/resources/logotype/man/man-symbol.png');
+//     background-image: url('https://static.man.com/resources/logotype/man/man-symbol.svg'); 
+//     background-repeat: no-repeat;
+//     background-size: 48px 46px;
+//     width: 48px;
+//     height: 46px;   
+//     float: left;
+//     margin-bottom: 15px 
+// }
+
+.man .wordmark, .man.wordmark {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url('https://static.scania.com/resources/logotype/man/fallback/man_logo.png');
+    background-repeat: no-repeat;
+    background-size: 103px 57px;
+    width: 103px;
+    height: 57px;
+}
+
+.man .wordmark.neg, .man.wordmark.neg {
+    // background-image: url('https://static.man.com/resources/logotype/man/man-wordmark-white.png');
+}
+

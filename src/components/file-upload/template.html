@@ -30,17 +30,6 @@
         <p>to upload your files</p>
         <label on-click="clickFileInput" class="btn-mobile btn btn-default">Select file</label>
       </div>
-      <div class="upload-info form-group">
-        <p>
-        <template is="dom-if" if="{{maxFileSize}}">
-          {{fileLimitInfo}}
-        </template>
-        <br>
-        <template is="dom-if" if="{{accept}}">
-          {{fileAcceptInfo}}
-        </template>
-        </p>
-      </div>
       <div id="fileerror" class="has-warning"></div>
 
       <p class="files-to-upload" hidden$={{!isFiles}}>File(s) to upload</p>

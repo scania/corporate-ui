@@ -26,12 +26,6 @@ Polymer({
       type: Array,
       value: function(){return [];}
     },
-    fileLimitInfo: {
-      type: String
-    },
-    fileAcceptInfo: {
-      type: String
-    },
     fileId: {
       type:Number,
       value: 0
@@ -70,14 +64,6 @@ Polymer({
     },
     uploadBtnText: {
       type: String
-    }
-  },
-  ready: function(){
-    if(this.maxFileSize){
-      this.fileLimitInfo = 'Maximum file size ' + this.maxFileSize + 'KB';
-    }
-    if(this.accept){
-      this.fileAcceptInfo = 'Only '+this.accept+' files are allowed';
     }
   },
   addFiles: function(files){

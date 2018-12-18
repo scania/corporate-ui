@@ -8,6 +8,10 @@
 @compiled_at: `new Date()`;
 .compiled_at {content: "@{compiled_at}";}
 
+// This is added here until we decide how we should handle fontawesome pro version.
+// Having it here makes it so that we dont need to manually add it in every html file
+@import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/all.min.css");
+
 // This should be removed from here and we should load individual brands from the script
 @import url('brands.css');
 

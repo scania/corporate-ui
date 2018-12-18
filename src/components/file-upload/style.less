@@ -1,15 +1,48 @@
 :host{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: -6px;
   .upload-file-wrapper{
     position: relative;
     overflow: hidden;
     display: inline-block;
     padding:0px;
-    margin-bottom: 15px;
-    box-shadow: 0px 4px 24px rgba(0,0,0,0.08);
+    .input-file-simple{
+      display: none;
+    }
     .form-group{
       margin: 0 20px;
     }
+    .files-collection{
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #9c9c9c;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #797979;
+    }
+    ::-webkit-scrollbar-track {
+      background: #d8d8d8;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background: #d8d8d8;
+    }
+    .files-to-upload{
+      font-weight: bold;
+      margin: 15px 0 0 0;
+    }
+    .upload-info{
+      margin-top: 20px;
+    }
   }
+
   #dropArea{
     max-width: 300px;
     background-color: #fff;
@@ -33,16 +66,11 @@
       color: inherit;
       font-size: 16px;
     }
-    .label-big{
-      font-size: 24px;
-      margin-bottom:5px;
-    }
     .cloud-icon{
       font-size: 4rem;
       margin-bottom:15px;
     }
-    .label-browse{
-      color: #4a8ba4;
+    .lead .text-info{
       font-weight: normal;
       font-size: 1em;
       cursor: pointer;
@@ -50,7 +78,10 @@
     //endof #dropArea
   }
   input[type="file"]{
-    display: none;
+    display: block;
+    position: absolute;
+    z-index: -1000;
+    opacity: 0;
   }
   label.btn{color: #033a6a;}
   .file-list{
@@ -58,89 +89,128 @@
     padding:8px 0;
     display: flex;
     flex-direction: row;
+    flex-flow: row wrap;
+
+    .pb-wrapper{
+      flex: 1 100%;
+      margin-top: 10px;
+      margin-bottom: -28px;
+    }
 
     .file-icon.done{
       opacity: 0.4;
     }
+    //endof .file-list
+  }
+  .pb-wrapper{
+    opacity: 1;
+    transition: all 0.8s 1s;
+  }
+  .action-btn-wrapper{
+    padding: 15px 15px 15px 0;
+    box-shadow: 0px -4px 16px rgba(0,0,0,0.08);
+  }
 
-    .file-meta{
-      flex-grow: 2;
-      padding-left: 20px;
-      position: relative;
-      p{
-        margin: 0;
-        padding:0;
-        text-align: left;
+  .upload-file-wrapper.inline{
+    #dropArea, .upload-info, .files-collection, .fileerror, .files-to-upload, .action-btn-wrapper{
+      display: none;
+    }
+    .pb-wrapper{
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      z-index: 2;
+      height: 6px;
+      overflow: hidden;
+    }
+    .input-file-simple{
+      display: table;
+      input[type="text"]{
+        cursor: pointer;
+        color : transparent;
+        text-shadow : 0 0 0 #53565a;
       }
-      .file-size{
-        color: #94999d;
+      input[disabled="disabled"]{
+        cursor: not-allowed;
       }
-      .file-status-icon{
+      .input-group-btn{
+        z-index: 1;
+      }
+      i{
         position: absolute;
-        right: 10px;
-        top:5px;
-        font-size: 1.3em
-      }
-      .fa-times{
+        top: 14px;
+        right: 15px;
+        z-index: 2;
         cursor: pointer;
       }
-      .fa-check{
+    }
+  // endof upload file wrapper inline
+  }
+
+  .file-meta{
+    flex-grow: 2;
+    padding-left: 20px;
+    position: relative;
+    p{
+      margin: 0;
+      padding:0;
+      text-align: left;
+    }
+    .file-size{
+      color: #94999d;
+    }
+    .file-status-icon{
+      position: absolute;
+      right: 10px;
+      top:15px;
+      font-size: 1.3em
+    }
+    .fa-times{
+      cursor: pointer;
+    }
+    .fa-check{
+      display: none;
+    }
+    .fa-spinner{
+      color: #033a6a;
+      display: none;
+    }
+    &.uploading{
+      .fa-times{
         display: none;
       }
       .fa-spinner{
-        color: #033a6a;
-        display: none;
-      }
-      &.uploading{
-        .fa-times{
-          display: none;
-        }
-        .fa-spinner{
-          display: block;
-          animation: rotate 1s infinite forwards;
-        }
-      }
-      &.done{
-        .fa-spinner{
-          display: none;
-        }
-        .fa-times{
-          display: none;
-        }
-        .fa-check{
-          color: #44a878;
-          display: block;
-        }
-        p{
-          opacity: 0.4;
-        }
+        display: block;
+        animation: rotate 1s infinite forwards;
       }
     }
-    //endof .file-list
   }
-  .files-to-upload{
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  #fileerror{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    div{color: #cc1040;}
-    p{margin-bottom: 5px; text-align: left;}
-  }
-  .action-btn-wrapper{
-    border-right-width: 1px;
-    border-style: solid;
-    border-color: #f0f0f0;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    background-color: #ffffff;
-    background-size: cover;
-    box-shadow: 0px -4px 16px rgba(0,0,0,0.08);
-    .buttons{
-      margin: 25px 20px;
+  .done{
+    .file-meta .fa-spinner{
+      display: none;
+    }
+    .file-meta .fa-times{
+      display: none;
+    }
+    .file-meta .fa-check{
+      color: #44a878;
+      display: block;
+    }
+    .file-icon, p{
+      opacity: 0.4;
+    }
+    .pb-wrapper{
+      opacity:0;
+      margin-bottom: -42px;
     }
   }
+  .upload-file-wrapper.inline .done{
+    .pb-wrapper{
+      margin-bottom: 0px;
+    }
+  }
+// endof :host
 }
 
 @keyframes rotate {

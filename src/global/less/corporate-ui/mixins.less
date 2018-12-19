@@ -86,6 +86,7 @@
     border: thin solid @radio-check-11;
     border-radius: 30px;
     vertical-align: text-bottom;
+    margin-right: 10px;
 
     .app & {
       width: 18px;
@@ -183,7 +184,7 @@
       -ms-transform: scale(0.9);
       -moz-transform-origin: 0 0;
        margin: 0px;
-      
+      margin-right: 10px;
       zoom: 0.8;
       .app & {
         width: 20px;
@@ -194,7 +195,6 @@
 
   &:hover + span:before {
     background-color: @radio-check-2-checkbox;
-    margin: 0px;
   }
 
   &:checked + span:before {
@@ -205,13 +205,11 @@
     background-repeat: no-repeat;
     border-color: @radio-check-4-checkbox;
     background-color: @radio-check-4-checkbox;
-    margin: 0px;
 
     .app & {
       font-size: 11px;
       line-height: 12px;
       background-size: 15px;
-      margin: 0px;
     }
   }
 

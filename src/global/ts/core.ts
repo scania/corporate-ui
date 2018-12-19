@@ -83,7 +83,10 @@ function applyBrand() {
 
   // helpers.importLink(window['cui_path'] + '../css/brands/' + brand + '.css', 'stylesheet', null, window['corporate_elm']);
 
-  var favicon_root = window['cui_path'] + '../brands/' + brand + "/favicon/";
+  var favicon_root = 'https://static.scania.com/resources/logotype/' + brand + '/favicon/';
+  if (window['cui_path']) {
+    favicon_root = window['cui_path'] + '../brands/' + brand + '/favicon/';
+  }
 
   helpers.importLink(favicon_root + 'favicon.ico', 'shortcut icon', null, window['corporate_elm'].parentNode);
 
@@ -112,25 +115,27 @@ function applyBrand() {
 }
 
 function setGlobals() {
+  window['params'] = {};
   window['AppEventStore'] = new helpers.EventStore();
   window['corporate_elm'] = document.querySelector('[src*="corporate-ui"]');
 
-  var scriptUrl = window['corporate_elm'].src,
-      port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '',
-      localhost = helpers.urlInfo(scriptUrl).hostname === 'localhost' || helpers.urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
+  // Check if a element with exists with src containing "corporate-ui".
+  // If a bundler is used this node wont exist
+  if (window['corporate_elm']) {
+    var scriptUrl = window['corporate_elm'].src,
+        port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '',
+        localhost = helpers.urlInfo(scriptUrl).hostname === 'localhost' || helpers.urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
 
-  window['cui_path'] = helpers.urlInfo(scriptUrl).href.substring(0, helpers.urlInfo(scriptUrl).href.lastIndexOf('/')+1);
+    window['cui_path'] = helpers.urlInfo(scriptUrl).href.substring(0, helpers.urlInfo(scriptUrl).href.lastIndexOf('/')+1);
 
-  window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
-  window['static_root'] = (localhost ? 'http://' : 'https://') + helpers.urlInfo(scriptUrl).hostname + port;
-  window['version_root'] = (window['static_root'] + helpers.urlInfo(scriptUrl).pathname).replace('/js/corporate-ui.js', '');
-  window['protocol'] = helpers.urlInfo(scriptUrl).protocol;
-  window['environment'] = helpers.urlInfo(scriptUrl).pathname.split('/')[1];
-  window['params'] = {};
+    window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
+    window['protocol'] = helpers.urlInfo(scriptUrl).protocol;
+    window['environment'] = helpers.urlInfo(scriptUrl).pathname.split('/')[1];
 
-  var params = decodeURI(window['corporate_ui_params']).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"');
-  if (params !== '') {
-    window['params'] = JSON.parse('{"' + params + '"}');
+    var params = decodeURI(window['corporate_ui_params']).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"');
+    if (params !== '') {
+      window['params'] = JSON.parse('{"' + params + '"}');
+    }
   }
 
   window['less'] = { isFileProtocol: true }; // Is needed for making synchronous imports in less

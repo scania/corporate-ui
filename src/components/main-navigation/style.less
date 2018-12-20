@@ -231,8 +231,6 @@
       nav-item {
 
         a {
-          padding-top: 25px;
-          padding-bottom: 25px;
 
           &:focus {
             color: inherit;
@@ -327,10 +325,13 @@
   }
 
   :host-context(.navigation-open) {
+    height: 100%;
+    flex-shrink: 0;
 
     > .navbar-default {
       display: block;
-      overflow: scroll;
+      overflow: auto;
+      height: inherit;
     }
   }
 }

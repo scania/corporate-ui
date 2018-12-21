@@ -185,6 +185,9 @@ function tsComponent() {
       filename: '[name].js'
     },
     mode: 'production',
+    optimization: {
+      minimize: false
+    },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json']
     },

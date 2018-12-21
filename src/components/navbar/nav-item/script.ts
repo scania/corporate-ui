@@ -118,6 +118,12 @@ Polymer({
     this.toggleClass('expanded', this.hasClass(this, 'active'));
 
     this.addEventListener('click', function() {
+      if(window.innerWidth < 992) {
+        var _event = document.createEvent('Event');
+        _event.initEvent('navigation-close', true, true);
+        this.dispatchEvent(_event);
+      }
+
       if (this.dropdown) {
         if (!this.classList.contains('more') && !this.active) {
           this.reSetActive();
@@ -126,12 +132,6 @@ Polymer({
       }
 
       this.active = true;
-
-      if(window.innerWidth < 992) {
-        var _event = document.createEvent('Event');
-        _event.initEvent('navigation-close', true, true);
-        this.dispatchEvent(_event);
-      }
     });
   },
   setProps: function(props) {

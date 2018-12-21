@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html">
+  </noscript>
+
+  <title>DEV Corporate UI</title>
+
+  <!-- <script src="/js/corporate-ui.js?preload=false"></script> -->
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+
+  <style>
+    .demo label button { color: #fff; }
+  </style>
+</head>
+<body class="scania app demo" ng-app="CorporateUi">
+
+  <c-corporate-header site-name="store" ite-url="/">
+    <nav-item location="/">Global</nav-item>
+  </c-corporate-header>
+
+  <c-main-content>
+    <c-main-navigation>
+      <primary-items>
+        <nav-item location="#">home</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section class="light">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3">
+            <h3>Polymer component</h3>
+            <c-user></c-user>
+          </div>
+
+          <div class="col-xs-3">
+            <h3>Angular component</h3>
+            <d-add-props></d-add-props>
+          </div>
+
+          <div class="col-xs-3">
+            <h3>React component</h3>
+            <div class="react"></div>
+          </div>
+
+          <div class="col-xs-3">
+            <h3>Extra actions</h3>
+            <button class="btn btn-sm" onclick="resetStore()">reset store</button>
+            <button class="btn btn-sm btn-danger" data-action="user/REMOVE_PROPERTY" data-payload="id">remove id</button>
+            <!-- <input data-action="user/UPDATE_PROPERTY" data-payload="{ id: this.value }"> -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+
+
+  <!-- Polymer example component -->
+
+  <link rel="import" href="/vendors/frameworks/polymer/1.4.0/polymer.html"/>
+  <dom-module id="c-user">
+    <template>
+      <form class="form">
+        <template is="dom-repeat" items="{{userProps}}">
+          <label class="w-100">
+            <span class="control-label">{{item.key}}</span>
+            <div class="input-group">
+              <input type="text" class="form-control" value$="{{item.value}}" disabled>
+              <div class="input-group-btn">
+                <button class="btn btn-danger" type="button" on-click="removeProp">x</button>
+              </div>
+            </div>
+          </label>
+        </template>
+      </form>
+    </template>
+    <script>
+      if ('import' in document.createElement('link')) {
+        cUserInit();
+      } else {
+        addEventListener('WebComponentsReady', cUserInit);
+      }
+
+      function cUserInit() {
+        Polymer({
+          is: 'c-user',
+          properties: {
+            fullbleed: true,
+            variation: 0,
+            user: {
+              type: Object
+            },
+            userProps: {
+              type: Array
+            }
+          },
+          ready: function() {
+            var store = CorporateUi.store,
+                watch = store.watch(store.getState, 'user')
+
+            store.subscribe(watch(this.setUser.bind(this)))
+          },
+          setUser: function(newData, oldData, objectPath) {
+            this.user = newData
+
+            // Used for demo purpose
+            this.userProps = Object.keys(this.user).map(function(key) {
+              return {
+                key: key,
+                value: newData[key]
+              }
+            })
+
+            // This is only for demo purposes
+            localStorage.setItem('user', JSON.stringify(this.user))
+          },
+          removeProp: function(event) {
+            CorporateUi.store.dispatch({
+              type: 'user/REMOVE_PROPERTY',
+              payload: event.model.item.key
+            })
+          }
+        });
+      }
+    </script>
+  </dom-module>
+
+
+  <!-- Angular example code -->
+
+  <script src="/vendors/frameworks/angular/1.5.5/angular.min.js"></script>
+  <script type="text/ng-template" id="prop-form">
+    <form class="form" ng-submit="setUser()">
+      <label class="w-100">
+        <span class="control-label">Prop name:</span>
+        <input type="text" class="form-control" ng-model="pName">
+      </label>
+      <label class="w-100">
+        <span class="control-label">Prop value:</span>
+        <input type="text" class="form-control" ng-model="pValue">
+      </label>
+      <button type="submit" class="btn btn-sm pull-right">add prop</button>
+    </form>
+  </script>
+  <script>
+    angular
+      .module('CorporateUi', [])
+      .directive('dAddProps', dAddProps);
+
+    function dAddProps() {
+      return {
+        restrict: 'E',
+        templateUrl: 'prop-form',
+        controllerAs: 'uf',
+        link: function(scope) {
+          scope.pName = 'title'
+          scope.pValue = 'Legend'
+          scope.setUser = function() {
+            var obj = {}
+            obj[scope.pName] = scope.pValue
+            CorporateUi.store.dispatch({
+              type: 'user/ADD_PROPERTY',
+              payload: obj
+            })
+          }
+        }
+      }
+    }
+  </script>
+
+
+  <!-- React component code -->
+
+  <script src="/vendors/frameworks/react/15.4.2/dist/react.js"></script>
+  <script src="/vendors/frameworks/react/react-dom/15.4.2/dist/react-dom.js"></script>
+  <script>
+    var Form = React.createClass({
+      getInitialState: function() {
+        return {
+          props: {}
+        }
+      },
+      componentDidMount: function() {
+        var store = CorporateUi.store,
+            watch = store.watch(store.getState, 'user')
+
+        store.subscribe(watch(this.setUser))
+      },
+      render: function() {
+        var e = React.createElement,
+            self = this
+
+        return e(
+          'form', { className: 'form' }, null, Object.keys(this.state.props).map(function(key) {
+            return e(
+              'label', { className: 'w-100', key: key }, null, e(
+                'span', { className: 'control-label' }, null, key
+              ), e(
+                'input', { className: 'form-control', name: key, value: self.state.props[key], onChange: self.updateProp }, null
+              )
+            )
+          })
+        );
+      },
+      setUser: function(newData, oldData, objectPath) {
+        this.setState({ props: newData });
+      },
+      updateProp: function(event) {
+        CorporateUi.store.dispatch({
+          type: 'user/UPDATE_PROPERTY',
+          payload: { key: event.target.name, value: event.target.value }
+        })
+      }
+    });
+
+    ReactDOM.render(
+      React.createElement(Form, null), 
+      document.querySelector('.react')
+    );
+  </script>
+
+
+  <!-- Store example code -->
+
+  <script>
+    if ('import' in document.createElement('link')) {
+      init();
+    } else {
+      addEventListener('WebComponentsReady', init);
+    }
+
+    function init() {
+      window.initialState = JSON.parse(localStorage.getItem('user')) || {
+        id: 'awinny',
+        fname: 'Andreas',
+        lname: 'Wikström'
+      };
+
+      CorporateUi.store.register('user', reducer);
+
+      document.addEventListener('click', dispatcher);
+      /*document.addEventListener('input', dispatcher);
+      [].slice.call(document.querySelectorAll('[data-action]')).map(function(node) {
+        dispatcher(node);
+      })*/
+    }
+
+    function reducer(state, action) {
+      var state = state || initialState || {},
+          action = action || {}
+
+      switch (action.type) {
+        case 'user/ADD_PROPERTY':
+          return Object.assign({}, state, action.payload);
+        case 'user/REMOVE_PROPERTY':
+          var newState = {};
+          Object.keys(state).map(function(key){
+            if(key !== action.payload) {
+              newState[key] = state[key];
+            }
+          })
+          return Object.assign({}, newState);
+        case 'user/UPDATE_PROPERTY':
+          var newState = state;
+          newState[action.payload.key] = action.payload.value;
+          return Object.assign({}, newState);
+        default:
+          return state;
+      }
+    }
+
+    function resetStore() {
+      localStorage.removeItem('user')
+    }
+
+    function dispatcher(event) {
+      var data = event.target.dataset;
+      if (data.action) {
+        CorporateUi.store.dispatch({
+          type: data.action,
+          payload: data.payload
+        })
+      }
+    }
+  </script>
+</body>
+</html>

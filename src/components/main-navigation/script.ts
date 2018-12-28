@@ -1,3 +1,5 @@
+// import { store } from '../../global/ts/store';
+
 Polymer({
   is: name,
   properties: {
@@ -63,6 +65,20 @@ Polymer({
       this.setHeaderSize.call(this);
       this.setMoreItems.call(this);
     }).bind(this));
+
+    // reducer
+    /*function reducer(state = [], action:any = {}) {
+      switch (action.type) {
+        case 'navigation/ADD_NAV_ITEM':
+          return [...state, { ...action.payload, id: state.length+1 }];
+        case 'navigation/REMOVE_NAV_ITEM':
+          return state.slice(1);
+        default:
+          return state;
+      }
+    }
+
+    store.register('navigation', reducer);*/
   },
   attached: function() {
     this.style.display = 'block';
@@ -345,9 +361,9 @@ Polymer({
     this._primaryItems = [];
     this.async((function() {
       this._primaryItems = this.setItemIndex(val);
+      this.setMoreItems();
+      this.primaryItems = [];
     }).bind(this));
-    this.setMoreItems();
-    this.primaryItems = [];
   },
   setSecItemIndex: function(val=[]) {
     if (!val.length) {
@@ -356,9 +372,9 @@ Polymer({
     this._secondaryItems = [];
     this.async((function() {
       this._secondaryItems = this.setItemIndex(val);
+      this.setMoreItems();
+      this.secondaryItems = [];
     }).bind(this));
-    this.setMoreItems();
-    this.secondaryItems = [];
   },
   sort: function(a, b) {
     // Compare item a and b origional index to

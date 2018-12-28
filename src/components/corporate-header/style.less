@@ -9,11 +9,31 @@
       top: 21px;
       right: 25px;
     }
+
+    .navbar-default {
+      nav-item.active a,
+      .navbar-nav > .active > a,
+      .navbar-nav > .active > a:focus,      
+      .navbar-nav > .active > a:active {
+
+          text-decoration: none;
+          background-color: transparent;
+      }
+      
+      .navbar-nav > .active > a:hover {
+
+          text-decoration: underline;
+          background-color: transparent;
+      }      
+    }
   }
 
   .navbar-default {
+
     z-index: 1010;
+
   }
+
   .is-dealer .navbar-header {
 
     a.dealer {

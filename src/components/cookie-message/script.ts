@@ -13,28 +13,31 @@ Polymer({
   },
   ready: function(){
     /* Sets Cookie using https://github.com/js-cookie/js-cookie/tree/v2.2.0 */
-    var Cookie = this,
-      CookieElm = document.querySelector("c-cookie-message"),
-      CookieData = Cookie.text ? Cookie.querySelector('.c-cookie-message').innerText : 'Cookie message',
-      CookieCloseButtons = CookieElm.querySelectorAll('.close-cookie');
+    var Cookie = this;
 
-    this._CookieCheckFunction(CookieCloseButtons, CookieData, Cookie);
+    Cookie._CookieCheckFunction(Cookie);
   },
-  _CookieCheckFunction: function(CookieCloseButtons, CookieData, Cookie) {
-    // If cookie data exist
+  _CookieCheckFunction: function(Cookie) {
+    var CookieData = 'Cookie message stored';
+
+    //if is based on the value not the name of the cookie
     if(Cookies.get(Cookie.name) != CookieData) {
-      Cookie. _CookieAddEvent(Cookie, CookieCloseButtons, CookieData);
+      Cookie. _CookieAddEvent(Cookie, CookieData);
     } else if(Cookie) {
       Cookie._CookieRemove(Cookie);
     }
   },
   _CookieAddFunction: function(CookieData, Cookie) {
     // Sets the cookie => {Key, value, expire, path}
-    Cookies.set(Cookie.name, CookieData, {expires: Cookie.expire || 900, path: Cookie.path || '/'});
+    Cookies.set(Cookie.name, CookieData, {expires: Cookie.expire ? Cookie.expire : 365, path: Cookie.path || '/'});
     Cookie._CookieRemove(Cookie);
   },
-  _CookieAddEvent(Cookie, CookieCloseButtons, CookieData) {
-    Array.prototype.map.call(CookieCloseButtons, function(CookieButtonsObj) {
+  _CookieAddEvent(Cookie, CookieData) {
+    var CookieCloseButtons = Cookie.querySelectorAll('.close-cookie'),
+    CookieMapping = Array.prototype.map;
+
+    //Map buttons with close-cookie class with function addCookie
+    CookieMapping.call(CookieCloseButtons, function(CookieButtonsObj) {
       CookieButtonsObj.addEventListener("click", function() {
         Cookie._CookieAddFunction(CookieData, Cookie);
       });

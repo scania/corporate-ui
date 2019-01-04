@@ -88,6 +88,28 @@
     }
   }
 
+  
+  .panel-xs {
+    font-family: "Scania Sans Semi Condensed";
+    border-radius: 2px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.16);
+
+      .panel-heading,
+      .panel-heading .panel-title {
+        font-family: "Scania Sans Semi Condensed";
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 3px 6px 2px;
+      }
+
+      .panel-body {
+        font-weight: normal;
+        font-size: 1.4rem;
+        padding: 10px 20px 10px 10px;
+        line-height: 2.2rem;
+    }
+  }   
+
 
   .app & {
 
@@ -149,6 +171,8 @@
   .panel-mixin(danger);
 }
 
+
+
 //panel groups (accordion)
 
 .panel-group .panel-heading,
@@ -176,12 +200,6 @@
 
   input {
     background-color: #FFFFFF;
-
-    &:disabled {
-      background-color: #dfdee1;
-      color: #a1a1a1;
-      cursor: default;
-    }
 
     &:read-only {
       background-color: transparent;

@@ -15,7 +15,7 @@ Polymer({
     /* Sets Cookie using https://github.com/js-cookie/js-cookie/tree/v2.2.0 */
     var Cookie = this,
       CookieElm = document.querySelector("c-cookie-message"),
-      CookieData = Cookie.text ? Cookie.querySelector('.c-cookie-message').innerText : 'Ingen text',
+      CookieData = Cookie.text ? Cookie.querySelector('.c-cookie-message').innerText : 'Cookie message',
       CookieCloseButtons = CookieElm.querySelectorAll('.close-cookie');
 
     this._CookieCheckFunction(CookieCloseButtons, CookieData, Cookie);
@@ -34,8 +34,9 @@ Polymer({
     Cookie._CookieRemove(Cookie);
   },
   _CookieAddEvent(Cookie, CookieCloseButtons, CookieData) {
-    CookieCloseButtons.forEach(function(elem) {
-      elem.addEventListener("click", function() {
+    debugger
+    Array.prototype.map.call(CookieCloseButtons, function(obj) {
+      obj.addEventListener("click", function() {
         Cookie._CookieAddFunction(CookieData, Cookie);
       });
     });

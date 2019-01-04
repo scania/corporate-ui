@@ -34,9 +34,8 @@ Polymer({
     Cookie._CookieRemove(Cookie);
   },
   _CookieAddEvent(Cookie, CookieCloseButtons, CookieData) {
-    debugger
-    Array.prototype.map.call(CookieCloseButtons, function(obj) {
-      obj.addEventListener("click", function() {
+    Array.prototype.map.call(CookieCloseButtons, function(CookieButtonsObj) {
+      CookieButtonsObj.addEventListener("click", function() {
         Cookie._CookieAddFunction(CookieData, Cookie);
       });
     });

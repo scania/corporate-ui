@@ -9,7 +9,8 @@ export {
   applyBrand,
   setGlobals,
   baseComponents,
-  appendGa
+  appendGa,
+  polymerInject
 }
 
 function done() {
@@ -47,7 +48,7 @@ function addMetaAndHeaderSpecs() {
 }
 
 function applyBrand() {
-
+  var node = window['corporate_elm'] ? window['corporate_elm'].parentNode : document.head;
   var brands = ['vw-group', 'audi', 'ducati', 'lamborghini', 'seat', 'volkswagen', 'bentley', 'skoda', 'bugatti', 'porsche', 'scania', 'man', 'vw-truck-bus', 'traton', 'bad-UX', 'mockup'];
   var subDomain = window['location'].hostname.split('.')[0];
   var brand = brands.indexOf( subDomain ) > -1 ? subDomain : 'scania';
@@ -88,25 +89,25 @@ function applyBrand() {
     favicon_root = window['cui_path'] + '../brands/' + brand + '/favicon/';
   }
 
-  helpers.importLink(favicon_root + 'favicon.ico', 'shortcut icon', null, window['corporate_elm'].parentNode);
+  helpers.importLink(favicon_root + 'favicon.ico', 'shortcut icon', null, node);
 
-  helpers.importLink(favicon_root + 'apple-icon-57x57.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'57x57'});
-  helpers.importLink(favicon_root + 'apple-icon-60x60.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'60x60'});
-  helpers.importLink(favicon_root + 'apple-icon-72x72.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'72x72'});
-  helpers.importLink(favicon_root + 'apple-icon-76x76.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'76x76'});
-  helpers.importLink(favicon_root + 'apple-icon-114x114.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'114x114'});
-  helpers.importLink(favicon_root + 'apple-icon-120x120.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'120x120'});
-  helpers.importLink(favicon_root + 'apple-icon-144x144.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'144x144'});
-  helpers.importLink(favicon_root + 'apple-icon-152x152.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'152x152'});
-  helpers.importLink(favicon_root + 'apple-icon-180x180.png', 'apple-touch-icon', null, window['corporate_elm'].parentNode, {sizes:'180x180'});
+  helpers.importLink(favicon_root + 'apple-icon-57x57.png', 'apple-touch-icon', null, node, {sizes:'57x57'});
+  helpers.importLink(favicon_root + 'apple-icon-60x60.png', 'apple-touch-icon', null, node, {sizes:'60x60'});
+  helpers.importLink(favicon_root + 'apple-icon-72x72.png', 'apple-touch-icon', null, node, {sizes:'72x72'});
+  helpers.importLink(favicon_root + 'apple-icon-76x76.png', 'apple-touch-icon', null, node, {sizes:'76x76'});
+  helpers.importLink(favicon_root + 'apple-icon-114x114.png', 'apple-touch-icon', null, node, {sizes:'114x114'});
+  helpers.importLink(favicon_root + 'apple-icon-120x120.png', 'apple-touch-icon', null, node, {sizes:'120x120'});
+  helpers.importLink(favicon_root + 'apple-icon-144x144.png', 'apple-touch-icon', null, node, {sizes:'144x144'});
+  helpers.importLink(favicon_root + 'apple-icon-152x152.png', 'apple-touch-icon', null, node, {sizes:'152x152'});
+  helpers.importLink(favicon_root + 'apple-icon-180x180.png', 'apple-touch-icon', null, node, {sizes:'180x180'});
 
-  helpers.importLink(favicon_root + 'android-icon-192x192.png', 'icon', null, window['corporate_elm'].parentNode, {sizes:'192x192'});
+  helpers.importLink(favicon_root + 'android-icon-192x192.png', 'icon', null, node, {sizes:'192x192'});
 
-  helpers.importLink(favicon_root + 'favicon-32x32.png', 'icon', null, window['corporate_elm'].parentNode, {sizes:'32x32'});
-  helpers.importLink(favicon_root + 'favicon-96x96.png', 'icon', null, window['corporate_elm'].parentNode, {sizes:'96x96'});
-  helpers.importLink(favicon_root + 'favicon-16x16.png', 'icon', null, window['corporate_elm'].parentNode, {sizes:'16x16'});
+  helpers.importLink(favicon_root + 'favicon-32x32.png', 'icon', null, node, {sizes:'32x32'});
+  helpers.importLink(favicon_root + 'favicon-96x96.png', 'icon', null, node, {sizes:'96x96'});
+  helpers.importLink(favicon_root + 'favicon-16x16.png', 'icon', null, node, {sizes:'16x16'});
 
-  helpers.importLink(favicon_root + 'manifest.json', 'manifest', null, window['corporate_elm'].parentNode);
+  helpers.importLink(favicon_root + 'manifest.json', 'manifest', null, node);
 
   helpers.generateMeta('msapplication-TileColor', '#000');
   helpers.generateMeta('msapplication-TileImage', favicon_root + 'ms-icon-144x144.png');

@@ -1,6 +1,6 @@
 
 import * as helpers from './helpers';
-import { addMetaAndHeaderSpecs, setGlobals, appendGa, done } from './core';
+import { addMetaAndHeaderSpecs, setGlobals, appendGa, done, polymerInject } from './core';
 
 window['CorporateUi'] = (function() {
 
@@ -16,5 +16,6 @@ window['CorporateUi'] = (function() {
 /*** This starts everything ***/
 addMetaAndHeaderSpecs();
 setGlobals();
+polymerInject();
 appendGa();
 done();

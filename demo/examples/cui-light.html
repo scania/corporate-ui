@@ -9,6 +9,9 @@
 
     <title>DEV Corporate UI</title>
 
+    <link rel="import" href="/dist/components/base.html">
+    <link rel="import" href="/dist/components/main-hero/main-hero.html">
+
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
@@ -20,9 +23,6 @@
     <script src="/webcomponents.js/webcomponents.js"></script>
     <script src="/bootstrap.native/dist/bootstrap-native.js"></script>
     <script src="/dist/js/corporate-ui-light.js"></script>
-
-    <link rel="import" href="/dist/components/base.html">
-    <link rel="import" href="/dist/components/main-hero/main-hero.html">
   </head>
   <body class="scania ux-lib" data-env="dev">
     <c-corporate-header site-name="Developers" site-url="/">
@@ -31,7 +31,7 @@
     </c-corporate-header>
 
     <c-main-content>
-      <c-main-navigation>
+      <c-main-navigation variation="2">
         <primary-items>
           <nav-item location="/" class="active">Home</nav-item>
         </primary-items>

@@ -25,13 +25,13 @@ block root
       block script
 
     script.
-      if(window['params'].monitoring){
+      if(window['params'] && window['params'].monitoring) {
         ga('send', {
           hitType: 'event',
           eventCategory: 'corporate-ui-component', //the object that user interact with on the page
           eventAction: 'loaded', // type of interaction with the object
           eventLabel: '#{name}'  //categorizing events
-        },{
+        }, {
           nonInteraction: true
         });
       }

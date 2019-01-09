@@ -33,7 +33,8 @@ Polymer({
       observer: 'setProps'
     },
     attrs: {
-      type: Object
+      type: Object,
+      observer: 'setAttrs'
     },
     haveItems: {
       type: Boolean
@@ -101,12 +102,6 @@ Polymer({
       this.setActive(true);
     }
 
-    if(this.attrs) {
-      Object.keys(this.attrs).map(function(attr) {
-        this.setAttribute(attr, this.attrs[attr]);
-      }, this);
-    }
-
     if (this.classes) {
       this.classList.add.apply(this.classList, this.classes.split(' '));
     }
@@ -137,6 +132,11 @@ Polymer({
   setProps: function(props) {
     Object.keys(props).map(function(prop) {
       this[prop] = props[prop];
+    }, this);
+  },
+  setAttrs: function(attrs) {
+    Object.keys(attrs).map(function(attr) {
+      this.setAttribute(attr, attrs[attr]);
     }, this);
   },
   setActive: function(newState) {

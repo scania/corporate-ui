@@ -16,7 +16,7 @@
 
   <c-corporate-header site-name="More" site-url="/" ng-attr-items="{{app.topItems}}">
     <nav-item location="https://www.scania.com/world/#/" text="World Entry"></nav-item>
-    <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+    <nav-item location="https://www.scania.com/group/en/" ng-attr-attrs="{{app.attrs}}">Scania Group</nav-item>
   </c-corporate-header>
     
   <c-main-content>
@@ -77,6 +77,10 @@
     function App(itemsFmp) {
       this.moreText = 'More 2';
       this.new = {};
+      this.attrs = {
+        class: 'another-class',
+        rel: 'some description'
+      };
 
       this.topItems = [
         {

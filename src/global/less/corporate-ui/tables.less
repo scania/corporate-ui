@@ -45,6 +45,10 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         border: 1px solid @interaction-primary;
         vertical-align: top;
 
+        & .select2-container .select2-arrow {
+            background-size: 12px;
+        }
+
         input,
         select {
 
@@ -54,9 +58,12 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             font-family: 'Scania Sans Semi Condensed';
             color: @color-primary-03;
             height: 30px;
-            padding: 4px 10px;
+            padding: 4px 5px;
             font-size: 1.2rem;
             border: 1px solid #94999d;
+            padding-right: 18px!important;
+            background-position: 99% center;
+            background-size: 12px;
 
             &::placeholder,
             &::-webkit-input-placeholder,

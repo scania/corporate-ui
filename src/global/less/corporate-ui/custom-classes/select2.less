@@ -53,6 +53,14 @@
       line-height: inherit;
       height: 42px;
 
+    .select2-search-field,
+    .select2-search-choice {
+      float: none;
+      display: inline-block;
+      font-size: 1.4rem;
+      line-height: inherit;
+      vertical-align: middle;
+    }
     .select2-search-field {
       margin: 0;
       padding: 0;
@@ -75,15 +83,11 @@
     .select2-search-choice {
       border: none;
       position: static;
-      float: none;
-      display: inline-block;
       height: auto;
       font-family: "Scania Sans Semi Condensed";
       background: #dce8ed;
       color: #333;
       direction: rtl;
-      font-size: 1.4rem;
-      line-height: inherit;
 
       > div {
         display: table-cell;
@@ -369,6 +373,11 @@
 
   .select2-choices {
 
+    .select2-search-field,
+    .select2-search-choice {
+      padding: 5px 0 5px;
+      margin: 4px 0 5px;
+    }
     .select2-search-field input {
       display: table-cell;
       padding-left: 4px;
@@ -378,8 +387,10 @@
     }
     .select2-search-choice {
       font-size: 1.2rem;
-      padding: 5px 5px 5px 5px;
-      margin: 4px 5px 5px 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
       border: 2px solid #dce8ed;
       box-shadow: none;
       white-space: nowrap;

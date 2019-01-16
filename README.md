@@ -3,18 +3,18 @@
 [![Build Status](https://travis-ci.com/scania/corporate-ui.svg?branch=master)](https://travis-ci.com/scania/corporate-ui)
 
 <p>In this repository you'll find all components described in <a href="https://scania.github.io/corporate-ui-docs/developer/">the UX Library</a>.</p>
-<p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository as well as <a href="https://scania.github.io/corporate-ui-docs/">the documentation</a>.</p>
+<p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us together that develop and maintain this repository as well as <a href="https://scania.github.io/corporate-ui-docs/">the documentation</a>.</p>
 <ul>
-	<li>Something broken in a existing component? Help fixing it!</li>
-	<li>Found a component that needs to be extended? Get on and improve it!</li>
-	<li>Missing out on a component? Develop it!</li>
+	<li>Something broken in a existing component? <b>Help fixing it!</b></li>
+	<li>Found a component that needs to be extended? <b>Get on and improve it!</b></li>
+	<li>Missing out on a component? <b>Develop it!</b></li>
 </ul>
 
 <h2>The Corporate UI Development Process</h2>
-<p>There are many stakeholders that has interest in this library. Normally, new needs and improvements are filtered from business and end users via UX designers and product owners.</p>
+<p>There are many stakeholders interested in this library. Normally, new needs and improvements are filtered from business and end users via UX designers and product owners.</p>
 <ul>
 	<li>Once project requirements are defined: Is there any component that we can re-use?</li>
-	<li>If not, is there any component that we can extend? Is there anyone else who's made a pull request for this kind of component?</li>
+	<li>If not, is there any component that we can extend? Is there anyone else who has made a pull request for this kind of component?</li>
 	<li>Otherwise, create a pull request and start develop the component.</li>
 	<li>Push your code for review and then enjoy the limelight once your component is merged and released!</li>
 </ul>
@@ -39,4 +39,4 @@
 
 
 <h2>License</h2>
-<p>All CSS, HTML and JS code are available under the MIT licens. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.</p>
+<p>All CSS, HTML and JS code are available under the MIT license. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.</p>

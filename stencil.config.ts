@@ -26,6 +26,9 @@ export const config: Config = {
     { src: 'themes' },
     { src: 'demo' }
   ],
+  testing: {
+    testPathIgnorePatterns: ['/node_modules/', '/projects/']
+  },
   plugins: [
     sass({
       includePaths: ['node_modules']

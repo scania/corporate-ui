@@ -16,11 +16,9 @@
     "build:stencil": "stencil build",
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",
-
     "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
     "install-dep:angular": "cd projects/angular && npm i",
     "install-dep:react": "cd projects/react && npm i",
-
     "start": "npm run build && npm run server",
     "docs": "stencil build --docs",
     "server": "stencil build --dev --watch --serve",
@@ -34,7 +32,12 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@stencil/core": "~0.15.2",
-    "@stencil/sass": "^0.1.1"
+    "@stencil/sass": "^0.1.1",
+    "@types/jest": "23.3.13",
+    "@types/puppeteer": "1.6.4",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "puppeteer": "1.8.0"
   },
   "license": "MIT"
 }

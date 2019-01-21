@@ -3,7 +3,7 @@ import Tunnel from '../data/theme';
 
 @Component({
   tag: 'cui-theme',
-  styleUrl: 'component.scss'
+  styleUrl: 'cui-theme.scss'
 })
 export class CuiTheme {
   @Prop() name: string;

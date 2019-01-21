@@ -2,7 +2,7 @@ import { Component, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'user-tags',
-  styleUrl: 'component.css',
+  styleUrl: 'user-tags.scss',
   shadow: true
 })
 export class UserTags {

@@ -58,7 +58,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js && npm run copy",
     "test": "node scripts/test.js",
-    "copy": "del /q ..\\..\\src\\demo\\react\\* && xcopy /i /y /s .\\build ..\\..\\src\\demo\\react"
+    "copy": "shx rm -rf ../../src/demo/react && shx cp -R ./build ../../src/demo/react"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -114,5 +114,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "shx": "^0.3.2"
   }
 }

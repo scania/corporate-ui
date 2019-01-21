@@ -1,0 +1,8 @@
+/* :root{
+    --footer-background-url: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
+    --footer-background-url: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+} */
+:host .wordmark{
+  background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
+  background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+}

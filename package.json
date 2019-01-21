@@ -1,0 +1,40 @@
+{
+  "name": "Corporate-UI",
+  "version": "0.0.1",
+  "description": "In this repository you'll find all components available in the UX Library",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "unpkg": "dist/ionic.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/",
+    "!dist/collection/demo"
+  ],
+  "scripts": {
+    "build": "npm run build:stencil && npm run build:angular && npm run build:react",
+    "build:stencil": "stencil build",
+    "build:angular": "cd projects/angular && npm run build",
+    "build:react": "cd projects/react && npm run build",
+
+    "init": "npm i && npm run init:angular && npm run init:react",
+    "init:angular": "cd projects/angular && npm i",
+    "init:react": "cd projects/react && npm i",
+
+    "start": "npm run build && npm run server",
+    "docs": "stencil build --docs",
+    "server": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
+  },
+  "dependencies": {
+    "@stencil/state-tunnel": "0.0.8",
+    "bootstrap": "^4.2.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@stencil/core": "~0.15.2",
+    "@stencil/sass": "^0.1.1"
+  },
+  "license": "MIT"
+}

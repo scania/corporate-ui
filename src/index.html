@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+  <script src="/build/corporate-ui.js"></script>
+</head>
+<body>
+  <cui-theme name="scania"></cui-theme>
+
+  <cui-header site-name="CUI Page" items='[{"text":"global"},{"text":"about"}]'></cui-header>
+  <cui-content>
+    <cui-navigation primary-items='[{"text":"home"},{"text":"contact"}]'></cui-navigation>
+
+    <style>
+      .banner {
+        overflow: hidden;
+      }
+      .banner img {
+        width: 100%;
+        margin: -260px 0 -100px;
+      }
+    </style>
+
+    <section>
+      <div class="banner">
+        <img src="https://conmore.se/wp-content/uploads/2016/09/scania.jpg" />
+      </div>
+    </section>
+
+    <section>
+      <div class="container-fluid">
+        <h1>headline</h1>
+
+        <div class="row">
+          <div class="col-sm-3 offset-sm-2">
+            <a href="/demo/angular/" class="card">
+              <div class="card-body">
+                <h5 class="card-title">Angular demo</h5>
+                <p class="card-text">Click here to test the Angular demo page using custom elements.</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-3 offset-sm-1">
+            <a href="/demo/react/" class="card">
+              <div class="card-body">
+                <h5 class="card-title">React demo</h5>
+                <p class="card-text">Click here to test the React demo page using custom elements.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <h3><cui-icon name="angle-right"></cui-icon> List</h3>
+        <cui-list items='[{"text":"item 1"},{"text":"item 2"}]'></cui-list>
+        <h3><cui-icon name="angle-right"></cui-icon> Awinny´s tags</h3>
+        <user-tags user-id='awinny'></user-tags>
+      </div>
+    </section>
+  </cui-content>
+  <cui-footer></cui-footer>
+
+  <script>
+    // document.querySelector('cui-header').items = [{text:'global'},{text:'about'}];
+  </script>
+</body>
+</html>

@@ -17,9 +17,9 @@
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",
 
-    "init": "npm i && npm run init:angular && npm run init:react",
-    "init:angular": "cd projects/angular && npm i",
-    "init:react": "cd projects/react && npm i",
+    "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
+    "install-dep:angular": "cd projects/angular && npm i",
+    "install-dep:react": "cd projects/react && npm i",
 
     "start": "npm run build && npm run server",
     "docs": "stencil build --docs",

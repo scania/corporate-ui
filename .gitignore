@@ -27,3 +27,5 @@ UserInterfaceState.xcuserstate
 src/demo/**/*.*
 !src/demo/**/index.html
 *.d.ts
+
+package-lock.json

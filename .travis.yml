@@ -4,6 +4,7 @@ node_js:
 
 script:
   - "npm run install-dep"
+  - "npm run test"
   - "npm run build"
   - "echo $TRAVIS_BRANCH"
   - "echo $AWS_KEY_ID"

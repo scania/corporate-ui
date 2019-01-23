@@ -1,42 +1,33 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 
-import { configureStore } from '../../store/index';
-import { setTheme } from '../../actions/index';
+import { appSetName } from '../../actions/setTheme';
 
 @Component({
   tag: 'cui-theme',
   styleUrl: 'cui-theme.scss'
 })
 export class CuiTheme {
-  @Prop() name: string;
   @Prop({ context: 'store' }) store: Store;
+  @Prop() name: string;
 
-  @State() theme: string;
-
-  setTheme: Action;
+  appSetName: Action;
 
   componentWillLoad() {
-    this.store.setStore(configureStore({}));
-
     this.store.mapStateToProps(this, (state) => {
       const {
-        themeReducer: { theme }
+        app: { name }
       } = state;
+
       return {
-        theme
+        name
       }
     });
 
     this.store.mapDispatchToProps(this, {
-      setTheme
-    })
-
-    this.setTheme(this.name);
-  }
-
-  componentDidLoad(){
-    console.log(this.theme);
+      appSetName
+    });
+    this.appSetName(this.name)
   }
 
   render() {

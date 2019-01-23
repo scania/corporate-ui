@@ -9,15 +9,21 @@ import { Component, Prop, State } from '@stencil/core';
 export class CuiHeader {
   @Prop() siteName: string;
   @Prop() items: any = [];
+
   @Prop({ context: 'store' }) store: Store;
-  @State() theme: string;
+  @State() name: string;
 
   componentWillLoad(){
-    this.store.mapStateToProps(this, state => {
+    this.store.mapStateToProps(this, (state) => {
+      const {
+        app: { name }
+      } = state;
+
       return {
-        theme: state.theme
+        name
       }
     });
+
   }
 
   render() {
@@ -45,10 +51,7 @@ export class CuiHeader {
                   </ul>
 
                   <a class="navbar-symbol" href="#"></a>
-
-            </div>
-            <div>
-              {this.theme}
+                  <style>@import url({'../../themes/' + this.name + '/cui-header.css'});</style>
             </div>
           </nav>
 

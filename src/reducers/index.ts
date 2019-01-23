@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import themeReducer from "./themeReducer";
+import app from "./themeReducer";
 
 export default combineReducers({
-  themeReducer
+  app
 });

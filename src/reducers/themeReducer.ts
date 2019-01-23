@@ -1,14 +1,23 @@
-import { SET_THEME } from '../actions';
+import { TypeKeys, ActionTypes } from '../actions/index';
 
-const initialState= 'default';
+interface AppState {
+  name: string;
+}
 
-export default function themeReducer(state=initialState,action){
-  switch (action.type){
-    case SET_THEME:
-      return Object.assign({}, state, {
-        theme: action.theme
-      })
-    default:
-      return state
+const getInitialState = () => {
+  return {
+    name: 'default'
   }
 };
+
+const app = (state: AppState = getInitialState(), action: ActionTypes) => {
+  switch (action.type) {
+    case TypeKeys.APP_SET_NAME: {
+      return { ...state, name: action.name }
+    }
+  }
+
+  return state;
+};
+
+export default app;

@@ -1,8 +1,23 @@
-export const SET_THEME = 'SET_THEME'
+import {
+  AppSetNameAction
+} from './setTheme';
 
-export function setTheme(theme) {
-  return {
-    type: SET_THEME,
-    theme: theme 
-  }
+export interface NullAction {
+  type: TypeKeys.NULL
 }
+
+// Keep this type updated with each known action
+export type ActionTypes =
+  | NullAction
+
+  | AppSetNameAction
+;
+
+export enum TypeKeys {
+  // Won't match anything
+  NULL = 'NULL',
+
+  ERROR = 'ERROR',
+
+  APP_SET_NAME = 'APP_SET_NAME'
+};

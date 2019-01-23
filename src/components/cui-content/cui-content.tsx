@@ -1,4 +1,6 @@
 import { Component, Prop } from '@stencil/core';
+import { Store } from '@stencil/redux';
+import { configureStore } from '../../store/index';
 
 @Component({
   tag: 'cui-content',
@@ -7,6 +9,11 @@ import { Component, Prop } from '@stencil/core';
 })
 export class CuiContent {
   @Prop() router: Boolean;
+  @Prop({ context: 'store' }) store: Store;
+
+  componentWillLoad(){
+    this.store.setStore(configureStore({}));
+  }
 
   render() {
     if (this.router) {

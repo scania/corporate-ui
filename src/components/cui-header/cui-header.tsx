@@ -1,5 +1,5 @@
-import { Component, Prop } from '@stencil/core';
-import Tunnel from '../data/theme';
+import { Store } from '@stencil/redux';
+import { Component, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'cui-header',
@@ -9,17 +9,22 @@ import Tunnel from '../data/theme';
 export class CuiHeader {
   @Prop() siteName: string;
   @Prop() items: any = [];
+  @Prop({ context: 'store' }) store: Store;
+  @State() theme: string;
+
+  componentWillLoad(){
+    this.store.mapStateToProps(this, state => {
+      return {
+        theme: state.theme
+      }
+    });
+  }
 
   render() {
     let items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
 
     return (
-      <Tunnel.Consumer>
-        {({ theme }) => (
           <nav class="navbar navbar-expand-lg navbar-default">
-            <style>
-              @import url({'../../themes/' + theme + '/cui-header.css'});
-            </style>
             <div class="navbar-header collapse navbar-collapse">
 
                   <div class="mr-auto mt-2 mt-lg-0">
@@ -42,9 +47,10 @@ export class CuiHeader {
                   <a class="navbar-symbol" href="#"></a>
 
             </div>
+            <div>
+              {this.theme}
+            </div>
           </nav>
-        )}
-      </Tunnel.Consumer>
 
     );
   }

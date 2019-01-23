@@ -21,7 +21,7 @@
     "install-dep:react": "cd projects/react && npm i",
     "start": "npm run build && npm run server",
     "docs": "stencil build --docs",
-    "server": "stencil build --dev --watch --serve",
+    "server": "stencil build --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
@@ -32,12 +32,16 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@stencil/core": "~0.15.2",
+    "@stencil/redux": "0.0.4",
     "@stencil/sass": "^0.1.1",
     "@types/jest": "23.3.13",
     "@types/puppeteer": "1.6.4",
     "jest": "23.6.0",
     "jest-cli": "23.6.0",
-    "puppeteer": "1.8.0"
+    "puppeteer": "1.8.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "license": "MIT"
 }

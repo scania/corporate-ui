@@ -3,10 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 
 import { defineCustomElement } from '../../../dist/esm/es5/corporate-ui.core';
-import { CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation, ContextConsumer } from '../../../dist/esm/es5/corporate-ui.components';
+import {
+  CuiTheme,
+  CuiHeader,
+  CuiFooter,
+  CuiContent,
+  CuiNavigation,
+  ContextConsumer
+} from '../../../dist/esm/es5/corporate-ui.components';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
 
@@ -14,7 +20,10 @@ class App extends Component {
 
     this.items = [
       { text: 'global', location: 'https://scania.com/ux-library' },
-      { text: 'about', location: 'https://scania.github.io/corporate-ui-docs/developer/' }
+      {
+        text: 'about',
+        location: 'https://scania.github.io/corporate-ui-docs/developer/'
+      }
     ];
 
     this.primaryItems = [
@@ -22,16 +31,22 @@ class App extends Component {
       { text: 'contact', location: '/contact' }
     ];
 
-    defineCustomElement(window, [CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation, ContextConsumer]);
+    defineCustomElement(window, [
+      CuiTheme,
+      CuiHeader,
+      CuiFooter,
+      CuiContent,
+      CuiNavigation,
+      ContextConsumer
+    ]);
   }
 
   render() {
     return [
-      <cui-theme name="scania"></cui-theme>,
-      <cui-header site-name={this.title} items={JSON.stringify(this.items)}></cui-header>,
-      <cui-content>,
-        <cui-navigation primary-items={JSON.stringify(this.primaryItems)}></cui-navigation>
-
+      <cui-theme name="scania" />,
+      <cui-header site-name={this.title} items={JSON.stringify(this.items)} />,
+      <cui-content>
+        ,<cui-navigation primary-items={JSON.stringify(this.primaryItems)} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -45,7 +60,7 @@ class App extends Component {
           Learn React
         </a>
       </cui-content>,
-      <cui-footer></cui-footer>
+      <cui-footer />
     ];
   }
 }

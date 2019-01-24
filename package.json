@@ -16,25 +16,30 @@
     "build:stencil": "stencil build",
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",
-
     "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
     "install-dep:angular": "cd projects/angular && npm i",
     "install-dep:react": "cd projects/react && npm i",
-
     "start": "npm run build && npm run server",
     "docs": "stencil build --docs",
     "server": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll"
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "storybook": "npm run build && start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
     "@stencil/state-tunnel": "0.0.8",
     "bootstrap": "^4.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@stencil/core": "~0.15.2",
-    "@stencil/sass": "^0.1.1"
+    "@stencil/sass": "^0.1.1",
+    "@storybook/html": "^4.1.7",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.0.4"
   },
   "license": "MIT"
 }

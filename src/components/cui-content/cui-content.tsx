@@ -2,7 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'cui-content',
-  styleUrl: 'component.css',
+  styleUrl: 'cui-content.scss',
   shadow: true
 })
 export class CuiContent {

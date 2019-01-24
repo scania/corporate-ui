@@ -25,7 +25,7 @@ UserInterfaceState.xcuserstate
 .env
 
 src/demo/**/*.*
-!src/demo/**/index.html
+!src/demo/**/readme.md
 *.d.ts
 
 package-lock.json

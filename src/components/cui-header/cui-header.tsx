@@ -3,7 +3,7 @@ import Tunnel from '../data/theme';
 
 @Component({
   tag: 'cui-header',
-  styleUrl: 'component.scss',
+  styleUrl: 'cui-header.scss',
   shadow: true
 })
 export class CuiHeader {

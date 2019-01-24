@@ -2,7 +2,7 @@ import { Component } from '@stencil/core';
 
 @Component({
   tag: 'cui-footer',
-  styleUrl: 'component.scss',
+  styleUrl: 'cui-footer.scss',
   shadow: true
 })
 export class CuiFooter {

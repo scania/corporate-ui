@@ -2,7 +2,7 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'cui-navigation',
-  styleUrl: 'component.scss',
+  styleUrl: 'cui-navigation.scss',
   shadow: true
 })
 export class CuiNavigation {

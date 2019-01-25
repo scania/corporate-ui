@@ -29,7 +29,8 @@ Polymer({
     },
     hasMainNav: {
       type: Boolean,
-      value: false
+      value: false,
+      observer: 'initHamburger'
     },
     sticky: {
       type: String
@@ -70,6 +71,18 @@ Polymer({
 
     if ((this.dealerName || this.dealerLogo) && this.dealerUrl) {
       this.dealer = ' is-dealer';
+    }
+  },
+  initHamburger: function(state) {
+    // Special handling for Firefox 64 if application is using requirejs
+    if (state && !window['Collapse']) {
+      this.async(function() {
+        var button = this.querySelector('button')
+        button.onclick = function() {
+          document.querySelector('#main-navigation').classList.toggle('in');
+          document.body.classList.toggle('navigation-open')
+        }
+      });
     }
   }
 });

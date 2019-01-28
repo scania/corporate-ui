@@ -10,9 +10,17 @@ export class CuiHeader {
   @Prop() siteName: string;
   @Prop() items: any = [];
 
-  render() {
-    let items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  _items: object[] = [];
 
+  componentWillLoad() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  }
+
+  componentWillUpdate() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  }
+
+  render() {
     return (
       <Tunnel.Consumer>
         {({ theme }) => (
@@ -29,10 +37,10 @@ export class CuiHeader {
 
                   <ul class="navbar-nav my-2 my-lg-0">
 
-                    {items.map((item) =>
+                    {this._items.map((item) =>
                       <li class="nav-item">
-                        <a class="nav-link" href={item.location}>
-                          <span>{item.text}</span>
+                        <a class="nav-link" href={item['location']}>
+                          <span>{item['text']}</span>
                         </a>
                       </li>
                     )}

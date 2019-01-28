@@ -8,14 +8,22 @@ import { Component, Prop } from '@stencil/core';
 export class CuiList {
   @Prop() items: any = [];
 
-  render() {
-    let items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  _items: object[] = [];
 
+  componentWillLoad() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  }
+
+  componentWillUpdate() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  }
+
+  render() {
     return (
       <ul>
-        {items.map((item) =>
+        {this._items.map((item) =>
           <li>
-            <span>{item.text}</span>
+            <span>{item['text']}</span>
           </li>
         )}
       </ul>

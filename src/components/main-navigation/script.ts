@@ -115,10 +115,15 @@ Polymer({
       this.setHeaderSize.call(this);
     }).bind(this));
 
+    window.addEventListener('load', (function() {
+      this.checkCookie('sticky');
+    }).bind(this));
+
     // Set start collapse value - couldnt get this to work in a better way...
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
   },
   ready: function() {
+    var Cookie = this;
     this.unwrap(this.getContentChildren('#primary-items')[0]);
     this.unwrap(this.getContentChildren('#secondary-items')[0]);
   },
@@ -137,6 +142,20 @@ Polymer({
       // node.parentNode[attrs.name] = attrs.value;
     }
     node.parentNode.removeChild(node);
+  },
+  checkCookie: function(name){
+    var vScroll = document.body.scrollHeight - document.body.clientHeight;
+    if(Cookies.get(name)==='true'){
+      window.scroll(0,100);
+      // if does not have scrollbar
+      if(vScroll<=100){
+        document.body.style.height = '101vh';
+        document.body.style.marginTop = '84px';
+        var el = document.querySelector('.navbar-default');
+        el.setAttribute('style','margin-top: -84px');
+        window.scroll(0,100);
+      }
+    }
   },
   dashed: function(text) {
     return (text || '').toLowerCase().split(' ').join('-');
@@ -324,12 +343,14 @@ Polymer({
         document.body.classList.remove('header-is-sticky');
         event.initEvent('navigation-not-sticky', true, true);
         this.dispatchEvent(event);
+        Cookies.remove('sticky');
       }
     } else {
       if (!isSticky) {
         document.body.classList.add('header-is-sticky');
         event.initEvent('navigation-is-sticky', true, true);
         this.dispatchEvent(event);
+        Cookies.set('sticky','true',{ expires: 1 })
       }
     }
   },

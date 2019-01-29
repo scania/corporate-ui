@@ -31,13 +31,48 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   thead {
     background-color: @interaction-primary;
     color: #fff;
+    
 
     > tr {
 
-
+       .select2-container abbr {
+        right: 16%;
+        top: 25%;
+    }
 
       > td {
         border: 1px solid @interaction-primary;
+        vertical-align: top;
+
+        .select2-container abbr {
+          right: 15%;
+          top: 35%;
+      }
+        
+        input,
+        select {
+
+          &,
+          &.form-control {
+            font-weight: normal;
+            font-family: 'Scania Sans Semi Condensed';
+            color: @color-primary-03;
+            height: 30px;
+            padding: 4px 10px;
+            font-size: 1.2rem;
+            border: 1px solid #94999d;
+
+            &::placeholder,
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &:-ms-input-placeholder,
+            &:moz-placeholder {
+              font-weight: normal;
+              font-family: 'Scania Sans Semi Condensed';
+              color: @color-primary-03;
+            }
+          }
+        }
       }
 
       > th {
@@ -46,7 +81,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         vertical-align: top;
 
         & .select2-container .select2-arrow {
-            background-size: 12px;
+            background-size: 20px;
         }
 
         input,

@@ -150,15 +150,14 @@ Polymer({
   checkCookie: function(name){
     var vScroll = document.body.scrollHeight - document.body.clientHeight;
     if(Cookies.get(name)==='true'){
-      window.scroll(0,100);
       // if does not have scrollbar
       if(vScroll<=100){
         document.body.style.height = '101vh';
         document.body.style.marginTop = '84px';
         var el = document.querySelector('.navbar-default');
         el.setAttribute('style','margin-top: -84px');
-        window.scroll(0,100);
       }
+      window.scroll(0,100);
     }
   },
   dashed: function(text) {

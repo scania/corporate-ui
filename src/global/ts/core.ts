@@ -1,5 +1,6 @@
 
 import * as helpers from './helpers';
+import * as bs from 'bootstrap.native';
 
 const wv = require('webpackVariables');
 
@@ -253,15 +254,7 @@ function baseComponents() {
   window['corporate_elm']);
 
   if (window['params'].css !== 'custom') {
-    var bsnUrl = renderPath('bootstrap.native') + '/dist/bootstrap-native.js';
-    if(window['define']) {
-      window['requirejs']([bsnUrl], function(bsn) {
-        Object['assign'](window, bsn);
-        bsHandler();
-      });
-    } else {
-      helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
-    }
+    bsHandler();
 
     helpers.importLink(window['cui_path'] + '../css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
@@ -275,22 +268,22 @@ function bsHandler() {
       }, 100)
     });
   });
-  document.addEventListener('mouseover', bsAutoHandler);
+  // document.addEventListener('mouseover', bsAutoHandler);
 
   function bsAutoHandler(event, cb=function(){}) {
     var dataToggle = event.target.getAttribute('data-toggle') || '',
         method = dataToggle.charAt(0).toUpperCase() + dataToggle.slice(1),
         options = event.target.dataset;
 
-    if(method && window[method] && !event.target[method]) {
+    if(method && bs[method] && !event.target[method]) {
       event.preventDefault();
 
       if (dataToggle === 'tab') {
         [].slice.call(event.target.parentNode.parentNode.children).map(function(item) {
-          new window[method](item.children[0], options);
+          new bs[method](item.children[0], options);
         });
       } else {
-        new window[method](event.target, options);
+        new bs[method](event.target, options);
       }
 
       cb();

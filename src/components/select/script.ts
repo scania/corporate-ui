@@ -1,3 +1,6 @@
+
+var Choices = require('choices.js/assets/scripts/dist/choices.min.js');
+
 Polymer({
   is: name,
   properties: {

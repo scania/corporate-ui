@@ -1,5 +1,6 @@
-declare var videojs: any;
-declare var YT: any;
+
+var videojs = require('video.js');
+var YT = require('videojs-youtube');
 
 Polymer({
 	is: name,

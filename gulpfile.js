@@ -11,7 +11,8 @@ var fs = require('fs'),
     rename = require('gulp-rename'),
     data = require('gulp-data'),
     merge = require('merge-stream'),
-    webpack = require('webpack-stream'),
+    webpack = require('webpack'),
+    webpackStream = require('webpack-stream'),
     dirTree = require('directory-tree'),
     express = require('express'),
     package = require('./package.json'),
@@ -19,11 +20,6 @@ var fs = require('fs'),
     tree = dirTree('src/components', { normalizePath: true, extensions: /\.ts/ }),
     tree2 = dirTree('demo/examples', { normalizePath: true }),
     commands = {};
-
-process.argv.slice(2).map(function(item) {
-  var command = item.split('=')
-  commands[command[0].slice(2)] = command[1]
-})
 
 /* Available tasks */
 gulp.task(clean)
@@ -43,6 +39,11 @@ gulp.task(cleanComponent)
 gulp.task('components', gulp.series(['lessComponent', 'tsComponent', 'jadeComponent', 'fullComponent', 'packComponents', 'cleanComponent']))
 gulp.task('build', gulp.series(['clean', 'copy', 'less', 'ts', 'components', 'test']))
 gulp.task('default', gulp.series(['build', 'watch', 'server']))
+
+process.argv.slice(2).map(function(item) {
+  var command = item.split('=')
+  commands[command[0].slice(2)] = command[1]
+})
 
 /* Methods */
 function watch(done) {
@@ -64,15 +65,13 @@ function less() {
   return gulp.src(['src/global/less/*.less', 'src/global/less/corporate-ui/{core,fonts,icons,brands}.less'])
     .pipe(sourcemaps.init())
     .pipe(gulpLess({
-      globalVars: {
-        rootPath: '"../../../"'
-      }
+      paths: ['node_modules']
     }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/css'))
 }
 function ts() {
-  return webpack({
+  return webpackStream({
     watch: false,
     devtool: 'inline-source-map',
     entry: {
@@ -83,7 +82,6 @@ function ts() {
     output: {
       filename: '[name].js'
     },
-    mode: 'production',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json']
     },
@@ -107,7 +105,9 @@ function ts() {
 }
 function lessComponent() {
   return gulp.src('src/components/**/*.less')
-    .pipe(gulpLess())
+    .pipe(gulpLess({
+      paths: ['node_modules']
+    }))
     .pipe(gulp.dest('tmp/components'))
 }
 function tsComponent() {
@@ -138,13 +138,16 @@ function tsComponent() {
     return obj
   }
 
-  return webpack({
+  return webpackStream({
     entry: entries,
     output: {
       path: __dirname + '/tmp/',
       filename: '[name].js'
     },
     mode: 'production',
+    optimization: {
+      minimize: false
+    },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json']
     },
@@ -158,7 +161,13 @@ function tsComponent() {
       webpackVariables: `{
         'examples': '${JSON.stringify(tree2.children)}'
       }`
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+      })
+    ]
   })
     .pipe(gulp.dest('tmp/'));
 }
@@ -186,7 +195,7 @@ function fullComponent() {
 
         if (isSubComponent) {
           prefix = '';
-          rootPath = '../../../../../polymer';
+          rootPath = '../' + rootPath;
         }
       }
 

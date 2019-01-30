@@ -1,3 +1,5 @@
+var Cookies = require('js-cookie');
+
 Polymer({
   is: name,
   properties: {

@@ -6,9 +6,9 @@
 
 // Insert Compile Date
 @compiled_at: `new Date()`;
-.compiled_at {content: "@{compiled_at}";}
+.compiled_at {content: '@{compiled_at}';}
 
-@import url("@{rootPath}bootstrap/dist/css/bootstrap.css");
+@import url('bootstrap.css');
 
 // Import Icons
 // We dont need this any more due to corporate-icons font already including font-awesome 3.2.1
@@ -18,9 +18,9 @@
 // @import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/all.min.css");
 // @import url("https://static.scania.com/resources/icons/font-awesome/5.3.1/css/v4-shims.min.css");
 // @import url("@{rootPath}@fortawesome/fontawesome-free/css/all.min.css");
-@import url("@{rootPath}@fortawesome/fontawesome-free/css/v4-shims.min.css");
+@import (less) '@fortawesome/fontawesome-free/css/v4-shims.min.css';
 
 // Added select2 dependency
-@import url("@{rootPath}select2/select2.css");
+@import (less) 'select2/select2.css';
 
 @import url('corporate-ui-light.css');

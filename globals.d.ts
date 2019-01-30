@@ -8,10 +8,3 @@ declare var Polymer: any;
 declare var $: any;
 declare var google: any;
 declare var angular: any;
-
-// Bootstrap native globals
-declare var Dropdown: any;
-declare var Collapse: any;
-
-// Would be better to import the type from types sub folder instead
-declare var Choices: any;

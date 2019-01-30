@@ -1,3 +1,8 @@
+
+// This is not working right now, so if we want to use this 
+// component later on. Then we need to sort this out then...
+require('imports-loader?$=jquery!slick-carousel/slick/slick.min.js');
+
 Polymer({
   is: name,
   properties: {

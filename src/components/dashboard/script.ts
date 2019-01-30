@@ -1,3 +1,10 @@
+
+require('jquery-ui-dist/jquery-ui');
+require('bootstrap/dist/js/bootstrap');
+// This is not working right now, so if we want to use this 
+// component later on. Then we need to sort this out then...
+require('imports-loader?$=jquery!lobipanel/dist/js/lobipanel.js');
+
 Polymer({
   is: name,
   properties: {

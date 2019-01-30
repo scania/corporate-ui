@@ -25,7 +25,7 @@ block root
       block script
 
     script.
-      if(window['params'] && window['params'].monitoring) {
+      if(window['params'] && window['params'].monitoring!='false' && window['params'].monitoring!=null) {
         ga('send', {
           hitType: 'event',
           eventCategory: 'corporate-ui-component', //the object that user interact with on the page

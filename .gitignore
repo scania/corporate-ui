@@ -10,6 +10,8 @@ www/
 log.txt
 *.sublime-project
 *.sublime-workspace
+*.tgz
+*.d.ts
 
 .stencil/
 .idea/
@@ -26,6 +28,5 @@ UserInterfaceState.xcuserstate
 
 src/demo/**/*.*
 !src/demo/**/readme.md
-*.d.ts
 
 package-lock.json

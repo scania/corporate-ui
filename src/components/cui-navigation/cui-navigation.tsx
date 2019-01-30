@@ -9,9 +9,17 @@ export class CuiNavigation {
   @Prop() router: Boolean;
   @Prop() primaryItems: any = [];
 
-  render() {
-    let primaryItems = Array.isArray(this.primaryItems) ? this.primaryItems : JSON.parse(this.primaryItems);
+  _primaryItems: object[] = [];
 
+  componentWillLoad() {
+    this._primaryItems = Array.isArray(this.primaryItems) ? this.primaryItems : JSON.parse(this.primaryItems);
+  }
+
+  componentWillUpdate() {
+    this._primaryItems = Array.isArray(this.primaryItems) ? this.primaryItems : JSON.parse(this.primaryItems);
+  }
+
+  render() {
     if(this.router) {
       return (
         <stencil-route-link url='/profile/stencil'>
@@ -26,10 +34,10 @@ export class CuiNavigation {
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
 
-              {primaryItems.map((item) =>
+              {this._primaryItems.map((item) =>
                 <li class="nav-item">
-                  <a class="nav-link" href={item.location}>
-                    <span>{item.text}</span>
+                  <a class="nav-link" href={item['location']}>
+                    <span>{item['text']}</span>
                   </a>
                 </li>
               )}

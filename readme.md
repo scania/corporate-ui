@@ -18,13 +18,7 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
 ## Getting Started
+We'll work on this section soon.
 
-To start building a new web component using Stencil, clone this repo to a new directory:
-
-```bash
-git clone https://github.com/scania/corporate-ui-dev/stencil-component-starter.git my-component
-cd my-component
-npm run install-dep
-```
 ## Join us on Slack
 https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ

@@ -13,7 +13,11 @@ export class CuiHeader {
   @Prop({ context: 'store' }) store: Store;
   @State() theme: string;
 
+
+  _items: object[] = [];
+
   componentWillLoad(){
+  this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
     this.store.mapStateToProps(this, (state) => {
       const {
         app: { theme }
@@ -23,12 +27,13 @@ export class CuiHeader {
         theme
       }
     });
+  }
 
+  componentWillUpdate() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
   }
 
   render() {
-    let items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
-
     return (
           <nav class="navbar navbar-expand-lg navbar-default">
             <div class="navbar-header collapse navbar-collapse">
@@ -40,10 +45,10 @@ export class CuiHeader {
 
                   <ul class="navbar-nav my-2 my-lg-0">
 
-                    {items.map((item) =>
+                    {this._items.map((item) =>
                       <li class="nav-item">
-                        <a class="nav-link" href={item.location}>
-                          <span>{item.text}</span>
+                        <a class="nav-link" href={item['location']}>
+                          <span>{item['text']}</span>
                         </a>
                       </li>
                     )}

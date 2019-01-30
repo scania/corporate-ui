@@ -1,19 +1,19 @@
 import { TypeKeys, ActionTypes } from '../actions/index';
 
 interface AppState {
-  name: string;
+  theme: string;
 }
 
 const getInitialState = () => {
   return {
-    name: 'default'
+    theme: 'default'
   }
 };
 
 const app = (state: AppState = getInitialState(), action: ActionTypes) => {
   switch (action.type) {
-    case TypeKeys.APP_SET_NAME: {
-      return { ...state, name: action.name }
+    case TypeKeys.APP_SET_THEME: {
+      return { ...state, theme: action.theme }
     }
   }
 

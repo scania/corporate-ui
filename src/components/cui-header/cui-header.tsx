@@ -11,16 +11,16 @@ export class CuiHeader {
   @Prop() items: any = [];
 
   @Prop({ context: 'store' }) store: Store;
-  @State() name: string;
+  @State() theme: string;
 
   componentWillLoad(){
     this.store.mapStateToProps(this, (state) => {
       const {
-        app: { name }
+        app: { theme }
       } = state;
 
       return {
-        name
+        theme
       }
     });
 
@@ -51,7 +51,7 @@ export class CuiHeader {
                   </ul>
 
                   <a class="navbar-symbol" href="#"></a>
-                  <style>@import url({'../../themes/' + this.name + '/cui-header.css'});</style>
+                  <style>@import url({'../../themes/' + this.theme + '/cui-header.css'});</style>
             </div>
           </nav>
 

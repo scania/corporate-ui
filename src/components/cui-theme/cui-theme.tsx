@@ -1,7 +1,7 @@
 import { Component, Prop } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 
-import { appSetName } from '../../actions/setTheme';
+import { appSetTheme } from '../../actions/setTheme';
 
 @Component({
   tag: 'cui-theme',
@@ -11,7 +11,7 @@ export class CuiTheme {
   @Prop({ context: 'store' }) store: Store;
   @Prop() name: string;
 
-  appSetName: Action;
+  appSetTheme: Action;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
@@ -25,9 +25,9 @@ export class CuiTheme {
     });
 
     this.store.mapDispatchToProps(this, {
-      appSetName
+      appSetTheme
     });
-    this.appSetName(this.name)
+    this.appSetTheme(this.name)
   }
 
   render() {

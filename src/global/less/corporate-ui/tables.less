@@ -14,6 +14,14 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
   color: #041e42;
   border: 1px solid #dadada;
 
+  .app & thead > tr > th input + .input-icon {
+    font-size: 1.4rem;
+    right: 1px;
+    margin-top: -11px;
+    padding: 2px 4px;
+    background-color: rgba(255,255,255,0.6);
+    }
+
   thead,
   tbody,
   tfoot {
@@ -36,7 +44,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
     > tr {
 
        .select2-container abbr {
-        right: 16%;
+        right: 20px;
         top: 25%;
     }
 
@@ -45,7 +53,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         vertical-align: top;
 
         .select2-container abbr {
-          right: 15%;
+          right: 10%;
           top: 35%;
       }
         
@@ -61,6 +69,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             padding: 4px 10px;
             font-size: 1.2rem;
             border: 1px solid #94999d;
+            background-size: 12px;
 
             &::placeholder,
             &::-webkit-input-placeholder,
@@ -81,7 +90,13 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
         vertical-align: top;
 
         & .select2-container .select2-arrow {
-            background-size: 20px;
+
+          .app & {
+            width: 22px;
+            background-size: 12px;
+            background-color: rgba(255,255,255,0.6); 
+          }
+            background-size: 27px;
         }
 
         input,
@@ -97,7 +112,7 @@ table { //This is to override the Boostrap standard of "collapse" on all table e
             font-size: 1.2rem;
             border: 1px solid #94999d;
             padding-right: 18px!important;
-            background-position: 99% center;
+            background-position: 95% center;
             background-size: 12px;
 
             &::placeholder,

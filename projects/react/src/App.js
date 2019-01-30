@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { defineCustomElement } from '../../../dist/esm/es5/corporate-ui.core';
-import { CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation, ContextConsumer } from '../../../dist/esm/es5/corporate-ui.components';
+import { CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation } from '../../../dist/esm/es5/corporate-ui.components';
 
 class App extends Component {
 
@@ -22,7 +22,7 @@ class App extends Component {
       { text: 'contact', location: '/contact' }
     ];
 
-    defineCustomElement(window, [CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation, ContextConsumer]);
+    defineCustomElement(window, [CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation]);
   }
 
   render() {

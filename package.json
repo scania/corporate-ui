@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "npm run build:stencil && npm run build:angular && npm run build:react",
-    "build:stencil": "stencil build",
+    "build:stencil": "stencil build --dev --es5",
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",
     "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
@@ -21,12 +21,12 @@
     "install-dep:react": "cd projects/react && npm i",
     "start": "npm run build && npm run server",
     "docs": "stencil build --docs",
-    "server": "stencil build --watch --serve",
+    "server": "stencil build --watch --serve --dev --es5",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@fortawesome/fontawesome-pro": "^5.6.3",
     "@stencil/core": "~0.15.2",
     "@stencil/sass": "^0.1.1",
     "@stencil/state-tunnel": "0.0.8",

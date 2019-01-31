@@ -25,6 +25,7 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+.npmrc
 
 src/demo/**/*.*
 !src/demo/**/readme.md

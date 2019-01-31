@@ -7,6 +7,7 @@ import { Component, Prop } from '@stencil/core';
 })
 export class CuiList {
   @Prop() items: any = [];
+  @Prop() headline: string = 'List';
 
   _items: object[] = [];
 
@@ -19,7 +20,11 @@ export class CuiList {
   }
 
   render() {
-    return (
+    return [
+      <h3>
+        <cui-icon name="angle-right"></cui-icon>
+        {this.headline}
+      </h3>,
       <ul>
         {this._items.map((item) =>
           <li>
@@ -27,6 +32,6 @@ export class CuiList {
           </li>
         )}
       </ul>
-    )
+    ]
   }
 }

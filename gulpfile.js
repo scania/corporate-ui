@@ -58,8 +58,14 @@ function clean() {
   return del(['tmp', 'dist'])
 }
 function copy() {
-  return gulp.src(['src/global/**'])
+  var stream1 = gulp.src(['src/global/**'])
     .pipe(gulp.dest('dist'))
+
+  // temporary solution, should be solved inside a select component
+  var stream2 = gulp.src(['node_modules/Select2/*.{png,gif}'])
+    .pipe(gulp.dest('dist/css'))
+
+  return merge(stream1, stream2)
 }
 function less() {
   return gulp.src(['src/global/less/*.less', 'src/global/less/corporate-ui/{core,fonts,icons,brands}.less'])

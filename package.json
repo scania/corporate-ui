@@ -19,21 +19,22 @@
     "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
     "install-dep:angular": "cd projects/angular && npm i",
     "install-dep:react": "cd projects/react && npm i",
-    "start": "npm run build && npm run server",
+    "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
     "docs": "stencil build --docs",
     "server": "stencil build --watch --serve",
     "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "storybook": "npm run build:stencil && start-storybook -p 9001 -c .storybook"
+    "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
+    "@babel/preset-typescript": "^7.1.0",
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@stencil/core": "~0.15.2",
     "@stencil/sass": "^0.1.1",
     "@stencil/state-tunnel": "0.0.8",
+    "@storybook/addon-options": "^4.1.11",
     "@storybook/html": "^4.1.7",
     "@types/jest": "23.3.13",
     "@types/puppeteer": "1.6.4",
@@ -42,8 +43,10 @@
     "bootstrap": "^4.2.1",
     "jest": "23.6.0",
     "jest-cli": "23.6.0",
+    "marked": "^0.6.0",
     "puppeteer": "1.8.0",
     "webpack": "4.28.4"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

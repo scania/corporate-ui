@@ -1,7 +1,18 @@
-import { configure } from '@storybook/html';
+import { configure, addDecorator } from '@storybook/html';
+import { withOptions } from '@storybook/addon-options';
+
+import { name } from '../package.json';
 
 function loadStories() {
-  require('../stories/index.js');
+  require('../stories/info.js');
+  require('../stories/components.js');
+  require('../stories/templates.js');
 }
+
+addDecorator(
+  withOptions({
+    name: name
+  })
+)
 
 configure(loadStories, module);

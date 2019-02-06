@@ -9,8 +9,8 @@ export class CuiIcon {
   @Prop() name: string;
 
   render() {
-    return [
+    return (
       <i class={"fa fa-"+this.name}></i>
-    ];
+    );
   }
 }

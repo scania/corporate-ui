@@ -1,4 +1,4 @@
-import { Component, Prop, Element } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'cui-card',

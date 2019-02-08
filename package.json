@@ -39,7 +39,9 @@
     "puppeteer": "1.8.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "redux-watch": "^1.1.1",
+    "rollup-plugin-node-builtins": "^2.1.2"
   },
   "license": "MIT"
 }

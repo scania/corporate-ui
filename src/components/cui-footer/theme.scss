@@ -1,3 +1,21 @@
+
+:host(.man){
+.wordmark{
+  background-image: url(https://www.corporate.man.eu/media/nresources/nimages/man_logo.png);
+  width:103px;
+  height: 55px;
+}
+
+}
+
+:host(.default){
+.footer {
+  /* css footer default */
+}
+
+}
+
+:host(.scania){
 /* :root{
     --footer-background-url: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
     --footer-background-url: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
@@ -5,4 +23,6 @@
 .wordmark{
   background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
   background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+}
+
 }

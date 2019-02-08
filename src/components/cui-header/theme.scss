@@ -1,0 +1,162 @@
+
+:host(.default){
+.header {
+  /* css header default */
+}
+
+}
+
+:host(.man){
+/* navigation */
+h1{
+  color: red;
+}
+.navbar{
+  padding: 0;
+}
+.navbar-default {
+  font-family: 'Roboto Condensed';
+  background-color: #303c49;
+  margin-bottom: 0;
+  border-bottom:4px solid var(--danger);
+  border-radius: 0;
+  z-index: 1000;
+  font-size: 1.4rem;
+  min-height: auto;
+}
+
+.navbar-default .navbar-header {
+  float: none;
+  display: block;
+  font-family: 'Roboto Condensed';
+  font-weight: bold;
+  padding: 2px 0 0px;
+  font-size: 1.3rem;
+  color: #acb1b6;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+  font-size: 0;
+  padding: 0;
+  margin: 20px 30px 20px 15px;
+  color: #777;
+  line-height: 20px;
+}
+
+.navbar-default .navbar-header .navbar-brand:before {
+  display: inline-block;
+  content: "";
+  background-image: url("https://www.corporate.man.eu/media/nresources/nimages/man_logo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+  width: 103px;
+  height: 55px;
+}
+
+.navbar-default .navbar-header .navbar-nav a, .navbar-default .navbar-header .navbar-nav span {
+  font-family: "Roboto Condensed";
+  font-weight: normal;
+  font-size: 12px;
+  color: #fff;
+  padding: 15px;
+}
+
+.navbar-default .navbar-header .navbar-symbol {
+  display: none;
+}
+
+}
+
+:host(.scania){
+/* navigation */
+.navbar{
+  padding: 0;
+}
+.navbar-default {
+  font-family: 'Scania Sans';
+  background-color: #fff;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+  z-index: 1000;
+  font-size: 1.4rem;
+  min-height: auto;
+}
+
+.navbar-default .navbar-header {
+  float: none;
+  display: block;
+  font-family: 'Scania Sans Headline';
+  padding: 2px 0 0px;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 1.8rem;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+  font-size: 0;
+  padding: 0;
+  margin: 20px 30px 20px 15px;
+  color: #777;
+  line-height: 20px;
+}
+
+.navbar-default .navbar-header .navbar-brand:before {
+  display: inline-block;
+  content: "";
+  background-image: url("https://static.scania.com/resources/logotype/scania/scania-wordmark.png");
+  background-image: url("https://static.scania.com/resources/logotype/scania/scania-wordmark.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+  width: 170px;
+  height: 28px;
+}
+
+.navbar-default .navbar-header .navbar-brand:after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  border-left: 1px solid #e2e2e2;
+  margin: 0 -20px 0 15px;
+  height: 20px;
+  cursor: default;
+}
+
+.navbar-default .navbar-header .navbar-nav a, .navbar-default .navbar-header .navbar-nav span {
+  font-family: "Scania Sans";
+  font-weight: normal;
+  font-size: 12px;
+  color: #747472;
+  padding: 15px;
+}
+
+.navbar-default .navbar-header .navbar-symbol {
+  width: 48px;
+  height: 46px;
+  float: right;
+  margin-right: 10px;
+  margin-left: 45px;
+  margin-top: 9px;
+}
+
+.navbar-default .navbar-header .navbar-symbol:before {
+  display: inline-block;
+  content: "";
+  background-image: url("https://static.scania.com/resources/logotype/scania/scania-symbol.png");
+  background-image: url("https://static.scania.com/resources/logotype/scania/scania-symbol.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: inherit;
+  height: inherit;
+}
+
+}

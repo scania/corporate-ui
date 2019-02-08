@@ -1,10 +1,19 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import rootReducer from '../reducers/index';
+import { createStore } from 'redux';
 
+const SET_THEME = 'SET_THEME';
 
-const configureStore = (preloadedState: any) =>
-  createStore(rootReducer, preloadedState, applyMiddleware(logger, thunk));
+// reducers
+function setTheme(state = 'default', action) {
+  switch (action.type) {
+    case SET_THEME:
+      return state = action.theme
+    default:
+      return state
+  }
+}
 
-export { configureStore };
+const store = createStore(setTheme);
+
+export{
+  store
+}

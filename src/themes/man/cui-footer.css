@@ -1,8 +1,4 @@
-:host{
-  background: var(--primary);
-  padding-bottom: 35px;
-}
-:host .wordmark{
+.wordmark{
   background-image: url(https://www.corporate.man.eu/media/nresources/nimages/man_logo.png);
   width:103px;
   height: 55px;

@@ -8,8 +8,7 @@ import {
   CuiHeader,
   CuiFooter,
   CuiContent,
-  CuiNavigation,
-  ContextConsumer
+  CuiNavigation
 } from '../../../dist/esm/es5/corporate-ui.components';
 
 class App extends Component {
@@ -36,8 +35,7 @@ class App extends Component {
       CuiHeader,
       CuiFooter,
       CuiContent,
-      CuiNavigation,
-      ContextConsumer
+      CuiNavigation
     ]);
   }
 

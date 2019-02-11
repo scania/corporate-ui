@@ -1,13 +1,18 @@
 import { storiesOf } from '@storybook/html';
+import { action } from '@storybook/addon-actions';
+// import { linkTo } from '@storybook/addon-links';
 
 import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
 import * as CUI from '../dist/esm/es5/corporate-ui.components';
 import types from '../src/types.json';
 import components from '../src/components.json';
 
+import '../src/components.scss';
+
 
 Object.keys(CUI)
   .map(item => renderWebComponent(CUI[item]));
+
 
 [{name: 'All'}, ...types]
   .map(type => renderNavigation(type));
@@ -54,11 +59,12 @@ function renderNavigation(type) {
 
   if (!typeComponents.length) return;
 
+  // ToDo: We want to use onclick=${linkTo('Templates', 'Mail')}
   storiesOf('Components', module)
     .addParameters({ options: { addonPanelInRight: true } })
     .add(
       title,
-      () => `
+      () => (`
         <main>
           <section>
             <cui-container type="fluid">
@@ -66,10 +72,11 @@ function renderNavigation(type) {
                 <h2>${type.name}</h2>
               </header>
               <p>Elements will follow here.</p>
-              <cui-row>
+              <cui-row class="row-eq-height">
                 ${typeComponents.map(component => (
-                  `<cui-column size="3">
-                    <cui-card headline="${component.name}">
+                  `<cui-column md="3">
+                    <cui-card onclick="(function() { window.location = window.location.origin + window.location.pathname + '?selectedKind=Components/${type.name}&selectedStory=${component.name}' })()">
+                      <strong slot="card-header">${component.name}</strong>
                       <${component.name} slot="card-body" />
                     </cui-card>
                   </cui-column>`
@@ -77,8 +84,29 @@ function renderNavigation(type) {
               </cui-row>
             </cui-container>
           </section>
-        </main>`,
-      { options: { onclick: () => {
-        console.log('apa')
-      } } });
+        </main>
+      `)
+    )
+
+  typeComponents.map(component => {
+    storiesOf('Components/' + type.name, module)
+      .addParameters({ options: { addonPanelInRight: true } })
+      .add(
+        component.name,
+        () => (`
+          <main>
+            <section>
+              <cui-container type="fluid">
+                <header>
+                  <button onclick="(function() { window.history.back() })()">Back to the category page</button>
+                  <h2>${component.name}</h2>
+                </header>
+                <p>Elements will follow here.</p>
+                <${component.name} />
+              </cui-container>
+            </section>
+          </main>
+        `)
+      )
+  })
 }

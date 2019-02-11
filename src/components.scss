@@ -1,0 +1,10 @@
+
+// Content area
+cui-card {
+  transition: all 60ms ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+}

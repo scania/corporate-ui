@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Element } from '@stencil/core';
 
 @Component({
   tag: 'cui-card',
@@ -7,7 +7,7 @@ import { Component, Prop } from '@stencil/core';
 })
 export class CuiCard {
 
-  @Prop() headline: string;
+  @Element() el: HTMLElement;
 
   hostData() {
     return {
@@ -15,14 +15,29 @@ export class CuiCard {
     };
   }
 
-  bodyClass:any = {class:"card-body"};
-  footerClass:any = {class:"card-footer"};
+  componentDidLoad() {
+    let slots = this.el.shadowRoot.querySelectorAll('slot');
+
+    for (let i in slots) {
+      let slot = slots[i];
+      this.toggleHide(slot)
+
+      slot.addEventListener('slotchange', (e) => {
+        this.toggleHide(e.target)
+      });
+    }
+  }
+
+  toggleHide = (node) => {
+    let nodes = node.assignedNodes().length || node.children.length;
+    node.style.display = nodes ? '' : 'none';
+  }
 
   render() {
     return [
-      <div class="card-header">{this.headline}</div>,
-      <slot name="card-body" {...this.bodyClass}></slot>,
-      <slot name="card-footer" {...this.footerClass}></slot>
+      <slot name="card-header" {... { class: "card-header" } } />,
+      <slot name="card-body" {... { class: "card-body" } } />,
+      <slot name="card-footer" {... { class: "card-footer" } } />
     ]
   }
 }

@@ -11,13 +11,13 @@ export class UserRepos {
   @State() repos: any = [];
 
   componentWillLoad() {
-    fetch('https://api.github.com/users/' + this.userId + '/repos')
-      .then((response: Response) => response.json())
-      .then(response => {
-        this.repos = response.map((repo) => {
-          return { text: repo.name }
-        });
-      });
+    // fetch('https://api.github.com/users/' + this.userId + '/repos')
+    //   .then((response: Response) => response.json())
+    //   .then(response => {
+    //     this.repos = response.map((repo) => {
+    //       return { text: repo.name }
+    //     });
+    //   });
   }
 
   render() {

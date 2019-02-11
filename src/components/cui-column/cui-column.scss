@@ -70,6 +70,7 @@ $grid-sufix: ')';
 
 :host {
   display: block;
+  padding-bottom: 15px;
 
   &,
   *,
@@ -85,6 +86,15 @@ $grid-sufix: ')';
   :host([class*="col-"]) {
     padding-right: 0;
     padding-left: 0;
+  }
+}
+
+:host-context(.row-eq-height) {
+  display: flex;
+  flex-direction: column;
+
+  ::slotted(*) {
+    flex-grow: 1;
   }
 }
 

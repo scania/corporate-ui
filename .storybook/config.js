@@ -11,7 +11,7 @@ function loadStories() {
 
 addDecorator(
   withOptions({
-    name: name
+    name
   })
 )
 

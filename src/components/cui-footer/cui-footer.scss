@@ -1,9 +1,9 @@
 
 :host {
   display: block;
-  background-color: black;
-  color: white;
-  padding: 46px 30px 20px;
+  background-color: var(--footer-background);
+  color: var(--footer-color);
+  padding: 46px 30px 35px;
   p{
     color: #97999b;
     font-size: 10px;

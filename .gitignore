@@ -30,3 +30,5 @@ src/demo/**/*.*
 !src/demo/**/readme.md
 
 package-lock.json
+
+src/components/*/style.ts

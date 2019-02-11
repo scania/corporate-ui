@@ -12,7 +12,7 @@
     "!dist/collection/demo"
   ],
   "scripts": {
-    "build": "npm run build:stencil && npm run build:angular && npm run build:react",
+    "build": "npm run build:stencil",
     "build:stencil": "stencil build",
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@stencil/core": "~0.15.2",
+    "@stencil/redux": "0.0.4",
     "@stencil/sass": "^0.1.1",
     "@stencil/state-tunnel": "0.0.8",
     "@types/jest": "23.3.13",
@@ -35,7 +36,12 @@
     "bootstrap": "^4.2.1",
     "jest": "23.6.0",
     "jest-cli": "23.6.0",
-    "puppeteer": "1.8.0"
+    "puppeteer": "1.8.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "redux-watch": "^1.1.1",
+    "rollup-plugin-node-builtins": "^2.1.2"
   },
   "license": "MIT"
 }

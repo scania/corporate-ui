@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 // import { CuiAlert } from 'new-cui-demo/dist/esm/es5/new-cui-demo.components';
 
 import { defineCustomElement } from '../../../../dist/esm/es5/corporate-ui.core';
-import { CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation, ContextConsumer } from '../../../../dist/esm/es5/corporate-ui.components';
+import { CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation } from '../../../../dist/esm/es5/corporate-ui.components';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +27,6 @@ export class AppComponent {
       { text: 'contact', location: '/contact' }
     ];
 
-    defineCustomElement(window, [CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation, ContextConsumer]);
+    defineCustomElement(window, [CuiTheme, CuiHeader, CuiFooter, CuiContent, CuiNavigation]);
   }
 }

@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
   <script src="/build/corporate-ui.js"></script>
+  <base href="/">
 </head>
 <body>
   <cui-theme name="scania"></cui-theme>
-
   <cui-header site-name="CUI Page" items='[{"text":"global"},{"text":"about"}]'></cui-header>
   <cui-content>
     <cui-navigation primary-items='[{"text":"home"},{"text":"contact"}]'></cui-navigation>
@@ -55,9 +55,10 @@
         <h3><cui-icon name="angle-right"></cui-icon> List</h3>
         <cui-list items='[{"text":"item 1"},{"text":"item 2"}]'></cui-list>
         <h3><cui-icon name="angle-right"></cui-icon> Awinny´s repos</h3>
-        <!-- <user-repos user-id='awinny'></user-repos> -->
+        <user-repos user-id='awinny'></user-repos>
       </div>
     </section>
+
   </cui-content>
   <cui-footer></cui-footer>
 

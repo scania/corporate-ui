@@ -1,6 +1,6 @@
 import { Component, Prop, State, Watch, Method } from '@stencil/core';
 import {  store } from '../../store';
-import * as style from './style.js';
+import * as style from './style';
 
 @Component({
   tag: 'cui-theme',

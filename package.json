@@ -12,7 +12,7 @@
     "!dist/collection/demo"
   ],
   "scripts": {
-    "build": "npm run build:stencil && npm run build:angular && npm run build:react",
+    "build": "npm run build:stencil",
     "build:stencil": "stencil build",
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",

@@ -69,9 +69,9 @@ fs.readdir(components, (err, files) => {
               addString += brand + ',';
             })
             addString += '}';
-            fs.writeFile('./src/components/'+file+'/style.js', addString, 'utf8', (err) => {
+            fs.writeFile('./src/components/'+file+'/style.ts', addString, 'utf8', (err) => {
                 if (err) throw err;
-                console.log('write file', file + '/style.js');
+                console.log('write file', file + '/style.ts');
             });
           } else if(key==='global' && counter!=1){
             addString = '';
@@ -80,9 +80,9 @@ fs.readdir(components, (err, files) => {
               addString += brand + ',';
             })
             addString += '}';
-            fs.writeFile('./src/components/cui-theme/style.js', addString, 'utf8', (err) => {
+            fs.writeFile('./src/components/cui-theme/style.ts', addString, 'utf8', (err) => {
                 if (err) throw err;
-                console.log('write file cui-theme/style.js');
+                console.log('write file cui-theme/style.ts');
             });
             counter++;
           }

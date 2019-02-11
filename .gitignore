@@ -31,4 +31,4 @@ src/demo/**/*.*
 
 package-lock.json
 
-src/components/*/style.js
+src/components/*/style.ts

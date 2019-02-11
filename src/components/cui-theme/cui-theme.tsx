@@ -1,6 +1,6 @@
 import { Component, Prop, State, Watch, Method } from '@stencil/core';
 import {  store } from '../../store';
-import * as style from './style.js'
+import * as style from './style.js';
 
 @Component({
   tag: 'cui-theme',
@@ -18,7 +18,7 @@ export class CuiTheme {
 
   componentWillLoad() {
     this.globalStyle = style[this.name];
-    store.dispatch({ type:'SET_THEME', theme:'scania' })
+    store.dispatch({ type:'SET_THEME', theme:this.name })
   }
 
   @Method()

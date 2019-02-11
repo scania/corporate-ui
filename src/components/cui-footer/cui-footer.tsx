@@ -1,31 +1,33 @@
 import { Component, State } from '@stencil/core';
 import { store } from '../../store';
+import * as style from './style.js';
 
 @Component({
   tag: 'cui-footer',
-  styleUrls: ['cui-footer.scss','theme.scss'],
+  styleUrls: ['cui-footer.scss'],
   shadow: true
 })
 export class CuiFooter {
-  @State() theme: string;
+  @State() currentTheme: string;
 
   hostData() {
     let hostClass = {class: {}}
-    hostClass.class[this.theme] = this.theme;
+    hostClass.class[this.currentTheme] = this.currentTheme;
     return hostClass;
   }
 
   render() {
-    store.subscribe(() => this.theme = store.getState())
-    return (
-        <footer>
-          <div class="container-fluid">
-            <span class="wordmark"></span>
-            <p>
-              Copyright &copy; Scania 2019
-            </p>
-          </div>
-        </footer>
-    );
+    store.subscribe(() => this.currentTheme = store.getState())
+    return [
+      <style>{style[this.currentTheme]}</style>,
+      <footer>
+        <div class="container-fluid">
+          <span class="wordmark"></span>
+          <p>
+            Copyright &copy; Scania 2019
+          </p>
+        </div>
+      </footer>
+    ];
   }
 }

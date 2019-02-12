@@ -22,10 +22,8 @@ export class CuiFooter {
       <style>{style[this.currentTheme]}</style>,
       <footer>
         <div class="container-fluid">
-          <span class="wordmark"></span>
-          <p>
-            Copyright &copy; Scania 2019
-          </p>
+          <span class="wordmark" />
+          <p>Copyright &copy; Scania 2019</p>
         </div>
       </footer>
     ];

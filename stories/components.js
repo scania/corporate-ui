@@ -9,9 +9,10 @@ import components from '../src/components.json';
 
 import '../src/components.scss';
 
+const CUI_COMPONENTS = CUI.COMPONENTS;
 
-Object.keys(CUI)
-  .map(item => renderWebComponent(CUI[item]));
+Object.keys(CUI_COMPONENTS)
+  .map(item => renderWebComponent(CUI_COMPONENTS[item]));
 
 
 [{name: 'All'}, ...types]

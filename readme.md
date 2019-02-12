@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/scania/corporate-ui-dev.svg?branch=master)](https://travis-ci.com/scania/corporate-ui-dev)
+
 # Corporate UI Development Repository
 In this repository we're developing the next generation components for Corporate UI.
 

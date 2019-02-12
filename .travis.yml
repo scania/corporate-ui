@@ -3,7 +3,7 @@ node_js:
   - "8"
 
 script:
-  - "npm run i"
+  - "npm i"
   - "npm run build"
   - "npm run test"
   - "echo $TRAVIS_BRANCH"

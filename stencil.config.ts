@@ -6,7 +6,11 @@ import './build';
 export const config: Config = {
   namespace: 'corporate-ui',
   outputTargets:[
-    { type: 'dist' }
+    { type: 'dist' },
+    {
+      type: 'www',
+      serviceWorker: null // disable service workers
+    }
   ],
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/projects/']

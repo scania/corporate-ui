@@ -1,6 +1,6 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Method, Watch } from '@stencil/core';
 import { store } from '../../store';
-import * as style from './style';
+import * as style from '../../themes.built/cui-header';
 
 @Component({
   tag: 'cui-header',
@@ -8,31 +8,34 @@ import * as style from './style';
   shadow: true
 })
 export class CuiHeader {
+
+  @Prop() theme: string;
   @Prop() siteName: string = 'Application name';
   @Prop() items: any = [{text:'global', location:'/'}];
 
-  @State() currentTheme: string;
+  @State() currentTheme: string = this.theme;
+
+  @Watch('items')
+  updateName(items) {
+    this.setItems(items);
+  }
 
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   _items: object[] = [];
 
-  hostData() {
-    let hostClass = {class: {}}
-    hostClass.class[this.currentTheme] = this.currentTheme;
-    return hostClass;
+  componentWillLoad() {
+    store.subscribe(() => this.currentTheme = store.getState())
+
+    this.setItems(this.items);
   }
 
-  componentWillLoad(){
-    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
-  }
-
-  componentWillUpdate() {
-    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items);
+  @Method()
+  setItems(items) {
+    this._items = Array.isArray(items) ? items : JSON.parse(items);
   }
 
   render() {
-    store.subscribe(() => this.currentTheme = store.getState())
     return [
       <style>{style[this.currentTheme]}</style>,
       <nav class="navbar navbar-expand-lg navbar-default ">

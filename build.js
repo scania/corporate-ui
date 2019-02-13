@@ -28,7 +28,8 @@ var walkDir = function(dir, done) {
               }
 
               cssContent = '';
-              cssContent += '\nconst '+ brandName +' = \`';
+              cssContent += '\nexport const '+ brandName +' = \`';
+
               cssContent += dt[a];
               cssContent += '\`\n';
               if(componentCSS[filename]) componentCSS[filename] += cssContent;
@@ -51,44 +52,33 @@ var walkDir = function(dir, done) {
 };
 
 const components = 'src/components/';
-const themesFolder = 'src/themes/';
+const inputFolder = 'src/themes/';
+const outputFolder = 'src/themes.built/';
+
 var counter = 0,
     addString = '';
+
+if (!fs.existsSync(outputFolder)){
+  fs.mkdirSync(outputFolder);
+}
 
 fs.readdir(components, (err, files) => {
   if(err) console.log(err);
   files.forEach(file => {
-    walkDir(themesFolder, function(err, data, globalCSS, componentCSS){
-      console.log('============ checking ',file);
+    walkDir(inputFolder, function(err, data, globalCSS, componentCSS){
+      console.log('============ checking ', file);
+
       if (err) console.log(err);
-        for(var key in componentCSS){
-          if(file===key){
-            addString = '';
-            addString += componentCSS[key] + 'export{';
-            globalCSS.forEach(brand => {
-              addString += brand + ',';
-            })
-            addString += '}';
-            fs.writeFile('./src/components/'+file+'/style.ts', addString, 'utf8', (err) => {
-                if (err) throw err;
-                console.log('write file', file + '/style.ts');
-            });
-          } else if(key==='global' && counter!=1){
-            addString = '';
-            addString += componentCSS[key] + 'export{';
-            globalCSS.forEach(brand => {
-              addString += brand + ',';
-            })
-            addString += '}';
-            fs.writeFile('./src/components/cui-theme/style.ts', addString, 'utf8', (err) => {
-                if (err) throw err;
-                console.log('write file cui-theme/style.ts');
-            });
-            counter++;
-          }
+      for(var key in componentCSS){
+        if(file === key){
+          addString = '';
+          addString += componentCSS[key]
+          fs.writeFile(outputFolder + file + '.ts', addString, 'utf8', (err) => {
+            if (err) throw err;
+            console.log('write file ' + file + '.ts');
+          });
         }
-
+      }
     })
-
   })
 })

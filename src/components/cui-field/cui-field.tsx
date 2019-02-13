@@ -6,16 +6,16 @@ import { Component, Prop } from '@stencil/core';
   shadow: true
 })
 export class CuiField {
-  @Prop() type: string = 'text';
-  @Prop() value: string = '';
+  @Prop() type = 'text';
+  @Prop() value = '';
 
   render() {
     if (this.type === 'text' || this.type === 'password') {
       return (
         <input type={this.type} value={this.value} />
-      )
+      );
     } else {
-      <textarea>{this.value}</textarea>
+      <textarea>{ this.value }</textarea>;
     }
   }
 }

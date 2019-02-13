@@ -10,12 +10,12 @@ export class CuiContainer {
   @Prop() type?: '' | 'fluid' | 'flex';
 
   hostData() {
-    let data = { class: {} }
+    const data = { class: { } };
     data.class['container' + (this.type ? '-' + this.type : '')] = true;
     return data;
   }
 
   render() {
-    return <slot></slot>
+    return <slot></slot>;
   }
 }

@@ -20,7 +20,7 @@ export class CuiNavigation {
   }
 
   render() {
-    if(this.router) {
+    if (this.router) {
       return (
         <stencil-route-link url='/profile/stencil'>
           <button>
@@ -30,14 +30,14 @@ export class CuiNavigation {
       );
     } else {
       return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
+        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+          <div class='collapse navbar-collapse'>
+            <ul class='navbar-nav mr-auto'>
 
               {this._primaryItems.map((item) =>
-                <li class="nav-item">
-                  <a class="nav-link" href={item['location']}>
-                    <span>{item['text']}</span>
+                <li class='nav-item'>
+                  <a class='nav-link' href={ item['location'] }>
+                    <span>{ item['text'] }</span>
                   </a>
                 </li>
               )}
@@ -45,7 +45,7 @@ export class CuiNavigation {
             </ul>
           </div>
         </nav>
-      )
+      );
     }
   }
 }

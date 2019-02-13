@@ -22,7 +22,7 @@ export class UserRepos {
 
   render() {
     return (
-      <cui-list items={this.repos}></cui-list>
-    )
+      <cui-list items={ this.repos }></cui-list>
+    );
   }
 }

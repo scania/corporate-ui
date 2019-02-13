@@ -13,7 +13,7 @@ export class CuiColumn {
   @Prop() xl: any;
 
   hostData() {
-    let data = { class: { 'col': true } };
+    const data = { class: { col: true } };
 
     ['sm', 'md', 'lg', 'xl'].map(size => {
       let item = this[size];
@@ -23,25 +23,25 @@ export class CuiColumn {
 
       // Parse prop as it could contain either a number or a object
       try {
-        item = JSON.parse(item)
+        item = JSON.parse(item);
       } catch {
-        item = item
+        item = item;
       }
 
-      if(typeof item === 'number') {
+      if (typeof item === 'number') {
         data.class['col-' + size + (item ? '-' + item : '')] = item;
       } else {
         Object.keys(item).map(prop => {
-          var prefix = prop == 'size' ? 'col' : prop;
+          const prefix = prop === 'size' ? 'col' : prop;
           data.class[prefix + '-' + size + '-' + item[prop]] = prop;
-        })
+        });
       }
-    })
+    });
 
     return data;
   }
 
   render() {
-    return <slot></slot>
+    return <slot></slot>;
   }
 }

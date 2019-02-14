@@ -20,10 +20,10 @@ export class CuiFooter {
     store.subscribe(() => this.currentTheme = store.getState());
     return [
       <style>{ style[this.currentTheme] }</style>,
-      <footer>
+      <footer data-test-id='cui-footer'>
         <div class='container-fluid'>
-          <span class='wordmark' />
-          <p>Copyright &copy; Scania 2019</p>
+          <span data-test-id='cui-footer-logo' class='wordmark' />
+          <p data-test-id='cui-footer-copyright'>Copyright &copy; Scania 2019</p>
         </div>
       </footer>
     ];

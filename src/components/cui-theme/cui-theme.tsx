@@ -24,7 +24,7 @@ export class CuiTheme {
   @Method()
   appSetTheme(name) {
     this.globalStyle = style[name];
-    store.dispatch({ type:'SET_THEME', theme:name });
+    store.dispatch({ type: 'SET_THEME', theme: name });
   }
 
   render() {

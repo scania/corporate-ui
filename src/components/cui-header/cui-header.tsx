@@ -24,9 +24,8 @@ export class CuiHeader {
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   _items: object[] = [];
 
-
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState())
+    store.subscribe(() => this.currentTheme = store.getState());
 
     this.setItems(this.items);
   }

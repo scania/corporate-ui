@@ -18,7 +18,7 @@ export class CuiCard {
   componentDidLoad() {
     let slots = this.el.shadowRoot.querySelectorAll('slot');
 
-    for (const i in slots) {
+    for (let i in slots) {
       let slot = slots[i];
       this.toggleHide(slot)
 

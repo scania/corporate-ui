@@ -22,6 +22,8 @@
     "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
     "docs": "stencil build --docs",
     "server": "stencil build --watch --serve",
+    "lint": "tslint 'src/**/*.{ts,tsx}'",
+    "lint-fix": "tslint --fix 'src/**/*.{ts,tsx}'",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
@@ -53,6 +55,8 @@
     "redux-watch": "^1.1.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
     "url-loader": "^1.1.2",
     "webpack": "4.28.4"
   },

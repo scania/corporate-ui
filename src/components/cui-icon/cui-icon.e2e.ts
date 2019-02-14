@@ -6,4 +6,3 @@ describe('cui-icon', () => {
         expect(element).toHaveClass('hydrated');
     });
 });
-

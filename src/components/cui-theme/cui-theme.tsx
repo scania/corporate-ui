@@ -10,7 +10,7 @@ export class CuiTheme {
 
   @Prop() name: string;
 
-  @State() globalStyle : any;
+  @State() globalStyle: any;
 
   @Watch('name')
   updateName(name) {
@@ -18,16 +18,16 @@ export class CuiTheme {
   }
 
   componentWillLoad() {
-    this.appSetTheme(this.name)
+    this.appSetTheme(this.name);
   }
 
   @Method()
   appSetTheme(name) {
     this.globalStyle = style[name];
-    store.dispatch({ type:'SET_THEME', theme:name })
+    store.dispatch({ type:'SET_THEME', theme:name });
   }
 
   render() {
-    return <style>{this.globalStyle}</style>
+    return <style>{ this.globalStyle }</style>;
   }
 }

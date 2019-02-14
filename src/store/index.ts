@@ -6,14 +6,14 @@ const SET_THEME = 'SET_THEME';
 function setTheme(state = 'default', action) {
   switch (action.type) {
     case SET_THEME:
-      return state = action.theme
+      return state = action.theme;
     default:
-      return state
+      return state;
   }
 }
 
 const store = createStore(setTheme);
 
-export{
+export {
   store
-}
+};

@@ -9,11 +9,11 @@ export class CuiRow {
 
   hostData() {
     return {
-      class: { 'row': true }
+      class: { row: true }
     };
   }
 
   render() {
-    return <slot></slot>
+    return <slot></slot>;
   }
 }

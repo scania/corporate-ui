@@ -21,12 +21,12 @@ export class CuiList {
   render() {
     return (
       <ul>
-        {this._items.map((item) =>
+        { this._items.map((item) =>
           <li>
-            <span>{item['text']}</span>
+            <span>{ item['text']}</span>
           </li>
-        )}
+        ) }
       </ul>
-    )
+    );
   }
 }

@@ -49,10 +49,10 @@ export class CuiHeader {
 
           <ul class='navbar-nav my-2 my-lg-0'>
 
-            { this._items.map((item) =>
+            { this._items.map(item =>
               <li class='nav-item'>
-                <a class='nav-link' href={ item['location']}>
-                  <span>{ item['text']}</span>
+                <a class='nav-link' href={ item['location'] }>
+                  <span>{ item['text'] }</span>
                 </a>
               </li>
             ) }

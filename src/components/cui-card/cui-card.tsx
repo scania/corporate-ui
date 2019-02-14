@@ -18,14 +18,13 @@ export class CuiCard {
   componentDidLoad() {
     const slots = this.el.shadowRoot.querySelectorAll('slot');
 
-    for (let i = 0; i < slots.length; i++) {
-      const slot = slots[i];
-      this.toggleHide(slot);
+    slots.forEach(elem => {
+      this.toggleHide(elem);
 
-      slot.addEventListener('slotchange', (e) => {
+      elem.addEventListener('slotchange', (e) => {
         this.toggleHide(e.target);
       });
-    }
+    });
   }
 
   toggleHide = (node) => {

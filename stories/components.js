@@ -4,19 +4,23 @@ import { action } from '@storybook/addon-actions';
 
 import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
 import * as CUI from '../dist/esm/es5/corporate-ui.components';
-import types from '../src/types.json';
-import components from '../src/components.json';
+
+import categories from '../src/components/categories.json';
+import components from '../src/components/data.json';
 
 import '../src/components.scss';
 
 const CUI_COMPONENTS = CUI.COMPONENTS;
 
+// We skip rendering these components for now due to rendering issues
+let items = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
+
 Object.keys(CUI_COMPONENTS)
   .map(item => renderWebComponent(CUI_COMPONENTS[item]));
 
 
-[{name: 'All'}, ...types]
-  .map(type => renderNavigation(type));
+[{name: 'All'}, ...categories]
+  .map(category => renderStories(category, items, 'Components'));
 
 
 function renderWebComponent(component) {
@@ -47,36 +51,35 @@ function renderWebComponent(component) {
     .add(tagName, () => `<${tagName} />`);*/
 }
 
-function renderNavigation(type) {
-  // We skip rendering these components for now due to rendering issues
-  let _components = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
-  let typeComponents = _components.filter(item => item.types.indexOf(type.id) > -1);
-  let title = type.name + ' (' + typeComponents.length + ')';
 
-  if (!type.id) {
-    typeComponents = _components;
-    title = type.name;
+export function renderStories(category, items, title) {
+  let categorisedItems = items.filter(item => item.categories.indexOf(category.id) > -1);
+  let storyName = category.name + ' (' + categorisedItems.length + ')';
+
+  if (!category.id) {
+    categorisedItems = items;
+    storyName = category.name;
   }
 
-  if (!typeComponents.length) return;
+  if (!categorisedItems.length) return;
 
-  // ToDo: We want to use onclick=${linkTo('Templates', 'Mail')}
-  storiesOf('Components', module)
+  // ToDo: We want to use onclick=${linkTo(title + '/' + category.name, component.name)}
+  storiesOf(title, module)
     .addParameters({ options: { addonPanelInRight: true } })
     .add(
-      title,
+      storyName,
       () => (`
         <main>
           <section>
             <cui-container type="fluid">
               <header>
-                <h2>${type.name}</h2>
+                <h2>${category.name}</h2>
               </header>
               <p>Elements will follow here.</p>
               <cui-row class="row-eq-height">
-                ${typeComponents.map(component => (
+                ${categorisedItems.map(component => (
                   `<cui-column md="3">
-                    <cui-card onclick="(function() { window.location = window.location.origin + window.location.pathname + '?selectedKind=Components/${type.name}&selectedStory=${component.name}' })()">
+                    <cui-card onclick="(function() { window.location = window.location.origin + window.location.pathname + '?selectedKind=${title}/${category.name}&selectedStory=${component.name}' })()">
                       <strong slot="card-header">${component.name}</strong>
                       <${component.name} slot="card-body" />
                     </cui-card>
@@ -89,8 +92,19 @@ function renderNavigation(type) {
       `)
     )
 
-  typeComponents.map(component => {
-    storiesOf('Components/' + type.name, module)
+  categorisedItems.map(component => {
+    let content = `<${component.name} />`;
+
+    if (title === 'Templates') {
+      // var template = require('html-loader?interpolate!../src/templates/' + component.name + '.html');
+      // var template = new DOMParser().parseFromString(`${require('../src/templates/' + component.name + '.html')}`, 'text/html');
+      // var apa = template.querySelector('body')
+      // content = `<iframe onload="(function(e) { e.contentDocument.documentElement.replaceChild(${apa}, e.contentDocument.documentElement.body) })(this)"></iframe>`;
+      // console.log(apa)
+      content = `<cui-container type="fluid">${require('../src/templates/' + component.name + '.html')}</cui-container>`;
+    }
+
+    storiesOf(title + '/' + category.name, module)
       .addParameters({ options: { addonPanelInRight: true } })
       .add(
         component.name,
@@ -103,7 +117,7 @@ function renderNavigation(type) {
                   <h2>${component.name}</h2>
                 </header>
                 <p>Elements will follow here.</p>
-                <${component.name} />
+                ${content}
               </cui-container>
             </section>
           </main>

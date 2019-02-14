@@ -19,8 +19,19 @@ module.exports = {
           },
           {
             loader: 'sass-loader'
-          }
+          },
         ]
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            minimize: true,
+            removeComments: false,
+            collapseWhitespace: false
+          }
+        }
       }/*,
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,

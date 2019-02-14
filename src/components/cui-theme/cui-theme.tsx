@@ -1,29 +1,30 @@
-import { Component, Prop, State, Watch, Method } from '@stencil/core';
+import { Component, Prop, State, Method, Watch } from '@stencil/core';
 import {  store } from '../../store';
-import * as style from './style';
+import * as style from '../../themes.built/cui-theme';
 
 @Component({
   tag: 'cui-theme',
   styleUrls: ['cui-theme.scss']
 })
 export class CuiTheme {
+
   @Prop() name: string;
+
   @State() globalStyle: any;
 
   @Watch('name')
-  updateName(newValue: string) {
-    this.appSetTheme(newValue);
-    store.dispatch({ type: 'SET_THEME', theme: newValue });
+  updateName(name) {
+    this.appSetTheme(name);
   }
 
   componentWillLoad() {
-    this.globalStyle = style[this.name];
-    store.dispatch({ type: 'SET_THEME', theme: this.name });
+    this.appSetTheme(this.name);
   }
 
   @Method()
   appSetTheme(name) {
     this.globalStyle = style[name];
+    store.dispatch({ type:'SET_THEME', theme:name });
   }
 
   render() {

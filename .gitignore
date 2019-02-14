@@ -26,9 +26,9 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 
+src/themes.built/
 src/demo/**/*.*
 !src/demo/**/readme.md
 
 package-lock.json
 
-src/components/*/style.ts

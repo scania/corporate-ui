@@ -11,18 +11,18 @@ export class CuiFooter {
   @State() currentTheme: string;
 
   hostData() {
-    let hostClass = {class: {}}
+    const hostClass = { class: { } };
     hostClass.class[this.currentTheme] = this.currentTheme;
     return hostClass;
   }
 
   render() {
-    store.subscribe(() => this.currentTheme = store.getState())
+    store.subscribe(() => this.currentTheme = store.getState());
     return [
-      <style>{style[this.currentTheme]}</style>,
+      <style>{ style[this.currentTheme] }</style>,
       <footer>
-        <div class="container-fluid">
-          <span class="wordmark" />
+        <div class='container-fluid'>
+          <span class='wordmark' />
           <p>Copyright &copy; Scania 2019</p>
         </div>
       </footer>

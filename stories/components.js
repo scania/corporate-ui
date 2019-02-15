@@ -3,20 +3,20 @@ import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
 
 import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
-import * as CUI from '../dist/esm/es5/corporate-ui.components';
+import * as C from '../dist/esm/es5/corporate-ui.components';
 
 import categories from '../src/components/categories.json';
 import components from '../src/components/data.json';
 
 import '../src/components.scss';
 
-const CUI_COMPONENTS = CUI.COMPONENTS;
+const C_COMPONENTS = C.COMPONENTS;
 
 // We skip rendering these components for now due to rendering issues
 let filteredComponents = components.filter(item => ['c-column', 'c-container', 'c-content', 'c-row'].indexOf(item.name) === -1);
 
-Object.keys(CUI_COMPONENTS)
-  .map(item => renderWebComponent(CUI_COMPONENTS[item]));
+Object.keys(C_COMPONENTS)
+  .map(item => renderWebComponent(C_COMPONENTS[item]));
 
 
 [{name: 'All'}, ...categories]

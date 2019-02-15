@@ -4,7 +4,7 @@ const componentName = 'cui-footer';
 let page;
 beforeEach(async () => {
     page = await newE2EPage();
-    await page.setContent('<cui-footer></cui-footer>');
+    await page.setContent('<c-footer></c-footer>');
 });
 
 const getByTestId = async dataTestId => await page.find(`${componentName} >>> [data-test-id="${dataTestId}"]`);

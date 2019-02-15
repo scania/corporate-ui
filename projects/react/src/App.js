@@ -41,10 +41,10 @@ class App extends Component {
 
   render() {
     return [
-      <cui-theme name="scania" />,
-      <cui-header site-name={this.title} items={JSON.stringify(this.items)} />,
-      <cui-content>
-        ,<cui-navigation primary-items={JSON.stringify(this.primaryItems)} />
+      <c-theme name="scania" />,
+      <c-header site-name={this.title} items={JSON.stringify(this.items)} />,
+      <c-content>
+        ,<c-navigation primary-items={JSON.stringify(this.primaryItems)} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -57,8 +57,8 @@ class App extends Component {
         >
           Learn React
         </a>
-      </cui-content>,
-      <cui-footer />
+      </c-content>,
+      <c-footer />
     ];
   }
 }

@@ -26,11 +26,11 @@ export class CuiList {
         {this.headline}
       </h3>,
       <ul>
-        {this._items.map((item) =>
+        { this._items.map((item) =>
           <li>
-            <span>{item['text']}</span>
+            <span>{ item['text']}</span>
           </li>
-        )}
+        ) }
       </ul>
     ]
   }

@@ -27,8 +27,8 @@ export class CuiIcon {
   }
 
   render() {
-    return [
-      <i class={'fa fa-'+this.name}></i>
-    ];
+    return (
+      <i class={ 'fa fa-' + this.name }></i>
+    );
   }
 }

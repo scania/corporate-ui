@@ -11,33 +11,32 @@ export class CuiCard {
 
   hostData() {
     return {
-      class: { 'card': true }
+      class: { card: true }
     };
   }
 
   componentDidLoad() {
-    let slots = this.el.shadowRoot.querySelectorAll('slot');
+    const slots = this.el.shadowRoot.querySelectorAll('slot');
 
-    for (let i in slots) {
-      let slot = slots[i];
-      this.toggleHide(slot)
+    slots.forEach(elem => {
+      this.toggleHide(elem);
 
-      slot.addEventListener('slotchange', (e) => {
-        this.toggleHide(e.target)
+      elem.addEventListener('slotchange', (e) => {
+        this.toggleHide(e.target);
       });
-    }
+    });
   }
 
   toggleHide = (node) => {
-    let nodes = node.assignedNodes().length || node.children.length;
+    const nodes = node.assignedNodes().length || node.children.length;
     node.style.display = nodes ? '' : 'none';
   }
 
   render() {
     return [
-      <slot name="card-header" {... { class: "card-header" } } />,
-      <slot name="card-body" {... { class: "card-body" } } />,
-      <slot name="card-footer" {... { class: "card-footer" } } />
-    ]
+      <slot name='card-header' { ... { class: 'card-header' } } />,
+      <slot name='card-body' { ... { class: 'card-body' } } />,
+      <slot name='card-footer' { ... { class: 'card-footer' } } />
+    ];
   }
 }

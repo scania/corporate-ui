@@ -17,9 +17,9 @@ export class CuiContent {
             <stencil-route url='/profile/:name' component='app-profile' />
           </stencil-route-switch>
         </stencil-router>
-      )
+      );
     } else {
-      return <slot></slot>
+      return <slot></slot>;
     }
   }
 }

@@ -1,4 +1,3 @@
-
 // Content area
 cui-card {
   transition: all 60ms ease-in-out;
@@ -7,4 +6,8 @@ cui-card {
     cursor: pointer;
     transform: scale(1.02);
   }
+}
+
+iframe {
+  border: 0;
 }

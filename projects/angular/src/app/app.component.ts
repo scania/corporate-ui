@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-// import { defineCustomElement } from 'new-cui-demo/dist/esm/es5/new-cui-demo.core';
-// import { cAlert } from 'new-cui-demo/dist/esm/es5/new-cui-demo.components';
+// import { defineCustomElement } from 'new-c-demo/dist/esm/es5/new-c-demo.core';
+// import { cAlert } from 'new-c-demo/dist/esm/es5/new-c-demo.components';
 
 import { defineCustomElement } from '../../../../dist/esm/es5/corporate-ui.core';
 import { cTheme, cHeader, cFooter, cContent, cNavigation } from '../../../../dist/esm/es5/corporate-ui.components';

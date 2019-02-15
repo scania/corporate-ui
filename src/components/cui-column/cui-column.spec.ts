@@ -1,6 +1,6 @@
-import { CuiColumn } from './cui-column';
+import { cColumn } from './cui-column';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiColumn()).toBeTruthy();
+        expect(new cColumn()).toBeTruthy();
     });
 });

@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-field.scss',
   shadow: true
 })
-export class CuiField {
+export class cField {
   @Prop() type = 'text';
   @Prop() value = '';
 

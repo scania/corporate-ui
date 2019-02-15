@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-column.scss',
   shadow: true
 })
-export class CuiColumn {
+export class cColumn {
 
   @Prop() sm: any;
   @Prop() md: any;

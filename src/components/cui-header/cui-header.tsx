@@ -7,7 +7,7 @@ import * as style from '../../themes.built/cui-header';
   styleUrls: ['c-header.scss'],
   shadow: true
 })
-export class CuiHeader {
+export class cHeader {
 
   @Prop() theme: string;
   @Prop() siteName = 'Application name';

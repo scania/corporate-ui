@@ -5,7 +5,7 @@ import { Component, Element } from '@stencil/core';
   styleUrl: 'c-card.scss',
   shadow: true
 })
-export class CuiCard {
+export class cCard {
 
   @Element() el: HTMLElement;
 

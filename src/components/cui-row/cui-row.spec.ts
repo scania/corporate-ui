@@ -1,6 +1,6 @@
-import { CuiRow } from './cui-row';
+import { cRow } from './cui-row';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiRow()).toBeTruthy();
+        expect(new cRow()).toBeTruthy();
     });
 });

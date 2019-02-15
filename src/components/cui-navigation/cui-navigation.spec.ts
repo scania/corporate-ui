@@ -1,6 +1,6 @@
-import { CuiNavigation } from './cui-navigation';
+import { cNavigation } from './cui-navigation';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiNavigation()).toBeTruthy();
+        expect(new cNavigation()).toBeTruthy();
     });
 });

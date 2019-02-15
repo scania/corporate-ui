@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-content.scss',
   shadow: true
 })
-export class CuiContent {
+export class cContent {
   @Prop() router: Boolean;
 
   render() {

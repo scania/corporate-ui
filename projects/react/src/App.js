@@ -4,11 +4,11 @@ import './App.css';
 
 import { defineCustomElement } from '../../../dist/esm/es5/corporate-ui.core';
 import {
-  CuiTheme,
-  CuiHeader,
-  CuiFooter,
-  CuiContent,
-  CuiNavigation
+  cTheme,
+  cHeader,
+  cFooter,
+  cContent,
+  cNavigation
 } from '../../../dist/esm/es5/corporate-ui.components';
 
 class App extends Component {
@@ -31,11 +31,11 @@ class App extends Component {
     ];
 
     defineCustomElement(window, [
-      CuiTheme,
-      CuiHeader,
-      CuiFooter,
-      CuiContent,
-      CuiNavigation
+      cTheme,
+      cHeader,
+      cFooter,
+      cContent,
+      cNavigation
     ]);
   }
 

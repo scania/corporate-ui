@@ -7,7 +7,7 @@ import * as style from '../../themes.built/cui-footer';
   styleUrls: ['c-footer.scss'],
   shadow: true
 })
-export class CuiFooter {
+export class cFooter {
 
   @Prop() theme: string;
 

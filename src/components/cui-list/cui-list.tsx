@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-list.scss',
   shadow: true
 })
-export class CuiList {
+export class cList {
   @Prop() items: any = [];
 
   _items: object[] = [];

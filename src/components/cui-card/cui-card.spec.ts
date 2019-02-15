@@ -1,6 +1,6 @@
-import { CuiCard } from './cui-card';
+import { cCard } from './cui-card';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiCard()).toBeTruthy();
+        expect(new cCard()).toBeTruthy();
     });
 });

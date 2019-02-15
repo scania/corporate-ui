@@ -1,6 +1,6 @@
-import { CuiHeader } from './cui-header';
+import { cHeader } from './cui-header';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiHeader()).toBeTruthy();
+        expect(new cHeader()).toBeTruthy();
     });
 });

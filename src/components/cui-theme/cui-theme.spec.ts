@@ -1,6 +1,6 @@
-import { CuiTheme } from './cui-theme';
+import { cTheme } from './cui-theme';
 describe('app-root', () => {
     it('builds', () => {
-        expect(new CuiTheme()).toBeTruthy();
+        expect(new cTheme()).toBeTruthy();
     });
 });

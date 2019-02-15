@@ -1,6 +1,6 @@
-import { CuiField } from './cui-field';
+import { cField } from './cui-field';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiField()).toBeTruthy();
+        expect(new cField()).toBeTruthy();
     });
 });

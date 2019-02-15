@@ -1,6 +1,6 @@
-import { CuiContainer } from './cui-container';
+import { cContainer } from './cui-container';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiContainer()).toBeTruthy();
+        expect(new cContainer()).toBeTruthy();
     });
 });

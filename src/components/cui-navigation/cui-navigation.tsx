@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-navigation.scss',
   shadow: true
 })
-export class CuiNavigation {
+export class cNavigation {
   @Prop() router: Boolean;
   @Prop() primaryItems: any = [];
 

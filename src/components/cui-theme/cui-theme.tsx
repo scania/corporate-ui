@@ -6,7 +6,7 @@ import * as style from '../../themes.built/cui-theme';
   tag: 'c-theme',
   styleUrls: ['c-theme.scss']
 })
-export class CuiTheme {
+export class cTheme {
 
   @Prop() name: string;
 

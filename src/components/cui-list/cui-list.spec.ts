@@ -1,6 +1,6 @@
-import { CuiList } from './cui-list';
+import { cList } from './cui-list';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiList()).toBeTruthy();
+        expect(new cList()).toBeTruthy();
     });
 });

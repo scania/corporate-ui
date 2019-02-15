@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-icon.scss',
   shadow: true
 })
-export class CuiIcon {
+export class cIcon {
   @Prop() name: string;
 
   render() {

@@ -5,7 +5,7 @@ import { Component } from '@stencil/core';
   styleUrl: 'c-row.scss',
   shadow: true
 })
-export class CuiRow {
+export class cRow {
 
   hostData() {
     return {

@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'c-container.scss',
   shadow: true
 })
-export class CuiContainer {
+export class cContainer {
 
   @Prop() type?: '' | 'fluid' | 'flex';
 

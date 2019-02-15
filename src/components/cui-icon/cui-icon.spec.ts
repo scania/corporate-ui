@@ -1,6 +1,6 @@
-import { CuiIcon } from './cui-icon';
+import { cIcon } from './cui-icon';
 describe('app', () => {
     it('builds', () => {
-        expect(new CuiIcon()).toBeTruthy();
+        expect(new cIcon()).toBeTruthy();
     });
 });

@@ -1,10 +1,16 @@
 import { storiesOf } from '@storybook/html';
 
-import { renderStories } from './components';
+import { renderKinds } from './components';
 
-import categories from '../src/templates/categories.json';
-import templates from '../src/templates/data.json';
+import categories from '../data/categories.json';
+import templates from '../data/templates.json';
 
 
 [{name: 'All'}, ...categories]
-  .map(category => renderStories(category, templates, 'Templates'));
+  .map(category => renderKinds(category, templates, 'Templates', content));
+
+
+function content(name) {
+  var template = require("../src/templates/" + name + ".html");
+  return `<cui-container type="fluid">${template}</cui-container>`;
+}

@@ -1,12 +1,12 @@
 import { storiesOf } from '@storybook/html';
 import { action } from '@storybook/addon-actions';
-// import { linkTo } from '@storybook/addon-links';
+import { withLinks } from '@storybook/addon-links';
 
 import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
 import * as CUI from '../dist/esm/es5/corporate-ui.components';
 
-import categories from '../src/components/categories.json';
-import components from '../src/components/data.json';
+import categories from '../data/categories.json';
+import components from '../data/components.json';
 
 import '../src/components.scss';
 
@@ -20,7 +20,7 @@ Object.keys(CUI_COMPONENTS)
 
 
 [{name: 'All'}, ...categories]
-  .map(category => renderStories(category, filteredComponents, 'Components'));
+  .map(category => renderKinds(category, filteredComponents, 'Components', renderContent));
 
 
 function renderWebComponent(component) {
@@ -52,7 +52,12 @@ function renderWebComponent(component) {
 }
 
 
-export function renderStories(category, items, title) {
+function renderContent(name) {
+  return `<${name} />`;
+}
+
+
+export function renderKinds(category, items, title, content) {
   let categorisedItems = items.filter(item => item.categories.indexOf(category.id) > -1);
   let storyName = category.name + ' (' + categorisedItems.length + ')';
 
@@ -66,6 +71,7 @@ export function renderStories(category, items, title) {
   // ToDo: We want to use onclick=${linkTo(title + '/' + category.name, component.name)}
   storiesOf(title, module)
     .addParameters({ options: { addonPanelInRight: true } })
+    .addDecorator(withLinks)
     .add(
       storyName,
       () => (`
@@ -79,6 +85,7 @@ export function renderStories(category, items, title) {
               <cui-row class="row-eq-height">
                 ${categorisedItems.map(component => (
                   `<cui-column md="3">
+                    <!-- <button data-sb-kind="${title}/${category.name}" data-sb-story="${component.name}">${component.name}</button> -->
                     <cui-card onclick="(function() { window.location = window.location.origin + window.location.pathname + '?selectedKind=${title}/${category.name}&selectedStory=${component.name}' })()">
                       <strong slot="card-header">${component.name}</strong>
                       <${component.name} slot="card-body" />
@@ -92,36 +99,28 @@ export function renderStories(category, items, title) {
       `)
     )
 
-  categorisedItems.map(component => {
-    let content = `<${component.name} />`;
+  categorisedItems.map(item => renderStories(category, item, title, content))
+}
 
-    if (title === 'Templates') {
-      // var template = require('html-loader?interpolate!../src/templates/' + component.name + '.html');
-      // var template = new DOMParser().parseFromString(`${require('../src/templates/' + component.name + '.html')}`, 'text/html');
-      // var apa = template.querySelector('body')
-      // content = `<iframe onload="(function(e) { e.contentDocument.documentElement.replaceChild(${apa}, e.contentDocument.documentElement.body) })(this)"></iframe>`;
-      // console.log(apa)
-      content = `<cui-container type="fluid">${require('../src/templates/' + component.name + '.html')}</cui-container>`;
-    }
 
-    storiesOf(title + '/' + category.name, module)
-      .addParameters({ options: { addonPanelInRight: true } })
-      .add(
-        component.name,
-        () => (`
-          <main>
-            <section>
-              <cui-container type="fluid">
-                <header>
-                  <button onclick="(function() { window.history.back() })()">Back to the category page</button>
-                  <h2>${component.name}</h2>
-                </header>
-                <p>Elements will follow here.</p>
-                ${content}
-              </cui-container>
-            </section>
-          </main>
-        `)
-      )
-  })
+export function renderStories(category, item, title, content) {
+  storiesOf(title + '/' + category.name, module)
+    .addParameters({ options: { addonPanelInRight: true } })
+    .add(
+      item.name,
+      () => (`
+        <main>
+          <section>
+            <cui-container type="fluid">
+              <header>
+                <button onclick="(function() { window.history.back() })()">Back to the category page</button>
+                <h2>${item.name}</h2>
+              </header>
+              <p>Elements will follow here.</p>
+              ${content(item.name)}
+            </cui-container>
+          </section>
+        </main>
+      `)
+    )
 }

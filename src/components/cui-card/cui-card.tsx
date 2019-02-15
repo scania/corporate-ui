@@ -1,8 +1,8 @@
 import { Component, Element } from '@stencil/core';
 
 @Component({
-  tag: 'cui-card',
-  styleUrl: 'cui-card.scss',
+  tag: 'c-card',
+  styleUrl: 'c-card.scss',
   shadow: true
 })
 export class CuiCard {

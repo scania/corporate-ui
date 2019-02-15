@@ -3,8 +3,8 @@ import { store } from '../../store';
 import * as style from '../../themes.built/cui-header';
 
 @Component({
-  tag: 'cui-header',
-  styleUrls: ['cui-header.scss'],
+  tag: 'c-header',
+  styleUrls: ['c-header.scss'],
   shadow: true
 })
 export class CuiHeader {

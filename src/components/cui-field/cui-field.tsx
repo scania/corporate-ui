@@ -1,8 +1,8 @@
 import { Component, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cui-field',
-  styleUrl: 'cui-field.scss',
+  tag: 'c-field',
+  styleUrl: 'c-field.scss',
   shadow: true
 })
 export class CuiField {

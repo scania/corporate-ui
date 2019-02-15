@@ -3,8 +3,8 @@ import {  store } from '../../store';
 import * as style from '../../themes.built/cui-theme';
 
 @Component({
-  tag: 'cui-theme',
-  styleUrls: ['cui-theme.scss']
+  tag: 'c-theme',
+  styleUrls: ['c-theme.scss']
 })
 export class CuiTheme {
 

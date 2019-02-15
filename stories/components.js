@@ -13,7 +13,7 @@ import '../src/components.scss';
 const CUI_COMPONENTS = CUI.COMPONENTS;
 
 // We skip rendering these components for now due to rendering issues
-let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
+let filteredComponents = components.filter(item => ['c-column', 'c-container', 'c-content', 'c-row'].indexOf(item.name) === -1);
 
 Object.keys(CUI_COMPONENTS)
   .map(item => renderWebComponent(CUI_COMPONENTS[item]));

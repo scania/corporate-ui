@@ -1,8 +1,8 @@
 import { Component, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cui-icon',
-  styleUrl: 'cui-icon.scss',
+  tag: 'c-icon',
+  styleUrl: 'c-icon.scss',
   shadow: true
 })
 export class CuiIcon {

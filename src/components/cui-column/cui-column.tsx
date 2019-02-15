@@ -1,8 +1,8 @@
 import { Component, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'cui-column',
-  styleUrl: 'cui-column.scss',
+  tag: 'c-column',
+  styleUrl: 'c-column.scss',
   shadow: true
 })
 export class CuiColumn {

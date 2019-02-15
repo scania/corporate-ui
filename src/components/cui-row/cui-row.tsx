@@ -1,8 +1,8 @@
 import { Component } from '@stencil/core';
 
 @Component({
-  tag: 'cui-row',
-  styleUrl: 'cui-row.scss',
+  tag: 'c-row',
+  styleUrl: 'c-row.scss',
   shadow: true
 })
 export class CuiRow {

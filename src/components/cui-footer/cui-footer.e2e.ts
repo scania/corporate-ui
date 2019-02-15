@@ -1,6 +1,6 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-const componentName = 'cui-footer';
+const componentName = 'c-footer';
 let page;
 beforeEach(async () => {
     page = await newE2EPage();
@@ -9,13 +9,13 @@ beforeEach(async () => {
 
 const getByTestId = async dataTestId => await page.find(`${componentName} >>> [data-test-id="${dataTestId}"]`);
 
-describe('cui-footer', () => {
+describe('c-footer', () => {
     it('renders', async () => {
-        const footer = await getByTestId('cui-footer');
+        const footer = await getByTestId('c-footer');
         expect(footer).not.toBeNull();
-        const copyright = await getByTestId('cui-footer-copyright');
+        const copyright = await getByTestId('c-footer-copyright');
         expect(copyright.textContent).toContain('Copyright');
-        const logo = await getByTestId('cui-footer-logo');
+        const logo = await getByTestId('c-footer-logo');
         expect(logo).not.toBeNull();
     });
 });

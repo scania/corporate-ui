@@ -1,38 +1,18 @@
 {
-  "extends": "tslint:recommended",
   "rulesDirectory": [],
   "rules": {
     "arrow-parens": false,
     "arrow-return-shorthand": false,
-    "array-type": [
-      true,
-      "array"
-    ],
-    "ban": [
-      true,
-      "setInterval",
-      "setTimeout"
-    ],
+    "array-type": [true, "array"],
+    "ban": [true, "setInterval", "setTimeout"],
     "ban-comma-operator": false,
     "ban-types": false,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "curly": [
-      true,
-      "ignore-same-line"
-    ],
+    "comment-format": [true, "check-space"],
+    "curly": [true, "ignore-same-line"],
     "forin": false,
-    "indent": [
-      true,
-      "spaces"
-    ],
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
+    "indent": [true, "spaces"],
+    "interface-name": [true, "never-prefix"],
     "interface-over-type-literal": true,
     "jsdoc-format": true,
     "linebreak-style": false,
@@ -46,10 +26,7 @@
     "no-switch-case-fall-through": true,
     "no-unused-expression": false,
     "no-consecutive-blank-lines": true,
-    "no-trailing-whitespace": [
-      true,
-      "ignore-template-strings"
-    ],
+    "no-trailing-whitespace": [true, "ignore-template-strings"],
     "no-var-keyword": true,
     "no-conditional-assignment": false,
     "no-console": true,
@@ -67,25 +44,13 @@
     "object-literal-shorthand": true,
     "object-literal-sort-keys": false,
     "one-variable-per-declaration": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-whitespace"
-    ],
+    "one-line": [true, "check-open-brace", "check-whitespace"],
     "ordered-imports": false,
     "prefer-const": true,
     "prefer-conditional-expression": false,
-    "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
-    ],
+    "quotemark": [true, "single", "avoid-escape"],
     "radix": false,
-    "semicolon": [
-      true,
-      "always",
-      "ignore-bound-class-methods"
-    ],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
     "space-within-parens": true,
     "trailing-comma": false,
     "triple-equals": true,
@@ -121,5 +86,6 @@
       "check-preblock"
     ]
   },
-  "jsRules": {}
+  "jsRules": {},
+  "extends": ["tslint:recommended", "tslint-config-prettier"]
 }

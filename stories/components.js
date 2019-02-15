@@ -13,14 +13,14 @@ import '../src/components.scss';
 const CUI_COMPONENTS = CUI.COMPONENTS;
 
 // We skip rendering these components for now due to rendering issues
-let items = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
+let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
 
 Object.keys(CUI_COMPONENTS)
   .map(item => renderWebComponent(CUI_COMPONENTS[item]));
 
 
 [{name: 'All'}, ...categories]
-  .map(category => renderStories(category, items, 'Components'));
+  .map(category => renderStories(category, filteredComponents, 'Components'));
 
 
 function renderWebComponent(component) {
@@ -32,10 +32,10 @@ function renderWebComponent(component) {
       const [propName, memberType, reflectToAttr, attrName, propType] = attributes;
 
       tagAttrs[propName] = {
-        memberType,
-        reflectToAttr,
         attrName,
-        propType
+        memberType,
+        propType,
+        reflectToAttr
       }
     });
   }
@@ -61,7 +61,7 @@ export function renderStories(category, items, title) {
     storyName = category.name;
   }
 
-  if (!categorisedItems.length) return;
+  if (!categorisedItems.length) { return; }
 
   // ToDo: We want to use onclick=${linkTo(title + '/' + category.name, component.name)}
   storiesOf(title, module)

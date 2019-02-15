@@ -27,9 +27,9 @@ module.exports = {
         use: {
           loader: 'html-loader',
           options: {
+            collapseWhitespace: false,
             minimize: true,
-            removeComments: false,
-            collapseWhitespace: false
+            removeComments: false
           }
         }
       }/*,

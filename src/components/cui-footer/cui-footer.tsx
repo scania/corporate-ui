@@ -19,7 +19,7 @@ export class CuiFooter {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState())
+    store.subscribe(() => this.currentTheme = store.getState());
   }
 
   render() {

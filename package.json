@@ -1,83 +1,83 @@
 {
-    "name": "Corporate-UI",
-    "version": "0.0.1",
-    "description": "In this repository you'll find all components available in the UX Library",
-    "module": "dist/esm/index.js",
-    "main": "dist/index.js",
-    "unpkg": "dist/ionic.js",
-    "types": "dist/types/components.d.ts",
-    "collection": "dist/collection/collection-manifest.json",
-    "files": [
-        "dist/",
-        "!dist/collection/demo"
+  "name": "Corporate-UI",
+  "version": "0.0.1",
+  "description": "In this repository you'll find all components available in the UX Library",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "unpkg": "dist/ionic.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/",
+    "!dist/collection/demo"
+  ],
+  "scripts": {
+    "build": "npm run build:stencil",
+    "build:stencil": "stencil build",
+    "build:angular": "cd projects/angular && npm run build",
+    "build:react": "cd projects/react && npm run build",
+    "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
+    "install-dep:angular": "cd projects/angular && npm i",
+    "install-dep:react": "cd projects/react && npm i",
+    "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
+    "docs": "stencil build --docs",
+    "server": "stencil build --watch --serve",
+    "lint": "tslint 'src/**/*.{ts,tsx}'",
+    "lint-fix": "tslint --fix 'src/**/*.{ts,tsx}'",
+    "prettier": "prettier --write",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint-fix --",
+      "git add"
     ],
-    "scripts": {
-        "build": "npm run build:stencil",
-        "build:stencil": "stencil build",
-        "build:angular": "cd projects/angular && npm run build",
-        "build:react": "cd projects/react && npm run build",
-        "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
-        "install-dep:angular": "cd projects/angular && npm i",
-        "install-dep:react": "cd projects/react && npm i",
-        "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
-        "docs": "stencil build --docs",
-        "server": "stencil build --watch --serve",
-        "lint": "tslint 'src/**/*.{ts,tsx}'",
-        "lint-fix": "tslint --fix 'src/**/*.{ts,tsx}'",
-        "prettier": "prettier --write",
-        "test": "stencil test --spec --e2e",
-        "test.watch": "stencil test --spec --e2e --watchAll"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": [
-            "npm run lint-fix --",
-            "git add"
-        ],
-        "*.{json,css,scss,md,html}": [
-            "npm run prettier --",
-            "git add"
-        ]
-    },
-    "devDependencies": {
-        "@babel/core": "^7.2.2",
-        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-        "@babel/preset-env": "^7.2.3",
-        "@babel/preset-typescript": "^7.1.0",
-        "@fortawesome/fontawesome-free": "^5.6.3",
-        "@stencil/core": "^0.18.0",
-        "@stencil/sass": "^0.1.1",
-        "@storybook/addon-actions": "^4.1.11",
-        "@storybook/addon-links": "^4.1.11",
-        "@storybook/addon-options": "^4.1.11",
-        "@storybook/html": "^4.1.11",
-        "@types/jest": "23.3.13",
-        "@types/puppeteer": "1.12.1",
-        "babel-core": "7.0.0-bridge.0",
-        "babel-loader": "^8.0.4",
-        "bootstrap": "^4.2.1",
-        "css-loader": "^2.1.0",
-        "husky": "^1.3.1",
-        "jest": "23.6.0",
-        "jest-cli": "23.6.0",
-        "marked": "^0.6.0",
-        "prettier": "1.16.4",
-        "puppeteer": "1.11.0",
-        "redux": "^4.0.1",
-        "redux-logger": "^3.0.6",
-        "redux-thunk": "^2.3.0",
-        "redux-watch": "^1.1.1",
-        "sass-loader": "^7.1.0",
-        "style-loader": "^0.23.1",
-        "tslint": "^5.12.1",
-        "tslint-config-prettier": "^1.18.0",
-        "url-loader": "^1.1.2",
-        "webpack": "4.28.4"
-    },
-    "license": "MIT",
-    "dependencies": {}
+    "*.{json,css,scss,md,html}": [
+      "npm run prettier --",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-typescript": "^7.1.0",
+    "@fortawesome/fontawesome-free": "^5.6.3",
+    "@stencil/core": "^0.18.0",
+    "@stencil/sass": "^0.1.1",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addon-links": "^4.1.11",
+    "@storybook/addon-options": "^4.1.11",
+    "@storybook/html": "^4.1.11",
+    "@types/jest": "23.3.13",
+    "@types/puppeteer": "1.12.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.0.4",
+    "bootstrap": "^4.2.1",
+    "css-loader": "^2.1.0",
+    "husky": "^1.3.1",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "marked": "^0.6.0",
+    "prettier": "1.16.4",
+    "puppeteer": "1.11.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "redux-watch": "^1.1.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "url-loader": "^1.1.2",
+    "webpack": "4.28.4"
+  },
+  "license": "MIT",
+  "dependencies": {}
 }

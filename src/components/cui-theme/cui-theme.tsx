@@ -1,6 +1,6 @@
 import { Component, Prop, State, Method, Watch } from '@stencil/core';
 import {  store } from '../../store';
-import * as style from '../../themes.built/cui-theme';
+import * as style from '../../themes.built/c-theme';
 
 @Component({
   tag: 'c-theme',

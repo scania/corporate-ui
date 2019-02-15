@@ -1,4 +1,4 @@
-import { cCard } from './cui-card';
+import { cCard } from './c-card';
 describe('app', () => {
     it('builds', () => {
         expect(new cCard()).toBeTruthy();

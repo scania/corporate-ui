@@ -1,0 +1,89 @@
+[
+  {
+    "id": "92f4852e-1b13-4630-a455-4179f90f9b3d",
+    "name": "cui-column",
+    "categories": ["dcb503ac-115e-4ee0-b87c-de67f158d9e7"]
+  },
+  {
+    "id": "f4310ffc-a9f7-4367-a336-90b813587ccf",
+    "name": "cui-container",
+    "categories": ["dcb503ac-115e-4ee0-b87c-de67f158d9e7"]
+  },
+  {
+    "id": "f685b01f-f800-429e-af66-45b9c911ca27",
+    "name": "cui-content",
+    "categories": ["dcb503ac-115e-4ee0-b87c-de67f158d9e7"]
+  },
+  {
+    "id": "0b664f14-c202-490c-a98b-8d5b631a24e8",
+    "name": "cui-field",
+    "categories": [
+      "4dabb9b0-1e25-48f8-98e9-336599cc0b37",
+      "d15da991-148c-4d06-b2df-436a1baf11ac"
+    ]
+  },
+  {
+    "id": "c00f9fbc-6584-48c2-a943-bfa3d6aa59cd",
+    "name": "cui-footer",
+    "categories": [
+      "ab41f517-93e8-4566-ad97-29eb1c6ac944",
+      "10d95c8e-c1b3-4b95-b4fb-c5d65c177255",
+      "d15da991-148c-4d06-b2df-436a1baf11ac",
+      "027ad7d1-afbb-4428-820a-d893a07ee826"
+    ]
+  },
+  {
+    "id": "62ad127e-933f-44af-addd-51f4508ac27e",
+    "name": "cui-header",
+    "categories": [
+      "ab41f517-93e8-4566-ad97-29eb1c6ac944",
+      "10d95c8e-c1b3-4b95-b4fb-c5d65c177255",
+      "d15da991-148c-4d06-b2df-436a1baf11ac",
+      "027ad7d1-afbb-4428-820a-d893a07ee826"
+    ]
+  },
+  {
+    "id": "aa47231e-229d-4788-82dd-86002a0c7c77",
+    "name": "cui-icon",
+    "categories": [
+      "dcb503ac-115e-4ee0-b87c-de67f158d9e7",
+      "9baca119-4b64-4877-b8b9-350e3b513947"
+    ]
+  },
+  {
+    "id": "b450fbfe-930f-4297-aba9-3318700f99dc",
+    "name": "cui-list",
+    "categories": [
+      "dcb503ac-115e-4ee0-b87c-de67f158d9e7",
+      "9baca119-4b64-4877-b8b9-350e3b513947"
+    ]
+  },
+  {
+    "id": "1807c0ac-4945-4b22-9cb8-7a996d8d5ab1",
+    "name": "cui-navigation",
+    "categories": [
+      "ab41f517-93e8-4566-ad97-29eb1c6ac944",
+      "10d95c8e-c1b3-4b95-b4fb-c5d65c177255",
+      "d15da991-148c-4d06-b2df-436a1baf11ac",
+      "027ad7d1-afbb-4428-820a-d893a07ee826"
+    ]
+  },
+  {
+    "id": "4bd29a08-0c90-41f7-9a07-c2d6dd503b46",
+    "name": "cui-row",
+    "categories": ["dcb503ac-115e-4ee0-b87c-de67f158d9e7"]
+  },
+  {
+    "id": "dfee6ab2-9b8e-41b8-a162-130ba065dc5b",
+    "name": "cui-theme",
+    "categories": [
+      "d15da991-148c-4d06-b2df-436a1baf11ac",
+      "027ad7d1-afbb-4428-820a-d893a07ee826"
+    ]
+  },
+  {
+    "id": "75acc492-cd4b-42f7-98b3-905d712f44ec",
+    "name": "user-repos",
+    "categories": ["ab41f517-93e8-4566-ad97-29eb1c6ac944"]
+  }
+]

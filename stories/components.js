@@ -3,20 +3,20 @@ import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
 
 import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
-import * as CUI from '../dist/esm/es5/corporate-ui.components';
+import * as C from '../dist/esm/es5/corporate-ui.components';
 
 import categories from '../src/components/categories.json';
 import components from '../src/components/data.json';
 
 import '../src/components.scss';
 
-const CUI_COMPONENTS = CUI.COMPONENTS;
+const C_COMPONENTS = C.COMPONENTS;
 
 // We skip rendering these components for now due to rendering issues
-let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
+let filteredComponents = components.filter(item => ['c-column', 'c-container', 'c-content', 'c-row'].indexOf(item.name) === -1);
 
-Object.keys(CUI_COMPONENTS)
-  .map(item => renderWebComponent(CUI_COMPONENTS[item]));
+Object.keys(C_COMPONENTS)
+  .map(item => renderWebComponent(C_COMPONENTS[item]));
 
 
 [{name: 'All'}, ...categories]
@@ -71,22 +71,22 @@ export function renderStories(category, items, title) {
       () => (`
         <main>
           <section>
-            <cui-container type="fluid">
+            <c-container type="fluid">
               <header>
                 <h2>${category.name}</h2>
               </header>
               <p>Elements will follow here.</p>
-              <cui-row class="row-eq-height">
+              <c-row class="row-eq-height">
                 ${categorisedItems.map(component => (
-                  `<cui-column md="3">
-                    <cui-card onclick="(function() { window.location = window.location.origin + window.location.pathname + '?selectedKind=${title}/${category.name}&selectedStory=${component.name}' })()">
+                  `<c-column md="3">
+                    <c-card onclick="(function() { window.location = window.location.origin + window.location.pathname + '?selectedKind=${title}/${category.name}&selectedStory=${component.name}' })()">
                       <strong slot="card-header">${component.name}</strong>
                       <${component.name} slot="card-body" />
-                    </cui-card>
-                  </cui-column>`
+                    </c-card>
+                  </c-column>`
                 )).join('')}
-              </cui-row>
-            </cui-container>
+              </c-row>
+            </c-container>
           </section>
         </main>
       `)
@@ -101,7 +101,7 @@ export function renderStories(category, items, title) {
       // var apa = template.querySelector('body')
       // content = `<iframe onload="(function(e) { e.contentDocument.documentElement.replaceChild(${apa}, e.contentDocument.documentElement.body) })(this)"></iframe>`;
       // console.log(apa)
-      content = `<cui-container type="fluid">${require('../src/templates/' + component.name + '.html')}</cui-container>`;
+      content = `<c-container type="fluid">${require('../src/templates/' + component.name + '.html')}</c-container>`;
     }
 
     storiesOf(title + '/' + category.name, module)
@@ -111,14 +111,14 @@ export function renderStories(category, items, title) {
         () => (`
           <main>
             <section>
-              <cui-container type="fluid">
+              <c-container type="fluid">
                 <header>
                   <button onclick="(function() { window.history.back() })()">Back to the category page</button>
                   <h2>${component.name}</h2>
                 </header>
                 <p>Elements will follow here.</p>
                 ${content}
-              </cui-container>
+              </c-container>
             </section>
           </main>
         `)

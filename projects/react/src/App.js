@@ -4,11 +4,11 @@ import './App.css';
 
 import { defineCustomElement } from '../../../dist/esm/es5/corporate-ui.core';
 import {
-  CuiTheme,
-  CuiHeader,
-  CuiFooter,
-  CuiContent,
-  CuiNavigation
+  cTheme,
+  cHeader,
+  cFooter,
+  cContent,
+  cNavigation
 } from '../../../dist/esm/es5/corporate-ui.components';
 
 class App extends Component {
@@ -31,20 +31,20 @@ class App extends Component {
     ];
 
     defineCustomElement(window, [
-      CuiTheme,
-      CuiHeader,
-      CuiFooter,
-      CuiContent,
-      CuiNavigation
+      cTheme,
+      cHeader,
+      cFooter,
+      cContent,
+      cNavigation
     ]);
   }
 
   render() {
     return [
-      <cui-theme name="scania" />,
-      <cui-header site-name={this.title} items={JSON.stringify(this.items)} />,
-      <cui-content>
-        ,<cui-navigation primary-items={JSON.stringify(this.primaryItems)} />
+      <c-theme name="scania" />,
+      <c-header site-name={this.title} items={JSON.stringify(this.items)} />,
+      <c-content>
+        ,<c-navigation primary-items={JSON.stringify(this.primaryItems)} />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -57,8 +57,8 @@ class App extends Component {
         >
           Learn React
         </a>
-      </cui-content>,
-      <cui-footer />
+      </c-content>,
+      <c-footer />
     ];
   }
 }

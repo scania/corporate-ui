@@ -1,9 +1,8 @@
 /* Import Scania font */
-@import url("https://static.scania.com/resources/fonts/scania-sans/scania-fonts.css");
+@import url('https://static.scania.com/resources/fonts/scania-sans/scania-fonts.css');
 
 /* Import Scania logotype */
-@import url("https://static.scania.com/resources/logotype/scania/logotype-stylesheet/scania-logotype.css");
-
+@import url('https://static.scania.com/resources/logotype/scania/logotype-stylesheet/scania-logotype.css');
 
 :root {
   --blue: #007bff;
@@ -32,6 +31,8 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: 'Scania Sans Semi Condensed', 'Scania Sans Condensed', 'Scania Sans', Arial, Helvetica, sans-serif;
-  --font-family-monospace: 'Scania Sans Semi Condensed', 'Scania Sans Condensed', 'Scania Sans', Arial, Helvetica, sans-serif;
+  --font-family-sans-serif: 'Scania Sans Semi Condensed',
+    'Scania Sans Condensed', 'Scania Sans', Arial, Helvetica, sans-serif;
+  --font-family-monospace: 'Scania Sans Semi Condensed', 'Scania Sans Condensed',
+    'Scania Sans', Arial, Helvetica, sans-serif;
 }

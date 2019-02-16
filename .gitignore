@@ -26,6 +26,7 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 
+data/stats.json
 src/themes.built/
 src/demo/**/*.*
 !src/demo/**/readme.md

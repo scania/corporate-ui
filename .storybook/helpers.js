@@ -27,7 +27,6 @@ export function renderKinds(category, items, title, content) {
               <header>
                 <h2>${category.name}</h2>
               </header>
-              <p>Elements will follow here.</p>
               <c-row class="row-eq-height">
                 ${categorisedItems.map(component => (
                   `<c-column md="3">
@@ -60,7 +59,6 @@ export function renderStories(category, item, title, content) {
                 <button onclick="(function() { window.history.back() })()">Back to the category page</button>
                 <h2>${item.name}</h2>
               </header>
-              <p>Elements will follow here.</p>
               ${content(item)}
             </c-container>
           </section>

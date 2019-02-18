@@ -15,6 +15,9 @@ export const config: Config = {
     {
       type: 'docs-json',
       file: 'data/docs.json'
+    },
+    {
+      type: 'docs'
     }
   ],
   testing: {

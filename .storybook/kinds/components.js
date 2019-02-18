@@ -29,8 +29,10 @@ addonAPI.addPanel('Components/panel', {
 
 function renderContent(item) {
   let content = contents.find(doc => doc.id === item.content);
+  let docs = require('../../src/components/' + item.name + '/readme.md');
   return `
     <${item.name}></${item.name}>
+    ${'<div>' + marked(docs) + '</div>'}
     ${content ? '<div>' + marked(content.content) + '</div>' : ''}
   `;
 }

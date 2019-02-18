@@ -1,6 +1,6 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
 import { store } from '../../store';
-import * as style from '../../themes.built/c-footer';
+import * as style from '../../themes.built/footer';
 
 @Component({
   tag: 'c-footer',

@@ -1,5 +1,5 @@
 /* navigation */
-.navbar{
+.navbar {
   padding: 0;
 }
 .navbar-default {
@@ -36,9 +36,9 @@
 
 .navbar-default .navbar-header .navbar-brand:before {
   display: inline-block;
-  content: "";
-  background-image: url("https://static.scania.com/resources/logotype/scania/scania-wordmark.png");
-  background-image: url("https://static.scania.com/resources/logotype/scania/scania-wordmark.svg");
+  content: '';
+  background-image: url('https://static.scania.com/resources/logotype/scania/scania-wordmark.png');
+  background-image: url('https://static.scania.com/resources/logotype/scania/scania-wordmark.svg');
   background-repeat: no-repeat;
   background-size: cover;
   vertical-align: middle;
@@ -47,7 +47,7 @@
 }
 
 .navbar-default .navbar-header .navbar-brand:after {
-  content: "";
+  content: '';
   display: inline-block;
   vertical-align: middle;
   border-left: 1px solid #e2e2e2;
@@ -56,8 +56,9 @@
   cursor: default;
 }
 
-.navbar-default .navbar-header .navbar-nav a, .navbar-default .navbar-header .navbar-nav span {
-  font-family: "Scania Sans";
+.navbar-default .navbar-header .navbar-nav a,
+.navbar-default .navbar-header .navbar-nav span {
+  font-family: 'Scania Sans';
   font-weight: normal;
   font-size: 12px;
   color: #747472;
@@ -75,9 +76,9 @@
 
 .navbar-default .navbar-header .navbar-symbol:before {
   display: inline-block;
-  content: "";
-  background-image: url("https://static.scania.com/resources/logotype/scania/scania-symbol.png");
-  background-image: url("https://static.scania.com/resources/logotype/scania/scania-symbol.svg");
+  content: '';
+  background-image: url('https://static.scania.com/resources/logotype/scania/scania-symbol.png');
+  background-image: url('https://static.scania.com/resources/logotype/scania/scania-symbol.svg');
   background-repeat: no-repeat;
   background-size: cover;
   width: inherit;

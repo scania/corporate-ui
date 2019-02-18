@@ -1,0 +1,113 @@
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+$grid-prefix: ':host(';
+$grid-sufix: ')';
+
+// Copied from bootstrap mixin grid framework and modified to support prefix and sufix
+@mixin make-grid-columns(
+  $columns: $grid-columns,
+  $gutter: $grid-gutter-width,
+  $breakpoints: $grid-breakpoints,
+  $prefix: $grid-prefix,
+  $sufix: $grid-sufix
+) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      #{$prefix}.col#{$infix}-#{$i}#{$sufix} {
+        @extend %grid-column;
+      }
+    }
+    #{$prefix}.col#{$infix}#{$sufix},
+    #{$prefix}.col#{$infix}-auto#{$sufix} {
+      @extend %grid-column;
+    }
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      #{$prefix}.col#{$infix}#{$sufix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+      #{$prefix}.col#{$infix}-auto#{$sufix} {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%; // Reset earlier grid tiers
+      }
+
+      @for $i from 1 through $columns {
+        #{$prefix}.col#{$infix}-#{$i}#{$sufix} {
+          @include make-col($i, $columns);
+        }
+      }
+
+      #{$prefix}.order#{$infix}-first#{$sufix} {
+        order: -1;
+      }
+
+      #{$prefix}.order#{$infix}-last#{$sufix} {
+        order: $columns + 1;
+      }
+
+      @for $i from 0 through $columns {
+        #{$prefix}.order#{$infix}-#{$i}#{$sufix} {
+          order: $i;
+        }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not($infix == '' and $i == 0) {
+          // Avoid emitting useless .offset-0
+          #{$prefix}.offset#{$infix}-#{$i}#{$sufix} {
+            @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  display: block;
+  padding-bottom: 15px;
+
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+:host-context(.no-gutters) {
+  :host(.col),
+  :host([class*='col-']) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+:host-context(.row-eq-height) {
+  display: flex;
+  flex-direction: column;
+
+  ::slotted(*) {
+    flex-grow: 1;
+  }
+}
+
+@include make-grid-columns();

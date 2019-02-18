@@ -1,0 +1,7 @@
+:host {
+  background-color: #000;
+}
+:host .wordmark {
+  background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
+  background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+}

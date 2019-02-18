@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/scania/corporate-ui-dev.svg?branch=master)](https://travis-ci.com/scania/corporate-ui-dev)
+[![Slack Status](https://static.scania.com/resources/icons/slack/Slack-Join-blue.svg)](https://corporate-ui.slack.com)
 
 # Corporate UI Development Repository
 In this repository we're developing the next generation components for Corporate UI.

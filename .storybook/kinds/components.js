@@ -10,11 +10,11 @@ import contents from '../../data/contents.json';
 import '../../src/components.scss';
 
 // We skip rendering these components for now due to rendering issues
-let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
+// let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
 
 
 [{name: 'All'}, ...categories]
-  .map(category => renderKinds(category, filteredComponents, 'Components', renderContent));
+  .map(category => renderKinds(category, components, 'Components', renderContent));
 
 
 // storybookAPI.selectStory('heading', 'with text');
@@ -29,10 +29,27 @@ addonAPI.addPanel('Components/panel', {
 
 function renderContent(item) {
   let content = contents.find(doc => doc.id === item.content);
-  let docs = require('../../src/components/' + item.name + '/readme.md');
+  let name = item.name.replace(/^c-/, '');
+  let template;
+  let docs;
+
+  try {
+    template = require('../stories/' + item.name + '.html');
+  }
+  catch (err) {
+    template = `<${item.name}></${item.name}>`;
+  }
+
+  try {
+    docs = require('../../src/components/' + name + '/readme.md');
+  }
+  catch (err) {
+    docs = '';
+  }
+
   return `
-    <${item.name}></${item.name}>
-    ${'<div>' + marked(docs) + '</div>'}
-    ${content ? '<div>' + marked(content.content) + '</div>' : ''}
+    ${template ? template : `<${item.name}></${item.name}>`}
+    ${docs ? '<div class="technical-docs">' + marked(docs) + '</div>' : ''}
+    ${content ? '<div class="ui-docs">' + marked(content.content) + '</div>' : ''}
   `;
 }

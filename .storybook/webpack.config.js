@@ -21,17 +21,6 @@ module.exports = {
             loader: 'sass-loader'
           },
         ]
-      },
-      {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader',
-          options: {
-            collapseWhitespace: false,
-            minimize: true,
-            removeComments: false
-          }
-        }
       }/*,
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,

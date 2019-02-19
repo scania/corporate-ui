@@ -30,12 +30,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint-fix --",
+      "npm run lint --",
       "git add"
     ],
     "*.{json,css,scss,md,html}": [

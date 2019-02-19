@@ -1,42 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-import { defineCustomElement } from '../../../dist/esm/es5/corporate-ui.core';
+import { defineCustomElement } from '../../../dist/esm/es5/corporate-ui.core'
 import {
   cTheme,
   cHeader,
   cFooter,
   cContent,
-  cNavigation
-} from '../../../dist/esm/es5/corporate-ui.components';
+  cNavigation,
+} from '../../../dist/esm/es5/corporate-ui.components'
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.title = 'A react app';
+    this.title = 'A react app'
 
     this.items = [
       { text: 'global', location: 'https://scania.com/ux-library' },
       {
+        location: 'https://scania.github.io/corporate-ui-docs/developer/',
         text: 'about',
-        location: 'https://scania.github.io/corporate-ui-docs/developer/'
-      }
-    ];
+      },
+    ]
 
     this.primaryItems = [
       { text: 'home', location: '/' },
-      { text: 'contact', location: '/contact' }
-    ];
+      { text: 'contact', location: '/contact' },
+    ]
 
     defineCustomElement(window, [
       cTheme,
       cHeader,
       cFooter,
       cContent,
-      cNavigation
-    ]);
+      cNavigation,
+    ])
   }
 
   render() {
@@ -58,9 +58,9 @@ class App extends Component {
           Learn React
         </a>
       </c-content>,
-      <c-footer />
-    ];
+      <c-footer />,
+    ]
   }
 }
 
-export default App;
+export default App

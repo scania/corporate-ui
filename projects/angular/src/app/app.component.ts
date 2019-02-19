@@ -13,8 +13,8 @@ import { cTheme, cHeader, cFooter, cContent, cNavigation } from '../../../../dis
 })
 export class AppComponent {
   title = 'Andreas legendary app';
-  items:any = [];
-  primaryItems:any = [];
+  items: any = [];
+  primaryItems: any = [];
 
   constructor() {
     this.items = [

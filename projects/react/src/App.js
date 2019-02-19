@@ -20,8 +20,8 @@ class App extends Component {
     this.items = [
       { text: 'global', location: 'https://scania.com/ux-library' },
       {
-        text: 'about',
-        location: 'https://scania.github.io/corporate-ui-docs/developer/'
+        location: 'https://scania.github.io/corporate-ui-docs/developer/',
+        text: 'about'
       }
     ];
 

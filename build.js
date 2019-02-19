@@ -17,10 +17,11 @@ var walkDir = function(dir, done) {
     if (!pending){ return done(null, data);}
     list.forEach(function(file) {
       file = path.resolve(dir, file);
-      fs.stat(file, function(err, stat) {
+      fs.stat(file, function(err2, stat) {
         if (stat && stat.isDirectory()) {
-          walkDir(file, function(err, dt) {
-            for(var a in dt){
+          walkDir(file, function(err3, dt) {
+            for(var i=0; i<dt.length; i++) {
+              var a = dt[i];
               var filename = path.parse(a).name;
               var brandName = path.basename(path.dirname(a));
               if(!isInArray(brandName, globalCSS)){
@@ -32,17 +33,18 @@ var walkDir = function(dir, done) {
 
               cssContent += dt[a];
               cssContent += '\`\n';
-              if(componentCSS[filename]) componentCSS[filename] += cssContent;
-              else componentCSS[filename] = cssContent;
+
+              if(componentCSS[filename]) { componentCSS[filename] += cssContent; }
+              else { componentCSS[filename] = cssContent; }
             }
             data[file] = dt;
-            if (!--pending) done(null, data, globalCSS, componentCSS);
+            if (!--pending) { done(null, data, globalCSS, componentCSS); }
           });
         } else {
-          fs.readFile(file, 'utf-8', function(err, content){
-            if(err) console.log(err);
+          fs.readFile(file, 'utf-8', function(err4, content){
+            if(err) { console.log(err); }
             data[file] = content;
-            if (!--pending) done(null, data);
+            if (!--pending) { done(null, data); }
           })
 
         }
@@ -55,26 +57,26 @@ const components = 'src/components/';
 const inputFolder = 'src/themes/';
 const outputFolder = 'src/themes.built/';
 
-var counter = 0,
-    addString = '';
+let counter = 0;
+let addString = '';
 
 if (!fs.existsSync(outputFolder)){
   fs.mkdirSync(outputFolder);
 }
 
 fs.readdir(components, (err, files) => {
-  if(err) console.log(err);
+  if(err) { console.log(err); }
   files.forEach(file => {
-    walkDir(inputFolder, function(err, data, globalCSS, componentCSS){
+    walkDir(inputFolder, function(err2, data, globalCSS, componentCSS){
       console.log('============ checking ', file);
 
-      if (err) console.log(err);
+      if (err2) { console.log(err2); }
       for(var key in componentCSS){
         if(file === key){
           addString = '';
           addString += componentCSS[key]
-          fs.writeFile(outputFolder + file + '.ts', addString, 'utf8', (err) => {
-            if (err) throw err;
+          fs.writeFile(outputFolder + file + '.ts', addString, 'utf8', (err3) => {
+            if (err3) { throw err3; }
             console.log('write file ' + file + '.ts');
           });
         }

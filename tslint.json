@@ -29,7 +29,7 @@
     "no-trailing-whitespace": [true, "ignore-template-strings"],
     "no-var-keyword": true,
     "no-conditional-assignment": false,
-    "no-console": true,
+    "no-console": false,
     "no-debugger": true,
     "no-empty-interface": false,
     "no-object-literal-type-assertion": false,

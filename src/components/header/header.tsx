@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method, Watch } from '@stencil/core';
+import { Component, Prop, State, Watch } from '@stencil/core';
 import { store } from '../../store';
 import * as style from '../../themes.built/header';
 
@@ -31,7 +31,6 @@ export class Header {
     this.setItems(this.items);
   }
 
-  @Method()
   setItems(items) {
     this._items = Array.isArray(items) ? items : JSON.parse(items);
   }

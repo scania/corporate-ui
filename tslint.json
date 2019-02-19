@@ -22,7 +22,7 @@
     "member-ordering": false,
     "no-inferrable-types": true,
     "no-internal-module": true,
-    "no-null-keyword": true,
+    "no-null-keyword": false,
     "no-switch-case-fall-through": true,
     "no-unused-expression": false,
     "no-consecutive-blank-lines": true,

@@ -22,24 +22,24 @@
     "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
     "docs": "stencil build --docs",
     "server": "stencil build --watch --serve",
-    "lint": "tslint 'src/**/*.{ts,tsx}'",
-    "lint-fix": "tslint --fix 'src/**/*.{ts,tsx}'",
-    "prettier": "prettier --write",
+    "lint": "tslint {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx}",
+    "lint-fix": "npm run lint -- --fix",
+    "prettify": "prettier {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx,json,css,scss,md,html} --write",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
-      "npm run prettier --",
+      "prettier --write",
       "git add"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint --",
+      "tslint --fix",
       "git add"
     ]
   },

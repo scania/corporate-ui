@@ -21,8 +21,6 @@ export class UserRepos {
   }
 
   render() {
-    return (
-      <c-list items={ this.repos }></c-list>
-    );
+    return <c-list items={this.repos} />;
   }
 }

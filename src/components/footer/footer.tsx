@@ -8,7 +8,6 @@ import * as style from '../../themes.built/footer';
   shadow: true
 })
 export class Footer {
-
   @Prop() theme: string;
 
   @State() currentTheme: string = this.theme;
@@ -19,16 +18,16 @@ export class Footer {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState());
+    store.subscribe(() => (this.currentTheme = store.getState()));
   }
 
   render() {
     return [
-      <style>{ style[this.currentTheme] }</style>,
-      <footer data-test-id='c-footer'>
-        <div class='container-fluid'>
-          <span data-test-id='c-footer-logo' class='wordmark' />
-          <p data-test-id='c-footer-copyright'>Copyright &copy; Scania 2019</p>
+      <style>{style[this.currentTheme]}</style>,
+      <footer data-test-id="c-footer">
+        <div class="container-fluid">
+          <span data-test-id="c-footer-logo" class="wordmark" />
+          <p data-test-id="c-footer-copyright">Copyright &copy; Scania 2019</p>
         </div>
       </footer>
     ];

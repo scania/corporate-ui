@@ -6,7 +6,6 @@ import { Component, Element } from '@stencil/core';
   shadow: true
 })
 export class Card {
-
   @Element() el: HTMLElement;
 
   hostData() {
@@ -21,22 +20,22 @@ export class Card {
     slots.forEach(elem => {
       this.toggleHide(elem);
 
-      elem.addEventListener('slotchange', (e) => {
+      elem.addEventListener('slotchange', e => {
         this.toggleHide(e.target);
       });
     });
   }
 
-  toggleHide = (node) => {
+  toggleHide = node => {
     const nodes = node.assignedNodes().length || node.children.length;
     node.style.display = nodes ? '' : 'none';
-  }
+  };
 
   render() {
     return [
-      <slot name='card-header' { ... { class: 'card-header' } } />,
-      <slot name='card-body' { ... { class: 'card-body' } } />,
-      <slot name='card-footer' { ... { class: 'card-footer' } } />
+      <slot name="card-header" {...{ class: 'card-header' }} />,
+      <slot name="card-body" {...{ class: 'card-body' }} />,
+      <slot name="card-footer" {...{ class: 'card-footer' }} />
     ];
   }
 }

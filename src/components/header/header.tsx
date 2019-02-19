@@ -36,24 +36,24 @@ export class Header {
   render() {
     return [
       <style>{style[this.currentTheme]}</style>,
-      <nav class="navbar navbar-expand-lg navbar-default ">
-        <div class="navbar-header collapse navbar-collapse">
-          <div class="mr-auto mt-2 mt-lg-0">
-            <a class="navbar-brand" href="#" />
+      <nav class='navbar navbar-expand-lg navbar-default '>
+        <div class='navbar-header collapse navbar-collapse'>
+          <div class='mr-auto mt-2 mt-lg-0'>
+            <a class='navbar-brand' href='#' />
             {this.siteName} - {this.currentTheme}
           </div>
 
-          <ul class="navbar-nav my-2 my-lg-0">
+          <ul class='navbar-nav my-2 my-lg-0'>
             {this._items.map(item => (
-              <li class="nav-item">
-                <a class="nav-link" href={item['location']}>
+              <li class='nav-item'>
+                <a class='nav-link' href={item['location']}>
                   <span>{item['text']}</span>
                 </a>
               </li>
             ))}
           </ul>
 
-          <a class="navbar-symbol" href="#" />
+          <a class='navbar-symbol' href='#' />
         </div>
       </nav>
     ];

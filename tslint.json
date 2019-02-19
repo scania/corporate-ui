@@ -87,5 +87,7 @@
       "check-preblock"
     ]
   },
-  "jsRules": {}
+  "jsRules": {
+    "no-console": false
+  }
 }

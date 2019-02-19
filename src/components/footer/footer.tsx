@@ -24,10 +24,10 @@ export class Footer {
   render() {
     return [
       <style>{style[this.currentTheme]}</style>,
-      <footer data-test-id="c-footer">
-        <div class="container-fluid">
-          <span data-test-id="c-footer-logo" class="wordmark" />
-          <p data-test-id="c-footer-copyright">Copyright &copy; Scania 2019</p>
+      <footer data-test-id='c-footer'>
+        <div class='container-fluid'>
+          <span data-test-id='c-footer-logo' class='wordmark' />
+          <p data-test-id='c-footer-copyright'>Copyright &copy; Scania 2019</p>
         </div>
       </footer>
     ];

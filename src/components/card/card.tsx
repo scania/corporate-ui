@@ -33,9 +33,9 @@ export class Card {
 
   render() {
     return [
-      <slot name="card-header" {...{ class: 'card-header' }} />,
-      <slot name="card-body" {...{ class: 'card-body' }} />,
-      <slot name="card-footer" {...{ class: 'card-footer' }} />
+      <slot name='card-header' {...{ class: 'card-header' }} />,
+      <slot name='card-body' {...{ class: 'card-body' }} />,
+      <slot name='card-footer' {...{ class: 'card-footer' }} />
     ];
   }
 }

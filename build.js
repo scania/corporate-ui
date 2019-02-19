@@ -6,10 +6,11 @@ function isInArray(value, array) {
 }
 
 var walkDir = function(dir, done) {
-  var globalCSS = [], // save global CSS
-    componentCSS = {}, // save component css theme
-    data = {}, // temporary container for file content
-    cssContent = ''; // temporary container for string addition
+  var globalCSS = []; // save global CSS
+  var componentCSS = {}; // save component css theme
+  var data = {}; // temporary container for file content
+  var cssContent = ''; // temporary container for string addition
+
   fs.readdir(dir, function(err, list) {
     if (err) {
       return done(err);
@@ -24,19 +25,19 @@ var walkDir = function(dir, done) {
       fs.stat(file, function(err2, stat) {
         if (stat && stat.isDirectory()) {
           walkDir(file, function(err3, dt) {
-            for (var i = 0; i < dt.length; i++) {
-              var a = dt[i];
+            var keys = Object.keys(dt);
+            for (const a of Object.keys(dt)) {
               var filename = path.parse(a).name;
               var brandName = path.basename(path.dirname(a));
+
               if (!isInArray(brandName, globalCSS)) {
                 globalCSS.push(brandName);
               }
 
               cssContent = '';
               cssContent += '\nexport const ' + brandName + ' = `';
-
               cssContent += dt[a];
-              cssContent += '`\n';
+              cssContent += '`;\n';
 
               if (componentCSS[filename]) {
                 componentCSS[filename] += cssContent;

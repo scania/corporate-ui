@@ -77,6 +77,17 @@
         }
       }
     }
+
+    .dropdown-menu > .active > a,
+    .dropdown-menu > .active > a:focus {
+        text-decoration: none;
+        background-color: transparent;
+    }
+    .dropdown-menu > .active > a:hover{
+    text-decoration: underline;
+      background-color: transparent;
+    }
+
   }
 }
 
@@ -197,6 +208,11 @@
           margin: 0;
           box-shadow: none;
           text-align: center;
+          > .active > a,
+          > .active > a:hover,
+          > .active > a:focus{
+            color:  #1d1d1d;
+          }
         }
       }
       .footer-links {

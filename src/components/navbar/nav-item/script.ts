@@ -33,7 +33,8 @@ Polymer({
       observer: 'setProps'
     },
     attrs: {
-      type: Object
+      type: Object,
+      observer: 'setAttrs'
     },
     haveItems: {
       type: Boolean
@@ -82,7 +83,16 @@ Polymer({
 
       if(this.items && this.dropdown) {
         a.classList.add('dropdown-toggle');
-        a.setAttribute('data-toggle', 'dropdown');
+
+        if (window['Dropdown']) {
+          a.setAttribute('data-toggle', 'dropdown');
+        } else {
+          // Special handling for Firefox 64 if application is using requirejs
+          a.onclick = function(event) {
+            event.preventDefault();
+            a.parentElement.classList.toggle('open');
+          }
+        }
       }
     }
   },
@@ -101,12 +111,6 @@ Polymer({
       this.setActive(true);
     }
 
-    if(this.attrs) {
-      Object.keys(this.attrs).map(function(attr) {
-        this.setAttribute(attr, this.attrs[attr]);
-      }, this);
-    }
-
     if (this.classes) {
       this.classList.add.apply(this.classList, this.classes.split(' '));
     }
@@ -118,6 +122,12 @@ Polymer({
     this.toggleClass('expanded', this.hasClass(this, 'active'));
 
     this.addEventListener('click', function() {
+      if(window.innerWidth < 992) {
+        var _event = document.createEvent('Event');
+        _event.initEvent('navigation-close', true, true);
+        this.dispatchEvent(_event);
+      }
+
       if (this.dropdown) {
         if (!this.classList.contains('more') && !this.active) {
           this.reSetActive();
@@ -126,17 +136,16 @@ Polymer({
       }
 
       this.active = true;
-
-      if(window.innerWidth < 992) {
-        var _event = document.createEvent('Event');
-        _event.initEvent('navigation-close', true, true);
-        this.dispatchEvent(_event);
-      }
     });
   },
   setProps: function(props) {
     Object.keys(props).map(function(prop) {
       this[prop] = props[prop];
+    }, this);
+  },
+  setAttrs: function(attrs) {
+    Object.keys(attrs).map(function(attr) {
+      this.setAttribute(attr, attrs[attr]);
     }, this);
   },
   setActive: function(newState) {

@@ -117,6 +117,10 @@ Polymer({
 
     // Set start collapse value - couldnt get this to work in a better way...
     // this.querySelector('.navbar-toggle').classList.add('collapsed');
+
+    // Special handling for Firefox 64 if application is using requirejs
+    /* Handle all dom click events related to c-main-navigation */
+    document.onclick = this.documentOnClick;
   },
   ready: function() {
     this.unwrap(this.getContentChildren('#primary-items')[0]);
@@ -361,9 +365,9 @@ Polymer({
     this._primaryItems = [];
     this.async((function() {
       this._primaryItems = this.setItemIndex(val);
+      this.setMoreItems();
+      this.primaryItems = [];
     }).bind(this));
-    this.setMoreItems();
-    this.primaryItems = [];
   },
   setSecItemIndex: function(val=[]) {
     if (!val.length) {
@@ -372,9 +376,9 @@ Polymer({
     this._secondaryItems = [];
     this.async((function() {
       this._secondaryItems = this.setItemIndex(val);
+      this.setMoreItems();
+      this.secondaryItems = [];
     }).bind(this));
-    this.setMoreItems();
-    this.secondaryItems = [];
   },
   sort: function(a, b) {
     // Compare item a and b origional index to
@@ -387,5 +391,14 @@ Polymer({
     if (a.index > b.index) order = 1;
 
     return order;
+  },
+  documentOnClick: function (event) {
+    var navItems = this.querySelectorAll('nav-item > a');
+    for (var i = 0; i < navItems.length; i ++ ) {
+      if (!navItems[i].isEqualNode(event.target) &&
+        navItems[i].parentElement.classList.contains('open')) {
+        navItems[i].parentElement.classList.remove('open');
+      }
+    }
   }
 });

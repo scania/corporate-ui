@@ -8,14 +8,15 @@ import * as CUI from '../dist/esm/es5/corporate-ui.components';
 
 const CUI_COMPONENTS = CUI.COMPONENTS;
 
-Object.keys(CUI_COMPONENTS)
-  .map(item => renderWebComponent(CUI_COMPONENTS[item]));
+Object.keys(CUI_COMPONENTS).map(item =>
+  renderWebComponent(CUI_COMPONENTS[item])
+);
 
 addDecorator(
   withOptions({
     name
   })
-)
+);
 
 configure(loadStories, module);
 

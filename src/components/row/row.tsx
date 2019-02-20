@@ -6,7 +6,6 @@ import { Component } from '@stencil/core';
   shadow: true
 })
 export class Row {
-
   hostData() {
     return {
       class: { row: true }
@@ -14,6 +13,6 @@ export class Row {
   }
 
   render() {
-    return <slot></slot>;
+    return <slot />;
   }
 }

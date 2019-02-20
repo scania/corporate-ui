@@ -19,7 +19,7 @@ export class Content {
         </stencil-router>
       );
     } else {
-      return <slot></slot>;
+      return <slot />;
     }
   }
 }

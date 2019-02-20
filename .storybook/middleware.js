@@ -13,7 +13,7 @@ module.exports = function(router) {
 
 function route(req, res) {
   try {
-    let data = require('../data/' + req.params.kind + '.json');
+    let data = require('../data/' + req.params.kind + '.json')
     let content = {
       content: 'the requested type is not possible for this request.'
     };
@@ -34,7 +34,7 @@ function route(req, res) {
       }
     }
 
-    res.json(content);
+    res.json(content)
   } catch (err) {
     res.json({
       content: 'target service do not exist or you dont have access.'

@@ -27,9 +27,12 @@ UserInterfaceState.xcuserstate
 .env
 .npmrc
 
+src/**/readme.md
 src/themes.built/
 src/demo/**/*.*
 !src/demo/**/readme.md
+
+data/docs.json
 
 package-lock.json
 

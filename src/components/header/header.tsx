@@ -25,7 +25,7 @@ export class Header {
   _items: object[] = [];
 
   componentWillLoad() {
-    store.subscribe(() => (this.currentTheme = store.getState()));
+    store.subscribe(() => this.currentTheme = store.getState());
 
     this.setItems(this.items);
   }

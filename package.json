@@ -11,7 +11,10 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build",
+    "build": "npm run themes && stencil build",
+    "build.watch": "npm run themes && stencil build --watch",
+    "themes": "node build.js",
+    "themes.watch": "node build.js --watch",
     "start": "npm run build && start-storybook -p 1337 -c .storybook",
     "docs": "stencil build --docs",
     "server": "stencil build --watch --serve",

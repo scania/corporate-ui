@@ -1,4 +1,13 @@
 // Content area
+section {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+iframe {
+  border: 0;
+}
+
 c-card {
   transition: all 60ms ease-in-out;
 
@@ -6,8 +15,4 @@ c-card {
     cursor: pointer;
     transform: scale(1.02);
   }
-}
-
-iframe {
-  border: 0;
 }

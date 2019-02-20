@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const sass = require('node-sass');
 
 const components = 'src/components/';
 const inputFolder = 'src/themes/';
@@ -29,18 +30,17 @@ function walkDir(dir, done) {
       fs.stat(file, function(err2, stat) {
         if (stat && stat.isDirectory()) {
           walkDir(file, function(err3, dt) {
-            var keys = Object.keys(dt);
             for (const a of Object.keys(dt)) {
               var filename = path.parse(a).name;
               var brandName = path.basename(path.dirname(a));
 
               if (!isInArray(brandName, globalCSS)) {
-                globalCSS.push(brandName)
+                globalCSS.push(brandName);
               }
 
               cssContent = '';
               cssContent += '\nexport const ' + brandName + ' = `';
-              cssContent += dt[a];
+              cssContent += sass.renderSync({ data: dt[a] }).css;
               cssContent += '\`\n';
 
               if (componentCSS[filename]) {
@@ -49,15 +49,15 @@ function walkDir(dir, done) {
                 componentCSS[filename] = cssContent;
               }
             }
-            data[file] = dt
+            data[file] = dt;
             if (!--pending) {
               done(null, data, globalCSS, componentCSS);
             }
-          })
+          });
         } else {
           fs.readFile(file, 'utf-8', function(err4, content) {
-            if (err) {
-              console.log(err);
+            if (err4) {
+              console.log(err4);
             }
             data[file] = content;
             if (!--pending) {
@@ -83,25 +83,26 @@ function generateTheme() {
       console.log(err);
     }
     files.forEach(file => {
-      walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
+    walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
         console.log('============ checking ', file)
 
         if (err2) {
           console.log(err2);
         }
-        for(var key in componentCSS){
-          if(file === key){
-            addString = ''
+        for(var key in componentCSS) {
+          if(file === key) {
+            addString = '';
             addString += componentCSS[key];
+
             fs.writeFile(
               outputFolder + file + '.ts',
               addString,
               'utf8',
-              err3 => {
-                if (err3) {
-                  throw err3;
+              err4 => {
+                if (err4) {
+                  throw err4;
                 }
-                console.log('write file ' + file + '.ts')
+                console.log('write file ' + file + '.ts');
               }
             );
           }

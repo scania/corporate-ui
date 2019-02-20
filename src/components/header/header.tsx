@@ -10,6 +10,7 @@ import * as style from '../../themes.built/header';
 export class Header {
   @Prop() theme: string;
   @Prop() siteName = 'Application name';
+  @Prop() siteUrl = '/';
   @Prop() items: any = [{ text: 'global', location: '/' }];
 
   @State() currentTheme: string = this.theme;
@@ -26,7 +27,7 @@ export class Header {
   componentWillLoad() {
     store.subscribe(() => this.currentTheme = store.getState());
 
-    this.setItems(this.items)
+    this.setItems(this.items);
   }
 
   setItems(items) {
@@ -36,15 +37,24 @@ export class Header {
   render() {
     return [
       <style>{ style[this.currentTheme] }</style>,
-      <nav class='navbar navbar-expand-lg navbar-default '>
-        <div class='navbar-header collapse navbar-collapse'>
 
-          <div class='mr-auto mt-2 mt-lg-0'>
-            <a class='navbar-brand' href='#'></a>
-            { this.siteName } - { this.currentTheme }
-          </div>
+      <nav class='navbar navbar-expand-lg navbar-default'>
+        <button
+          class='navbar-toggler'
+          type='button'
+          data-toggle='collapse'
+          data-target='#navbarNavDropdown'
+          aria-controls='navbarNavDropdown'
+          aria-expanded='false'
+          aria-label='Toggle navigation'>
+          <span class='navbar-toggler-icon'></span>
+        </button>
 
-          <ul class="navbar-nav my-2 my-lg-0">
+        <a href={ this.siteUrl } class='navbar-brand collapse'></a>
+        <strong class='navbar-title'>{ this.siteName }</strong>
+
+        <div class='collapse navbar-collapse'>
+          <ul class='navbar-nav ml-auto'>
             { this._items.map(item => (
               <li class='nav-item'>
                 <a class='nav-link' href={item['location']}>
@@ -53,9 +63,9 @@ export class Header {
               </li>
             )) }
           </ul>
-
-          <a class='navbar-symbol' href='#'></a>
         </div>
+
+        <a href={ this.siteUrl } class='navbar-symbol'></a>
       </nav>
     ];
   }

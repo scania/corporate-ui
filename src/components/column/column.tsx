@@ -6,7 +6,6 @@ import { Component, Prop } from '@stencil/core';
   shadow: true
 })
 export class Column {
-
   @Prop() sm: any;
   @Prop() md: any;
   @Prop() lg: any;
@@ -42,6 +41,6 @@ export class Column {
   }
 
   render() {
-    return <slot></slot>;
+    return <slot />;
   }
 }

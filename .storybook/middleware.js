@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware')
+const proxy = require('http-proxy-middleware');
 
 // https://github.com/storybooks/storybook/issues/208#issuecomment-306953718
 module.exports = function(router) {
@@ -7,22 +7,22 @@ module.exports = function(router) {
     changeOrigin: true
   }))*/
 
-  router.use('/api/:kind/:id', route)
-  router.use('/api/:kind', route)
-}
+  router.use('/api/:kind/:id', route);
+  router.use('/api/:kind', route);
+};
 
 function route(req, res) {
   try {
     let data = require('../data/' + req.params.kind + '.json')
     let content = {
-      content: 'the requested type is not possible for this request.',
-    }
+      content: 'the requested type is not possible for this request.'
+    };
 
     if (req.params.id) {
       if (req.method === 'GET' || req.method === 'POST') {
         content = data.find(item => item.id === req.params.id) || {
-          content: 'no item with target id exists.',
-        }
+          content: 'no item with target id exists.'
+        };
       }
     } else {
       if (
@@ -30,14 +30,14 @@ function route(req, res) {
         req.method === 'PUT' ||
         req.method === 'DELETE'
       ) {
-        content = data || []
+        content = data || [];
       }
     }
 
     res.json(content)
   } catch (err) {
     res.json({
-      content: 'target service do not exist or you dont have access.',
-    })
+      content: 'target service do not exist or you dont have access.'
+    });
   }
 }

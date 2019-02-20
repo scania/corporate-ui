@@ -1,20 +1,20 @@
 // import addonAPI from '@storybook/addons';
-import marked from 'marked'
+import marked from 'marked';
 
-import { renderKinds } from '../helpers'
+import { renderKinds } from '../helpers';
 
-import categories from '../../data/categories.json'
-import components from '../../data/components.json'
-import contents from '../../data/contents.json'
+import categories from '../../data/categories.json';
+import components from '../../data/components.json';
+import contents from '../../data/contents.json';
 
-import '../../src/components.scss'
+import '../../src/components.scss';
 
 // We skip rendering these components for now due to rendering issues
 // let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
 
-;[{ name: 'All' }, ...categories].map(category =>
+[{ name: 'All' }, ...categories].map(category =>
   renderKinds(category, components, 'Components', renderContent)
-)
+);
 
 // storybookAPI.selectStory('heading', 'with text');
 
@@ -27,21 +27,21 @@ addonAPI.addPanel('Components/panel', {
 });*/
 
 function renderContent(item) {
-  let content = contents.find(doc => doc.id === item.content)
-  let name = item.name.replace(/^c-/, '')
-  let template
-  let docs
+  let content = contents.find(doc => doc.id === item.content);
+  let name = item.name.replace(/^c-/, '');
+  let template;
+  let docs;
 
   try {
-    template = require('../stories/' + item.name + '.html')
+    template = require('../stories/' + item.name + '.html');
   } catch (err) {
-    template = `<${item.name}></${item.name}>`
+    template = `<${item.name}></${item.name}>`;
   }
 
   try {
     docs = require('../../src/components/' + name + '/readme.md')
   } catch (err) {
-    docs = ''
+    docs = '';
   }
 
   return `
@@ -52,5 +52,5 @@ function renderContent(item) {
         ? '<div class="ui-docs">' + marked(content.content) + '</div>'
         : ''
     }
-  `
+  `;
 }

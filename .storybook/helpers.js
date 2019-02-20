@@ -1,13 +1,13 @@
-import { storiesOf } from '@storybook/html'
-import { action } from '@storybook/addon-actions'
-import { withLinks } from '@storybook/addon-links'
+import { storiesOf } from '@storybook/html';
+import { action } from '@storybook/addon-actions';
+import { withLinks } from '@storybook/addon-links';
 
-import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core'
+import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
 
 export function renderKinds(category, items, title, content) {
   let categorisedItems = items.filter(
     item => item.categories.indexOf(category.id) > -1
-  )
+  );
   let storyName = category.name + ' (' + categorisedItems.length + ')'
 
   if (!category.id) {
@@ -16,7 +16,7 @@ export function renderKinds(category, items, title, content) {
   }
 
   if (!categorisedItems.length) {
-    return
+    return;
   }
 
   storiesOf(title, module)
@@ -32,27 +32,24 @@ export function renderKinds(category, items, title, content) {
                 <h2>${category.name}</h2>
               </header>
               <c-row class="row-eq-height">
-                ${categorisedItems
-                  .map(
-                    component =>
-                      `<c-column md="3">
-                    <c-card data-sb-kind="${title}/${
-                        category.name
-                      }" data-sb-story="${component.name}">
+                ${categorisedItems.map(component => `
+                  <c-column md="3">
+                    <c-card
+                      data-sb-kind="${title}/${category.name}"
+                      data-sb-story="${component.name}">
                       <strong slot="card-header">${component.name}</strong>
                       <${component.name} slot="card-body" />
                     </c-card>
-                  </c-column>`
-                  )
-                  .join('')}
+                  </c-column>
+                `).join('')}
               </c-row>
             </c-container>
           </section>
         </main>
       `
-    )
+    );
 
-  categorisedItems.map(item => renderStories(category, item, title, content))
+  categorisedItems.map(item => renderStories(category, item, title, content));
 }
 
 export function renderStories(category, item, title, content) {
@@ -73,7 +70,7 @@ export function renderStories(category, item, title, content) {
           </section>
         </main>
       `
-    )
+    );
 }
 
 export function renderWebComponent(component) {
@@ -83,8 +80,8 @@ export function renderWebComponent(component) {
     ,
     tagAttrsData,
     encapsulationMeta,
-    listenerMeta,
-  ] = component
+    listenerMeta
+  ] = component;
   const tagAttrs = {}
 
   if (typeof tagAttrsData === 'object') {
@@ -94,15 +91,15 @@ export function renderWebComponent(component) {
         memberType,
         reflectToAttr,
         attrName,
-        propType,
-      ] = attributes
+        propType
+      ] = attributes;
 
       tagAttrs[propName] = {
         attrName,
         memberType,
         propType,
         reflectToAttr,
-      }
+      };
     })
   }
 

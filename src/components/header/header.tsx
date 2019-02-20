@@ -8,7 +8,6 @@ import * as style from '../../themes.built/header';
   shadow: true
 })
 export class Header {
-
   @Prop() theme: string;
   @Prop() siteName = 'Application name';
   @Prop() siteUrl = '/';
@@ -26,7 +25,7 @@ export class Header {
   _items: object[] = [];
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState());
+    store.subscribe(() => (this.currentTheme = store.getState()));
 
     this.setItems(this.items);
   }
@@ -38,6 +37,7 @@ export class Header {
   render() {
     return [
       <style>{ style[this.currentTheme] }</style>,
+
       <nav class='navbar navbar-expand-lg navbar-default'>
         <button
           class='navbar-toggler'
@@ -55,13 +55,13 @@ export class Header {
 
         <div class='collapse navbar-collapse'>
           <ul class='navbar-nav ml-auto'>
-            { this._items.map(item =>
+            { this._items.map(item => (
               <li class='nav-item'>
-                <a class='nav-link' href={ item['location'] }>
-                  <span>{ item['text'] }</span>
+                <a class='nav-link' href={item['location']}>
+                  <span>{item['text']}</span>
                 </a>
               </li>
-            ) }
+            )) }
           </ul>
         </div>
 

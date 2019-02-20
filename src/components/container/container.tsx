@@ -6,16 +6,15 @@ import { Component, Prop } from '@stencil/core';
   shadow: true
 })
 export class Container {
-
   @Prop() type?: '' | 'fluid' | 'flex';
 
   hostData() {
-    const data = { class: { } };
+    const data = { class: {} };
     data.class['container' + (this.type ? '-' + this.type : '')] = true;
     return data;
   }
 
   render() {
-    return <slot></slot>;
+    return <slot />;
   }
 }

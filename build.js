@@ -1,11 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 
+const components = 'src/components/';
+const inputFolder = 'src/themes/';
+const outputFolder = 'src/themes.built/';
+
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
-var walkDir = function(dir, done) {
+function walkDir(dir, done) {
   var globalCSS = []; // save global CSS
   var componentCSS = {}; // save component css theme
   var data = {}; // temporary container for file content
@@ -31,13 +35,13 @@ var walkDir = function(dir, done) {
               var brandName = path.basename(path.dirname(a));
 
               if (!isInArray(brandName, globalCSS)) {
-                globalCSS.push(brandName);
+                globalCSS.push(brandName)
               }
 
               cssContent = '';
               cssContent += '\nexport const ' + brandName + ' = `';
               cssContent += dt[a];
-              cssContent += '`;\n';
+              cssContent += '\`\n';
 
               if (componentCSS[filename]) {
                 componentCSS[filename] += cssContent;
@@ -45,11 +49,11 @@ var walkDir = function(dir, done) {
                 componentCSS[filename] = cssContent;
               }
             }
-            data[file] = dt;
+            data[file] = dt
             if (!--pending) {
               done(null, data, globalCSS, componentCSS);
             }
-          });
+          })
         } else {
           fs.readFile(file, 'utf-8', function(err4, content) {
             if (err) {
@@ -66,40 +70,53 @@ var walkDir = function(dir, done) {
   });
 };
 
-const components = 'src/components/';
-const inputFolder = 'src/themes/';
-const outputFolder = 'src/themes.built/';
+function generateTheme() {
+  let counter = 0;
+  let addString = '';
 
-let counter = 0;
-let addString = '';
-
-if (!fs.existsSync(outputFolder)) {
-  fs.mkdirSync(outputFolder);
-}
-
-fs.readdir(components, (err, files) => {
-  if (err) {
-    console.log(err);
+  if (!fs.existsSync(outputFolder)) {
+    fs.mkdirSync(outputFolder);
   }
-  files.forEach(file => {
-    walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
-      console.log('============ checking ', file);
 
-      if (err2) {
-        console.log(err2);
-      }
-      for (var key in componentCSS) {
-        if (file === key) {
-          addString = '';
-          addString += componentCSS[key];
-          fs.writeFile(outputFolder + file + '.ts', addString, 'utf8', err3 => {
-            if (err3) {
-              throw err3;
-            }
-            console.log('write file ' + file + '.ts');
-          });
+  fs.readdir(components, (err, files) => {
+    if (err) {
+      console.log(err);
+    }
+    files.forEach(file => {
+      walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
+        console.log('============ checking ', file)
+
+        if (err2) {
+          console.log(err2);
         }
-      }
+        for(var key in componentCSS){
+          if(file === key){
+            addString = ''
+            addString += componentCSS[key];
+            fs.writeFile(
+              outputFolder + file + '.ts',
+              addString,
+              'utf8',
+              err3 => {
+                if (err3) {
+                  throw err3;
+                }
+                console.log('write file ' + file + '.ts')
+              }
+            );
+          }
+        }
+      });
     });
   });
-});
+}
+
+generateTheme();
+
+if (process.argv.indexOf('--watch') > -1) {
+  console.log('Watching themes for changes.');
+
+  fs.watch(inputFolder, (eventType, filename) => {
+    generateTheme();
+  });
+}

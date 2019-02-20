@@ -1,106 +1,122 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const path = require('path');
 
-const components = 'src/components/'
-const inputFolder = 'src/themes/'
-const outputFolder = 'src/themes.built/'
+const components = 'src/components/';
+const inputFolder = 'src/themes/';
+const outputFolder = 'src/themes.built/';
 
 function isInArray(value, array) {
-  return array.indexOf(value) > -1
+  return array.indexOf(value) > -1;
 }
 
 function walkDir(dir, done) {
-  var globalCSS = [], // save global CSS
-    componentCSS = {}, // save component css theme
-    data = {}, // temporary container for file content
-    cssContent = '' // temporary container for string addition
+  var globalCSS = []; // save global CSS
+  var componentCSS = {}; // save component css theme
+  var data = {}; // temporary container for file content
+  var cssContent = ''; // temporary container for string addition
+
   fs.readdir(dir, function(err, list) {
     if (err) {
-      return done(err)
+      return done(err);
     }
 
-    var pending = list.length
+    var pending = list.length;
     if (!pending) {
-      return done(null, data)
+      return done(null, data);
     }
     list.forEach(function(file) {
-      file = path.resolve(dir, file)
-      fs.stat(file, function(err, stat) {
+      file = path.resolve(dir, file);
+      fs.stat(file, function(err2, stat) {
         if (stat && stat.isDirectory()) {
-          walkDir(file, function(err, dt) {
-            for (var a in dt) {
-              var filename = path.parse(a).name
-              var brandName = path.basename(path.dirname(a))
+          walkDir(file, function(err3, dt) {
+            var keys = Object.keys(dt);
+            for (const a of Object.keys(dt)) {
+              var filename = path.parse(a).name;
+              var brandName = path.basename(path.dirname(a));
+
               if (!isInArray(brandName, globalCSS)) {
                 globalCSS.push(brandName)
               }
 
-              cssContent = ''
-              cssContent += '\nexport const ' + brandName + ' = `'
+              cssContent = '';
+              cssContent += '\nexport const ' + brandName + ' = `';
+              cssContent += dt[a];
+              cssContent += '\`\n';
 
-              cssContent += dt[a]
-              cssContent += '`\n'
-              if (componentCSS[filename]) componentCSS[filename] += cssContent
-              else componentCSS[filename] = cssContent
+              if (componentCSS[filename]) {
+                componentCSS[filename] += cssContent;
+              } else {
+                componentCSS[filename] = cssContent;
+              }
             }
             data[file] = dt
-            if (!--pending) done(null, data, globalCSS, componentCSS)
+            if (!--pending) {
+              done(null, data, globalCSS, componentCSS);
+            }
           })
         } else {
-          fs.readFile(file, 'utf-8', function(err, content) {
-            if (err) console.log(err)
-            data[file] = content
-            if (!--pending) done(null, data)
-          })
+          fs.readFile(file, 'utf-8', function(err4, content) {
+            if (err) {
+              console.log(err);
+            }
+            data[file] = content;
+            if (!--pending) {
+              done(null, data);
+            }
+          });
         }
-      })
-    })
-  })
-}
+      });
+    });
+  });
+};
 
 function generateTheme() {
-  var counter = 0,
-    addString = ''
+  let counter = 0;
+  let addString = '';
 
   if (!fs.existsSync(outputFolder)) {
-    fs.mkdirSync(outputFolder)
+    fs.mkdirSync(outputFolder);
   }
 
   fs.readdir(components, (err, files) => {
-    if (err) console.log(err)
+    if (err) {
+      console.log(err);
+    }
     files.forEach(file => {
-      walkDir(inputFolder, function(err, data, globalCSS, componentCSS) {
+      walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
         console.log('============ checking ', file)
 
-        if (err) console.log(err)
-        for (var key in componentCSS) {
-          if (file === key) {
+        if (err2) {
+          console.log(err2);
+        }
+        for(var key in componentCSS){
+          if(file === key){
             addString = ''
-            addString += componentCSS[key]
+            addString += componentCSS[key];
             fs.writeFile(
               outputFolder + file + '.ts',
               addString,
               'utf8',
-              err => {
-                if (err) throw err
+              err3 => {
+                if (err3) {
+                  throw err3;
+                }
                 console.log('write file ' + file + '.ts')
               }
-            )
+            );
           }
         }
-      })
-    })
-  })
+      });
+    });
+  });
 }
 
-generateTheme()
-
-console.log(process.argv)
+generateTheme();
 
 if (process.argv.indexOf('--watch') > -1) {
-  console.log('Watching themes for changes.')
+  console.log('Watching themes for changes.');
 
   fs.watch(inputFolder, (eventType, filename) => {
-    generateTheme()
-  })
+    generateTheme();
+  });
 }

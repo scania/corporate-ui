@@ -11,11 +11,9 @@ export class Field {
 
   render() {
     if (this.type === 'text' || this.type === 'password') {
-      return (
-        <input type={this.type} value={this.value} />
-      );
+      return <input type={this.type} value={this.value} />;
     } else {
-      <textarea>{ this.value }</textarea>;
+      <textarea>{this.value}</textarea>;
     }
   }
 }

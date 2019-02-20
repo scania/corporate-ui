@@ -39,7 +39,7 @@ function renderContent(item) {
   }
 
   try {
-    docs = require('../../src/components/' + name + '/readme.md');
+    docs = require('../../src/components/' + name + '/readme.md')
   } catch (err) {
     docs = '';
   }

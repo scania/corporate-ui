@@ -1,0 +1,109 @@
+:host {
+  background-color: #fff;
+  font-family: 'Scania Sans';
+  font-size: 1.4rem;
+  z-index: 1000;
+  padding: 0;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.navbar-default {
+  padding: 0;
+
+  .navbar-brand {
+    padding: 13px;
+
+    &:before {
+      display: block;
+      content: '';
+      background-image: url('https://static.scania.com/resources/logotype/scania/scania-wordmark.png');
+      background-image: url('https://static.scania.com/resources/logotype/scania/scania-wordmark.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 170px;
+      height: 28px;
+    }
+  }
+  .navbar-title {
+    font-family: 'Scania Sans Headline';
+    font-weight: normal;
+    font-size: 1.8rem;
+    color: #53565a;
+    line-height: 1;
+    padding: 0 10px;
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .navbar-nav {
+    font-family: 'Scania Sans';
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #747472;
+    margin-top: -10px;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .navbar-symbol {
+    padding: 13px;
+    border-left: 1px solid #e2e2e2;
+
+    &:before {
+      display: block;
+      content: '';
+      background-image: url('https://static.scania.com/resources/logotype/scania/scania-symbol.png');
+      background-image: url('https://static.scania.com/resources/logotype/scania/scania-symbol.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 40px;
+      height: 37px;
+    }
+  }
+}
+
+.navbar-toggler {
+  border-width: 0 1px 0 0;
+  border-color: #e2e2e2;
+  padding: 13px;
+
+  &-icon {
+    // This make the icon the same size as the logotype, making it easier to handle the parent element padding needed
+    margin: 8px;
+  }
+}
+
+@media (min-width: 992px) {
+  :host {
+    padding: 11px 12px 3px;
+  }
+
+  .navbar-default {
+    .navbar-brand {
+      margin-left: 5px;
+      margin-right: 2px;
+    }
+    .navbar-title {
+      text-align: left;
+      border-left: 1px solid #e2e2e2;
+      padding-left: 15px;
+    }
+    .navbar-symbol {
+      border-left: 0;
+      margin-left: 42px;
+      padding-top: 10px;
+
+      &:before {
+        width: 48px;
+        height: 46px;
+      }
+    }
+  }
+}

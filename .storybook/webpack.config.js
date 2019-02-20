@@ -12,8 +12,7 @@ module.exports = {
             loader: 'style-loader'
           },
           {
-            loader:
-              'css-loader' /*,
+            loader: 'css-loader'/*,
             options: {
               sourceMap: true
             }*/
@@ -27,7 +26,7 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         include: includePath,
         use: 'url-loader'
-      }*/
-    ]
-  }
-};
+      }*/,
+    ],
+  },
+}

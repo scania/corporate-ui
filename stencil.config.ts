@@ -1,6 +1,5 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import './build';
 
 import data from './package.json';
 
@@ -19,6 +18,10 @@ export const config: Config = {
     {
       type: 'docs'
     }
+    {
+      type: 'stats',
+      file: 'data/stats.json'
+    },
   ],
   testing: {
     testPathIgnorePatterns: ['/node_modules/', '/projects/']

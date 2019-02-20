@@ -8,11 +8,11 @@ export function renderKinds(category, items, title, content) {
   let categorisedItems = items.filter(
     item => item.categories.indexOf(category.id) > -1
   );
-  let storyName = category.name + ' (' + categorisedItems.length + ')';
+  let storyName = category.name + ' (' + categorisedItems.length + ')'
 
   if (!category.id) {
-    categorisedItems = items;
-    storyName = category.name;
+    categorisedItems = items
+    storyName = category.name
   }
 
   if (!categorisedItems.length) {
@@ -32,19 +32,16 @@ export function renderKinds(category, items, title, content) {
                 <h2>${category.name}</h2>
               </header>
               <c-row class="row-eq-height">
-                ${categorisedItems
-                  .map(
-                    component =>
-                      `<c-column md="3">
-                    <c-card data-sb-kind="${title}/${
-                        category.name
-                      }" data-sb-story="${component.name}">
+                ${categorisedItems.map(component => `
+                  <c-column md="3">
+                    <c-card
+                      data-sb-kind="${title}/${category.name}"
+                      data-sb-story="${component.name}">
                       <strong slot="card-header">${component.name}</strong>
                       <${component.name} slot="card-body" />
                     </c-card>
-                  </c-column>`
-                  )
-                  .join('')}
+                  </c-column>
+                `).join('')}
               </c-row>
             </c-container>
           </section>
@@ -85,7 +82,7 @@ export function renderWebComponent(component) {
     encapsulationMeta,
     listenerMeta
   ] = component;
-  const tagAttrs = {};
+  const tagAttrs = {}
 
   if (typeof tagAttrsData === 'object') {
     tagAttrsData.map(attributes => {
@@ -101,12 +98,12 @@ export function renderWebComponent(component) {
         attrName,
         memberType,
         propType,
-        reflectToAttr
+        reflectToAttr,
       };
-    });
+    })
   }
 
-  defineCustomElement(window, [component]);
+  defineCustomElement(window, [component])
 
   /*if (tagName === 'context-consumer') {
    return;

@@ -21,8 +21,6 @@ export class UserRepos {
   }
 
   render() {
-    return (
-      <cui-list items={ this.repos }></cui-list>
-    );
+    return <c-list items={this.repos} />;
   }
 }

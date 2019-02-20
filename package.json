@@ -12,14 +12,16 @@
     "!dist/collection/demo"
   ],
   "scripts": {
-    "build": "npm run build:stencil",
+    "build": "stencil build",
+    "build.watch": "stencil build --watch",
+    "themes.watch": "node build.js --watch",
     "build:stencil": "stencil build",
     "build:angular": "cd projects/angular && npm run build",
     "build:react": "cd projects/react && npm run build",
     "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
     "install-dep:angular": "cd projects/angular && npm i",
     "install-dep:react": "cd projects/react && npm i",
-    "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
+    "start": "npm run themes && npm run build && start-storybook -p 1337 -c .storybook",
     "docs": "stencil build --docs",
     "server": "stencil build --watch --serve",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
@@ -30,7 +32,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "lint-staged"
     }
   },
   "lint-staged": {

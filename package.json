@@ -55,7 +55,7 @@
     "@types/puppeteer": "1.12.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.0.4",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
     "html-loader": "^0.5.5",
     "http-proxy-middleware": "^0.19.1",

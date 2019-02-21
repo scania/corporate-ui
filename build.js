@@ -83,7 +83,7 @@ function generateTheme() {
       console.log(err);
     }
     files.forEach(file => {
-    walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
+      walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
         console.log('============ checking ', file)
 
         if (err2) {
@@ -117,7 +117,9 @@ generateTheme();
 if (process.argv.indexOf('--watch') > -1) {
   console.log('Watching themes for changes.');
 
-  fs.watch(inputFolder, (eventType, filename) => {
+  fs.watch(inputFolder, { recursive: true }, (eventType, filename) => {
+    console.log('Rerendering themes');
+
     generateTheme();
   });
 }

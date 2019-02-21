@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Email template</title>
+    <script src="/dist/js/corporate-ui.js"></script>
+    <style>
+      .row-eq-height {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .card-body {
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+      }
+      .card-body section {
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;
+      }
+      @media(max-width:768px) {
+        .row-eq-height {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="scania app">
+    <c-corporate-header site-name="Design systems" site-url="https://static.scania.com/ux-library/">
+      <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+      <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+    </c-corporate-header>
+    <c-main-content>
+      <c-main-navigation>
+        <primary-items>
+          <nav-item location="#">Home</nav-item>
+          <nav-item location="#">Corporate UI Documentation</nav-item>
+          <nav-item location="#">Style Guide</nav-item>
+          <nav-item location="#">UX Patterns</nav-item>
+          </nav-item>
+        </primary-items>
+        <secondary-items>
+          Secondary items are optional, more information below.
+        </secondary-items>
+      </c-main-navigation>
+      <section>
+        <div class="container-fluid">
+          <div class="row row-eq-height">
+            <div class="col-xs-12 col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <section>
+                    <h1 class="card-title">Email template</h1>
+                    <h6 class="card-subtitle mb-2 text-muted">Design your email step by step</h6>
+                    <p class="card-text">
+                  </section>
+                  <section>
+                    <strong>The email template enables you to create emails with Scania look and feel like:</strong>
+                    <ul>
+                      <li>Newsletters</li>
+                      <li>Status updates</li>
+                      <li>Order approval</li>
+                      <li>etc..</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <strong> The template consist of several section with different code samples. Code samples is marked
+                      with HTML comments Example</strong>
+                    <p>H1 Default Headline Start</p>
+                    and ended with:</p>
+                    <p>H1 Default Headline End </p>
+                  </section>
+                  <section>
+                    <ul>
+                      <li>Remove parts of the template you don’t want to use.</li>
+                      <li>Move the code samples and arrange them in the order you want to use them.</li>
+                      <li>Edit the placeholder text and fill out the content.</li>
+                      <li>Edit/add links together with the link text that are necessary with the.</li>
+                      <li>Run test (https://putsmail.com/ is a useful testing service).</li>
+                    </ul>
+                    <a class="card-link"><button type="button" class="btn btn-primary btn-md pull-right"
+                        data-toggle="modal" data-target="#myModal">
+                        View template
+                      </button></a>
+                  </section>
+                </div>
+              </div>
+              <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                      <a href="https://scania.github.io/corporate-ui-docs/template/html-mail/index.html" download
+                        target="_blank">
+                        <h4 class="text-right">Download template</h4>
+                      </a>
+                      <div class="row">
+                        <div class="col-xs-12 col-lg-12">
+                          <div class="embed-responsive embed-responsive-16by9 z-depth-1-half" frameborder="0" style="border:none;">
+                            <iframe src="https://scania.github.io/corporate-ui-docs/template/html-mail/index.html"></iframe>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-lg-6 row-eq-height">
+              <div class="card">
+                <div class="card-body">
+                  <section>
+                    <h1 class="card-title">Technical information</h1>
+                    <h6 class="card-subtitle mb-2 text-muted">Design your emal step by step</h6>
+                    <p class="card-text">
+                  </section>
+                  <section>
+                    <strong>Code languages used:</strong>
+                    <ul style="list-style: none;">
+                      <li>HTML</li>
+                      <li>CSS</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <strong>Tested Mail applications:</strong>
+                    <ul style="list-style: none;">
+                      <li>Outlook</li>
+                      <li>Gmail</li>
+                      <li>iOS mail</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <strong>Tested Web browsers:</strong>
+                    <ul style="list-style: none;">
+                      <li>Google Chrome</li>
+                      <li>Internet Explorer 11</li>
+                      <li>Microsoft Edge</li>
+                      <li>Mozilla FireFox</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <strong>OBS!</strong>
+                    <p>Different browsers and mail applications render the template differenty which can result in
+                      varaitions in look.
+                      For example the use of Scania Fonts wont work in most cases, to compensate for this Arial and
+                      Helvetica is used as
+                      fallback fonts.</p>
+                    </p>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </c-main-content>
+  </body>
+</html>

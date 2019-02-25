@@ -1,4 +1,5 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
+
 import { store } from '../../store';
 import * as style from '../../themes.built/header';
 
@@ -11,27 +12,36 @@ export class Header {
   @Prop() theme: string;
   @Prop() siteName = 'Application name';
   @Prop() siteUrl = '/';
-  @Prop() items: any = [{ text: 'global', location: '/' }];
+  @Prop() topItems: any = [{ text: 'global', location: '/' }];
+  @Prop() primaryItems: any;
+  @Prop() secondaryItems: any;
 
   @State() currentTheme: string = this.theme;
-
-  @Watch('items')
-  updateName(items) {
-    this.setItems(items);
-  }
-
+  @State() show = false;
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  _items: object[] = [];
+  @State() _topItems: object[] = [];
+
+  @Watch('topItems')
+  setItems(items) {
+    this._topItems = Array.isArray(items) ? items : JSON.parse(items);
+  }
+
+  @Watch('theme')
+  updateTheme(name) {
+    this.currentTheme = name;
+  }
 
   componentWillLoad() {
     store.subscribe(() => this.currentTheme = store.getState());
 
-    this.setItems(this.items);
+    this.setItems(this._topItems);
   }
 
-  setItems(items) {
-    this._items = Array.isArray(items) ? items : JSON.parse(items);
+  hostData() {
+    return {
+      class: { open: this.show }
+    };
   }
 
   render() {
@@ -40,13 +50,9 @@ export class Header {
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         <button
-          class='navbar-toggler'
+          class='navbar-toggler collapsed'
           type='button'
-          data-toggle='collapse'
-          data-target='#navbarNavDropdown'
-          aria-controls='navbarNavDropdown'
-          aria-expanded='false'
-          aria-label='Toggle navigation'>
+          onClick={() => this.show = !this.show}>
           <span class='navbar-toggler-icon'></span>
         </button>
 
@@ -55,7 +61,7 @@ export class Header {
 
         <div class='collapse navbar-collapse'>
           <ul class='navbar-nav ml-auto'>
-            { this._items.map(item => (
+            { this._topItems.map(item => (
               <li class='nav-item'>
                 <a class='nav-link' href={item['location']}>
                   <span>{item['text']}</span>
@@ -64,9 +70,12 @@ export class Header {
             )) }
           </ul>
         </div>
+      </nav>,
 
-        <a href={ this.siteUrl } class='navbar-symbol'></a>
-      </nav>
+      <a href={ this.siteUrl } class='navbar-symbol'></a>,
+
+      (this.primaryItems || this.secondaryItems)
+        ? <c-navigation primary-items={this.primaryItems} secondary-items={this.secondaryItems} show={this.show}></c-navigation> : ''
     ];
   }
 }

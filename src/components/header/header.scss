@@ -15,6 +15,21 @@
   display: block;
 }
 
+:host(.open) {
+
+  c-navigation {
+    margin-top: 0;
+    opacity: 1;
+    z-index: 0;
+  }
+}
+
+c-navigation {
+  transition: margin 0.5s ease;
+  margin-top: -7.5%;
+  z-index: -1;
+}
+
 .navbar-toggler-icon {
   background-image: $navbar-light-toggler-icon-bg;
 }
@@ -22,5 +37,11 @@
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-brand {
     display: inline-block;
+  }
+
+  c-navigation {
+    transition: none;
+    margin-top: 0;
+    z-index: 0;
   }
 }

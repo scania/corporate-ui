@@ -8,38 +8,34 @@
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
-    "dist/",
-    "!dist/collection/demo"
+    "dist/"
   ],
   "scripts": {
-    "build": "npm run build:stencil",
-    "build:stencil": "stencil build",
-    "build:angular": "cd projects/angular && npm run build",
-    "build:react": "cd projects/react && npm run build",
-    "install-dep": "npm i && npm run install-dep:angular && npm run install-dep:react",
-    "install-dep:angular": "cd projects/angular && npm i",
-    "install-dep:react": "cd projects/react && npm i",
-    "start": "npm run build:stencil && start-storybook -p 1337 -c .storybook",
+    "build": "npm run themes && stencil build",
+    "build.watch": "npm run themes && stencil build --watch",
+    "themes": "node build.js",
+    "themes.watch": "node build.js --watch",
+    "start": "npm run build && start-storybook -p 1337 -c .storybook",
     "docs": "stencil build --docs",
     "server": "stencil build --watch --serve",
-    "lint": "tslint 'src/**/*.{ts,tsx}'",
-    "lint-fix": "tslint --fix 'src/**/*.{ts,tsx}'",
-    "prettier": "prettier --write",
+    "lint": "tslint {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx}",
+    "lint-fix": "npm run lint -- --fix",
+    "prettify": "prettier {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx,json,css,scss,md,html} --write",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-push": "lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
-      "npm run prettier --",
+      "prettier --write",
       "git add"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint --",
+      "tslint --fix",
       "git add"
     ]
   },
@@ -59,7 +55,7 @@
     "@types/puppeteer": "1.12.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.0.4",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
     "html-loader": "^0.5.5",
     "http-proxy-middleware": "^0.19.1",

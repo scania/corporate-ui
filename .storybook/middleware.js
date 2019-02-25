@@ -9,26 +9,35 @@ module.exports = function(router) {
 
   router.use('/api/:kind/:id', route);
   router.use('/api/:kind', route);
-}
+};
 
 function route(req, res) {
   try {
-    let data = require('../data/' + req.params.kind + '.json');
-    let content = { 'content': 'the requested type is not possible for this request.' };
+    let data = require('../data/' + req.params.kind + '.json')
+    let content = {
+      content: 'the requested type is not possible for this request.'
+    };
 
     if (req.params.id) {
       if (req.method === 'GET' || req.method === 'POST') {
-        content = data.find(item => item.id === req.params.id) || { 'content': 'no item with target id exists.' };
+        content = data.find(item => item.id === req.params.id) || {
+          content: 'no item with target id exists.'
+        };
       }
     } else {
-      if (req.method === 'GET' || req.method === 'PUT' || req.method === 'DELETE') {
-        content = data || []
+      if (
+        req.method === 'GET' ||
+        req.method === 'PUT' ||
+        req.method === 'DELETE'
+      ) {
+        content = data || [];
       }
     }
 
-    res.json(content);
-  }
-  catch(err) {
-    res.json({ 'content': 'target service do not exist or you dont have access.' });
+    res.json(content)
+  } catch (err) {
+    res.json({
+      content: 'target service do not exist or you dont have access.'
+    });
   }
 }

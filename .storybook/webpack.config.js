@@ -19,14 +19,14 @@ module.exports = {
           },
           {
             loader: 'sass-loader'
-          },
+          }
         ]
-      }/*,
+      } /*,
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         include: includePath,
         use: 'url-loader'
-      }*/
-    ]
-  }
-};
+      }*/,
+    ],
+  },
+}

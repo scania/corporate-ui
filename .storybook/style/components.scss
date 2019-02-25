@@ -1,0 +1,18 @@
+// Content area
+section {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+iframe {
+  border: 0;
+}
+
+c-card {
+  transition: all 60ms ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+}

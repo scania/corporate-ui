@@ -1,5 +1,5 @@
 import { Component, Prop, State, Method, Watch } from '@stencil/core';
-import {  store } from '../../store';
+import { store } from '../../store';
 import * as style from '../../themes.built/theme';
 
 @Component({
@@ -7,7 +7,6 @@ import * as style from '../../themes.built/theme';
   styleUrl: 'theme.scss'
 })
 export class Theme {
-
   @Prop() name: string;
 
   @State() globalStyle: any;
@@ -28,6 +27,6 @@ export class Theme {
   }
 
   render() {
-    return <style>{ this.globalStyle }</style>;
+    return <style>{this.globalStyle}</style>;
   }
 }

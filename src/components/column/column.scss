@@ -2,6 +2,8 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
+@import '../../components.scss';
+
 $grid-prefix: ':host(';
 $grid-sufix: ')';
 
@@ -84,13 +86,6 @@ $grid-sufix: ')';
 :host {
   display: block;
   padding-bottom: 15px;
-
-  &,
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
 }
 
 :host-context(.no-gutters) {

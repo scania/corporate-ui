@@ -1,4 +1,5 @@
 {
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
   "rulesDirectory": [],
   "rules": {
     "arrow-parens": false,
@@ -29,7 +30,7 @@
     "no-trailing-whitespace": [true, "ignore-template-strings"],
     "no-var-keyword": true,
     "no-conditional-assignment": false,
-    "no-console": true,
+    "no-console": false,
     "no-debugger": true,
     "no-empty-interface": false,
     "no-object-literal-type-assertion": false,
@@ -86,6 +87,7 @@
       "check-preblock"
     ]
   },
-  "jsRules": {},
-  "extends": ["tslint:recommended", "tslint-config-prettier"]
+  "jsRules": {
+    "no-console": false
+  }
 }

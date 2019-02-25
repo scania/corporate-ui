@@ -1,13 +1,18 @@
-// Content area
-c-card {
-  transition: all 60ms ease-in-out;
+:host {
+  display: block;
 
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.02);
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
 }
 
-iframe {
-  border: 0;
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -7,7 +7,7 @@ import categories from '../../data/categories.json';
 import components from '../../data/components.json';
 import contents from '../../data/contents.json';
 
-import '../../src/components.scss';
+import '../style/components.scss';
 
 // We skip rendering these components for now due to rendering issues
 // let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);

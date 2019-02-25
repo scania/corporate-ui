@@ -1,18 +1,18 @@
-// Content area
-section {
-  margin-top: 25px;
-  margin-bottom: 25px;
+:host {
+  display: block;
+
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 }
 
-iframe {
-  border: 0;
-}
-
-c-card {
-  transition: all 60ms ease-in-out;
+a {
+  text-decoration: none;
 
   &:hover {
-    cursor: pointer;
-    transform: scale(1.02);
+    text-decoration: underline;
   }
 }

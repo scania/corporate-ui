@@ -9,6 +9,8 @@
 @import 'node_modules/bootstrap/scss/navbar';
 @import 'node_modules/bootstrap/scss/nav';
 
+@import '../../components.scss';
+
 :host {
   display: block;
 }

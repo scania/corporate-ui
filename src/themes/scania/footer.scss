@@ -1,0 +1,127 @@
+:host {
+  display: block;
+  color: var(--footer-color);
+  color: #97999b;
+  background-color: var(--footer-background);
+  background-color: #000;
+}
+
+a,
+button {
+  text-transform: uppercase;
+}
+p {
+  border-top: solid 1px #e7e7e7;
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+
+.navbar {
+  flex-direction: column;
+  padding: 0;
+}
+.navbar-brand {
+  display: block;
+  margin: 10px;
+
+  &:before {
+    display: inline-block;
+    content: '';
+    width: 113px;
+    height: 18px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: var(--footer-background-url);
+    background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
+    background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+  }
+}
+.navbar-collapse {
+  order: -1;
+}
+.navbar-content {
+  background-color: #fff;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.nav-link {
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+.btn-group {
+
+  &.show {
+
+    .dropdown-menu {
+      display: block;
+      background-color: #000;
+      left: 50%;
+      transform: translate(-50%);
+      margin-bottom: 0;
+      border: 0;
+
+      .dropdown-item {
+
+        &,
+        &:focus,
+        &:hover {
+          background-color: transparent;
+          color: #fff;
+        }
+      }
+    }
+    .dropdown-toggle {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  .dropdown-toggle {
+    color: #000;
+  }
+}
+
+@media (min-width: 992px) {
+
+  :host {
+    padding: 46px 30px 35px;
+  }
+
+  a {
+    color: #fff;
+  }
+  p {
+    border-top: 0;
+    margin-top: 0;
+  }
+
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .navbar-brand {
+    margin: 0;
+
+    &:before {
+      width: 178px;
+      height: 29px;
+    }
+  }
+  .navbar-content {
+    background-color: transparent;
+    text-align: left;
+    padding-left: 0;
+  }
+  .navbar-nav {
+    font-family: 'Scania Sans';
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}

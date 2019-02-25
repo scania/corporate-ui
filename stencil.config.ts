@@ -1,34 +1,35 @@
-import { Config } from '@stencil/core';
-import { sass } from '@stencil/sass';
+import { Config } from '@stencil/core'
+import { sass } from '@stencil/sass'
 
-import data from './package.json';
+import data from './package.json'
 
 export const config: Config = {
   namespace: data.name,
+  copy: [{ src: 'helpers.js' }],
   outputTargets: [
     { type: 'dist' },
     {
       type: 'www',
-      serviceWorker: null // disable service workers
+      serviceWorker: null, // disable service workers
     },
     {
       type: 'docs-json',
-      file: 'data/docs.json'
+      file: 'data/docs.json',
     },
     {
-      type: 'docs'
-    }
+      type: 'docs',
+    },
     {
       type: 'stats',
       file: 'data/stats.json'
     },
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/projects/']
+    testPathIgnorePatterns: ['/node_modules/', '/projects/'],
   },
   plugins: [
     sass({
-      includePaths: ['node_modules']
-    })
-  ]
-};
+      includePaths: ['node_modules'],
+    }),
+  ],
+}

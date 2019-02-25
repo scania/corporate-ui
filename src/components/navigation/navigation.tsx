@@ -1,4 +1,7 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State, Watch } from '@stencil/core';
+
+import { store } from '../../store';
+import * as style from '../../themes.built/navigation';
 
 @Component({
   tag: 'c-navigation',
@@ -6,46 +9,66 @@ import { Component, Prop } from '@stencil/core';
   shadow: true
 })
 export class Navigation {
-  @Prop() router: Boolean;
+  @Prop() theme: string;
   @Prop() primaryItems: any = [];
+  @Prop() secondaryItems: any = [];
+  @Prop() show: boolean;
 
-  _primaryItems: object[] = [];
+  @State() currentTheme: string = this.theme;
+  @State() _primaryItems: object[] = [];
+  @State() _secondaryItems: object[] = [];
 
-  componentWillLoad() {
-    this._primaryItems = Array.isArray(this.primaryItems)
-      ? this.primaryItems
-      : JSON.parse(this.primaryItems);
+  @Watch('primaryItems')
+  @Watch('secondaryItems')
+  setItems(items, type) {
+    this['_' + type] = Array.isArray(items) ? items : JSON.parse(items);
   }
 
-  componentWillUpdate() {
-    this._primaryItems = Array.isArray(this.primaryItems)
-      ? this.primaryItems
-      : JSON.parse(this.primaryItems);
+  @Watch('theme')
+  updateTheme(name) {
+    this.currentTheme = name;
+  }
+
+  componentWillLoad() {
+    store.subscribe(() => this.currentTheme = store.getState());
+
+    this.setItems(this.primaryItems, 'primaryItems');
+    this.setItems(this.secondaryItems, 'secondaryItems');
   }
 
   render() {
-    if (this.router) {
-      return (
-        <stencil-route-link url='/profile/stencil'>
-          <button>Profile page</button>
-        </stencil-route-link>
-      );
-    } else {
-      return (
-        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-          <div class='collapse navbar-collapse'>
-            <ul class='navbar-nav mr-auto'>
-              {this._primaryItems.map(item => (
-                <li class='nav-item'>
-                  <a class='nav-link' href={item['location']}>
+    return [
+      <style>{ style[this.currentTheme] }</style>,
+
+      <nav class='navbar navbar-expand-lg'>
+        <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
+          <ul class='navbar-nav'>
+            {this._primaryItems.map((item, key) =>
+              <li class='nav-item'>
+                <slot name={'nav-item-' + key}>
+                  <a href={item['location']} class='nav-link'>
                     <span>{item['text']}</span>
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
-      );
-    }
+                </slot>
+              </li>
+            )}
+          </ul>
+        </div>
+
+        <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
+          <ul class='navbar-nav ml-auto'>
+            {this._secondaryItems.map((item, key) =>
+              <li class='nav-item'>
+                <slot name={'nav-item-' + key}>
+                  <a href={item['location']} class='nav-link'>
+                    <span>{item['text']}</span>
+                  </a>
+                </slot>
+              </li>
+            )}
+          </ul>
+        </div>
+      </nav>
+    ];
   }
 }

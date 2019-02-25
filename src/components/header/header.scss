@@ -2,11 +2,46 @@
 @import 'node_modules/bootstrap/scss/functions';
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
+@import 'node_modules/bootstrap/scss/transitions';
+
 // Optional
 @import 'node_modules/bootstrap/scss/utilities';
 @import 'node_modules/bootstrap/scss/navbar';
 @import 'node_modules/bootstrap/scss/nav';
 
+@import '../../components.scss';
+
 :host {
   display: block;
+}
+
+:host(.open) {
+
+  c-navigation {
+    margin-top: 0;
+    opacity: 1;
+    z-index: 0;
+  }
+}
+
+c-navigation {
+  transition: margin 0.5s ease;
+  margin-top: -7.5%;
+  z-index: -1;
+}
+
+.navbar-toggler-icon {
+  background-image: $navbar-light-toggler-icon-bg;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-brand {
+    display: inline-block;
+  }
+
+  c-navigation {
+    transition: none;
+    margin-top: 0;
+    z-index: 0;
+  }
 }

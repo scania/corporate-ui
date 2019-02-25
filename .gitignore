@@ -32,6 +32,7 @@ src/themes.built/
 src/demo/**/*.*
 !src/demo/**/readme.md
 
+data/stats.json
 data/docs.json
 
 package-lock.json

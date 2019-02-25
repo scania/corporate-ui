@@ -1,4 +1,5 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
+
 import { store } from '../../store';
 import * as style from '../../themes.built/header';
 
@@ -10,52 +11,71 @@ import * as style from '../../themes.built/header';
 export class Header {
   @Prop() theme: string;
   @Prop() siteName = 'Application name';
-  @Prop() items: any = [{ text: 'global', location: '/' }];
+  @Prop() siteUrl = '/';
+  @Prop() topItems: any = [{ text: 'global', location: '/' }];
+  @Prop() primaryItems: any;
+  @Prop() secondaryItems: any;
 
   @State() currentTheme: string = this.theme;
-
-  @Watch('items')
-  updateName(items) {
-    this.setItems(items);
-  }
-
+  @State() show = false;
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  _items: object[] = [];
+  @State() _topItems: object[] = [];
 
-  componentWillLoad() {
-    store.subscribe(() => (this.currentTheme = store.getState()));
-
-    this.setItems(this.items);
+  @Watch('topItems')
+  setItems(items) {
+    this._topItems = Array.isArray(items) ? items : JSON.parse(items);
   }
 
-  setItems(items) {
-    this._items = Array.isArray(items) ? items : JSON.parse(items);
+  @Watch('theme')
+  updateTheme(name) {
+    this.currentTheme = name;
+  }
+
+  componentWillLoad() {
+    store.subscribe(() => this.currentTheme = store.getState());
+
+    this.setItems(this._topItems);
+  }
+
+  hostData() {
+    return {
+      class: { open: this.show }
+    };
   }
 
   render() {
     return [
-      <style>{style[this.currentTheme]}</style>,
-      <nav class='navbar navbar-expand-lg navbar-default '>
-        <div class='navbar-header collapse navbar-collapse'>
-          <div class='mr-auto mt-2 mt-lg-0'>
-            <a class='navbar-brand' href='#' />
-            {this.siteName} - {this.currentTheme}
-          </div>
+      <style>{ style[this.currentTheme] }</style>,
 
-          <ul class='navbar-nav my-2 my-lg-0'>
-            {this._items.map(item => (
+      <nav class='navbar navbar-expand-lg navbar-default'>
+        <button
+          class='navbar-toggler collapsed'
+          type='button'
+          onClick={() => this.show = !this.show}>
+          <span class='navbar-toggler-icon'></span>
+        </button>
+
+        <a href={ this.siteUrl } class='navbar-brand collapse'></a>
+        <strong class='navbar-title'>{ this.siteName }</strong>
+
+        <div class='collapse navbar-collapse'>
+          <ul class='navbar-nav ml-auto'>
+            { this._topItems.map(item => (
               <li class='nav-item'>
                 <a class='nav-link' href={item['location']}>
                   <span>{item['text']}</span>
                 </a>
               </li>
-            ))}
+            )) }
           </ul>
-
-          <a class='navbar-symbol' href='#' />
         </div>
-      </nav>
+      </nav>,
+
+      <a href={ this.siteUrl } class='navbar-symbol'></a>,
+
+      (this.primaryItems || this.secondaryItems)
+        ? <c-navigation primary-items={this.primaryItems} secondary-items={this.secondaryItems} show={this.show}></c-navigation> : ''
     ];
   }
 }

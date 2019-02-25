@@ -14,12 +14,14 @@
     <c-theme name="scania"></c-theme>
     <c-header
       site-name="Corporate UI Page"
-      items='[{"text":"global"},{"text":"about"}]'
+      top-items='[{"text":"global", "location": "/"}, {"text":"about", "location": "/"}]'
+      primary-items='[{"text":"home", "location": "/" }, {"text":"contact", "location": "/"}]'
+      secondary-items='[{"text":"user", "location": "/" }]'
     ></c-header>
     <c-content>
-      <c-navigation
+      <!-- <c-navigation
         primary-items='[{"text":"home"},{"text":"contact"}]'
-      ></c-navigation>
+      ></c-navigation> -->
       <!-- <router-navigation
           primary-items='[{"text":"home"},{"text":"contact"}]'
         ></router-navigation> -->

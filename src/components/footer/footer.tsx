@@ -3,11 +3,6 @@ import { store } from '../../store';
 
 import * as style from '../../themes.built/footer';
 
-// import $ from 'jquery';
-// import 'bootstrap/js/dist/collapse';
-
-// console.log($);
-
 @Component({
   tag: 'c-footer',
   styleUrl: 'footer.scss',
@@ -19,10 +14,13 @@ export class Footer {
 
   @State() currentTheme: string = this.theme;
   @State() show = false;
+  // There should be a better way of solving this, either by "{ mutable: true }"
+  // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
+  @State() _items: object[] = [];
 
   @Watch('items')
-  updateItems(items) {
-    this.setItems(items);
+  setItems(items) {
+    this._items = Array.isArray(items) ? items : JSON.parse(items);
   }
 
   @Watch('theme')
@@ -30,23 +28,16 @@ export class Footer {
     this.currentTheme = name;
   }
 
-  // There should be a better way of solving this, either by "{ mutable: true }"
-  // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  _items: object[] = [];
-
   componentWillLoad() {
     store.subscribe(() => (this.currentTheme = store.getState()));
 
     this.setItems(this.items);
   }
 
-  setItems(items) {
-    this._items = Array.isArray(items) ? items : JSON.parse(items);
-  }
-
   render() {
     return [
       <style>{style[this.currentTheme]}</style>,
+
       <nav class='navbar navbar-expand-lg navbar-default' data-test-id='c-footer'>
         <strong class='navbar-brand' data-test-id='c-footer-logo'></strong>
 

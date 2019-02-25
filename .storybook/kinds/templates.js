@@ -11,5 +11,5 @@ import templates from '../../data/templates.json';
 
 function content(item) {
   var template = require('../../src/templates/' + item.name + '.html');
-  return `<cui-container type="fluid">${template}</cui-container>`;
+  return `<c-container type="fluid">${template}</c-container>`;
 }

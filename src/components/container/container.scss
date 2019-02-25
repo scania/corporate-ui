@@ -2,16 +2,7 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
-:host {
-  display: block;
-
-  &,
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-}
+@import '../../components.scss';
 
 :host(.container) {
   @include make-container();

@@ -17,6 +17,9 @@ export class Icon {
     name = name.replace(/-([a-z0-9])/g, function (g) {
       return g[1].toUpperCase();
     })
+    if(name === 'function') {
+      name = 'functionIcon';
+    }
     this.iconSet = icons[name];
     this.iconPath = this.iconSet['data'];
   }

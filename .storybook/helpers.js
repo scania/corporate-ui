@@ -2,7 +2,8 @@ import { storiesOf } from '@storybook/html';
 import { action } from '@storybook/addon-actions';
 import { withLinks } from '@storybook/addon-links';
 
-import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
+// import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
+// import * as CUI from '../dist/esm/es5/corporate-ui.components';
 
 export function renderKinds(category, items, title, content) {
   let categorisedItems = items.filter(
@@ -73,7 +74,7 @@ export function renderStories(category, item, title, content) {
     );
 }
 
-export function renderWebComponent(component) {
+/*export function renderWebComponent(component) {
   const [
     tagName,
     bundleIds,
@@ -105,11 +106,11 @@ export function renderWebComponent(component) {
 
   defineCustomElement(window, [component])
 
-  /*if (tagName === 'context-consumer') {
-   return;
-  }
+  // if (tagName === 'context-consumer') {
+  //  return;
+  // }
 
   
-    .addParameters({ options: { addonPanelInRight: true } })
-    .add(tagName, () => `<${tagName} />`);*/
-}
+  //   .addParameters({ options: { addonPanelInRight: true } })
+  //   .add(tagName, () => `<${tagName} />`);
+}*/

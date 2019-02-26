@@ -1,4 +1,5 @@
 const proxy = require('http-proxy-middleware');
+// const express = require('express');
 
 // https://github.com/storybooks/storybook/issues/208#issuecomment-306953718
 module.exports = function(router) {
@@ -9,6 +10,7 @@ module.exports = function(router) {
 
   router.use('/api/:kind/:id', route);
   router.use('/api/:kind', route);
+  // router.use(express.static('./dist'));
 };
 
 function route(req, res) {

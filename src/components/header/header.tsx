@@ -16,7 +16,7 @@ export class Header {
   @Prop() primaryItems: any;
   @Prop() secondaryItems: any;
 
-  @State() currentTheme: string = this.theme;
+  @State() currentTheme: string = this.theme || store.getState().theme;
   @State() show = false;
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
@@ -33,7 +33,7 @@ export class Header {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState());
+    store.subscribe(() => this.currentTheme = store.getState().theme);
 
     this.setItems(this._topItems);
   }

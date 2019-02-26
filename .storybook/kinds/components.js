@@ -9,11 +9,11 @@ import contents from '../../data/contents.json';
 
 import '../style/components.scss';
 
-// We skip rendering these components for now due to rendering issues
-// let filteredComponents = components.filter(item => ['cui-column', 'cui-container', 'cui-content', 'cui-row'].indexOf(item.name) === -1);
+// Here we filer out components that might cause rendering issues or are unnessesary at this time around
+let filteredComponents = components.filter(item => ['c-column', 'c-container', 'c-content', 'c-row', 'c-field', 'c-list', 'user-repos'].indexOf(item.name) === -1);
 
 [{ name: 'All' }, ...categories].map(category =>
-  renderKinds(category, components, 'Components', renderContent)
+  renderKinds(category, filteredComponents, 'Components', renderContent)
 );
 
 // storybookAPI.selectStory('heading', 'with text');
@@ -45,7 +45,7 @@ function renderContent(item) {
   }
 
   return `
-    ${template ? template : `<${item.name}></${item.name}>`}
+    ${template}
     ${docs ? '<div class="technical-docs">' + marked(docs) + '</div>' : ''}
     ${
       content

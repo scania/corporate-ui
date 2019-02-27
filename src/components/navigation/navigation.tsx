@@ -14,7 +14,7 @@ export class Navigation {
   @Prop() secondaryItems: any = [];
   @Prop() show: boolean;
 
-  @State() currentTheme: string = this.theme;
+  @State() currentTheme: string = this.theme || store.getState().theme;
   @State() _primaryItems: object[] = [];
   @State() _secondaryItems: object[] = [];
 
@@ -30,7 +30,7 @@ export class Navigation {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState());
+    store.subscribe(() => this.currentTheme = store.getState().theme);
 
     this.setItems(this.primaryItems, 'primaryItems');
     this.setItems(this.secondaryItems, 'secondaryItems');

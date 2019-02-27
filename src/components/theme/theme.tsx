@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method, Watch } from '@stencil/core';
+import { Component, Prop, State, Watch } from '@stencil/core';
 import { store } from '../../store';
 import * as style from '../../themes.built/theme';
 
@@ -7,26 +7,21 @@ import * as style from '../../themes.built/theme';
   styleUrl: 'theme.scss'
 })
 export class Theme {
-  @Prop() name: string;
+  @Prop() name: string = store.getState().theme;
 
-  @State() globalStyle: any;
+  @State() currentTheme: any;
 
   @Watch('name')
-  updateName(name) {
-    this.appSetTheme(name);
-  }
-
-  componentWillLoad() {
-    this.appSetTheme(this.name);
-  }
-
-  @Method()
-  appSetTheme(name) {
-    this.globalStyle = style[name];
+  setTheme(name) {
+    this.currentTheme = name;
     store.dispatch({ type: 'SET_THEME', theme: name });
   }
 
+  componentWillLoad() {
+    this.setTheme(this.name);
+  }
+
   render() {
-    return <style>{this.globalStyle}</style>;
+    return <style>{style[this.currentTheme]}</style>;
   }
 }

@@ -1,12 +1,12 @@
 import { createStore } from 'redux';
 
 const SET_THEME = 'SET_THEME';
+const initialState = { theme: 'corporate' }
 
-// reducers
-function setTheme(state = 'default', action) {
+function setTheme(state = initialState, action) {
   switch (action.type) {
     case SET_THEME:
-      return (state = action.theme);
+      return { ...state, theme: action.theme };
     default:
       return state;
   }

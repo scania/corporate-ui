@@ -1,16 +1,13 @@
 import { configure, addDecorator } from '@storybook/html';
 import { withOptions } from '@storybook/addon-options';
 
-import { renderWebComponent } from './helpers';
 import { name } from '../package.json';
 
+import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
 import * as CUI from '../dist/esm/es5/corporate-ui.components';
 
-const CUI_COMPONENTS = CUI.COMPONENTS;
-
-Object.keys(CUI_COMPONENTS).map(item =>
-  renderWebComponent(CUI_COMPONENTS[item])
-);
+// Loads all components
+defineCustomElement(window, CUI.COMPONENTS);
 
 addDecorator(
   withOptions({

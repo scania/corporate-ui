@@ -1,4 +1,4 @@
-import { defineCustomElement as defineCE } from '../esm/es5/corporate-ui.core'
+import { defineCustomElement } from '../esm/es5/corporate-ui.core'
 import * as CUI from '../esm/es5/corporate-ui.components'
 const CUI_COMPONENTS = CUI.COMPONENTS
 var collections = require('./collection-manifest.json')
@@ -12,16 +12,20 @@ collection.forEach(obj => {
 })
 
 export function defineCustomElements(components) {
-  components.forEach(project_comp => {
-    defineCE(window, [findComponent(project_comp)])
-    for (let tag in subComponents) {
-      if (project_comp === tag) {
-        subComponents[tag].forEach(tagDep => {
-          defineCE(window, [findComponent(tagDep)])
-        })
+  if(components==='all') {
+    defineCustomElement(window, CUI_COMPONENTS);
+  } else {
+    components.forEach(project_comp => {
+      defineCustomElement(window, [findComponent(project_comp)])
+      for (let tag in subComponents) {
+        if (project_comp === tag) {
+          subComponents[tag].forEach(tagDep => {
+            defineCustomElement(window, [findComponent(tagDep)])
+          })
+        }
       }
-    }
-  })
+    })
+  }
 }
 
 function findComponent(name) {

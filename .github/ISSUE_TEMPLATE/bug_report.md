@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: 'About: Use this option when you''ve found an error caused by Corporate UI.'
+about: 'Use this option when you''ve found an error caused by Corporate UI.'
 title: Bug - "title text"
 labels: bug
 assignees: ''

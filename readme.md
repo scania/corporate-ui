@@ -5,40 +5,36 @@
 
 # Corporate UI Development Repository
 
-In this repository we're developing the next generation components for Corporate UI.
+In this repository we're developing the next generation components for Corporate UI. We're improving a lot of our findings that we've done implementing the current production version of the library: https://github.com/scania/corporate-ui
 
-## Corporate UI Component Starter
+## About Stencil JS
 
-This is a starter project for building a standalone Web Component for Corporate UI using Stencil.
+The main change in the technology stack is that we've changing from Google Polymer to Stencil JS for creating Custom Elements.
 
-Stencil is also great for building entire apps. For that, use the [stencil-app-starter](https://github.com/ionic-team/stencil-app-starter) instead.
-
-## Stencil
-
-Stencil is a compiler for building fast web apps using Web Components.
+Stencil is a compiler for building fast web apps using Custom Elements (aka Web Components).
 
 Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time tool. Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements v1 spec.
 
-Stencil components are just Web Components, so they work in any major framework or with no framework at all.
+Stencil components work in any major framework or with no framework at all.
 
-## Getting Started
+## Set up your local environment
+<ul>
+<li>Clone the Corporate UI repo</li>
+<li>Download and install node.js: https://nodejs.org/en/</li>
+<li>If you're behind a firewall, CONFIGURE THE PROXY
+<li>INSTALLING DEPENDENCIES (from command line): <b>npm i</b> from the corporate-ui-dev folder.</li>
+<li>Start the local setup by running <b>npm start</b></li>
+<li>Open your browser and go to http://localhost:1337</li>
+</ul>
 
-We'll work on this section soon.
-
-## Installation
-
-`npm i`
-
-`npm start`
-
-For demo of angular/react:
-
-`npm run install-dep` for installing angular/react demo
 
 ## Node version
 
-Use version 8.15 or older and use stable version
+Use version 8.15 or older any more recent stable version.
 
 ## Join us on Slack
 
 [Corporate-ui Slack](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)
+
+<h2>License</h2>
+<p>All CSS, HTML and JS code are available under the MIT license. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.</p>

@@ -27,7 +27,7 @@ function components(cb) {
     // .on('exit', (code) => console.log('exit: ', code) )
     .on('close', (code) => { console.log('close: ', code); cb() } )*/
 
-  exec('stencil build', (err, stdout, stderr) => {
+  exec('stencil build', { maxBuffer: 1024 * 500 }, (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
     cb()

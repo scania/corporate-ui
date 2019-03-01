@@ -1,4 +1,5 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
+
 import * as icons from './icons';
 
 @Component({
@@ -8,11 +9,12 @@ import * as icons from './icons';
 })
 export class Icon {
   @Prop() name: string;
+
   @State() iconSet: any;
   @State() iconPath: any;
 
   @Watch('name')
-  updateIcon(name){
+  updateIcon(name) {
     // change to camelCase
     name = name.replace(/-([a-z0-9])/g, function (g) {
       return g[1].toUpperCase();
@@ -20,7 +22,7 @@ export class Icon {
     if(name === 'function') {
       name = 'functionIcon';
     }
-    this.iconSet = icons[name];
+    this.iconSet = icons[name] || icons['ban'];
     this.iconPath = this.iconSet['data'];
   }
 
@@ -30,8 +32,8 @@ export class Icon {
 
   render() {
     return(
-      <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox={'0 0 ' + this.iconSet.pos[0]+' '+this.iconSet.pos[1]}>
-        <path d={window.atob(this.iconPath)} />
+      <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox={ '0 0 ' + this.iconSet.pos.join(' ') }>
+        <path d={ window.atob(this.iconPath) } />
       </svg>
     );
   }

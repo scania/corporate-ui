@@ -3,5 +3,10 @@
     "id": "92f4852e-1b13-4630-a455-4179f90f9b3d",
     "name": "main-page",
     "categories": ["d15da991-148c-4d06-b2df-436a1baf11ac"]
+  },
+  {
+    "id": "527a1636-6089-4252-a3ad-b77adad58dc6",
+    "name": "icons-page",
+    "categories": ["d15da991-148c-4d06-b2df-436a1baf11ac"]
   }
 ]

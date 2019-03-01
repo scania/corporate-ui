@@ -74,7 +74,8 @@
         background-image: url(https://static.scania.com/resources/logotype/scania/scania-symbol-logotype.svg);
         background-position: center right;
         background-size: 210px 42px;
-      }
+        top: 15px;
+      }   
     }
   }
   a.dealer {
@@ -97,6 +98,7 @@
   }
 }
 
+
 :host-context(.header-is-sticky) {
 
   ::content {
@@ -108,6 +110,16 @@
       &:before {
         transition: top 100ms ease-in-out;
         top: 9px;
+      }
+    }
+
+    .is-dealer .navbar-header {
+
+        .navbar-symbol.should-stick {
+
+          &:before {
+            top: 7px !important;  // I don't get this one to be prioritized!
+        } 
       }
     }
   }
@@ -179,12 +191,12 @@
   :host .is-dealer .navbar-header {
 
     font-family: 'Scania Sans Headline';
-    padding: 0 15px 20px 5px;
+    padding: 18px;
     font-weight: normal;
 
     a.dealer {
       display: inline-block;
-      margin: 10px -15px 20px 15px;
+      margin: 7px;
       position: relative;
       font-family: 'Scania Sans Headline';
       font-size: 1.8rem;
@@ -204,8 +216,6 @@
       width: 40px;
       height: 37px;
       margin-left: 12px;
-      margin-top: 8px;
-      margin-right: -2px;
 
       &:before {
         background-image: url(/resources/logotype/scania/scania-symbol.svg);

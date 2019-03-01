@@ -7,7 +7,6 @@
 
 In this repository we're developing the next generation components for Corporate UI. We're improving a lot of our findings that we've done implementing the current production version of the library: https://github.com/scania/corporate-ui
 
-
 ## About Stencil JS
 
 The main change in the technology stack is that we've changing from Google Polymer to Stencil JS for creating Custom Elements.

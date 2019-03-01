@@ -17,7 +17,7 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 
 Stencil components work in any major framework or with no framework at all.
 
-##Set up your local environment
+## Set up your local environment
 <ul>
 <li>Clone the Corporate UI repo</li>
 <li>Download and install node.js: https://nodejs.org/en/</li>

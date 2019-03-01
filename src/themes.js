@@ -3,8 +3,9 @@ const path = require('path');
 const sass = require('node-sass');
 
 const components = 'src/components/';
-const inputFolder = 'src/themes/';
-const outputFolder = 'src/themes.built/';
+const inputFolder = 'themes/';
+const outputFolder = 'tmp/';
+const time = new Date();
 
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
@@ -70,7 +71,7 @@ function walkDir(dir, done) {
   });
 };
 
-function generateTheme() {
+export function generateTheme(callback=function(){}) {
   let counter = 0;
   let addString = '';
 
@@ -79,30 +80,34 @@ function generateTheme() {
   }
 
   fs.readdir(components, (err, files) => {
+    let index = 0;
     if (err) {
       console.log(err);
     }
     files.forEach(file => {
       walkDir(inputFolder, function(err2, data, globalCSS, componentCSS) {
-        console.log('============ checking ', file)
-
+        // console.log('============ checking ', file)
         if (err2) {
           console.log(err2);
         }
         for(var key in componentCSS) {
           if(file === key) {
-            addString = '';
+            addString = '\n// Auto Generated Below\n';
             addString += componentCSS[key];
 
             fs.writeFile(
-              outputFolder + file + '.ts',
+              outputFolder + file + '.js',
               addString,
               'utf8',
               err3 => {
                 if (err3) {
                   throw err3;
                 }
-                console.log('write file ' + file + '.ts');
+                counter++;
+                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: tmp/' + file + '.js');
+                if(counter === Object.keys(componentCSS).length) {
+                  callback();
+                }
               }
             );
           }
@@ -110,17 +115,4 @@ function generateTheme() {
       });
     });
   });
-}
-
-generateTheme();
-
-if (process.argv.indexOf('--watch') > -1) {
-  fs.watch(inputFolder, { recursive: true }, (eventType, filename) => {
-    console.log('File was changed, rebuilding themes');
-
-
-    generateTheme();
-  });
-
-  console.log('Watching themes for changes');
 }

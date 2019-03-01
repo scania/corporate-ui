@@ -5,6 +5,7 @@ import data from './package.json';
 
 export const config: Config = {
   namespace: data.name,
+  srcDir: 'src/components',
   outputTargets: [
     { type: 'dist' },
     {
@@ -12,11 +13,11 @@ export const config: Config = {
       serviceWorker: null // disable service workers
     },
     {
-      type: 'docs-json',
-      file: 'data/docs.json'
+      type: 'docs'
     },
     {
-      type: 'docs'
+      type: 'docs-json',
+      file: 'data/docs.json'
     }
     {
       type: 'stats',
@@ -24,7 +25,7 @@ export const config: Config = {
     },
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/projects/']
+    testPathIgnorePatterns: ['/node_modules/']
   },
   plugins: [
     sass({

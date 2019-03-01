@@ -1,7 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
-import { store } from '../../store';
 
-import * as style from '../../themes.built/footer';
+import { store } from '../../global.js';
+import * as themes from '../../../tmp/footer.js';
 
 @Component({
   tag: 'c-footer',
@@ -36,7 +36,7 @@ export class Footer {
 
   render() {
     return [
-      <style>{style[this.currentTheme]}</style>,
+      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' data-test-id='c-footer'>
         <strong class='navbar-brand' data-test-id='c-footer-logo'></strong>
@@ -45,8 +45,8 @@ export class Footer {
           <ul class='navbar-nav'>
             { this._items.map(item => (
               <li class='nav-item'>
-                <a href={item['location']} class='nav-link'>
-                  <span>{item['text']}</span>
+                <a href={ item['location'] } class='nav-link'>
+                  <span>{ item['text'] }</span>
                 </a>
               </li>
             )) }
@@ -57,14 +57,14 @@ export class Footer {
           <div class={'btn-group dropup' + (this.show ? ' show' : '')}>
             <div class='dropdown-menu'>
               { this._items.map(item => (
-                <a href={item['location']} class='dropdown-item'>{item['text']}</a>
+                <a href={ item['location'] } class='dropdown-item'>{ item['text'] }</a>
               )) }
             </div>
 
             <button
               class='btn btn-link dropdown-toggle'
               type='button'
-              onClick={() => this.show = !this.show}>Scania</button>
+              onClick={ () => this.show = !this.show }>Scania</button>
           </div>
 
           <p data-test-id='c-footer-copyright'>Copyright &copy; Scania 2019</p>

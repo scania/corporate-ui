@@ -7,26 +7,30 @@ module.exports = {
       {
         test: /\.scss$/,
         // include: includePath,
-        use: [
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        /*use: [
           {
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader'/*,
-            options: {
-              sourceMap: true
-            }*/
+            loader: 'css-loader',
+            // options: {
+            //   sourceMap: true
+            // }
           },
           {
             loader: 'sass-loader'
           }
-        ]
+        ]*/
       } /*,
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         include: includePath,
         use: 'url-loader'
-      }*/,
-    ],
-  },
+      }*/
+    ]
+    /*devServer: {
+      hot: false
+    }*/
+  }
 }

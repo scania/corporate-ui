@@ -13,13 +13,18 @@ deploy:
   provider: s3
   access_key_id: "$AWS_KEY_ID"
   secret_access_key: "$AWS_KEY_SECRET"
-  bucket: "static-scania-com/stencil/$TRAVIS_BRANCH/"
+  bucket: "corporate-ui-deploy-test"
+  region: "eu-west-1"
+  local_dir: "dist"
+  upload_dir: "build/global/$TRAVIS_BRANCH"
+  skip_cleanup: true
+  acl: public_read
   on:
-    branch: master
+    branch: $TRAVIS_BRANCH
 
-deploy:
-  provider: npm
-  email: "andreas.wikstrom@scania.com"
-  api_key: "$NPM_ACCESS_KEY"
-  on:
-    branch: master
+# deploy:
+#   provider: npm
+#   email: "andreas.wikstrom@scania.com"
+#   api_key: "$NPM_ACCESS_KEY"
+#   on:
+#     branch: master

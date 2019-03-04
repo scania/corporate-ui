@@ -220,6 +220,17 @@ textarea[placeholder] {
   }
 }
 
+.checkbox-inline {
+  display: inline-flex;
+  padding-left: 0px;
+   margin: 10px 0px 10px 0px;
+}
+
+.radio-inline {
+  display: inline-flex;
+  padding-left: 0px;
+   margin: 10px 0px 10px 0px;
+}
 .form-horizontal {
 
   .radio,
@@ -228,6 +239,10 @@ textarea[placeholder] {
   .checkbox-inline {
     padding-top: 9px;
   }
+}
+
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
+  margin: 10px 0px 10px 0px;
 }
 
 .form-inline {
@@ -256,9 +271,9 @@ fieldset {
   }
 }
 
-.radio-inline, .checkbox-inline {
-  padding-left: 0px;
-}
+// .radio-inline, .checkbox-inline {
+//   padding-left: 0px;
+// }
 
 .nowrap {
   white-space: nowrap;

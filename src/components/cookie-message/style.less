@@ -12,8 +12,8 @@
     bottom: 0px;
     z-index: 1500;
 
-    a, 
-    a:hover, 
+    a,
+    a:hover,
     a:active {
       color: inherit;
       font-weight: bold;
@@ -22,7 +22,7 @@
     .text-cookie {
       display:inline-block;
       width: 70%;
-    } 
+    }
 
     .btn {
       display: inline-block;
@@ -33,11 +33,14 @@
 
   .modal {
     color: #535353;
+
+    .scroll-y .modal-body{
+      max-height: ~"calc(80vh - 240px)";
+    }
   }
 }
 
-  @media (max-width: 991px) {
-    
+@media (max-width: 991px) {
   :host {
 
     .cookie-short-message {
@@ -54,6 +57,10 @@
         padding: 6px 18px;
         width: 100%;
       }
-    }  
+    }
+
+    .modal .scroll-y .modal-body{
+      max-height: ~"calc(70vh - 240px)";
+    }
   }
 }

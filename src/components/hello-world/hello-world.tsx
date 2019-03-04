@@ -5,13 +5,13 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'hello-world.scss',
   shadow: true
 })
-export class helloworld {
+export class HelloWorld {
 
-  @Prop() PropHelloWorld: String = "hello-World";
+  @Prop() text: String = "hello-World";
 
   render() {
     return (
-      <div><h2>{this.PropHelloWorld}</h2></div>
+      <div><h2>{this.text} component</h2></div>
     );
   }
 }

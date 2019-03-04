@@ -1,6 +1,6 @@
-import { helloworld } from './hello-world';
+import { HelloWorld } from './hello-world';
 describe('app', () => {
   it('builds', () => {
-    expect(new helloworld()).toBeTruthy();
+    expect(new HelloWorld()).toBeTruthy();
   });
 });

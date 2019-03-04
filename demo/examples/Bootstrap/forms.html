@@ -2,876 +2,1028 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Form example</title>
-  <script src="../../../js/corporate-ui.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Form example</title>
+<script src="../../../js/corporate-ui.js"></script>
+<style>
+/* .checkbox-inline {
+width: 150px;
+padding-left: 35px;
+margin: 10px 0px 10px 0px;
+} */
+/* .checkbox-inline > input[type="checkbox"] + span::before {
+margin-left: -30px;
+} */
+</style>
+</head>
 
-
-  </head>
-
-  <body class="scania app">
-    <c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
-      <nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
-      <nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
-    </c-corporate-header>
-    <c-main-content>
-      <section class="light">
-        <div class="container-fluid">
+<body class="scania app">
+<c-corporate-header site-name="UX Library" site-url="https://static.scania.com/ux-library/">
+<nav-item location="https://www.scania.com/world/#/">World Entry</nav-item>
+<nav-item location="https://www.scania.com/group/en/">Scania Group</nav-item>
+</c-corporate-header>
+<c-main-content>
+<section class="light">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-lg-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Edit job</h3>
+          <span>Bread Delivery, ICA Åtvidaberg</span>
+        </div>
+        <div class="panel-body">
+          <form id="form" action="" method="get">
+            <div class="row">
+              <div class="col-xs-12 col-md-5">
+                <div class="form-group">
+                  <label class="control-label">Name of job
+                  </label>
+                  <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-8">
+                <div class="form-group">
+                  <label class="control-label">Equipment
+                  </label>
+                  <input type="text" value='' class="form-control" placeholder="Select or click in map" disabled="true">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-5">
+                <div class="form-group">
+                  <label class="control-label">Current driver</label>
+                  <input type="text" value='' class="form-control" readonly placeholder="n/d">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                  <h4>Locations</h4>
+                </div>
+              </div>
+            </div>
+            <fieldset>
+              <div class="form-group col-xs-12 col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Location 1</label>
+                  <input type="text" value='' class="form-control" placeholder="Start from current position of truck">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label interest-label">Time</label>
+                  <input type="text" value='' class="form-control" placeholder="Start now">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Added time (min)*</label>
+                  <input type="text" value='' class="form-control" placeholder="35">
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Location 2</label>
+                  <input type="text" value='' class="form-control" placeholder="Search or click map">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label interest-label">Time</label>
+                  <input type="text" value='' class="form-control" placeholder="Arriving">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Time in advance (min)*</label>
+                  <input type="text" value='' class="form-control" placeholder="30">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-9">
+                <div class="form-group">
+                  <label class="control-label">Notify on arrival
+                  </label>
+                  <input type="text" value='' class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="fcol-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Time in advance (min)</label>
+                  <input type="text" value='' class="form-control" placeholder="30">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-9">
+                <div class="form-group">
+                  <label class="control-label nowrap">Notify expected delays</label>
+                  <input type="text" value='' class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Longer than (min)</label>
+                  <input type="text" value='' class="form-control" placeholder="60">
+                </div>
+              </div>
+            </fieldset>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span>+ Add location</span>
+              </div>
+            </div>
+            <div class="col-md-6 text-right">
+              <div class="form-group">
+                <span>+ Added time for loading, unloading, break etc</span>
+              </div>
+            </div>
+            <div class="col-md-12 text-right">
+              <div class="form-group">
+                <button class="btn btn-success" type="reset">Save changes</button>
+                <button class="btn btn-default" type="submit">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+      <div class="panel panel-primary panel-inverse">
+        <div class="panel-heading">
+          <h3 class="panel-title">Edit job</h3>
+          <span>Bread Delivery, ICA Åtvidaberg</span>
+        </div>
+        <div class="panel-body">
+          <form id="form" action="" method="get">
+            <div class="row">
+              <div class="col-xs-12 col-md-5">
+                <div class="form-group">
+                  <label class="control-label">Name of job
+                  </label>
+                  <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-8">
+                <div class="form-group">
+                  <label class="control-label">Equipment
+                  </label>
+                  <input type="text" value='' class="form-control" placeholder="Select or click in map" disabled="true">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-5">
+                <div class="form-group">
+                  <label class="control-label">Current driver</label>
+                  <input type="text" value='' class="form-control" readonly placeholder="n/d">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                  <h4>Locations</h4>
+                </div>
+              </div>
+            </div>
+            <fieldset>
+              <div class="form-group col-xs-12 col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Location 1</label>
+                  <input type="text" value='' class="form-control" placeholder="Start from current position of truck">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label interest-label">Time</label>
+                  <input type="text" value='' class="form-control" placeholder="Start now">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Added time (min)*</label>
+                  <input type="text" value='' class="form-control" placeholder="35">
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Location 2</label>
+                  <input type="text" value='' class="form-control" placeholder="Search or click map">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label interest-label">Time</label>
+                  <input type="text" value='' class="form-control" placeholder="Arriving">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Time in advance (min)*</label>
+                  <input type="text" value='' class="form-control" placeholder="30">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-9">
+                <div class="form-group">
+                  <label class="control-label">Notify on arrival
+                  </label>
+                  <input type="text" value='' class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="fcol-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Time in advance (min)</label>
+                  <input type="text" value='' class="form-control" placeholder="30">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-9">
+                <div class="form-group">
+                  <label class="control-label nowrap">Notify expected delays</label>
+                  <input type="text" value='' class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-3">
+                <div class="form-group">
+                  <label class="control-label nowrap">Longer than (min)</label>
+                  <input type="text" value='' class="form-control" placeholder="60">
+                </div>
+              </div>
+            </fieldset>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span>+ Add location</span>
+              </div>
+            </div>
+            <div class="col-md-6 text-right">
+              <div class="form-group">
+                <span>+ Added time for loading, unloading, break etc</span>
+              </div>
+            </div>
+            <div class="col-md-12 text-right">
+              <div class="form-group">
+                <button class="btn btn-success" type="reset">Save changes</button>
+                <button class="btn btn-default" type="submit">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="well">
+        <h4>Input-group-btn inside well</h4>
+        <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="well">
+        <h4>Input-group-btnl</h4>
+        <div class="input-group input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="well">
+        <h4>Input-group-btn</h4>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Input-group-btn</h4>
+      <div class="input-group">
+        <input type="text" class="form-control" disabled>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="well">
+        <h4>Input-group-btn checkbox</h4>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"><span></span>
+              </label>
+            </div>
+          </span>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="well">
+        <h4>Input-group-btn radiobutton</h4>
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-addon">
+            <div class="radio">
+              <label>
+                <input type="radio"><span></span>
+              </label>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Input-group-btn</h4>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"><span></span>
+                </label>
+              </div>
+            </span>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Input-group-btn</h4>
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-addon">
+              <div class="radio">
+                <label>
+                  <input type="radio"><span></span>
+                </label>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Input-group-btn</h4>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Input-group-btn</h4>
+          <div class="input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Select</h4>
+          <p>Basic css only</p>
+          <select class="form-control input-lg">
+            <option value="1">APAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPAAPA</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h4>Select</h4>
+          <p>Placeholder single</p>
+          <select multiple data-placeholder="Select an option" data-allow-clear="true" class="select2">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+            <option>Option 5</option>
+            <option>Option 6</option>
+            <option>Option 7</option>
+            <option>Option 8</option>
+            <option>Option 9</option>
+            <option>Option 10</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Select</h4>
+          <p>Basic single</p>
+          <select class="select2">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+            <option>Option 5</option>
+            <option>Option 6</option>
+            <option>Option 7</option>
+            <option>Option 8</option>
+            <option>Option 9</option>
+            <option>Option 10</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h4>Select</h4>
+          <p>Basic search minimum</p>
+          <select data-minimum-input-range="3" class="select2">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+            <option>Option 5</option>
+            <option>Option 6</option>
+            <option>Option 7</option>
+            <option>Option 8</option>
+            <option>Option 9</option>
+            <option>Option 10</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h4>Select</h4>
+          <p>Basic multiple</p>
+          <select multiple class="select2">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+            <option>Option 5</option>
+            <option>Option 6</option>
+            <option>Option 7</option>
+            <option>Option 8</option>
+            <option>Option 9</option>
+            <option>Option 10</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h4>select</h4>
+          <p>Basic multiple limit</p>
+          <select multiple data-maximum-selection-length="2" class="select2">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+            <option>Option 4</option>
+            <option>Option 5</option>
+            <option>Option 6</option>
+            <option>Option 7</option>
+            <option>Option 8</option>
+            <option>Option 9</option>
+            <option>Option 10</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Select</h4>
+        <p>Basic css only inside well</p>
+        <select class="form-control">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <h4>Select</h4>
+        <p>Basic css only inside well</p>
+        <select class="form-control">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Select</h4>
+        <p>Basic multiple limit well</p>
+        <select multiple class="select2">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <h4>Select</h4>
+        <p>Basic multiple</p>
+        <select multiple class="select2">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Input Error</h4>
+          <p>Error</p>
+          <div class="alert alert-danger-validate" role="alert">
+            <span class="sr-only">Error:</span> Enter a valid email address
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Input Success</h4>
+          <p>Success</p>
+          <div class="alert alert-success-validate" role="alert">
+            <span class="sr-only">Success:</span> Success!
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-body">
           <div class="row">
             <div class="col-xs-12 col-lg-6">
-              <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Edit job</h3>
-                  <span>Bread Delivery, ICA Åtvidaberg</span>
-                </div>
-                <div class="panel-body">
-                  <form id="form" action="" method="get">
-                    <div class="row">
-                      <div class="col-xs-12 col-md-5">
-                        <div class="form-group">
-                          <label class="control-label">Name of job
-                          </label>
-                          <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-8">
-                        <div class="form-group">
-                          <label class="control-label">Equipment
-                          </label>
-                          <input type="text" value='' class="form-control" placeholder="Select or click in map" disabled="true">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-5">
-                        <div class="form-group">
-                          <label class="control-label">Current driver</label>
-                          <input type="text" value='' class="form-control" readonly placeholder="n/d">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-12">
-                        <div class="form-group">
-                          <h4>Locations</h4>
-                        </div>
-                      </div>
-                    </div>
-                    <fieldset>
-                      <div class="form-group col-xs-12 col-md-6">
-                        <div class="form-group">
-                          <label class="control-label">Location 1</label>
-                          <input type="text" value='' class="form-control" placeholder="Start from current position of truck">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label interest-label">Time</label>
-                          <input type="text" value='' class="form-control" placeholder="Start now">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Added time (min)*</label>
-                          <input type="text" value='' class="form-control" placeholder="35">
-                        </div>
-                      </div>
-                    </fieldset>
-                    <fieldset>
-                      <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                          <label class="control-label">Location 2</label>
-                          <input type="text" value='' class="form-control" placeholder="Search or click map">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label interest-label">Time</label>
-                          <input type="text" value='' class="form-control" placeholder="Arriving">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Time in advance (min)*</label>
-                          <input type="text" value='' class="form-control" placeholder="30">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-9">
-                        <div class="form-group">
-                          <label class="control-label">Notify on arrival
-                          </label>
-                          <input type="text" value='' class="form-control" placeholder="">
-                        </div>
-                      </div>
-                      <div class="fcol-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Time in advance (min)</label>
-                          <input type="text" value='' class="form-control" placeholder="30">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-9">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Notify expected delays</label>
-                          <input type="text" value='' class="form-control" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Longer than (min)</label>
-                          <input type="text" value='' class="form-control" placeholder="60">
-                        </div>
-                      </div>
-                    </fieldset>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <span>+ Add location</span>
-                      </div>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <div class="form-group">
-                        <span>+ Added time for loading, unloading, break etc</span>
-                      </div>
-                    </div>
-                    <div class="col-md-12 text-right">
-                      <div class="form-group">
-                        <button class="btn btn-success" type="reset">Save changes</button>
-                        <button class="btn btn-default" type="submit">Cancel</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+              <h4>Custom Checkbox</h4>
+              <p>Add span to get custom styling</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> <span></span> Checkbox
+                </label>
               </div>
             </div>
             <div class="col-xs-12 col-lg-6">
-
-              <div class="panel panel-primary panel-inverse">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Edit job</h3>
-                  <span>Bread Delivery, ICA Åtvidaberg</span>
-                </div>
-                <div class="panel-body">
-                  <form id="form" action="" method="get">
-                    <div class="row">
-                      <div class="col-xs-12 col-md-5">
-                        <div class="form-group">
-                          <label class="control-label">Name of job
-                          </label>
-                          <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-8">
-                        <div class="form-group">
-                          <label class="control-label">Equipment
-                          </label>
-                          <input type="text" value='' class="form-control" placeholder="Select or click in map" disabled="true">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-5">
-                        <div class="form-group">
-                          <label class="control-label">Current driver</label>
-                          <input type="text" value='' class="form-control" readonly placeholder="n/d">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-12">
-                        <div class="form-group">
-                          <h4>Locations</h4>
-                        </div>
-                      </div>
-                    </div>
-                    <fieldset>
-                      <div class="form-group col-xs-12 col-md-6">
-                        <div class="form-group">
-                          <label class="control-label">Location 1</label>
-                          <input type="text" value='' class="form-control" placeholder="Start from current position of truck">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label interest-label">Time</label>
-                          <input type="text" value='' class="form-control" placeholder="Start now">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Added time (min)*</label>
-                          <input type="text" value='' class="form-control" placeholder="35">
-                        </div>
-                      </div>
-                    </fieldset>
-                    <fieldset>
-                      <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                          <label class="control-label">Location 2</label>
-                          <input type="text" value='' class="form-control" placeholder="Search or click map">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label interest-label">Time</label>
-                          <input type="text" value='' class="form-control" placeholder="Arriving">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Time in advance (min)*</label>
-                          <input type="text" value='' class="form-control" placeholder="30">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-9">
-                        <div class="form-group">
-                          <label class="control-label">Notify on arrival
-                          </label>
-                          <input type="text" value='' class="form-control" placeholder="">
-                        </div>
-                      </div>
-                      <div class="fcol-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Time in advance (min)</label>
-                          <input type="text" value='' class="form-control" placeholder="30">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-9">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Notify expected delays</label>
-                          <input type="text" value='' class="form-control" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-xs-12 col-md-3">
-                        <div class="form-group">
-                          <label class="control-label nowrap">Longer than (min)</label>
-                          <input type="text" value='' class="form-control" placeholder="60">
-                        </div>
-                      </div>
-                    </fieldset>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <span>+ Add location</span>
-                      </div>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <div class="form-group">
-                        <span>+ Added time for loading, unloading, break etc</span>
-                      </div>
-                    </div>
-                    <div class="col-md-12 text-right">
-                      <div class="form-group">
-                        <button class="btn btn-success" type="reset">Save changes</button>
-                        <button class="btn btn-default" type="submit">Cancel</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+              <h4>Custom Radiobutton</h4>
+              <p>Add span to get custom styling</p>
+              <div class="radio">
+                <label>
+                  <input type="radio"> <span></span> Radiobutton
+                </label>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <div class="well">
-                <h4>Input-group-btn inside well</h4>
-                <div class="input-group input-group-sm">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                  <input type="text" class="form-control">
-                </div>
+            <div class="col-xs-12 col-lg-6">
+              <h4>Custom Checkbox disabled</h4>
+              <p>Add span to get custom styling</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" disabled> <span></span> Checkbox
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" disabled checked> <span></span> Checkbox
+                </label>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="well">
-                <h4>Input-group-btn inside well</h4>
-                <div class="input-group">
-                  <input type="text" class="form-control">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                </div>
+            <div class="col-xs-12 col-lg-6">
+              <h4>Custom Radiobutton disabled</h4>
+              <p>Add span to get custom styling</p>
+              <div class="radio">
+                <label>
+                  <input type="radio" disabled> <span></span> Radiobutton
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" disabled checked> <span></span> Radiobutton
+                </label>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <div class="well">
-                <h4>Input-group-btn checkbox</h4>
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"><span></span>
-                      </label>
-                    </div>
-                  </span>
-                  <input type="text" class="form-control">
-                </div>
+            <div class="col-xs-12 col-lg-6">
+              <h4>Custom Checkbox unchecked hover</h4>
+              <p>Add span to get custom styling</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> <span></span> Checkbox
+                </label>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="well">
-                <h4>Input-group-btn radiobutton</h4>
-                <div class="input-group">
-                  <input type="text" class="form-control">
-                  <span class="input-group-addon">
-                    <div class="radio">
-                      <label>
-                        <input type="radio"><span></span>
-                      </label>
-                    </div>
-                  </span>
-
+            <div class="col-xs-12 col-lg-6">
+              <h4>Custom Radiobutton unchecked hover</h4>
+              <p>Add span to get custom styling</p>
+              <div class="radio">
+                <label>
+                  <input type="radio"> <span></span> Radiobutton
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-lg-6">
+              <h4>Custom Checkbox checked hover</h4>
+              <p>Add span to get custom styling</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" checked> <span></span> Checkbox
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+              <h4>Custom Radiobutton checked hover</h4>
+              <p>Add span to get custom styling</p>
+              <div class="radio">
+                <label>
+                  <input type="radio" checked> <span></span> Radiobutton
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6 col-lg-6">
+              <h4>inline Checkboxes</h4>
+              <p>Add span to get custom styling</p>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox1" value="option1">
+                1
+                <span></span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox2" value="option2">
+                2
+                <span></span>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckbox3" value="option3">
+                3
+                <span></span>
+              </label>
+            </div>
+            <div class="col-xs-6 col-lg-6">
+              <h4>inline Radiobuttons</h4>
+              <p>Add span to get custom styling</p>
+              <div class="form-group">
+                <label class="radio-inline">
+                  <input type="radio" id="inlineradio1" value="option1">
+                  <span></span> 1
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" id="inlineradio2" value="option2">
+                  <span></span> 2
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" id="inlineradio3" value="option3">
+                  <span></span> 3
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 col-lg-6">
+                <h4>inline Radiobuttons</h4>
+                <p>Add span to get custom styling</p>
+                <div class="form-group">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineradio1" value="option1">
+                    <span></span> lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum,
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineradio2" value="option2">
+                    <span></span> lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum,
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineradio3" value="option3">
+                    <span></span> lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum,
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-lg-6">
+                <h4>inline Radiobuttons</h4>
+                <p>Add span to get custom styling</p>
+                <div class="form-group">
+                  <label class="radio-inline">
+                    <input type="radio" id="inlineradio1" value="option1">
+                    <span></span> lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum,
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" id="inlineradio2" value="option2">
+                    <span></span> lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum,
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" id="inlineradio3" value="option3">
+                    <span></span> lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum, lorem ipsum,
+                    lorem ipsum, lorem ipsum,
+                  </label>
                 </div>
               </div>
             </div>
           </div>
-          <div class="panel panel-primary">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Input-group-btn</h4>
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span></span>
-                        </label>
-                      </div>
-                    </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-lg-12">
 
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <h4>Input-group-btn</h4>
-                  <div class="input-group">
-                    <input type="text" class="form-control">
-
-                    <span class="input-group-addon">
-                      <div class="radio">
-                        <label>
-                          <input type="radio"><span></span>
-                        </label>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
           </div>
-
-          <div class="panel panel-primary">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Input-group-btn</h4>
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <h4>Input-group-btn</h4>
-                  <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Select</h4>
-                  <p>Basic css only</p>
-                  <select class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <h4>Select</h4>
-                  <p>Placeholder single</p>
-                  <select multiple data-placeholder="Select an option" data-allow-clear="true" class="select2">
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
-                    <option>Option 5</option>
-                    <option>Option 6</option>
-                    <option>Option 7</option>
-                    <option>Option 8</option>
-                    <option>Option 9</option>
-                    <option>Option 10</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Select</h4>
-                  <p>Basic single</p>
-                  <select class="select2">
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
-                    <option>Option 5</option>
-                    <option>Option 6</option>
-                    <option>Option 7</option>
-                    <option>Option 8</option>
-                    <option>Option 9</option>
-                    <option>Option 10</option>
-                  </select>
-
-                </div>
-                <div class="col-md-6">
-                  <h4>Select</h4>
-                  <p>Basic search minimum</p>
-                  <select data-minimum-input-range="3" class="select2">
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
-                    <option>Option 5</option>
-                    <option>Option 6</option>
-                    <option>Option 7</option>
-                    <option>Option 8</option>
-                    <option>Option 9</option>
-                    <option>Option 10</option>
-                  </select>
-
-                </div>
-                <div class="col-md-6">
-                  <h4>Select</h4>
-                  <p>Basic multiple</p>
-                  <select multiple class="select2">
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
-                    <option>Option 5</option>
-                    <option>Option 6</option>
-                    <option>Option 7</option>
-                    <option>Option 8</option>
-                    <option>Option 9</option>
-                    <option>Option 10</option>
-                  </select>
-
-                </div>
-                <div class="col-md-6">
-                  <h4>select</h4>
-                  <p>Basic multiple limit</p>
-                  <select multiple data-maximum-selection-length="2" class="select2">
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
-                    <option>Option 5</option>
-                    <option>Option 6</option>
-                    <option>Option 7</option>
-                    <option>Option 8</option>
-                    <option>Option 9</option>
-                    <option>Option 10</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="col-xs-12 col-lg-12">
           <div class="well">
-            <div class="row">
-              <div class="col-md-6">
-                <h4>Select</h4>
-                <p>Basic css only inside well</p>
-                <select class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <h4>Select</h4>
-                <p>Basic css only inside well</p>
-                <select class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <h4>Select</h4>
-                <p>Basic multiple limit well</p>
-                <select multiple class="select2">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <h4>Select</h4>
-                <p>Basic multiple</p>
-                <select multiple class="select2">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+            <div class="radio-checkbox-test">
+              <div class="row">
+                <div class="form-group">
+                  <div class="radio">
+                    <label>
+                      <input type="radio">
+                      <span></span> Radio #1
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio">
+                      <span></span> Radio #2
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="radio-inline">
+                    <input type="radio">
+                    <span></span> Radio inline #1
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio">
+                    <span></span> Radio inline #2
+                  </label>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      <span></span> Checkbox #1
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      <span></span> Checkbox #2
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="checkbox-inline">
+                    <input type="checkbox">
+                    <span></span> Checkbox inline #1
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox">
+                    <span></span> Checkbox inline #2
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-          <div class="panel panel-primary">
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4>Input Error</h4>
-                  <p>Error</p>
-                  <div class="alert alert-danger-validate" role="alert">
-                    <span class="sr-only">Error:</span> Enter a valid email address
+          <fieldset disabled="">
+            <div class="form-group">
+              <label for="disabledTextInput">Disabled input</label>
+              <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+            </div>
+            <div class="form-group">
+              <label for="disabledSelect">Disabled select menu</label>
+              <select id="disabledSelect" class="form-control">
+                <option>Disabled select</option>
+              </select>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"><span></span> Can't check this
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+          <div class="col-xs-12 col-lg-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>
+                    <select class="form-control">
+                      <option value="1">abababababaabababababaabababababaabababababaabababababaabababababaabababababaabababababaabababababaabababababa</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </th>
+                  <th>
+                    <select class="form-control">
+                      <option value="1">abababababaabababababaabababababaabababababaabababababaabababababaabababababaabababababaabababababaabababababa</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-lg-12">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Form
+              Modal</button>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <h4>Input Success</h4>
-                  <p>Success</p>
-                  <div class="alert alert-success-validate" role="alert">
-                    <span class="sr-only">Success:</span> Success!
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-primary">
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Checkbox</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> <span></span> Checkbox
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Radiobutton</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="radio">
-                        <label>
-                          <input type="radio"> <span></span> Radiobutton
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Checkbox disabled</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" disabled> <span></span> Checkbox
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" disabled checked> <span></span> Checkbox
-                        </label>
-                      </div>
-
-                    </div>
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Radiobutton disabled</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" disabled> <span></span> Radiobutton
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" disabled checked> <span></span> Radiobutton
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Checkbox unchecked hover</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> <span></span> Checkbox
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Radiobutton unchecked hover</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="radio">
-                        <label>
-                          <input type="radio"> <span></span> Radiobutton
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Checkbox checked hover</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" checked> <span></span> Checkbox
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-lg-6">
-                      <h4>Custom Radiobutton checked hover</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" checked> <span></span> Radiobutton
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-6 col-lg-6">
-                      <h4>inline Checkboxes</h4>
-                      <p>Add span to get custom styling</p>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
-                        <span></span>
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
-                        <span></span>
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
-                        <span></span>
-                      </label>
-                    </div>
-                    <div class="col-xs-6 col-lg-6">
-                      <h4>inline Radiobuttons</h4>
-                      <p>Add span to get custom styling</p>
-                      <div class="form-group">
-                        <label class="radio-inline">
-                          <input type="radio" id="inlineradio1" value="option1">
-                          <span></span> 1
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" id="inlineradio2" value="option2">
-                          <span></span> 2
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio" id="inlineradio3" value="option3">
-                          <span></span> 3
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12 col-lg-12">
-                <div class="row">
-                  <div class="form-group">
-                    <label for="comment">Comment:</label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xs-12 col-lg-12">
-                <div class="well">
-                  <div class="radio-checkbox-test">
+                  <div class="modal-body">
                     <div class="row">
-                      <div class="form-group">
-                        <div class="radio">
-                          <label>
-                            <input type="radio">
-                            <span></span> Radio #1
+                      <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                          <label class="control-label">Name of job
                           </label>
-                        </div>
-                        <div class="radio">
-                          <label>
-                            <input type="radio">
-                            <span></span> Radio #2
-                          </label>
+                          <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="radio-inline">
-                          <input type="radio">
-                          <span></span> Radio inline #1
-                        </label>
-                        <label class="radio-inline">
-                          <input type="radio">
-                          <span></span> Radio inline #2
-                        </label>
-                      </div>
-                      <div class="form-group">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox">
-                            <span></span> Checkbox #1
+                      <div class="col-xs-12 col-md-8">
+                        <div class="form-group">
+                          <label class="control-label">Equipment
                           </label>
-                        </div>
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox">
-                            <span></span> Checkbox #2
-                          </label>
+                          <input type="text" value='' class="form-control" placeholder="Select or click in map"
+                            disabled="true">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="checkbox-inline">
-                          <input type="checkbox">
-                          <span></span> Checkbox inline #1
-                        </label>
-                        <label class="checkbox-inline">
-                          <input type="checkbox">
-                          <span></span> Checkbox inline #2
-                        </label>
+                      <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                          <label class="control-label">Current driver</label>
+                          <input type="text" value='' class="form-control" readonly placeholder="n/d">
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <fieldset disabled="">
-                      <div class="form-group">
-                        <label for="disabledTextInput">Disabled input</label>
-                        <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                      <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                          <h4>Locations</h4>
+                        </div>
                       </div>
-                      <div class="form-group">
-                        <label for="disabledSelect">Disabled select menu</label>
-                        <select id="disabledSelect" class="form-control">
-                          <option>Disabled select</option>
+                      <div class="col-xs-12 col-md-12">
+                        <div class="form-group">
+                          <h4>Radiobutton</h4>
+                          <p>Add span to get custom styling</p>
+                          <div class="radio">
+                            <label>
+                              <input type="radio"> <span></span> Radiobutton
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" checked> <span></span> Radiobutton
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-md-12">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <div class="checkbox">
+                              <label>
+                                <input type="checkbox"><span></span>
+                              </label>
+                            </div>
+                          </span>
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <h4>Select</h4>
+                        <p>Basic css only</p>
+                        <select class="form-control">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
                         </select>
                       </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span></span> Can't check this
-                        </label>
+                      <div class="col-md-6">
+                        <h4>Select</h4>
+                        <p>Placeholder single</p>
+                        <select multiple data-placeholder="Select an option" data-allow-clear="true" class="select2">
+                          <option>Option 1</option>
+                          <option>Option 2</option>
+                          <option>Option 3</option>
+                          <option>Option 4</option>
+                          <option>Option 5</option>
+                          <option>Option 6</option>
+                          <option>Option 7</option>
+                          <option>Option 8</option>
+                          <option>Option 9</option>
+                          <option>Option 10</option>
+                        </select>
                       </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </fieldset>
-                <div class="row">
-                  <div class="col-xs-12 col-lg-12">
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Form Modal</button>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label">Location 1</label>
+                          <input type="text" value="" class="form-control" placeholder="Start from current position of truck">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label">Location 1</label>
+                          <input type="text" value="" class="form-control" placeholder="Start from current position of truck">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h4>Select</h4>
+                        <p>Basic multiple limit well</p>
+                        <select multiple class="select2">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <h4>Select</h4>
+                        <p>Basic multiple</p>
+                        <select multiple class="select2">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</c-main-content>
+<c-corporate-footer></c-corporate-footer>
+<script src="https://static.scania.com/vendors/frameworks/jQuery/3.0.0/dist/jquery.js"></script>
+<script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/select2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="https://static.scania.com/vendors/components/pure-js/lodash/4.14.2/lodash.js"></script>
+<script src="https://static.scania.com/cds/mlebg7/selecct2/scania-angular-ui/src/scania-angular-ui.js"></script>
+<script src="https://static.scania.com/cds/mlebg7/selecct2/scania-angular-ui/app.js"></script>
+<script>
+$(".js-example-placeholder-single").select2({
+maximumSelectionLength: 3
+});
+$(document).ready(function () {
+$(".select2").select2({
+});
+});
+</script>
+</body>
 
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
-                      <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
-                          </div>
-                          <div class="modal-body">
-                            <div class="row">
-                              <div class="col-xs-12 col-md-12">
-                                <div class="form-group">
-                                  <label class="control-label">Name of job
-                                  </label>
-                                  <input type="text" value='' autofocus class="form-control" placeholder="Bread Delivery">
-                                </div>
-                              </div>
-                              <div class="col-xs-12 col-md-8">
-                                <div class="form-group">
-                                  <label class="control-label">Equipment
-                                  </label>
-                                  <input type="text" value='' class="form-control" placeholder="Select or click in map" disabled="true">
-                                </div>
-                              </div>
-                              <div class="col-xs-12 col-md-12">
-                                <div class="form-group">
-                                  <label class="control-label">Current driver</label>
-                                  <input type="text" value='' class="form-control" readonly placeholder="n/d">
-                                </div>
-                              </div>
-                              <div class="col-xs-12 col-md-12">
-                                <div class="form-group">
-                                  <h4>Locations</h4>
-                                </div>
-                              </div>
-                              <div class="col-xs-12 col-md-12">
-                                <div class="form-group">
-                                  <h4>Radiobutton</h4>
-                                  <p>Add span to get custom styling</p>
-                                  <div class="radio">
-                                    <label>
-                                      <input type="radio"> <span></span> Radiobutton
-                                    </label>
-                                  </div>
-                                  <div class="radio">
-                                    <label>
-                                      <input type="radio" checked> <span></span> Radiobutton
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-xs-12 col-md-12">
-                                <div class="input-group">
-                                  <span class="input-group-addon">
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox"><span></span>
-                                      </label>
-                                    </div>
-                                  </span>
-                                  <input type="text" class="form-control">
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <h4>Select</h4>
-                                <p>Basic css only</p>
-                                <select class="form-control">
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                </select>
-                              </div>
-                              <div class="col-md-6">
-                                <h4>Select</h4>
-                                <p>Placeholder single</p>
-                                <select multiple data-placeholder="Select an option" data-allow-clear="true" class="select2">
-                                  <option>Option 1</option>
-                                  <option>Option 2</option>
-                                  <option>Option 3</option>
-                                  <option>Option 4</option>
-                                  <option>Option 5</option>
-                                  <option>Option 6</option>
-                                  <option>Option 7</option>
-                                  <option>Option 8</option>
-                                  <option>Option 9</option>
-                                  <option>Option 10</option>
-                                </select>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label class="control-label">Location 1</label>
-                                  <input type="text" value="" class="form-control" placeholder="Start from current position of truck">
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label class="control-label">Location 1</label>
-                                  <input type="text" value="" class="form-control" placeholder="Start from current position of truck">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-<c-main-content>
-    <script src="https://static.scania.com/vendors/frameworks/jQuery/3.0.0/dist/jquery.js"></script>
-    <script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/select2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="https://static.scania.com/vendors/components/pure-js/lodash/4.14.2/lodash.js"></script>
-
-    <script src="https://static.scania.com/cds/mlebg7/selecct2/scania-angular-ui/src/scania-angular-ui.js"></script>
-    <script src="https://static.scania.com/cds/mlebg7/selecct2/scania-angular-ui/app.js"></script>
-     <script>
-            $(document).ready(function() {
-           $( ".select2" ).select2( {
-            });
-          });</script>
-        <body>
-<html>
+</html>

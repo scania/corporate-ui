@@ -83,7 +83,16 @@ Polymer({
 
       if(this.items && this.dropdown) {
         a.classList.add('dropdown-toggle');
-        a.setAttribute('data-toggle', 'dropdown');
+
+        if (window['Dropdown']) {
+          a.setAttribute('data-toggle', 'dropdown');
+        } else {
+          // Special handling for Firefox 64 if application is using requirejs
+          a.onclick = function(event) {
+            event.preventDefault();
+            a.parentElement.classList.toggle('open');
+          }
+        }
       }
     }
   },

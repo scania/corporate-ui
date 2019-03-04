@@ -40,8 +40,8 @@
 
             <h3>Single select with search field, placeholder and deselect</h3>
             <select class="js-example-placeholder-single select2 form-control" style="width: 50%">
-              <option>American Black Bear</option>
-              <option>Asiatic Black Bear</option>
+              <option></option>
+              <option>Asiatic Black Bear, Asiatic Black Bear, Asiatic Black Bear, Asiatic Black Bear, Asiatic Black Bear, Asiatic Black Bear</option>
               <option>Brown Bear</option>
               <option>Giant Panda</option>
               <option>Sloth Bear</option>
@@ -54,7 +54,7 @@
 
             <h3>Single select with search field</h3>
             <select class="js-example-basic-single select2 form-control" style="width: 50%">
-              <option>American Black Bear</option>
+              <option></option>
               <option>Asiatic Black Bear</option>
               <option>Brown Bear</option>
               <option>Giant Panda</option>
@@ -67,7 +67,7 @@
 
             <h3>Single select without search field</h3>
             <select class="js-example-basic-hide-search select2 form-control" style="width: 50%">
-              <option>American Black Bear</option>
+              <option></option>
               <option>Asiatic Black Bear</option>
               <option>Brown Bear</option>
               <option>Giant Panda</option>
@@ -79,8 +79,8 @@
             </select>
 
             <h3>Multi select</h3>
-            <select class="js-example-basic-multiple select2" multiple="multiple" style="width: 50%">
-              <option>American Black Bear</option>
+            <select class="js-example-basic-multiple select2 " multiple="multiple" style="width: 50%">
+              <option></option>
               <option>Asiatic Black Bear</option>
               <option>Brown Bear</option>
               <option>Giant Panda</option>
@@ -95,7 +95,7 @@
             <h3>Limit number of selectable options</h3>
             <p>When following this pattern you should also follow the <a href="limits.html">Limits on fields</a> pattern.</p>
             <select  multiple="multiple" class="js-example-basic-multiple-limit select2" style="width: 50%">
-              <option>American Black Bear</option>
+              <option></option>
               <option>Asiatic Black Bear</option>
               <option>Brown Bear</option>
               <option>Giant Panda</option>
@@ -106,6 +106,28 @@
               <option>Blue Bear</option>
               <option>Grizzly Bear</option>
             </select>
+
+            
+              <h3>Limit number of selectable options</h3>
+              <select class="js-example-basic-multiple-limit-2 select2" style="width: 50%" multiple>
+              <option></option>
+              <option>Asiatic Black Bear</option>
+              <option>Brown Bear</option>
+              <option>Giant Panda</option>
+              <option>Sloth Bear</option>
+              <option>Sun Bear</option>
+              <option>Polar Bear</option>
+              <option>Spectacled Bear</option>
+              <option>Blue Bear</option>
+              <option>Grizzly Bear</option>
+      </select>
+      <h3>Limit number of selectable options</h3>
+      <select multiple class="form-control">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option value="D">D</option>
+      </select>
 
             <h2>Component</h2>
             <p>Select2 is a component meant to be used for searching in large amount of data with the use of dropdowns. The component makes it possible to search for result either by group or by the name of the content. If a search would return no result this would be displayed in the view and an appropriate text should be visible.</p>
@@ -128,28 +150,28 @@
              <thead>
                <tr>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
                 <th>
-                  Active dropdown with selection
+                  dropdown 
                 </th>
               </tr>
               <tr>
@@ -157,6 +179,7 @@
                  <input
                  id="single-select-tagging-7"
                  data-placeholder="Type to add a tag"
+                 data-allow-clear="true"
                  data-create-search-choice="vm.createSearchChoice"
                  data-item-id="id"
                  data-label="name" the display label
@@ -230,7 +253,7 @@
                 </th>
                 <th>
                  <select class="form-control">
-                    <option>A</option>
+                    <option>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, </option>
                     <option>B</option>
                     <option>C</option>
                     <option value="D">D</option>
@@ -260,38 +283,64 @@
             </tr>
           </table>
         </div>
+        <div class="col-md-8">
+          <table class="table-responsive">
+              <table class="table table-panel table-striped">
+                  <thead>
+                      <tr>
+                          <th>Small select in <code>thead > tr > td</code></th>
+                          <th>Small select in <code>thead > tr > th</code></th>
+                      </tr>
+                      <tr>
+                          <td>
+                              <select class="form-control">
+                                  <option selected>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</option>
+                              </select>
+                          </td>
+                          <th>
+                              <select class="form-control">
+                                  <option selected>Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum, Lorem ipsum</option>
+                              </select>
+                          </th>
+                      </tr>
+                  </thead>
+              </thead>
+          </div>
+      </div>
+  </div>
       </div>
     </div>
   </div>
 
-  <script src="https://static.scania.com/vendors/frameworks/jQuery/3.0.0/dist/jquery.js"></script>
-  <script src="https://static.scania.com/vendors/components/jQuery/select2/3.5.2/js/select2.js"></script>
+  <script src="https://legend.scania.com/vendors/frameworks/jQuery/3.0.0/dist/jquery.js"></script>
+  <script src="https://legend.scania.com/vendors/components/jQuery/select2/3.5.2/js/select2.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-  <script src="https://static.scania.com/vendors/components/pure-js/lodash/4.14.2/lodash.js"></script>
-
-  <script src="https://static.scania.com/cds/mlebg7/selecct2/scania-angular-ui/src/scania-angular-ui.js"></script>
-  <script src="https://static.scania.com/cds/mlebg7/selecct2/scania-angular-ui/app.js"></script>
+  <script src="https://legend.scania.com/vendors/components/pure-js/lodash/4.14.2/lodash.js"></script>
+  <script src="https://legend.scania.com/vendors/components/jQuery/select2/3.5.2/js/scania-angular-ui.js"></script>
+  <script src="https://legend.scania.com/vendors/components/jQuery/select2/3.5.2/js/app.js"></script>
   <script>
+    $(document).ready(function() {
     $(".js-example-placeholder-single").select2({
-      placeholder: "APA",
-      allowClear: true
+      allowClear: true,
+      placeholder: "placeholder"
     });
 
-    $(".js-example-basic-single").select2({
-      placeholder: "APA",
-      allowClear: true
-    });
+    $(".js-example-basic-single").select2();
 
     $(".js-example-basic-hide-search").select2({
-      minimumResultsForSearch: Infinity
+      placeholder: "placeholder"
     });
 
     $(".js-example-basic-multiple").select2();
 
     $(".js-example-basic-multiple-limit").select2({
-      maximumSelectionLength: 3
+      placeholder: "placeholder"
     });
 
+    $(".js-example-basic-multiple-limit-2").select2({
+      placeholder: "placeholder"
+    });
+  });
     /*$(document).one('mouseenter', '.select2', function(e) {
       e.preventDefault();
       $('div.select2-search').prepend('<i class="scania-icon-search sm"></i>');

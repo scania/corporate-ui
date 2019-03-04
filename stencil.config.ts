@@ -5,7 +5,6 @@ import data from './package.json'
 
 export const config: Config = {
   namespace: data.name,
-  copy: [{ src: 'helpers.js' }],
   outputTargets: [
     { type: 'dist' },
     {

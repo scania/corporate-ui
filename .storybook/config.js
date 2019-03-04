@@ -3,12 +3,13 @@ import { withOptions } from '@storybook/addon-options';
 
 import { name } from '../package.json';
 
-import { defineCustomElements } from '../dist/collection/helpers';
+require('../build/helpers');
 
 // Loads all components
 // this will work too:
-// defineCustomElements(['c-header','c-footer','c-navigation','user-repos','c-card','c-theme']);
-defineCustomElements('all');
+// corporateUi.defineCustomElements(['c-header','c-footer','c-navigation','user-repos','c-card','c-theme']);
+corporateUi.defineCustomElements('all');
+
 
 addDecorator(
   withOptions({

@@ -34,5 +34,6 @@ src/demo/**/*.*
 data/stats.json
 data/docs.json
 
-package-lock.json
+build/
 
+package-lock.json

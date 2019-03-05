@@ -3,7 +3,7 @@ import { Component, Prop } from '@stencil/core';
 @Component({
   tag: 'router-navigation',
   styleUrl: 'router-navigation.scss',
-  shadow: true
+  shadow: true,
 })
 export class RouterNavigation {
   @Prop() primaryItems: any = [];
@@ -20,12 +20,10 @@ export class RouterNavigation {
 
   render() {
     return (
-      <cui-navigation {... { primaryItems : this._primaryItems }}>
-        {this._primaryItems.map((item, key) =>
-          <stencil-route-link url={ item['location'] } slot={'nav-item-' + key}>
-            { item['text'] }
-          </stencil-route-link>
-        )}
+      <cui-navigation {... { primaryItems: this._primaryItems }}>
+        {this._primaryItems.map((item, key) => <stencil-route-link url={ item.location } slot={`nav-item-${key}`}>
+            { item.text }
+          </stencil-route-link>)}
       </cui-navigation>
     );
   }

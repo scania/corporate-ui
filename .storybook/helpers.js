@@ -7,9 +7,9 @@ import { withLinks } from '@storybook/addon-links';
 
 export function renderKinds(category, items, title, content) {
   let categorisedItems = items.filter(
-    item => item.categories.indexOf(category.id) > -1
+    item => item.categories.indexOf(category.id) > -1,
   );
-  let storyName = category.name + ' (' + categorisedItems.length + ')'
+  let storyName = `${category.name} (${categorisedItems.length})`
 
   if (!category.id) {
     categorisedItems = items
@@ -47,14 +47,14 @@ export function renderKinds(category, items, title, content) {
             </c-container>
           </section>
         </main>
-      `
+      `,
     );
 
   categorisedItems.map(item => renderStories(category, item, title, content));
 }
 
 export function renderStories(category, item, title, content) {
-  storiesOf(title + '/' + category.name, module)
+  storiesOf(`${title}/${category.name}`, module)
     .addParameters({ options: { addonPanelInRight: true } })
     .add(
       item.name,
@@ -70,11 +70,11 @@ export function renderStories(category, item, title, content) {
             </c-container>
           </section>
         </main>
-      `
+      `,
     );
 }
 
-/*export function renderWebComponent(component) {
+/* export function renderWebComponent(component) {
   const [
     tagName,
     bundleIds,
@@ -110,7 +110,7 @@ export function renderStories(category, item, title, content) {
   //  return;
   // }
 
-  
+
   //   .addParameters({ options: { addonPanelInRight: true } })
   //   .add(tagName, () => `<${tagName} />`);
-}*/
+} */

@@ -3,10 +3,10 @@ import { Component, Prop } from '@stencil/core';
 @Component({
   tag: 'c-content',
   styleUrl: 'content.scss',
-  shadow: true
+  shadow: true,
 })
 export class Content {
-  @Prop() router: Boolean;
+  @Prop() router: boolean;
 
   render() {
     if (this.router) {
@@ -18,8 +18,7 @@ export class Content {
           </stencil-route-switch>
         </stencil-router>
       );
-    } else {
-      return <slot />;
     }
+      return <slot />;
   }
 }

@@ -1,4 +1,6 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import {
+ Component, Prop, State, Watch,
+} from '@stencil/core';
 
 import { store } from '../../store';
 import * as style from '../../themes.built/header';
@@ -6,18 +8,25 @@ import * as style from '../../themes.built/header';
 @Component({
   tag: 'c-header',
   styleUrl: 'header.scss',
-  shadow: true
+  shadow: true,
 })
 export class Header {
   @Prop() theme: string;
+
   @Prop() siteName = 'Application name';
+
   @Prop() siteUrl = '/';
+
   @Prop() topItems: any = [{ text: 'global', location: '/' }];
+
   @Prop() primaryItems: any;
+
   @Prop() secondaryItems: any;
 
   @State() currentTheme: string = this.theme || store.getState().theme;
+
   @State() show = false;
+
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   @State() _topItems: object[] = [];
@@ -40,7 +49,7 @@ export class Header {
 
   hostData() {
     return {
-      class: { open: this.show }
+      class: { open: this.show },
     };
   }
 
@@ -63,8 +72,8 @@ export class Header {
           <ul class='navbar-nav ml-auto'>
             { this._topItems.map(item => (
               <li class='nav-item'>
-                <a class='nav-link' href={item['location']}>
-                  <span>{item['text']}</span>
+                <a class='nav-link' href={item.location}>
+                  <span>{item.text}</span>
                 </a>
               </li>
             )) }
@@ -75,7 +84,7 @@ export class Header {
       <a href={ this.siteUrl } class='navbar-symbol'></a>,
 
       (this.primaryItems || this.secondaryItems)
-        ? <c-navigation primary-items={this.primaryItems} secondary-items={this.secondaryItems} show={this.show}></c-navigation> : ''
+        ? <c-navigation primary-items={this.primaryItems} secondary-items={this.secondaryItems} show={this.show}></c-navigation> : '',
     ];
   }
 }

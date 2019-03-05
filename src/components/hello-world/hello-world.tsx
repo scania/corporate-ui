@@ -3,11 +3,10 @@ import { Component, Prop } from '@stencil/core';
 @Component({
   tag: 'c-hello-world',
   styleUrl: 'hello-world.scss',
-  shadow: true
+  shadow: true,
 })
 export class HelloWorld {
-
-  @Prop() text: String = "hello-World";
+  @Prop() text: string = 'hello-World';
 
   render() {
     return (

@@ -1,4 +1,6 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import {
+ Component, Prop, State, Watch,
+} from '@stencil/core';
 import { store } from '../../store';
 
 import * as style from '../../themes.built/footer';
@@ -6,14 +8,17 @@ import * as style from '../../themes.built/footer';
 @Component({
   tag: 'c-footer',
   styleUrl: 'footer.scss',
-  shadow: true
+  shadow: true,
 })
 export class Footer {
   @Prop() theme: string;
-  @Prop() items: any = [{ text: 'global', location: '/' },{ text: 'apa', location: '/' }];
+
+  @Prop() items: any = [{ text: 'global', location: '/' }, { text: 'apa', location: '/' }];
 
   @State() currentTheme: string = this.theme || store.getState().theme;
+
   @State() show = false;
+
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   @State() _items: object[] = [];
@@ -45,8 +50,8 @@ export class Footer {
           <ul class='navbar-nav'>
             { this._items.map(item => (
               <li class='nav-item'>
-                <a href={item['location']} class='nav-link'>
-                  <span>{item['text']}</span>
+                <a href={item.location} class='nav-link'>
+                  <span>{item.text}</span>
                 </a>
               </li>
             )) }
@@ -54,10 +59,10 @@ export class Footer {
         </div>
 
         <div class='navbar-content'>
-          <div class={'btn-group dropup' + (this.show ? ' show' : '')}>
+          <div class={`btn-group dropup${this.show ? ' show' : ''}`}>
             <div class='dropdown-menu'>
               { this._items.map(item => (
-                <a href={item['location']} class='dropdown-item'>{item['text']}</a>
+                <a href={item.location} class='dropdown-item'>{item.text}</a>
               )) }
             </div>
 
@@ -69,7 +74,7 @@ export class Footer {
 
           <p data-test-id='c-footer-copyright'>Copyright &copy; Scania 2019</p>
         </div>
-      </nav>
+      </nav>,
     ];
   }
 }

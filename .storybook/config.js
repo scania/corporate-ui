@@ -12,8 +12,8 @@ defineCustomElements('all');
 
 addDecorator(
   withOptions({
-    name
-  })
+    name,
+  }),
 );
 
 configure(loadStories, module);

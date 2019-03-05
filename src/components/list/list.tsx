@@ -3,7 +3,7 @@ import { Component, Prop } from '@stencil/core';
 @Component({
   tag: 'c-list',
   styleUrl: 'list.scss',
-  shadow: true
+  shadow: true,
 })
 export class List {
   @Prop() items: any = [];
@@ -27,7 +27,7 @@ export class List {
       <ul>
         {this._items.map(item => (
           <li>
-            <span>{item['text']}</span>
+            <span>{item.text}</span>
           </li>
         ))}
       </ul>

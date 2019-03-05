@@ -1,4 +1,5 @@
 import { newE2EPage } from '@stencil/core/testing';
+
 describe('c-column', () => {
   it('renders', async () => {
     const page = await newE2EPage();

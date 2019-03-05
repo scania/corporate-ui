@@ -1,10 +1,12 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import {
+ Component, Prop, State, Watch,
+} from '@stencil/core';
 import { store } from '../../store';
 import * as style from '../../themes.built/theme';
 
 @Component({
   tag: 'c-theme',
-  styleUrl: 'theme.scss'
+  styleUrl: 'theme.scss',
 })
 export class Theme {
   @Prop() name: string = store.getState().theme;

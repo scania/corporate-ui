@@ -10,22 +10,22 @@ export const config: Config = {
     { type: 'dist' },
     {
       type: 'www',
-      serviceWorker: null, // disable service workers
+      serviceWorker: null // disable service workers
+    },
+    {
+      type: 'docs'
     },
     {
       type: 'docs-json',
-      file: 'data/docs.json',
-    },
-    {
-      type: 'docs',
+      file: 'data/docs.json'
     },
     {
       type: 'stats',
       file: 'data/stats.json'
-    },
+    }
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/projects/'],
+    testPathIgnorePatterns: ['/node_modules/', '/projects/']
   },
   plugins: [
     sass({

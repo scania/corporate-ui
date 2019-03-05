@@ -1,7 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
 
-import { store } from '../../store';
-import * as style from '../../themes.built/header';
+import { store } from '../../global';
+import * as themes from '../../tmp/header';
 
 @Component({
   tag: 'c-header',
@@ -46,7 +46,7 @@ export class Header {
 
   render() {
     return [
-      <style>{ style[this.currentTheme] }</style>,
+      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         <button

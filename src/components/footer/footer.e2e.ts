@@ -7,10 +7,9 @@ beforeEach(async () => {
   await page.setContent('<c-footer></c-footer>');
 });
 
-const getByTestId = async dataTestId => {
-  console.log(dataTestId)
-  await page.find(`${componentName} >>> [data-test-id="${dataTestId}"]`);
-}
+const getByTestId = async dataTestId => (
+  await page.find(`${componentName} >>> [data-test-id="${dataTestId}"]`)
+);
 
 describe('c-footer', () => {
   it('renders', async () => {

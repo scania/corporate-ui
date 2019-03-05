@@ -19,7 +19,7 @@ Stencil components work in any major framework or with no framework at all.
 
 ## Set up your local environment
 <ul>
-<li>Clone the Corporate UI repo</li>
+<li>Clone the Corporate UI Dev repo</li>
 <li>Download and install node.js: https://nodejs.org/en/</li>
 <li>If you're behind a firewall, CONFIGURE THE PROXY
 <li>INSTALLING DEPENDENCIES (from command line): <b>npm i</b> from the corporate-ui-dev folder.</li>

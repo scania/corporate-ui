@@ -10,6 +10,14 @@
     "categories": ["dcb503ac-115e-4ee0-b87c-de67f158d9e7"]
   },
   {
+    "id": "f4310ffc-a9f7-4367-a336-90b813587ccf",
+    "name": "c-hello-world",
+    "categories": [
+      "dcb503ac-115e-4ee0-b87c-de67f158d9e7",
+      "bb41f517-93e8-4566-ad97-29eb1c6ac944"
+    ]
+  },
+  {
     "id": "f685b01f-f800-429e-af66-45b9c911ca27",
     "name": "c-content",
     "categories": ["dcb503ac-115e-4ee0-b87c-de67f158d9e7"]

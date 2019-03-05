@@ -3,11 +3,12 @@ import { withOptions } from '@storybook/addon-options';
 
 import { name } from '../package.json';
 
-import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
-import * as CUI from '../dist/esm/es5/corporate-ui.components';
+import { defineCustomElements } from '../dist/collection/helpers';
 
 // Loads all components
-defineCustomElement(window, CUI.COMPONENTS);
+// this will work too:
+// defineCustomElements(['c-header','c-footer','c-navigation','user-repos','c-card','c-theme']);
+defineCustomElements('all');
 
 addDecorator(
   withOptions({

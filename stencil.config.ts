@@ -1,11 +1,11 @@
-import { Config } from '@stencil/core';
-import { sass } from '@stencil/sass';
+import { Config } from '@stencil/core'
+import { sass } from '@stencil/sass'
 
-import data from './package.json';
+import data from './package.json'
 
 export const config: Config = {
   namespace: data.name,
-  srcDir: 'src',
+  copy: [{ src: 'helpers.js' }],
   outputTargets: [
     { type: 'dist' },
     {
@@ -22,14 +22,14 @@ export const config: Config = {
     {
       type: 'stats',
       file: 'data/stats.json'
-    },
+    }
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/']
+    testPathIgnorePatterns: ['/node_modules/', '/projects/']
   },
   plugins: [
     sass({
-      includePaths: ['node_modules']
-    })
-  ]
-};
+      includePaths: ['node_modules'],
+    }),
+  ],
+}

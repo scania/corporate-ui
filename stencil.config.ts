@@ -5,7 +5,7 @@ import data from './package.json';
 
 export const config: Config = {
   namespace: data.name,
-  srcDir: 'src/components',
+  srcDir: 'src',
   outputTargets: [
     { type: 'dist' },
     {
@@ -18,7 +18,7 @@ export const config: Config = {
     {
       type: 'docs-json',
       file: 'data/docs.json'
-    }
+    },
     {
       type: 'stats',
       file: 'data/stats.json'

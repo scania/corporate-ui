@@ -4,7 +4,7 @@ const sass = require('node-sass');
 
 const components = 'src/components/';
 const inputFolder = 'themes/';
-const outputFolder = 'tmp/';
+const outputFolder = 'src/tmp/';
 const time = new Date();
 
 function isInArray(value, array) {
@@ -96,7 +96,7 @@ export function generateTheme(callback=function(){}) {
             addString += componentCSS[key];
 
             fs.writeFile(
-              outputFolder + file + '.js',
+              outputFolder + file + '.ts',
               addString,
               'utf8',
               err3 => {
@@ -104,7 +104,7 @@ export function generateTheme(callback=function(){}) {
                   throw err3;
                 }
                 counter++;
-                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: tmp/' + file + '.js');
+                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: tmp/' + file + '.ts');
                 if(counter === Object.keys(componentCSS).length) {
                   callback();
                 }

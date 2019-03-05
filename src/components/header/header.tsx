@@ -35,7 +35,7 @@ export class Header {
   componentWillLoad() {
     store.subscribe(() => this.currentTheme = store.getState().theme);
 
-    this.setItems(this._topItems);
+    this.setItems(this.topItems);
   }
 
   hostData() {

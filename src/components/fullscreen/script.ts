@@ -21,6 +21,10 @@ Polymer({
     if(mode) {
       document.body.classList.add(this.name);
     }
+    if(this.init) {
+      return;
+    }
+    this.init = true;
     this.addEventListener('click', (function(e) {
       e.preventDefault();
       e.stopPropagation();

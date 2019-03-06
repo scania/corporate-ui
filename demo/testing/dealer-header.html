@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta charset="utf-8">
+  <noscript><meta http-equiv="refresh" content="0;url=https://static.scania.com/vendors/components/pure-js/nonJS-browsers/1.0.0/nonJS-browsers.html"></noscript>
+
+  <title>DEV Corporate UI</title>
+
+  <script src="https://static.scania.com/vendors/frameworks/jquery/1.11.3/jquery-1.11.3.min.js"></script>   
+  <script src="/js/corporate-ui.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110069805-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110069805-1');
+  </script>
+  
+  <script src="https://static.scania.com/vendors/components/pure-js/browser-reject/1.0.0/js/browser-reject.js"></script>
+  <link rel="stylesheet" href="/css/ux-library.css">
+</head>
+
+<body class="scania ux-lib app" data-env="dev">
+
+
+    <c-corporate-header site-name="Bilmetro" short-name="BM" site-url="dealerb.html" dealer-name="Bilmetro" dealer-logo="https://scania.github.io/corporate-ui-docs/component/examples/bilmetro-logo.png" dealer-url="dealerb.html">
+      <nav-item location="dealer.html">Generator</nav-item>
+    </c-corporate-header>
+
+<!--     <c-corporate-header dealer-name="Bilmetro" short-name="Bilmetro"  dealer-url="/" dealer-logo="https://scania.github.io/corporate-ui-docs/component/examples/bilmetro-logo.png">
+      <nav-item location="#">Configurator</nav-item>
+    </c-corporate-header> -->
+
+
+<!--     <c-corporate-header dealer-name="Bilmetro" site-name="Bilmetro"  dealer-url="/">
+      <nav-item location="#">Configurator</nav-item>
+    </c-corporate-header> -->
+
+
+
+<!--   <c-corporate-header site-name="Developers" site-url="/">
+    <nav-item location="#" onclick="window.open('https://github.scania.com/pages/Scania/ux-library/')">UX Library</nav-item>
+    <nav-item location="https://github.scania.com/scania/corporate-ui">Scania GitHub</nav-item>
+  </c-corporate-header> -->
+
+
+
+  <c-main-content>
+    <c-main-navigation>
+      <primary-items>
+        <nav-item location="/">Home</nav-item>
+        <nav-item location="/components.html">Development</nav-item>
+        <nav-item location="/testing/testing.html" active="true">Testing
+          <sub-navigation caption="Testing">
+            <nav-item location="/examples/advanced-tables.html">Advanced Tables</nav-item>
+            <nav-item class="pull-right"><c-fullscreen></c-fullscreen></nav-item>
+          </sub-navigation>
+        </nav-item>
+        <nav-item location="https://github.com/scania/corporate-ui/issues/new/choose">Report an Issue</nav-item>
+        <nav-item location="https://scania.github.io/corporate-ui-docs/developer/support.html">Support</nav-item>
+      </primary-items>
+    </c-main-navigation>
+
+    <section>
+      <article>
+        <div class="container"><!-- MAIN CONTAINER -->
+          <h1>Regression Tests</h1>
+          <p>To ensure that your changes within Corporate UI does not cause disturbance för other standard elements and components, please test the pages on the sub navigation above.</p>
+          <p>Please check the following web browsers:</p>
+          <ul>
+            <li>Safari > 8</li>
+            <li>Internet Explorer > 10</li>
+            <li>Chrome  > 48</li>
+            <li>Firefox > 38</li>
+          </ul>
+          <p>Note that your changes could affect both  the PUBLIC zone and the APP zone. Please review both set of elements available in the subnavigation.</p>
+        </div>
+      </article>
+    </section>
+  </c-main-content>
+
+  <c-corporate-footer></c-corporate-footer>
+</body>
+</html>

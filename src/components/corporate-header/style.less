@@ -36,10 +36,24 @@
 
   .is-dealer .navbar-header {
 
+    font-family: 'Scania Sans Condensed';
+    padding: 5px 15px 0px 5px;
+    font-size: 2rem;
+    font-weight: bold;  
+
+    .navbar-brand:after {
+      border-left: none;
+    }
+
+
     a.dealer {
       display: inline-block;
       margin: 20px -15px 20px 15px;
       position: relative;
+      font-family: 'Scania Sans Headline';
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: #53565a;
 
       img {
         height: 28px;
@@ -53,19 +67,15 @@
       display: none;
     }
     .navbar-symbol {
-      width: 230px;
+      width: 210px;
+      height: 44px;
 
       &:before {
-        background-image:
-          url('/resources/logotype/scania/scania-symbol.svg'),
-          url('/resources/logotype/scania/scania-wordmark.svg');
-        background-position:
-          center left,
-          center right;
-        background-size:
-          46px 46px,
-          170px 28px;
-      }
+        background-image: url(https://static.scania.com/resources/logotype/scania/scania-symbol-logotype.svg);
+        background-position: center right;
+        background-size: 210px 42px;
+        top: 15px;
+      }   
     }
   }
   a.dealer {
@@ -82,8 +92,12 @@
         }
       }
     }
+    &:hover {
+      text-decoration: none;
+    }  
   }
 }
+
 
 :host-context(.header-is-sticky) {
 
@@ -96,6 +110,16 @@
       &:before {
         transition: top 100ms ease-in-out;
         top: 9px;
+      }
+    }
+
+    .is-dealer .navbar-header {
+
+        .navbar-symbol.should-stick {
+
+          &:before {
+            top: 7px !important;  // I don't get this one to be prioritized!
+        } 
       }
     }
   }
@@ -163,4 +187,44 @@
       right: 0;
     }
   }
+
+  :host .is-dealer .navbar-header {
+
+    font-family: 'Scania Sans Headline';
+    padding: 18px;
+    font-weight: normal;
+
+    a.dealer {
+      display: inline-block;
+      margin: 7px;
+      position: relative;
+      font-family: 'Scania Sans Headline';
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: #53565a;
+
+      img {
+        display:none;
+      }
+
+      + .nav-brand {
+        display: none;
+      }
+    }
+
+    .navbar-symbol {
+      width: 40px;
+      height: 37px;
+      margin-left: 12px;
+
+      &:before {
+        background-image: url(/resources/logotype/scania/scania-symbol.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center right;
+        background-size: 40px 37px;
+      }
+    }
+  }
+
 }

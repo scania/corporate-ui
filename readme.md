@@ -17,6 +17,10 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 
 Stencil components work in any major framework or with no framework at all.
 
+## Coding Standard
+
+We're contributing to a coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
+
 ## Set up your local environment
 <ul>
 <li>Clone the Corporate UI Dev repo</li>

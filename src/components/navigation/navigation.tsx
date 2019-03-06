@@ -52,8 +52,8 @@ export class Navigation {
           <ul class='navbar-nav'>
             {this._primaryItems.map((item, key) => <li class='nav-item'>
                 <slot name={`nav-item-${key}`}>
-                  <a href={item.location} class='nav-link'>
-                    <span>{item.text}</span>
+                  <a href={item['location']} class='nav-link'>
+                    <span>{item['text']}</span>
                   </a>
                 </slot>
               </li>)}
@@ -64,8 +64,8 @@ export class Navigation {
           <ul class='navbar-nav ml-auto'>
             {this._secondaryItems.map((item, key) => <li class='nav-item'>
                 <slot name={`nav-item-${key}`}>
-                  <a href={item.location} class='nav-link'>
-                    <span>{item.text}</span>
+                  <a href={item['location']} class='nav-link'>
+                    <span>{item['text']}</span>
                   </a>
                 </slot>
               </li>)}

@@ -50,8 +50,8 @@ export class Footer {
           <ul class='navbar-nav'>
             { this._items.map(item => (
               <li class='nav-item'>
-                <a href={item.location} class='nav-link'>
-                  <span>{item.text}</span>
+                <a href={item['location']} class='nav-link'>
+                  <span>{item['text']}</span>
                 </a>
               </li>
             )) }
@@ -62,7 +62,7 @@ export class Footer {
           <div class={`btn-group dropup${this.show ? ' show' : ''}`}>
             <div class='dropdown-menu'>
               { this._items.map(item => (
-                <a href={item.location} class='dropdown-item'>{item.text}</a>
+                <a href={item['location']} class='dropdown-item'>{item['text']}</a>
               )) }
             </div>
 

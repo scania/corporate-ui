@@ -21,8 +21,8 @@ export class RouterNavigation {
   render() {
     return (
       <cui-navigation {... { primaryItems: this._primaryItems }}>
-        {this._primaryItems.map((item, key) => <stencil-route-link url={ item.location } slot={`nav-item-${key}`}>
-            { item.text }
+        {this._primaryItems.map((item, key) => <stencil-route-link url={ item['location'] } slot={`nav-item-${key}`}>
+            { item['text'] }
           </stencil-route-link>)}
       </cui-navigation>
     );

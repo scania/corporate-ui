@@ -21,6 +21,7 @@ module.exports =  {
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-unused-vars": "off", // check this
 
+    "dot-notation": "off",
     "linebreak-style": "off",
     "semi": "off",
     "no-use-before-define": "off",

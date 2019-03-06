@@ -27,7 +27,7 @@ export class List {
       <ul>
         {this._items.map(item => (
           <li>
-            <span>{item.text}</span>
+            <span>{item['text']}</span>
           </li>
         ))}
       </ul>

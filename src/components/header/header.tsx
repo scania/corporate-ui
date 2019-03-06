@@ -72,8 +72,8 @@ export class Header {
           <ul class='navbar-nav ml-auto'>
             { this._topItems.map(item => (
               <li class='nav-item'>
-                <a class='nav-link' href={item.location}>
-                  <span>{item.text}</span>
+                <a class='nav-link' href={item['location']}>
+                  <span>{item['text']}</span>
                 </a>
               </li>
             )) }

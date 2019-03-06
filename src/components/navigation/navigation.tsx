@@ -1,7 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
 
-import { store } from '../../store';
-import * as style from '../../themes.built/navigation';
+import { store } from '../../global';
+import * as themes from '../../tmp/navigation';
 
 @Component({
   tag: 'c-navigation',
@@ -38,7 +38,7 @@ export class Navigation {
 
   render() {
     return [
-      <style>{ style[this.currentTheme] }</style>,
+      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg'>
         <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>

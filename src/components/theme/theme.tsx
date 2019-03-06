@@ -1,6 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
-import { store } from '../../store';
-import * as style from '../../themes.built/theme';
+
+import { store } from '../../global';
+import * as themes from '../../tmp/theme';
 
 @Component({
   tag: 'c-theme',
@@ -22,6 +23,6 @@ export class Theme {
   }
 
   render() {
-    return <style>{style[this.currentTheme]}</style>;
+    return this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '';
   }
 }

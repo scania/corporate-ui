@@ -30,7 +30,7 @@ Stencil components work in any major framework or with no framework at all.
 
 ## Node version
 
-Use version 8.15 or older any more recent stable version.
+Use 8.15 or newer stable version of node.
 
 ## Join us on Slack
 

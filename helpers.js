@@ -1,8 +1,10 @@
 import { defineCustomElement } from './dist/esm/es5/corporate-ui.core'
 import * as CUI from './dist/esm/es5/corporate-ui.components'
+import collections from './dist/collection/collection-manifest.json'
+
 const CUI_COMPONENTS = CUI.COMPONENTS
-var collections = require('./dist/collection/collection-manifest.json')
-var subComponents = {}
+let subComponents = {},
+    components = [];
 
 let collection = collections.components
 collection.forEach(obj => {
@@ -11,21 +13,22 @@ collection.forEach(obj => {
   }
 })
 
-function defineCustomElements(components) {
-  if(components==='all') {
-    defineCustomElement(window, CUI_COMPONENTS);
+function defineCustomElements(requests) {
+  if(requests==='all') {
+    components = [...CUI_COMPONENTS]
   } else {
-    components.forEach(project_comp => {
-      defineCustomElement(window, [findComponent(project_comp)])
+    requests.forEach(project_comp => {
+      components.push(findComponent(project_comp))
       for (let tag in subComponents) {
         if (project_comp === tag) {
           subComponents[tag].forEach(tagDep => {
-            defineCustomElement(window, [findComponent(tagDep)])
+            components.push(findComponent(tagDep))
           })
         }
       }
     })
   }
+  defineCustomElement(window, components)
 }
 
 function findComponent(name) {

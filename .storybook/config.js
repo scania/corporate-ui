@@ -5,6 +5,8 @@ import { name } from '../package.json';
 
 import { defineCustomElements } from '../dist/collection/helpers';
 
+import './style/global.scss';
+
 // Loads all components
 // this will work too:
 // defineCustomElements(['c-header','c-footer','c-navigation','user-repos','c-card','c-theme']);
@@ -12,7 +14,8 @@ defineCustomElements('all');
 
 addDecorator(
   withOptions({
-    name
+    name,
+    showAddonPanel: false
   })
 );
 

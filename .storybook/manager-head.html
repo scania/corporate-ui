@@ -11,7 +11,46 @@
     padding: 0;
   }
 
-  .SplitPane {
+  /*.SplitPane {
     background: #fff;
+  }*/
+  .Pane1.vertical {
+    background-color: #494949;
+    color: #bfbfbf;
+    min-width: 230px;
+  }
+  .Pane1.vertical a {
+    color: white;
+    line-height: 1.6;
+  }
+  .Pane1.vertical > div:first-child > div {
+    padding-right: 10px;
+  }
+  .Pane1.horizontal > div {
+    padding: 0;
+  }
+  .Pane1.horizontal > div > div {
+    border: 0;
+    border-radius: 0;
+  }
+  .Resizer.vertical {
+    display: none;
+  }
+
+  .Pane1.vertical ul {
+    padding-right: 0;
+  }
+  .Pane1.vertical li li [role="menuitem"] {
+    padding: 0 !important;
+  }
+  .Pane1.vertical li li [role="menuitem"] [class^="css-"] {
+    float: left;
+    width: 100%;
+  }
+  .Pane1.vertical li li [style*="position: relative;"] {
+    margin-left: 0 !important;
+  }
+  .Pane1.vertical li li [style*="rotateZ(0deg);"] {
+    transform: rotateZ(-90deg) !important;
   }
 </style>

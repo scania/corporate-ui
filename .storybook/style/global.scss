@@ -1,0 +1,105 @@
+
+$vactor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" xml:space="preserve" height="10" width="10" fill="currentColor"><g><path d="m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z"/></g></svg>');
+
+main {
+
+  header {
+    background: black;
+    color: white;
+    padding: 20px 0;
+    display: block;
+
+    h4 {
+      margin: 0;
+      color: white;
+    }
+  }
+  table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  thead {
+    background-color: black;
+    color: white;
+  }
+  th,
+  td {
+    padding: 10px;
+  }
+  figure,
+  pre {
+    background-color: #e8e8e8;
+    padding: 80px 40px;
+  }
+  figure {
+    margin: 0 0 20px;
+  }
+  pre {
+    padding: 40px;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  code {
+    white-space: normal;
+  }
+  c-card:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+  }
+  summary {
+    list-style-image: $vactor;
+    cursor: pointer;
+    outline: none;
+    direction: rtl;
+    text-align: left;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+
+    &::-webkit-details-marker {
+      transition: all 500ms ease-out;
+      transform: rotate(90deg);
+      background: $vactor;
+      color: transparent;
+    }
+  }
+  details {
+    overflow: hidden;
+
+    &[open] {
+
+      summary {
+        padding-bottom: 15px;
+
+        &::-webkit-details-marker {
+          transform: rotate(-90deg);
+        }
+      }
+      pre {
+        animation-name: slideDown;
+        animation-duration: 500ms;
+      }
+    }
+  }
+}
+
+.hljs-attr:before {
+  content: "\a   ";
+  white-space: pre;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

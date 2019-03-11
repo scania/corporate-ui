@@ -21,17 +21,19 @@ export function renderKinds(category, items, title, content) {
   }
 
   storiesOf(title, module)
-    .addParameters({ options: { addonPanelInRight: true } })
     .addDecorator(withLinks)
     .add(
       storyName,
       () => `
         <main>
+          <header>
+            <c-container type="fluid">
+              <h4>${category.name}</h4>
+            </c-container>
+          </header>
+
           <section>
             <c-container type="fluid">
-              <header>
-                <h2>${category.name}</h2>
-              </header>
               <c-row class="row-eq-height">
                 ${categorisedItems.map(component => `
                   <c-column md="3">
@@ -55,17 +57,19 @@ export function renderKinds(category, items, title, content) {
 
 export function renderStories(category, item, title, content) {
   storiesOf(title + '/' + category.name, module)
-    .addParameters({ options: { addonPanelInRight: true } })
     .add(
       item.name,
       () => `
         <main>
+          <header>
+            <c-container type="fluid">
+              <h4>${item.name}</h4>
+            </c-container>
+          </header>
+
           <section>
             <c-container type="fluid">
-              <header>
-                <button onclick="(function() { window.history.back() })()">Back to the category page</button>
-                <h2>${item.name}</h2>
-              </header>
+              <button onclick="(function() { window.history.back() })()">Back to the category page</button>
               ${content(item)}
             </c-container>
           </section>
@@ -73,44 +77,3 @@ export function renderStories(category, item, title, content) {
       `
     );
 }
-
-/*export function renderWebComponent(component) {
-  const [
-    tagName,
-    bundleIds,
-    ,
-    tagAttrsData,
-    encapsulationMeta,
-    listenerMeta
-  ] = component;
-  const tagAttrs = {}
-
-  if (typeof tagAttrsData === 'object') {
-    tagAttrsData.map(attributes => {
-      const [
-        propName,
-        memberType,
-        reflectToAttr,
-        attrName,
-        propType
-      ] = attributes;
-
-      tagAttrs[propName] = {
-        attrName,
-        memberType,
-        propType,
-        reflectToAttr,
-      };
-    })
-  }
-
-  defineCustomElement(window, [component])
-
-  // if (tagName === 'context-consumer') {
-  //  return;
-  // }
-
-  
-  //   .addParameters({ options: { addonPanelInRight: true } })
-  //   .add(tagName, () => `<${tagName} />`);
-}*/

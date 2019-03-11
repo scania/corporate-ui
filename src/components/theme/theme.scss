@@ -1,7 +1,3 @@
-$font-family-base: var(--font-family-sans-serif);
-
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
-
 :root {
   font-size: 62.5%;
 
@@ -36,8 +32,4 @@ $font-family-base: var(--font-family-sans-serif);
     'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
-}
-
-:host {
-  display: block;
 }

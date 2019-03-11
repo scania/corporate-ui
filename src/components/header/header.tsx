@@ -10,9 +10,9 @@ import * as themes from '../../tmp/header';
 })
 export class Header {
   @Prop() theme: string;
-  @Prop() siteName = 'Application name';
+  @Prop() siteName: string;
   @Prop() siteUrl = '/';
-  @Prop() topItems: any = [{ text: 'global', location: '/' }];
+  @Prop() topItems: any = [];
   @Prop() primaryItems: any;
   @Prop() secondaryItems: any;
 

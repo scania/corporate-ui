@@ -36,6 +36,12 @@ We're contributing to coding standards available at [https://github.com/scania/c
 
 Use 8.15 or newer stable version of node.
 
+## Tech Stack
+
+Corporate UI outputs only browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettiy, Webpack, Storybook. 
+
+
+.
 ## Join us on Slack
 
 [Corporate-ui Slack](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)

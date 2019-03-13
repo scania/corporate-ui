@@ -27,7 +27,7 @@ Stencil components work in any major framework or with no framework at all.
 
 ## Coding Standard
 
-We're contributing to coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
+We're contributing, and are following, the coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
 
 ## Set up your local environment
 <ul>

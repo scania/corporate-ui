@@ -9,7 +9,7 @@ In this repository we're developing the next generation components for Corporate
 
 ## Development Stage
 
-Currently Corporate UI are in pre-alpha, preparing to move to alpha. We'll start of the tests with a group of 20 developers and expanding it shortly thereafter.
+Currently Corporate UI are in pre-alpha, and we're just preparing to move to alpha. We'll start of the tests with a group of 20 developers and expanding it shortly thereafter.
 
 ## Focus Area
 

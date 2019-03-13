@@ -46,7 +46,7 @@ Use 8.15 or newer stable version of node.
 
 ## Tech Stack
 
-Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettiy, Webpack and Storybook. 
+Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook. 
 
 ## Join us on Slack
 

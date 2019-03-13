@@ -7,6 +7,14 @@
 
 In this repository we're developing the next generation components for Corporate UI. We're improving a lot of our findings that we've done implementing the current production version of the library: https://github.com/scania/corporate-ui
 
+## Development Stage
+
+Currently Corporate UI are in pre-alpha, preparing to move to alpha. We'll start of the tests with a group of 20 developers and expanding it shortly thereafter.
+
+## Focus Area
+
+Focus is right now set on getting a solid architecture in place. Any of the basic components that you'll be able to view in this repository is not finalized when it comes to design and CSS values.
+
 ## About Stencil JS
 
 The main change in the technology stack is that we've changing from Google Polymer to Stencil JS for creating Custom Elements.

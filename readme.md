@@ -17,7 +17,7 @@ Focus is right now set on getting a solid architecture in place. Any of the basi
 
 ## Purpose
 
-Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelies and apply interaction patterns without having to build them all from scratch. 
+Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelines and apply interaction patterns without having to build them all from scratch. 
 
 ## About Stencil JS
 

@@ -15,6 +15,10 @@ Currently Corporate UI are in pre-alpha, and we're just preparing to move to alp
 
 Focus is right now set on getting a solid architecture in place. Any of the basic components that you'll be able to view in this repository is not finalized when it comes to design and CSS values.
 
+## Purpose
+
+Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelies and apply interaction patterns without having to build them all from scratch. 
+
 ## About Stencil JS
 
 The main change in the technology stack is that we've changing from Google Polymer to Stencil JS for creating Custom Elements.

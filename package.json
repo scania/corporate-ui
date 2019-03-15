@@ -2,12 +2,13 @@
   "name": "Corporate-UI",
   "version": "0.0.1",
   "description": "In this repository you'll find all components available in the UX Library",
-  "module": "dist/esm/index.js",
-  "main": "dist/index.js",
-  "unpkg": "dist/ionic.js",
-  "types": "dist/types/components.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
+  "module": "tmp/esm/index.js",
+  "main": "tmp/index.js",
+  "unpkg": "tmp/ionic.js",
+  "types": "tmp/types/components.d.ts",
+  "collection": "tmp/components/collection-manifest.json",
   "files": [
+    "tmp/",
     "dist/"
   ],
   "scripts": {
@@ -20,8 +21,7 @@
     "lint-fix": "npm run lint -- --fix",
     "prettify": "prettier {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx,json,css,scss,md,html} --write",
     "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "webpack": "webpack"
+    "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "husky": {
     "hooks": {
@@ -55,13 +55,15 @@
     "@types/jest": "23.3.14",
     "@types/puppeteer": "1.12.1",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
-    "babel-jest": "^24.1.0",
     "bootstrap": "^4.3.1",
     "clean-webpack-plugin": "^1.0.1",
     "css-loader": "^2.1.0",
+    "del": "^4.0.0",
     "gulp": "^4.0.0",
+    "gulp-copy": "^4.0.1",
     "html-loader": "^0.5.5",
     "http-proxy-middleware": "^0.19.1",
     "husky": "^1.3.1",

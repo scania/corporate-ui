@@ -5,8 +5,12 @@ import data from './package.json'
 
 export const config: Config = {
   namespace: data.name,
+  hashFileNames: false,
   outputTargets: [
-    { type: 'dist' },
+    {
+      type: 'dist',
+      dir: 'tmp'
+    },
     {
       type: 'www',
       serviceWorker: null // disable service workers
@@ -28,7 +32,7 @@ export const config: Config = {
   },
   plugins: [
     sass({
-      includePaths: ['node_modules'],
+      includePaths: ['node_modules']
     }),
   ],
 }

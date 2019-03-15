@@ -5,7 +5,7 @@ const path = require('path');
 
 module.exports = {
   entry: './helpers.js',
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'helpers.js',
@@ -13,6 +13,7 @@ module.exports = {
     library: 'corporateUi',
     umdNamedDefine: true
   },
+  mode : 'production',
   plugins: [
       new CleanWebpackPlugin(['build']),
       new webpack.optimize.LimitChunkCountPlugin({

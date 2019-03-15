@@ -10,7 +10,7 @@ import * as themes from '../../tmp/footer';
 })
 export class Footer {
   @Prop() theme: string;
-  @Prop() items: any = [{ text: 'global', location: '/' },{ text: 'apa', location: '/' }];
+  @Prop() items: any = [];
 
   @State() currentTheme: string = this.theme || store.getState().theme;
   @State() show = false;

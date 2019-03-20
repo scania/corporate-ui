@@ -1,79 +1,65 @@
-import { storiesOf } from '@storybook/html';
-import { action } from '@storybook/addon-actions';
-import { withLinks } from '@storybook/addon-links';
 
-// import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
-// import * as CUI from '../dist/esm/es5/corporate-ui.components';
+export function renderMain(page) {
+  return `
+    <main>
+      <header>
+        <h4>${page.title}</h4>
+      </header>
 
-export function renderKinds(category, items, title, content) {
-  let categorisedItems = items.filter(
-    item => item.categories.indexOf(category.id) > -1
-  );
-  let storyName = category.name + ' (' + categorisedItems.length + ')'
-
-  if (!category.id) {
-    categorisedItems = items
-    storyName = category.name
-  }
-
-  if (!categorisedItems.length) {
-    return;
-  }
-
-  storiesOf(title, module)
-    .addDecorator(withLinks)
-    .add(
-      storyName,
-      () => `
-        <main>
-          <header>
-            <c-container type="fluid">
-              <h4>${category.name}</h4>
-            </c-container>
-          </header>
-
-          <section>
-            <c-container type="fluid">
-              <c-row class="row-eq-height">
-                ${categorisedItems.map(component => `
-                  <c-column md="3">
-                    <c-card
-                      data-sb-kind="${title}/${category.name}"
-                      data-sb-story="${component.name}">
-                      <strong slot="card-header">${component.name}</strong>
-                      <${component.name} slot="card-body" />
-                    </c-card>
-                  </c-column>
-                `).join('')}
-              </c-row>
-            </c-container>
-          </section>
-        </main>
-      `
-    );
-
-  categorisedItems.map(item => renderStories(category, item, title, content));
+      ${page.content}
+    </main>
+  `
 }
 
-export function renderStories(category, item, title, content) {
-  storiesOf(title + '/' + category.name, module)
-    .add(
-      item.name,
-      () => `
-        <main>
-          <header>
-            <c-container type="fluid">
-              <h4>${item.name}</h4>
-            </c-container>
-          </header>
+export function renderOverview(page) {
+  return renderMain({
+    ...page,
+    content: `
+      <section class="overview">
+        ${page.description ? `<p>${page.description}</p>` : ''}
 
-          <section>
-            <c-container type="fluid">
-              <button onclick="(function() { window.history.back() })()">Back to the category page</button>
-              ${content(item)}
-            </c-container>
-          </section>
-        </main>
-      `
-    );
+        ${page.items.map(name => `
+          <c-card
+            data-sb-kind="${page.kind}"
+            data-sb-story="${name.title}">
+            <${name.name} slot="card-body" class="component"></${name.name}>
+            <strong slot="card-footer">${name.title}</strong>
+          </c-card>
+        `).join('')}
+      </section>
+    `
+  })
+}
+
+export function renderItem(page) {
+  return renderMain({
+    ...page,
+    content: `
+      <section class="template">
+        <h4>${page.title}</h4>
+        ${ page.description ? `<p>${page.description}</p>` : '' }
+
+        ${page.content}
+      </section>
+    `
+  })
+}
+
+export function renderItems(page) {
+  return renderMain({
+    ...page,
+    content: page.items.map(item => `
+      <section class="component">
+        <h4>${item.title}</h4>
+        <div>
+          <figure>${item.content}</figure>
+
+          <details>
+            <summary>Toggle code example</summary>
+            <c-code-sample>${item.content}</c-code-sample>
+          </details>
+        </div>
+      </section>
+    `).join('')
+  })
 }

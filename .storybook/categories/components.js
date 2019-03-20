@@ -1,8 +1,9 @@
 // import addonAPI from '@storybook/addons';
-import marked from 'marked';
+import { storiesOf } from '@storybook/html';
 import { highlight } from 'highlight.js';
 import { parse } from 'node-html-parser';
 import { load } from 'cheerio';
+import marked from 'marked';
 
 import { renderKinds } from '../helpers';
 
@@ -11,7 +12,7 @@ import components from '../../data/components.json';
 import contents from '../../data/contents.json';
 import docs from '../../data/docs.json';
 
-import '../style/components.scss';
+import * as style from '../style/components.scss';
 
 import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/github-gist.css';
@@ -23,6 +24,30 @@ let filteredComponents = components.filter(item => ['c-column', 'c-container', '
   renderKinds(category, filteredComponents, 'Components', renderContent)
 );
 
+export function renderStories(category, item, title, content) {
+  storiesOf(title + '/' + category.name, module)
+    .add(
+      item.name,
+      () => `
+        ${style}
+        <main>
+          <header>
+            <c-container type="fluid">
+              <h4>${item.name}</h4>
+            </c-container>
+          </header>
+
+          <section>
+            <c-container type="fluid">
+              <button onclick="(function() { window.history.back() })()">Back to the category page</button>
+              ${content(item)}
+            </c-container>
+          </section>
+        </main>
+      `
+    );
+}
+
 function renderContent(item) {
   let content = contents.find(doc => doc.id === item.content);
   let name = item.name.replace(/^c-/, '');
@@ -32,7 +57,7 @@ function renderContent(item) {
   let examples;
 
   try {
-    template = require(`../stories/${item.name}.html`);
+    template = require(`../components/${item.name}.html`);
   } catch (err) {
     template = `<figure><${item.name}></${item.name}></figure>`;
   }

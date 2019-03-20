@@ -1,12 +1,12 @@
 <style>
   /* These rules are used to hide components from left navigation */
-  [role='menuitem'] + div [role='menuitem'],
+  /*[role='menuitem'] + div [role='menuitem'],
   [role='menuitem'] + div [role='menuitem'] + div {
     display: none !important;
   }
   [role='menuitem'] + div [data-name='All'] + div {
     display: block !important;
-  }
+  }*/
   [role='menuitem'] + div [role='menuitem'] + div ul {
     padding: 0;
   }
@@ -50,7 +50,11 @@
   .Pane1.vertical li li [style*="position: relative;"] {
     margin-left: 0 !important;
   }
-  .Pane1.vertical li li [style*="rotateZ(0deg);"] {
+  .Pane1.vertical li li [style*="rotateZ"] {
+    transition: all 0.25s ease-in;
     transform: rotateZ(-90deg) !important;
+  }
+  .Pane1.vertical li li [style*="rotateZ(0deg);"] {
+    transform: rotateZ(90deg) !important;
   }
 </style>

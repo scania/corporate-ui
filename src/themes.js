@@ -7,6 +7,9 @@ const inputFolder = 'themes/';
 const outputFolder = 'src/tmp/';
 const time = new Date();
 
+export { generateTheme }
+
+
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
@@ -69,9 +72,9 @@ function walkDir(dir, done) {
       });
     });
   });
-};
+}
 
-export function generateTheme(callback=function(){}) {
+function generateTheme(callback=function(){}) {
   let counter = 0;
   let addString = '';
 
@@ -91,12 +94,12 @@ export function generateTheme(callback=function(){}) {
           console.log(err2);
         }
         for(var key in componentCSS) {
-          if(file === key) {
+          if('c-' + file === key) {
             addString = '\n// Auto Generated Below\n';
             addString += componentCSS[key];
 
             fs.writeFile(
-              outputFolder + file + '.ts',
+              outputFolder + key + '.ts',
               addString,
               'utf8',
               err3 => {
@@ -104,7 +107,7 @@ export function generateTheme(callback=function(){}) {
                   throw err3;
                 }
                 counter++;
-                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: tmp/' + file + '.ts');
+                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: tmp/' + key + '.ts');
                 if(counter === Object.keys(componentCSS).length) {
                   callback();
                 }

@@ -1,3 +1,14 @@
+%nav-link {
+  padding: 15px;
+  color: #747472;
+  text-decoration: none;
+}
+// Sass compiler renders :hover and :before differently
+// and this is due to browsers lackof support
+%nav-link-hover {
+  text-decoration: underline;
+}
+
 :host {
   display: flex;
   flex-wrap: wrap;
@@ -10,12 +21,20 @@
   border-bottom: 1px solid #e2e2e2;
 }
 
-c-navigation {
-  background-color: #f5f5f5;
-  width: 100%;
+::slotted(a) {
+  @extend %nav-link;
+}
+// Due to browsers not supporting: ::slotted(a):hover 
+// we need to have the hover separated instead of nested
+::slotted(a:hover) {
+  @extend %nav-link-hover;
 }
 
-.navbar-default {
+c-navigation {
+  background-color: #f5f5f5;
+}
+
+.navbar {
   flex: 1;
   padding: 0;
   overflow: hidden;
@@ -57,6 +76,12 @@ c-navigation {
     color: #747472;
     margin-top: -10px;
   }
+  .nav-item {
+
+    .nav-link {
+      @extend %nav-link;
+    }
+  }
 }
 .navbar-symbol {
   padding: 13px;
@@ -94,6 +119,7 @@ c-navigation {
     top: -84px;
   }
 
+  ::slotted(c-navigation),
   c-navigation {
     background-color: transparent;
     border-top: 1px solid #e2e2e2;
@@ -101,7 +127,7 @@ c-navigation {
 
   .navbar-default {
     padding: 19px 11px 10px;
-    margin-right: 30px;
+    margin-right: 20px;
     border-bottom: 0;
 
     .navbar-brand {

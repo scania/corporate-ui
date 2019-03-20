@@ -1,0 +1,185 @@
+%nav-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 5px;
+}
+// Sass compiler renders :hover and :before differently
+// and this is due to browsers lackof support
+%nav-link-hover {
+  text-decoration: underline;
+}
+
+:host {
+  background-color: #fff;
+}
+
+::slotted(a) {
+  @extend %nav-link;
+}
+// Due to browsers not supporting: ::slotted(a):hover 
+// we need to have the hover separated instead of nested
+::slotted(a:hover) {
+  @extend %nav-link-hover;
+}
+
+p {
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+  border-top: solid 1px #e7e7e7;
+  padding: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.navbar {
+  flex-direction: column;
+  padding: 0;
+
+  .nav-item {
+
+    .nav-link {
+      @extend %nav-link;
+
+      &:hover,
+      &:focus {
+        @extend %nav-link-hover;
+      }
+    }
+  }
+}
+.navbar-nav {
+  text-transform: uppercase;
+  margin-top: 0;
+}
+.navbar-brand {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  background-color: #000;
+  text-align: center;
+
+  &:before {
+    display: inline-block;
+    content: '';
+    width: 113px;
+    height: 18px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: var(--footer-background-url);
+    background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
+    background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
+  }
+}
+.navbar-collapse {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  padding: 10px;
+  white-space: nowrap;
+  font-size: 1rem;
+  text-align: center;
+
+  &.show + .navbar-toggler {
+    background-color: #000;
+    color: #fff;
+  }
+}
+.navbar-toggler {
+  border-radius: 0; /* This should probably be added to btn rules */
+
+  &,
+  &:hover {
+    color: #000;
+  }
+}
+.navigation {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+
+  %nav-link-desktop {
+    text-decoration: none;
+    padding: 0;
+  }
+  // Sass compiler renders :hover and :before differently
+  // and this is due to browsers lackof support
+  %nav-link-hover-desktop {
+    text-decoration: underline;
+  }
+  %nav-link-separator-desktop {
+    margin-left: 15px;
+  }
+
+  :host {
+    background-color: #000;
+    color: #97999b;
+    padding: 46px 30px 35px;
+  }
+
+  ::slotted(a) {
+    @extend %nav-link-desktop;
+  }
+  // Due to browsers not supporting: ::slotted(a):hover 
+  // we need to have the hover separated instead of nested
+  ::slotted(a:hover) {
+    @extend %nav-link-hover-desktop;
+  }
+  ::slotted(a:not(:first-child)) {
+    @extend %nav-link-separator-desktop;
+  }
+
+  p {
+    text-align: left;
+    padding: 0;
+    border-top: 0;
+  }
+
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .nav-item {
+
+      .nav-link {
+        @extend %nav-link-desktop;
+
+        &:hover {
+          @extend %nav-link-hover-desktop;
+        }
+      }
+
+      + .nav-item {
+        @extend %nav-link-separator-desktop;
+      }
+    }
+  }
+  .navbar-nav {
+    font-family: 'Scania Sans';
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .navbar-brand {
+    padding: 0;
+    width: auto;
+
+    &:before {
+      width: 178px;
+      height: 29px;
+    }
+  }
+  .navbar-collapse {
+    position: static;
+    transform: none;
+    padding: 0;
+  }
+  .navigation {
+    order: -1;
+    flex: 1;
+  }
+}

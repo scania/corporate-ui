@@ -1,0 +1,127 @@
+:host {
+  background-color: #fff;
+}
+
+%nav-link {
+  padding: 10px 25px;
+  color: #909090;
+  text-decoration: none;
+}
+// Sass compiler renders :hover and :before differently
+// and this is due to browsers lackof support
+%nav-link-hover {
+  color: #041e42;
+}
+%nav-link-separator {
+  border-top: 1px solid #e2e2e2;
+}
+
+::slotted(a) {
+  @extend %nav-link;
+}
+// Due to browsers not supporting: ::slotted(a):hover 
+// we need to have the hover separated instead of nested
+::slotted(a:hover) {
+  @extend %nav-link-hover;
+}
+::slotted(a:not(:first-child)) {
+  @extend %nav-link-separator;
+}
+
+ul {
+  margin: 0;
+}
+
+.navbar {
+  font-family: 'Scania Sans';
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0;
+
+  .nav-item {
+
+    + .nav-item {
+      @extend %nav-link-separator;
+    }
+
+    .nav-link {
+      @extend %nav-link;
+
+      &:hover {
+        @extend %nav-link-hover;
+      }
+    }
+  }
+}
+.navbar-collapse {
+  transition: max-height 0.25s ease-in;
+  max-height: 0;
+  overflow: hidden;
+
+  &:not(.show) {
+    display: block;
+    max-height: 100px;
+  }
+
+  + .navbar-collapse {
+    border-top: 1px solid #e2e2e2;
+  }
+}
+
+@media (min-width: 992px) {
+
+  %nav-link-desktop {
+    padding: 20px 0;
+
+    &:before,
+    &:after {
+      content: "";
+      padding: 0 15px;
+    }
+  }
+  %nav-link-separator-desktop {
+    border-top: none;
+  }
+  %nav-link-separator-desktop-before {
+    border-left: 1px solid #e2e2e2;
+  }
+
+  ::slotted(a) {
+    @extend %nav-link-desktop;
+  }
+  ::slotted(a:not(:first-child)) {
+    @extend %nav-link-separator-desktop;
+
+    &:before {
+      @extend %nav-link-separator-desktop-before;
+    }
+  }
+
+  .navbar {
+
+    .nav-item {
+      border-top: 0;
+
+      .nav-link {
+        @extend %nav-link-desktop;
+      }
+
+      + .nav-item {
+        @extend %nav-link-separator-desktop;
+
+        .nav-link:before {
+          @extend %nav-link-separator-desktop-before;
+        }
+      }
+    }
+  }
+
+  .navbar-collapse {
+    max-height: none;
+
+    + .navbar-collapse {
+      border-top: 0;
+    }
+  }
+}

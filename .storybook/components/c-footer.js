@@ -1,5 +1,6 @@
 export default {
   title: 'Footer',
+  description: 'Some informative text regarding the component can be placed here. To show how and where to use the current component.',
   preview: '<c-footer></c-footer>',
   items: [
     {

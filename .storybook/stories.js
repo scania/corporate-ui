@@ -4,7 +4,8 @@ import { basename } from 'path';
 import marked from 'marked';
 
 import { renderMain, renderOverview, renderItems, importAll } from './helpers';
-import docs from '../readme.md';
+import readme from '../readme.md';
+import docs from '../data/docs.json';
 
 const components = {};
 importAll(require.context('./components/', true, /\.js$/), components);
@@ -18,7 +19,7 @@ storiesOf('Info', module)
     'Corporate UI',
     () => renderMain({
       title: 'Corporate UI',
-      content: `<section>${marked(docs)}</section>`
+      content: `<section>${marked(readme)}</section>`
     })
   );
 
@@ -38,7 +39,10 @@ storiesOf('Components', module)
 // Render component stories
 Object.entries(components).map(entry => {
   const [ file, module ] = entry;
-  const item = { ...module.default, name: basename(file, '.js') };
+  const name = basename(file, '.js');
+  const doc = docs.components.find(doc => doc.tag === name);
+  const item = { ...module.default, name, doc };
+
   storiesOf('Components', module)
     .addDecorator(withLinks)
     .add(
@@ -63,7 +67,9 @@ storiesOf('Templates', module)
 // Render template stories
 Object.entries(templates).map(entry => {
   const [ file, module ] = entry;
-  const item = { ...module.default, name: basename(file, '.js') };
+  const name = basename(file, '.js');
+  const item = { ...module.default, name };
+
   storiesOf('Templates', module)
     .addDecorator(withLinks)
     .add(

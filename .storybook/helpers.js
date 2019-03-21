@@ -1,5 +1,3 @@
-import docs from '../data/docs.json';
-
 export function renderMain(page) {
   return `
     <main>
@@ -39,11 +37,15 @@ export function renderProperties(props) {
 }
 
 export function renderOverview(page) {
+  let description = typeof page.description === 'string' ? [page.description] : page.description;
+
   return renderMain({
     ...page,
     content: `
       <section class="overview">
-        ${page.description ? `<p>${page.description}</p>` : ''}
+        ${ description ? description.map(paragraph => `
+          <p>${paragraph}</p>
+        `).join('') : '' }
 
         ${page.items.map(item => `
           <c-card
@@ -60,12 +62,17 @@ export function renderOverview(page) {
 }
 
 export function renderItem(page) {
+  let description = typeof page.description === 'string' ? [page.description] : page.description;
+
   return renderMain({
     ...page,
     content: `
       <section class="template">
         <h4>${page.title}</h4>
-        ${ page.description ? `<p>${page.description}</p>` : '' }
+
+        ${ description ? description.map(paragraph => `
+          <p>${paragraph}</p>
+        `).join('') : '' }
 
         ${page.content}
       </section>
@@ -74,11 +81,19 @@ export function renderItem(page) {
 }
 
 export function renderItems(page) {
-  let doc = docs.components.find(doc => doc.tag === page.name);
+  let description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
     content: `
+      ${ description ? `
+        <section>
+          ${ description.map(paragraph => `
+            <p>${paragraph}</p>
+          `).join('') }
+        </section>
+      ` : '' }
+
       ${page.items.map(item => `
         <section class="component">
           <h4>${item.title}</h4>
@@ -92,8 +107,9 @@ export function renderItems(page) {
           </div>
         </section>
       `).join('')}
+
       <section>
-        ${doc ? renderProperties(doc.props) : ''}
+        ${page.doc ? renderProperties(page.doc.props) : ''}
       </section>
     `
   })

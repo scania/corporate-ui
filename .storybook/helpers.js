@@ -1,3 +1,4 @@
+import docs from '../data/docs.json';
 
 export function renderMain(page) {
   return `
@@ -8,6 +9,32 @@ export function renderMain(page) {
 
       ${page.content}
     </main>
+  `
+}
+
+export function renderProperties(props) {
+  return `
+    <h4>Properties</h4>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${props.map(prop => `
+            <tr>
+              <td>${prop.name}</td>
+              <td>${prop.type}</td>
+              <td>${prop.default}</td>
+            </tr>
+          `).join('')}
+        </body>
+      </table>
+    </div>
   `
 }
 
@@ -47,21 +74,28 @@ export function renderItem(page) {
 }
 
 export function renderItems(page) {
+  let doc = docs.components.find(doc => doc.tag === page.name);
+
   return renderMain({
     ...page,
-    content: page.items.map(item => `
-      <section class="component">
-        <h4>${item.title}</h4>
-        <div>
-          <figure>${item.content}</figure>
+    content: `
+      ${page.items.map(item => `
+        <section class="component">
+          <h4>${item.title}</h4>
+          <div>
+            <figure>${item.content}</figure>
 
-          <details>
-            <summary>Toggle code example</summary>
-            <c-code-sample>${item.content}</c-code-sample>
-          </details>
-        </div>
+            <details>
+              <summary>Toggle code example</summary>
+              <c-code-sample>${item.content}</c-code-sample>
+            </details>
+          </div>
+        </section>
+      `).join('')}
+      <section>
+        ${doc ? renderProperties(doc.props) : ''}
       </section>
-    `).join('')
+    `
   })
 }
 

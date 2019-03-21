@@ -22,6 +22,7 @@ storiesOf('Info', module)
     })
   );
 
+// Render component overview
 storiesOf('Components', module)
   .addDecorator(withLinks)
   .add(
@@ -35,8 +36,9 @@ storiesOf('Components', module)
   );
 
 // Render component stories
-Object.values(components).map(module => {
-  const item = module.default;
+Object.entries(components).map(entry => {
+  const [ file, module ] = entry;
+  const item = { ...module.default, name: basename(file, '.js') };
   storiesOf('Components', module)
     .addDecorator(withLinks)
     .add(
@@ -45,6 +47,7 @@ Object.values(components).map(module => {
     );
 });
 
+// Render template overview
 storiesOf('Templates', module)
   .addDecorator(withLinks)
   .add(
@@ -58,8 +61,9 @@ storiesOf('Templates', module)
   );
 
 // Render template stories
-Object.values(templates).map(module => {
-  const item = module.default;
+Object.entries(templates).map(entry => {
+  const [ file, module ] = entry;
+  const item = { ...module.default, name: basename(file, '.js') };
   storiesOf('Templates', module)
     .addDecorator(withLinks)
     .add(

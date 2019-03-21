@@ -6,12 +6,13 @@ import { Component, Prop } from '@stencil/core';
   shadow: true
 })
 export class HelloWorld {
-
-  @Prop() text: String = "hello-World";
+  @Prop() text: String = 'hello-World';
 
   render() {
     return (
-      <div><h2>{this.text} component</h2></div>
+      <div>
+      	<h2>{ this.text } component</h2>
+      </div>
     );
   }
 }

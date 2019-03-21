@@ -4,7 +4,7 @@ export default {
     'Some informative text regarding the component can be placed here. To show how and where to use the current component.',
     'Its possible to have multiple paragraphs by providing the text as strings inside an array instead of a simple string.'
   ],
-  preview: '<c-header></c-header',
+  preview: '<c-header></c-header>',
   items: [
     {
       title: 'Items as data',

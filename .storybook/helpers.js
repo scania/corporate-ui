@@ -52,7 +52,7 @@ export function renderOverview(page) {
             data-sb-kind="${page.kind}"
             data-sb-story="${item.title}"
             class="component">
-            <div slot="card-body">${item.preview}</div>
+            <div slot="card-body" class="component">${item.preview}</div>
             <strong slot="card-footer">${item.title}</strong>
           </c-card>
         `).join('')}

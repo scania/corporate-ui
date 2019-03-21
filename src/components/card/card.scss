@@ -4,6 +4,8 @@
 
 @import 'node_modules/bootstrap/scss/card';
 
+@import '../../components.scss';
+
 :host {
   display: block;
 }

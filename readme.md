@@ -7,6 +7,18 @@
 
 In this repository we're developing the next generation components for Corporate UI. We're improving a lot of our findings that we've done implementing the current production version of the library: https://github.com/scania/corporate-ui
 
+## Development Stage
+
+Currently Corporate UI are in pre-alpha, and we're just preparing to move to alpha. We'll start of the tests with a group of 20 developers and expanding it shortly thereafter.
+
+## Focus Area
+
+Focus is right now set on getting a solid architecture in place. Any of the basic components that you'll be able to view in this repository is not finalized when it comes to design and CSS values.
+
+## Purpose
+
+Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelines and apply interaction patterns without having to build them all from scratch. 
+
 ## About Stencil JS
 
 The main change in the technology stack is that we've changing from Google Polymer to Stencil JS for creating Custom Elements.
@@ -19,7 +31,7 @@ Stencil components work in any major framework or with no framework at all.
 
 ## Coding Standard
 
-We're contributing to coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
+We're contributing, and are following, the coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
 
 ## Set up your local environment
 <ul>
@@ -35,6 +47,10 @@ We're contributing to coding standards available at [https://github.com/scania/c
 ## Node version
 
 Use 8.15 or newer stable version of node.
+
+## Tech Stack
+
+Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook. 
 
 ## Join us on Slack
 

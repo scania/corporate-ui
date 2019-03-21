@@ -1,16 +1,10 @@
-import { storiesOf } from '@storybook/html';
-
-import { renderItems } from '../helpers';
-
-storiesOf('Templates', module)
-  .add(
-    'Main page',
-    () => renderItems({
+export default {
+  title: 'Main page',
+  preview: '<c-icon name="cake"></c-icon>',
+  items: [
+    {
       title: 'Main page',
-      items: [
-        {
-          title: 'Main page',
-          content: `
+      content: `
 <c-header
   site-name="Corporate UI Page"
   top-items='[{"text":"global", "location": "/"}, {"text":"about", "location": "/"}]'
@@ -80,8 +74,7 @@ storiesOf('Templates', module)
 </c-content>
 
 <c-footer></c-footer>
-          `
-        }
-      ]
-    })
-  )
+      `
+    }
+  ]
+};

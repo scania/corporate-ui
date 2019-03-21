@@ -18,12 +18,13 @@ export function renderOverview(page) {
       <section class="overview">
         ${page.description ? `<p>${page.description}</p>` : ''}
 
-        ${page.items.map(name => `
+        ${page.items.map(item => `
           <c-card
             data-sb-kind="${page.kind}"
-            data-sb-story="${name.title}">
-            <${name.name} slot="card-body" class="component"></${name.name}>
-            <strong slot="card-footer">${name.title}</strong>
+            data-sb-story="${item.title}"
+            class="component">
+            <div slot="card-body">${item.preview}</div>
+            <strong slot="card-footer">${item.title}</strong>
           </c-card>
         `).join('')}
       </section>
@@ -62,4 +63,8 @@ export function renderItems(page) {
       </section>
     `).join('')
   })
+}
+
+export function importAll(req, cache) {
+  return req.keys().forEach(key => cache[key] = req(key));
 }

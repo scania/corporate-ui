@@ -3,12 +3,14 @@ import { withLinks } from '@storybook/addon-links';
 import { basename } from 'path';
 import marked from 'marked';
 
-import { renderMain, renderOverview } from './helpers';
+import { renderMain, renderOverview, renderItems, importAll } from './helpers';
 import docs from '../readme.md';
 
+const components = {};
+importAll(require.context('./components/', true, /\.js$/), components);
 
-const components = require.context('./components/', true, /\.js$/);
-const templates = require.context('./templates/', true, /\.js$/);
+let templates = {};
+importAll(require.context('./templates/', true, /\.js$/), templates);
 
 
 storiesOf('Info', module)
@@ -28,18 +30,20 @@ storiesOf('Components', module)
       title: 'Overview',
       kind: 'Components',
       description: 'Select a component to see examples and get more information.',
-      items: components.keys().map(item => {
-        let name = basename(item, '.js');
-        let string = name.replace('c-', '').replace(/-/g, ' ');
-        let title = string.charAt(0).toUpperCase() + string.slice(1);
-        return { name, title }
-      })
+      items: Object.keys(components).map(key => components[key].default)
     })
   );
 
 // Render component stories
-components.keys().forEach(components);
-
+Object.values(components).map(module => {
+  const item = module.default;
+  storiesOf('Components', module)
+    .addDecorator(withLinks)
+    .add(
+      item.title,
+      () => (item.method || renderItems)(item)
+    );
+});
 
 storiesOf('Templates', module)
   .addDecorator(withLinks)
@@ -49,14 +53,17 @@ storiesOf('Templates', module)
       title: 'Overview',
       kind: 'Templates',
       description: 'Select a template to see the example and get more information.',
-      items: templates.keys().map(item => {
-        let name = basename(item, '.js');
-        let string = name.replace(/-/g, ' ');
-        let title = string.charAt(0).toUpperCase() + string.slice(1);
-        return { name, title }
-      })
+      items: Object.keys(templates).map(key => templates[key].default)
     })
   );
 
-// Render component stories
-templates.keys().forEach(templates);
+// Render template stories
+Object.values(templates).map(module => {
+  const item = module.default;
+  storiesOf('Templates', module)
+    .addDecorator(withLinks)
+    .add(
+      item.title,
+      () => (item.method || renderItems)(item)
+    );
+});

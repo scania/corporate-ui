@@ -77,17 +77,15 @@ export class Header {
         <strong class='navbar-title'>{ this.siteName }</strong>
 
         <div class='collapse navbar-collapse'>
-          <ul class='navbar-nav ml-auto'>
+          <nav class='navbar-nav ml-auto'>
             { this._items.map(item => (
-              <li class='nav-item'>
-                <a class='nav-link' href={item['location']}>
-                  <span>{item['text']}</span>
-                </a>
-              </li>
+              <a href={item['location']} class='nav-item nav-link'>
+                <span>{item['text']}</span>
+              </a>
             )) }
 
             <slot name="items" />
-          </ul>
+          </nav>
         </div>
       </nav>,
 

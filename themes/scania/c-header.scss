@@ -75,11 +75,12 @@ c-navigation {
     text-transform: uppercase;
     color: #747472;
     margin-top: -10px;
-  }
-  .nav-item {
 
-    .nav-link {
-      @extend %nav-link;
+    .nav-item {
+
+      .nav-link {
+        @extend %nav-link;
+      }
     }
   }
 }

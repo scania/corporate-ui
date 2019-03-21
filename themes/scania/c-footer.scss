@@ -36,21 +36,22 @@ p {
   flex-direction: column;
   padding: 0;
 
-  .nav-item {
+  .navbar-nav {
+    text-transform: uppercase;
+    margin-top: 0;
 
-    .nav-link {
-      @extend %nav-link;
+    .nav-item {
 
-      &:hover,
-      &:focus {
-        @extend %nav-link-hover;
+      .nav-link {
+        @extend %nav-link;
+
+        &:hover,
+        &:focus {
+          @extend %nav-link-hover;
+        }
       }
     }
   }
-}
-.navbar-nav {
-  text-transform: uppercase;
-  margin-top: 0;
 }
 .navbar-brand {
   display: block;

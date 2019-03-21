@@ -1,5 +1,5 @@
 :host {
-  background-color: #fff;
+  background-color: #f5f5f5;
 }
 
 %nav-link {
@@ -39,12 +39,14 @@ ul {
   text-transform: uppercase;
   padding: 0;
 
-  .nav-item {
+  .navbar-nav {
 
-    + .nav-item {
-      @extend %nav-link-separator;
+    .nav-item {
+
+      + .nav-item {
+        @extend %nav-link-separator;
+      }
     }
-
     .nav-link {
       @extend %nav-link;
 
@@ -87,6 +89,10 @@ ul {
     border-left: 1px solid #e2e2e2;
   }
 
+  :host {
+    background-color: #fff;
+  }
+
   ::slotted(a) {
     @extend %nav-link-desktop;
   }
@@ -100,23 +106,24 @@ ul {
 
   .navbar {
 
-    .nav-item {
-      border-top: 0;
+    .navbar-nav {
 
+      .nav-item {
+        border-top: 0;
+
+        + .nav-item {
+          @extend %nav-link-separator-desktop;
+        }
+      }
       .nav-link {
         @extend %nav-link-desktop;
-      }
 
-      + .nav-item {
-        @extend %nav-link-separator-desktop;
-
-        .nav-link:before {
+        + .nav-link:before {
           @extend %nav-link-separator-desktop-before;
         }
       }
     }
   }
-
   .navbar-collapse {
     max-height: none;
 

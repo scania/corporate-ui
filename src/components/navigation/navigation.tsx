@@ -45,33 +45,27 @@ export class Navigation {
 
       <nav class='navbar navbar-expand-lg'>
         <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
-          <ul class='navbar-nav'>
+          <nav class='navbar-nav'>
             {this._primaryItems.map(item =>
-              <li class='nav-item'>
-                <a href={item['location']} class='nav-link'>
-                  <span>{item['text']}</span>
-                </a>
-              </li>
+              <a href={item['location']} class='nav-item nav-link'>
+                <span>{item['text']}</span>
+              </a>
             )}
 
             <slot name="primary-items" />
-          </ul>
+          </nav>
         </div>
 
         <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
-          <ul class='navbar-nav ml-auto'>
-            {this._secondaryItems.map((item, key) =>
-              <li class='nav-item'>
-                <slot name={'nav-item-' + key}>
-                  <a href={item['location']} class='nav-link'>
-                    <span>{item['text']}</span>
-                  </a>
-                </slot>
-              </li>
+          <nav class='navbar-nav ml-auto'>
+            {this._secondaryItems.map((item) =>
+              <a href={item['location']} class='nav-item nav-link'>
+                <span>{item['text']}</span>
+              </a>
             )}
 
             <slot name="secondary-items" />
-          </ul>
+          </nav>
         </div>
       </nav>
     ];

@@ -57,17 +57,15 @@ export class Footer {
 
         <div class="navigation dropup">
           <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
-            <ul class='navbar-nav'>
+            <nav class='navbar-nav'>
               { this._items.map(item => (
-                <li class='nav-item'>
-                  <a href={ item['location'] } class='nav-link'>
-                    <span>{ item['text'] }</span>
-                  </a>
-                </li>
+                <a href={ item['location'] } class='nav-item nav-link'>
+                  <span>{ item['text'] }</span>
+                </a>
               )) }
 
               <slot name="items" />
-            </ul>
+            </nav>
           </div>
 
           {this.items || this.itemsSlot ?

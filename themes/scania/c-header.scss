@@ -78,7 +78,7 @@ c-navigation {
 
     .nav-item {
 
-      .nav-link {
+      &.nav-link {
         @extend %nav-link;
       }
     }

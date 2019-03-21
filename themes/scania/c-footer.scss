@@ -42,7 +42,7 @@ p {
 
     .nav-item {
 
-      .nav-link {
+      &.nav-link {
         @extend %nav-link;
 
         &:hover,
@@ -144,18 +144,21 @@ p {
     flex-direction: row;
     flex-wrap: wrap;
 
-    .nav-item {
+    .navbar-nav {
 
-      .nav-link {
-        @extend %nav-link-desktop;
+      .nav-item {
 
-        &:hover {
-          @extend %nav-link-hover-desktop;
+        &.nav-link {
+          @extend %nav-link-desktop;
+
+          &:hover {
+            @extend %nav-link-hover-desktop;
+          }
         }
-      }
 
-      + .nav-item {
-        @extend %nav-link-separator-desktop;
+        + .nav-item {
+          @extend %nav-link-separator-desktop;
+        }
       }
     }
   }

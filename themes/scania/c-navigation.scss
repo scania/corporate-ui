@@ -43,15 +43,16 @@ ul {
 
     .nav-item {
 
+      &.nav-link {
+        @extend %nav-link;
+
+        &:hover {
+          @extend %nav-link-hover;
+        }
+      }
+
       + .nav-item {
         @extend %nav-link-separator;
-      }
-    }
-    .nav-link {
-      @extend %nav-link;
-
-      &:hover {
-        @extend %nav-link-hover;
       }
     }
   }
@@ -111,15 +112,16 @@ ul {
       .nav-item {
         border-top: 0;
 
+        &.nav-link {
+          @extend %nav-link-desktop;
+
+          + .nav-link:before {
+            @extend %nav-link-separator-desktop-before;
+          }
+        }
+
         + .nav-item {
           @extend %nav-link-separator-desktop;
-        }
-      }
-      .nav-link {
-        @extend %nav-link-desktop;
-
-        + .nav-link:before {
-          @extend %nav-link-separator-desktop-before;
         }
       }
     }

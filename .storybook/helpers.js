@@ -1,79 +1,120 @@
-import { storiesOf } from '@storybook/html';
-import { action } from '@storybook/addon-actions';
-import { withLinks } from '@storybook/addon-links';
+export function renderMain(page) {
+  return `
+    <main>
+      <header>
+        <h4>${page.title}</h4>
+      </header>
 
-// import { defineCustomElement } from '../dist/esm/es5/corporate-ui.core';
-// import * as CUI from '../dist/esm/es5/corporate-ui.components';
-
-export function renderKinds(category, items, title, content) {
-  let categorisedItems = items.filter(
-    item => item.categories.indexOf(category.id) > -1
-  );
-  let storyName = category.name + ' (' + categorisedItems.length + ')'
-
-  if (!category.id) {
-    categorisedItems = items
-    storyName = category.name
-  }
-
-  if (!categorisedItems.length) {
-    return;
-  }
-
-  storiesOf(title, module)
-    .addDecorator(withLinks)
-    .add(
-      storyName,
-      () => `
-        <main>
-          <header>
-            <c-container type="fluid">
-              <h4>${category.name}</h4>
-            </c-container>
-          </header>
-
-          <section>
-            <c-container type="fluid">
-              <c-row class="row-eq-height">
-                ${categorisedItems.map(component => `
-                  <c-column md="3">
-                    <c-card
-                      data-sb-kind="${title}/${category.name}"
-                      data-sb-story="${component.name}">
-                      <strong slot="card-header">${component.name}</strong>
-                      <${component.name} slot="card-body" />
-                    </c-card>
-                  </c-column>
-                `).join('')}
-              </c-row>
-            </c-container>
-          </section>
-        </main>
-      `
-    );
-
-  categorisedItems.map(item => renderStories(category, item, title, content));
+      ${page.content}
+    </main>
+  `
 }
 
-export function renderStories(category, item, title, content) {
-  storiesOf(title + '/' + category.name, module)
-    .add(
-      item.name,
-      () => `
-        <main>
-          <header>
-            <c-container type="fluid">
-              <h4>${item.name}</h4>
-            </c-container>
-          </header>
+export function renderProperties(props) {
+  return `
+    <h4>Properties</h4>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${props.map(prop => `
+            <tr>
+              <td>${prop.name}</td>
+              <td>${prop.type}</td>
+              <td>${prop.default}</td>
+            </tr>
+          `).join('')}
+        </body>
+      </table>
+    </div>
+  `
+}
 
-          <section>
-            <c-container type="fluid">
-              <button onclick="(function() { window.history.back() })()">Back to the category page</button>
-              ${content(item)}
-            </c-container>
-          </section>
-        </main>
-      `
-    );
+export function renderOverview(page) {
+  let description = typeof page.description === 'string' ? [page.description] : page.description;
+
+  return renderMain({
+    ...page,
+    content: `
+      <section class="overview">
+        ${ description ? description.map(paragraph => `
+          <p>${paragraph}</p>
+        `).join('') : '' }
+
+        ${page.items.map(item => `
+          <c-card
+            data-sb-kind="${page.kind}"
+            data-sb-story="${item.title}"
+            class="component">
+            <div slot="card-body" class="component">${item.preview}</div>
+            <strong slot="card-footer">${item.title}</strong>
+          </c-card>
+        `).join('')}
+      </section>
+    `
+  })
+}
+
+export function renderItem(page) {
+  let description = typeof page.description === 'string' ? [page.description] : page.description;
+
+  return renderMain({
+    ...page,
+    content: `
+      <section class="template">
+        <h4>${page.title}</h4>
+
+        ${ description ? description.map(paragraph => `
+          <p>${paragraph}</p>
+        `).join('') : '' }
+
+        ${page.content}
+      </section>
+    `
+  })
+}
+
+export function renderItems(page) {
+  let description = typeof page.description === 'string' ? [page.description] : page.description;
+
+  return renderMain({
+    ...page,
+    content: `
+      ${ description ? `
+        <section>
+          ${ description.map(paragraph => `
+            <p>${paragraph}</p>
+          `).join('') }
+        </section>
+      ` : '' }
+
+      ${page.items.map(item => `
+        <section class="component">
+          <h4>${item.title}</h4>
+          <div>
+            <figure>${item.content}</figure>
+
+            <details>
+              <summary>Toggle code example</summary>
+              <c-code-sample>${item.content}</c-code-sample>
+            </details>
+          </div>
+        </section>
+      `).join('')}
+
+      <section>
+        ${page.doc ? renderProperties(page.doc.props) : ''}
+      </section>
+    `
+  })
+}
+
+export function importAll(req, cache) {
+  return req.keys().forEach(key => cache[key] = req(key));
 }

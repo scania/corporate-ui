@@ -34,3 +34,9 @@ src/**/readme.md
 tmp/
 
 package-lock.json
+themes/elicitation/c-card.scss
+themes/elicitation/c-content.scss
+themes/elicitation/c-footer.scss
+themes/elicitation/c-header.scss
+themes/elicitation/c-navigation.scss
+themes/elicitation/c-theme.scss

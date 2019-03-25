@@ -1,5 +1,8 @@
 import { defineCustomElement } from '../esm/es5/corporate-ui.core'
 import * as CUI from '../esm/es5/corporate-ui.components'
+
+export { defineCustomElements }
+
 const CUI_COMPONENTS = CUI.COMPONENTS
 var collections = require('./collection-manifest.json')
 var subComponents = {}
@@ -11,7 +14,7 @@ collection.forEach(obj => {
   }
 })
 
-export function defineCustomElements(components) {
+function defineCustomElements(components) {
   if(components==='all') {
     defineCustomElement(window, CUI_COMPONENTS);
   } else {

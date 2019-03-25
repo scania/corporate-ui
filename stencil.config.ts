@@ -1,19 +1,19 @@
-import { Config } from '@stencil/core'
-import { sass } from '@stencil/sass'
+import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 
-import data from './package.json'
+import data from './package.json';
 
 export const config: Config = {
   namespace: data.name,
-  copy: [{ src: 'helpers.js' }],
+  hashFileNames: false,
+  copy: [
+    { src: 'helpers.js' }
+  ],
   outputTargets: [
     { type: 'dist' },
     {
       type: 'www',
       serviceWorker: null // disable service workers
-    },
-    {
-      type: 'docs'
     },
     {
       type: 'docs-json',
@@ -29,7 +29,7 @@ export const config: Config = {
   },
   plugins: [
     sass({
-      includePaths: ['node_modules'],
-    }),
-  ],
+      includePaths: ['node_modules']
+    })
+  ]
 }

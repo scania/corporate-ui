@@ -1,17 +1,31 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-const SET_THEME = 'SET_THEME';
-const initialState = { theme: '' }
+export const actions = {
+  SET_THEME: 'SET_THEME',
+  TOGGLE_NAVIGATION: 'TOGGLE_NAVIGATION'
+}
 
-function setTheme(state = initialState, action) {
+function theme(state = { name: '' }, action) {
   switch (action.type) {
-    case SET_THEME:
-      return { ...state, theme: action.theme };
+    case actions.SET_THEME:
+      return { ...state, name: action.name };
     default:
       return state;
   }
 }
 
-const store = createStore(setTheme);
+function navigation(state = { open: false }, action) {
+  switch (action.type) {
+    case actions.TOGGLE_NAVIGATION:
+      return { ...state, open: action.open };
+    default:
+      return state;
+  }
+}
 
-export { store };
+let reducers = combineReducers({
+  theme,
+  navigation
+})
+
+export const store = createStore(reducers);

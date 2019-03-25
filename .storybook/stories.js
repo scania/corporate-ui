@@ -19,7 +19,11 @@ storiesOf('Info', module)
     'Corporate UI',
     () => renderMain({
       title: 'Corporate UI',
-      content: `<section>${marked(readme)}</section>`
+      content: `
+        <section>
+          <div>${marked(readme)}</div>
+        </section>
+      `
     })
   );
 

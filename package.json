@@ -1,6 +1,6 @@
 {
   "name": "Corporate-UI",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "In this repository you'll find all components available in the UX Library",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
     "start": "gulp",
     "build": "gulp build",
     "themes": "gulp themes",
-    "docs": "stencil build --docs",
+    "storybook": "start-storybook -p 1337 -c .storybook",
     "lint": "tslint {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx}",
     "lint-fix": "npm run lint -- --fix",
     "prettify": "prettier {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx,json,css,scss,md,html} --write",
@@ -81,6 +81,5 @@
     "url-loader": "^1.1.2",
     "webpack": "4.28.4"
   },
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }

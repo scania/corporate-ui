@@ -7,7 +7,7 @@ export default {
       title: 'Data items',
       content: `
 <c-footer
-  items='[{ "text": "cookies", "location": "/cookies" }, { "text": "contact us", "location": "/contact-us" }]'></c-footer>
+  items='[{ "text": "cookies", "href": "/cookies" }, { "text": "contact us", "href": "/contact-us" }]'></c-footer>
       `
     },
     {
@@ -16,6 +16,15 @@ export default {
 <c-footer>
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" slot="items">Contact us</a>
+</c-footer>
+      `
+    },
+    {
+      title: 'Both data and slot items',
+      content: `
+<c-footer
+  items='[{ "text": "external2", "href": "http://google.com", "target": "_blank" }]''>
+  <a href="http://google.com" target="_blank" slot="items">external</a>
 </c-footer>
       `
     }

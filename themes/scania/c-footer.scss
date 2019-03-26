@@ -106,14 +106,12 @@ p {
   %nav-link-desktop {
     text-decoration: none;
     padding: 0;
+    margin-right: 15px,
   }
   // Sass compiler renders :hover and :before differently
   // and this is due to browsers lackof support
   %nav-link-hover-desktop {
     text-decoration: underline;
-  }
-  %nav-link-separator-desktop {
-    margin-left: 15px;
   }
 
   :host {
@@ -129,9 +127,6 @@ p {
   // we need to have the hover separated instead of nested
   ::slotted(a:hover) {
     @extend %nav-link-hover-desktop;
-  }
-  ::slotted(a:not(:first-child)) {
-    @extend %nav-link-separator-desktop;
   }
 
   p {
@@ -154,10 +149,6 @@ p {
           &:hover {
             @extend %nav-link-hover-desktop;
           }
-        }
-
-        + .nav-item {
-          @extend %nav-link-separator-desktop;
         }
       }
     }

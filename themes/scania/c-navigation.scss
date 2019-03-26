@@ -21,7 +21,9 @@
 }
 // Due to browsers not supporting: ::slotted(a):hover 
 // we need to have the hover separated instead of nested
-::slotted(a:hover) {
+::slotted(a:hover),
+::slotted(a.active),
+::slotted(a[active]) {
   @extend %nav-link-hover;
 }
 ::slotted(a:not(:first-child)) {
@@ -46,7 +48,9 @@ ul {
       &.nav-link {
         @extend %nav-link;
 
-        &:hover {
+        &:hover,
+        &.active,
+        &[active] {
           @extend %nav-link-hover;
         }
       }
@@ -58,13 +62,13 @@ ul {
   }
 }
 .navbar-collapse {
-  transition: max-height 0.25s ease-in;
+  transition: max-height 550ms ease-in;
   max-height: 0;
   overflow: hidden;
 
   &:not(.show) {
     display: block;
-    max-height: 100px;
+    max-height: 100vh;
   }
 
   + .navbar-collapse {
@@ -103,6 +107,12 @@ ul {
     &:before {
       @extend %nav-link-separator-desktop-before;
     }
+  }
+  ::slotted(a[slot="secondary-items"]):before {
+    border-left: 0;
+  }
+  ::slotted(a[slot="secondary-items"]:not(:last-child)):after {
+    border-right: 1px solid #e2e2e2;
   }
 
   .navbar {

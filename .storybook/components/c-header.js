@@ -11,7 +11,7 @@ export default {
       content: `
 <c-header
   site-name='Name'
-  items='[{ "text": "global", "location": "/" }]'></c-header>
+  items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'></c-header>
       `
     },
     {
@@ -20,6 +20,7 @@ export default {
 <c-header
   site-name='Name'>
   <a href="/" slot="items">global</a>
+  <a href="/" slot="items">scania</a>
 </c-header>
       `
     },
@@ -29,8 +30,8 @@ export default {
       content: `
 <c-header
   site-name='Name'
-  items='[{ "text": "global", "location": "/" }]'
-  primary-items='[{ "text": "home", "location": "/home" }, { "text": "about", "location": "/about" }]'></c-header>
+  items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'
+  primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'></c-header>
       `
     },
     {
@@ -39,8 +40,11 @@ export default {
       content: `
 <c-header
   site-name='Name'
-  items='[{ "text": "global", "location": "/" }]'>
-  <c-navigation slot="navigation" primary-items='[{ "text": "home", "location": "/home" }, { "text": "about", "location": "/about" }]'></c-navigation>
+  items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'>
+  <c-navigation
+    slot="navigation"
+    primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'
+    secondary-items='[{ "text": "user", "href": "/user" }, { "text": "more", "href": "/more" }]'></c-navigation>
 </c-header>
       `
     },
@@ -52,11 +56,12 @@ export default {
       content: `
 <c-header
   site-name='Name'
-  items='[{ "text": "global", "location": "/" }]'>
+  items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'>
   <c-navigation slot="navigation">
-    <a href="/" slot="primary-items">home</a>
+    <a href="/" slot="primary-items" active>home</a>
     <a href="/about" slot="primary-items">about</a>
     <a href="/user" slot="secondary-items">user</a>
+    <a href="/more" slot="secondary-items">more</a>
   </c-navigation>
 </c-header>
       `
@@ -70,8 +75,9 @@ export default {
 <c-header
   site-name='Name'>
   <a href="/" slot="items">global</a>
+  <a href="/" slot="items">scania</a>
   <c-navigation slot="navigation">
-    <a href="/" slot="primary-items">home</a>
+    <a href="/" slot="primary-items" active>home</a>
     <a href="/about" slot="primary-items">about</a>
     <a href="/user" slot="secondary-items">user</a>
   </c-navigation>

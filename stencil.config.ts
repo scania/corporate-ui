@@ -25,7 +25,7 @@ export const config: Config = {
     }
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/', '/projects/']
+    testPathIgnorePatterns: ['/node_modules/']
   },
   plugins: [
     sass({

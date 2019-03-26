@@ -1,17 +1,14 @@
-import { configure, addDecorator } from '@storybook/html';
+import { configure, addDecorator, addParameters } from '@storybook/html';
 import { withOptions } from '@storybook/addon-options';
 
-import { name } from '../package.json';
-
 import { defineCustomElements } from '../dist/define';
-
+import { name } from '../package.json';
 import './style/global.scss';
 
 // Loads all components
-// this will work too:
-// defineCustomElements(['c-header','c-footer','c-navigation','user-repos','c-card','c-theme']);
 defineCustomElements('all');
-
+// Load individual components:
+// defineCustomElements(['c-header','c-footer','c-navigation','user-repos','c-card','c-theme']);
 
 addDecorator(
   withOptions({
@@ -20,10 +17,4 @@ addDecorator(
   })
 );
 
-configure(loadStories, module);
-
-function loadStories() {
-  require('./kinds/info.js');
-  require('./kinds/components.js');
-  require('./kinds/templates.js');
-}
+configure(() => require('./stories'), module);

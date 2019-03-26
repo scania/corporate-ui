@@ -82,11 +82,9 @@ $h4-font-size:                $font-size-base * 1.14;
 $h5-font-size:                $font-size-base;
 $h6-font-size:                $font-size-base;
 
-$font-family-sans-serif:      'Scania Sans', Arial, Helvetica, sans-serif;
+$font-family-sans-serif:      'Scania Sans Semi Condensed', 'Scania Sans Condensed', Arial, Helvetica, sans-serif;
 $font-family-monospace:       $font-family-sans-serif;
 $font-family-base:            $font-family-sans-serif;
-
-$slim-font-family-base:       'Scania Sans Semi Condensed', 'Scania Sans Condensed', $font-family-sans-serif;
 
 $headings-font-family:        'Scania Sans Headline', Arial, Helvetica, sans-serif;
 $headings-color:              $theme-01;
@@ -95,6 +93,7 @@ $body-bg:                     $white;
 $body-color:                  $primary-03;
 
 $font-size-article:           1.8rem;
+$font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
 
 $h1-font-size-article:        $font-size-article * 5;
 $h2-font-size-article:        $font-size-article * 3.33;
@@ -174,10 +173,6 @@ $heading-sizes-article: (
 }
 
 
-// Application mode
-$app-font-family-sans-serif:  $slim-font-family-base;
-
-
 // Bootstrap imports
 @import 'node_modules/bootstrap/scss/functions';
 @import 'node_modules/bootstrap/scss/variables';
@@ -194,9 +189,9 @@ $app-font-family-sans-serif:  $slim-font-family-base;
 
 // Output rules
 body {
-  font-family: $font-family-sans-serif;
-  color: $body-color;
+  font-family: $font-family-base;
   font-size: $font-size-base;
+  color: $body-color;
   margin: 0;
 }
 
@@ -213,10 +208,11 @@ h6 {
 @include renderMap($heading-sizes, 'font-size');
 
 h5,
-h6 { font-family: $font-family-sans-serif; }
+h6 { font-family: $font-family-base; }
 h6 { font-style: italic; }
 
 article {
+  font-family: $font-family-article;
   font-size: $font-size-article;
 
   @include renderMap($heading-sizes-article, 'font-size');

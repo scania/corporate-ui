@@ -1,7 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
 
 import { store } from '../../global';
-import * as themes from '../../tmp/navigation';
+import * as themes from '../../tmp/c-navigation';
 
 @Component({
   tag: 'c-navigation',
@@ -12,9 +12,9 @@ export class Navigation {
   @Prop() theme: string;
   @Prop() primaryItems: any = [];
   @Prop() secondaryItems: any = [];
-  @Prop() show: boolean;
 
-  @State() currentTheme: string = this.theme || store.getState().theme;
+  @State() navigationOpen: boolean;
+  @State() currentTheme: string = this.theme || store.getState().theme.name;
   @State() _primaryItems: object[] = [];
   @State() _secondaryItems: object[] = [];
 
@@ -30,10 +30,20 @@ export class Navigation {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme);
+    store.subscribe(() => {
+      this.currentTheme = store.getState().theme.name;
+      this.navigationOpen = store.getState().navigation.open;
+    });
 
     this.setItems(this.primaryItems, 'primaryItems');
     this.setItems(this.secondaryItems, 'secondaryItems');
+  }
+
+  combineClasses(classes) {
+    return [
+      ...(classes || '').split(' '),
+      ...['nav-item', 'nav-link']
+    ].join(' ');
   }
 
   render() {
@@ -41,32 +51,26 @@ export class Navigation {
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg'>
-        <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
-          <ul class='navbar-nav'>
-            {this._primaryItems.map((item, key) =>
-              <li class='nav-item'>
-                <slot name={'nav-item-' + key}>
-                  <a href={item['location']} class='nav-link'>
-                    <span>{item['text']}</span>
-                  </a>
-                </slot>
-              </li>
-            )}
-          </ul>
+        <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
+          <nav class='navbar-nav'>
+            { this._primaryItems.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
+
+            <slot name="primary-items" />
+          </nav>
         </div>
 
-        <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
-          <ul class='navbar-nav ml-auto'>
-            {this._secondaryItems.map((item, key) =>
-              <li class='nav-item'>
-                <slot name={'nav-item-' + key}>
-                  <a href={item['location']} class='nav-link'>
-                    <span>{item['text']}</span>
-                  </a>
-                </slot>
-              </li>
-            )}
-          </ul>
+        <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
+          <nav class='navbar-nav ml-auto'>
+            { this._secondaryItems.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
+
+            <slot name="secondary-items" />
+          </nav>
         </div>
       </nav>
     ];

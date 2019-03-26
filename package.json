@@ -22,8 +22,7 @@
     "lint-fix": "npm run lint -- --fix",
     "prettify": "prettier {*,src/**/*,.storybook/**/*}.{js,jsx,ts,tsx,json,css,scss,md,html} --write",
     "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "storybook": "start-storybook -p 1337 -c .storybook"
+    "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "husky": {
     "hooks": {
@@ -64,6 +63,7 @@
     "boxen": "^3.0.0",
     "browser-sync": "^2.26.3",
     "cheerio": "^1.0.0-rc.2",
+    "common-tags": "^1.8.0",
     "css-loader": "^2.1.0",
     "del": "^4.0.0",
     "express": "^4.16.4",
@@ -81,6 +81,7 @@
     "marked": "^0.6.0",
     "node-html-parser": "^1.1.12",
     "node-sass": "^4.11.0",
+    "opn": "^5.5.0",
     "prettier": "1.16.4",
     "puppeteer": "1.11.0",
     "redux": "^4.0.1",

@@ -1,7 +1,9 @@
 import { series, watch, src, dest } from 'gulp';
 import { exec } from 'child_process';
 import { generateTheme } from './src/themes';
+import { stripIndents } from 'common-tags';
 import fs from 'fs';
+import opn from 'opn';
 
 const path = require('path')
 const del = require('del')
@@ -46,6 +48,15 @@ function getPreviewHeadHtml(configDirPath, interpolations) {
     result += fs.readFileSync(headHtmlPath, 'utf8');
   }
   return interpolate(result, interpolations);
+}
+function openInBrowser(address) {
+  opn(address).catch(() => {
+    logger.error(stripIndents`
+          Could not open ${address} inside a browser. If you're running this command inside a
+          docker container or on a CI, you need to pass the '--ci' flag to prevent opening a
+          browser by default.
+        `);
+  });
 }
 
 function themes(cb) {
@@ -186,13 +197,16 @@ function server(cb) {
   app.use(express.static(`${outputDir}`))
   app.use('/', router)
   app.listen(port, () => {
-    console.log('\x1b[33m%s\x1b[0m',boxen(`
-      Corporate UI is now running ... \n
-      Local: http://localhost:${port} \n
-      Network: http://${host}:${port}
-    `,
-    { padding: 1, align:'center' })
+    console.log(
+      '\x1b[33m%s\x1b[0m',
+      boxen(
+        stripIndents`Corporate UI is now running ... \n
+        Local: http://localhost:${port} \n
+        Network: http://${host}:${port}
+        `,
+      { padding: 1 })
     )
   })
+  openInBrowser(`http://localhost:${port}`)
   cb()
 }

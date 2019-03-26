@@ -1,0 +1,23 @@
+@import '../../components.scss';
+
+a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 22px;
+  height: 45px;
+  width: 45px;
+  margin-right: 20px;
+
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
+c-icon {
+  font-size: 2.6rem;
+  padding: 8px;
+  line-height: 0;
+}

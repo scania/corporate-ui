@@ -18,6 +18,30 @@ export default {
   <a href="/contact-us" slot="items">Contact us</a>
 </c-footer>
       `
+    },
+    {
+      title: 'Slot Social items',
+      content: `
+<c-footer
+  items='[{"text": "About", "href": "/about"}]'
+  social-media-items='[{"icon": "truck", "href": "/" }]'>
+  <c-social-media
+    icon="car"
+    href="/"
+    slot="social-media-items"></c-social-media>
+  <c-social-media
+    icon="alicorn"
+    href="/"
+    slot="social-media-items"></c-social-media>
+  <c-social-media
+    icon="apple-alt"
+    href="/"
+    slot="social-media-items"></c-social-media>
+
+  <a href="/cookies" slot="items">Cookies</a>
+  <a href="/contact-us" slot="items">Contact us</a>
+</c-footer>
+      `
     }
   ]
 }

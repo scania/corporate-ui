@@ -97,7 +97,7 @@ p {
     color: #000;
   }
 }
-.navigation {
+.dropup {
   position: relative;
 }
 
@@ -114,6 +114,13 @@ p {
   }
   %nav-link-separator-desktop {
     margin-left: 15px;
+  }
+  %nav-link-social {
+    border: 2px solid white;
+    border-radius: 22px;
+    height: 45px;
+    width: 45px;
+    text-align: center;
   }
 
   :host {
@@ -133,11 +140,15 @@ p {
   ::slotted(a:not(:first-child)) {
     @extend %nav-link-separator-desktop;
   }
+  ::slotted(a[slot=social-media-items]) {
+    @extend %nav-link-social;
+  }
 
   p {
     text-align: left;
     padding: 0;
     border-top: 0;
+    margin-top: 15px;
   }
 
   .navbar {
@@ -145,6 +156,14 @@ p {
     flex-wrap: wrap;
 
     .navbar-nav {
+
+      &.social-media-items {
+        margin-bottom: 20px;
+
+        a {
+          @extend %nav-link-social;
+        }
+      }
 
       .nav-item {
 
@@ -171,6 +190,7 @@ p {
   .navbar-brand {
     padding: 0;
     width: auto;
+    align-self: start;
 
     &:before {
       width: 178px;

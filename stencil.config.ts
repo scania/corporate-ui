@@ -9,10 +9,11 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      dir: 'tmp'
+      dir: '.build'
     },
     {
       type: 'www',
+      dir: '.www',
       serviceWorker: null // disable service workers
     },
     {

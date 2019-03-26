@@ -1,5 +1,6 @@
 dist/
 www/
+.www/
 
 *~
 *.sw[mnpcod]
@@ -13,6 +14,7 @@ log.txt
 *.tgz
 *.d.ts
 
+.build/
 .stencil/
 .idea/
 .vscode/
@@ -33,5 +35,6 @@ data/docs.json
 build/
 src/**/readme.md
 tmp/
+bundles/
 
 package-lock.json

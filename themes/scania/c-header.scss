@@ -80,6 +80,10 @@ c-navigation {
 
       &.nav-link {
         @extend %nav-link;
+
+        &:hover {
+          @extend %nav-link-hover;
+        }
       }
     }
   }

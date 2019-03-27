@@ -7,7 +7,7 @@ export default {
       title: 'Data items',
       content: `
 <c-footer
-  items='[{ "text": "cookies", "location": "/cookies" }, { "text": "contact us", "location": "/contact-us" }]'></c-footer>
+  items='[{ "text": "cookies", "href": "/cookies" }, { "text": "contact us", "href": "/contact-us" }]'></c-footer>
       `
     },
     {
@@ -20,10 +20,10 @@ export default {
       `
     },
     {
-      title: 'Slot Social items',
+      title: 'Both data and slot items',
       content: `
 <c-footer
-  items='[{"text": "About", "href": "/about"}]'
+  items='[{ "text": "About", "href": "/about", "target": "_blank" }]'
   social-media-items='[{"icon": "truck", "href": "/" }]'>
   <c-social-media
     icon="car"
@@ -39,7 +39,7 @@ export default {
     slot="social-media-items"></c-social-media>
 
   <a href="/cookies" slot="items">Cookies</a>
-  <a href="/contact-us" slot="items">Contact us</a>
+  <a href="/contact-us" target="_blank" slot="items">Contact us</a>
 </c-footer>
       `
     }

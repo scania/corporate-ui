@@ -39,6 +39,13 @@ export class Navigation {
     this.setItems(this.secondaryItems, 'secondaryItems');
   }
 
+  combineClasses(classes) {
+    return [
+      ...(classes || '').split(' '),
+      ...['nav-item', 'nav-link']
+    ].join(' ');
+  }
+
   render() {
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
@@ -46,11 +53,10 @@ export class Navigation {
       <nav class='navbar navbar-expand-lg'>
         <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
           <nav class='navbar-nav'>
-            {this._primaryItems.map(item =>
-              <a href={item['location']} class='nav-item nav-link'>
-                <span>{item['text']}</span>
-              </a>
-            )}
+            { this._primaryItems.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
 
             <slot name="primary-items" />
           </nav>
@@ -58,11 +64,10 @@ export class Navigation {
 
         <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
           <nav class='navbar-nav ml-auto'>
-            {this._secondaryItems.map((item) =>
-              <a href={item['location']} class='nav-item nav-link'>
-                <span>{item['text']}</span>
-              </a>
-            )}
+            { this._secondaryItems.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
 
             <slot name="secondary-items" />
           </nav>

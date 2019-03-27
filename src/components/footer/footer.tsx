@@ -54,6 +54,13 @@ export class Footer {
     this.itemsSlot = (node.assignedNodes() || node.children || [])[0];
   }
 
+  combineClasses(classes) {
+    return [
+      ...(classes || '').split(' '),
+      ...['nav-item', 'nav-link']
+    ].join(' ');
+  }
+
   render() {
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
@@ -73,11 +80,10 @@ export class Footer {
           <div class="dropup">
             <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
               <nav class='navbar-nav'>
-                { this._items.map(item => (
-                  <a href={ item['location'] } class='nav-item nav-link'>
-                    <span>{ item['text'] }</span>
-                  </a>
-                )) }
+                { this._items.map(item => {
+                  item['class'] = this.combineClasses(item['class']);
+                  return <a { ...item }></a>
+                }) }
 
                 <slot name="items" />
               </nav>

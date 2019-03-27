@@ -16,6 +16,8 @@ export default {
   <style>
     .banner {
       overflow: hidden;
+      margin-top: -40px;
+      margin-bottom: -40px;
     }
     .banner img {
       width: 100%;

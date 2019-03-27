@@ -3,16 +3,16 @@ import { exec } from 'child_process';
 import { generateTheme } from './src/themes';
 import { stripIndents } from 'common-tags';
 import fs from 'fs';
-import opn from 'opn';
 
 const path = require('path')
 const del = require('del')
 const express = require('express')
-const app = express()
 const boxen = require('boxen')
-
 const webpack = require('webpack-stream');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const browserSync = require('browser-sync').create()
+
+const app = express()
 
 const router = express.Router();
 const outputDir = path.join(__dirname, '/node_modules/@storybook/core/dist/public');
@@ -22,7 +22,7 @@ const wp_bundles = path.join(__dirname,'/bundles');
 const sb_templates = path.join(__dirname,'/node_modules/@storybook/core/src/server/templates');
 
 const build = series(themes, components, copy, pack);
-const start = series(clean, build, stream, server, watches);
+const start = series(clean, build, webpackStream, server, watches, sbWatch);
 
 export {
   themes,
@@ -49,18 +49,14 @@ function getPreviewHeadHtml(configDirPath, interpolations) {
   }
   return interpolate(result, interpolations);
 }
-function openInBrowser(address) {
-  opn(address).catch(() => {
-    logger.error(stripIndents`
-          Could not open ${address} inside a browser. If you're running this command inside a
-          docker container or on a CI, you need to pass the '--ci' flag to prevent opening a
-          browser by default.
-        `);
-  });
-}
 
 function themes(cb) {
   generateTheme(cb);
+}
+
+function reload(done){
+  browserSync.reload()
+  done(console.log('\x1b[34m%s\x1b[0m','Page updated.'))
 }
 
 function clean() {
@@ -79,13 +75,12 @@ function components(cb) {
   })
 }
 
-function copy(cb){
-  src([
+function copy(){
+  return src([
     './.build/esm/es5/**',
     './.build/collection/collection-manifest.json',
   ])
     .pipe(dest('dist/components/'))
-  cb()
 }
 
 function pack(cb) {
@@ -96,13 +91,22 @@ function pack(cb) {
 }
 
 function watches(cb) {
-  watch(['themes/**/*','src/components/**/*', '!src/components/components.d.ts'], series(build, stream));
-  // watch('src/**/*', build);
-  // reload page here
-  cb();
+  watch([
+    'themes/**/*',
+    'src/components/**/*', 
+    '!src/components/components.d.ts'], 
+    series(build, webpackStream, reload));
+  cb()
 }
 
-function stream(cb){
+function sbWatch(cb){
+  watch([
+    '.storybook/**/*'], 
+    series(webpackStream, reload));
+  cb()
+}
+
+function webpackStream(){
   cleanBundles()
   return webpack({
     watch: false,
@@ -170,8 +174,10 @@ function stream(cb){
   }).pipe(dest(`${wp_bundles}`))
 }
 
-function server(cb) {
-  const port = process.env.PORT || 1337
+
+function server(done) {
+  const expressPort = 3000
+  const bsPort = process.env.PORT || 1337
   const host = process.env.COMPUTERNAME || '0.0.0.0'
 
   router.get('/', (request, response) => {
@@ -196,17 +202,22 @@ function server(cb) {
   });
   app.use(express.static(`${outputDir}`))
   app.use('/', router)
-  app.listen(port, () => {
+  app.listen(expressPort)
+
+  browserSync.init({
+    port:bsPort,
+    proxy: `localhost:${expressPort}`,
+    logLevel: 'silent'
+  })
+  done(
     console.log(
       '\x1b[33m%s\x1b[0m',
       boxen(
         stripIndents`Corporate UI is now running ... \n
-        Local: http://localhost:${port} \n
-        Network: http://${host}:${port}
+        Local: http://localhost:${bsPort} \n
+        Network: http://${host}:${bsPort}
         `,
       { padding: 1 })
     )
-  })
-  openInBrowser(`http://localhost:${port}`)
-  cb()
+  )
 }

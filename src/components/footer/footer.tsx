@@ -10,6 +10,7 @@ import * as themes from '../../tmp/c-footer';
 })
 export class Footer {
   @Prop() theme: string;
+  @Prop() text = 'Copyright &copy; Scania 2019';
   @Prop() items: any = [];
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
@@ -86,7 +87,10 @@ export class Footer {
           : ''}
         </div>
 
-        <p data-test-id='c-footer-copyright'>Copyright &copy; Scania 2019</p>
+        <p data-test-id='c-footer-copyright'>
+          {this.text}
+          <slot name="text" />
+        </p>
       </nav>
     ];
   }

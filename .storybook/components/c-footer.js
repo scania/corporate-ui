@@ -24,7 +24,7 @@ export default {
       content: `
 <c-footer
   items='[{ "text": "About", "href": "/about", "target": "_blank" }]'
-  social-media-items='[{"icon": "truck", "href": "/" }]'>
+  social-media-items='[{"icon": "truck", "href": "/", "target": "_blank" }]'>
   <c-social-media
     icon="car"
     href="/"
@@ -36,6 +36,7 @@ export default {
   <c-social-media
     icon="apple-alt"
     href="/"
+    target="_blank"
     slot="social-media-items"></c-social-media>
 
   <a href="/cookies" slot="items">Cookies</a>

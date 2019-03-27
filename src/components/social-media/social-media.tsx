@@ -12,6 +12,9 @@ export class SocialMedia {
   @Prop() theme: string;
   @Prop() icon: string;
   @Prop() href: string;
+  @Prop() target: string;
+
+  attrs = {};
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
 
@@ -27,10 +30,15 @@ export class SocialMedia {
   }
 
   render() {
+    this.attrs = {
+      href: this.href,
+      target: this.target
+    };
+
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
-      <a href={this.href}>
+      <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>
       </a>
     ];

@@ -16,3 +16,18 @@
 .navbar-collapse + .navbar-collapse {
   overflow: visible;
 }
+
+@media (min-width: 992px) {
+
+  .navbar {
+
+    &.vertical {
+      flex-direction: column;
+      align-items: start;
+
+      .navbar-nav {
+        flex-direction: column;
+      }
+    }
+  }
+}

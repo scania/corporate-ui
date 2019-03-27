@@ -10,6 +10,7 @@ import * as themes from '../../tmp/c-navigation';
 })
 export class Navigation {
   @Prop() theme: string;
+  @Prop() orientation: string;
   @Prop() primaryItems: any = [];
   @Prop() secondaryItems: any = [];
 
@@ -50,7 +51,7 @@ export class Navigation {
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
-      <nav class='navbar navbar-expand-lg'>
+      <nav class={'navbar navbar-expand-lg ' + this.orientation}>
         <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
           <nav class='navbar-nav'>
             { this._primaryItems.map(item => {

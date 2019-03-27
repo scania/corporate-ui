@@ -4,6 +4,13 @@ export default {
   preview: '<c-footer></c-footer>',
   items: [
     {
+      title: 'Custom text',
+      content: `
+<c-footer
+  text='Some copyright related text can be set here.'></c-footer>
+      `
+    },
+    {
       title: 'Data items',
       content: `
 <c-footer

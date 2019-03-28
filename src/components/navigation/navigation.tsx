@@ -10,8 +10,8 @@ import * as themes from '../../tmp/c-navigation';
 })
 export class Navigation {
   @Prop() theme: string;
-  @Prop() primaryItems: any = [];
-  @Prop() secondaryItems: any = [];
+  @Prop() primaryItems: any;
+  @Prop() secondaryItems: any;
 
   @State() navigationOpen: boolean;
   @State() currentTheme: string = this.theme || store.getState().theme.name;
@@ -21,7 +21,7 @@ export class Navigation {
   @Watch('primaryItems')
   @Watch('secondaryItems')
   setItems(items, type) {
-    this['_' + type] = Array.isArray(items) ? items : JSON.parse(items);
+    this['_' + type] = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')

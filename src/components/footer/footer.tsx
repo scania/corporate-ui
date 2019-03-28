@@ -11,23 +11,23 @@ import * as themes from '../../tmp/c-footer';
 export class Footer {
   @Prop() theme: string;
   @Prop() text = 'Copyright &copy; Scania 2019';
-  @Prop() items: any = [];
-  @Prop() socialMediaItems: any = [];
+  @Prop() items: any;
+  @Prop() socialMediaItems: any;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
   @State() show = false;
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   @State() _items: object[] = [];
+  @State() itemsSlot = [];
   @State() _socialMediaItems: object[] = [];
-  @State() itemsSlot: any;
 
   @Element() el: HTMLElement;
 
   @Watch('items')
   @Watch('socialMediaItems')
   setItems(items, type) {
-    this[type] = Array.isArray(items) ? items : JSON.parse(items);
+    this[type] = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
@@ -43,16 +43,16 @@ export class Footer {
   }
 
   componentDidLoad() {
-    const elem = this.el.shadowRoot.querySelector('slot[name=navigation');
+    const elem = this.el.shadowRoot.querySelector('slot[name=items');
     if (elem) {
-      elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target) );
+      elem.addEventListener('slotchange', e => this.getSlotItems(e.target) );
 
-      this.getNavSlotItems(elem);
+      this.getSlotItems(elem);
     }
   }
 
-  getNavSlotItems(node) {
-    this.itemsSlot = (node.assignedNodes() || node.children || [])[0];
+  getSlotItems(node) {
+    this.itemsSlot = node.assignedNodes() || node.children;
   }
 
   combineClasses(classes) {
@@ -67,9 +67,10 @@ export class Footer {
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' data-test-id='c-footer'>
-        <strong class='navbar-brand' data-test-id='c-footer-logo'></strong>
 
-        <div class="navigation">
+        <div class="navbar-top">
+          <strong class='navbar-brand' data-test-id='c-footer-logo'></strong>
+
           <nav class='navbar-nav social-media-items'>
             { this._socialMediaItems.map(item => (
               <c-social-media { ...item }></c-social-media>
@@ -77,28 +78,28 @@ export class Footer {
 
             <slot name="social-media-items" />
           </nav>
+        </div>
 
-          <div class="dropup">
-            <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
-              <nav class='navbar-nav'>
-                { this._items.map(item => {
-                  item['class'] = this.combineClasses(item['class']);
-                  return <a { ...item }></a>
-                }) }
+        <div class="dropup">
+          <div class={'collapse navbar-collapse' + (this.show ? ' show' : '')}>
+            <nav class='navbar-nav'>
+              { this._items.map(item => {
+                item['class'] = this.combineClasses(item['class']);
+                return <a { ...item }></a>
+              }) }
 
-                <slot name="items" />
-              </nav>
-            </div>
-
-            {this.items || this.itemsSlot ?
-              <button
-                class='navbar-toggler collapsed btn btn-link dropdown-toggle'
-                type='button'
-                onClick={() => this.show = !this.show }>
-                Scania
-              </button>
-            : ''}
+              <slot name="items" />
+            </nav>
           </div>
+
+          {this._items.length || this.itemsSlot.length ?
+            <button
+              class='navbar-toggler collapsed btn btn-link dropdown-toggle'
+              type='button'
+              onClick={() => this.show = !this.show }>
+              Scania
+            </button>
+          : ''}
         </div>
 
         <p data-test-id='c-footer-copyright'>

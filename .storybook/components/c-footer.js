@@ -30,6 +30,53 @@ export default {
       title: 'Both data and slot items',
       content: `
 <c-footer
+  items='[{ "text": "About", "href": "/about", "target": "_blank" }]'>
+
+  <a href="/cookies" slot="items">Cookies</a>
+  <a href="/contact-us" target="_blank" slot="items">Contact us</a>
+</c-footer>
+      `
+    },
+    {
+      title: 'Data social media items',
+      content: `
+<c-footer
+  items='[{ "text": "About", "href": "/about", "target": "_blank" }]'
+  social-media-items='[{"icon": "truck", "href": "/", "target": "_blank" }]'>
+
+  <a href="/cookies" slot="items">Cookies</a>
+  <a href="/contact-us" target="_blank" slot="items">Contact us</a>
+</c-footer>
+      `
+    },
+    {
+      title: 'Slot social media items',
+      content: `
+<c-footer
+  items='[{ "text": "About", "href": "/about", "target": "_blank" }]'>
+  <c-social-media
+    icon="car"
+    href="/"
+    slot="social-media-items"></c-social-media>
+  <c-social-media
+    icon="alicorn"
+    href="/"
+    slot="social-media-items"></c-social-media>
+  <c-social-media
+    icon="apple-alt"
+    href="/"
+    target="_blank"
+    slot="social-media-items"></c-social-media>
+
+  <a href="/cookies" slot="items">Cookies</a>
+  <a href="/contact-us" target="_blank" slot="items">Contact us</a>
+</c-footer>
+      `
+    },
+    {
+      title: 'Both data and slot social media items',
+      content: `
+<c-footer
   items='[{ "text": "About", "href": "/about", "target": "_blank" }]'
   social-media-items='[{"icon": "truck", "href": "/", "target": "_blank" }]'>
   <c-social-media

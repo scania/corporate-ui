@@ -12,22 +12,20 @@ export class Header {
   @Prop() theme: string;
   @Prop() siteName: string;
   @Prop() siteUrl = '/';
-  @Prop() items: any = [];
-  @Prop() primaryItems: any;
-  @Prop() secondaryItems: any;
+  @Prop() items: any;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
   @State() navigationOpen = store.getState().navigation.open;
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   @State() _items: object[] = [];
-  @State() navigationSlot: any;
+  @State() navigationSlot = [];
 
   @Element() el: HTMLElement;
 
   @Watch('items')
   setItems(items) {
-    this._items = Array.isArray(items) ? items : JSON.parse(items);
+    this._items = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
@@ -56,7 +54,7 @@ export class Header {
   }
 
   getNavSlotItems(node) {
-    this.navigationSlot = (node.assignedNodes() || node.children || [])[0];
+    this.navigationSlot = node.assignedNodes() || node.children;
   }
 
   combineClasses(classes) {
@@ -71,7 +69,7 @@ export class Header {
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
-        {this.primaryItems || this.secondaryItems || this.navigationSlot ?
+        {this.navigationSlot.length ?
           <button
             class='navbar-toggler collapsed'
             type='button'
@@ -97,11 +95,7 @@ export class Header {
 
       <a href={ this.siteUrl } class='navbar-symbol'></a>,
 
-      <slot name="navigation" />,
-
-      (this.primaryItems || this.secondaryItems
-        ? <c-navigation primary-items={this.primaryItems} secondary-items={this.secondaryItems}></c-navigation>
-        : '')
+      <slot name="navigation" />
     ];
   }
 }

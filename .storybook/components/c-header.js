@@ -25,17 +25,7 @@ export default {
       `
     },
     {
-      title: 'With navigation',
-      description: 'This header setup shows the usage of a nested navigation inside the header.',
-      content: `
-<c-header
-  site-name='Name'
-  items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'
-  primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'></c-header>
-      `
-    },
-    {
-      title: 'With navigation in slot',
+      title: 'With navigation and items as data',
       description: 'This header setup shows the usage of a navigation inside the header.',
       content: `
 <c-header
@@ -49,7 +39,7 @@ export default {
       `
     },
     {
-      title: 'With nested slots',
+      title: 'With navigation and items in slots',
       description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
                     Notice that in this example we provide a link element and no global style for a link is available.
                     But providing that makes it possible to style, like we do in this example`,
@@ -67,7 +57,7 @@ export default {
       `
     },
     {
-      title: 'Items in slot and with nested slots',
+      title: 'Items in slot plus navigation and items in slots',
       description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
                     Notice that in this example we provide a link element and no global style for a link is available.
                     But providing that makes it possible to style, like we do in this example`,

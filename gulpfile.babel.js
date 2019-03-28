@@ -1,6 +1,6 @@
 import { series, watch, src, dest } from 'gulp';
 import { exec } from 'child_process';
-import { generateTheme } from './src/themes';
+import { generateTheme } from './utils/themes';
 import { stripIndents } from 'common-tags';
 import fs from 'fs';
 
@@ -15,11 +15,13 @@ const browserSync = require('browser-sync').create()
 const app = express()
 
 const router = express.Router();
-const outputDir = path.join(__dirname, '/www');
 const dllPath = path.join(__dirname,'/node_modules/@storybook/core/dll');
-const configDir = path.join(__dirname,'/.storybook');
-const wp_bundles = path.join(__dirname,'/bundles');
 const sb_templates = path.join(__dirname,'/node_modules/@storybook/core/src/server/templates');
+const configDir = path.join(__dirname,'/public'); //storybook config folder
+const wp_bundles = path.join(__dirname,'/.storybook'); // auto-generated webpack bundles
+const outputDir = path.join(__dirname, '/www'); // folder to serve main storybook server
+const stencilBuild = path.join(__dirname, '/.build'); // stencil default compiled files
+const dist = path.join(__dirname, '/dist'); // distribution folder
 
 const build = series(themes, components, copy, pack);
 const start = series(clean, build, managerStream, webpackStream, server, watches, sbWatch);
@@ -82,11 +84,11 @@ function reload(done){
 }
 
 function clean() {
-  return del(['.build', 'dist'])
+  return del([outputDir, stencilBuild, dist])
 }
 
 function cleanBundles() {
-  return del(['bundles'])
+  return del([wp_bundles])
 }
 
 function components(cb) {
@@ -99,22 +101,22 @@ function components(cb) {
 
 function copy(){
   return src([
-    './.build/esm/es5/**',
-    './.build/collection/collection-manifest.json',
+    path.join(`${stencilBuild}/esm/es5/**`),
+    path.join(`${stencilBuild}/collection/collection-manifest.json`),
   ])
-    .pipe(dest('dist/components/'))
+    .pipe(dest(path.join(`${dist}/components/`)))
 }
 
 function pack(cb) {
-  src('./define.js')
-    .pipe(dest('dist'))
+  src('./utils/define.js')
+    .pipe(dest(dist))
   console.log('Project successfully packed.');
   cb();
 }
 
 function watches(cb) {
   watch([
-    'themes/**/*',
+    'src/themes/**/*',
     'src/components/**/*', 
     '!src/components/components.d.ts'], 
     series(build, webpackStream, reload));
@@ -123,7 +125,7 @@ function watches(cb) {
 
 function sbWatch(cb){
   watch([
-    '.storybook/**/*'], 
+    path.join(`${configDir}/**/*`)], 
     series(managerStream, webpackStream, reload));
   cb()
 }

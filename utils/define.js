@@ -1,6 +1,6 @@
-import { defineCustomElement } from '../.build/esm/es5/corporate-ui.core'
-import * as CUI from '../.build/esm/es5/corporate-ui.components'
-import collections from '../.build/collection/collection-manifest.json'
+import { defineCustomElement } from './components/corporate-ui.core'
+import * as CUI from './components/corporate-ui.components'
+import collections from './components/collection-manifest.json'
 
 const CUI_COMPONENTS = CUI.COMPONENTS
 let subComponents = {},

@@ -3,7 +3,7 @@ const path = require('path');
 const sass = require('node-sass');
 
 const components = 'src/components/';
-const inputFolder = 'themes/';
+const inputFolder = 'src/themes/';
 const outputFolder = 'src/tmp/';
 const time = new Date();
 

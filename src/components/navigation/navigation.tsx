@@ -72,7 +72,11 @@ export class Navigation {
             <slot name="secondary-items" />
           </nav>
         </div>
-      </nav>
+      </nav>,
+
+      <div class="sub-navigation">
+        <slot name="sub-navigation" />
+      </div>
     ];
   }
 }

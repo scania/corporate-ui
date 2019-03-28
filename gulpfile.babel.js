@@ -15,14 +15,14 @@ const browserSync = require('browser-sync').create()
 const app = express()
 
 const router = express.Router();
-const outputDir = path.join(__dirname, '/node_modules/@storybook/core/dist/public');
+const outputDir = path.join(__dirname, '/www');
 const dllPath = path.join(__dirname,'/node_modules/@storybook/core/dll');
 const configDir = path.join(__dirname,'/.storybook');
 const wp_bundles = path.join(__dirname,'/bundles');
 const sb_templates = path.join(__dirname,'/node_modules/@storybook/core/src/server/templates');
 
 const build = series(themes, components, copy, pack);
-const start = series(clean, build, webpackStream, server, watches, sbWatch);
+const start = series(clean, build, managerStream, webpackStream, server, watches, sbWatch);
 
 export {
   themes,
@@ -49,6 +49,21 @@ function getPreviewHeadHtml(configDirPath, interpolations) {
   }
   return interpolate(result, interpolations);
 }
+export function getManagerHeadHtml(configDirPath, interpolations) {
+  const base = fs.readFileSync(
+    path.resolve(__dirname, `${sb_templates}/base-manager-head.html`),
+    'utf8'
+  );
+  const scriptPath = path.resolve(configDirPath, 'manager-head.html');
+
+  let result = base;
+
+  if (fs.existsSync(scriptPath)) {
+    result += fs.readFileSync(scriptPath, 'utf8');
+  }
+
+  return interpolate(result, interpolations);
+}
 
 function themes(cb) {
   generateTheme(cb);
@@ -56,7 +71,14 @@ function themes(cb) {
 
 function reload(done){
   browserSync.reload()
-  done(console.log('\x1b[34m%s\x1b[0m','Page updated.'))
+  done(
+    console.log(
+      '\x1b[32m%s\x1b[0m',
+      boxen(
+        stripIndents`Page updated`,
+      { padding: 1 })
+    )
+  )
 }
 
 function clean() {
@@ -102,8 +124,72 @@ function watches(cb) {
 function sbWatch(cb){
   watch([
     '.storybook/**/*'], 
-    series(webpackStream, reload));
+    series(managerStream, webpackStream, reload));
   cb()
+}
+
+function managerStream(){
+  return webpack({
+    watch: false,
+    devtool: 'none',
+    entry: 
+    [
+      path.join(__dirname,'node_modules/@storybook/core/dist/server/common/polyfills.js'),
+      path.join(`${configDir}/addons.js`),
+      path.join(__dirname,'node_modules/@storybook/core/dist/client/manager/index.js')
+    ],
+    output: {
+      path: outputDir,
+      filename: '[name].[chunkhash].bundle.js',
+      publicPath: '',
+    },
+    resolve: {
+      extensions: [ '.mjs', '.js', '.jsx', '.json' ],
+      alias:
+      { 'core-js': path.join(__dirname, 'node_modules/core-js'),
+        react: path.join(__dirname, 'node_modules/react'),
+        'react-dom': path.join(__dirname, 'node_modules/react-dom') } 
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: `index.html`,
+        title: 'Corporate UI',
+        chunksSortMode: 'none',
+        alwaysWriteToDisk: true,
+        inject: false,
+        templateParameters: (compilation, files, options) => ({
+          compilation,
+          files,
+          options,
+          dlls: ['/sb_dll/storybook_ui_dll.js'],
+          headHtmlSnippet: getManagerHeadHtml(configDir, process.env),
+        }),
+        template: require.resolve(path.join(`${sb_templates}/index.ejs`))
+      })
+    ],
+    module : {
+      rules: [
+        {
+          test: /\.(mjs|jsx|js?)$/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/react']
+              }
+            },
+          ]
+        }
+      ]
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
+      runtimeChunk: true,
+    }
+  })
+  .pipe(dest(outputDir))
 }
 
 function webpackStream(){
@@ -171,7 +257,7 @@ function webpackStream(){
       template: require.resolve(path.join(`${sb_templates}/index.ejs`)),
     })
   ]
-  }).pipe(dest(`${wp_bundles}`))
+  }).pipe(dest(wp_bundles))
 }
 
 
@@ -194,13 +280,13 @@ function server(done) {
   });
   router.get(/(.+\.js)$/, (request, response) => {
     response.set('Content-Type', 'text/javascript');
-    response.sendFile(path.join(`${wp_bundles}`, `/${request.params[0]}`));
+    response.sendFile(path.join(`${wp_bundles}/${request.params[0]}`));
   });
   router.get(/(.+\.html)$/, (request, response) => {
     response.set('Content-Type', 'text/html');
-    response.sendFile(path.join(`${wp_bundles}`, `/${request.params[0]}`));
+    response.sendFile(path.join(`${wp_bundles}/${request.params[0]}`));
   });
-  app.use(express.static(`${outputDir}`))
+  app.use(express.static(outputDir))
   app.use('/', router)
   app.listen(expressPort)
 

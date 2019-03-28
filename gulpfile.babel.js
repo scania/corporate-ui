@@ -1,8 +1,8 @@
 import { series, watch, src, dest } from 'gulp';
 import { exec } from 'child_process';
 import { generateTheme } from './utils/themes';
+import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './utils/storybook_template'
 import { stripIndents } from 'common-tags';
-import fs from 'fs';
 
 const path = require('path')
 const del = require('del')
@@ -30,41 +30,6 @@ export {
   themes,
   build,
   start as default
-}
-
-const interpolate = (string, data = {}) =>
-  Object.entries(data).reduce((acc, [k, v]) => acc.replace(new RegExp(`%${k}%`, 'g'), v), string);
-function getPreviewBodyHtml() {
-  return fs.readFileSync(
-    path.resolve(path.join(`${sb_templates}/base-preview-body.html`)),
-    'utf8')
-}
-function getPreviewHeadHtml(configDirPath, interpolations) {
-  const base = fs.readFileSync(
-    path.resolve(path.join(`${sb_templates}/base-preview-head.html`)),
-    'utf8'
-  );
-  const headHtmlPath = path.resolve(configDirPath, 'preview-head.html');
-  let result = base;
-  if (fs.existsSync(headHtmlPath)) {
-    result += fs.readFileSync(headHtmlPath, 'utf8');
-  }
-  return interpolate(result, interpolations);
-}
-export function getManagerHeadHtml(configDirPath, interpolations) {
-  const base = fs.readFileSync(
-    path.resolve(__dirname, `${sb_templates}/base-manager-head.html`),
-    'utf8'
-  );
-  const scriptPath = path.resolve(configDirPath, 'manager-head.html');
-
-  let result = base;
-
-  if (fs.existsSync(scriptPath)) {
-    result += fs.readFileSync(scriptPath, 'utf8');
-  }
-
-  return interpolate(result, interpolations);
 }
 
 function themes(cb) {
@@ -124,8 +89,7 @@ function watches(cb) {
 }
 
 function sbWatch(cb){
-  watch([
-    path.join(`${configDir}/**/*`)], 
+  watch([configDir], 
     series(managerStream, webpackStream, reload));
   cb()
 }

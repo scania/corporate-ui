@@ -12,11 +12,6 @@
 
 @import '../../components.scss';
 
-
-.navbar-collapse + .navbar-collapse {
-  overflow: visible;
-}
-
 @media (min-width: 992px) {
 
   .navbar {

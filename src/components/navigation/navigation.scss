@@ -11,8 +11,3 @@
 @import 'node_modules/bootstrap/scss/dropdown';
 
 @import '../../components.scss';
-
-
-.navbar-collapse + .navbar-collapse {
-  overflow: visible;
-}

@@ -42,7 +42,7 @@ export default {
       content: `
 <c-footer
   items='[{ "text": "About", "href": "/about", "target": "_blank" }]'
-  social-media-items='[{"icon": "truck", "href": "/", "target": "_blank" }]'>
+  social-media-items='[{"icon": "youtube", "href": "/", "target": "_blank" }]'>
 
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" target="_blank" slot="items">Contact us</a>
@@ -55,15 +55,15 @@ export default {
 <c-footer
   items='[{ "text": "About", "href": "/about", "target": "_blank" }]'>
   <c-social-media
-    icon="car"
+    icon="youtube"
     href="/"
     slot="social-media-items"></c-social-media>
   <c-social-media
-    icon="alicorn"
+    icon="twitter"
     href="/"
     slot="social-media-items"></c-social-media>
   <c-social-media
-    icon="apple-alt"
+    icon="linkedin"
     href="/"
     target="_blank"
     slot="social-media-items"></c-social-media>
@@ -78,17 +78,17 @@ export default {
       content: `
 <c-footer
   items='[{ "text": "About", "href": "/about", "target": "_blank" }]'
-  social-media-items='[{"icon": "truck", "href": "/", "target": "_blank" }]'>
+  social-media-items='[{"icon": "youtube", "href": "/", "target": "_blank" }]'>
   <c-social-media
-    icon="car"
+    icon="twitter"
     href="/"
     slot="social-media-items"></c-social-media>
   <c-social-media
-    icon="alicorn"
+    icon="linkedin"
     href="/"
     slot="social-media-items"></c-social-media>
   <c-social-media
-    icon="apple-alt"
+    icon="facebook"
     href="/"
     target="_blank"
     slot="social-media-items"></c-social-media>

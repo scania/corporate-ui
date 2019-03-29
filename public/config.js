@@ -1,7 +1,7 @@
 import { configure, addDecorator, addParameters } from '@storybook/html';
 import { withOptions } from '@storybook/addon-options';
 
-import { defineCustomElements } from '../dist/collection/helpers';
+import { defineCustomElements } from '../dist/define';
 import { name } from '../package.json';
 import './style/global.scss';
 

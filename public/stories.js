@@ -5,7 +5,7 @@ import marked from 'marked';
 
 import { renderMain, renderOverview, renderItems, importAll } from './helpers';
 import readme from '../readme.md';
-import docs from '../data/docs.json';
+import docs from '../.data/docs.json';
 
 const components = {};
 importAll(require.context('./components/', true, /\.js$/), components);

@@ -3,28 +3,26 @@ import { exec } from 'child_process';
 import { generateTheme } from './utils/themes';
 import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './utils/storybook_template'
 import { stripIndents } from 'common-tags';
+import { join } from 'path';
+import del from 'del';
+import express from 'express';
+import boxen from 'boxen';
+import webpack from 'webpack-stream';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { create } from 'browser-sync';
 
-const path = require('path')
-const del = require('del')
-const express = require('express')
-const boxen = require('boxen')
-const webpack = require('webpack-stream');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const browserSync = require('browser-sync').create()
-
+const browserSync = create()
 const app = express()
-
 const router = express.Router();
-const dllPath = path.join(__dirname,'/node_modules/@storybook/core/dll');
-const sb_templates = path.join(__dirname,'/node_modules/@storybook/core/src/server/templates');
-const configDir = path.join(__dirname,'/public'); //storybook config folder
-const wp_bundles = path.join(__dirname,'/.storybook'); // auto-generated webpack bundles
-const outputDir = path.join(__dirname, '/www'); // folder to serve main storybook server
-const stencilBuild = path.join(__dirname, '/.build'); // stencil default compiled files
-const dist = path.join(__dirname, '/dist'); // distribution folder
 
 const build = series(themes, components, copy, pack);
-const start = series(clean, build, managerStream, webpackStream, server, watches, sbWatch);
+const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
+
+const serverPath = join(__dirname,'/node_modules/@storybook/core/');
+const configDir = join(__dirname,'/public'); //storybook config folder
+const outputDir = join(__dirname, '/.storybook'); // folder to serve main storybook server & bundles
+const stencilBuild = join(__dirname, '/.build'); // stencil default compiled files
+const dist = join(__dirname, '/dist'); // distribution folder
 
 export {
   themes,
@@ -48,12 +46,12 @@ function reload(done){
   )
 }
 
-function clean() {
+function cleanAll() {
   return del([outputDir, stencilBuild, dist])
 }
 
-function cleanBundles() {
-  return del([wp_bundles])
+function cleanManager() {
+  return del([`${outputDir}/manager`])
 }
 
 function components(cb) {
@@ -66,10 +64,10 @@ function components(cb) {
 
 function copy(){
   return src([
-    path.join(`${stencilBuild}/esm/es5/**`),
-    path.join(`${stencilBuild}/collection/collection-manifest.json`),
+    `${stencilBuild}/esm/es5/**`,
+    `${stencilBuild}/collection/collection-manifest.json`,
   ])
-    .pipe(dest(path.join(`${dist}/components/`)))
+    .pipe(dest(`${dist}/components/`))
 }
 
 function pack(cb) {
@@ -90,31 +88,32 @@ function watches(cb) {
 
 function sbWatch(cb){
   watch([configDir], 
-    series(managerStream, webpackStream, reload));
+    series(managerStream, reload));
   cb()
 }
 
 function managerStream(){
+  cleanManager()
   return webpack({
     watch: false,
     devtool: 'none',
     entry: 
     [
-      path.join(__dirname,'node_modules/@storybook/core/dist/server/common/polyfills.js'),
-      path.join(`${configDir}/addons.js`),
-      path.join(__dirname,'node_modules/@storybook/core/dist/client/manager/index.js')
+      `${serverPath}dist/server/common/polyfills.js`,
+      `${configDir}/addons.js`,
+      `${serverPath}dist/client/manager/index.js`
     ],
     output: {
-      path: outputDir,
+      path: `${outputDir}/manager`,
       filename: '[name].[chunkhash].bundle.js',
       publicPath: '',
     },
     resolve: {
       extensions: [ '.mjs', '.js', '.jsx', '.json' ],
       alias:
-      { 'core-js': path.join(__dirname, 'node_modules/core-js'),
-        react: path.join(__dirname, 'node_modules/react'),
-        'react-dom': path.join(__dirname, 'node_modules/react-dom') } 
+      { 'core-js': 'core-js',
+        react: 'react',
+        'react-dom': 'react-dom' } 
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -130,7 +129,7 @@ function managerStream(){
           dlls: ['/sb_dll/storybook_ui_dll.js'],
           headHtmlSnippet: getManagerHeadHtml(configDir, process.env),
         }),
-        template: require.resolve(path.join(`${sb_templates}/index.ejs`))
+        template: require.resolve(`${serverPath}src/server/templates/index.ejs`)
       })
     ],
     module : {
@@ -155,20 +154,20 @@ function managerStream(){
       runtimeChunk: true,
     }
   })
-  .pipe(dest(outputDir))
+  .pipe(dest(`${outputDir}/manager`))
 }
 
 function webpackStream(){
-  cleanBundles()
+  del([`${outputDir}/**/*`, `!${outputDir}/manager/**`])
   return webpack({
     watch: false,
     entry: 
-    [ path.join(__dirname,'node_modules/@storybook/core/dist/server/common/polyfills.js'),
-      path.join(__dirname,'node_modules/@storybook/core/dist/server/preview/globals.js'),
-      path.join(`${configDir}/config.js`)
+    [ `${serverPath}dist/server/common/polyfills.js`,
+      `${serverPath}dist/server/preview/globals.js`,
+      `${configDir}/config.js`
     ],
     output: {
-      path: path.join(__dirname,'node_modules/@storybook/core/dist/public'),
+      path: `${serverPath}dist/public`,
       filename: '[name].[hash].bundle.js',
       publicPath: '' 
     },
@@ -176,9 +175,9 @@ function webpackStream(){
     resolve: {
       extensions: [ '.mjs', '.js', '.jsx', '.json' ],
       alias:
-      { 'core-js': path.join(__dirname, 'node_modules/core-js'),
-        react: path.join(__dirname, 'node_modules/react'),
-        'react-dom': path.join(__dirname, 'node_modules/react-dom') } 
+      { 'core-js': 'core-js',
+        react: 'react',
+        'react-dom': 'react-dom' } 
     },
     module: {
       rules: [
@@ -220,10 +219,10 @@ function webpackStream(){
         dlls: [],
         bodyHtmlSnippet: getPreviewBodyHtml(),
       }),
-      template: require.resolve(path.join(`${sb_templates}/index.ejs`)),
+      template: require.resolve(`${serverPath}src/server/templates/index.ejs`),
     })
   ]
-  }).pipe(dest(wp_bundles))
+  }).pipe(dest(outputDir))
 }
 
 
@@ -234,25 +233,25 @@ function server(done) {
 
   router.get('/', (request, response) => {
     response.set('Content-Type', 'text/html');
-    response.sendFile(path.join(`${outputDir}/index.html`));
+    response.sendFile(`${outputDir}/index.html`);
   });
   router.get(/\/sb_dll\/(.+\.js)$/, (request, response) => {
     response.set('Content-Type', 'text/javascript');
-    response.sendFile(path.join(`${dllPath}/${request.params[0]}`));
+    response.sendFile(`${serverPath}dll/${request.params[0]}`);
   });
   router.get(/\/sb_dll\/(.+\.LICENCE)$/, (request, response) => {
     response.set('Content-Type', 'text/html');
-    response.sendFile(path.join(`${dllPath}/${request.params[0]}`));
+    response.sendFile(`${serverPath}dll/${request.params[0]}`);
   });
   router.get(/(.+\.js)$/, (request, response) => {
     response.set('Content-Type', 'text/javascript');
-    response.sendFile(path.join(`${wp_bundles}/${request.params[0]}`));
+    response.sendFile(`${outputDir}/${request.params[0]}`);
   });
   router.get(/(.+\.html)$/, (request, response) => {
     response.set('Content-Type', 'text/html');
-    response.sendFile(path.join(`${wp_bundles}/${request.params[0]}`));
+    response.sendFile(`${outputDir}/${request.params[0]}`);
   });
-  app.use(express.static(outputDir))
+  app.use(express.static(`${outputDir}/manager`))
   app.use('/', router)
   app.listen(expressPort)
 

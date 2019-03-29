@@ -1,7 +1,7 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
 
-import { store, actions } from '../../global';
-import * as themes from '../../tmp/c-theme';
+import { store, actions } from '../../store';
+import * as themes from '../../themes.built/c-theme';
 
 @Component({
   tag: 'c-theme',

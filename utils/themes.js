@@ -4,7 +4,7 @@ const sass = require('node-sass');
 
 const components = 'src/components/';
 const inputFolder = 'src/themes/';
-const outputFolder = 'src/tmp/';
+const outputFolder = 'src/themes.built/';
 const time = new Date();
 
 export { generateTheme }
@@ -107,7 +107,7 @@ function generateTheme(callback=function(){}) {
                   throw err3;
                 }
                 counter++;
-                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: tmp/' + key + '.ts');
+                console.log('[' + time.getMinutes() + ':' + time.getSeconds() + ':' + time.getMilliseconds().toString()[0] + ']  Generated: themes.built/' + key + '.ts');
                 if(counter === Object.keys(componentCSS).length) {
                   callback();
                 }

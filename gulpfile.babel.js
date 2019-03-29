@@ -12,10 +12,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { create } from 'browser-sync';
 
 const browserSync = create()
-const app = express()
-const router = express.Router();
 
-const build = series(themes, components, copy, pack);
+const build = series(generateTheme, components, copy, pack);
 const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname,'/node_modules/@storybook/core/');
@@ -25,13 +23,9 @@ const stencilBuild = join(__dirname, '/.build'); // stencil default compiled fil
 const dist = join(__dirname, '/dist'); // distribution folder
 
 export {
-  themes,
+  generateTheme,
   build,
   start as default
-}
-
-function themes(cb) {
-  generateTheme(cb);
 }
 
 function reload(done){
@@ -46,10 +40,12 @@ function reload(done){
   )
 }
 
+// clean all compiled folder
 function cleanAll() {
   return del([outputDir, stencilBuild, dist])
 }
 
+// clean manager folder (used when changes happen on storybook manager)
 function cleanManager() {
   return del([`${outputDir}/manager`])
 }
@@ -77,6 +73,7 @@ function pack(cb) {
   cb();
 }
 
+// watch stencil & themes
 function watches(cb) {
   watch([
     'src/themes/**/*',
@@ -86,12 +83,15 @@ function watches(cb) {
   cb()
 }
 
+// watch changes in any storybook config (public folder)
+// need to run webpackStream as well, if we change content in iframe from the config file
 function sbWatch(cb){
   watch([configDir], 
-    series(managerStream, reload));
+    series(managerStream, webpackStream, reload));
   cb()
 }
 
+// webpack task for storybook manager (includes side Pane and whole application settings)
 function managerStream(){
   cleanManager()
   return webpack({
@@ -157,6 +157,7 @@ function managerStream(){
   .pipe(dest(`${outputDir}/manager`))
 }
 
+// webpack task for everything inside storybook iframe
 function webpackStream(){
   del([`${outputDir}/**/*`, `!${outputDir}/manager/**`])
   return webpack({
@@ -225,8 +226,10 @@ function webpackStream(){
   }).pipe(dest(outputDir))
 }
 
-
+// setup server express and browsersync
 function server(done) {
+  const app = express()
+  const router = express.Router()
   const expressPort = 3000
   const bsPort = process.env.PORT || 1337
   const host = process.env.COMPUTERNAME || '0.0.0.0'
@@ -262,7 +265,7 @@ function server(done) {
   })
   done(
     console.log(
-      '\x1b[33m%s\x1b[0m',
+      '\x1b[32m%s\x1b[0m',
       boxen(
         stripIndents`Corporate UI is now running ... \n
         Local: http://localhost:${bsPort} \n

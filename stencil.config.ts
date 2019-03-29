@@ -18,11 +18,11 @@ export const config: Config = {
     },
     {
       type: 'docs-json',
-      file: 'data/docs.json'
+      file: '.data/docs.json'
     },
     {
       type: 'stats',
-      file: 'data/stats.json'
+      file: '.data/stats.json'
     }
   ],
   testing: {

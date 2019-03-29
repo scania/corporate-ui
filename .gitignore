@@ -2,13 +2,14 @@
 .build/
 .www/
 src/**/readme.md
+.data/stats.json
+.data/docs.json
 
 # Compiled theme
-tmp/
+themes.built/
 
 # Compiled from gulpfile.babel.js
 .storybook/
-www/
 dist/
 
 *~
@@ -36,9 +37,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 .npmrc
-
-data/stats.json
-data/docs.json
 
 package-lock.json
 themes/elicitation/c-card.scss

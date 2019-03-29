@@ -11,3 +11,18 @@
 @import 'node_modules/bootstrap/scss/dropdown';
 
 @import '../../components.scss';
+
+@media (min-width: 992px) {
+
+  .navbar {
+
+    &.vertical {
+      flex-direction: column;
+      align-items: start;
+
+      .navbar-nav {
+        flex-direction: column;
+      }
+    }
+  }
+}

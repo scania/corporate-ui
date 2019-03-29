@@ -188,13 +188,25 @@ $heading-sizes-article: (
 
 
 // Output rules
+html,
+body {
+  display: flex;
+  flex-direction: column;
+}
+html {
+  height: 100%;
+}
 body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   color: $body-color;
   margin: 0;
+  flex: 1;
 }
-
+section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
 h1,
 h2,
 h3,
@@ -203,6 +215,13 @@ h5,
 h6 {
   font-family: $headings-font-family;
   color: $headings-color;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+* {
+  box-sizing: border-box;
 }
 
 @include renderMap($heading-sizes, 'font-size');

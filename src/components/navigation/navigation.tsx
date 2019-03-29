@@ -10,8 +10,9 @@ import * as themes from '../../themes.built/c-navigation';
 })
 export class Navigation {
   @Prop() theme: string;
-  @Prop() primaryItems: any = [];
-  @Prop() secondaryItems: any = [];
+  @Prop() orientation: string;
+  @Prop() primaryItems: any;
+  @Prop() secondaryItems: any;
 
   @State() navigationOpen: boolean;
   @State() currentTheme: string = this.theme || store.getState().theme.name;
@@ -21,7 +22,7 @@ export class Navigation {
   @Watch('primaryItems')
   @Watch('secondaryItems')
   setItems(items, type) {
-    this['_' + type] = Array.isArray(items) ? items : JSON.parse(items);
+    this['_' + type] = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
@@ -50,7 +51,7 @@ export class Navigation {
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
-      <nav class='navbar navbar-expand-lg'>
+      <nav class={'navbar navbar-expand-lg ' + this.orientation}>
         <div class={'collapse navbar-collapse' + (this.navigationOpen ? ' show' : '')}>
           <nav class='navbar-nav'>
             { this._primaryItems.map(item => {

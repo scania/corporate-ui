@@ -8,6 +8,17 @@
 %nav-link-hover {
   text-decoration: underline;
 }
+%nav-link-social {
+  background-color: black;
+  color: white;
+  border-color: white;
+  margin-bottom: 10px;
+}
+%nav-link-social-hover {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
 
 :host {
   background-color: #fff;
@@ -20,6 +31,12 @@
 // we need to have the hover separated instead of nested
 ::slotted(a:hover) {
   @extend %nav-link-hover;
+}
+::slotted(c-social-media) {
+  @extend %nav-link-social;
+}
+::slotted(c-social-media:hover) {
+  @extend %nav-link-social-hover;
 }
 
 p {
@@ -39,6 +56,19 @@ p {
   .navbar-nav {
     text-transform: uppercase;
     margin-top: 0;
+
+    &.social-media-items {
+      display: block;
+      padding-left: 10px; /* To cancle out last item margin */
+
+      c-social-media {
+        @extend %nav-link-social;
+
+        &:hover  {
+          @extend %nav-link-social-hover;
+        }
+      }
+    }
 
     .nav-item {
 
@@ -97,8 +127,14 @@ p {
     color: #000;
   }
 }
-.navigation {
+.navbar-top {
+  background-color: #000;
+  text-align: center;
+  width: 100%;
+}
+.dropup {
   position: relative;
+  text-align: center;
 }
 
 @media (min-width: 992px) {
@@ -106,14 +142,15 @@ p {
   %nav-link-desktop {
     text-decoration: none;
     padding: 0;
+    margin-right: 15px,
   }
   // Sass compiler renders :hover and :before differently
   // and this is due to browsers lackof support
   %nav-link-hover-desktop {
     text-decoration: underline;
   }
-  %nav-link-separator-desktop {
-    margin-left: 15px;
+  %nav-link-social-desktop {
+    margin-bottom: 0;
   }
 
   :host {
@@ -130,14 +167,15 @@ p {
   ::slotted(a:hover) {
     @extend %nav-link-hover-desktop;
   }
-  ::slotted(a:not(:first-child)) {
-    @extend %nav-link-separator-desktop;
+  ::slotted(c-social-media) {
+    @extend %nav-link-social-desktop;
   }
 
   p {
     text-align: left;
     padding: 0;
     border-top: 0;
+    margin-top: 15px;
   }
 
   .navbar {
@@ -145,6 +183,16 @@ p {
     flex-wrap: wrap;
 
     .navbar-nav {
+
+      &.social-media-items {
+        margin-bottom: 20px;
+        padding-left: 0;
+        order: -1;
+
+        c-social-media {
+          @extend %nav-link-social-desktop;
+        }
+      }
 
       .nav-item {
 
@@ -154,10 +202,6 @@ p {
           &:hover {
             @extend %nav-link-hover-desktop;
           }
-        }
-
-        + .nav-item {
-          @extend %nav-link-separator-desktop;
         }
       }
     }
@@ -171,6 +215,8 @@ p {
   .navbar-brand {
     padding: 0;
     width: auto;
+    margin-left: auto;
+    height: 0; /* To make the aligning of items/social items work */
 
     &:before {
       width: 178px;
@@ -182,8 +228,7 @@ p {
     transform: none;
     padding: 0;
   }
-  .navigation {
-    order: -1;
-    flex: 1;
+  .navbar-top {
+    display: flex;
   }
 }

@@ -8,6 +8,7 @@ import * as themes from '../../themes.built/c-theme';
   styleUrl: 'theme.scss'
 })
 export class Theme {
+  /** Set the brand name that will set the theme styling for the page.*/
   @Prop() name: string = store.getState().theme.name;
 
   @State() currentTheme: any;

@@ -9,7 +9,9 @@ import * as themes from '../../themes.built/c-content';
   shadow: true
 })
 export class Content {
+  /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
+  /** This property is in experimental state */
   @Prop() router: Boolean;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;

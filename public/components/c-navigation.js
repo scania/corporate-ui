@@ -1,8 +1,8 @@
 export default {
   title: 'Navigation',
   description: [
-    'Some informative text regarding the component can be placed here. To show how and where to use the current component.',
-    'Its possible to have multiple paragraphs by providing the text as strings inside an array instead of a simple string.'
+    'The navigation has a desktop mode and a mobile mode where the break point is at 992px viewport width. Check out the header component to see the changes in mobile view. The navigation is highly customizable as it can host both primary and secondary items. You can also set the orientation to horisontal or vertical. If not set, the default is horisontal.',
+    'You can populate navigation links in two ways: JSON objects or providing it in a slot. See examples below to see how it works with different ways of populating navigation links.'
   ],
   preview: '<c-header></c-header>',
   items: [
@@ -35,6 +35,7 @@ export default {
                     But providing that makes it possible to style, like we do in this example`,
       content: `
 <c-navigation
+  orientation="vertical"
   primary-items='[{ "text": "about", "href": "/about" }]'
   secondary-items='[{ "text": "more", "href": "/more" }]'>
   <a href="/" slot="primary-items" active>home</a>

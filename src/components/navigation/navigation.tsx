@@ -9,9 +9,13 @@ import * as themes from '../../themes.built/c-navigation';
   shadow: true
 })
 export class Navigation {
+  /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
+  /** Set the orientation for the navigation (vertical or horisontal). The default is horisontal navigation. */
   @Prop() orientation: string;
+  /** Item links on the left side of the navigation */
   @Prop() primaryItems: any;
+  /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
   @Prop() secondaryItems: any;
 
   @State() navigationOpen: boolean;

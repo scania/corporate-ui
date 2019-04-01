@@ -11,13 +11,14 @@ export function renderMain(page) {
 }
 
 export function renderProperties(props) {
-  return `
+  return ` 
     <h4>Properties</h4>
     <div>
       <table>
         <thead>
           <tr>
             <th>Name</th>
+            <th>Description</th>
             <th>Type</th>
             <th>Value</th>
           </tr>
@@ -26,6 +27,7 @@ export function renderProperties(props) {
           ${props.map(prop => `
             <tr>
               <td>${prop.name}</td>
+              <td>${prop.docs}</td>
               <td>${prop.type}</td>
               <td>${prop.default}</td>
             </tr>
@@ -47,7 +49,7 @@ export function renderOverview(page) {
           <p>${paragraph}</p>
         `).join('') : '' }
 
-        ${page.items.map(item => `
+        ${page.items ? page.items.map(item => `
           <c-card
             data-sb-kind="${page.kind}"
             data-sb-story="${item.title}"
@@ -55,7 +57,7 @@ export function renderOverview(page) {
             <div slot="card-body" class="component">${item.preview}</div>
             <strong slot="card-footer">${item.title}</strong>
           </c-card>
-        `).join('')}
+        `).join('') : ''}
       </section>
     `
   })
@@ -94,7 +96,7 @@ export function renderItems(page) {
         </section>
       ` : '' }
 
-      ${page.items.map(item => `
+      ${page.items ? page.items.map(item => `
         <section class="component">
           <h4>${item.title}</h4>
           <div>
@@ -106,7 +108,7 @@ export function renderItems(page) {
             </details>
           </div>
         </section>
-      `).join('')}
+      `).join('') : ''}
 
       <section>
         ${page.doc ? renderProperties(page.doc.props) : ''}

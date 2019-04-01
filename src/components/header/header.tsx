@@ -9,9 +9,13 @@ import * as themes from '../../themes.built/c-header';
   shadow: true
 })
 export class Header {
+  /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
+  /** The site name will be displayed on the right hand side of the logotype on desktop mode */
   @Prop() siteName: string;
+  /** A link that will be applied to the site-name */
   @Prop() siteUrl = '/';
+  /** Header links that will be placed in the top right part of the header */
   @Prop() items: any;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;

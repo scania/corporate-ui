@@ -9,9 +9,13 @@ import * as themes from '../../themes.built/c-footer';
   shadow: true
 })
 export class Footer {
+  /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
+  /** Change default copyright text */
   @Prop() text = 'Copyright &copy; Scania 2019';
+  /** Set footer links */
   @Prop() items: any;
+  /** Add social media icons */
   @Prop() socialMediaItems: any;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;

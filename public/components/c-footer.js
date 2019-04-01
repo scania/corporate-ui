@@ -1,6 +1,6 @@
 export default {
   title: 'Footer',
-  description: 'Some informative text regarding the component can be placed here. To show how and where to use the current component.',
+  description: 'By default, the footer element renders with a copyright text and a wordmark. You can add several few item links and social media icons to the footer. There are two ways to generate links and social media icons. Either by using the attributes or slot. To have your links as the footer links, set the slot attribute to slot="items". And for social media, set the slot attribute to slot="social-media-items". See examples and properties below for more information.',
   preview: '<c-footer></c-footer>',
   items: [
     {

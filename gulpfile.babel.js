@@ -204,6 +204,17 @@ function webpackStream(){
               loader: "html-loader"
             }
           ]
+        },
+        {
+          test: /\.(mjs|jsx|js?)$/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/react']
+              }
+            },
+          ]
         }
       ]
     },

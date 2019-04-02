@@ -1,5 +1,5 @@
 import {
- Component, Prop, State, Element, Watch,
+  Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
 import { store } from '../../store';

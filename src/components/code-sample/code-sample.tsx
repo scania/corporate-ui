@@ -1,8 +1,7 @@
 import {
- Component, Prop, State, Element,
+  Component, Prop, State, Element,
 } from '@stencil/core';
 
-// eslint-disable-next-line
 import hljs from 'highlight.js';
 
 @Component({
@@ -29,7 +28,7 @@ export class Field {
     // Filter empty lines
     const code = node.assignedNodes().reduce((lines, line) => {
       if (line && line.nodeType === 1) {
-         lines.push(line.outerHTML);
+        lines.push(line.outerHTML);
       }
       return lines;
     }, []);

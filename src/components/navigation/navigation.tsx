@@ -1,5 +1,5 @@
 import {
- Component, Prop, State, Watch,
+  Component, Prop, State, Watch,
 } from '@stencil/core';
 
 import { store } from '../../store';
@@ -67,7 +67,7 @@ export class Navigation {
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav'>
             { this._primaryItems.map(item => {
-              item['class'] = this.combineClasses(item['class']);
+              item.class = this.combineClasses(item.class);
               return <a { ...item }></a>
             }) }
 
@@ -78,7 +78,7 @@ export class Navigation {
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav ml-auto'>
             { this._secondaryItems.map(item => {
-              item['class'] = this.combineClasses(item['class']);
+              item.class = this.combineClasses(item.class);
               return <a { ...item }></a>
             }) }
 

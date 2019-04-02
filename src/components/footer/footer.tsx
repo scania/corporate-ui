@@ -1,5 +1,5 @@
 import {
- Component, Prop, State, Element, Watch,
+  Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
 import { store } from '../../store';
@@ -97,7 +97,7 @@ export class Footer {
           <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
             <nav class='navbar-nav'>
               { this._items.map(item => {
-                item['class'] = this.combineClasses(item['class']);
+                item.class = this.combineClasses(item.class);
                 return <a { ...item }></a>
               }) }
 
@@ -112,7 +112,7 @@ export class Footer {
               onClick={() => this.show = !this.show }>
               Scania
             </button>
-          : ''}
+            : ''}
         </div>
 
         <p data-test-id='c-footer-copyright'>

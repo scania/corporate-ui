@@ -1,22 +1,24 @@
 import {
  Component, Prop, State, Watch,
 } from '@stencil/core';
-import { store } from '../../store';
-import * as style from '../../themes.built/theme';
+
+import { store, actions } from '../../store';
+import * as themes from '../../themes.built/c-theme';
 
 @Component({
   tag: 'c-theme',
   styleUrl: 'theme.scss',
 })
 export class Theme {
-  @Prop() name: string = store.getState().theme;
+  /** Set the brand name that will set the theme styling for the page. */
+  @Prop() name: string = store.getState().theme.name;
 
   @State() currentTheme: any;
 
   @Watch('name')
   setTheme(name) {
     this.currentTheme = name;
-    store.dispatch({ type: 'SET_THEME', theme: name });
+    store.dispatch({ type: actions.SET_THEME, name });
   }
 
   componentWillLoad() {
@@ -24,6 +26,6 @@ export class Theme {
   }
 
   render() {
-    return <style>{style[this.currentTheme]}</style>;
+    return this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '';
   }
 }

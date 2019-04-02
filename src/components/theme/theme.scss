@@ -1,6 +1,6 @@
-$font-family-base: var(--font-family-sans-serif);
-
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
+// @import 'node_modules/bootstrap/scss/functions';
+// @import 'node_modules/bootstrap/scss/variables';
+// @import 'node_modules/bootstrap/scss/mixins';
 
 :root {
   font-size: 62.5%;
@@ -38,6 +38,71 @@ $font-family-base: var(--font-family-sans-serif);
     'Liberation Mono', 'Courier New', monospace;
 }
 
-:host {
-  display: block;
-}
+
+// Copied from bootstrap mixin grid framework and modified to support prefix and sufix
+// @mixin make-grid-columns(
+//   $columns: $grid-columns,
+//   $gutter: $grid-gutter-width,
+//   $breakpoints: $grid-breakpoints
+// ) {
+
+//   @each $breakpoint in map-keys($breakpoints) {
+//     $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+//     [apa=#{$infix}],
+//     [size] {
+//       position: relative;
+//       width: 100%;
+//     }
+
+//     @include media-breakpoint-up($breakpoint, $breakpoints) {
+//       // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+//       [apa=#{$infix}],
+//       [size] {
+//         flex-basis: 0;
+//         flex-grow: 1;
+//         max-width: 100%;
+//       }
+//       [#{$infix}=auto] {
+//         flex: 0 0 auto;
+//         width: auto;
+//         max-width: 100%; // Reset earlier grid tiers
+//       }
+
+//       @for $i from 1 through $columns {
+//         [#{$infix}=#{$i}],
+//         [size*="#{$infix}:#{$i}"] {
+//           @include make-col($i, $columns);
+//         }
+//       }
+
+//       // .order#{$infix}-first {
+//       //   order: -1;
+//       // }
+
+//       // .order#{$infix}-last {
+//       //   order: $columns + 1;
+//       // }
+
+//       @for $i from 0 through $columns {
+//         [#{$infix}*="order:#{$i}"],
+//         [size*="#{$infix}"][size*="order:#{$i}"] {
+//           order: $i;
+//         }
+//       }
+
+//       // `$columns - 1` because offsetting by the width of an entire row isn't possible
+//       @for $i from 0 through ($columns - 1) {
+//         @if not($infix == '' and $i == 0) {
+//           // Avoid emitting useless .offset-0
+//           [#{$infix}*="offset:#{$i}"],
+//           [size*="#{$infix}"][size*="offset:#{$i}"] {
+//             @include make-col-offset($i, $columns);
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @include make-grid-columns();

@@ -1,9 +1,9 @@
 import {
- Component, Prop, State, Watch,
+ Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store } from '../../store';
-import * as style from '../../themes.built/header';
+import { store, actions } from '../../store';
+import * as themes from '../../themes.built/c-header';
 
 @Component({
   tag: 'c-header',
@@ -11,29 +11,33 @@ import * as style from '../../themes.built/header';
   shadow: true,
 })
 export class Header {
+  /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
 
-  @Prop() siteName = 'Application name';
+  /** The site name will be displayed on the right hand side of the logotype on desktop mode */
+  @Prop() siteName: string;
 
+  /** A link that will be applied to the site-name */
   @Prop() siteUrl = '/';
 
-  @Prop() topItems: any = [{ text: 'global', location: '/' }];
+  /** Header links that will be placed in the top right part of the header */
+  @Prop() items: any;
 
-  @Prop() primaryItems: any;
+  @State() currentTheme: string = this.theme || store.getState().theme.name;
 
-  @Prop() secondaryItems: any;
-
-  @State() currentTheme: string = this.theme || store.getState().theme;
-
-  @State() show = false;
+  @State() navigationOpen = store.getState().navigation.open;
 
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  @State() _topItems: object[] = [];
+  @State() _items: object[] = [];
 
-  @Watch('topItems')
+  @State() navigationSlot = [];
+
+  @Element() el: HTMLElement;
+
+  @Watch('items')
   setItems(items) {
-    this._topItems = Array.isArray(items) ? items : JSON.parse(items);
+    this._items = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
@@ -41,50 +45,69 @@ export class Header {
     this.currentTheme = name;
   }
 
-  componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme);
-
-    this.setItems(this._topItems);
+  toggleNavigation(open) {
+    store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
 
-  hostData() {
-    return {
-      class: { open: this.show },
-    };
+  componentWillLoad() {
+    store.subscribe(() => {
+      this.currentTheme = store.getState().theme.name
+      this.navigationOpen = store.getState().navigation.open;
+    });
+
+    this.setItems(this.items);
+  }
+
+  componentDidLoad() {
+    const elem = this.el.shadowRoot.querySelector('slot[name=navigation');
+    elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
+
+    this.getNavSlotItems(elem);
+  }
+
+  getNavSlotItems(node) {
+    this.navigationSlot = node.assignedNodes() || node.children;
+  }
+
+  combineClasses(classes) {
+    return [
+      ...(classes || '').split(' '),
+      ...['nav-item', 'nav-link'],
+    ].join(' ');
   }
 
   render() {
     return [
-      <style>{ style[this.currentTheme] }</style>,
+      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
-        <button
-          class='navbar-toggler collapsed'
-          type='button'
-          onClick={() => this.show = !this.show}>
-          <span class='navbar-toggler-icon'></span>
-        </button>
+        {this.navigationSlot.length
+          ? <button
+            class='navbar-toggler collapsed'
+            type='button'
+            onClick={() => this.toggleNavigation(!this.navigationOpen) }>
+            <span class='navbar-toggler-icon'></span>
+          </button>
+        : ''}
 
         <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>
 
         <div class='collapse navbar-collapse'>
-          <ul class='navbar-nav ml-auto'>
-            { this._topItems.map(item => (
-              <li class='nav-item'>
-                <a class='nav-link' href={item['location']}>
-                  <span>{item['text']}</span>
-                </a>
-              </li>
-            )) }
-          </ul>
+          <nav class='navbar-nav ml-auto'>
+            { this._items.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
+
+            <slot name="items" />
+          </nav>
         </div>
       </nav>,
 
       <a href={ this.siteUrl } class='navbar-symbol'></a>,
 
-      (this.primaryItems || this.secondaryItems)
-        ? <c-navigation primary-items={this.primaryItems} secondary-items={this.secondaryItems} show={this.show}></c-navigation> : '',
+      <slot name="navigation" />,
     ];
   }
 }

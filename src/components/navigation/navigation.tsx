@@ -3,7 +3,7 @@ import {
 } from '@stencil/core';
 
 import { store } from '../../store';
-import * as style from '../../themes.built/navigation';
+import * as themes from '../../themes.built/c-navigation';
 
 @Component({
   tag: 'c-navigation',
@@ -11,15 +11,21 @@ import * as style from '../../themes.built/navigation';
   shadow: true,
 })
 export class Navigation {
+  /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
 
-  @Prop() primaryItems: any = [];
+  /** Set the orientation for the navigation (vertical or horisontal). The default is horisontal navigation. */
+  @Prop() orientation: string;
 
-  @Prop() secondaryItems: any = [];
+  /** Item links on the left side of the navigation */
+  @Prop() primaryItems: any;
 
-  @Prop() show: boolean;
+  /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
+  @Prop() secondaryItems: any;
 
-  @State() currentTheme: string = this.theme || store.getState().theme;
+  @State() navigationOpen: boolean;
+
+  @State() currentTheme: string = this.theme || store.getState().theme.name;
 
   @State() _primaryItems: object[] = [];
 
@@ -28,7 +34,7 @@ export class Navigation {
   @Watch('primaryItems')
   @Watch('secondaryItems')
   setItems(items, type) {
-    this[`_${type}`] = Array.isArray(items) ? items : JSON.parse(items);
+    this[`_${type}`] = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
@@ -37,39 +43,47 @@ export class Navigation {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme);
+    store.subscribe(() => {
+      this.currentTheme = store.getState().theme.name;
+      this.navigationOpen = store.getState().navigation.open;
+    });
 
     this.setItems(this.primaryItems, 'primaryItems');
     this.setItems(this.secondaryItems, 'secondaryItems');
   }
 
+  combineClasses(classes) {
+    return [
+      ...(classes || '').split(' '),
+      ...['nav-item', 'nav-link'],
+    ].join(' ');
+  }
+
   render() {
     return [
-      <style>{ style[this.currentTheme] }</style>,
+      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
-      <nav class='navbar navbar-expand-lg'>
-        <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
-          <ul class='navbar-nav'>
-            {this._primaryItems.map((item, key) => <li class='nav-item'>
-                <slot name={`nav-item-${key}`}>
-                  <a href={item['location']} class='nav-link'>
-                    <span>{item['text']}</span>
-                  </a>
-                </slot>
-              </li>)}
-          </ul>
+      <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
+        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
+          <nav class='navbar-nav'>
+            { this._primaryItems.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
+
+            <slot name="primary-items" />
+          </nav>
         </div>
 
-        <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
-          <ul class='navbar-nav ml-auto'>
-            {this._secondaryItems.map((item, key) => <li class='nav-item'>
-                <slot name={`nav-item-${key}`}>
-                  <a href={item['location']} class='nav-link'>
-                    <span>{item['text']}</span>
-                  </a>
-                </slot>
-              </li>)}
-          </ul>
+        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
+          <nav class='navbar-nav ml-auto'>
+            { this._secondaryItems.map(item => {
+              item['class'] = this.combineClasses(item['class']);
+              return <a { ...item }></a>
+            }) }
+
+            <slot name="secondary-items" />
+          </nav>
         </div>
       </nav>,
     ];

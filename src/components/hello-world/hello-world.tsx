@@ -10,7 +10,9 @@ export class HelloWorld {
 
   render() {
     return (
-      <div><h2>{this.text} component</h2></div>
+      <div>
+        <h2>{this.text} component</h2>
+      </div>
     );
   }
 }

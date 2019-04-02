@@ -10,7 +10,7 @@ import * as icons from './icons';
   shadow: true,
 })
 export class Icon {
-  @Prop() name: string;
+  @Prop() name = 'truck';
 
   @State() iconSet: any;
 

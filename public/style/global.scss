@@ -1,0 +1,178 @@
+
+$vector: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" xml:space="preserve" height="10" width="10" fill="currentColor"><g><path d="m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z"/></g></svg>');
+
+// The commented rules should be put in the global theme and extend from bootstrap
+main {
+  padding-left: 20px; /* From container-fluid */
+  padding-right: 20px; /* From container-fluid */
+
+  > header,
+  > section {
+    margin-left: -20px; /* From row */
+    margin-right: -20px; /* From row */
+    display: flex; /* From row */
+    flex-wrap: wrap; /* From row */
+
+    > * {
+      width: 100%; /* From column */
+      padding-left: 20px; /* From column */
+      padding-right: 20px; /* From column */
+      box-sizing: border-box; /* From global * */
+    }
+  }
+  > section {
+    padding-left: 90px; /* From container */
+    padding-right: 90px; /* From container */
+  }
+  > header {
+    background: black;
+    padding-top: 20px;
+
+    h4 {
+      color: white;
+    }
+  }
+  table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  thead {
+    background-color: black;
+    color: white;
+  }
+  th,
+  td {
+    padding: 10px;
+  }
+  figure,
+  c-code-sample {
+    background-color: #e8e8e8;
+    padding: 80px 40px;
+  }
+  figure {
+    margin: 0 0 20px;
+  }
+  c-code-sample {
+    padding: 40px;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  code {
+    white-space: normal;
+  }
+  summary {
+    list-style-image: $vector;
+    cursor: pointer;
+    outline: none;
+    direction: rtl;
+    text-align: left;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+
+    &::-webkit-details-marker {
+      transition: all 500ms ease-out;
+      transform: rotate(90deg);
+      background: $vector;
+      color: transparent;
+    }
+  }
+  details {
+    overflow: hidden;
+
+    &[open] {
+
+      summary {
+        padding-bottom: 15px;
+
+        &::-webkit-details-marker {
+          transform: rotate(-90deg);
+        }
+      }
+      c-code-sample {
+        animation-name: slideDown;
+        animation-duration: 500ms;
+      }
+    }
+  }
+
+  // c-row {
+  //   margin-right: -35px;
+  //   margin-left: -35px;
+  // }
+  // c-column {
+  //   margin-bottom: 50px;
+  //   padding-left: 35px;
+  //   padding-right: 35px;
+  // }
+  // section c-container {
+  //   padding-left: 80px;
+  //   padding-right: 80px;
+  // }
+  c-content > section {
+    display: flex; /* From row */
+    flex-wrap: wrap; /* From row */
+  }
+}
+
+.overview {
+
+  c-card {
+    -webkit-transition: opacity 200ms linear;
+    -ms-transition: opacity 200ms linear;
+    transition: opacity 200ms linear;
+    opacity: 0.8;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    min-height: 200px;
+    width: 25%; /* From column */
+    margin-bottom: 40px;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+    }
+    &:hover {
+      opacity: 1;
+    }
+
+    .component {
+      transform: translateY(-50%);
+      position: relative;
+      top: 50%;
+      zoom: 40%;
+    }
+  }
+
+  .component c-icon {
+    width: 100%;
+    font-size: 10rem;
+    text-align: center;
+    color: #000;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.dark-bg {
+  background-color: #e8e8e8;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

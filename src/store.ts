@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 export const actions = {
   SET_THEME: 'SET_THEME',
   TOGGLE_NAVIGATION: 'TOGGLE_NAVIGATION',
-}
+};
 
 function theme(state = { name: '' }, action) {
   switch (action.type) {
@@ -26,6 +26,6 @@ function navigation(state = { open: false }, action) {
 const reducers = combineReducers({
   theme,
   navigation,
-})
+});
 
 export const store = createStore(reducers);

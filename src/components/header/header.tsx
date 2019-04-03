@@ -51,7 +51,7 @@ export class Header {
 
   componentWillLoad() {
     store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name
+      this.currentTheme = store.getState().theme.name;
       this.navigationOpen = store.getState().navigation.open;
     });
 
@@ -95,9 +95,9 @@ export class Header {
 
         <div class='collapse navbar-collapse'>
           <nav class='navbar-nav ml-auto'>
-            { this._items.map(item => {
+            { this._items.map((item: any) => {
               item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>
+              return <a { ...item }></a>;
             }) }
 
             <slot name="items" />

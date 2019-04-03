@@ -19,7 +19,7 @@ export class Icon {
   @Watch('name')
   updateIcon(name) {
     // change to camelCase
-    name = name.replace(/-([a-z0-9])/g, (g) => g[1].toUpperCase())
+    name = name.replace(/-([a-z0-9])/g, (g) => g[1].toUpperCase());
     if (name === 'function') {
       name = 'functionIcon';
     }

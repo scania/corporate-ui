@@ -7,7 +7,7 @@ export function renderMain(page) {
 
       ${page.content}
     </main>
-  `
+  `;
 }
 
 export function renderProperties(props) {
@@ -35,19 +35,19 @@ export function renderProperties(props) {
         </body>
       </table>
     </div>
-  `
+  `;
 }
 
 export function renderOverview(page) {
-  let description = typeof page.description === 'string' ? [page.description] : page.description;
+  const description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
     content: `
       <section class="overview">
-        ${ description ? description.map(paragraph => `
+        ${description ? description.map(paragraph => `
           <p>${paragraph}</p>
-        `).join('') : '' }
+        `).join('') : ''}
 
         ${page.items ? page.items.map(item => `
           <c-card
@@ -59,12 +59,12 @@ export function renderOverview(page) {
           </c-card>
         `).join('') : ''}
       </section>
-    `
-  })
+    `,
+  });
 }
 
 export function renderItem(page) {
-  let description = typeof page.description === 'string' ? [page.description] : page.description;
+  const description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
@@ -72,29 +72,29 @@ export function renderItem(page) {
       <section class="template">
         <h4>${page.title}</h4>
 
-        ${ description ? description.map(paragraph => `
+        ${description ? description.map(paragraph => `
           <p>${paragraph}</p>
-        `).join('') : '' }
+        `).join('') : ''}
 
         ${page.content}
       </section>
-    `
-  })
+    `,
+  });
 }
 
 export function renderItems(page) {
-  let description = typeof page.description === 'string' ? [page.description] : page.description;
+  const description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
     content: `
-      ${ description ? `
+      ${description ? `
         <section>
-          ${ description.map(paragraph => `
+          ${description.map(paragraph => `
             <p>${paragraph}</p>
-          `).join('') }
+          `).join('')}
         </section>
-      ` : '' }
+      ` : ''}
 
       ${page.items ? page.items.map(item => `
         <section class="component">
@@ -113,8 +113,8 @@ export function renderItems(page) {
       <section>
         ${page.doc ? renderProperties(page.doc.props) : ''}
       </section>
-    `
-  })
+    `,
+  });
 }
 
 export function importAll(req, cache) {

@@ -30,7 +30,7 @@ export class SocialMedia {
 
   componentWillLoad() {
     store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name
+      this.currentTheme = store.getState().theme.name;
     });
   }
 

@@ -21,8 +21,8 @@ export class RouterNavigation {
   render() {
     return (
       <c-navigation>
-        {this._primaryItems.map(item => <stencil-route-link url={ item['location'] } slot='primary-items'>
-            { item['text'] }
+        {this._primaryItems.map((item: any) => <stencil-route-link url={ item.location } slot='primary-items'>
+            { item.text }
           </stencil-route-link>)}
       </c-navigation>
     );

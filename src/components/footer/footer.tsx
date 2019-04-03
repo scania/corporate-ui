@@ -96,9 +96,9 @@ export class Footer {
         <div class="dropup">
           <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
             <nav class='navbar-nav'>
-              { this._items.map(item => {
+              { this._items.map((item: any) => {
                 item.class = this.combineClasses(item.class);
-                return <a { ...item }></a>
+                return <a { ...item }></a>;
               }) }
 
               <slot name="items" />

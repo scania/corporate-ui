@@ -66,9 +66,9 @@ export class Navigation {
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav'>
-            { this._primaryItems.map(item => {
+            { this._primaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>
+              return <a { ...item }></a>;
             }) }
 
             <slot name="primary-items" />
@@ -77,9 +77,9 @@ export class Navigation {
 
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav ml-auto'>
-            { this._secondaryItems.map(item => {
+            { this._secondaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>
+              return <a { ...item }></a>;
             }) }
 
             <slot name="secondary-items" />

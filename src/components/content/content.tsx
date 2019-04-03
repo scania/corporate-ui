@@ -45,6 +45,6 @@ export class Content {
       // } else {
       <slot />,
     // }
-    ]
+    ];
   }
 }

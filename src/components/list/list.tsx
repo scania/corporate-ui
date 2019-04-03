@@ -25,9 +25,9 @@ export class List {
   render() {
     return (
       <ul>
-        {this._items.map(item => (
+        {this._items.map((item: any) => (
           <li>
-            <span>{item['text']}</span>
+            <span>{item.text}</span>
           </li>
         ))}
       </ul>

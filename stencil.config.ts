@@ -6,22 +6,23 @@ import data from './package.json';
 export const config: Config = {
   namespace: data.name,
   hashFileNames: false,
-  copy: [
-    { src: 'helpers.js' }
-  ],
   outputTargets: [
-    { type: 'dist' },
+    {
+      type: 'dist',
+      dir: '.build'
+    },
     {
       type: 'www',
+      dir: '.www',
       serviceWorker: null // disable service workers
     },
     {
       type: 'docs-json',
-      file: 'data/docs.json'
+      file: '.data/docs.json'
     },
     {
       type: 'stats',
-      file: 'data/stats.json'
+      file: '.data/stats.json'
     }
   ],
   testing: {

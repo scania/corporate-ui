@@ -1,12 +1,14 @@
-import { Component, Prop, State, Element, Watch } from '@stencil/core';
+import {
+  Component, Prop, State, Element, Watch,
+} from '@stencil/core';
 
-import { store } from '../../global';
-import * as themes from '../../tmp/c-card';
+import { store } from '../../store';
+import * as themes from '../../themes.built/c-card';
 
 @Component({
   tag: 'c-card',
   styleUrl: 'card.scss',
-  shadow: true
+  shadow: true,
 })
 export class Card {
   @Prop() theme: string;
@@ -22,7 +24,7 @@ export class Card {
 
   hostData() {
     return {
-      class: { card: true }
+      class: { card: true },
     };
   }
 
@@ -36,7 +38,7 @@ export class Card {
     slots.forEach(elem => {
       this.toggleHide(elem);
 
-      elem.addEventListener('slotchange', e => this.toggleHide(e.target) );
+      elem.addEventListener('slotchange', e => this.toggleHide(e.target));
     });
   }
 
@@ -51,7 +53,7 @@ export class Card {
 
       <slot name='card-header' { ... { class: 'card-header' } } />,
       <slot name='card-body' { ... { class: 'card-body' } } />,
-      <slot name='card-footer' { ... { class: 'card-footer' } } />
+      <slot name='card-footer' { ... { class: 'card-footer' } } />,
     ];
   }
 }

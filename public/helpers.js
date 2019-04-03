@@ -7,17 +7,18 @@ export function renderMain(page) {
 
       ${page.content}
     </main>
-  `
+  `;
 }
 
 export function renderProperties(props) {
-  return `
+  return ` 
     <h4>Properties</h4>
     <div>
       <table>
         <thead>
           <tr>
             <th>Name</th>
+            <th>Description</th>
             <th>Type</th>
             <th>Value</th>
           </tr>
@@ -26,6 +27,7 @@ export function renderProperties(props) {
           ${props.map(prop => `
             <tr>
               <td>${prop.name}</td>
+              <td>${prop.docs}</td>
               <td>${prop.type}</td>
               <td>${prop.default}</td>
             </tr>
@@ -33,21 +35,21 @@ export function renderProperties(props) {
         </body>
       </table>
     </div>
-  `
+  `;
 }
 
 export function renderOverview(page) {
-  let description = typeof page.description === 'string' ? [page.description] : page.description;
+  const description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
     content: `
       <section class="overview">
-        ${ description ? description.map(paragraph => `
+        ${description ? description.map(paragraph => `
           <p>${paragraph}</p>
-        `).join('') : '' }
+        `).join('') : ''}
 
-        ${page.items.map(item => `
+        ${page.items ? page.items.map(item => `
           <c-card
             data-sb-kind="${page.kind}"
             data-sb-story="${item.title}"
@@ -55,14 +57,14 @@ export function renderOverview(page) {
             <div slot="card-body" class="component">${item.preview}</div>
             <strong slot="card-footer">${item.title}</strong>
           </c-card>
-        `).join('')}
+        `).join('') : ''}
       </section>
-    `
-  })
+    `,
+  });
 }
 
 export function renderItem(page) {
-  let description = typeof page.description === 'string' ? [page.description] : page.description;
+  const description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
@@ -70,31 +72,31 @@ export function renderItem(page) {
       <section class="template">
         <h4>${page.title}</h4>
 
-        ${ description ? description.map(paragraph => `
+        ${description ? description.map(paragraph => `
           <p>${paragraph}</p>
-        `).join('') : '' }
+        `).join('') : ''}
 
         ${page.content}
       </section>
-    `
-  })
+    `,
+  });
 }
 
 export function renderItems(page) {
-  let description = typeof page.description === 'string' ? [page.description] : page.description;
+  const description = typeof page.description === 'string' ? [page.description] : page.description;
 
   return renderMain({
     ...page,
     content: `
-      ${ description ? `
+      ${description ? `
         <section>
-          ${ description.map(paragraph => `
+          ${description.map(paragraph => `
             <p>${paragraph}</p>
-          `).join('') }
+          `).join('')}
         </section>
-      ` : '' }
+      ` : ''}
 
-      ${page.items.map(item => `
+      ${page.items ? page.items.map(item => `
         <section class="component">
           <h4>${item.title}</h4>
           <div>
@@ -106,13 +108,13 @@ export function renderItems(page) {
             </details>
           </div>
         </section>
-      `).join('')}
+      `).join('') : ''}
 
       <section>
         ${page.doc ? renderProperties(page.doc.props) : ''}
       </section>
-    `
-  })
+    `,
+  });
 }
 
 export function importAll(req, cache) {

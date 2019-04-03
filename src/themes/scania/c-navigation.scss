@@ -70,12 +70,12 @@ ul {
 }
 .navbar-collapse {
   transition: max-height 550ms ease-in;
-  max-height: 0;
+  max-height: 100vh;
   overflow: hidden;
 
   &:not(.show) {
     display: block;
-    max-height: 100vh;
+    max-height: 0;
   }
 
   + .navbar-collapse {
@@ -161,12 +161,13 @@ ul {
         }
       }
     }
-  }
-  .navbar-collapse {
-    max-height: none;
+    .navbar-collapse {
+      max-height: none;
 
-    + .navbar-collapse {
-      border-top: 0;
+      + .navbar-collapse {
+        overflow: visible;
+        border-top: 0;
+      }
     }
   }
 }

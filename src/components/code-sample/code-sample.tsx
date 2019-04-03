@@ -19,9 +19,10 @@ export class Field {
   componentDidLoad() {
     const elem = this.el.shadowRoot.querySelector('slot');
 
-    elem.addEventListener('slotchange', event => this.renderExample(event.target));
-
-    this.renderExample(elem);
+    if(elem) {
+      elem.addEventListener('slotchange', event => this.renderExample(event.target));
+      this.renderExample(elem);
+    }
   }
 
   renderExample = node => {

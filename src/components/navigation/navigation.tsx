@@ -2,7 +2,7 @@ import {
   Component, Prop, State, Watch,
 } from '@stencil/core';
 
-import { store } from '../../store';
+import { store, actions } from '../../store';
 import * as themes from '../../themes.built/c-navigation';
 
 @Component({
@@ -15,7 +15,7 @@ export class Navigation {
   @Prop() theme: string;
 
   /** Set the orientation for the navigation (vertical or horisontal). The default is horisontal navigation. */
-  @Prop() orientation: string;
+  @Prop() orientation: string = '';
 
   /** Item links on the left side of the navigation */
   @Prop() primaryItems: any;
@@ -23,7 +23,7 @@ export class Navigation {
   /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
   @Prop() secondaryItems: any;
 
-  @State() navigationOpen: boolean;
+  @State() navigationOpen: boolean = store.getState().navigation.open;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
 
@@ -42,6 +42,10 @@ export class Navigation {
     this.currentTheme = name;
   }
 
+  toggleNavigation(open) {
+    store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
+  }
+
   componentWillLoad() {
     store.subscribe(() => {
       this.currentTheme = store.getState().theme.name;
@@ -50,6 +54,11 @@ export class Navigation {
 
     this.setItems(this.primaryItems, 'primaryItems');
     this.setItems(this.secondaryItems, 'secondaryItems');
+  }
+
+  componentDidLoad() {
+    // To make sure navigation is always show from start
+    this.toggleNavigation(true);
   }
 
   combineClasses(classes) {

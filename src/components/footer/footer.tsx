@@ -57,9 +57,9 @@ export class Footer {
 
   componentDidLoad() {
     const elem = this.el.shadowRoot.querySelector('slot[name=items');
+
     if (elem) {
       elem.addEventListener('slotchange', e => this.getSlotItems(e.target));
-
       this.getSlotItems(elem);
     }
   }

@@ -74,9 +74,7 @@ export class Navigation {
         </div>
       </nav>,
 
-      <div class="sub-navigation">
-        <slot name="sub-navigation" />
-      </div>
+      <slot name="sub" />
     ];
   }
 }

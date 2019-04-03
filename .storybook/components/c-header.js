@@ -88,10 +88,9 @@ export default {
       `
     },
     {
-      title: 'Items in slot and with nested slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
+      title: 'Items in slot and with multiple levels of nested slots',
+      description: `This navigation setup shows the usage of a navigation inside the header with nested items 
+                    as well as sub level in the navigation.`,
       content: `
 <c-header
   site-name='Name'>
@@ -99,100 +98,15 @@ export default {
   <a href="/" slot="items">scania</a>
 
   <c-navigation slot="navigation">
-    <a href="/" slot="primary-items">home</a>
+    <a href="/home" slot="primary-items">home</a>
     <a href="/about" slot="primary-items" active>about</a>
-    <a href="/user" slot="secondary-items">user</a>
+    <a href="/more" slot="secondary-items">more</a>
 
-    <c-navigation slot="sub-navigation">
-      <a href="/" slot="primary-items">info</a>
-      <a href="/" slot="primary-items">profile</a>
-      <a href="/" slot="secondary-items">settings</a>
+    <c-navigation slot="sub">
+      <a href="/about" slot="primary-items" active>About 1</a>
+      <a href="/about2" slot="primary-items">About 2</a>
+      <a href="/about3" slot="secondary-items">About 3</a>
     </c-navigation>
-  </c-navigation>
-</c-header>
-      `
-    },
-    {
-      title: 'Items in slot and with nested slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
-      content: `
-<c-header
-  site-name='Name'>
-  <a href="/" slot="items">global</a>
-  <a href="/" slot="items">scania</a>
-
-  <c-navigation slot="navigation">
-    <a href="/" slot="primary-items">home</a>
-
-    <div slot="primary-items">
-      <a href="/about" active>about</a>
-
-      <c-navigation slot="sub-navigation">
-        <a href="/" slot="primary-items">info</a>
-        <a href="/" slot="primary-items">profile</a>
-        <a href="/" slot="secondary-items">settings</a>
-      </c-navigation>
-    </div>
-
-    <a href="/user" slot="secondary-items">user</a>
-  </c-navigation>
-</c-header>
-      `
-    },
-    {
-      title: 'Items in slot and with nested slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
-      content: `
-<c-header
-  site-name='Name'>
-  <a href="/" slot="items">global</a>
-  <a href="/" slot="items">scania</a>
-
-  <c-navigation slot="navigation">
-    <a href="/" slot="primary-items" active>home</a>
-    
-    <c-navigation slot="primary-items" parent='[{"text": "about", "href": "/about"}]'>
-      <a href="/" slot="subnavigation" active>About 1</a>
-      <a href="/" slot="subnavigation">About 2</a>
-    </c-navigation>
-
-    <c-navigation slot="secondary-items" parent='[{"text": "more", "href": "/more"}]'>
-      <a href="/" slot="subnavigation" active>More 1</a>
-      <a href="/" slot="subnavigation">More 2</a>
-    </c-navigation>
-  </c-navigation>
-</c-header>
-      `
-    },
-    {
-      title: 'Items in slot and with nested slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
-      content: `
-<c-header
-  site-name='Name'>
-  <a href="/" slot="items">global</a>
-  <a href="/" slot="items">scania</a>
-
-  <c-navigation slot="navigation">
-    <a href="/home" slot="primary-items" active>home</a>
-    <a href="/about" slot="primary-items">about</a>
-    <a href="/more" slot="primary-items">more</a>
-  </c-navigation>
-
-  <c-navigation slot="navigation-sub" parent='/about'>
-    <a href="/" slot="primary-items" active>About 1</a>
-    <a href="/" slot="secondary-items">About 2</a>
-  </c-navigation>
-
-  <c-navigation slot="navigation-sub" parent='/more'>
-    <a href="/" slot="primary-items">More 1</a>
-    <a href="/" slot="secondary-items">More 2</a>
   </c-navigation>
 </c-header>
       `

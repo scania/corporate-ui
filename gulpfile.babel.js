@@ -60,10 +60,12 @@ function components(cb) {
 
 function copy(){
   return src([
+    `${stencilBuild}/corporate-ui.js`,
+    `${stencilBuild}/corporate-ui/*`,
     `${stencilBuild}/esm/es5/**`,
     `${stencilBuild}/collection/collection-manifest.json`,
-  ])
-    .pipe(dest(`${dist}/components/`))
+  ], {base: stencilBuild})
+    .pipe(dest(dist))
 }
 
 function pack(cb) {

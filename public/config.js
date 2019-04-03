@@ -1,4 +1,4 @@
-import { configure, addDecorator, addParameters } from '@storybook/html';
+import { configure, addDecorator } from '@storybook/html';
 import { withOptions } from '@storybook/addon-options';
 
 import { defineCustomElements } from '../dist/define';
@@ -13,8 +13,8 @@ defineCustomElements('all');
 addDecorator(
   withOptions({
     name,
-    showAddonPanel: false
-  })
+    showAddonPanel: false,
+  }),
 );
 
 configure(() => require('./stories'), module);

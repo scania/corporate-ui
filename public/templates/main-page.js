@@ -76,7 +76,7 @@ export default {
 </c-content>
 
 <c-footer></c-footer>
-      `
-    }
-  ]
+      `,
+    },
+  ],
 };

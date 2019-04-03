@@ -3,12 +3,15 @@ import { Component, Prop } from '@stencil/core';
 @Component({
   tag: 'c-column',
   styleUrl: 'column.scss',
-  shadow: true
+  shadow: true,
 })
 export class Column {
   @Prop() sm: any;
+
   @Prop() md: any;
+
   @Prop() lg: any;
+
   @Prop() xl: any;
 
   hostData() {
@@ -28,11 +31,11 @@ export class Column {
       }
 
       if (typeof item === 'number') {
-        data.class['col-' + size + (item ? '-' + item : '')] = item;
+        data.class[`col-${size}${item ? `-${item}` : ''}`] = item;
       } else {
         Object.keys(item).map(prop => {
           const prefix = prop === 'size' ? 'col' : prop;
-          data.class[prefix + '-' + size + '-' + item[prop]] = prop;
+          data.class[`${prefix}-${size}-${item[prop]}`] = prop;
         });
       }
     });

@@ -8,7 +8,7 @@ beforeEach(async () => {
 });
 
 const getByTestId = async dataTestId => (
-  await page.find(`${componentName} >>> [data-test-id="${dataTestId}"]`)
+  page.find(`${componentName} >>> [data-test-id="${dataTestId}"]`)
 );
 
 describe('c-footer', () => {

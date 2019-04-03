@@ -18,11 +18,10 @@
   font-size: 1.4rem;
   font-weight: bold;
   text-transform: uppercase;
+  overflow: hidden;
 }
 :host([slot=sub]) {
-  border-top: 1px solid #d3d3d3;
   background-color: #f5f5f5;
-  border-top: 1px solid #d3d3d3;
   text-transform: capitalize;
   font-weight: normal;
 }
@@ -47,6 +46,7 @@ ul {
 
 .navbar {
   padding: 0;
+  transition: margin 250ms ease;
 
   .navbar-nav {
 
@@ -67,6 +67,12 @@ ul {
       }
     }
   }
+}
+slot[name=sub],
+.navbar {
+  width: 100%;
+  float: left;
+  white-space: nowrap;
 }
 .navbar-collapse {
   transition: max-height 550ms ease-in;
@@ -115,8 +121,10 @@ ul {
 
   :host {
     background-color: #fff;
+    overflow: visible;
   }
   :host([slot=sub]) {
+    border-top: 1px solid #d3d3d3;
     padding: 0 15px;
   
     ::slotted(a) {
@@ -141,7 +149,12 @@ ul {
     border-right: 1px solid #e2e2e2;
   }
 
+  slot[name=sub] {
+    display: block;
+  }
+
   .navbar {
+    float: none;
 
     .navbar-nav {
 

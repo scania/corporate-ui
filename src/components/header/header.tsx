@@ -61,7 +61,7 @@ export class Header {
   componentDidLoad() {
     const elem = this.el.shadowRoot.querySelector('slot[name=navigation');
 
-    if(elem) {
+    if (elem) {
       elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
       this.getNavSlotItems(elem);
     }

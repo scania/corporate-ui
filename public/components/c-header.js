@@ -100,7 +100,7 @@ export default {
     </c-navigation>
   </c-navigation>
 </c-header>
-      `
+      `,
     },
   ],
 };

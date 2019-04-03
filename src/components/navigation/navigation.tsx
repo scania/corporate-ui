@@ -96,7 +96,7 @@ export class Navigation {
         </div>
       </nav>,
 
-      <slot name="sub" />
+      <slot name="sub" />,
     ];
   }
 }

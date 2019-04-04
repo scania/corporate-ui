@@ -63,7 +63,7 @@
 
   </c-main-content>
 
-  <c-corporate-footer>
+  <c-corporate-footer ng-attr-items="{{app.footerItems}}">
     <nav-item location="#/test">test</nav-item>
   </c-corporate-footer>
 
@@ -342,6 +342,17 @@
         { template:'<c-fullscreen></c-fullscreen>', classes: 'pull-right hidden-sm hidden-xs' }
       ];
 
+      this.footerItems = [
+        {
+          text:'First', location:'#/First'
+        },
+        {
+          text:'Second', location:'#/Second'
+        }
+      ];
+
+
+      //--- This demonstrates setting and re setting items dynamically
       this._primaryItems = this.primaryItems;
       this._secondaryItems = this.secondaryItems;
 

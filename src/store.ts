@@ -14,7 +14,7 @@ function theme(state = { name: '' }, action) {
   }
 }
 
-function navigation(state = { open: false }, action) {
+function navigation(state = { open: true }, action) {
   switch (action.type) {
     case actions.TOGGLE_NAVIGATION:
       return { ...state, open: action.open };

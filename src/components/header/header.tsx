@@ -25,7 +25,7 @@ export class Header {
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
 
-  @State() navigationOpen = store.getState().navigation.open;
+  @State() navigationOpen: Boolean;
 
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
@@ -60,9 +60,14 @@ export class Header {
 
   componentDidLoad() {
     const elem = this.el.shadowRoot.querySelector('slot[name=navigation');
-    elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
 
-    this.getNavSlotItems(elem);
+    if (elem) {
+      elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
+      this.getNavSlotItems(elem);
+    }
+
+    // To make sure navigation is always hidden from start
+    this.toggleNavigation(false);
   }
 
   getNavSlotItems(node) {

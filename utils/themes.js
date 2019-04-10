@@ -14,11 +14,49 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
+function IEStyle(css, componentName) {
+  let matchRegex;
+  let matchSlot;
+  let matchWord;
+  const regex = /^([\.a-z].*)\{/gm;
+  const slotRegex = /\:\:slotted\(([^)]+)\)/g;
+
+  css = css.replace(/\:host/g, `${componentName}`)
+  // change slotted
+  while ((matchSlot = slotRegex.exec(css)) !== null) {
+    if (matchSlot.index === slotRegex.lastIndex) {
+      slotRegex.lastIndex++;
+    }
+    css = css.replace(matchSlot[0], `.sc-${componentName}-s ` + matchSlot[1]);
+  }
+  // add .sc-componentName
+  while ((matchRegex = regex.exec(css)) !== null) {
+    if (matchRegex.index === regex.lastIndex) {
+      regex.lastIndex++;
+    }
+    let replaceWord = []
+    // change every selector separated with comma
+    // example: .navbar, nav a => will match .navbar and nav
+    let selectors = matchRegex[1].split(',')
+    selectors.forEach(selector => {
+      // only match the first selector (example: nav a, will only match nav)
+      matchWord = selector.trim().split(' ')
+      selector = selector.replace(matchWord[0],matchWord[0]+`.sc-${componentName}`)
+      replaceWord.push(selector)
+    })
+    replaceWord = replaceWord.join()
+    css = css.replace(matchRegex[0], `${replaceWord} {`)
+  }
+
+  return css
+}
+
 function walkDir(dir, done) {
   var globalCSS = []; // save global CSS
   var componentCSS = {}; // save component css theme
   var data = {}; // temporary container for file content
   var cssContent = ''; // temporary container for string addition
+  var cssIe = ''; // temporary container for string addition
 
   fs.readdir(dir, function(err, list) {
     if (err) {
@@ -42,9 +80,14 @@ function walkDir(dir, done) {
                 globalCSS.push(brandName);
               }
 
+              cssIe = IEStyle(dt[a], filename);
+
               cssContent = '';
               cssContent += '\nexport const ' + brandName + ' = `';
               cssContent += sass.renderSync({ data: dt[a] }).css;
+              cssContent += '`;\n';
+              cssContent += '\nexport const ' + brandName + '_ie = `';
+              cssContent += sass.renderSync({ data: cssIe }).css;
               cssContent += '`;\n';
 
               if (componentCSS[filename]) {

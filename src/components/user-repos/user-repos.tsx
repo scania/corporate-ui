@@ -3,7 +3,7 @@ import { Component, Prop, State } from '@stencil/core';
 @Component({
   tag: 'user-repos',
   styleUrl: 'user-repos.scss',
-  shadow: true
+  shadow: true,
 })
 export class UserRepos {
   @Prop() userId: string;

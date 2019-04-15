@@ -1,4 +1,6 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import {
+  Component, Prop, State, Watch,
+} from '@stencil/core';
 
 import { store } from '../../store';
 import * as themes from '../../themes.built/c-social-media';
@@ -6,12 +8,15 @@ import * as themes from '../../themes.built/c-social-media';
 @Component({
   tag: 'c-social-media',
   styleUrl: 'social-media.scss',
-  shadow: true
+  shadow: true,
 })
 export class SocialMedia {
   @Prop() theme: string;
+
   @Prop() icon: string;
+
   @Prop() href: string;
+
   @Prop() target: string;
 
   attrs = {};
@@ -25,14 +30,14 @@ export class SocialMedia {
 
   componentWillLoad() {
     store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name
+      this.currentTheme = store.getState().theme.name;
     });
   }
 
   render() {
     this.attrs = {
       href: this.href,
-      target: this.target
+      target: this.target,
     };
     if(!document.head.attachShadow) {
       this.currentTheme += '_ie';
@@ -42,7 +47,7 @@ export class SocialMedia {
 
       <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>
-      </a>
+      </a>,
     ];
   }
 }

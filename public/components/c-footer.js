@@ -8,14 +8,14 @@ export default {
       content: `
 <c-footer
   text='Some copyright related text can be set here.'></c-footer>
-      `
+      `,
     },
     {
       title: 'Data items',
       content: `
 <c-footer
   items='[{ "text": "cookies", "href": "/cookies" }, { "text": "contact us", "href": "/contact-us" }]'></c-footer>
-      `
+      `,
     },
     {
       title: 'Slot items',
@@ -24,7 +24,7 @@ export default {
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" slot="items">Contact us</a>
 </c-footer>
-      `
+      `,
     },
     {
       title: 'Both data and slot items',
@@ -35,7 +35,7 @@ export default {
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" target="_blank" slot="items">Contact us</a>
 </c-footer>
-      `
+      `,
     },
     {
       title: 'Data social media items',
@@ -47,7 +47,7 @@ export default {
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" target="_blank" slot="items">Contact us</a>
 </c-footer>
-      `
+      `,
     },
     {
       title: 'Slot social media items',
@@ -71,7 +71,7 @@ export default {
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" target="_blank" slot="items">Contact us</a>
 </c-footer>
-      `
+      `,
     },
     {
       title: 'Both data and slot social media items',
@@ -96,7 +96,7 @@ export default {
   <a href="/cookies" slot="items">Cookies</a>
   <a href="/contact-us" target="_blank" slot="items">Contact us</a>
 </c-footer>
-      `
-    }
-  ]
-}
+      `,
+    },
+  ],
+};

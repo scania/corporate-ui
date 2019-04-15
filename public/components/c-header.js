@@ -3,7 +3,7 @@ export default {
   description: [
     'A header display a logotype, site name, item links, and a symbol. The site name will be displayed on the right hand side of the logotype on desktop mode and top centered in mobile mode. You can add one or several link items to the header that will be displayed at the right side of the header. This location is also used for language selectors and user menus.',
     'There are two ways to populate link items, by adding JSON objects to item attribute, or by having it in slot="items". See examples below to understand different ways of displaying header component.',
-    'To include navigation component in the header as a main navigation, you need to define the slot name such as slot = "navigation". The navigation is a responsive component. If you make your browser window narrower you will see how the navigation changes its appearance on mobile view.'
+    'To include navigation component in the header as a main navigation, you need to define the slot name such as slot = "navigation". The navigation is a responsive component. If you make your browser window narrower you will see how the navigation changes its appearance on mobile view.',
   ],
   preview: '<c-header></c-header>',
   items: [
@@ -13,7 +13,7 @@ export default {
 <c-header
   site-name='Name'
   items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'></c-header>
-      `
+      `,
     },
     {
       title: 'Items in slot',
@@ -23,7 +23,7 @@ export default {
   <a href="/" slot="items">global</a>
   <a href="/" slot="items">scania</a>
 </c-header>
-      `
+      `,
     },
     {
       title: 'With navigation and items as data',
@@ -32,12 +32,13 @@ export default {
 <c-header
   site-name='Name'
   items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'>
+
   <c-navigation
     slot="navigation"
     primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'
     secondary-items='[{ "text": "user", "href": "/user" }, { "text": "more", "href": "/more" }]'></c-navigation>
 </c-header>
-      `
+      `,
     },
     {
       title: 'With navigation and items in slots',
@@ -48,6 +49,7 @@ export default {
 <c-header
   site-name='Name'
   items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'>
+
   <c-navigation slot="navigation">
     <a href="/" slot="primary-items" active>home</a>
     <a href="/about" slot="primary-items">about</a>
@@ -55,7 +57,7 @@ export default {
     <a href="/more" slot="secondary-items">more</a>
   </c-navigation>
 </c-header>
-      `
+      `,
     },
     {
       title: 'Items in slot plus navigation and items in slots',
@@ -67,13 +69,38 @@ export default {
   site-name='Name'>
   <a href="/" slot="items">global</a>
   <a href="/" slot="items">scania</a>
+
   <c-navigation slot="navigation">
     <a href="/" slot="primary-items" active>home</a>
     <a href="/about" slot="primary-items">about</a>
     <a href="/user" slot="secondary-items">user</a>
   </c-navigation>
 </c-header>
-      `
-    }
-  ]
-}
+      `,
+    },
+    {
+      title: 'Items in slot and with multiple levels of nested slots',
+      description: `This navigation setup shows the usage of a navigation inside the header with nested items 
+                    as well as sub level in the navigation.`,
+      content: `
+<c-header
+  site-name='Name'>
+  <a href="/" slot="items">global</a>
+  <a href="/" slot="items">scania</a>
+
+  <c-navigation slot="navigation">
+    <a href="/home" slot="primary-items">home</a>
+    <a href="/about" slot="primary-items" active>about</a>
+    <a href="/more" slot="secondary-items">more</a>
+
+    <c-navigation slot="sub">
+      <a href="/about" slot="primary-items" active>About 1</a>
+      <a href="/about2" slot="primary-items">About 2</a>
+      <a href="/about3" slot="secondary-items">About 3</a>
+    </c-navigation>
+  </c-navigation>
+</c-header>
+      `,
+    },
+  ],
+};

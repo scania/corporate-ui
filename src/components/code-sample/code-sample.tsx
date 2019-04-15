@@ -1,11 +1,13 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import {
+  Component, Prop, State, Element,
+} from '@stencil/core';
 
 import hljs from 'highlight.js';
 
 @Component({
   tag: 'c-code-sample',
   styleUrl: 'code-sample.scss',
-  shadow: true
+  shadow: true,
 })
 export class Field {
   @Prop() type = 'html';
@@ -17,16 +19,17 @@ export class Field {
   componentDidLoad() {
     const elem = this.el.shadowRoot.querySelector('slot');
 
-    elem.addEventListener('slotchange', event => this.renderExample(event.target));
-
-    this.renderExample(elem);
+    if (elem) {
+      elem.addEventListener('slotchange', event => this.renderExample(event.target));
+      this.renderExample(elem);
+    }
   }
 
   renderExample = node => {
     // Filter empty lines
-    let code = node.assignedNodes().reduce((lines, line) => {
+    const code = node.assignedNodes().reduce((lines, line) => {
       if (line && line.nodeType === 1) {
-         lines.push(line.outerHTML);
+        lines.push(line.outerHTML);
       }
       return lines;
     }, []);
@@ -42,7 +45,7 @@ export class Field {
       <slot />,
       <pre>
         <code class={this.type} { ... { innerHTML: this.code } }></code>
-      </pre>
+      </pre>,
     ];
   }
 }

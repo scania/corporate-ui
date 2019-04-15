@@ -23,8 +23,10 @@ export class Navigation {
   /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
   @Prop() secondaryItems: any;
 
+  /** Used to show a text in front of generated items on desktop and add a describing text for navigating back in mobile mode for sub navigation */
   @Prop() caption: string;
 
+  /** Used to dynamically connect current node to a parent item in mobile mode interaction */
   @Prop() target: string;
 
   @State() isSub: boolean;

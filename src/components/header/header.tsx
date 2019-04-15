@@ -59,7 +59,7 @@ export class Header {
   }
 
   componentDidLoad() {
-    const elem = this.el.shadowRoot.querySelector('slot[name=navigation');
+    let elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');
 
     if (elem) {
       elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
@@ -71,7 +71,8 @@ export class Header {
   }
 
   getNavSlotItems(node) {
-    this.navigationSlot = node.assignedNodes() || node.children;
+    // node.children is not supported in IE
+    this.navigationSlot = document.head.attachShadow ? node.assignedNodes() || node.children : node.childNodes;
   }
 
   combineClasses(classes) {

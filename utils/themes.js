@@ -30,11 +30,11 @@ function walkDir(dir, done) {
       return done(null, data);
     }
     list.forEach((file) => {
-      pending -= 1;
       file = path.resolve(dir, file);
       fs.stat(file, (err2, stat) => {
         if (stat && stat.isDirectory()) {
           walkDir(file, (err3, dt) => {
+            pending -= 1;
             for (const a of Object.keys(dt)) {
               const filename = path.parse(a).name;
               const brandName = path.basename(path.dirname(a));
@@ -61,6 +61,7 @@ function walkDir(dir, done) {
           });
         } else {
           fs.readFile(file, 'utf-8', (err4, content) => {
+            pending -= 1;
             if (err4) {
               console.log(err4);
             }
@@ -93,7 +94,7 @@ function generateTheme(callback = function () {}) {
         if (err2) {
           console.log(err2);
         }
-        for (key in componentCSS) {
+        for (const key in componentCSS) {
           if (`c-${file}` === key) {
             addString = '\n// Auto Generated Below\n';
             addString += componentCSS[key];

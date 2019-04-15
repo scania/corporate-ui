@@ -14,23 +14,11 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
-function IEStyle(css, componentName) {
+function addScClass(contentCss, componentName, regex) {
   let matchRegex;
-  let matchSlot;
   let matchWord;
-  const regex = /^([\.a-z].*)\{/gm;
-  const slotRegex = /\:\:slotted\(([^)]+)\)/g;
-
-  css = css.replace(/\:host/g, `${componentName}`)
-  // change slotted
-  while ((matchSlot = slotRegex.exec(css)) !== null) {
-    if (matchSlot.index === slotRegex.lastIndex) {
-      slotRegex.lastIndex++;
-    }
-    css = css.replace(matchSlot[0], `.sc-${componentName}-s ` + matchSlot[1]);
-  }
-  // add .sc-componentName
-  while ((matchRegex = regex.exec(css)) !== null) {
+   // add .sc-componentName
+   while ((matchRegex = regex.exec(contentCss)) !== null) {
     if (matchRegex.index === regex.lastIndex) {
       regex.lastIndex++;
     }
@@ -41,11 +29,45 @@ function IEStyle(css, componentName) {
     selectors.forEach(selector => {
       // only match the first selector (example: nav a, will only match nav)
       matchWord = selector.trim().split(' ')
-      selector = selector.replace(matchWord[0],matchWord[0]+`.sc-${componentName}`)
+      // if c-header it means it styles the host, then add .sc-c-header-h
+      // if not, just add .sc-c-header
+      let replaceWith = matchWord[0] + `.sc-${componentName}` + ( matchWord[0] == componentName ? '-h' : '' );
+      selector = selector.replace(matchWord[0],replaceWith)
       replaceWord.push(selector)
     })
     replaceWord = replaceWord.join()
-    css = css.replace(matchRegex[0], `${replaceWord} {`)
+    contentCss = contentCss.replace(matchRegex[0], `${replaceWord} {`)
+  }
+  return contentCss
+}
+
+function IEStyle(css, componentName) {
+  let matchSlot, mediaContent;
+  const regex = /^([\.a-z].*)\{/gm;
+  // regex  for all characters including spaces
+  const slotRegex = /\:\:slotted\(([^)]+)\)/g;
+
+  css = css.replace(/\:host/g, `${componentName}`)
+  // change ::slotted to .sc-xxx-s
+  while ((matchSlot = slotRegex.exec(css)) !== null) {
+    if (matchSlot.index === slotRegex.lastIndex) {
+      slotRegex.lastIndex++;
+    }
+    css = css.replace(matchSlot[0], `.sc-${componentName}-s ` + matchSlot[1]);
+  }
+  css = addScClass(css, componentName, regex);
+  css = sass.renderSync({ data: css }).css;
+
+  // for content inside media query we need to do the same process again
+  const regexMedia = /^(?=.*(?:\r?\n(?!\r?).*)*?\@media).*(?:\r?\n(?!\r?\n).*)*/gm;
+  while ((mediaContent = regexMedia.exec(css)) !== null) {
+    let content = mediaContent[0].trim().split('\n')
+    let mediaQueryCtn = content[0];
+    content = content.slice(1,-1)
+    content = content.join('\n')
+    const regexFull = /^(\s*[\.a-z].*)\{/gm;
+    let Newcontent = addScClass(content, componentName, regexFull)
+    css += mediaQueryCtn + Newcontent + '}'
   }
 
   return css
@@ -87,7 +109,7 @@ function walkDir(dir, done) {
               cssContent += sass.renderSync({ data: dt[a] }).css;
               cssContent += '`;\n';
               cssContent += '\nexport const ' + brandName + '_ie = `';
-              cssContent += sass.renderSync({ data: cssIe }).css;
+              cssContent += cssIe;
               cssContent += '`;\n';
 
               if (componentCSS[filename]) {

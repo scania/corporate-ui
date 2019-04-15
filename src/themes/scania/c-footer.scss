@@ -170,6 +170,9 @@ p {
   ::slotted(c-social-media) {
     @extend %nav-link-social-desktop;
   }
+  ::slotted(c-social-media a) {
+    margin-right: 0;
+  }
 
   p {
     text-align: left;
@@ -232,3 +235,13 @@ p {
     display: flex;
   }
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  ::slotted(c-social-media a:hover) {
+    background-color: white;
+    color: black;
+    border-color: white;
+    border-radius: 22px;
+  }
+}
+

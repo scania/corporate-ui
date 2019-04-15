@@ -18,8 +18,8 @@ import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './ut
 
 const browserSync = create();
 
-const build = series(generateTheme, components, copy, pack);
-const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
+const build = series(cleanAll, generateTheme, components, copy, pack, staticServer);
+const start = series(build, managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname, '/node_modules/@storybook/core');
 const configDir = join(__dirname, '/public'); // storybook config folder;
@@ -29,7 +29,7 @@ const dist = join(__dirname, '/dist'); // distribution folder
 
 export {
   build,
-  generateTheme,
+  generateTheme as themes,
   start as default,
 };
 
@@ -70,6 +70,14 @@ function copy() {
     { base: stencilBuild },
   )
     .pipe(dest(dist));
+}
+
+function staticServer(cb) {
+  exec('build-storybook -c public -o dist/www', { maxBuffer: 1024 * 500 }, (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    cb();
+  });
 }
 
 function pack(cb) {

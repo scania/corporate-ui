@@ -1,36 +1,40 @@
+/* eslint-disable no-unused-vars */
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+/* eslint-enable no-unused-vars */
 
-import data from './package.json';
+const packageFile = require('./package.json');
+
+const sassOpts: object = {
+  includePaths: ['node_modules'],
+};
 
 export const config: Config = {
-  namespace: data.name,
+  namespace: packageFile.name,
   hashFileNames: false,
   outputTargets: [
     {
       type: 'dist',
-      dir: '.build'
+      dir: '.build',
     },
     {
       type: 'www',
       dir: '.www',
-      serviceWorker: null // disable service workers
+      serviceWorker: null, // disable service workers
     },
     {
       type: 'docs-json',
-      file: '.data/docs.json'
+      file: '.data/docs.json',
     },
     {
       type: 'stats',
-      file: '.data/stats.json'
-    }
+      file: '.data/stats.json',
+    },
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/']
+    testPathIgnorePatterns: ['/node_modules/'],
   },
   plugins: [
-    sass({
-      includePaths: ['node_modules']
-    })
-  ]
-}
+    sass(sassOpts),
+  ],
+};

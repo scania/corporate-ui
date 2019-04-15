@@ -1,12 +1,11 @@
 # Compiled from Stencil
+.stencil/
 .build/
 .www/
-src/**/readme.md
-.data/stats.json
-.data/docs.json
+.data/
 
 # Compiled theme
-themes.built/
+src/themes.built/
 
 # Compiled from gulpfile.babel.js
 .storybook/
@@ -25,7 +24,6 @@ log.txt
 *.tgz
 *.d.ts
 
-.stencil/
 .idea/
 .vscode/
 .sass-cache/

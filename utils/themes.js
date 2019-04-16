@@ -31,7 +31,7 @@ function addScClass(contentCss, componentName, regex) {
       matchWord = selector.trim().split(' ')
       // if c-header it means it styles the host, then add .sc-c-header-h
       // if not, just add .sc-c-header
-      let replaceWith = matchWord[0] + `.sc-${componentName}` + ( matchWord[0] == componentName ? '-h' : '' );
+      let replaceWith = matchWord[0] + `.sc-${componentName}` + ( matchWord[0].includes(componentName) ? '-h' : '' );
       selector = selector.replace(matchWord[0],replaceWith)
       replaceWord.push(selector)
     })
@@ -42,12 +42,20 @@ function addScClass(contentCss, componentName, regex) {
 }
 
 function IEStyle(css, componentName) {
-  let matchSlot, mediaContent;
+  let matchSlot, mediaContent, matchHost;
   const regex = /^([\.a-z].*)\{/gm;
   // regex  for all characters including spaces
   const slotRegex = /\:\:slotted\(([^)]+)\)/g;
 
-  css = css.replace(/\:host/g, `${componentName}`)
+  let hostRegex = /\:host(\s* |\(([^)]+)\))/g;
+  while ((matchHost = hostRegex.exec(css)) !== null) {
+    if (matchHost.index === hostRegex.lastIndex) {
+      hostRegex.lastIndex++;
+    }
+    let hostText = matchHost[2] ? componentName + matchHost[2] : componentName;
+    css = css.replace(matchHost[0], hostText);
+  }
+
   // change ::slotted to .sc-xxx-s
   while ((matchSlot = slotRegex.exec(css)) !== null) {
     if (matchSlot.index === slotRegex.lastIndex) {

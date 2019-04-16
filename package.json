@@ -1,15 +1,12 @@
 {
-  "name": "Corporate-UI",
-  "version": "0.1.1",
+  "name": "awinny-cui",
+  "version": "0.1.2",
   "description": "In this repository you'll find all components available in the UX Library",
-  "module": ".build/esm/index.js",
-  "main": ".build/index.js",
-  "unpkg": ".build/ionic.js",
-  "types": ".build/types/components.d.ts",
-  "collection": ".build/collection/collection-manifest.json",
+  "module": "dist/esm/index.js",
+  "main": "dist/define.js",
+  "collection": "dist/collection/collection-manifest.json",
   "files": [
-    ".build/",
-    "dist/"
+    "dist"
   ],
   "scripts": {
     "prepublishOnly": "npm run build",

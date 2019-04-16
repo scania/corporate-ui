@@ -1,10 +1,8 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
-import data from './package.json';
-
 export const config: Config = {
-  namespace: data.name,
+  namespace: 'corporate-ui',
   hashFileNames: false,
   outputTargets: [
     {

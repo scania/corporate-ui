@@ -14,6 +14,23 @@
   display: none;
 }
 
+label.radio-inline,
+label.checkbox-inline,
+.radio-inline label,
+.checkbox-inline label {
+  font-weight: normal;
+  color: #53565A;
+}
+
+label.checkbox,
+.checkbox label,
+label.checkbox-inline,
+.checkbox-inline label {
+  line-height: initial;
+}
+
+
+
 label.radio,
 label.checkbox,
 .radio label,
@@ -23,7 +40,7 @@ label.checkbox,
   color: #53565A;
   font-size: 1.3rem;
   font-weight: normal;
-  line-height: 1;
+   display: flex;
 
   .app &{
       font-weight: normal;

@@ -6,6 +6,10 @@
     <div class="dropdown-container">
       <nav class="dropdown-menu footer-links">
         <content></content>
+
+        <template is="dom-repeat" items="{{items}}">
+          <nav-item props="{{item}}"></nav-item>
+        </template>
       </nav>
       <a href="#" class="btn btn-lg-center-block hidden-md hidden-lg" data-toggle="dropdown">
         SCANIA

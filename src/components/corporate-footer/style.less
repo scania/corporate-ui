@@ -6,6 +6,11 @@
     background-color: #1d1d1b;
     color: #fff;
     padding: 46px 30px 20px;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
   }
 
   .wordmark {
@@ -18,8 +23,19 @@
     background-repeat: no-repeat;
   }
 
+  .right-container{
+    order: 2;
+    flex-grow: 1;
+  }
+
+  .left-container{
+    order: 1;
+    flex-grow: 2;
+  }
+
   .footer-links {
     margin: 0 0 15px 0;
+    padding-left: 0;
     text-align: left;
   }
   .footer-copy-text {
@@ -29,6 +45,7 @@
     margin: 0;
     letter-spacing: 0.05rem;
     text-align: left;
+    float: left;
   }
 
   ::content {
@@ -103,12 +120,11 @@
 
       .dropdown-menu {
         background-color: transparent;
-        display: block;
+        display: inline-block;
+        width: 100%;
         position: relative;
         border: none;
         box-shadow: none;
-        float: none;
-
         a {
           font-family: "Scania Sans", Helvetica, Arial, sans-serif;
           font-size: 14px;
@@ -125,6 +141,15 @@
 
     footer {
       padding: 23px 0 0 0;
+      flex-flow: row wrap;
+    }
+
+    .right-container, .left-container{
+      flex: 1 100%;
+    }
+
+    .right-container{
+      order: 1;
     }
 
     .wordmark{
@@ -145,6 +170,7 @@
       padding: 19px 9%;
       line-height: 16px;
       text-align: center;
+      width:100%;
     }
 
     ::content {

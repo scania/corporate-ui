@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Watch,
+  Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
 import { store, actions } from '../../store';
@@ -23,13 +23,25 @@ export class Navigation {
   /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
   @Prop() secondaryItems: any;
 
+  /** Used to show a text in front of generated items on desktop and add a describing text for navigating back in mobile mode for sub navigation */
+  @Prop() caption: string;
+
+  /** Used to dynamically connect current node to a parent item in mobile mode interaction */
+  @Prop() target: string;
+
+  @State() isSub: boolean;
+
   @State() navigationOpen: boolean = store.getState().navigation.open;
+
+  @State() navigationExpanded: string = store.getState().navigation.expanded;
 
   @State() currentTheme: string = this.theme || store.getState().theme.name;
 
   @State() _primaryItems: object[] = [];
 
   @State() _secondaryItems: object[] = [];
+
+  @Element() el: HTMLElement;
 
   @Watch('primaryItems')
   @Watch('secondaryItems')
@@ -46,10 +58,15 @@ export class Navigation {
     store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
 
+  toggleSubNavigation(expanded) {
+    store.dispatch({ type: actions.TOGGLE_SUB_NAVIGATION, expanded });
+  }
+
   componentWillLoad() {
     store.subscribe(() => {
       this.currentTheme = store.getState().theme.name;
       this.navigationOpen = store.getState().navigation.open;
+      this.navigationExpanded = store.getState().navigation.expanded;
     });
 
     this.setItems(this.primaryItems, 'primaryItems');
@@ -59,6 +76,19 @@ export class Navigation {
   componentDidLoad() {
     // To make sure navigation is always show from start
     this.toggleNavigation(true);
+
+    this.isSub = this.el.slot === 'sub';
+
+    const items = this.el.querySelectorAll('c-navigation[target]');
+
+    for (let i = 0; i < items.length; i += 1) {
+      const item = items[i];
+      const target = item.getAttribute('target');
+      const node: HTMLAnchorElement = this.el.querySelector(`a[href="${target}"]`);
+
+      node.classList.add('parent');
+      node.onclick = (event) => this.open(event);
+    }
   }
 
   combineClasses(classes) {
@@ -68,6 +98,31 @@ export class Navigation {
     ].join(' ');
   }
 
+  open(event) {
+    const target = event.target.getAttribute('href');
+    const node = this.el.querySelector(`c-navigation[target="${target}"]`);
+
+    if (window.innerWidth > 992) {
+      return;
+    }
+
+    if (node) {
+      event.preventDefault();
+      this.toggleSubNavigation(target);
+    }
+
+    if (target === '#close') {
+      event.preventDefault();
+      this.toggleSubNavigation('');
+    }
+  }
+
+  hostData() {
+    return {
+      open: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
+    };
+  }
+
   render() {
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
@@ -75,6 +130,14 @@ export class Navigation {
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav'>
+            { this.isSub
+              ? [
+                this.caption ? <strong class="nav-item caption">{ this.caption }</strong> : '',
+                  <a href="#close" class="nav-item nav-link toggle-sub" onClick={(event) => this.open(event)}>{ this.caption || 'Back' }</a>,
+              ]
+              : ''
+            }
+
             { this._primaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;

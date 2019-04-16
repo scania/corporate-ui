@@ -33,7 +33,14 @@ export class Field {
       }
       return lines;
     }, []);
-    const parsed = code.join('\n').replace(/"/g, "'").replace(/&quot;/g, '"').replace(/ class='hydrated'/g, '');
+    // TODO: We should not need all these, maybe we could solve this in a more dynamic way
+    const parsed = code.join('\n')
+      .replace(/"/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/ class='hydrated'/g, '')
+      .replace(/ class='parent'/g, '')
+      .replace(/ open='.*?'/g, '')
+      .replace(/active=''/g, 'active');
 
     this.code = hljs.highlight(this.type, parsed, false).value;
   };

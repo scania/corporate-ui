@@ -9,7 +9,6 @@
     "dist"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build",
     "start": "gulp",
     "build": "gulp build",
     "server": "gulp server",

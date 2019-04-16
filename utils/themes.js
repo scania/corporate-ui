@@ -31,7 +31,8 @@ function addScClass(contentCss, componentName, regex) {
       matchWord = selector.trim().split(' ')
       // if c-header it means it styles the host, then add .sc-c-header-h
       // if not, just add .sc-c-header
-      let replaceWith = matchWord[0] + `.sc-${componentName}` + ( matchWord[0].includes(componentName) ? '-h' : '' );
+      let startWith = new RegExp('^' + componentName).test(matchWord[0])
+      let replaceWith = matchWord[0] + `.sc-${componentName}` + ( startWith ? '-h' : '' );
       selector = selector.replace(matchWord[0],replaceWith)
       replaceWord.push(selector)
     })
@@ -64,19 +65,25 @@ function IEStyle(css, componentName) {
     css = css.replace(matchSlot[0], `.sc-${componentName}-s ` + matchSlot[1]);
   }
   css = addScClass(css, componentName, regex);
-  css = sass.renderSync({ data: css }).css;
 
   // for content inside media query we need to do the same process again
-  const regexMedia = /^(?=.*(?:\r?\n(?!\r?).*)*?\@media).*(?:\r?\n(?!\r?\n).*)*/gm;
+  const regexMedia = /^(@media|@supports)(.*){\n([\S\n\r\s]+?)(^})/gm;
+  mediaContent = css.match(regexMedia);
+
   while ((mediaContent = regexMedia.exec(css)) !== null) {
-    let content = mediaContent[0].trim().split('\n')
-    let mediaQueryCtn = content[0];
-    content = content.slice(1,-1)
-    content = content.join('\n')
+    if (mediaContent.index === regexMedia.lastIndex) {
+      regexMedia.lastIndex++;
+    }
+
+    let content = mediaContent[3].trim()
+    console.log(content)
     const regexFull = /^(\s*[\.a-z].*)\{/gm;
     let Newcontent = addScClass(content, componentName, regexFull)
-    css += mediaQueryCtn + Newcontent + '}'
+    let text = `\n${mediaContent[1] + mediaContent[2]} {\n ${Newcontent}\n }\n`  
+    css = css.replace(mediaContent[0], text)
   }
+
+  css = sass.renderSync({ data: css }).css;
 
   return css
 }

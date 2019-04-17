@@ -3,14 +3,12 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 /* eslint-enable no-unused-vars */
 
-const packageFile = require('./package.json');
-
 const sassOpts: object = {
   includePaths: ['node_modules'],
 };
 
 export const config: Config = {
-  namespace: packageFile.name,
+  namespace: 'corporate-ui',
   hashFileNames: false,
   outputTargets: [
     {

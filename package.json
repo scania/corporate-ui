@@ -1,20 +1,17 @@
 {
-  "name": "corporate-ui",
-  "version": "0.1.1",
+  "name": "corporate-ui-dev",
+  "version": "4.0.0-alpha",
   "description": "In this repository you'll find all components available in the UX Library",
-  "module": ".build/esm/index.js",
-  "main": ".build/index.js",
-  "unpkg": ".build/ionic.js",
-  "types": ".build/types/components.d.ts",
-  "collection": ".build/collection/collection-manifest.json",
+  "module": "dist/esm/index.js",
+  "main": "dist/define.js",
+  "collection": "dist/collection/collection-manifest.json",
   "files": [
-    ".build/",
-    "dist/"
+    "dist"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build",
     "start": "gulp",
     "build": "gulp build",
+    "clean": "gulp clean",
     "server": "gulp server",
     "themes": "gulp themes",
     "storybook": "start-storybook -p 1337 -c public",

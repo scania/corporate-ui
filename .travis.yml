@@ -67,3 +67,12 @@ deploy:
     on:
       branch: $TRAVIS_TAG
       tags: true
+
+  # Deploy for NPM
+  - provider: npm
+    email: "andreas.wikstrom@scania.com"
+    api_key: "$NPM_ACCESS_KEY"
+    skip_cleanup: true
+    on:
+      tags: true
+      tag: beta

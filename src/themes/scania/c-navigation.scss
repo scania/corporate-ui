@@ -1,34 +1,49 @@
-%nav-link {
+%nav-item {
   padding: 10px 25px;
   color: #909090;
   text-decoration: none;
+}
+%nav-item-separator {
+  border-top: 1px solid #e2e2e2;
 }
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
 %nav-link-hover {
   color: #041e42;
 }
-%nav-link-separator {
-  border-top: 1px solid #e2e2e2;
-}
 
 :host {
   background-color: #f5f5f5;
+  display: flex;
   font-family: 'Scania Sans';
   font-size: 1.4rem;
   font-weight: bold;
   text-transform: uppercase;
+  overflow: hidden;
 }
 :host([slot=sub]) {
-  border-top: 1px solid #d3d3d3;
-  background-color: #f5f5f5;
-  border-top: 1px solid #d3d3d3;
+  background-color: #fff;
+  display: none;
   text-transform: capitalize;
   font-weight: normal;
 }
+:host([slot=sub][open=true]),
+:host([slot=sub].open) {
+  display: block;
+}
+:host([open][open=true]:not([slot=sub])),
+:host(.open:not([slot=sub])) {
+
+  .navbar {
+    margin-left: -100%;
+  }
+}
 
 ::slotted(a) {
-  @extend %nav-link;
+  @extend %nav-item;
+}
+::slotted(a:not(:first-child)) {
+  @extend %nav-item-separator;
 }
 // Due to browsers not supporting: ::slotted(a):hover 
 // we need to have the hover separated instead of nested
@@ -37,23 +52,22 @@
 ::slotted(a[active]) {
   @extend %nav-link-hover;
 }
-::slotted(a:not(:first-child)) {
-  @extend %nav-link-separator;
-}
 
 ul {
   margin: 0;
 }
 
 .navbar {
+  display: block;
   padding: 0;
+  transition: margin 250ms ease;
 
   .navbar-nav {
 
     .nav-item {
+      @extend %nav-item;
 
       &.nav-link {
-        @extend %nav-link;
 
         &:hover,
         &.active,
@@ -61,12 +75,23 @@ ul {
           @extend %nav-link-hover;
         }
       }
+      &.toggle-sub {
+        position: relative;
+        background-color: #f5f5f5;
+      }
 
       + .nav-item {
-        @extend %nav-link-separator;
+        @extend %nav-item-separator;
       }
     }
+    .caption {
+      display: none;
+    }
   }
+}
+:host([slot=sub]),
+.navbar {
+  min-width: 100%;
 }
 .navbar-collapse {
   transition: max-height 550ms ease-in;
@@ -89,7 +114,7 @@ ul {
 
 @media (min-width: 992px) {
 
-  %nav-link-desktop {
+  %nav-item-desktop {
     padding: 20px 0;
 
     &:before,
@@ -98,7 +123,7 @@ ul {
       padding: 0 15px;
     }
   }
-  %nav-link-sub-desktop {
+  %nav-item-sub-desktop {
     padding: 10px 14px;
 
     &:before,
@@ -106,32 +131,72 @@ ul {
       content: none;
     }
   }
-  %nav-link-separator-desktop {
+  %nav-item-separator-desktop {
     border-top: none;
   }
-  %nav-link-separator-desktop-before {
+  %nav-item-separator-desktop-before {
     border-left: 1px solid #e2e2e2;
   }
 
   :host {
     background-color: #fff;
+    overflow: visible;
+    flex-direction: column;
   }
   :host([slot=sub]) {
+    background-color: #f5f5f5;
+    border-top: 1px solid #d3d3d3;
     padding: 0 15px;
-  
+
     ::slotted(a) {
-      @extend %nav-link-sub-desktop;
+      @extend %nav-item-sub-desktop;
+    }
+
+    .navbar {
+      
+      .navbar-nav {
+
+        .nav-item {
+          @extend %nav-item-sub-desktop;
+        }
+        .caption {
+          display: block;
+          color: #000;
+          text-transform: uppercase;
+  
+          &:after {
+            content: "";
+            border-right: 1px solid #e2e2e2;
+            padding: 0 15px;
+          }
+        }
+      }
+    }
+  }
+  :host([slot=sub][open]),
+  :host([slot=sub].open) {
+    display: none;
+  }
+  :host([slot=sub][active]),
+  :host([slot=sub].active) {
+    display: block;
+  }
+  :host([open]:not([open=false]):not([slot=sub])),
+  :host(.open:not([slot=sub])) {
+
+    .navbar {
+      margin-left: 0;
     }
   }
 
   ::slotted(a) {
-    @extend %nav-link-desktop;
+    @extend %nav-item-desktop;
   }
   ::slotted(a:not(:first-child)) {
-    @extend %nav-link-separator-desktop;
+    @extend %nav-item-separator-desktop;
 
     &:before {
-      @extend %nav-link-separator-desktop-before;
+      @extend %nav-item-separator-desktop-before;
     }
   }
   ::slotted(a[slot="secondary-items"]):before {
@@ -142,22 +207,22 @@ ul {
   }
 
   .navbar {
+    display: flex;
+    transition: none;
 
     .navbar-nav {
 
       .nav-item {
+        @extend %nav-item-desktop;
+
         border-top: 0;
 
-        &.nav-link {
-          @extend %nav-link-desktop;
-
-          + .nav-link:before {
-            @extend %nav-link-separator-desktop-before;
-          }
-        }
-
         + .nav-item {
-          @extend %nav-link-separator-desktop;
+          @extend %nav-item-separator-desktop;
+
+          &:before {
+            @extend %nav-item-separator-desktop-before;
+          }
         }
       }
     }

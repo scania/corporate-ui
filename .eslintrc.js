@@ -13,17 +13,9 @@ module.exports =  {
     ecmaFeatures:  {
       jsx:  true,  // Allows for the parsing of JSX
     },
+    project: './tsconfig.json',
   },
   rules:  {
-    '@typescript-eslint/indent': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/explicit-member-accessibility': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/camelcase': 'off',
-    '@typescript-eslint/no-unused-vars': 'off', // check this
-
     'linebreak-style': 'off',
     'no-use-before-define': 'off',
     'import/no-extraneous-dependencies': 'off', // solving redux dependency issue
@@ -46,8 +38,8 @@ module.exports =  {
     'global-require': 'off', // check this
     'import/no-dynamic-require': 'off',
     'func-names': 'off', // check this, you shouldn't use unnamed functions
+    'no-console': 'off',
     // e.g. '@typescript-eslint/explicit-function-return-type': 'off',
-
     // 'prettier/prettier': 'error'
   },
 };

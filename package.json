@@ -1,6 +1,6 @@
 {
-  "name": "awinny-cui",
-  "version": "0.1.2-beta",
+  "name": "corporate-ui-dev",
+  "version": "4.0.0-alpha",
   "description": "In this repository you'll find all components available in the UX Library",
   "module": "dist/esm/index.js",
   "main": "dist/define.js",

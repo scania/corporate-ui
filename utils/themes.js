@@ -67,7 +67,7 @@ function IEStyle(css, componentName) {
   css = addScClass(css, componentName, regex);
 
   // for content inside media query we need to do the same process again
-  const regexMedia = /^(@media|@supports)(.*){\n([\S\n\r\s]+?)(^})/gm;
+  const regexMedia = /^(@media|@supports)(.*){[\r\n]([\S\n\r\s]+?)(^})/gm;
   mediaContent = css.match(regexMedia);
 
   while ((mediaContent = regexMedia.exec(css)) !== null) {
@@ -76,7 +76,6 @@ function IEStyle(css, componentName) {
     }
 
     let content = mediaContent[3].trim()
-    console.log(content)
     const regexFull = /^(\s*[\.a-z].*)\{/gm;
     let Newcontent = addScClass(content, componentName, regexFull)
     let text = `\n${mediaContent[1] + mediaContent[2]} {\n ${Newcontent}\n }\n`  

@@ -1,42 +1,42 @@
-import { defineCustomElement } from './esm/es5/corporate-ui.core'
-import * as CUI from './esm/es5/corporate-ui.components'
-import collections from './collection/collection-manifest.json'
+import { defineCustomElement } from './esm/es5/corporate-ui.core';
+import * as CUI from './esm/es5/corporate-ui.components';
+import collections from './collection/collection-manifest.json';
 
-const CUI_COMPONENTS = CUI.COMPONENTS
-let subComponents = {},
-    components = [];
+const CUI_COMPONENTS = CUI.COMPONENTS;
+const subComponents = {};
+let components = [];
 
-let collection = collections.components
+const collection = collections.components;
 collection.forEach(obj => {
   if (obj.dependencies.length > 0) {
-    subComponents[obj.tag] = obj.dependencies
+    subComponents[obj.tag] = obj.dependencies;
   }
-})
+});
 
 function defineCustomElements(requests) {
-  if(requests==='all') {
-    components = [...CUI_COMPONENTS]
+  if (requests === 'all') {
+    components = [...CUI_COMPONENTS];
   } else {
-    requests.forEach(project_comp => {
-      components.push(findComponent(project_comp))
-      for (let tag in subComponents) {
-        if (project_comp === tag) {
+    requests.forEach(projectComp => {
+      components.push(findComponent(projectComp));
+      for (const tag in subComponents) {
+        if (projectComp === tag) {
           subComponents[tag].forEach(tagDep => {
-            components.push(findComponent(tagDep))
-          })
+            components.push(findComponent(tagDep));
+          });
         }
       }
-    })
+    });
   }
-  defineCustomElement(window, components)
+  defineCustomElement(window, components);
 }
 
 function findComponent(name) {
-  var val
+  let val;
   CUI_COMPONENTS.forEach(comp => {
-    if (comp[0] === name) val = comp
-  })
-  return val
+    if (comp[0] === name) val = comp;
+  });
+  return val;
 }
 
-export { defineCustomElements }
+export { defineCustomElements };

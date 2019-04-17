@@ -20,11 +20,13 @@ const serverPath = join(__dirname,'/node_modules/@storybook/core/');
 const configDir = join(__dirname,'/public'); //storybook config folder
 const outputDir = join(__dirname, '/.storybook'); // folder to serve main storybook server & bundles
 const stencilBuild = join(__dirname, '/.build'); // stencil default compiled files
+const stencilServer = join(__dirname, '.www');
 const dist = join(__dirname, '/dist'); // distribution folder
 
 export {
   generateTheme,
   build,
+  cleanAll as clean,
   start as default
 }
 
@@ -42,7 +44,7 @@ function reload(done){
 
 // clean all compiled folder
 function cleanAll() {
-  return del([outputDir, stencilBuild, dist])
+  return del([outputDir, stencilBuild, dist, stencilServer])
 }
 
 // clean manager folder (used when changes happen on storybook manager)

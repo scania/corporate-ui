@@ -83,6 +83,7 @@ function pack(cb) {
 // watch stencil & themes
 function watches(cb) {
   watch(
+    [
       'src/themes/**/*',
       'src/components/**/*',
       '!src/components/components.d.ts',

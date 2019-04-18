@@ -59,7 +59,7 @@ export class Header {
   }
 
   componentDidLoad() {
-    let elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');
+    const elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');
 
     if (elem) {
       elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
@@ -83,7 +83,7 @@ export class Header {
   }
 
   render() {
-    if(!document.head.attachShadow) {
+    if (!document.head.attachShadow) {
       this.currentTheme += '_ie';
     }
     return [

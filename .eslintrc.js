@@ -39,6 +39,8 @@ module.exports =  {
     'import/no-dynamic-require': 'off',
     'func-names': 'off', // check this, you shouldn't use unnamed functions
     'no-console': 'off',
+    'no-useless-escape': 'off',
+    'prefer-destructuring' : 'off', // css = sass.renderSync({ data: css }).css;
     // e.g. '@typescript-eslint/explicit-function-return-type': 'off',
     // 'prettier/prettier': 'error'
   },

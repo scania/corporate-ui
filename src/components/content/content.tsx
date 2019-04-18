@@ -27,8 +27,9 @@ export class Content {
   componentWillLoad() {
     store.subscribe(() => this.currentTheme = store.getState().theme.name);
   }
+
   render() {
-    if(!document.head.attachShadow) {
+    if (!document.head.attachShadow) {
       this.currentTheme += '_ie';
     }
     return [

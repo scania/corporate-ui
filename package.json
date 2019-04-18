@@ -1,5 +1,5 @@
 {
-  "name": "Corporate-UI",
+  "name": "corporate-ui",
   "version": "0.1.1",
   "description": "In this repository you'll find all components available in the UX Library",
   "module": ".build/esm/index.js",
@@ -18,7 +18,7 @@
     "server": "gulp server",
     "themes": "gulp themes",
     "storybook": "start-storybook -p 1337 -c public",
-    "lint": "eslint src/ public/ --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "npm run lint -- --fix",
     "lint-debug": "npm run lint -- --debug",
     "test": "stencil test --spec --e2e",
@@ -30,8 +30,8 @@
     }
   },
   "lint-staged": {
-    "{src/,public/}*.{js,jsx,ts,tsx}": [
-      "npm run lint-fix",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
       "git add"
     ]
   },
@@ -87,6 +87,7 @@
     "node-sass": "4.11.0",
     "prettier": "1.16.4",
     "puppeteer": "1.11.0",
+    "react-treebeard": "3.1.0",
     "redux": "4.0.1",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",

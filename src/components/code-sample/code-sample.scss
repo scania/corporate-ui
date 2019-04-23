@@ -3,12 +3,13 @@
 :host {
   display: block;
 }
-
-slot {
+::slotted(*) {
   display: none;
 }
-
-pre {
+::slotted(pre){
+  display: block;
+}
+pre, pre code {
   white-space: pre-wrap;
   margin: 0;
 }

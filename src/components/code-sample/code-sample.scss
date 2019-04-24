@@ -2,13 +2,11 @@
 
 :host {
   display: block;
+  .slot{
+    display: none;
+  }
 }
-::slotted(*) {
-  display: none;
-}
-::slotted(pre){
-  display: block;
-}
+
 pre, pre code {
   white-space: pre-wrap;
   margin: 0;

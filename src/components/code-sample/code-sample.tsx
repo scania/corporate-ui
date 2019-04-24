@@ -32,7 +32,7 @@ export class Field {
   render() {
     return [
       // need to keep render the slot to make it easy to hide it in IE
-      <slot/>,
+      <div class='slot'><slot/></div>,
       <pre>
         <code class={this.type} { ... {innerHTML: this.code} }>
         </code>

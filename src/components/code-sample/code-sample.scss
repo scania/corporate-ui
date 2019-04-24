@@ -2,13 +2,12 @@
 
 :host {
   display: block;
+  .slot{
+    display: none;
+  }
 }
 
-slot {
-  display: none;
-}
-
-pre {
+pre, pre code {
   white-space: pre-wrap;
   margin: 0;
 }

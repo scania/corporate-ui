@@ -1,3 +1,60 @@
 <c-theme name="scania"></c-theme>
 
-<style></style>
+<style>
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE10+ CSS styles go here */
+  main summary {
+    direction: ltr;
+  }
+  main details:before{
+      content:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 40 40' xml:space='preserve' height='10' width='10' fill='currentColor'%3E%3Cg%3E%3Cpath d='m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z'/%3E%3C/g%3E%3C/svg%3E");
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      margin-right: 5px;
+      transition: transform .15s ease-out;
+  }
+  main details.showing:before{
+    content:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 40 40' xml:space='preserve' height='10' width='10' fill='currentColor'%3E%3Cg%3E%3Cpath d='m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z'/%3E%3C/g%3E%3C/svg%3E");
+    transform: rotate(-90deg);
+    margin-right: 5px;
+    transition: transform .15s ease-out;
+  }
+  main details > :not(summary) {
+    display: none!important;
+  }
+  main details.showing > :not(summary) {
+    margin-top: 15px;
+    display: block!important;
+  }
+}
+  
+</style>
+
+<script>
+    (function() {
+        if (typeof HTMLDetailsElement === "undefined") {
+            // Tell IE they exist
+            document.createElement("details");
+            document.createElement("summary");
+            document.addEventListener("click", detailsHandler);
+            document.addEventListener("keypress", detailsHandler);
+        }
+        function detailsHandler(e) {
+            if (e.type === "keypress" && [13, 32].indexOf(e.which || e.keyCode) === -1) {
+                return;
+            }
+            var el = e.target;
+            while (el && el.tagName !== "DETAILS") {
+                if (el.tagName === "BODY") {
+                    el = null;
+                    break;
+                }
+                el = el.parentNode;
+            }
+            if (el) {
+                el.classList.toggle("showing");
+            }
+        }
+    })();
+</script>
+        

@@ -34,7 +34,7 @@
 :host([open][open=true]:not([slot=sub])),
 :host(.open:not([slot=sub])) {
 
-  .navbar {
+  > .navbar {
     margin-left: -100%;
   }
 }
@@ -61,6 +61,7 @@ ul {
   display: block;
   padding: 0;
   transition: margin 250ms ease;
+  order: -1; /* This is needed for ie - due to it beeing render after slots */
 
   .navbar-nav {
 
@@ -184,7 +185,7 @@ ul {
   :host([open]:not([open=false]):not([slot=sub])),
   :host(.open:not([slot=sub])) {
 
-    .navbar {
+    > .navbar {
       margin-left: 0;
     }
   }

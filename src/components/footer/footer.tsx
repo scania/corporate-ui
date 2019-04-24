@@ -76,6 +76,9 @@ export class Footer {
   }
 
   render() {
+    if (!document.head.attachShadow) {
+      this.currentTheme += '_ie';
+    }
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 

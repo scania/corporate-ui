@@ -14,11 +14,78 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
+function addScClass(contentCss, componentName, regex) {
+  let matchRegex = regex.exec(contentCss);
+  let matchWord;
+  // add .sc-componentName
+  while (matchRegex != null) {
+    let replaceWord = [];
+    // change every selector separated with comma
+    // example: .navbar, nav a => will match .navbar and nav
+    const selectors = matchRegex[1].split(',');
+    selectors.forEach(selector => {
+      // only match the first selector (example: nav a, will only match nav)
+      matchWord = selector.trim().split(' ');
+      // if c-header it means it styles the host, then add .sc-c-header-h
+      // if not, just add .sc-c-header
+      const startWith = new RegExp(`^${componentName}`).test(matchWord[0]);
+      const replaceWith = `${matchWord[0]}.sc-${componentName}${startWith ? '-h' : ''}`;
+      selector = selector.replace(matchWord[0], replaceWith);
+      replaceWord.push(selector);
+    });
+    replaceWord = replaceWord.join();
+    contentCss = contentCss.replace(matchRegex[0], `${replaceWord} {`);
+    matchRegex = regex.exec(contentCss);
+  }
+  return contentCss;
+}
+
+function IEStyle(css, componentName) {
+  const regex = new RegExp(/^([\.a-z].*)\{/, 'gm');
+  // regex  for all characters including spaces
+  const slotRegex = new RegExp(/\:\:slotted\(([^)]+)\)/, 'g');
+
+  const hostRegex = new RegExp(/\:host(\s* |\(([^)]+)\))/, 'g');
+  let matchHost = hostRegex.exec(css);
+  while (matchHost != null) {
+    const hostText = matchHost[2] ? componentName + matchHost[2] : componentName;
+    css = css.replace(matchHost[0], hostText);
+    matchHost = hostRegex.exec(css);
+  }
+  let matchSlot = slotRegex.exec(css);
+  // change ::slotted to .sc-xxx-s
+  while (matchSlot != null) {
+    css = css.replace(matchSlot[0], `.sc-${componentName}-s ${matchSlot[1]}`);
+    matchSlot = slotRegex.exec(css);
+  }
+
+  // add .sc-xxx
+  css = addScClass(css, componentName, regex);
+
+  // for content inside media query we need to do the same process again
+  const regexMedia = new RegExp(/^(@media|@supports)(.*){[\r\n]([\S\n\r\s]+?)(^})/, 'gm');
+  let mediaContent = regexMedia.exec(css);
+
+  while (mediaContent != null) {
+    const content = mediaContent[3].trim();
+    const regexFull = new RegExp(/^(\s*[\.a-z].*)\{/, 'gm');
+    const Newcontent = addScClass(content, componentName, regexFull);
+    const text = `\n${mediaContent[1] + mediaContent[2]} {\n ${Newcontent}\n }\n`;
+    css = css.replace(mediaContent[0], text);
+    mediaContent = regexMedia.exec(css);
+  }
+
+  css = sass.renderSync({ data: css }).css;
+
+  return css;
+}
+
 function walkDir(dir, done) {
   const globalCSS = []; // save global CSS
   const componentCSS = {}; // save component css theme
   const data = {}; // temporary container for file content
   let cssContent = ''; // temporary container for string addition
+  let cssIe = ''; // temporary container for string addition
 
   fs.readdir(dir, (err, list) => {
     if (err) {
@@ -43,9 +110,14 @@ function walkDir(dir, done) {
                 globalCSS.push(brandName);
               }
 
+              cssIe = IEStyle(dt[a], filename);
+
               cssContent = '';
               cssContent += `\nexport const ${brandName} = \``;
               cssContent += sass.renderSync({ data: dt[a] }).css;
+              cssContent += '`;\n';
+              cssContent += `\nexport const ${brandName}_ie = \``;
+              cssContent += cssIe;
               cssContent += '`;\n';
 
               if (componentCSS[filename]) {

@@ -1,0 +1,128 @@
+
+/*** First set the outer border of the table  ***/
+
+.table-expandable  {
+  border: 1px solid #dadada;
+}
+
+
+/*** No borders between rows in an expandable table  ***/
+
+    .table-expandable > tbody + tbody  {
+      border-top: none;
+      border-bottom: none;
+    }
+
+    .table-expandable > tbody + tbody tr td  {
+      border-top: none;
+      border-bottom: none;
+    }    
+
+
+  /*** Lets make it striped (we can't use the .table-striped class for this purpose)  ***/
+
+  .table-expandable tbody[data-toggle="collapse"] {
+      background-color: #ebf2f5;
+  }
+
+
+  .table-expandable tbody[data-toggle="collapse"]:nth-child(4n) {
+      background-color: #f9f9f9;
+  }
+
+  /*** An expandable row always have an pointer when hovering  ***/
+
+    .table-expandable tbody[data-toggle="collapse"] > tr {
+        cursor: pointer;
+    }
+
+    /*** Let's style the table in the expanded row  ***/
+
+    .table-expandable tbody[data-toggle="collapse"] + tbody {
+        background-color: #fff;
+        margin: 5px;
+        margin-bottom: 14px;
+    }
+
+    .table-expandable tbody[data-toggle="collapse"] + tbody tr:hover td {
+        background-color: #f3f3f3;
+
+    }
+
+    .table-expandable tbody[data-toggle="collapse"] + tbody > tr > th {
+        background-color: #fff;
+        font-size: 12px;
+        padding: 18px 10px 6px;
+        border-top-color: #0000;
+
+    }
+
+    .table-expandable tbody[data-toggle="collapse"] + tbody > tr > td {
+        background-color: #fff;
+        font-size: 12px;
+        padding: 6px 10px ;
+        border-top-color: #0000;
+
+    }
+
+    .table-expandable tbody[data-toggle="collapse"] + tbody > tr > th:first-child,
+    .table-expandable tbody[data-toggle="collapse"] + tbody > tr > td:first-child {
+        padding-left: 40px;
+
+    }
+
+    .table-expandable tbody[data-toggle="collapse"] + tbody > tr > td.empty {
+        min-height: 30px;
+      
+    }    
+
+/*** Setting border around the expanded section  ***/
+
+    .table-expandable tbody[data-toggle="collapse"]:not(.collapsed) {
+      border: 1px solid #4a8ba4;
+      border-bottom: #4a8ba4;
+      background-color: #d9e8ef;
+    }
+
+    .table-expandable > tbody[data-toggle="collapse"]:not(.collapsed) + tbody {
+      border-top: none;
+      border-right: 1px solid #4a8ba4;
+      border-bottom: 1px solid #4a8ba4;
+      border-left: 1px solid #4a8ba4;
+    } 
+
+
+/*** Styles for the angle-up angle-down icon and animation  ***/
+
+    .table-expandable tbody[data-toggle="collapse"] > tr > td:first-child:before {
+        content: "\f106";
+        vertical-align: middle;
+        font-family: 'Font Awesome 5 Pro';
+        font-weight: 300;
+        font-size: 20px;
+        color: #041e42;
+        margin-top: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;        
+        transform:rotate(0deg);
+        /*** Standard  ***/
+        transition: all 0.3s ease;
+        /*** Firefox  ***/
+        -moz-transition: all 0.3s ease;
+        /*** WebKit  ***/
+        -webkit-transition: all 0.3s ease;
+        /*** Opera  ***/
+        -o-transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .table-expandable tbody[data-toggle="collapse"].collapsed > tr > td:first-child:before {
+        transform:rotate(180deg);
+    } 
+
+    /*** fix = code from bootstrap 3  ***/
+
+    tbody.collapsed.in {
+        display: table-row-group;
+    }
+

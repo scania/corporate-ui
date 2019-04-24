@@ -18,9 +18,11 @@ import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './ut
 
 const browserSync = create();
 
-const build = series(cleanAll, generateTheme, components, copy, pack);
-const release = series(build, staticServer);
-const start = series(build, managerStream, webpackStream, server, watches, sbWatch);
+// TODO: Would be nice to be able to have cleanAll in build but
+// then we need to solve cleaning of outputDir when running watches
+const build = series(generateTheme, components, copy, pack);
+const release = series(cleanAll, build, staticServer);
+const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname, '/node_modules/@storybook/core');
 const configDir = join(__dirname, '/public'); // storybook config folder;

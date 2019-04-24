@@ -18,7 +18,8 @@ import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './ut
 
 const browserSync = create();
 
-const build = series(cleanAll, generateTheme, components, copy, pack, staticServer);
+const build = series(cleanAll, generateTheme, components, copy, pack);
+const release = series(build, staticServer);
 const start = series(build, managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname, '/node_modules/@storybook/core');
@@ -30,6 +31,7 @@ const dist = join(__dirname, '/dist'); // distribution folder
 
 export {
   build,
+  release,
   generateTheme as themes,
   cleanAll as clean,
   start as default,

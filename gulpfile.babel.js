@@ -18,7 +18,10 @@ import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './ut
 
 const browserSync = create();
 
+// TODO: Would be nice to be able to have cleanAll in build but
+// then we need to solve cleaning of outputDir when running watches
 const build = series(generateTheme, components, copy, pack);
+const release = series(cleanAll, build, staticServer);
 const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname, '/node_modules/@storybook/core');
@@ -30,6 +33,7 @@ const dist = join(__dirname, '/dist'); // distribution folder
 
 export {
   build,
+  release,
   generateTheme as themes,
   cleanAll as clean,
   start as default,
@@ -72,6 +76,14 @@ function copy() {
     { base: stencilBuild },
   )
     .pipe(dest(dist));
+}
+
+function staticServer(cb) {
+  exec('build-storybook -c public -o dist/www', { maxBuffer: 1024 * 500 }, (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    cb();
+  });
 }
 
 function pack(cb) {

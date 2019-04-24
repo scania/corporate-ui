@@ -41,6 +41,8 @@ export class Navigation {
 
   @State() _secondaryItems: object[] = [];
 
+  @State() parentEl: any;
+
   @Element() el: HTMLElement;
 
   @Watch('primaryItems')
@@ -77,15 +79,20 @@ export class Navigation {
     // To make sure navigation is always show from start
     this.toggleNavigation(true);
 
-    this.isSub = this.el.slot === 'sub';
+    this.isSub = this.el.getAttribute('slot') === 'sub';
 
     const items = this.el.querySelectorAll('c-navigation[target]');
+
+    if (!document.head.attachShadow) {
+      [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('nav'));
+    } else {
+      this.parentEl = this.el;
+    }
 
     for (let i = 0; i < items.length; i += 1) {
       const item = items[i];
       const target = item.getAttribute('target');
-      const node: HTMLAnchorElement = this.el.querySelector(`a[href="${target}"]`);
-
+      const node: HTMLAnchorElement = this.parentEl.querySelector(`a[href="${target}"]`);
       node.classList.add('parent');
       node.onclick = (event) => this.open(event);
     }
@@ -107,12 +114,12 @@ export class Navigation {
     }
 
     if (node) {
-      event.preventDefault();
+      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
       this.toggleSubNavigation(target);
     }
 
     if (target === '#close') {
-      event.preventDefault();
+      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
       this.toggleSubNavigation('');
     }
   }
@@ -124,6 +131,9 @@ export class Navigation {
   }
 
   render() {
+    if (!document.head.attachShadow) {
+      this.currentTheme += '_ie';
+    }
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 

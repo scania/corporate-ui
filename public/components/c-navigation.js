@@ -57,6 +57,8 @@ export default {
   <a href="/home" slot="primary-items">home</a>
   <a href="/about" slot="primary-items" active>about</a>
   <a href="/profile" slot="primary-items">profile</a>
+  <a href="/abc" slot="primary-items">abc</a>
+  <a href="/xyz" slot="primary-items">xyz</a>
   <a href="/more" slot="secondary-items">more</a>
 
   <c-navigation slot="sub" caption="About" target="/about" active>
@@ -69,6 +71,18 @@ export default {
     <a href="/profile" slot="primary-items">Profile 1</a>
     <a href="/profile2" slot="primary-items">Profile 2</a>
     <a href="/profile3" slot="secondary-items">Profile 3</a>
+  </c-navigation>
+
+  <c-navigation slot="sub" target="/abc">
+    <a href="/abc" slot="primary-items">abc 1</a>
+    <a href="/abc2" slot="primary-items">abc 2</a>
+    <a href="/abc3" slot="secondary-items">abc 3</a>
+  </c-navigation>
+
+  <c-navigation slot="sub" target="/xyz">
+    <a href="/xyz" slot="primary-items">xyz 1</a>
+    <a href="/xyz2" slot="primary-items">xyz 2</a>
+    <a href="/xyz3" slot="secondary-items">xyz 3</a>
   </c-navigation>
 </c-navigation>
       `,

@@ -5,6 +5,9 @@ import {
 import { store, actions } from '../../store';
 import * as themes from '../../themes.built/c-theme';
 
+// We use require due package file location being outside "rootDir"
+const packageFile = require('../../../../package.json');
+
 @Component({
   tag: 'c-theme',
   styleUrl: 'theme.scss',
@@ -23,6 +26,8 @@ export class Theme {
 
   componentWillLoad() {
     this.setTheme(this.name);
+
+    document.documentElement.setAttribute('corporate-ui-version', packageFile.version);
   }
 
   render() {

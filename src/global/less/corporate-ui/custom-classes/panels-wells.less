@@ -38,3 +38,93 @@
   }
 
 }
+
+// Panels groups for use as an FAQ component
+
+div[type="faq"].panel-group h2 {
+    margin-bottom: 30px;
+}
+
+div[type="faq"].panel-group h2 a.btn {
+    float: right;
+    margin-top: -8px;
+    letter-spacing: normal;
+}    
+
+div[type="faq"].panel-group {
+    margin-bottom: 20px;
+}
+
+div[type="faq"].panel-group .panel {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    padding: 10px 0 14px 0;
+}
+
+div[type="faq"].panel-group > h2 + div.panel {
+    border-top: 1px solid #ddd;
+}
+
+div[type="faq"].panel-group > h2,
+div[type="faq"].panel-group .panel .panel-heading,
+div[type="faq"].panel-group .panel .panel-body {
+  margin-left: 10px;
+}
+
+div[type="faq"].panel-group .panel .panel-heading {
+    border: none;
+    background: #0000;
+    padding-left: 0;  
+}
+
+div[type="faq"].panel-group .panel-title > a {
+    padding: 10px 0;
+    display: block;
+}
+
+div[type="faq"].panel-group .panel-title > a:hover,
+div[type="faq"].panel-group .panel-title > a:focus {
+    padding: 10px 0;
+    text-decoration: none;
+}
+
+div[type="faq"].panel-group .panel .panel-heading i {
+    font-size: 22px;
+}
+
+div[type="faq"].panel-group .panel-body p:last-child {
+    margin-bottom: 4px;
+}
+
+div[type="faq"].panel-group .panel + .panel {
+    margin-top: 0;
+}    
+
+div[type="faq"].panel-group .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #0000;
+    padding: 0 0 20px 0px;
+}
+
+div[type="faq"].panel-group a[data-toggle="collapse"]::before {
+    content: "\f106";
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 300;
+    font-size: 30px;
+    float: right;
+    color: #041e42;
+    margin-top: -8px;
+    transform:rotate(0deg);
+    /* Standard */
+    transition: all 0.5s ease;
+    /* Firefox */
+    -moz-transition: all 0.5s ease;
+    /* WebKit */
+    -webkit-transition: all 0.5s ease;
+    /* Opera */
+    -o-transition: all 0.5s ease;
+}
+
+div[type="faq"].panel-group a[data-toggle="collapse"].collapsed::before {
+    transform:rotate(180deg);
+}

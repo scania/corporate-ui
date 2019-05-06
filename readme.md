@@ -33,7 +33,7 @@ Stencil components work in any major framework or with no framework at all.
 
 We're contributing, and are following, the coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
 
-## Set up your local environment
+## Local environment
 <ul>
 <li>Clone the Corporate UI Dev repo</li>
 <li>Download and install node.js: https://nodejs.org/en/</li>
@@ -42,6 +42,13 @@ We're contributing, and are following, the coding standards available at [https:
 <li>Start the local setup by running <b>npm start</b></li>
 <li>Open your browser and go to http://localhost:1337</li>
 </ul>
+
+## Testing
+Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. Both tests use Jest as the JavaScript testing solution. The browser environment for end-to-end testing is done using Puppeteer. 
+
+To test locally:
+
+`npm test`
 
 
 ## Node version

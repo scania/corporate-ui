@@ -1,6 +1,8 @@
+$link-color: #909090;
+
 %nav-item {
+  color: var(--link-color);
   padding: 10px 25px;
-  color: #909090;
   text-decoration: none;
 }
 %nav-item-separator {
@@ -9,10 +11,13 @@
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
 %nav-link-hover {
-  color: #041e42;
+  color: var(--link-color-hover);
 }
 
 :host {
+  --link-color: #{$link-color};
+  --link-color-hover: #{darken($link-color, 40%)};
+
   background-color: #f5f5f5;
   display: flex;
   font-family: 'Scania Sans';

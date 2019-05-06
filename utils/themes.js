@@ -34,6 +34,11 @@ function addScClass(contentCss, componentName, regex) {
       replaceWord.push(selector);
     });
     replaceWord = replaceWord.join();
+    // const re = new RegExp(/`^${matchRegex[0]}`/, 'g');
+    // There is a bug in this replace when using a word contining another tags
+    // name in combination with a "{". For example: "i {" will replace "li {".
+    // In case this is a sass var the build will fail making the issue visible.
+    // For example: "p {" will replace "$map {" making the sass compilation fail.
     contentCss = contentCss.replace(matchRegex[0], `${replaceWord} {`);
     matchRegex = regex.exec(contentCss);
   }

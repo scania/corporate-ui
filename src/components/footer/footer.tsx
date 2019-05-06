@@ -15,7 +15,7 @@ export class Footer {
   @Prop() theme: string;
 
   /** Change default copyright text */
-  @Prop() text = 'Copyright &copy; Scania 2019';
+  @Prop() text = 'Copyright © Scania 2019';
 
   /** Set footer links */
   @Prop() items: any;

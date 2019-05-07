@@ -82,10 +82,10 @@ export class Footer {
     return [
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
-      <nav class='navbar navbar-expand-lg navbar-default' data-test-id='c-footer'>
+      <nav class='navbar navbar-expand-lg navbar-default'>
 
         <div class="navbar-top">
-          <strong class='navbar-brand' data-test-id='c-footer-logo'></strong>
+          <strong class='navbar-brand'></strong>
 
           <nav class='navbar-nav social-media-items'>
             { this._socialMediaItems.map(item => (
@@ -118,7 +118,7 @@ export class Footer {
             : ''}
         </div>
 
-        <p data-test-id='c-footer-copyright'>
+        <p>
           {this.text}
           <slot name="text" />
         </p>

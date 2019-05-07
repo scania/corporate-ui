@@ -1,6 +1,8 @@
 $link-color: #fff;
+$link-color-hover: darken($link-color, 100%);
 
 %nav-link {
+  color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   text-decoration: none;
   padding: 5px;
@@ -12,12 +14,14 @@ $link-color: #fff;
 }
 %nav-link-social {
   background-color: black;
+  color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   border-color: white;
   margin-bottom: 10px;
 }
 %nav-link-social-hover {
   background-color: white;
+  color: $link-color-hover; // Fallback for non supported browsers
   color: var(--link-color-hover);
   border-color: white;
 }
@@ -25,7 +29,7 @@ $link-color: #fff;
 :host {
   --link-color: #{$link-color};
   --link-color-hover: #{$link-color};
-  --social-media-color-hover: #{darken($link-color, 100%)};
+  --social-media-color-hover: #{$link-color-hover};
 
   background-color: #fff;
 }

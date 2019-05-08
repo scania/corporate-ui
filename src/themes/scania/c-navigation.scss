@@ -203,7 +203,7 @@ ul {
   ::slotted(a[slot="secondary-items"]):before {
     border-left: 0;
   }
-  ::slotted(a[slot="secondary-items"]:not(:last-child)):after {
+  ::slotted(a[slot="secondary-items"]:not(:last-of-type)):after {
     border-right: 1px solid #e2e2e2;
   }
 

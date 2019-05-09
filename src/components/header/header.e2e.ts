@@ -13,11 +13,14 @@ describe('c-header', () => {
     await page.setContent(`
       <c-header site-name="${siteName}"></c-header>`);
 
-    const symbol = await page.find(`${root} .navbar-symbol`);
-    expect(symbol).not.toBeNull();
+    const component = await page.find(`c-header`);
+    expect(component).toHaveClass('hydrated');
 
     const navbar = await page.find(`${root} .navbar-default`);
     expect(navbar).not.toBeNull();
+
+    const symbol = await page.find(`${root} .navbar-symbol`);
+    expect(symbol).not.toBeNull();
 
     const brand = await navbar.find('.navbar-brand');
     expect(brand).not.toBeNull();
@@ -53,4 +56,5 @@ describe('c-header', () => {
     const example = await page.find(`c-header c-navigation[slot=navigation]`);
     expect(example).toBeTruthy();
   });
+
 });

@@ -1,12 +1,12 @@
 export function renderMain(page) {
   return `
-    <main>
+    <c-content>
       <header>
         <h4>${page.title}</h4>
       </header>
 
       ${page.content}
-    </main>
+    </c-content>
   `;
 }
 

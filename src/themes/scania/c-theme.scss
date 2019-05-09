@@ -92,6 +92,8 @@ $headings-color:              $theme-01;
 $body-bg:                     $white;
 $body-color:                  $primary-03;
 
+$link-color:                  $tertiary-01;
+
 $font-size-article:           1.8rem;
 $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
 
@@ -148,6 +150,12 @@ $gray-colors: (
   'gray-09': $gray-900
 );
 
+$element-colors: (
+  'headings-color': var(--headings-color),
+  'link-color': var(--tertiary-01),
+  'link-color-hover': darken($tertiary-01, 40%)
+);
+
 $heading-sizes: (
   'h1': $h1-font-size,
   'h2': $h2-font-size,
@@ -168,7 +176,7 @@ $heading-sizes-article: (
 
 // Merge all colors in to theme-colors and 
 // let "root.scss" render the css variables
-@each $type in ($theme-colors, $primary-colors, $secondary-colors, $tertiary-colors, $gray-colors) {
+@each $type in ($theme-colors, $primary-colors, $secondary-colors, $tertiary-colors, $gray-colors, $element-colors) {
   $theme-colors: map-merge($theme-colors, $type);
 }
 
@@ -180,14 +188,17 @@ $heading-sizes-article: (
 
 
 // Helpers
-@mixin renderMap($map, $prop) {
-  @each $key, $value in $map {
+@mixin renderMap($mapping, $prop) {
+  @each $key, $value in $mapping {
     #{$key} { #{$prop}: $value; }
   }
 }
 
 
 // Output rules
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   display: flex;
@@ -203,9 +214,17 @@ body {
   margin: 0;
   flex: 1;
 }
-section {
-  padding-top: 40px;
-  padding-bottom: 40px;
+a {
+  color: var(--link-color);
+
+  &:hover,
+  &:active,
+  &.active {
+    color: var(--link-color-hover);
+  }
+}
+p {
+  margin-bottom: 1.5rem;
 }
 h1,
 h2,
@@ -214,14 +233,23 @@ h4,
 h5,
 h6 {
   font-family: $headings-font-family;
-  color: $headings-color;
+  color: var(--headings-color);
+  font-weight: bold;
+  margin-bottom: 1rem;
 
   &:first-child {
     margin-top: 0;
   }
 }
-* {
-  box-sizing: border-box;
+h1,
+h2,
+h3 {
+  margin-top: 2.5rem;
+}
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
 }
 
 @include renderMap($heading-sizes, 'font-size');

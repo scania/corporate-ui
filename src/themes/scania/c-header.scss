@@ -1,6 +1,8 @@
+$link-color: #747472;
+
 %nav-link {
+  color: var(--link-color);
   padding: 15px;
-  color: #747472;
   text-decoration: none;
 }
 // Sass compiler renders :hover and :before differently
@@ -10,6 +12,8 @@
 }
 
 :host {
+  --link-color: #{$link-color};
+
   display: flex;
   flex-wrap: wrap;
   flex-shrink: 0;

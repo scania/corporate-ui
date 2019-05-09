@@ -16,6 +16,9 @@ export class Theme {
   /** Set the brand name that will set the theme styling for the page. */
   @Prop() name: string = store.getState().theme.name;
 
+  /** By setting this to true bootstrap classes will be accessable globally */
+  @Prop() global = false;
+
   @State() currentTheme: any;
 
   @Watch('name')
@@ -31,6 +34,9 @@ export class Theme {
   }
 
   render() {
-    return this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '';
+    return [
+      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.global ? <c-global-style></c-global-style> : '',
+    ];
   }
 }

@@ -125,16 +125,21 @@ p {
   text-align: center;
 
   &.show + .navbar-toggler {
-    background-color: #000;
-    color: #fff;
-  }
-}
-.navbar-toggler {
-  border-radius: 0; /* This should probably be added to btn rules */
 
-  &,
-  &:hover {
-    color: #000;
+    &,
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  + .navbar-toggler {
+    border-radius: 0; /* This should probably be added to btn rules */
+
+    &,
+    &:hover {
+      color: #000;
+    }
   }
 }
 .navbar-top {

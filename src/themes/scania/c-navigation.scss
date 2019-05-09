@@ -47,6 +47,9 @@ $link-color: #909090;
 ::slotted(a) {
   @extend %nav-item;
 }
+::slotted(div) {
+  padding: 10px 25px;
+}
 ::slotted(a:not(:first-child)) {
   @extend %nav-item-separator;
 }
@@ -102,7 +105,6 @@ ul {
 .navbar-collapse {
   transition: max-height 550ms ease-in;
   max-height: 100vh;
-  overflow: hidden;
 
   &:not(.show) {
     display: block;
@@ -195,10 +197,14 @@ ul {
     }
   }
 
-  ::slotted(a) {
+  ::slotted(a),
+  ::slotted(div) {
     @extend %nav-item-desktop;
+
+    display: flex;
   }
-  ::slotted(a:not(:first-child)) {
+  ::slotted(a:not(:first-child)),
+  ::slotted(div:not(:first-child)) {
     @extend %nav-item-separator-desktop;
 
     &:before {
@@ -236,7 +242,6 @@ ul {
       max-height: none;
 
       + .navbar-collapse {
-        overflow: visible;
         border-top: 0;
       }
     }

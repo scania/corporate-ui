@@ -151,7 +151,7 @@ $gray-colors: (
 );
 
 $element-colors: (
-  'headings-color': var(--headings-color),
+  'headings-color': $headings-color,
   'link-color': var(--tertiary-01),
   'link-color-hover': darken($tertiary-01, 40%)
 );

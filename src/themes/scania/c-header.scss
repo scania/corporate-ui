@@ -60,7 +60,7 @@ c-navigation {
       height: 28px;
     }
   }
-  .navbar-title {
+  .navbar-title, &:after {
     font-family: 'Scania Sans Headline';
     font-weight: normal;
     font-size: 1.8rem;
@@ -90,6 +90,11 @@ c-navigation {
         }
       }
     }
+  }
+}
+.navbar-default[short-name] {
+  .navbar-title {
+    display: none;
   }
 }
 .navbar-symbol {
@@ -148,7 +153,16 @@ c-navigation {
       border-left: 1px solid #e2e2e2;
       padding-left: 15px;
     }
+    &[short-name] {
+      .navbar-title{
+        display:inline-block;
+      }
+      &:after {
+        display: none;
+      }
+    }
   }
+  
   .navbar-symbol {
     position: sticky;
     top: 0;

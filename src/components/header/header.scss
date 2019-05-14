@@ -24,6 +24,10 @@ c-navigation {
   background-image: $navbar-light-toggler-icon-bg;
 }
 
+.navbar-default[short-name]:after {
+  content: attr(short-name);
+}
+
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-brand {
     display: inline-block;

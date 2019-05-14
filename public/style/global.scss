@@ -171,6 +171,17 @@ c-content {
   background-color: #e8e8e8;
 }
 
+iframe.stackblitz{
+  width: 100%;
+  height: 600px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.description{
+  margin-bottom: 15px;
+}
+
 @keyframes slideDown {
   0% {
     transform: translateY(-100%);

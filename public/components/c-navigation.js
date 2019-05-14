@@ -14,7 +14,6 @@ export default {
   items: [
     {
       title: 'Items as data',
-      description: 'This header setup shows the usage of a navigation inside the header.',
       content: `
 <c-navigation
   primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'
@@ -23,9 +22,6 @@ export default {
     },
     {
       title: 'Items in slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
       content: `
 <c-navigation>
   <a href="/" slot="primary-items" active>home</a>
@@ -48,10 +44,8 @@ export default {
       `,
     },
     {
-      title: 'Items both as data and in slots displayed in vertical orientation',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
+      title: 'Subnavigation items',
+      description: 'This navigation setup shows the usage of a c-navigation as a main navigation and sub-navigation.',
       content: `
 <c-navigation>
   <a href="/home" slot="primary-items">home</a>

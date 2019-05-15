@@ -1,6 +1,7 @@
 $link-color: #747472;
 
 %nav-link {
+  color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   padding: 15px;
   text-decoration: none;

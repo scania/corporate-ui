@@ -14,18 +14,18 @@ export default {
       title: 'Angular',
       description: `
       <ul>
-        <li><a href="https://github.com/helloimela/angular-cui/blob/master/README.md" target="_blank">See detail instructions</a></li>
-        <li><a href="https://helloimela.github.io/angular-cui/" target="_blank">Run live example</a></li>
-        <li><a href="https://github.com/helloimela/angular-cui" target="_blank">Download example</a></li>
+        <li><a href="https://github.com/scania/corporate-ui-angular/blob/master/README.md" target="_blank">See detail instructions</a></li>
+        <li><a href="https://scania.github.io/corporate-ui-angular/" target="_blank">Run live example</a></li>
+        <li><a href="https://github.com/scania/corporate-ui-angular" target="_blank">Download example</a></li>
       </ul>`,
     },
     {
       title: 'React',
       description: `
       <ul>
-        <li><a href="https://github.com/helloimela/react-cui/blob/master/README.md" target="_blank">See detail instructions</a></li>
-        <li><a href="https://helloimela.github.io/react-cui/" target="_blank">Run live example</a></li>
-        <li><a href="https://github.com/helloimela/react-cui" target="_blank">Download example</a></li>
+        <li><a href="https://github.com/scania/corporate-ui-react/blob/master/README.md" target="_blank">See detail instructions</a></li>
+        <li><a href="https://scania.github.io/corporate-ui-react/" target="_blank">Run live example</a></li>
+        <li><a href="https://github.com/scania/corporate-ui-react" target="_blank">Download example</a></li>
       </ul>`,
     },
   ],

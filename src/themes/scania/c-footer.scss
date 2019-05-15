@@ -6,6 +6,7 @@ $link-color-hover: darken($link-color, 100%);
   color: var(--link-color);
   text-decoration: none;
   padding: 5px;
+  text-align: center;
 }
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
@@ -17,7 +18,7 @@ $link-color-hover: darken($link-color, 100%);
   color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   border-color: white;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 %nav-link-social-hover {
   background-color: white;
@@ -31,7 +32,7 @@ $link-color-hover: darken($link-color, 100%);
   --link-color-hover: #{$link-color};
   --social-media-color-hover: #{$link-color-hover};
 
-  background-color: #fff;
+  background-color: #000;
 }
 
 ::slotted(a) {
@@ -51,12 +52,12 @@ $link-color-hover: darken($link-color, 100%);
 
 p {
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.4rem;
+  color: #fff;
   text-align: center;
-  border-top: solid 1px #e7e7e7;
-  padding: 10px;
+  padding: 0 10px;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 50px;
 }
 
 .navbar {
@@ -66,6 +67,14 @@ p {
   .navbar-nav {
     text-transform: uppercase;
     margin-top: 0;
+    font-family: 'Scania Sans';
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:not(.social-media-items){
+      margin-bottom: 30px;
+    }
 
     &.social-media-items {
       display: block;
@@ -96,8 +105,7 @@ p {
 .navbar-brand {
   display: block;
   width: 100%;
-  margin: 0;
-  padding: 10px;
+  padding: 30px 10px;
   background-color: #000;
   text-align: center;
 
@@ -113,43 +121,11 @@ p {
     background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
   }
 }
-.navbar-collapse {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #000;
-  padding: 10px;
-  white-space: nowrap;
-  font-size: 1rem;
-  text-align: center;
 
-  &.show + .navbar-toggler {
-
-    &,
-    &:hover {
-      background-color: #000;
-      color: #fff;
-    }
-  }
-
-  + .navbar-toggler {
-    border-radius: 0; /* This should probably be added to btn rules */
-
-    &,
-    &:hover {
-      color: #000;
-    }
-  }
-}
 .navbar-top {
   background-color: #000;
   text-align: center;
   width: 100%;
-}
-.dropup {
-  position: relative;
-  text-align: center;
 }
 
 @media (min-width: 992px) {
@@ -157,7 +133,7 @@ p {
   %nav-link-desktop {
     text-decoration: none;
     padding: 0;
-    margin-right: 15px,
+    margin-right: 15px;
   }
   // Sass compiler renders :hover and :before differently
   // and this is due to browsers lackof support
@@ -194,6 +170,9 @@ p {
     padding: 0;
     border-top: 0;
     margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #97999b;
   }
 
   .navbar {
@@ -201,7 +180,9 @@ p {
     flex-wrap: wrap;
 
     .navbar-nav {
-
+      &:not(.social-media-items){
+        margin-bottom: 0px;
+      }
       &.social-media-items {
         margin-bottom: 20px;
         padding-left: 0;

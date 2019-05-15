@@ -96,27 +96,14 @@ export class Footer {
           </nav>
         </div>
 
-        <div class="dropup">
-          <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
-            <nav class='navbar-nav'>
-              { this._items.map((item: any) => {
-                item.class = this.combineClasses(item.class);
-                return <a { ...item }></a>;
-              }) }
+        <nav class='navbar-nav'>
+          { this._items.map((item: any) => {
+            item.class = this.combineClasses(item.class);
+            return <a { ...item }></a>;
+          }) }
 
-              <slot name="items" />
-            </nav>
-          </div>
-
-          {this._items.length || this.itemsSlot.length
-            ? <button
-              class='navbar-toggler collapsed btn btn-link dropdown-toggle'
-              type='button'
-              onClick={() => this.show = !this.show }>
-              Scania
-            </button>
-            : ''}
-        </div>
+          <slot name="items" />
+        </nav>
 
         <p>
           {this.text}

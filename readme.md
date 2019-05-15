@@ -59,6 +59,11 @@ Use 8.15 or newer stable version of node.
 
 Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook. 
 
+
+## Wiki
+
+**Read more** about the project in the github [wiki](https://github.com/scania/corporate-ui-dev/wiki)
+
 ## Join us on Slack
 
 [Corporate-ui Slack](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)

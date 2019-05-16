@@ -1,6 +1,10 @@
 $link-color: #909090;
+// TODO: This color should be set using variable $theme-01 change this
+// when variables in theme have been moved to a separate variables file.
+$link-color-hover: #041e42;
 
 %nav-item {
+  color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   padding: 10px 25px;
   text-decoration: none;
@@ -11,12 +15,15 @@ $link-color: #909090;
 // Sass compiler renders :hover and :before differently
 // and this is due to browsers lackof support
 %nav-link-hover {
-  color: var(--link-color-hover);
+  --link-color: var(--link-color-hover);
+
+  color: $link-color-hover; // Fallback for non supported browsers
+  color: var(--theme-01);
 }
 
 :host {
   --link-color: #{$link-color};
-  --link-color-hover: #{darken($link-color, 40%)};
+  --link-color-hover: var(--theme-01);
 
   background-color: #f5f5f5;
   display: flex;
@@ -53,7 +60,7 @@ $link-color: #909090;
 ::slotted(a:not(:first-child)) {
   @extend %nav-item-separator;
 }
-// Due to browsers not supporting: ::slotted(a):hover 
+// Due to browsers not supporting: ::slotted(a):hover
 // we need to have the hover separated instead of nested
 ::slotted(a:hover),
 ::slotted(a.active),

@@ -93,6 +93,7 @@ $body-bg:                     $white;
 $body-color:                  $primary-03;
 
 $link-color:                  $tertiary-01;
+$link-color-hover:            darken($tertiary-01, 40%);
 
 $font-size-article:           1.8rem;
 $font-family-article:         'Scania Sans', Arial, Helvetica, sans-serif;
@@ -151,9 +152,9 @@ $gray-colors: (
 );
 
 $element-colors: (
-  'headings-color': var(--headings-color),
+  'headings-color': var(--theme-01),
   'link-color': var(--tertiary-01),
-  'link-color-hover': darken($tertiary-01, 40%)
+  'link-color-hover': $link-color-hover
 );
 
 $heading-sizes: (

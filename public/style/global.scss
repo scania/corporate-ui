@@ -209,6 +209,11 @@ c-content {
       display: block !important;
     }
   }
+
+  // TODO: Temporary component fix
+  .sc-c-navigation.sc-c-navigation-s > div:not(.show) .dropdown-menu {
+    display: none;
+  }
 }
 
 /* Edge 12+ CSS styles go here */

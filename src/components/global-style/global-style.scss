@@ -1,1 +1,21 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+
+// TODO: We should probably not use inversed media rules like this.
+// Would be better to do mobile first pattern
+@media (max-width: 991px) {
+
+  // For dropdowns in navigation on mobile
+  .dropdown-toggle.nav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    + .dropdown-menu {
+      position: static !important;
+      transform: none !important;
+      float: none;
+      margin: 10px -25px -10px;
+      border: 0px;
+    }
+  }
+}

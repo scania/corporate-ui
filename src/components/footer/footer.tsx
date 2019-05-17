@@ -73,30 +73,36 @@ export class Footer {
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         <strong class='navbar-brand'></strong>
+        <div class='navbar-top'>
+          <nav class='social-media-items'>
 
-        { this.initialSlot || this.items ? 
+            { this._socialMediaItems.map(item => (
+              <c-social-media { ...item }></c-social-media>
+            )) }
+
+            <slot name='social-media-items' />
+          </nav>
           
-          <div class="navbar-top">
-            <nav class='navbar-nav social-media-items'>
-              { this._socialMediaItems.map(item => (
-                <c-social-media { ...item }></c-social-media>
-              )) }
-  
-              <slot name="social-media-items" />
-            </nav>
+          { this.initialSlot.indexOf('slot="items"') > 0 || this.items ? 
+
             <nav class='navbar-nav'> 
+            
               { this._items.map((item: any) => {
                 item.class = this.combineClasses(item.class);
                 return <a { ...item }></a>;
               }) }
-              <slot name="items" />
+
+              <slot name='items' />
             </nav>
-          </div>
-        :  '' }
+
+            : ''
+
+          }
+        </div>
         
         <p>
           {this.text}
-          <slot name="text" />
+          <slot name='text' />
         </p>
       </nav>,
     ];

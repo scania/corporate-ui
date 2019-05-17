@@ -18,6 +18,7 @@ $link-color-hover: darken($link-color, 100%);
   color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   border-color: white;
+  margin-top: 30px;
 }
 %nav-link-social-hover {
   background-color: white;
@@ -55,9 +56,8 @@ p {
   font-size: 1.4rem;
   color: #fff;
   text-align: center;
-  padding: 0 10px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  padding: 50px 10px;
+  margin: 0;
   display: block;
 }
 
@@ -76,27 +76,9 @@ p {
     font-weight: bold;
     text-transform: uppercase;
     margin-top: 30px;
-
-    &:not(.social-media-items){
-      width: 100%;
-    }
-
-    &.social-media-items {
-      display: block;
-      padding-left: 10px; /* To cancle out last item margin */
-      text-align: center;
-
-      c-social-media {
-        @extend %nav-link-social;
-
-        &:hover  {
-          @extend %nav-link-social-hover;
-        }
-      }
-    }
+    width: 100%;
 
     .nav-item {
-
       &.nav-link {
         @extend %nav-link;
 
@@ -107,11 +89,26 @@ p {
       }
     }
   }
+
+  .social-media-items {
+    display: block;
+    padding-left: 10px; /* To cancle out last item margin */
+    text-align: center;
+
+    c-social-media {
+      @extend %nav-link-social;
+
+      &:hover  {
+        @extend %nav-link-social-hover;
+      }
+    }
+  }
 }
 .navbar-brand {
   display: block;
   width: 100%;
   padding: 30px 10px 0;
+  margin: 0;
   background-color: #000;
   text-align: center;
 
@@ -142,7 +139,7 @@ p {
     text-decoration: underline;
   }
   %nav-link-social-desktop {
-    margin-bottom: 0;
+    margin-top: 0;
   }
 
   :host {
@@ -169,8 +166,7 @@ p {
   p {
     text-align: left;
     padding: 0;
-    margin-top: 15px;
-    margin-bottom: 0;
+    margin: 15px 0 0;
     font-size: 1rem;
     color: #97999b;
   }
@@ -182,18 +178,7 @@ p {
     .navbar-nav {
       margin-top: 0px;
 
-      &.social-media-items {
-        display: flex;
-        margin-bottom: 20px;
-        padding-left: 0;
-
-        c-social-media {
-          @extend %nav-link-social-desktop;
-        }
-      }
-
       .nav-item {
-
         &.nav-link {
           @extend %nav-link-desktop;
 
@@ -201,6 +186,16 @@ p {
             @extend %nav-link-hover-desktop;
           }
         }
+      }
+    }
+    
+    .social-media-items {
+      display: flex;
+      margin-bottom: 20px;
+      padding-left: 0;
+
+      c-social-media {
+        @extend %nav-link-social-desktop;
       }
     }
   }
@@ -212,7 +207,6 @@ p {
     
     &:before {
       margin-left: auto;
-      padding-bottom: 10px;
     }
   }
 

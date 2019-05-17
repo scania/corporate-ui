@@ -3,7 +3,6 @@ import {
 } from '@stencil/core';
 
 import { store } from '../../store';
-import * as themes from '../../themes.built/c-card';
 
 @Component({
   tag: 'c-card',
@@ -18,8 +17,9 @@ export class Card {
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    name = name || store.getState().theme.name;
+    this.currentTheme = store.getState().themes[name];
   }
 
   hostData() {
@@ -29,7 +29,9 @@ export class Card {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme.name);
+    store.subscribe(() => this.setTheme(this.theme));
+
+    this.setTheme(this.theme);
   }
 
   componentDidLoad() {
@@ -48,8 +50,10 @@ export class Card {
   }
 
   render() {
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-card'] ? <style>{ this.currentTheme['c-card'][type] }</style> : '',
 
       <slot name='card-header' { ... { class: 'card-header' } } />,
       <slot name='card-body' { ... { class: 'card-body' } } />,

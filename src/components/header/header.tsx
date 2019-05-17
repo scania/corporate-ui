@@ -3,7 +3,6 @@ import {
 } from '@stencil/core';
 
 import { store, actions } from '../../store';
-import * as themes from '../../themes.built/c-header';
 
 @Component({
   tag: 'c-header',
@@ -23,7 +22,7 @@ export class Header {
   /** Header links that will be placed in the top right part of the header */
   @Prop() items: any;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() currentTheme: string;
 
   @State() navigationOpen: Boolean;
 
@@ -33,6 +32,8 @@ export class Header {
 
   @State() navigationSlot = [];
 
+  @State() style: string;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -41,8 +42,9 @@ export class Header {
   }
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    name = name || store.getState().theme.name;
+    this.currentTheme = store.getState().themes[name];
   }
 
   toggleNavigation(open) {
@@ -51,10 +53,11 @@ export class Header {
 
   componentWillLoad() {
     store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name;
+      this.setTheme(this.theme);
       this.navigationOpen = store.getState().navigation.open;
     });
 
+    this.setTheme(this.theme);
     this.setItems(this.items);
   }
 
@@ -83,11 +86,10 @@ export class Header {
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-header'] ? <style>{ this.currentTheme['c-header'][type] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         {this.navigationSlot.length

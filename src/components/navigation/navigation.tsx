@@ -3,7 +3,6 @@ import {
 } from '@stencil/core';
 
 import { store, actions } from '../../store';
-import * as themes from '../../themes.built/c-navigation';
 
 @Component({
   tag: 'c-navigation',
@@ -35,7 +34,7 @@ export class Navigation {
 
   @State() navigationExpanded: string = store.getState().navigation.expanded;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() currentTheme: string;
 
   @State() _primaryItems: object[] = [];
 
@@ -52,8 +51,9 @@ export class Navigation {
   }
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    name = name || store.getState().theme.name;
+    this.currentTheme = store.getState().themes[name];
   }
 
   toggleNavigation(open) {
@@ -66,11 +66,12 @@ export class Navigation {
 
   componentWillLoad() {
     store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name;
+      this.setTheme(this.theme);
       this.navigationOpen = store.getState().navigation.open;
       this.navigationExpanded = store.getState().navigation.expanded;
     });
 
+    this.setTheme(this.theme);
     this.setItems(this.primaryItems, 'primaryItems');
     this.setItems(this.secondaryItems, 'secondaryItems');
   }
@@ -131,11 +132,10 @@ export class Navigation {
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-navigation'] ? <style>{ this.currentTheme['c-navigation'][type] }</style> : '',
 
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>

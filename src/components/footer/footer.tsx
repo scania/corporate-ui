@@ -3,7 +3,6 @@ import {
 } from '@stencil/core';
 
 import { store } from '../../store';
-import * as themes from '../../themes.built/c-footer';
 
 @Component({
   tag: 'c-footer',
@@ -23,7 +22,7 @@ export class Footer {
   /** Add social media icons */
   @Prop() socialMediaItems: any;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() currentTheme: string;
 
   @State() show = false;
 
@@ -44,13 +43,15 @@ export class Footer {
   }
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    name = name || store.getState().theme.name;
+    this.currentTheme = store.getState().themes[name];
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme.name);
+    store.subscribe(() => this.setTheme(this.theme));
 
+    this.setTheme(this.theme);
     this.setItems(this.items, '_items');
     this.setItems(this.socialMediaItems, '_socialMediaItems');
   }
@@ -76,11 +77,10 @@ export class Footer {
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-footer'] ? <style>{ this.currentTheme['c-footer'][type] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
 

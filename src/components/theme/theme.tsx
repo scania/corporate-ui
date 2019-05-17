@@ -2,11 +2,11 @@ import {
   Component, Prop, State, Watch,
 } from '@stencil/core';
 
+import { theme as scaniaTheme } from 'scania-theme';
+// Typescript does not support loading of resources outside of "src"
+// So instead of a relative path we do this hack.
+import * as packageFile from 'scania-theme/../../package.json';
 import { store, actions } from '../../store';
-import * as themes from '../../themes.built/c-theme';
-
-// We use require due package file location being outside "rootDir"
-// const packageFile = require('../../../../package.json');
 
 @Component({
   tag: 'c-theme',
@@ -23,19 +23,27 @@ export class Theme {
 
   @Watch('name')
   setTheme(name) {
-    this.currentTheme = name;
     store.dispatch({ type: actions.SET_THEME, name });
+    this.currentTheme = store.getState().themes[name];
+  }
+
+  addTheme(theme) {
+    // this.currentTheme = name;
+    store.dispatch({ type: actions.ADD_THEME, theme });
   }
 
   componentWillLoad() {
+    this.addTheme({ scania: scaniaTheme });
     this.setTheme(this.name);
 
-    // document.documentElement.setAttribute('corporate-ui-version', packageFile.version);
+    document.documentElement.setAttribute('corporate-ui-version', packageFile.version);
   }
 
   render() {
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-theme'] ? <style>{ this.currentTheme['c-theme'][type] }</style> : '',
       this.global ? <c-global-style></c-global-style> : '',
     ];
   }

@@ -3,7 +3,6 @@ import {
 } from '@stencil/core';
 
 import { store } from '../../store';
-import * as themes from '../../themes.built/c-content';
 
 @Component({
   tag: 'c-content',
@@ -20,20 +19,22 @@ export class Content {
   @State() currentTheme: string = this.theme || store.getState().theme.name;
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    name = name || store.getState().theme.name;
+    this.currentTheme = store.getState().themes[name];
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme.name);
+    store.subscribe(() => this.setTheme(this.theme));
+
+    this.setTheme(this.theme);
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-content'] ? <style>{ this.currentTheme['c-content'][type] }</style> : '',
 
       // Move the router related things a router component
       // if (this.router) {

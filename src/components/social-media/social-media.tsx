@@ -3,7 +3,6 @@ import {
 } from '@stencil/core';
 
 import { store } from '../../store';
-import * as themes from '../../themes.built/c-social-media';
 
 @Component({
   tag: 'c-social-media',
@@ -24,26 +23,27 @@ export class SocialMedia {
   @State() currentTheme: string = this.theme || store.getState().theme.name;
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    name = name || store.getState().theme.name;
+    this.currentTheme = store.getState().themes[name];
   }
 
   componentWillLoad() {
-    store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name;
-    });
+    store.subscribe(() => this.setTheme(this.theme));
+
+    this.setTheme(this.theme);
   }
 
   render() {
+    const type = document.head.attachShadow ? 'default' : 'ie';
+
     this.attrs = {
       href: this.href,
       target: this.target,
     };
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme && this.currentTheme['c-social-media'] ? <style>{ this.currentTheme['c-social-media'][type] }</style> : '',
 
       <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>

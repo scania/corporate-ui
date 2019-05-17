@@ -18,7 +18,6 @@ $link-color-hover: darken($link-color, 100%);
   color: $link-color; // Fallback for non supported browsers
   color: var(--link-color);
   border-color: white;
-  margin-bottom: 30px;
 }
 %nav-link-social-hover {
   background-color: white;
@@ -38,6 +37,7 @@ $link-color-hover: darken($link-color, 100%);
 ::slotted(a) {
   @extend %nav-link;
 }
+
 // Due to browsers not supporting: ::slotted(a):hover 
 // we need to have the hover separated instead of nested
 ::slotted(a:hover) {
@@ -56,29 +56,35 @@ p {
   color: #fff;
   text-align: center;
   padding: 0 10px;
-  margin-top: 0;
   margin-bottom: 50px;
+  margin-top: 50px;
+  display: block;
 }
 
 .navbar {
   flex-direction: column;
   padding: 0;
 
+  .navbar-top {
+    width: 100%;
+  }
+
   .navbar-nav {
     text-transform: uppercase;
-    margin-top: 0;
     font-family: 'Scania Sans';
     font-size: 1.4rem;
     font-weight: bold;
     text-transform: uppercase;
+    margin-top: 30px;
 
     &:not(.social-media-items){
-      margin-bottom: 30px;
+      width: 100%;
     }
 
     &.social-media-items {
       display: block;
       padding-left: 10px; /* To cancle out last item margin */
+      text-align: center;
 
       c-social-media {
         @extend %nav-link-social;
@@ -105,15 +111,15 @@ p {
 .navbar-brand {
   display: block;
   width: 100%;
-  padding: 30px 10px;
+  padding: 30px 10px 0;
   background-color: #000;
   text-align: center;
 
   &:before {
     display: inline-block;
     content: '';
-    width: 113px;
-    height: 18px;
+    width: 178px;
+    height: 29px;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: var(--footer-background-url);
@@ -122,11 +128,6 @@ p {
   }
 }
 
-.navbar-top {
-  background-color: #000;
-  text-align: center;
-  width: 100%;
-}
 
 @media (min-width: 992px) {
 
@@ -168,7 +169,6 @@ p {
   p {
     text-align: left;
     padding: 0;
-    border-top: 0;
     margin-top: 15px;
     margin-bottom: 0;
     font-size: 1rem;
@@ -180,13 +180,12 @@ p {
     flex-wrap: wrap;
 
     .navbar-nav {
-      &:not(.social-media-items){
-        margin-bottom: 0px;
-      }
+      margin-top: 0px;
+
       &.social-media-items {
+        display: flex;
         margin-bottom: 20px;
         padding-left: 0;
-        order: -1;
 
         c-social-media {
           @extend %nav-link-social-desktop;
@@ -205,31 +204,18 @@ p {
       }
     }
   }
-  .navbar-nav {
-    font-family: 'Scania Sans';
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .navbar-brand {
-    padding: 0;
-    width: auto;
-    margin-left: auto;
-    height: 0; /* To make the aligning of items/social items work */
 
+  .navbar-brand {
+    display: flex;
+    padding: 0;
+    height: 0; /* To make the aligning of items/social items work */
+    
     &:before {
-      width: 178px;
-      height: 29px;
+      margin-left: auto;
+      padding-bottom: 10px;
     }
   }
-  .navbar-collapse {
-    position: static;
-    transform: none;
-    padding: 0;
-  }
-  .navbar-top {
-    display: flex;
-  }
+
 }
 
 // handling for hover styling in IE and Edge (should target social-media a:hover)

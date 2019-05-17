@@ -97,7 +97,9 @@ p {
 
     c-social-media {
       @extend %nav-link-social;
-
+      a { 
+        padding: 0;
+      }
       &:hover  {
         @extend %nav-link-social-hover;
       }
@@ -190,9 +192,9 @@ p {
     }
     
     .social-media-items {
-      display: flex;
       margin-bottom: 20px;
       padding-left: 0;
+      text-align: left;
 
       c-social-media {
         @extend %nav-link-social-desktop;

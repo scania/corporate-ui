@@ -5,9 +5,13 @@ export default {
   items: [
     {
       title: 'Simple HTML page',
-      description: `This is an example of how to use Corporate UI in a simple HTML setup. Checkout <a href="https://scania.github.io/corporate-ui-labs/sample-applications/HTML/get-started.html" target="_blank">this link</a> to see the detail instruction. You can play around with the code by clicking the Editor button at the bottom of the preview.
+      description: `<p>This is an example of how to use Corporate UI in a simple HTML setup. Checkout <a href="https://scania.github.io/corporate-ui-labs/sample-applications/HTML/get-started.html" target="_blank">this link</a> to see the detail instruction. 
+      </p>
       <p>
-      <iframe class="stackblitz" src="https://stackblitz.com/edit/js-92qexr?embed=1&file=index.html&hideExplorer=1&hideNavigation=1&view=preview"></iframe>
+        <iframe height="550" style="width: 100%;" scrolling="no" title="Corporate-ui Template HTML" src="//codepen.io/corporate-ui/embed/OYmqpr/?height=265&theme-id=0&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+          See the Pen <a href='https://codepen.io/corporate-ui/pen/OYmqpr/'>Corporate-ui Template HTML</a> by corporate-ui
+          (<a href='https://codepen.io/corporate-ui'>@corporate-ui</a>) on <a href='https://codepen.io'>CodePen</a>.
+        </iframe>
       </p>`,
     },
     {

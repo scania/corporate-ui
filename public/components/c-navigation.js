@@ -44,8 +44,29 @@ export default {
       `,
     },
     {
-      title: 'Subnavigation items',
-      description: 'This navigation setup shows the usage of a c-navigation as a main navigation and sub-navigation.',
+      title: 'Items in slots with a dropdown item',
+      description: 'This navigation setup shows the usage of a toggable dropdown',
+      content: `
+<c-navigation>
+  <a href="/" slot="primary-items" active>home</a>
+
+  <div class="dropdown" slot="secondary-items">
+    <a href class="dropdown-toggle nav-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">user</a>
+
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div>
+</c-navigation>
+      `,
+    },
+    {
+      title: 'Subnavigation',
+      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
+                    Notice that in this example we provide a link element and no global style for a link is available.
+                    But providing that makes it possible to style, like we do in this example`,
       content: `
 <c-navigation>
   <a href="/home" slot="primary-items">home</a>

@@ -54,6 +54,9 @@ $link-color-hover: #041e42;
 ::slotted(a) {
   @extend %nav-item;
 }
+::slotted(div) {
+  padding: 10px 25px;
+}
 ::slotted(a:not(:first-child)) {
   @extend %nav-item-separator;
 }
@@ -109,7 +112,6 @@ ul {
 .navbar-collapse {
   transition: max-height 550ms ease-in;
   max-height: 100vh;
-  overflow: hidden;
 
   &:not(.show) {
     display: block;
@@ -201,11 +203,25 @@ ul {
       margin-left: 0;
     }
   }
-
+  // TODO: Add support for IE styles generation for multiple selectors using comma separation
   ::slotted(a) {
     @extend %nav-item-desktop;
+
+    display: flex;
+  }
+  ::slotted(div) {
+    @extend %nav-item-desktop;
+
+    display: flex;
   }
   ::slotted(a:not(:first-child)) {
+    @extend %nav-item-separator-desktop;
+
+    &:before {
+      @extend %nav-item-separator-desktop-before;
+    }
+  }
+  ::slotted(div:not(:first-child)) {
     @extend %nav-item-separator-desktop;
 
     &:before {
@@ -243,7 +259,6 @@ ul {
       max-height: none;
 
       + .navbar-collapse {
-        overflow: visible;
         border-top: 0;
       }
     }

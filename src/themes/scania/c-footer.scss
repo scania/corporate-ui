@@ -52,22 +52,16 @@ $link-color-hover: darken($link-color, 100%);
 }
 
 p {
-  width: 100%;
   font-size: 1.4rem;
   color: #fff;
   text-align: center;
   padding: 50px 10px;
   margin: 0;
-  display: block;
+  width: 100%;
 }
 
 .navbar {
-  flex-direction: column;
   padding: 0;
-
-  .navbar-top {
-    width: 100%;
-  }
 
   .navbar-nav {
     text-transform: uppercase;
@@ -89,25 +83,24 @@ p {
       }
     }
   }
+}
 
-  .social-media-items {
-    display: block;
-    padding-left: 10px; /* To cancle out last item margin */
-    text-align: center;
+.social-media-items {
+  text-align: center;
+  width: 100%;
 
-    c-social-media {
-      @extend %nav-link-social;
-      a { 
-        padding: 0;
-      }
-      &:hover  {
-        @extend %nav-link-social-hover;
-      }
+  c-social-media {
+    @extend %nav-link-social;
+    a { 
+      padding: 0;
+    }
+    &:hover  {
+      @extend %nav-link-social-hover;
     }
   }
 }
+
 .navbar-brand {
-  display: block;
   width: 100%;
   padding: 30px 10px 0;
   margin: 0;
@@ -117,11 +110,11 @@ p {
   &:before {
     display: inline-block;
     content: '';
-    width: 178px;
-    height: 29px;
+    width: 182px;
+    height: 31px;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: var(--footer-background-url);
+    // background-image: var(--footer-background-url);
     background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.png);
     background-image: url(https://static.scania.com/resources/logotype/scania/scania-wordmark-white.svg);
   }
@@ -174,39 +167,37 @@ p {
   }
 
   .navbar {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
 
     .navbar-nav {
       margin-top: 0px;
-
+  
       .nav-item {
         &.nav-link {
           @extend %nav-link-desktop;
-
+  
           &:hover {
             @extend %nav-link-hover-desktop;
           }
         }
       }
     }
-    
-    .social-media-items {
-      margin-bottom: 20px;
-      padding-left: 0;
-      text-align: left;
+  }
+  
+  .social-media-items {
+    margin-bottom: 20px;
+    text-align: left;
 
-      c-social-media {
-        @extend %nav-link-social-desktop;
-      }
+    c-social-media {
+      @extend %nav-link-social-desktop;
     }
   }
-
+  
   .navbar-brand {
-    display: flex;
     padding: 0;
     height: 0; /* To make the aligning of items/social items work */
-    
+    display: flex;
+
     &:before {
       margin-left: auto;
     }

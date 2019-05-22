@@ -73,7 +73,6 @@ export class Footer {
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         <strong class='navbar-brand'></strong>
-        <div class='navbar-top'>
           <nav class='social-media-items'>
 
             { this._socialMediaItems.map(item => (
@@ -98,7 +97,6 @@ export class Footer {
             : ''
 
           }
-        </div>
         
         <p>
           {this.text}

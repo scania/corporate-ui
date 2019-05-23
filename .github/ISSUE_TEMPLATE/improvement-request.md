@@ -1,8 +1,8 @@
 ---
 name: Improvement request
-about: 'Use this option when you''ve have defined an existing area that can
-  be improved. Please attach relevant research documentation so that your issue can
-  be handled at the UX Management Group.'
+about: Use this option when you've have defined an existing area that can be improved.
+  Please attach relevant research documentation so that your issue can be handled
+  at the UX Management Group.
 title: ''
 labels: Improvement
 assignees: ''

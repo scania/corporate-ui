@@ -65,10 +65,10 @@ See project examples for [Angular](https://github.com/scania/corporate-ui-angula
 ## Wiki
 
 [Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
-- Project examples in HTML, Angular, React, 
-- Project structure, 
-- Components library,
-- Components status, 
+- Project examples in HTML, Angular, and React
+- Project structure
+- Components library
+- Components status
 - Browser support, and more. 
 
 ## Learn more

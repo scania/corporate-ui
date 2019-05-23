@@ -11,6 +11,7 @@ In this repository we're developing the next generation components for Corporate
 
 - [Quick start](#quick-start)
 - [Setup local environment](#setup-local-environment)
+- [Wiki](#wiki)
 - [Learn more](#learn-more)
   - [Focus area](#focus-area)
   - [Purpose](#purpose)
@@ -36,22 +37,43 @@ Several options to add corporate-ui in the project:
 npm i corporate-ui-dev
 ```
 
+Import component as a module with `defineCustomElements` function.
+
+```js
+import { defineCustomElements } from 'corporate-ui-dev/dist/define';
+
+defineCustomElements(['c-theme','c-footer', 'c-content']);
+// to import all components pass an 'all' value
+// defineCustomElements('all');
+```
+
+See project examples for [Angular](https://github.com/scania/corporate-ui-angular) and [React](https://github.com/scania/corporate-ui-react).
+
 ## Setup local environment
 
 - Clone the Corporate UI Dev repo: `git clone https://github.com/scania/corporate-ui-dev.git`
 - Download and install node.js: https://nodejs.org/en/
-
-   **Use 8.15 or newer stable version of node**
 - If you're behind a firewall, CONFIGURE THE PROXY
 - From the corporate-ui-dev folder, run `npm i` to install package dependencies
 - Start the local setup by running `npm start`
 - Open your browser and go to [http://localhost:1337](http://localhost:1337)
 
+## Requirements
+
+**NodeJS: use 8.15 or newer stable version of node**
+
+## Wiki
+
+[Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
+- Project examples in HTML, Angular, React, 
+- Project structure, 
+- Components library,
+- Components status, 
+- Browser support, and more. 
+
 ## Learn more
 
-Corporate-UI 4 alpha: [What's new?](https://github.com/scania/corporate-ui-dev/releases/tag/4.0.0-alpha)
-
-See project examples in HTML, Angular, React, and read more about the project in the [github wiki](https://github.com/scania/corporate-ui-dev/wiki). 
+Corporate-UI 4 alpha: [What's new?](https://github.com/scania/corporate-ui-dev/releases/)
 
 ### Focus area
 

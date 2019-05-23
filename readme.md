@@ -15,6 +15,7 @@ In this repository we're developing the next generation components for Corporate
   - [Focus area](#focus-area)
   - [Purpose](#purpose)
   - [Tech stack](#tech-stack)
+  - [Testing](#testing)
 - [Contributing](#contributing)
 - [Community](#community)
 - [License](#license)
@@ -39,6 +40,7 @@ npm i corporate-ui-dev
 
 - Clone the Corporate UI Dev repo: `git clone https://github.com/scania/corporate-ui-dev.git`
 - Download and install node.js: https://nodejs.org/en/
+
    **Use 8.15 or newer stable version of node**
 - If you're behind a firewall, CONFIGURE THE PROXY
 - From the corporate-ui-dev folder, run `npm i` to install package dependencies
@@ -48,6 +50,7 @@ npm i corporate-ui-dev
 ## Learn more
 
 Corporate-UI 4 alpha: [What's new?](https://github.com/scania/corporate-ui-dev/releases/tag/4.0.0-alpha)
+
 See project examples in HTML, Angular, React, and read more about the project in the [github wiki](https://github.com/scania/corporate-ui-dev/wiki). 
 
 ### Focus area
@@ -62,9 +65,21 @@ Corporate UI is a library for using and building web components as custom elemen
 
 Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook.
 
+### Testing
+
+Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. Both tests use Jest as the JavaScript testing solution. The browser environment for end-to-end testing is done using Puppeteer.
+
+To test locally:
+
+`npm test`
+
 ## Contributing
 
-Please read through our contributing guidelines for the directions to open issues, coding standards, and create a pull request.
+Please read through our [contributing guidelines](https://github.com/scania/corporate-ui-dev/blob/feature/contributing_guidelines/CONTRIBUTING.md) for the directions to create a pull request and coding standard.
+
+[Report bug](https://github.com/scania/corporate-ui-dev/issues/new/choose)
+
+[Request feature](https://github.com/scania/corporate-ui-dev/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
 
 ## Community
 

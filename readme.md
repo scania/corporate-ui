@@ -97,11 +97,10 @@ To test locally:
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/scania/corporate-ui-dev/blob/feature/contributing_guidelines/CONTRIBUTING.md) for the directions to create a pull request and coding standard.
+Please read through our [contributing guidelines](https://github.com/scania/corporate-ui-dev/blob/master/CONTRIBUTING.md) for the directions to create a pull request and coding standard.
 
-[Report bug](https://github.com/scania/corporate-ui-dev/issues/new/choose)
-
-[Request feature](https://github.com/scania/corporate-ui-dev/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
+- [Report bug](https://github.com/scania/corporate-ui-dev/issues/new/choose)
+- [Request feature](https://github.com/scania/corporate-ui-dev/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
 
 ## Community
 

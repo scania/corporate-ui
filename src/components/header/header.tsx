@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element, Watch,
+  Component, Prop, State, Element, Watch, Listen
 } from '@stencil/core';
 
 import { store, actions } from '../../store';
@@ -36,6 +36,8 @@ export class Header {
 
   @State() navigationSlot = [];
 
+  @State() headerOffsetTop : number = 0;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -46,6 +48,14 @@ export class Header {
   @Watch('theme')
   updateTheme(name) {
     this.currentTheme = name;
+  }
+
+  @Listen('window:scroll')
+  handleScroll() {
+    if(window.scrollY > this.headerOffsetTop) {
+      this.el.setAttribute('stuck','true');
+    }
+    
   }
 
   toggleNavigation(open) {
@@ -71,6 +81,8 @@ export class Header {
 
     // To make sure navigation is always hidden from start
     this.toggleNavigation(false);
+
+    this.headerOffsetTop = this.el.offsetTop;
   }
 
   getNavSlotItems(node) {

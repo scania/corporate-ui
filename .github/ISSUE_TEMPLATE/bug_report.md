@@ -32,7 +32,7 @@ If you use any specific framework please provide information
 - Version: [ e.g 6 ]
 
 **Application link**
-Add link if there 
+Provide link if possible
 - [https://example.com](/)
 
 **Desktop (please complete the following information):**

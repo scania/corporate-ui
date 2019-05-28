@@ -24,6 +24,26 @@ $link-color: #747472;
   z-index: 1000;
   padding: 0;
   border-bottom: 1px solid #e2e2e2;
+
+  ::slotted(c-navigation),
+  c-navigation {
+    transition: padding-right 150ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  
+}
+
+:host([stuck]) {
+  .navbar-symbol{
+    margin-top: 18px;
+    &:before{
+      width: 40px;
+      height: 38px;
+    }
+  }
+  ::slotted(c-navigation),
+  c-navigation {
+    padding-right: 80px;
+  }
 }
 
 ::slotted(a) {
@@ -114,6 +134,7 @@ c-navigation {
     background-size: cover;
     width: 40px;
     height: 37px;
+    transition: all 100ms ease-in-out;
   }
 }
 .navbar-toggler {

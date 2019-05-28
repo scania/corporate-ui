@@ -1,6 +1,6 @@
 {
   "name": "corporate-ui-dev",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "In this repository you'll find all components available in the UX Library",
   "module": "dist/esm/index.js",
   "main": "dist/define.js",

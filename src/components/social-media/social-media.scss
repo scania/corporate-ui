@@ -5,7 +5,7 @@
   background-color: white;
   border: 2px solid black;
   margin-right: 10px;
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   text-align: center;
 
   &:hover {
@@ -22,17 +22,12 @@ a {
 
 c-icon {
   line-height: 0;
-  padding: 4px;
+  padding: 8px;
 }
 
 @media (min-width: 992px) {
 
   :host {
     margin-right: 20px;
-    font-size: 2.6rem;
-  }
-
-  c-icon {
-    padding: 8px;
   }
 }

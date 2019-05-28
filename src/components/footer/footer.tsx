@@ -30,8 +30,8 @@ export class Footer {
   // There should be a better way of solving this, either by "{ mutable: true }"
   // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
   @State() _items: object[] = [];
-
-  @State() itemsSlot = [];
+  
+  @State() initialSlot : any;
 
   @State() _socialMediaItems: object[] = [];
 
@@ -50,22 +50,11 @@ export class Footer {
 
   componentWillLoad() {
     store.subscribe(() => this.currentTheme = store.getState().theme.name);
+    
+    this.initialSlot = this.el.innerHTML;
 
     this.setItems(this.items, '_items');
     this.setItems(this.socialMediaItems, '_socialMediaItems');
-  }
-
-  componentDidLoad() {
-    const elem = this.el.shadowRoot.querySelector('slot[name=items');
-
-    if (elem) {
-      elem.addEventListener('slotchange', e => this.getSlotItems(e.target));
-      this.getSlotItems(elem);
-    }
-  }
-
-  getSlotItems(node) {
-    this.itemsSlot = node.assignedNodes() || node.children;
   }
 
   combineClasses(classes) {
@@ -83,44 +72,35 @@ export class Footer {
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
+        <strong class='navbar-brand'></strong>
+          <nav class='social-media-items'>
 
-        <div class="navbar-top">
-          <strong class='navbar-brand'></strong>
-
-          <nav class='navbar-nav social-media-items'>
             { this._socialMediaItems.map(item => (
               <c-social-media { ...item }></c-social-media>
             )) }
 
-            <slot name="social-media-items" />
+            <slot name='social-media-items' />
           </nav>
-        </div>
+          
+          { this.initialSlot.indexOf('slot="items"') > 0 || this.items ? 
 
-        <div class="dropup">
-          <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
-            <nav class='navbar-nav'>
+            <nav class='navbar-nav'> 
+            
               { this._items.map((item: any) => {
                 item.class = this.combineClasses(item.class);
                 return <a { ...item }></a>;
               }) }
 
-              <slot name="items" />
+              <slot name='items' />
             </nav>
-          </div>
 
-          {this._items.length || this.itemsSlot.length
-            ? <button
-              class='navbar-toggler collapsed btn btn-link dropdown-toggle'
-              type='button'
-              onClick={() => this.show = !this.show }>
-              Scania
-            </button>
-            : ''}
-        </div>
+            : ''
 
+          }
+        
         <p>
           {this.text}
-          <slot name="text" />
+          <slot name='text' />
         </p>
       </nav>,
     ];

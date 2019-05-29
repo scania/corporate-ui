@@ -28,8 +28,9 @@ Several options to add corporate-ui in the project:
 1. Add via CDN, link to the script by adding the following to the `<head></head>`.
 
 ```html
-<script src="https://static.scania.com/build/global/4.0.0-alpha.1/corporate-ui.js"></script>
+<script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
 ```
+Replace the version number with the [available releases](https://github.com/scania/corporate-ui-dev/releases)
 
 2. Install corporate-ui via NPM package by running the command below.
 

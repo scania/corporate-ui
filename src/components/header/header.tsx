@@ -86,10 +86,10 @@ export class Header {
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-header' : 'c-header_ie';
 
     return [
-      this.currentTheme && this.currentTheme['c-header'] ? <style>{ this.currentTheme['c-header'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         {this.navigationSlot.length

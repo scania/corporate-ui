@@ -132,10 +132,10 @@ export class Navigation {
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-navigation' : 'c-navigation_ie';
 
     return [
-      this.currentTheme && this.currentTheme['c-navigation'] ? <style>{ this.currentTheme['c-navigation'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
 
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>

@@ -50,10 +50,10 @@ export class Card {
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-card' : 'c-card_ie';
 
     return [
-      this.currentTheme && this.currentTheme['c-card'] ? <style>{ this.currentTheme['c-card'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
 
       <slot name='card-header' { ... { class: 'card-header' } } />,
       <slot name='card-body' { ... { class: 'card-body' } } />,

@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import {
-  Component, Prop, State, Watch,
+  Component, Prop, State, Watch, Event, EventEmitter,
 } from '@stencil/core';
+/* eslint-enable no-unused-vars */
 
-import { theme as scaniaTheme } from 'scania-theme';
+// import { theme as scaniaTheme } from 'scania-theme';
 // Typescript does not support loading of resources outside of "src"
 // So instead of a relative path we do this hack.
 import * as packageFile from 'scania-theme/../../package.json';
@@ -21,6 +23,8 @@ export class Theme {
 
   @State() currentTheme: any;
 
+  @Event() storeReady: EventEmitter;
+
   @Watch('name')
   setTheme(name) {
     store.dispatch({ type: actions.SET_THEME, name });
@@ -33,17 +37,18 @@ export class Theme {
   }
 
   componentWillLoad() {
-    this.addTheme({ scania: scaniaTheme });
+    this.storeReady.emit({ store, actions });
+    // this.addTheme({ scania: scaniaTheme });
     this.setTheme(this.name);
 
     document.documentElement.setAttribute('corporate-ui-version', packageFile.version);
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-theme' : 'c-theme_ie';
 
     return [
-      this.currentTheme && this.currentTheme['c-theme'] ? <style>{ this.currentTheme['c-theme'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
       this.global ? <c-global-style></c-global-style> : '',
     ];
   }

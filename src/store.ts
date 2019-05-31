@@ -7,6 +7,8 @@ export const actions = {
   TOGGLE_SUB_NAVIGATION: 'TOGGLE_SUB_NAVIGATION',
 };
 
+export const store = createStore(reducers());
+
 function theme(state = { name: '' }, action) {
   switch (action.type) {
     case actions.SET_THEME:
@@ -36,10 +38,10 @@ function navigation(state = { open: true, expanded: '' }, action) {
   }
 }
 
-const reducers = combineReducers({
-  theme,
-  themes,
-  navigation,
-});
-
-export const store = createStore(reducers);
+function reducers() {
+  return combineReducers({
+    theme,
+    themes,
+    navigation,
+  });
+}

@@ -1,7 +1,8 @@
 import { configure, addDecorator } from '@storybook/html';
 import { withOptions } from '@storybook/addon-options';
+import { theme, favicons } from 'scania-theme';
 
-import { defineCustomElements } from '../dist/define';
+import { defineCustomElements, addTheme } from '../dist/index';
 import { name } from '../package.json';
 import './style/global.scss';
 
@@ -12,8 +13,8 @@ defineCustomElements('all');
 
 // TODO: We would like to have a way to dynamically add themes
 // to corporate-ui, something like this. But maybe from define.
-// const theme = { 'scania': scaniaTheme };
-// store.dispatch({ type: actions.ADD_THEME, theme });
+
+addTheme({ scania: theme, favicons });
 
 addDecorator(
   withOptions({

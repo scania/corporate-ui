@@ -31,10 +31,10 @@ export class Content {
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-card' : 'c-card_ie';
 
     return [
-      this.currentTheme && this.currentTheme['c-content'] ? <style>{ this.currentTheme['c-content'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
 
       // Move the router related things a router component
       // if (this.router) {

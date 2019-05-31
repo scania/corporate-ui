@@ -77,10 +77,10 @@ export class Footer {
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-footer' : 'c-footer_ie';
 
     return [
-      this.currentTheme && this.currentTheme['c-footer'] ? <style>{ this.currentTheme['c-footer'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
 

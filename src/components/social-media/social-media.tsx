@@ -35,7 +35,7 @@ export class SocialMedia {
   }
 
   render() {
-    const type = document.head.attachShadow ? 'default' : 'ie';
+    const name = document.head.attachShadow ? 'c-social-media' : 'c-social-media_ie';
 
     this.attrs = {
       href: this.href,
@@ -43,7 +43,7 @@ export class SocialMedia {
     };
 
     return [
-      this.currentTheme && this.currentTheme['c-social-media'] ? <style>{ this.currentTheme['c-social-media'][type] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
 
       <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>

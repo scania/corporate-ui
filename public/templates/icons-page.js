@@ -4,7 +4,7 @@ export default {
   title: 'Icons page',
   description: `The following icons are provided as part of the icon component and can be used
                 like in the example but with chosen icon name.`,
-  preview: '<c-icon></c-icon>',
+  preview: '<c-icon name="car"></c-icon>',
   method: renderItem,
   content: `
     <style>

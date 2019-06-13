@@ -1,8 +1,6 @@
 import {
-  Component, Prop, State, Watch,
+  Component, Prop, State, Element, Watch,
 } from '@stencil/core';
-
-import { store } from '../../store';
 
 @Component({
   tag: 'c-social-media',
@@ -10,6 +8,8 @@ import { store } from '../../store';
   shadow: true,
 })
 export class SocialMedia {
+  @Prop({ context: 'store' }) store: any;
+
   @Prop() theme: string;
 
   @Prop() icon: string;
@@ -18,32 +18,38 @@ export class SocialMedia {
 
   @Prop() target: string;
 
-  attrs = {};
+  @State() tagName: string;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() style: string;
+
+  @State() attrs = {};
+
+  @Element() el: HTMLElement;
 
   @Watch('theme')
-  setTheme(name) {
-    name = name || store.getState().theme.name;
-    this.currentTheme = store.getState().themes[name];
+  setTheme() {
+    const name = this.theme || this.store.getState().theme.name;
+    const currentTheme = this.store.getState().themes[name];
+
+    this.style = currentTheme ? currentTheme[this.tagName] : '';
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.setTheme(this.theme));
+    this.tagName = this.el.tagName.toLowerCase();
 
-    this.setTheme(this.theme);
+    this.setTheme();
+
+    this.store.subscribe(() => this.setTheme());
   }
 
   render() {
-    const name = document.head.attachShadow ? 'c-social-media' : 'c-social-media_ie';
-
     this.attrs = {
       href: this.href,
       target: this.target,
     };
 
     return [
-      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
+      this.style ? <style>{ this.style }</style> : '',
 
       <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>

@@ -2,14 +2,14 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store } from '../../store';
-
 @Component({
   tag: 'c-footer',
   styleUrl: 'footer.scss',
   shadow: true,
 })
 export class Footer {
+  @Prop({ context: 'store' }) store: any;
+
   /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
 
@@ -22,7 +22,9 @@ export class Footer {
   /** Add social media icons */
   @Prop() socialMediaItems: any;
 
-  @State() currentTheme: string;
+  @State() tagName: string;
+
+  @State() style: string;
 
   @State() show = false;
 
@@ -38,22 +40,26 @@ export class Footer {
 
   @Watch('items')
   @Watch('socialMediaItems')
-  setItems(items, type) {
-    this[type] = Array.isArray(items) ? items : JSON.parse(items || '[]');
+  setItems() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items || '[]');
+    this._socialMediaItems = Array.isArray(this.socialMediaItems) ? this.socialMediaItems : JSON.parse(this.socialMediaItems || '[]');
   }
 
   @Watch('theme')
-  setTheme(name) {
-    name = name || store.getState().theme.name;
-    this.currentTheme = store.getState().themes[name];
+  setTheme() {
+    const name = this.theme || this.store.getState().theme.name;
+    const currentTheme = this.store.getState().themes[name];
+
+    this.style = currentTheme ? currentTheme[this.tagName] : '';
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.setTheme(this.theme));
+    this.tagName = this.el.tagName.toLowerCase();
 
-    this.setTheme(this.theme);
-    this.setItems(this.items, '_items');
-    this.setItems(this.socialMediaItems, '_socialMediaItems');
+    this.setTheme();
+    this.setItems();
+
+    this.store.subscribe(() => this.setTheme());
   }
 
   componentDidLoad() {
@@ -77,10 +83,8 @@ export class Footer {
   }
 
   render() {
-    const name = document.head.attachShadow ? 'c-footer' : 'c-footer_ie';
-
     return [
-      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
+      this.style ? <style>{ this.style }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
 

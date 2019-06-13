@@ -2,24 +2,28 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store } from '../../store';
-
 @Component({
   tag: 'c-card',
   styleUrl: 'card.scss',
   shadow: true,
 })
 export class Card {
+  @Prop({ context: 'store' }) store: any;
+
   @Prop() theme: string;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() tagName: string;
+
+  @State() style: string;
 
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  setTheme(name) {
-    name = name || store.getState().theme.name;
-    this.currentTheme = store.getState().themes[name];
+  setTheme() {
+    const name = this.theme || this.store.getState().theme.name;
+    const currentTheme = this.store.getState().themes[name];
+
+    this.style = currentTheme ? currentTheme[this.tagName] : '';
   }
 
   hostData() {
@@ -29,9 +33,11 @@ export class Card {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.setTheme(this.theme));
+    this.tagName = this.el.tagName.toLowerCase();
 
-    this.setTheme(this.theme);
+    this.setTheme();
+
+    this.store.subscribe(() => this.setTheme());
   }
 
   componentDidLoad() {
@@ -50,10 +56,8 @@ export class Card {
   }
 
   render() {
-    const name = document.head.attachShadow ? 'c-card' : 'c-card_ie';
-
     return [
-      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
+      this.style ? <style>{ this.style }</style> : '',
 
       <slot name='card-header' { ... { class: 'card-header' } } />,
       <slot name='card-body' { ... { class: 'card-body' } } />,

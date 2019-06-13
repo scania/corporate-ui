@@ -6,7 +6,6 @@ export { defineCustomElements, addTheme };
 
 const CUI_COMPONENTS = CUI.COMPONENTS;
 const subComponents = {};
-let components = [];
 
 const collection = collections.components;
 collection.forEach(obj => {
@@ -16,6 +15,8 @@ collection.forEach(obj => {
 });
 
 function defineCustomElements(requests) {
+  let components = [];
+
   if (requests === 'all') {
     components = [...CUI_COMPONENTS];
   } else {
@@ -42,9 +43,16 @@ function findComponent(name) {
 }
 
 function addTheme(theme) {
+  // TODO: Maybe this event listener should be accesable from the theme itself?
   document.addEventListener('storeReady', event => {
     const store = event.detail.store;
     const actions = event.detail.actions;
+    const favicons = theme.favicons;
+    const name = Object.keys(theme.default)[0];
+
+    theme = document.head.attachShadow ? theme.default : theme.ie;
+    theme[name].favicons = favicons;
+
     store.dispatch({ type: actions.ADD_THEME, theme });
   });
 }

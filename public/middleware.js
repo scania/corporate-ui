@@ -10,8 +10,6 @@ module.exports = function (router) {
 
   router.use('/api/:kind/:id', route);
   router.use('/api/:kind', route);
-
-  router.use(express.static('./node_modules/scania-theme/dist5'));
 };
 
 function route(req, res) {

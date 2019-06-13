@@ -2,7 +2,7 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store, actions } from '../../store';
+import { actions } from '../../store';
 
 @Component({
   tag: 'c-header',
@@ -10,6 +10,8 @@ import { store, actions } from '../../store';
   shadow: true,
 })
 export class Header {
+  @Prop({ context: 'store' }) store: any;
+
   /** Per default, this will inherit the value from c-theme name property */
   @Prop() theme: string;
 
@@ -22,7 +24,7 @@ export class Header {
   /** Header links that will be placed in the top right part of the header */
   @Prop() items: any;
 
-  @State() currentTheme: string;
+  @State() tagName: string;
 
   @State() navigationOpen: Boolean;
 
@@ -37,28 +39,33 @@ export class Header {
   @Element() el: HTMLElement;
 
   @Watch('items')
-  setItems(items) {
-    this._items = Array.isArray(items) ? items : JSON.parse(items || '[]');
+  setItems() {
+    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items || '[]');
   }
 
   @Watch('theme')
-  setTheme(name) {
-    name = name || store.getState().theme.name;
-    this.currentTheme = store.getState().themes[name];
+  setTheme() {
+    const name = this.theme || this.store.getState().theme.name;
+    const currentTheme = this.store.getState().themes[name];
+
+    this.style = currentTheme ? currentTheme[this.tagName] : '';
   }
 
   toggleNavigation(open) {
-    store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
+    this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
 
   componentWillLoad() {
-    store.subscribe(() => {
-      this.setTheme(this.theme);
-      this.navigationOpen = store.getState().navigation.open;
-    });
+    this.tagName = this.el.tagName.toLowerCase();
 
-    this.setTheme(this.theme);
-    this.setItems(this.items);
+    this.setTheme();
+    this.setItems();
+
+    this.store.subscribe(() => {
+      this.setTheme();
+
+      this.navigationOpen = this.store.getState().navigation.open;
+    });
   }
 
   componentDidLoad() {
@@ -86,10 +93,8 @@ export class Header {
   }
 
   render() {
-    const name = document.head.attachShadow ? 'c-header' : 'c-header_ie';
-
     return [
-      this.currentTheme ? <style>{ this.currentTheme[name] }</style> : '',
+      this.style ? <style>{ this.style }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         {this.navigationSlot.length

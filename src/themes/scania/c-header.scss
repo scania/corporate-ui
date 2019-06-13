@@ -32,20 +32,6 @@ $link-color: #747472;
   
 }
 
-:host([stuck]) {
-  .navbar-symbol{
-    margin-top: 18px;
-    &:before{
-      width: 40px;
-      height: 38px;
-    }
-  }
-  ::slotted(c-navigation),
-  c-navigation {
-    padding-right: 80px;
-  }
-}
-
 ::slotted(a) {
   @extend %nav-link;
 }
@@ -152,7 +138,8 @@ c-navigation {
 
   :host {
     position: sticky;
-    top: -84px;
+    position: -webkit-sticky;
+    top: var(--stickyMargin);
   }
 
   ::slotted(c-navigation),
@@ -163,7 +150,7 @@ c-navigation {
 
   .navbar-default {
     padding: 19px 11px 10px;
-    margin-right: 20px;
+    margin-right: 75px;
     border-bottom: 0;
 
     .navbar-brand {
@@ -186,18 +173,41 @@ c-navigation {
   }
   
   .navbar-symbol {
-    position: sticky;
     top: 0;
+    right: 0;
+    position: absolute;
     margin-top: 8px;
     margin-right: 12px;
     margin-bottom: 2px;
     border-left: 0;
     border-bottom: 0;
     background-color: transparent;
+    transition: top 0.2s ease-out;
 
     &:before {
       width: 48px;
       height: 46px;
     }
   }
+
+  
+  :host([stuck]) {
+
+    .navbar-symbol{
+      margin-top: 18px;
+      top:65px;
+      &:before{
+        width: 40px;
+        height: 38px;
+      }
+    }
+
+    ::slotted(c-navigation),
+    &::slotted(c-navigation) {
+      padding-right: 80px;
+      -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+    }
+  }
 }
+

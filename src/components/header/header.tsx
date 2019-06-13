@@ -5,6 +5,8 @@ import {
 import { store, actions } from '../../store';
 import * as themes from '../../themes.built/c-header';
 
+const sticky = require('stickyfilljs');
+
 @Component({
   tag: 'c-header',
   styleUrl: 'header.scss',
@@ -36,7 +38,7 @@ export class Header {
 
   @State() navigationSlot = [];
 
-  @State() headerOffsetTop : number = 0;
+  @State() height = 0;
 
   @Element() el: HTMLElement;
 
@@ -52,7 +54,9 @@ export class Header {
 
   @Listen('window:scroll')
   handleScroll() {
-    if (window.scrollY > this.headerOffsetTop) {
+    const stickyPos = this.el.getBoundingClientRect();
+
+    if (stickyPos.top <= (this.height * -1)) {
       this.el.setAttribute('stuck', 'true');
     } else {
       this.el.removeAttribute('stuck');
@@ -83,7 +87,11 @@ export class Header {
     // To make sure navigation is always hidden from start
     this.toggleNavigation(false);
 
-    this.headerOffsetTop = this.el.offsetTop - 82;
+    setTimeout(() => {
+      this.height = (this.el.shadowRoot || this.el).querySelector('.navbar-default').clientHeight;
+      this.el.style.top = `${(this.height * -1)}px`;
+      sticky.addOne(this.el);
+    }, 100);
   }
 
   getNavSlotItems(node) {
@@ -103,6 +111,7 @@ export class Header {
       this.currentTheme += '_ie';
     }
     return [
+      <style { ...{ innerHTML: `:host { --stickyMargin: ${this.height * -1}px;}` } }></style>,
       this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>

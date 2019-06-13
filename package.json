@@ -11,6 +11,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
+    "stencil": "stencil build",
     "release": "gulp release",
     "clean": "gulp clean",
     "server": "gulp server",
@@ -93,6 +94,7 @@
     "redux-thunk": "2.3.0",
     "redux-watch": "1.1.1",
     "sass-loader": "7.1.0",
+    "stickyfilljs": "^2.1.0",
     "style-loader": "0.23.1",
     "url-loader": "1.1.2",
     "webpack": "4.28.4",

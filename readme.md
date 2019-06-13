@@ -7,66 +7,109 @@
 
 In this repository we're developing the next generation components for Corporate UI. We're improving a lot of our findings that we've done implementing the current production version of the library: https://github.com/scania/corporate-ui
 
-## Development Stage
+## Table of contents
 
-Currently Corporate UI are in pre-alpha, and we're just preparing to move to alpha. We'll start of the tests with a group of 20 developers and expanding it shortly thereafter.
+- [Quick start](#quick-start)
+- [Setup local environment](#setup-local-environment)
+- [Wiki](#wiki)
+- [Learn more](#learn-more)
+  - [Focus area](#focus-area)
+  - [Purpose](#purpose)
+  - [Tech stack](#tech-stack)
+  - [Testing](#testing)
+- [Contributing](#contributing)
+- [Community](#community)
+- [License](#license)
 
-## Focus Area
+## Quick start
+
+Several options to add corporate-ui in the project: 
+
+1. Add via CDN, link to the script by adding the following to the `<head></head>`.
+
+```html
+<script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
+```
+Replace the version number with the [available releases](https://github.com/scania/corporate-ui-dev/releases)
+
+2. Install corporate-ui via NPM package by running the command below.
+
+```
+npm i corporate-ui-dev
+```
+
+Import component as a module with `defineCustomElements` function.
+
+```js
+import { defineCustomElements } from 'corporate-ui-dev/dist/define';
+
+defineCustomElements(['c-theme','c-footer', 'c-content']);
+// to import all components pass an 'all' value
+// defineCustomElements('all');
+```
+
+See project examples for [Angular](https://github.com/scania/corporate-ui-angular) and [React](https://github.com/scania/corporate-ui-react).
+
+## Setup local environment
+
+- Clone the Corporate UI Dev repo: `git clone https://github.com/scania/corporate-ui-dev.git`
+- Download and install node.js: https://nodejs.org/en/
+- If you're behind a firewall, CONFIGURE THE PROXY
+- From the corporate-ui-dev folder, run `npm i` to install package dependencies
+- Start the local setup by running `npm start`
+- Open your browser and go to [http://localhost:1337](http://localhost:1337)
+
+## Requirements
+
+**NodeJS: use 8.15 or newer stable version of node**
+
+## Wiki
+
+[Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
+- Project examples in HTML, Angular, and React
+- Project structure
+- Components library
+- Components status
+- Browser support, and more. 
+
+## Learn more
+
+Corporate-UI 4 alpha: [What's new?](https://github.com/scania/corporate-ui-dev/releases/)
+
+### Focus area
 
 Focus is right now set on getting a solid architecture in place. Any of the basic components that you'll be able to view in this repository is not finalized when it comes to design and CSS values.
 
-## Purpose
+### Purpose
 
-Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelines and apply interaction patterns without having to build them all from scratch. 
+Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelines and apply interaction patterns without having to build them all from scratch.
 
-## About Stencil JS
+### Tech stack
 
-The main change in the technology stack is that we've changing from Google Polymer to Stencil JS for creating Custom Elements.
+Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook.
 
-Stencil is a compiler for building fast web apps using Custom Elements (aka Web Components).
+### Testing
 
-Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time tool. Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements v1 spec.
-
-Stencil components work in any major framework or with no framework at all.
-
-## Coding Standard
-
-We're contributing, and are following, the coding standards available at [https://github.com/scania/coding-conventions](https://github.com/scania/coding-conventions).
-
-## Local environment
-<ul>
-<li>Clone the Corporate UI Dev repo</li>
-<li>Download and install node.js: https://nodejs.org/en/</li>
-<li>If you're behind a firewall, CONFIGURE THE PROXY
-<li>INSTALLING DEPENDENCIES (from command line): <b>npm i</b> from the corporate-ui-dev folder.</li>
-<li>Start the local setup by running <b>npm start</b></li>
-<li>Open your browser and go to http://localhost:1337</li>
-</ul>
-
-## Testing
-Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. Both tests use Jest as the JavaScript testing solution. The browser environment for end-to-end testing is done using Puppeteer. 
+Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. Both tests use Jest as the JavaScript testing solution. The browser environment for end-to-end testing is done using Puppeteer.
 
 To test locally:
 
 `npm test`
 
+## Contributing
 
-## Node version
+Please read through our [contributing guidelines](https://github.com/scania/corporate-ui-dev/blob/master/CONTRIBUTING.md) for the directions to create a pull request and coding standard.
 
-Use 8.15 or newer stable version of node.
+- [Report bug](https://github.com/scania/corporate-ui-dev/issues/new/choose)
+- [Request feature](https://github.com/scania/corporate-ui-dev/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
 
-## Tech Stack
+## Community
 
-Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook. 
+Get in touch with the team and the community:
+- [Join us on slack](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)
+- [Teams](https://teams.microsoft.com/l/team/19%3a1257007a64d44c64954acca27a9d4b46%40thread.skype/conversations?groupId=79f9bfeb-73e2-424d-9477-b236191ece5e&tenantId=3bc062e4-ac9d-4c17-b4dd-3aad637ff1ac)
 
 
-## Wiki
+## License
 
-**Read more** about the project in the github [wiki](https://github.com/scania/corporate-ui-dev/wiki)
-
-## Join us on Slack
-
-[Corporate-ui Slack](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)
-
-<h2>License</h2>
-<p>All CSS, HTML and JS code are available under the MIT license. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.</p>
+All CSS, HTML and JS code are available under the MIT license. The Scania brand identity, logos and photographs found in this repository are copyrighted Scania CV AB and are not available on an open source basis or to be used as examples or in any other way, if not specifically ordered by Scania CV AB.

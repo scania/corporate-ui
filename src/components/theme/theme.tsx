@@ -17,7 +17,7 @@ export class Theme {
   @Prop({ context: 'store' }) store: any;
 
   /** Set the brand name that will set the theme styling for the page. */
-  @Prop() name: string;
+  @Prop({ mutable: true }) name: string;
 
   /** By setting this to true bootstrap classes will be accessable globally */
   @Prop() global = false;
@@ -26,21 +26,17 @@ export class Theme {
 
   @State() tagName: string;
 
-  @State() style: string;
+  @State() currentTheme = { favicons: [] };
 
   @State() favicons: string[];
 
   @Watch('name')
-  setTheme() {
-    const store = this.store;
-    const name = this.name || store.getState().theme.name;
-    const themes = store.getState().themes;
-    const currentTheme = themes[name] || {};
+  setTheme(name) {
+    this.name = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.name] || {};
+    this.favicons = this.currentTheme.favicons;
 
-    this.style = currentTheme[this.tagName];
-    this.favicons = currentTheme.favicons;
-
-    store.dispatch({ type: actions.SET_THEME, name });
+    this.store.dispatch({ type: actions.SET_THEME, name: this.name });
   }
 
   renderFavicon() {
@@ -54,11 +50,13 @@ export class Theme {
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
-
-    this.setTheme();
+    this.setTheme(this.name);
 
     document.documentElement.setAttribute('corporate-ui-version', version);
+  }
+
+  componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
   }
 
   render() {
@@ -67,7 +65,7 @@ export class Theme {
     }
 
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
       this.global ? <c-global-style></c-global-style> : '',
     ];
   }

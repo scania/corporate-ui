@@ -11,64 +11,64 @@ export class Footer {
   @Prop({ context: 'store' }) store: any;
 
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** Change default copyright text */
   @Prop() text = 'Copyright © Scania 2019';
 
   /** Set footer links */
-  @Prop() items: any;
+  @Prop({ mutable: true }) items: any;
 
   /** Add social media icons */
-  @Prop() socialMediaItems: any;
-
-  @State() tagName: string;
-
-  @State() style: string;
+  @Prop({ mutable: true }) socialItems: any;
 
   @State() show = false;
 
-  // There should be a better way of solving this, either by "{ mutable: true }"
-  // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  @State() _items: object[] = [];
-
   @State() itemsSlot = [];
 
-  @State() _socialMediaItems: object[] = [];
+  @State() tagName: string;
+
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('items')
-  @Watch('socialMediaItems')
-  setItems() {
-    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items || '[]');
-    this._socialMediaItems = Array.isArray(this.socialMediaItems) ? this.socialMediaItems : JSON.parse(this.socialMediaItems || '[]');
+  setItems(items) {
+    this.items = this.parse(items);
+  }
+
+  @Watch('socialItems')
+  setSocialItems(items) {
+    this.socialItems = this.parse(items);
   }
 
   @Watch('theme')
-  setTheme() {
-    const name = this.theme || this.store.getState().theme.name;
-    const currentTheme = this.store.getState().themes[name];
-
-    this.style = currentTheme ? currentTheme[this.tagName] : '';
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
+    this.setTheme(this.theme);
+    this.setItems(this.items);
+    this.setSocialItems(this.socialItems);
 
-    this.setTheme();
-    this.setItems();
-
-    this.store.subscribe(() => this.setTheme());
+    this.store.subscribe(() => this.setTheme(this.theme));
   }
 
   componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
+
     const elem = this.el.shadowRoot.querySelector('slot[name=items');
 
     if (elem) {
       elem.addEventListener('slotchange', e => this.getSlotItems(e.target));
       this.getSlotItems(elem);
     }
+  }
+
+  parse(items) {
+    return Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   getSlotItems(node) {
@@ -84,7 +84,7 @@ export class Footer {
 
   render() {
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
 
@@ -92,18 +92,18 @@ export class Footer {
           <strong class='navbar-brand'></strong>
 
           <nav class='navbar-nav social-media-items'>
-            { this._socialMediaItems.map(item => (
+            { this.socialItems.map(item => (
               <c-social-media { ...item }></c-social-media>
             )) }
 
-            <slot name="social-media-items" />
+            <slot name="social-items" />
           </nav>
         </div>
 
         <div class="dropup">
           <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
             <nav class='navbar-nav'>
-              { this._items.map((item: any) => {
+              { this.items.map((item: any) => {
                 item.class = this.combineClasses(item.class);
                 return <a { ...item }></a>;
               }) }
@@ -112,7 +112,7 @@ export class Footer {
             </nav>
           </div>
 
-          {this._items.length || this.itemsSlot.length
+          {this.items.length || this.itemsSlot.length
             ? <button
               class='navbar-toggler collapsed btn btn-link dropdown-toggle'
               type='button'

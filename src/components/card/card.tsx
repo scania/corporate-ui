@@ -10,20 +10,18 @@ import {
 export class Card {
   @Prop({ context: 'store' }) store: any;
 
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   @State() tagName: string;
 
-  @State() style: string;
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  setTheme() {
-    const name = this.theme || this.store.getState().theme.name;
-    const currentTheme = this.store.getState().themes[name];
-
-    this.style = currentTheme ? currentTheme[this.tagName] : '';
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   hostData() {
@@ -33,14 +31,14 @@ export class Card {
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
+    this.setTheme(this.theme);
 
-    this.setTheme();
-
-    this.store.subscribe(() => this.setTheme());
+    this.store.subscribe(() => this.setTheme(this.theme));
   }
 
   componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
+
     const slots = this.el.shadowRoot.querySelectorAll('slot');
 
     slots.forEach(elem => {
@@ -57,7 +55,7 @@ export class Card {
 
   render() {
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <slot name='card-header' { ... { class: 'card-header' } } />,
       <slot name='card-body' { ... { class: 'card-body' } } />,

@@ -1,38 +1,36 @@
-import { Header } from './header';
+import { store } from '../../store';
 import { applyTheme } from '../../unittest';
+import { Header } from './header';
 
 const component = new Header();
 
-component.componentWillLoad();
+(function () {
+  const items = [{ text: 'global' }];
 
-describe('header', () => {
-  it('is initiated', () => {
-    expect(component).toBeTruthy();
+  this.store = store;
+  this.componentWillLoad();
+
+  describe('header', () => {
+    it('is initiated', () => {
+      expect(this).toBeTruthy();
+    });
+
+    it('should generate top links', () => {
+      expect(this.items).toEqual([]);
+
+      this.setItems(items);
+
+      expect(this.items).toEqual(items);
+    });
+
+    it('should toggle navigation', () => {
+      expect(this.navigationOpen).toBe(false);
+
+      this.toggleNavigation(true);
+
+      expect(this.navigationOpen).toBe(true);
+    });
+
+    applyTheme(Header);
   });
-
-  it('should generate top links', () => {
-    const items = [{text: 'global'}];
-
-    expect(component.items).not.toBeNull();
-    expect( Array.isArray(component._items) ).toBeTruthy();
-    expect(component._items).toEqual([]);
-
-    component.setItems(items);
-
-    expect(component._items).toEqual(items);
-  });
-
-  it('should toggle navigation', () => {
-    expect(component.navigationOpen).toBeUndefined();
-
-    component.toggleNavigation(true);
-      
-    expect(component.navigationOpen).toBe(true);
-
-    component.toggleNavigation(false);
-      
-    expect(component.navigationOpen).toBe(false);
-  });
-});
-
-describe('header', () => applyTheme(Header));
+}).call(component);

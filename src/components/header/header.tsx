@@ -13,7 +13,7 @@ export class Header {
   @Prop({ context: 'store' }) store: any;
 
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** The site name will be displayed on the right hand side of the logotype on desktop mode */
   @Prop() siteName: string;
@@ -22,33 +22,27 @@ export class Header {
   @Prop() siteUrl = '/';
 
   /** Header links that will be placed in the top right part of the header */
-  @Prop() items: any;
-
-  @State() tagName: string;
+  @Prop({ mutable: true }) items: any;
 
   @State() navigationOpen: Boolean;
 
-  // There should be a better way of solving this, either by "{ mutable: true }"
-  // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  @State() _items: object[] = [];
-
   @State() navigationSlot = [];
 
-  @State() style: string;
+  @State() tagName: string;
+
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('items')
-  setItems() {
-    this._items = Array.isArray(this.items) ? this.items : JSON.parse(this.items || '[]');
+  setItems(items) {
+    this.items = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
-  setTheme() {
-    const name = this.theme || this.store.getState().theme.name;
-    const currentTheme = this.store.getState().themes[name];
-
-    this.style = currentTheme ? currentTheme[this.tagName] : '';
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   toggleNavigation(open) {
@@ -56,28 +50,28 @@ export class Header {
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
-
-    this.setTheme();
-    this.setItems();
+    this.setTheme(this.theme);
+    this.setItems(this.items);
 
     this.store.subscribe(() => {
-      this.setTheme();
+      this.setTheme(this.theme);
 
       this.navigationOpen = this.store.getState().navigation.open;
     });
+
+    // To make sure navigation is always hidden from start
+    this.toggleNavigation(false);
   }
 
   componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
+
     const elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');
 
     if (elem) {
       elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
       this.getNavSlotItems(elem);
     }
-
-    // To make sure navigation is always hidden from start
-    this.toggleNavigation(false);
   }
 
   getNavSlotItems(node) {
@@ -94,7 +88,7 @@ export class Header {
 
   render() {
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         {this.navigationSlot.length
@@ -111,7 +105,7 @@ export class Header {
 
         <div class='collapse navbar-collapse'>
           <nav class='navbar-nav ml-auto'>
-            { this._items.map((item: any) => {
+            { this.items.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
             }) }

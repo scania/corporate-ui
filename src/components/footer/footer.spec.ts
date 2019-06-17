@@ -1,41 +1,45 @@
+import { store } from '../../store';
 import { Footer } from './footer';
 import { applyTheme } from '../../unittest';
 
 const component = new Footer();
 
+(function () {
+  const items = [{ text: 'contact us' }];
+  const socialItems = [{ icon: 'youtube' }];
 
-describe('footer', () => {
-  it('is initiated', () => {
-    expect(component).toBeTruthy();
+  this.store = store;
+  this.componentWillLoad();
+
+  describe('footer', () => {
+    it('is initiated', () => {
+      expect(this).toBeTruthy();
+    });
+
+    it('should have copyright text', () => {
+      expect(this.text).toBeTruthy();
+    });
+
+    it('should generate footer links', () => {
+      // check if initial property is empty
+      expect(this.items).toEqual([]);
+
+      this.setItems(items);
+
+      // check if functionality to generate link items work
+      expect(this.items).toEqual(items);
+    });
+
+    it('should generate footer social links', () => {
+      // check if initial property is empty
+      expect(this.socialItems).toEqual([]);
+
+      this.setSocialItems(socialItems);
+
+      // check if functionality to generate link items work
+      expect(this.socialItems).toEqual(socialItems);
+    });
+
+    applyTheme(Footer);
   });
-
-  it('should have copyright text', () => {
-    expect(component.text).toBeTruthy();
-  });
-
-  it('should generate footer links', () => {
-    const items = [{text: 'contact us'}];
-    const socialMedia = [{icon: 'youtube'}];
-
-    testItems(items, '_items');
-    testItems(socialMedia, '_socialMediaItems');
-  });
-
-});
-
-describe('footer', () => applyTheme(Footer));
-
-const testItems = (items, type) => {
-  // check if property exist
-  expect(component[type]).toBeTruthy();
-
-  // check if property is an array
-  expect( Array.isArray(component[type]) ).toBeTruthy();
-
-  // check if initial property is empty
-  expect(component[type]).toEqual([]);
-
-  // check if functionality to generate link items work
-  component.setItems(items,type);
-  expect(component[type]).toEqual(items);
-}
+}).call(component);

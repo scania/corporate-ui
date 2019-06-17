@@ -12,7 +12,7 @@ describe('footer', () => {
     await page.setContent('<c-footer></c-footer>');
 
     // ensure navbar container is rendered
-    const component = await page.find(`c-footer`);
+    const component = await page.find('c-footer');
     expect(component).toHaveClass('hydrated');
 
     // ensure logo brand is rendered
@@ -25,11 +25,11 @@ describe('footer', () => {
   });
 
   it('should generate links from data', async () => {
-    // arrange links with data 
+    // arrange links with data
     await page.setContent(`
       <c-footer items='[{ "text": "About", "href": "/about"}]'>
       </c-footer>`);
-    
+
     // test if link rendered correctly
     const navItems = await page.find(`${root} .nav-item.nav-link`);
     expect(navItems).toEqualHtml(`
@@ -38,23 +38,20 @@ describe('footer', () => {
   });
 
   it('should generate links from slot', async () => {
-    // arrange links with slot 
+    // arrange links with slot
     await page.setContent(`
       <c-footer>
         <a href='/cookies' slot='items'>Cookies</a>
       </c-footer>`);
-    
+
     //  test if slot is rendered inside shadow root
     const template = await page.find(`${root} slot[name='items']`);
     expect(template).toBeTruthy();
 
     // test if slot content renders correct link
-    const navItems = await page.find(`c-footer a[slot='items']`);
+    const navItems = await page.find('c-footer a[slot=\'items\']');
     expect(navItems).toEqualHtml(`
       <a href="/cookies" slot="items">Cookies</a>
     `);
   });
-
 });
-
-

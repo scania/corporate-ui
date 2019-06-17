@@ -11,36 +11,36 @@ export class Content {
   @Prop({ context: 'store' }) store: any;
 
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** This property is in experimental state */
   @Prop() router: boolean;
 
   @State() tagName: string;
 
-  @State() style: string;
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  setTheme() {
-    const name = this.theme || this.store.getState().theme.name;
-    const currentTheme = this.store.getState().themes[name];
-
-    this.style = currentTheme ? currentTheme[this.tagName] : '';
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
+    this.setTheme(this.theme);
 
-    this.setTheme();
+    this.store.subscribe(() => this.setTheme(this.theme));
+  }
 
-    this.store.subscribe(() => this.setTheme());
+  componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
   }
 
   render() {
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       // Move the router related things a router component
       // if (this.router) {

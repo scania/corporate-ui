@@ -20,8 +20,14 @@ import { store, actions } from './store';
 
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
-let Context: any;
+
+// When running tests Context is already declared
+/* eslint-disable block-scoped-var, vars-on-top, no-var */
+if (!Context) {
+  var Context: any;
+}
 
 document.dispatchEvent(event);
 
 Context.store = store;
+/* eslint-enable block-scoped-var, vars-on-top, no-var */

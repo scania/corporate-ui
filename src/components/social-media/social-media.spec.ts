@@ -3,13 +3,12 @@ import { applyTheme } from '../../unittest';
 
 const component = new SocialMedia();
 
-describe('social media', () => {
-  
+(function () {
+  describe('social media', () => {
     it('is initiated', () => {
-    expect(component).toBeTruthy();
+      expect(this).toBeTruthy();
+    });
+
+    applyTheme(SocialMedia);
   });
-
-
-});
-
-describe('social media', () => applyTheme(SocialMedia));
+}).call(component);

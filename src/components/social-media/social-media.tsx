@@ -10,7 +10,7 @@ import {
 export class SocialMedia {
   @Prop({ context: 'store' }) store: any;
 
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   @Prop() icon: string;
 
@@ -20,26 +20,26 @@ export class SocialMedia {
 
   @State() tagName: string;
 
-  @State() style: string;
+  @State() currentTheme: object;
 
   @State() attrs = {};
 
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  setTheme() {
-    const name = this.theme || this.store.getState().theme.name;
-    const currentTheme = this.store.getState().themes[name];
-
-    this.style = currentTheme ? currentTheme[this.tagName] : '';
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
+    this.setTheme(this.theme);
 
-    this.setTheme();
+    this.store.subscribe(() => this.setTheme(this.theme));
+  }
 
-    this.store.subscribe(() => this.setTheme());
+  componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
   }
 
   render() {
@@ -49,7 +49,7 @@ export class SocialMedia {
     };
 
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>

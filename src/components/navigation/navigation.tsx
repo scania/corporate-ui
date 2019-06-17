@@ -13,16 +13,16 @@ export class Navigation {
   @Prop({ context: 'store' }) store: any;
 
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** Set the orientation for the navigation (vertical or horisontal). The default is horisontal navigation. */
   @Prop() orientation = '';
 
   /** Item links on the left side of the navigation */
-  @Prop() primaryItems: any;
+  @Prop({ mutable: true }) primaryItems: any;
 
   /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
-  @Prop() secondaryItems: any;
+  @Prop({ mutable: true }) secondaryItems: any;
 
   /** Used to show a text in front of generated items on desktop and add a describing text for navigating back in mobile mode for sub navigation */
   @Prop() caption: string;
@@ -30,37 +30,34 @@ export class Navigation {
   /** Used to dynamically connect current node to a parent item in mobile mode interaction */
   @Prop() target: string;
 
-  @State() tagName: string;
-
   @State() navigationOpen: boolean;
 
   @State() navigationExpanded: string;
 
   @State() isSub: boolean;
 
-  @State() style: string;
+  @State() tagName: string;
 
-  @State() _primaryItems: object[] = [];
-
-  @State() _secondaryItems: object[] = [];
+  @State() currentTheme: object;
 
   @State() parentEl: any;
 
   @Element() el: HTMLElement;
 
   @Watch('primaryItems')
+  setPrimaryItems(items) {
+    this.primaryItems = this.parse(items);
+  }
+
   @Watch('secondaryItems')
-  setItems() {
-    this._primaryItems = Array.isArray(this.primaryItems) ? this.primaryItems : JSON.parse(this.primaryItems || '[]');
-    this._secondaryItems = Array.isArray(this.secondaryItems) ? this.secondaryItems : JSON.parse(this.secondaryItems || '[]');
+  setSecondaryItems(items) {
+    this.secondaryItems = this.parse(items);
   }
 
   @Watch('theme')
-  setTheme() {
-    const name = this.theme || this.store.getState().theme.name;
-    const currentTheme = this.store.getState().themes[name];
-
-    this.style = currentTheme ? currentTheme[this.tagName] : '';
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   toggleNavigation(open) {
@@ -72,23 +69,23 @@ export class Navigation {
   }
 
   componentWillLoad() {
-    this.tagName = this.el.tagName.toLowerCase();
-
-    this.setTheme();
-    this.setItems();
+    this.setTheme(this.theme);
+    this.setPrimaryItems(this.primaryItems);
+    this.setSecondaryItems(this.secondaryItems);
 
     this.store.subscribe(() => {
-      this.setTheme();
+      this.setTheme(this.theme);
 
       this.navigationOpen = this.store.getState().navigation.open;
       this.navigationExpanded = this.store.getState().navigation.expanded;
     });
+
+    // To make sure navigation is always show from start
+    this.toggleNavigation(true);
   }
 
   componentDidLoad() {
-    // To make sure navigation is always show from start
-    this.toggleNavigation(true);
-
+    this.tagName = this.el.nodeName.toLowerCase();
     this.isSub = this.el.getAttribute('slot') === 'sub';
 
     const items = this.el.querySelectorAll('c-navigation[target]');
@@ -106,6 +103,10 @@ export class Navigation {
       node.classList.add('parent');
       node.onclick = (event) => this.open(event);
     }
+  }
+
+  parse(items) {
+    return Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   combineClasses(classes) {
@@ -142,7 +143,7 @@ export class Navigation {
 
   render() {
     return [
-      this.style ? <style>{ this.style }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
@@ -155,7 +156,7 @@ export class Navigation {
               : ''
             }
 
-            { this._primaryItems.map((item: any) => {
+            { this.primaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
             }) }
@@ -166,7 +167,7 @@ export class Navigation {
 
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav ml-auto'>
-            { this._secondaryItems.map((item: any) => {
+            { this.secondaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
             }) }

@@ -99,6 +99,12 @@ export function renderItems(page) {
       ${page.items ? page.items.map(item => `
         <section class="component">
           <h4>${item.title}</h4>
+
+          ${item.description ? `
+          <div class="description">${item.description}</div>
+          ` : ''}
+
+          ${item.content ? `
           <div>
             <figure>${item.content}</figure>
 
@@ -107,6 +113,8 @@ export function renderItems(page) {
               <c-code-sample>${item.content}</c-code-sample>
             </details>
           </div>
+          ` : ''}
+          
         </section>
       `).join('') : ''}
 

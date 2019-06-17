@@ -24,6 +24,9 @@ export class Header {
   /** Header links that will be placed in the top right part of the header */
   @Prop({ mutable: true }) items: any;
 
+  /** Short name will be displayed in the top-centered of the header on mobile mode */
+  @Prop() shortName: string;
+
   @State() navigationOpen: Boolean;
 
   @State() navigationSlot = [];
@@ -90,7 +93,7 @@ export class Header {
     return [
       this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
-      <nav class='navbar navbar-expand-lg navbar-default'>
+      <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {this.navigationSlot.length
           ? <button
             class='navbar-toggler collapsed'

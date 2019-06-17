@@ -171,6 +171,10 @@ c-content {
   background-color: #e8e8e8;
 }
 
+.description{
+  margin-bottom: 15px;
+}
+
 @keyframes slideDown {
   0% {
     transform: translateY(-100%);
@@ -208,6 +212,11 @@ c-content {
       margin-top: 15px;
       display: block !important;
     }
+  }
+
+  // TODO: Temporary component fix
+  .sc-c-navigation.sc-c-navigation-s > div:not(.show) .dropdown-menu {
+    display: none;
   }
 }
 

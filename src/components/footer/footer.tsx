@@ -24,7 +24,7 @@ export class Footer {
 
   @State() show = false;
 
-  @State() itemsSlot = [];
+  @State() initialSlot : any;
 
   @State() tagName: string;
 
@@ -57,22 +57,12 @@ export class Footer {
   }
 
   componentDidLoad() {
+    this.initialSlot = this.el.innerHTML;
     this.tagName = this.el.nodeName.toLowerCase();
-
-    const elem = this.el.shadowRoot.querySelector('slot[name=items');
-
-    if (elem) {
-      elem.addEventListener('slotchange', e => this.getSlotItems(e.target));
-      this.getSlotItems(elem);
-    }
   }
 
   parse(items) {
     return Array.isArray(items) ? items : JSON.parse(items || '[]');
-  }
-
-  getSlotItems(node) {
-    this.itemsSlot = node.assignedNodes() || node.children;
   }
 
   combineClasses(classes) {
@@ -87,44 +77,33 @@ export class Footer {
       this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
+        <strong class='navbar-brand'></strong>
 
-        <div class="navbar-top">
-          <strong class='navbar-brand'></strong>
+        <nav class='social-media-items'>
 
-          <nav class='navbar-nav social-media-items'>
-            { this.socialItems.map(item => (
-              <c-social-media { ...item }></c-social-media>
-            )) }
+          { this.socialItems.map(item => (
+            <c-social-media { ...item }></c-social-media>
+          )) }
 
-            <slot name="social-items" />
+          <slot name='social-items' />
+        </nav>
+
+        { this.initialSlot.indexOf('slot="items"') > 0 || this.items
+
+          ? <nav class='navbar-nav'>
+            { this.items.map((item: any) => {
+              item.class = this.combineClasses(item.class);
+              return <a { ...item }></a>;
+            }) }
+
+            <slot name='items' />
           </nav>
-        </div>
 
-        <div class="dropup">
-          <div class={`collapse navbar-collapse${this.show ? ' show' : ''}`}>
-            <nav class='navbar-nav'>
-              { this.items.map((item: any) => {
-                item.class = this.combineClasses(item.class);
-                return <a { ...item }></a>;
-              }) }
-
-              <slot name="items" />
-            </nav>
-          </div>
-
-          {this.items.length || this.itemsSlot.length
-            ? <button
-              class='navbar-toggler collapsed btn btn-link dropdown-toggle'
-              type='button'
-              onClick={() => this.show = !this.show }>
-              Scania
-            </button>
-            : ''}
-        </div>
+          : '' }
 
         <p>
           {this.text}
-          <slot name="text" />
+          <slot name='text' />
         </p>
       </nav>,
     ];

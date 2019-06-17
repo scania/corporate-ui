@@ -5,7 +5,7 @@ import {
 import { store, actions } from '../../store';
 import * as themes from '../../themes.built/c-header';
 
-const sticky = require('stickyfilljs');
+import Stickyfill from 'stickyfilljs';
 
 @Component({
   tag: 'c-header',
@@ -90,7 +90,7 @@ export class Header {
     setTimeout(() => {
       this.height = (this.el.shadowRoot || this.el).querySelector('.navbar-default').clientHeight;
       this.el.style.top = `${(this.height * -1)}px`;
-      sticky.addOne(this.el);
+      Stickyfill.addOne(this.el);
     }, 100);
   }
 

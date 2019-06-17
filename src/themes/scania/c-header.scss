@@ -205,8 +205,8 @@ c-navigation {
     ::slotted(c-navigation),
     &::slotted(c-navigation) {
       padding-right: 80px;
-      -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
-      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
+      -webkit-box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 17px 15px -15px rgba(0, 0, 0, 0.15);
     }
   }
 }

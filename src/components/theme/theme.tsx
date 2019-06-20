@@ -6,7 +6,7 @@ import {
 
 // Typescript does not support loading of resources outside of "src"
 // So instead of a relative path we do this hack.
-import { version } from 'scania-theme/../../package.json';
+import { version } from '@stencil/../../package.json';
 import { actions } from '../../store';
 
 @Component({

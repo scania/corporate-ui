@@ -24,7 +24,7 @@ export class Footer {
 
   @State() show = false;
 
-  @State() initialSlot : any;
+  @State() initialSlot = '';
 
   @State() tagName: string;
 
@@ -87,9 +87,7 @@ export class Footer {
 
           <slot name='social-items' />
         </nav>
-
         { this.initialSlot.indexOf('slot="items"') > 0 || this.items
-
           ? <nav class='navbar-nav'>
             { this.items.map((item: any) => {
               item.class = this.combineClasses(item.class);
@@ -98,9 +96,7 @@ export class Footer {
 
             <slot name='items' />
           </nav>
-
           : '' }
-
         <p>
           {this.text}
           <slot name='text' />

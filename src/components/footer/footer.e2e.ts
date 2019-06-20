@@ -1,13 +1,13 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-const root = 'c-footer >>>';
-let page;
+describe('c-footer', () => {
+  let page;
+  const root = 'c-footer >>>';
 
-beforeEach(async () => {
-  page = await newE2EPage();
-});
+  beforeEach(async () => {
+    page = await newE2EPage();
+  });
 
-describe('footer', () => {
   it('is rendered', async () => {
     await page.setContent('<c-footer></c-footer>');
 

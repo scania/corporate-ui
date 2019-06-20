@@ -3,12 +3,10 @@ import { applyTheme } from '../../unittest';
 
 const component = new Content();
 
-(function () {
-  describe('content', () => {
-    it('is initiated', () => {
-      expect(this).toBeTruthy();
-    });
-
-    applyTheme(Content);
+describe('content', (function () {
+  it('is initiated', () => {
+    expect(this).toBeTruthy();
   });
-}).call(component);
+
+  applyTheme(Content);
+}).bind(component));

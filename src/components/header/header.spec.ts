@@ -4,33 +4,31 @@ import { Header } from './header';
 
 const component = new Header();
 
-(function () {
+describe('header', (function () {
   const items = [{ text: 'global' }];
 
   this.store = store;
   this.componentWillLoad();
 
-  describe('header', () => {
-    it('is initiated', () => {
-      expect(this).toBeTruthy();
-    });
-
-    it('should generate top links', () => {
-      expect(this.items).toEqual([]);
-
-      this.setItems(items);
-
-      expect(this.items).toEqual(items);
-    });
-
-    it('should toggle navigation', () => {
-      expect(this.navigationOpen).toBe(false);
-
-      this.toggleNavigation(true);
-
-      expect(this.navigationOpen).toBe(true);
-    });
-
-    applyTheme(Header);
+  it('is initiated', () => {
+    expect(this).toBeTruthy();
   });
-}).call(component);
+
+  it('should generate top links', () => {
+    expect(this.items).toEqual([]);
+
+    this.setItems(items);
+
+    expect(this.items).toEqual(items);
+  });
+
+  it('should toggle navigation', () => {
+    expect(this.navigationOpen).toBe(false);
+
+    this.toggleNavigation(true);
+
+    expect(this.navigationOpen).toBe(true);
+  });
+
+  applyTheme(Header);
+}).bind(component));

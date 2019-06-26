@@ -10,7 +10,7 @@ import { actions } from '../../store';
   shadow: true,
 })
 export class Header {
-  @Prop({ context: 'store' }) store: any;
+  @Prop({ context: 'store' }) ContextStore: any;
 
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
@@ -26,6 +26,8 @@ export class Header {
 
   /** Short name will be displayed in the top-centered of the header on mobile mode */
   @Prop() shortName: string;
+
+  @State() store: any;
 
   @State() navigationOpen: Boolean;
 
@@ -53,6 +55,8 @@ export class Header {
   }
 
   componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUI.store;
+
     this.setTheme(this.theme);
     this.setItems(this.items);
 

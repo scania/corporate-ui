@@ -7,7 +7,7 @@ const component = new Header();
 describe('header', (function () {
   const items = [{ text: 'global' }];
 
-  this.store = store;
+  this.ContextStore = store;
   this.componentWillLoad();
 
   it('is initiated', () => {

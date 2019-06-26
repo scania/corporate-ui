@@ -8,7 +8,7 @@ describe('navigation', (function () {
   const primaryItems = [{ text: 'home' }];
   const secondaryItems = [{ text: 'user' }];
 
-  this.store = store;
+  this.ContextStore = store;
   this.componentWillLoad();
 
   it('is initiated', () => {

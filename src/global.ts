@@ -24,10 +24,12 @@ const event = new CustomEvent('storeReady', { detail });
 // When running tests Context is already declared
 /* eslint-disable block-scoped-var, vars-on-top, no-var */
 if (!Context) {
-  var Context: any;
+  var Context: any = {};
 }
 
-document.dispatchEvent(event);
+(<any>window).CorporateUI = { ...detail };
 
 Context.store = store;
+
+document.dispatchEvent(event);
 /* eslint-enable block-scoped-var, vars-on-top, no-var */

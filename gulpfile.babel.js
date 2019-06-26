@@ -8,6 +8,7 @@ import { create } from 'browser-sync';
 
 import del from 'del';
 import express from 'express';
+import cors from 'cors';
 import boxen from 'boxen';
 import webpack from 'webpack-stream';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -272,6 +273,7 @@ function server(done) {
   const bsPort = process.env.PORT || 1337;
   const host = process.env.COMPUTERNAME || '0.0.0.0';
 
+  app.use(cors());
   router.get('/', (request, response) => {
     response.set('Content-Type', 'text/html');
     response.sendFile(`${outputDir}/index.html`);
@@ -294,6 +296,7 @@ function server(done) {
   });
   app.use(express.static(`${outputDir}/manager`));
   app.use(express.static('./node_modules/scania-theme/dist'));
+  app.use(express.static('./dist'));
   app.use('/', router);
   app.listen(expressPort);
 

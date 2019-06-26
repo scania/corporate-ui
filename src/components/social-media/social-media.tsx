@@ -8,7 +8,7 @@ import {
   shadow: true,
 })
 export class SocialMedia {
-  @Prop({ context: 'store' }) store: any;
+  @Prop({ context: 'store' }) ContextStore: any;
 
   @Prop({ mutable: true }) theme: string;
 
@@ -17,6 +17,8 @@ export class SocialMedia {
   @Prop() href: string;
 
   @Prop() target: string;
+
+  @State() store: any;
 
   @State() tagName: string;
 
@@ -33,6 +35,8 @@ export class SocialMedia {
   }
 
   componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUI.store;
+
     this.setTheme(this.theme);
 
     this.store.subscribe(() => this.setTheme(this.theme));

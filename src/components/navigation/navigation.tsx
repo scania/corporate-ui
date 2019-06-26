@@ -10,7 +10,7 @@ import { actions } from '../../store';
   shadow: true,
 })
 export class Navigation {
-  @Prop({ context: 'store' }) store: any;
+  @Prop({ context: 'store' }) ContextStore: any;
 
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
@@ -29,6 +29,8 @@ export class Navigation {
 
   /** Used to dynamically connect current node to a parent item in mobile mode interaction */
   @Prop() target: string;
+
+  @State() store: any;
 
   @State() navigationOpen: boolean;
 
@@ -69,6 +71,8 @@ export class Navigation {
   }
 
   componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUI.store;
+
     this.setTheme(this.theme);
     this.setPrimaryItems(this.primaryItems);
     this.setSecondaryItems(this.secondaryItems);

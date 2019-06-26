@@ -14,7 +14,7 @@ import { actions } from '../../store';
   styleUrl: 'theme.scss',
 })
 export class Theme {
-  @Prop({ context: 'store' }) store: any;
+  @Prop({ context: 'store' }) ContextStore: any;
 
   /** Set the brand name that will set the theme styling for the page. */
   @Prop({ mutable: true }) name: string;
@@ -23,6 +23,8 @@ export class Theme {
   @Prop() global = false;
 
   @Element() el: HTMLElement;
+
+  @State() store: any;
 
   @State() tagName: string;
 
@@ -40,6 +42,8 @@ export class Theme {
   }
 
   renderFavicon() {
+    if (document.head.querySelector('link[rel=icon]')) return;
+
     const container = document.createElement('div');
     container.innerHTML = this.favicons.join('');
 
@@ -50,8 +54,11 @@ export class Theme {
   }
 
   componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUI.store;
+
     this.setTheme(this.name);
 
+    (window as any).CorporateUI = { ...(window as any).CorporateUI, version };
     document.documentElement.setAttribute('corporate-ui-version', version);
   }
 

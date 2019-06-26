@@ -1,6 +1,8 @@
 import { store } from './store';
 import { Theme } from './components/theme/theme';
 
+(<any>window).CorporateUI = {};
+
 export const applyTheme = (Component) => {
   const component = new Component();
   const theme = 'scania';
@@ -8,7 +10,7 @@ export const applyTheme = (Component) => {
 
   const themeComponent = new Theme();
   themeComponent.name = theme;
-  themeComponent.store = store;
+  themeComponent.ContextStore = store;
   themeComponent.componentWillLoad();
 
   // store.dispatch({ type: actions.SET_THEME, name: theme });

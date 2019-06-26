@@ -8,7 +8,7 @@ import {
   shadow: true,
 })
 export class Footer {
-  @Prop({ context: 'store' }) store: any;
+  @Prop({ context: 'store' }) ContextStore: any;
 
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
@@ -21,6 +21,8 @@ export class Footer {
 
   /** Add social media icons */
   @Prop({ mutable: true }) socialItems: any;
+
+  @State() store: any;
 
   @State() show = false;
 
@@ -49,6 +51,8 @@ export class Footer {
   }
 
   componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUI.store;
+
     this.setTheme(this.theme);
     this.setItems(this.items);
     this.setSocialItems(this.socialItems);

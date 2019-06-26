@@ -8,7 +8,7 @@ describe('footer', (function () {
   const items = [{ text: 'contact us' }];
   const socialItems = [{ icon: 'youtube' }];
 
-  this.store = store;
+  this.ContextStore = store;
   this.componentWillLoad();
 
   it('is initiated', () => {

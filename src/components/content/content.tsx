@@ -8,13 +8,15 @@ import {
   shadow: true,
 })
 export class Content {
-  @Prop({ context: 'store' }) store: any;
+  @Prop({ context: 'store' }) ContextStore: any;
 
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
   /** This property is in experimental state */
   @Prop() router: boolean;
+
+  @State() store: any;
 
   @State() tagName: string;
 
@@ -29,6 +31,8 @@ export class Content {
   }
 
   componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUI.store;
+
     this.setTheme(this.theme);
 
     this.store.subscribe(() => this.setTheme(this.theme));

@@ -71,24 +71,26 @@ export class Navigation {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUI.store;
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);
     this.setPrimaryItems(this.primaryItems);
     this.setSecondaryItems(this.secondaryItems);
 
     this.store.subscribe(() => {
-      this.setTheme(this.theme);
-
       this.navigationOpen = this.store.getState().navigation.open;
       this.navigationExpanded = this.store.getState().navigation.expanded;
-    });
 
-    // To make sure navigation is always show from start
-    this.toggleNavigation(true);
+      this.setTheme(this.theme);
+    });
   }
 
   componentDidLoad() {
+    // To make sure navigation is always show from start
+    this.toggleNavigation(true);
+
+    if (!this.el) return;
+
     this.tagName = this.el.nodeName.toLowerCase();
     this.isSub = this.el.getAttribute('slot') === 'sub';
 

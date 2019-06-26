@@ -31,7 +31,7 @@ export class Content {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUI.store;
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);
 

@@ -1,7 +1,7 @@
 import { store } from './store';
 import { Theme } from './components/theme/theme';
 
-(<any>window).CorporateUI = {};
+(<any>window).CorporateUi = {};
 
 export const applyTheme = (Component) => {
   const component = new Component();

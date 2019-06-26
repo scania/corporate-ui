@@ -55,7 +55,7 @@ export class Header {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUI.store;
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);
     this.setItems(this.items);
@@ -65,12 +65,14 @@ export class Header {
 
       this.navigationOpen = this.store.getState().navigation.open;
     });
-
-    // To make sure navigation is always hidden from start
-    this.toggleNavigation(false);
   }
 
   componentDidLoad() {
+    // To make sure navigation is always hidden from start
+    this.toggleNavigation(false);
+
+    if (!this.el) return;
+
     this.tagName = this.el.nodeName.toLowerCase();
 
     const elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');

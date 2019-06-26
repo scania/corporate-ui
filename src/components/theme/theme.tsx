@@ -54,11 +54,11 @@ export class Theme {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUI.store;
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.name);
 
-    (window as any).CorporateUI = { ...(window as any).CorporateUI, version };
+    (window as any).CorporateUi = { ...(window as any).CorporateUi, version };
     document.documentElement.setAttribute('corporate-ui-version', version);
   }
 

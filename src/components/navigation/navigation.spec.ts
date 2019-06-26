@@ -10,6 +10,7 @@ describe('navigation', (function () {
 
   this.ContextStore = store;
   this.componentWillLoad();
+  this.componentDidLoad();
 
   it('is initiated', () => {
     expect(this).toBeTruthy();

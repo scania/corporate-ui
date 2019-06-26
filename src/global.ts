@@ -27,7 +27,7 @@ if (!Context) {
   var Context: any = {};
 }
 
-(<any>window).CorporateUI = { ...detail };
+(<any>window).CorporateUi = { ...(<any>window).CorporateUi, ...detail };
 
 Context.store = store;
 

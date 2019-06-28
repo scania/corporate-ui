@@ -6,7 +6,7 @@
 
 .btn {
   padding: 20px 40px;
-  border-radius: 0;
+  border-radius: @btn-border-radius;
   font-family: "Scania Sans Bold";
   text-transform: uppercase;
   -webkit-user-select: none;
@@ -78,14 +78,11 @@
 .btn-lg {
   padding: 20px 40px;
   font-size: 14px;
+
   .app &{
     padding: 14px 22px;
     font-size: @btn-font-size-lg-app;
   }
-}
-
-.btn-md {
-  &:extend(.btn);
 }
 
 .btn-sm {

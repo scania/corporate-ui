@@ -3,28 +3,28 @@
 
 .label {
   margin-bottom: 1px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  border-radius: 1.1em;
+  border-radius: 1.6rem;
   padding: 0.45em 1.42em;
   display: inline-block;
 }
 
 .label-xs {
-  border-radius: 0.4em;
   padding: 0.3em 0.6em 0.26em;
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 1.0rem;
+  border-radius: 1.0rem;
 }
 
 .label-sm {
-  font-size: 1rem;
+  border-radius: 1.2rem;
+  font-size: 1.0rem;
   padding: 0.4em 1.4em;
 }
 
 .label-lg {
   font-size: 1.4rem;
-  border-radius: 1.3em;
+  border-radius: 2.0rem;
   padding: 0.7em 2.1em 0.65em;
 }
 
@@ -62,6 +62,7 @@
 // Badges
 .badge {
   cursor: default;
+  border-radius: 1.2rem;
 }
 
 .badge-primary { background-color: @interaction-primary; }
@@ -72,19 +73,19 @@
 
 .panel > .panel-heading {
   .badge {
-      color: #fff;
-      vertical-align: text-top;
+    color: #fff;
+    vertical-align: text-top;
   }
   .badge-primary {
-      background-color: @interaction-primary;
+    background-color: @interaction-primary;
   }
   .badge-success {
-      background-color: @interaction-success;
+    background-color: @interaction-success;
   }
   .badge-warning {
-      background-color: @interaction-warning;
+    background-color: @interaction-warning;
   }
   .badge-danger {
-      background-color: @interaction-danger;
-  }        
+    background-color: @interaction-danger;
+  }
 }

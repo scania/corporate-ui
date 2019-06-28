@@ -45,9 +45,9 @@ export class Header {
   }
 
   @Watch('theme')
-  setTheme(name) {
+  setTheme(name = undefined) {
     this.theme = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.theme] || {};
+    this.currentTheme = this.store.getState().themes[this.theme];
   }
 
   toggleNavigation(open) {
@@ -61,7 +61,7 @@ export class Header {
     this.setItems(this.items);
 
     this.store.subscribe(() => {
-      this.setTheme(this.theme);
+      this.setTheme();
 
       this.navigationOpen = this.store.getState().navigation.open;
     });

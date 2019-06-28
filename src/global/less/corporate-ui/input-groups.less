@@ -3,105 +3,109 @@
 .input-group {
 
   & .form-control[disabled]  {
-        border: 1px solid #e2e2e2;
-      }
+    border: 1px solid #e2e2e2;
+  }
 
-&&-lg {
-  height: @input-lg-height;
-  border-radius:@input-border-radius;
-   & > .input-group-btn > .btn {
-      height: 100%;
+  &&-lg {
+    height: @input-lg-height;
+    border-radius:@input-border-radius;
+    & > .input-group-btn > .btn {
+        height: 100%;
+    }
+    & > .form-control {
+      height: inherit;
+    }
   }
-  & > .form-control {
-    height: inherit;
-  }
-}
-&&-sm {
+  &&-sm {
   height: 30px;
   line-height: 0;
   border-radius:@input-border-radius;
 
-   & > .input-group-addon {
+    & > .input-group-addon {
       line-height: 0;
-   }
-   & > .input-group-btn > .btn {
+    }
+    & > .input-group-btn > .btn {
       height: 100%;
 
     }
-   & > .form-control {
+    & > .form-control {
       height: inherit;
     }
   }
 
- &-addon {
-   font-size: inherit;
-   color: #555;
-   border: 1px solid #e2e2e2;
-   background-color: #fff;
-   border-radius: 0px;
-   padding-left: 15px;
+  &-addon {
+    font-size: inherit;
+    color: #555;
+    border: 1px solid #e2e2e2;
+    background-color: #fff;
+    border-radius: 0px;
+    padding-left: 15px;
+
     &:first-child {
       border-top-left-radius: @input-border-radius;
       border-bottom-left-radius: @input-border-radius;
     }
+
     &:last-child {
       border-top-right-radius: @input-border-radius;
       border-bottom-right-radius: @input-border-radius;
     }
-   .radio, .checkbox {
-     position: relative;
-     display: block;
-     min-height: 0px;
-     margin-top: 0px;
-     margin-bottom: 0px;
-   }
-   label {
-     padding: 0px;
-   }
-   input[type=checkbox] + span {
-    border: none;
-    margin-right:0px;
-    line-height:0;
 
-    &:before {
-      margin: 0px;
+    .radio, .checkbox {
+      position: relative;
+      display: block;
+      min-height: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
-   }
-   input[type=radio] + span {
-    margin: 3px;
-   &:before {
-    border: none;
-    margin-right: 0px;
-   }
- }
-}
- &-btn {
 
-      .btn-default {
-        border: 1px solid #e2e2e2;
+    label {
+      padding: 0px;
+    }
+
+    input[type=checkbox] + span {
+      border: none;
+      margin-right:0px;
+      line-height:0;
+
+      &:before {
+        margin: 0px;
       }
-     &:first-child > .btn {
-      border-top-left-radius: @input-border-radius;
-      border-bottom-left-radius: @input-border-radius;
+    }
+    input[type=radio] + span {
+      margin: 3px;
+      &:before {
+        border: none;
+        margin-right: 0px;
+      }
+    }
+  }
+  &-btn {
+    .btn-default {
+      border: 1px solid #e2e2e2;
+    }
+    &:first-child > .btn {
+    border-top-left-radius: @input-border-radius;
+    border-bottom-left-radius: @input-border-radius;
       &.btn-default {
-      &:hover {
-        border: 1px solid #e2e2e2;
+        &:hover {
+          border: 1px solid #e2e2e2;
+        }
       }
     }
-   }
-     &:last-child > .btn{
+    &:last-child > .btn{
       border-top-right-radius: @input-border-radius;
       border-bottom-right-radius: @input-border-radius;
       &.btn-default {
-      &:hover {
-        border: 1px solid #e2e2e2;
+        &:hover {
+          border: 1px solid #e2e2e2;
+        }
       }
-     }
-   }
-     & > .btn,
-     & > .btn-group {
-       margin-right: 0px;
-       margin-left: 0px;
-     }
-   }
+    }
+    & > .btn,
+    & > .btn-group {
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+  }
 }

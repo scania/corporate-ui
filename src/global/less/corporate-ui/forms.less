@@ -111,28 +111,23 @@ textarea[placeholder] {
 
     &.input-sm {
       background-size: 27px;
-      border-radius: @input-border-radius;
       }
 
       &.input-lg {
        background-size: 50px;
-       border-radius: @input-border-radius;
       }
 
     .app & {
       background-size: 27px;
       padding-right: 28px;
-      border-radius: @input-border-radius;
       padding: 12px 12px;
 
       &.input-sm {
       background-size: 20px;
-      border-radius: @input-border-radius;
       }
 
       &.input-lg {
       background-size: 50px;
-      border-radius: @input-border-radius;
       padding-right: 55px!important;
       }
     }
@@ -162,8 +157,6 @@ textarea[placeholder] {
     color:#94999d;
     background-color: @input-bg-color-disabled;
     border: 1px solid transparent;
-    border-radius: @input-border-radius;
-
   }
 
   &:focus {
@@ -176,13 +169,11 @@ textarea[placeholder] {
   &.input-sm {
     height: @input-default-height;
     font-size: 1.4rem;
-    border-radius: 3px;
   }
 
   &.input-lg {
     height: 80px;
     font-size: 2.6rem;
-    border-radius: 3px;
   }
 
   .scania textarea&,
@@ -196,21 +187,18 @@ textarea[placeholder] {
     height: @input-default-height;
 
     &.input-sm {
-    height: @input-sm-height;
-    padding: 0px 10px;
-    font-size: 1.2rem;
-    border-radius: 3px;
+      height: @input-sm-height;
+      padding: 0px 12px;
+      font-size: 1.2rem;
     }
 
     &.input-lg {
       height: @input-lg-height;
       font-size: 2.1rem;
-      border-radius: 3px;
       line-height: 23px;
     }
   }
 }
-
 
 .form-condensed {
   .form-group {
@@ -304,7 +292,6 @@ select {
   }
 
   select[multiple] option {
-
     background: transparent;
   }
 }
@@ -335,33 +322,33 @@ span.help-block,
 .app span.help-block,
 p.help-block,
 .app p.help-block  {
-    font-size: 1.2rem;
-    color: @main-font-color;
-    line-height: normal;
+  font-size: 1.2rem;
+  color: @main-font-color;
+  line-height: normal;
 }
 
 span.help-block,
 .app span.help-block {
-    display: inline;
-}   
+  display: inline;
+}
 
 .has-info .help-block {
-    border-left: 4px solid @interaction-info;
+  border-left: 4px solid @interaction-info;
 }
 
 .has-primary .help-block {
-    border-left: 4px solid @interaction-primary-app;
+  border-left: 4px solid @interaction-primary-app;
 }
 
 .has-success .help-block {
-    border-left: 4px solid @interaction-success;
+  border-left: 4px solid @interaction-success;
 }
 
 .has-warning .help-block {
-    border-left: 4px solid @interaction-warning;
+  border-left: 4px solid @interaction-warning;
 }
 
 .has-danger .help-block,
 .has-error .help-block {
-    border-left: 4px solid @interaction-danger;
+  border-left: 4px solid @interaction-danger;
 }

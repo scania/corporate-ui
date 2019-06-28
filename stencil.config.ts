@@ -9,6 +9,8 @@ const sassOpts: object = {
 
 export const config: Config = {
   namespace: 'corporate-ui',
+  globalScript: 'src/global.ts',
+  enableCache: false,
   hashFileNames: false,
   outputTargets: [
     {

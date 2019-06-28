@@ -10,7 +10,6 @@ module.exports = function (router) {
 
   router.use('/api/:kind/:id', route);
   router.use('/api/:kind', route);
-  // router.use(express.static('./dist'));
 };
 
 function route(req, res) {

@@ -2,24 +2,28 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store } from '../../store';
-import * as themes from '../../themes.built/c-card';
-
 @Component({
   tag: 'c-card',
   styleUrl: 'card.scss',
   shadow: true,
 })
 export class Card {
-  @Prop() theme: string;
+  @Prop({ context: 'store' }) ContextStore: any;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @Prop({ mutable: true }) theme: string;
+
+  @State() store: any;
+
+  @State() tagName: string;
+
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   hostData() {
@@ -29,10 +33,16 @@ export class Card {
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme.name);
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
+
+    this.setTheme(this.theme);
+
+    this.store.subscribe(() => this.setTheme(this.theme));
   }
 
   componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
+
     const slots = this.el.shadowRoot.querySelectorAll('slot');
 
     slots.forEach(elem => {
@@ -49,7 +59,7 @@ export class Card {
 
   render() {
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <slot name='card-header' { ... { class: 'card-header' } } />,
       <slot name='card-body' { ... { class: 'card-body' } } />,

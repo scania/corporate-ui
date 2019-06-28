@@ -8,20 +8,16 @@ beforeEach(async () => {
 
 describe('social media', () => {
   it('is rendered', async () => {
-    await page.setContent(`<c-social-media icon='youtube' href='/youtube'></c-social-media>`);
+    await page.setContent('<c-social-media icon=\'youtube\' href=\'/youtube\'></c-social-media>');
 
     // ensure social media component is rendered
-    const component = await page.find(`c-social-media`);
+    const component = await page.find('c-social-media');
     expect(component).toHaveClass('hydrated');
 
     // ensure component renders link & icon
-    const icon = await page.find(`c-social-media >>> a`);
+    const icon = await page.find('c-social-media >>> a');
     expect(icon).toEqualHtml(`
       <a href="/youtube"><c-icon class="hydrated"></c-icon></a>
     `);
   });
-
-
 });
-
-

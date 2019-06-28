@@ -2,59 +2,71 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store } from '../../store';
-import * as themes from '../../themes.built/c-footer';
-
 @Component({
   tag: 'c-footer',
   styleUrl: 'footer.scss',
   shadow: true,
 })
 export class Footer {
+  @Prop({ context: 'store' }) ContextStore: any;
+
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** Change default copyright text */
   @Prop() text = 'Copyright © Scania 2019';
 
   /** Set footer links */
-  @Prop() items: any;
+  @Prop({ mutable: true }) items: any;
 
   /** Add social media icons */
-  @Prop() socialMediaItems: any;
+  @Prop({ mutable: true }) socialItems: any;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() store: any;
 
   @State() show = false;
 
-  // There should be a better way of solving this, either by "{ mutable: true }"
-  // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  @State() _items: object[] = [];
-  
-  @State() initialSlot : any;
+  @State() initialSlot = '';
 
-  @State() _socialMediaItems: object[] = [];
+  @State() tagName: string;
+
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('items')
-  @Watch('socialMediaItems')
-  setItems(items, type) {
-    this[type] = Array.isArray(items) ? items : JSON.parse(items || '[]');
+  setItems(items) {
+    this.items = this.parse(items);
+  }
+
+  @Watch('socialItems')
+  setSocialItems(items) {
+    this.socialItems = this.parse(items);
   }
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   componentWillLoad() {
-    store.subscribe(() => this.currentTheme = store.getState().theme.name);
-    
-    this.initialSlot = this.el.innerHTML;
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
-    this.setItems(this.items, '_items');
-    this.setItems(this.socialMediaItems, '_socialMediaItems');
+    this.setTheme(this.theme);
+    this.setItems(this.items);
+    this.setSocialItems(this.socialItems);
+
+    this.store.subscribe(() => this.setTheme(this.theme));
+  }
+
+  componentDidLoad() {
+    this.initialSlot = this.el.innerHTML;
+    this.tagName = this.el.nodeName.toLowerCase();
+  }
+
+  parse(items) {
+    return Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   combineClasses(classes) {
@@ -65,39 +77,30 @@ export class Footer {
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default'>
         <strong class='navbar-brand'></strong>
-          <nav class='social-media-items'>
 
-            { this._socialMediaItems.map(item => (
-              <c-social-media { ...item }></c-social-media>
-            )) }
+        <nav class='social-media-items'>
 
-            <slot name='social-media-items' />
+          { this.socialItems.map(item => (
+            <c-social-media { ...item }></c-social-media>
+          )) }
+
+          <slot name='social-items' />
+        </nav>
+        { this.initialSlot.indexOf('slot="items"') > 0 || this.items
+          ? <nav class='navbar-nav'>
+            { this.items.map((item: any) => {
+              item.class = this.combineClasses(item.class);
+              return <a { ...item }></a>;
+            }) }
+
+            <slot name='items' />
           </nav>
-          
-          { this.initialSlot.indexOf('slot="items"') > 0 || this.items ? 
-
-            <nav class='navbar-nav'> 
-            
-              { this._items.map((item: any) => {
-                item.class = this.combineClasses(item.class);
-                return <a { ...item }></a>;
-              }) }
-
-              <slot name='items' />
-            </nav>
-
-            : ''
-
-          }
-        
+          : '' }
         <p>
           {this.text}
           <slot name='text' />

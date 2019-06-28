@@ -1,41 +1,43 @@
+import { store } from '../../store';
 import { Footer } from './footer';
 import { applyTheme } from '../../unittest';
 
 const component = new Footer();
 
+describe('footer', (function () {
+  const items = [{ text: 'contact us' }];
+  const socialItems = [{ icon: 'youtube' }];
 
-describe('footer', () => {
+  this.ContextStore = store;
+  this.componentWillLoad();
+
   it('is initiated', () => {
-    expect(component).toBeTruthy();
+    expect(this).toBeTruthy();
   });
 
   it('should have copyright text', () => {
-    expect(component.text).toBeTruthy();
+    expect(this.text).toBeTruthy();
   });
 
   it('should generate footer links', () => {
-    const items = [{text: 'contact us'}];
-    const socialMedia = [{icon: 'youtube'}];
+    // check if initial property is empty
+    expect(this.items).toEqual([]);
 
-    testItems(items, '_items');
-    testItems(socialMedia, '_socialMediaItems');
+    this.setItems(items);
+
+    // check if functionality to generate link items work
+    expect(this.items).toEqual(items);
   });
 
-});
+  it('should generate footer social links', () => {
+    // check if initial property is empty
+    expect(this.socialItems).toEqual([]);
 
-describe('footer', () => applyTheme(Footer));
+    this.setSocialItems(socialItems);
 
-const testItems = (items, type) => {
-  // check if property exist
-  expect(component[type]).toBeTruthy();
+    // check if functionality to generate link items work
+    expect(this.socialItems).toEqual(socialItems);
+  });
 
-  // check if property is an array
-  expect( Array.isArray(component[type]) ).toBeTruthy();
-
-  // check if initial property is empty
-  expect(component[type]).toEqual([]);
-
-  // check if functionality to generate link items work
-  component.setItems(items,type);
-  expect(component[type]).toEqual(items);
-}
+  applyTheme(Footer);
+}).bind(component));

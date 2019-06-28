@@ -2,8 +2,7 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store, actions } from '../../store';
-import * as themes from '../../themes.built/c-navigation';
+import { actions } from '../../store';
 
 @Component({
   tag: 'c-navigation',
@@ -11,17 +10,19 @@ import * as themes from '../../themes.built/c-navigation';
   shadow: true,
 })
 export class Navigation {
+  @Prop({ context: 'store' }) ContextStore: any;
+
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** Set the orientation for the navigation (vertical or horisontal). The default is horisontal navigation. */
-  @Prop() orientation: string = '';
+  @Prop() orientation = '';
 
   /** Item links on the left side of the navigation */
-  @Prop() primaryItems: any;
+  @Prop({ mutable: true }) primaryItems: any;
 
   /** Item links on the right side of the navigation. On vertical orientation, it will be added in order after primary-items. */
-  @Prop() secondaryItems: any;
+  @Prop({ mutable: true }) secondaryItems: any;
 
   /** Used to show a text in front of generated items on desktop and add a describing text for navigating back in mobile mode for sub navigation */
   @Prop() caption: string;
@@ -29,56 +30,68 @@ export class Navigation {
   /** Used to dynamically connect current node to a parent item in mobile mode interaction */
   @Prop() target: string;
 
+  @State() store: any;
+
+  @State() navigationOpen: boolean;
+
+  @State() navigationExpanded: string;
+
   @State() isSub: boolean;
 
-  @State() navigationOpen: boolean = store.getState().navigation.open;
+  @State() tagName: string;
 
-  @State() navigationExpanded: string = store.getState().navigation.expanded;
-
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
-
-  @State() _primaryItems: object[] = [];
-
-  @State() _secondaryItems: object[] = [];
+  @State() currentTheme: object;
 
   @State() parentEl: any;
 
   @Element() el: HTMLElement;
 
   @Watch('primaryItems')
+  setPrimaryItems(items) {
+    this.primaryItems = this.parse(items);
+  }
+
   @Watch('secondaryItems')
-  setItems(items, type) {
-    this[`_${type}`] = Array.isArray(items) ? items : JSON.parse(items || '[]');
+  setSecondaryItems(items) {
+    this.secondaryItems = this.parse(items);
   }
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   toggleNavigation(open) {
-    store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
+    this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
 
   toggleSubNavigation(expanded) {
-    store.dispatch({ type: actions.TOGGLE_SUB_NAVIGATION, expanded });
+    this.store.dispatch({ type: actions.TOGGLE_SUB_NAVIGATION, expanded });
   }
 
   componentWillLoad() {
-    store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name;
-      this.navigationOpen = store.getState().navigation.open;
-      this.navigationExpanded = store.getState().navigation.expanded;
-    });
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
-    this.setItems(this.primaryItems, 'primaryItems');
-    this.setItems(this.secondaryItems, 'secondaryItems');
+    this.setTheme(this.theme);
+    this.setPrimaryItems(this.primaryItems);
+    this.setSecondaryItems(this.secondaryItems);
+
+    this.store.subscribe(() => {
+      this.navigationOpen = this.store.getState().navigation.open;
+      this.navigationExpanded = this.store.getState().navigation.expanded;
+
+      this.setTheme(this.theme);
+    });
   }
 
   componentDidLoad() {
     // To make sure navigation is always show from start
     this.toggleNavigation(true);
 
+    if (!this.el) return;
+
+    this.tagName = this.el.nodeName.toLowerCase();
     this.isSub = this.el.getAttribute('slot') === 'sub';
 
     const items = this.el.querySelectorAll('c-navigation[target]');
@@ -96,6 +109,10 @@ export class Navigation {
       node.classList.add('parent');
       node.onclick = (event) => this.open(event);
     }
+  }
+
+  parse(items) {
+    return Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   combineClasses(classes) {
@@ -131,11 +148,8 @@ export class Navigation {
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
@@ -148,7 +162,7 @@ export class Navigation {
               : ''
             }
 
-            { this._primaryItems.map((item: any) => {
+            { this.primaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
             }) }
@@ -159,7 +173,7 @@ export class Navigation {
 
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav ml-auto'>
-            { this._secondaryItems.map((item: any) => {
+            { this.secondaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
             }) }

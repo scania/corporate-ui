@@ -1,9 +1,6 @@
 import {
-  Component, Prop, State, Watch,
+  Component, Prop, State, Element, Watch,
 } from '@stencil/core';
-
-import { store } from '../../store';
-import * as themes from '../../themes.built/c-social-media';
 
 @Component({
   tag: 'c-social-media',
@@ -11,7 +8,9 @@ import * as themes from '../../themes.built/c-social-media';
   shadow: true,
 })
 export class SocialMedia {
-  @Prop() theme: string;
+  @Prop({ context: 'store' }) ContextStore: any;
+
+  @Prop({ mutable: true }) theme: string;
 
   @Prop() icon: string;
 
@@ -19,19 +18,32 @@ export class SocialMedia {
 
   @Prop() target: string;
 
-  attrs = {};
+  @State() store: any;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() tagName: string;
+
+  @State() currentTheme: object;
+
+  @State() attrs = {};
+
+  @Element() el: HTMLElement;
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   componentWillLoad() {
-    store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name;
-    });
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
+
+    this.setTheme(this.theme);
+
+    this.store.subscribe(() => this.setTheme(this.theme));
+  }
+
+  componentDidLoad() {
+    this.tagName = this.el.nodeName.toLowerCase();
   }
 
   render() {
@@ -39,11 +51,9 @@ export class SocialMedia {
       href: this.href,
       target: this.target,
     };
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
+
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <a { ...this.attrs }>
         <c-icon name={ this.icon }></c-icon>

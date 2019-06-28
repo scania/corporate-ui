@@ -16,6 +16,7 @@ export default {
       title: 'Items as data',
       content: `
 <c-navigation
+  theme="scania"
   primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'
   secondary-items='[{ "text": "user", "href": "/user" }, { "text": "more", "href": "/more" }]'></c-navigation>
       `,

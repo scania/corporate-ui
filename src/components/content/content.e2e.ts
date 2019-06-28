@@ -8,14 +8,10 @@ beforeEach(async () => {
 
 describe('content', () => {
   it('is rendered', async () => {
-    await page.setContent(`<c-content></c-content>`);
+    await page.setContent('<c-content></c-content>');
 
     // ensure social media component is rendered
-    const component = await page.find(`c-content`);
+    const component = await page.find('c-content');
     expect(component).toHaveClass('hydrated');
   });
-
-
 });
-
-

@@ -1,23 +1,33 @@
-import { store, actions } from './store';
+import { store } from './store';
+import { Theme } from './components/theme/theme';
+
+(<any>window).CorporateUi = {};
 
 export const applyTheme = (Component) => {
-  it('should support theming', () => {
-    let component;
-    const theme = 'scania';
-    const newTheme = 'man';
+  const component = new Component();
+  const theme = 'scania';
+  const newTheme = 'man';
 
-    store.dispatch({ type: actions.SET_THEME, name: theme });
+  const themeComponent = new Theme();
+  themeComponent.name = theme;
+  themeComponent.ContextStore = store;
+  themeComponent.componentWillLoad();
 
-    // We initiate header after the theme is set to make sure
-    // that the component have the correct initial theme set
-    component = new Component();
+  // store.dispatch({ type: actions.SET_THEME, name: theme });
 
-    expect(store.getState().theme.name).toBe(theme);
-    expect(component.currentTheme).toBe(theme);
+  (function () {
+    this.store = store;
+    this.setTheme(theme);
+    // this.theme = theme;
 
-    component.updateTheme(newTheme);
+    it('should support theming', () => {
+      expect(store.getState().theme.name).toBe(theme);
+      expect(this.theme).toBe(theme);
 
-    expect(component.currentTheme).toBe(newTheme);
-    expect(store.getState().theme.name).not.toBe(newTheme);
-  });
+      this.setTheme(newTheme);
+
+      expect(this.theme).toBe(newTheme);
+      expect(store.getState().theme.name).not.toBe(newTheme);
+    });
+  }).call(component);
 };

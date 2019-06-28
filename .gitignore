@@ -21,7 +21,6 @@ www/
 log.txt
 *.sublime-project
 *.sublime-workspace
-*.tgz
 *.d.ts
 
 .idea/

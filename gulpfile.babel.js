@@ -8,19 +8,19 @@ import { create } from 'browser-sync';
 
 import del from 'del';
 import express from 'express';
+import cors from 'cors';
 import boxen from 'boxen';
 import webpack from 'webpack-stream';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import packageFile from './package.json';
-import { generateTheme } from './utils/themes';
 import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './utils/storybook_template';
 
 const browserSync = create();
 
 // TODO: Would be nice to be able to have cleanAll in build but
 // then we need to solve cleaning of outputDir when running watches
-const build = series(generateTheme, components, copy, pack);
+const build = series(components, copy, pack);
 const release = series(cleanAll, build, staticServer);
 const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
 
@@ -34,7 +34,6 @@ const dist = join(__dirname, '/dist'); // distribution folder
 export {
   build,
   release,
-  generateTheme as themes,
   cleanAll as clean,
   start as default,
 };
@@ -87,18 +86,17 @@ function staticServer(cb) {
 }
 
 function pack(cb) {
-  src('./utils/define.js')
+  src('./utils/index.js')
     .pipe(dest(dist));
 
   console.log('Project successfully packed.');
   cb();
 }
 
-// watch stencil & themes
+// watch stencil
 function watches(cb) {
   watch(
     [
-      'src/themes/**/*',
       'src/components/**/*',
       '!src/components/components.d.ts',
     ],
@@ -275,6 +273,7 @@ function server(done) {
   const bsPort = process.env.PORT || 1337;
   const host = process.env.COMPUTERNAME || '0.0.0.0';
 
+  app.use(cors());
   router.get('/', (request, response) => {
     response.set('Content-Type', 'text/html');
     response.sendFile(`${outputDir}/index.html`);
@@ -296,6 +295,8 @@ function server(done) {
     response.sendFile(`${outputDir}/${request.params[0]}`);
   });
   app.use(express.static(`${outputDir}/manager`));
+  app.use(express.static('./node_modules/scania-theme/dist'));
+  app.use(express.static('./dist'));
   app.use('/', router);
   app.listen(expressPort);
 

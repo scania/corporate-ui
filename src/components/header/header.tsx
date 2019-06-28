@@ -2,8 +2,7 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { store, actions } from '../../store';
-import * as themes from '../../themes.built/c-header';
+import { actions } from '../../store';
 
 @Component({
   tag: 'c-header',
@@ -11,8 +10,10 @@ import * as themes from '../../themes.built/c-header';
   shadow: true,
 })
 export class Header {
+  @Prop({ context: 'store' }) ContextStore: any;
+
   /** Per default, this will inherit the value from c-theme name property */
-  @Prop() theme: string;
+  @Prop({ mutable: true }) theme: string;
 
   /** The site name will be displayed on the right hand side of the logotype on desktop mode */
   @Prop() siteName: string;
@@ -21,56 +22,65 @@ export class Header {
   @Prop() siteUrl = '/';
 
   /** Header links that will be placed in the top right part of the header */
-  @Prop() items: any;
+  @Prop({ mutable: true }) items: any;
 
   /** Short name will be displayed in the top-centered of the header on mobile mode */
   @Prop() shortName: string;
 
-  @State() currentTheme: string = this.theme || store.getState().theme.name;
+  @State() store: any;
 
   @State() navigationOpen: Boolean;
 
-  // There should be a better way of solving this, either by "{ mutable: true }"
-  // or "{ reflectToAttr: true }" or harder prop typing Array<Object>
-  @State() _items: object[] = [];
-
   @State() navigationSlot = [];
+
+  @State() tagName: string;
+
+  @State() currentTheme: object;
 
   @Element() el: HTMLElement;
 
   @Watch('items')
   setItems(items) {
-    this._items = Array.isArray(items) ? items : JSON.parse(items || '[]');
+    this.items = Array.isArray(items) ? items : JSON.parse(items || '[]');
   }
 
   @Watch('theme')
-  updateTheme(name) {
-    this.currentTheme = name;
+  setTheme(name) {
+    this.theme = name || this.store.getState().theme.name;
+    this.currentTheme = this.store.getState().themes[this.theme] || {};
   }
 
   toggleNavigation(open) {
-    store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
+    this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
 
   componentWillLoad() {
-    store.subscribe(() => {
-      this.currentTheme = store.getState().theme.name;
-      this.navigationOpen = store.getState().navigation.open;
-    });
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
 
+    this.setTheme(this.theme);
     this.setItems(this.items);
+
+    this.store.subscribe(() => {
+      this.setTheme(this.theme);
+
+      this.navigationOpen = this.store.getState().navigation.open;
+    });
   }
 
   componentDidLoad() {
+    // To make sure navigation is always hidden from start
+    this.toggleNavigation(false);
+
+    if (!this.el) return;
+
+    this.tagName = this.el.nodeName.toLowerCase();
+
     const elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');
 
     if (elem) {
       elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
       this.getNavSlotItems(elem);
     }
-
-    // To make sure navigation is always hidden from start
-    this.toggleNavigation(false);
   }
 
   getNavSlotItems(node) {
@@ -86,11 +96,8 @@ export class Header {
   }
 
   render() {
-    if (!document.head.attachShadow) {
-      this.currentTheme += '_ie';
-    }
     return [
-      this.currentTheme ? <style>{ themes[this.currentTheme] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {this.navigationSlot.length
@@ -107,7 +114,7 @@ export class Header {
 
         <div class='collapse navbar-collapse'>
           <nav class='navbar-nav ml-auto'>
-            { this._items.map((item: any) => {
+            { this.items.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
             }) }

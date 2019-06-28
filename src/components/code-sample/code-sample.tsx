@@ -16,17 +16,18 @@ export class Field {
 
   @Element() el: HTMLElement;
 
-  componentWillLoad() {    
+  componentWillLoad() {
     const parsed = this.el.innerHTML.replace(/"/g, "'")
-      .replace(/&quot;/g, '"')
-    if(!document.head.attachShadow) {
+      .replace(/&quot;/g, '"');
+
+    if (!document.head.attachShadow) {
       hljs.configure({
         classPrefix: 'sc-c-code-sample hljs-',
-        useBR: true
-      })
+        useBR: true,
+      });
     }
-    
-    this.code =  hljs.highlight(this.type, parsed, false).value;
+
+    this.code = hljs.highlight(this.type, parsed, false).value;
   }
 
   render() {
@@ -34,9 +35,9 @@ export class Field {
       // need to keep render the slot to make it easy to hide it in IE
       <div class='slot'><slot/></div>,
       <pre>
-        <code class={this.type} { ... {innerHTML: this.code} }>
+        <code class={this.type} { ... { innerHTML: this.code } }>
         </code>
-      </pre>
+      </pre>,
     ];
   }
 }

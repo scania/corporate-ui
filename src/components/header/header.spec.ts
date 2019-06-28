@@ -1,38 +1,35 @@
-import { Header } from './header';
+import { store } from '../../store';
 import { applyTheme } from '../../unittest';
+import { Header } from './header';
 
 const component = new Header();
 
-component.componentWillLoad();
+describe('header', (function () {
+  const items = [{ text: 'global' }];
 
-describe('header', () => {
+  this.ContextStore = store;
+  this.componentWillLoad();
+  this.componentDidLoad();
+
   it('is initiated', () => {
-    expect(component).toBeTruthy();
+    expect(this).toBeTruthy();
   });
 
   it('should generate top links', () => {
-    const items = [{text: 'global'}];
+    expect(this.items).toEqual([]);
 
-    expect(component.items).not.toBeNull();
-    expect( Array.isArray(component._items) ).toBeTruthy();
-    expect(component._items).toEqual([]);
+    this.setItems(items);
 
-    component.setItems(items);
-
-    expect(component._items).toEqual(items);
+    expect(this.items).toEqual(items);
   });
 
   it('should toggle navigation', () => {
-    expect(component.navigationOpen).toBeUndefined();
+    expect(this.navigationOpen).toBe(false);
 
-    component.toggleNavigation(true);
-      
-    expect(component.navigationOpen).toBe(true);
+    this.toggleNavigation(true);
 
-    component.toggleNavigation(false);
-      
-    expect(component.navigationOpen).toBe(false);
+    expect(this.navigationOpen).toBe(true);
   });
-});
 
-describe('header', () => applyTheme(Header));
+  applyTheme(Header);
+}).bind(component));

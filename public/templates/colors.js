@@ -20,7 +20,7 @@ export default {
     {
       title: 'Buttons outline',
       content: `
-<div class="mb-4 p-4" style="background-color: var(--primary-03);">
+<div class="mb-4 p-4 bg-dark">
   <button type="button" class="btn btn-lg btn-outline-primary">Primary</button>
   <button type="button" class="btn btn-lg btn-outline-secondary">Secondary</button>
   <button type="button" class="btn btn-lg btn-outline-success">Success</button>

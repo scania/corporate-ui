@@ -35,8 +35,8 @@ export class Theme {
   @Watch('name')
   setTheme(name) {
     this.name = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.name] || {};
-    this.favicons = this.currentTheme.favicons;
+    this.currentTheme = this.store.getState().themes[this.name];
+    this.favicons = this.currentTheme ? this.currentTheme.favicons : undefined;
 
     this.store.dispatch({ type: actions.SET_THEME, name: this.name });
   }

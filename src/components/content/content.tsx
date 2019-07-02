@@ -25,9 +25,9 @@ export class Content {
   @Element() el: HTMLElement;
 
   @Watch('theme')
-  setTheme(name) {
+  setTheme(name = undefined) {
     this.theme = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.theme] || {};
+    this.currentTheme = this.store.getState().themes[this.theme];
   }
 
   componentWillLoad() {
@@ -35,7 +35,7 @@ export class Content {
 
     this.setTheme(this.theme);
 
-    this.store.subscribe(() => this.setTheme(this.theme));
+    this.store.subscribe(() => this.setTheme());
   }
 
   componentDidLoad() {

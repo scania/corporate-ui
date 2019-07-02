@@ -8,9 +8,15 @@ export default {
       <c-header site-name='Corporate UI'>
           <a href="/info" slot="items">Info</a>
           <c-navigation slot='navigation'>
-              <a href='/' slot='primary-items' active=''>home</a>
-              <a href='/global' slot='primary-items' active=''>global</a>
-              <a href='/user' slot='secondary-items' active=''>user</a>
+              <a href="/" slot="primary-items" active="">home</a>
+              <a href="/global" slot="primary-items" active="">global</a>
+              <a href="/user" slot="secondary-items" active="">user</a>
+              
+              <c-navigation slot="sub" target="/global" active="">
+                <a href="/global" slot="primary-items" active="">global 1</a>
+                <a href="/global2" slot="primary-items">global 2</a>
+                <a href="/global3" slot="secondary-items">global 3</a>
+              </c-navigation>
           </c-navigation>
       </c-header>
 

@@ -41,6 +41,8 @@ export class Header {
 
   @State() height = 0;
 
+  @State() nav : any;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -60,8 +62,10 @@ export class Header {
 
     if (stickyPos.top <= (this.height * -1)) {
       this.el.setAttribute('stuck', 'true');
+      if (this.nav) this.nav.setAttribute('stuck', 'true');
     } else {
       this.el.removeAttribute('stuck');
+      if (this.nav) this.nav.removeAttribute('stuck');
     }
   }
 
@@ -96,13 +100,18 @@ export class Header {
       elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
       this.getNavSlotItems(elem);
     }
+    Stickyfill.addOne(this.el);
+    this.nav = this.el.querySelector('c-navigation');
+  }
 
+  componentDidUpdate() {
     setTimeout(() => {
       this.height = (this.el.shadowRoot || this.el).querySelector('.navbar-default').clientHeight;
       this.el.style.top = `${(this.height * -1)}px`;
-      Stickyfill.addOne(this.el);
+      Stickyfill.refreshAll();
     }, 100);
   }
+
 
   getNavSlotItems(node) {
     // node.children is not supported in IE

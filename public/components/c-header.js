@@ -91,14 +91,14 @@ export default {
   <a href="/" slot="items">scania</a>
 
   <c-navigation slot="navigation">
-    <a href="/home" slot="primary-items">home</a>
-    <a href="/about" slot="primary-items" active>about</a>
-    <a href="/more" slot="secondary-items">more</a>
+    <a href='/home' slot='primary-items'>home</a>
+    <a href='/about' slot='primary-items' active=''>about</a>
+    <a href='/more' slot='secondary-items'>more</a>
 
-    <c-navigation slot="sub">
-      <a href="/about" slot="primary-items" active>About 1</a>
-      <a href="/about2" slot="primary-items">About 2</a>
-      <a href="/about3" slot="secondary-items">About 3</a>
+    <c-navigation slot='sub' target='/about' active=''>
+      <a href='/about' slot='primary-items' active=''>About 1</a>
+      <a href='/about2' slot='primary-items'>About 2</a>
+      <a href='/about3' slot='secondary-items'>About 3</a>
     </c-navigation>
   </c-navigation>
 </c-header>

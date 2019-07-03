@@ -2,7 +2,11 @@ import {
   Component, Prop, State, Watch,
 } from '@stencil/core';
 
-import * as icons from './icons';
+import { library, findIconDefinition, icon } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas, fab);
 
 @Component({
   tag: 'c-icon',
@@ -10,32 +14,31 @@ import * as icons from './icons';
   shadow: true,
 })
 export class Icon {
-  @Prop() name = 'truck';
+  @Prop() name = 'circle';
 
-  @State() iconSet: any;
-
-  @State() iconPath: any;
+  @State() icon: any;
 
   @Watch('name')
-  updateIcon(name) {
-    // change to camelCase
-    name = name.replace(/-([a-z0-9])/g, (g) => g[1].toUpperCase());
-    if (name === 'function') {
-      name = 'functionIcon';
+  setIcon(name) {
+    let iconObject = findIconDefinition({ prefix: 'fas', iconName: name });
+    iconObject = iconObject || findIconDefinition({ prefix: 'fab', iconName: name });
+    iconObject = iconObject || findIconDefinition({ prefix: 'fas', iconName: 'question' });
+    if (iconObject) {
+      this.icon = icon(iconObject).html;
     }
-    this.iconSet = icons[name] || icons.ban;
-    this.iconPath = this.iconSet.data;
   }
 
   componentWillLoad() {
-    this.updateIcon(this.name);
+    this.setIcon(this.name);
+  }
+
+  hostData() {
+    return {
+      innerHTML: this.icon,
+    };
   }
 
   render() {
-    return (
-      <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox={ `0 0 ${this.iconSet.pos.join(' ')}` }>
-        <path d={ window.atob(this.iconPath) } />
-      </svg>
-    );
+    return <slot />;
   }
 }

@@ -10,6 +10,7 @@ In this repository we're developing the next generation components for Corporate
 ## Table of contents
 
 - [Quick start](#quick-start)
+- [Styling](#styling)
 - [Setup local environment](#setup-local-environment)
 - [Wiki](#wiki)
 - [Learn more](#learn-more)
@@ -49,6 +50,12 @@ defineCustomElements(['c-theme','c-footer', 'c-content']);
 ```
 
 See project examples for [Angular](https://github.com/scania/corporate-ui-angular) and [React](https://github.com/scania/corporate-ui-react).
+
+## Styling
+
+A major change in the new setup is the configuration for styling. It enables the possibility to implement different brands styling with the use of `c-theme` component. The styling is now available as a separate package. All assets such as favicons, fonts, logotype, and wordmarks, now are added in the theme and are available in the theme package. 
+
+To apply the styling, you need to add a theme package and use `c-theme` component. Check out [Scania theme repository](https://github.com/scania/scania-theme/) for detail documentation.
 
 ## Setup local environment
 

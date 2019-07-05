@@ -83,10 +83,12 @@ export class Footer {
       <nav class='navbar navbar-expand-lg navbar-default'>
         <strong class='navbar-brand'></strong>
 
-        <nav class='social-media-items'>
+        <nav class='social-items'>
 
           { this.socialItems.map(item => (
-            <c-social-media { ...item }></c-social-media>
+            <a { ...item } class='social-item'>
+              <c-icon name={item.icon} />
+            </a>
           )) }
 
           <slot name='social-items' />

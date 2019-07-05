@@ -9,12 +9,26 @@
 @import 'node_modules/bootstrap/scss/nav';
 @import '../../components.scss';
 
+%nav-link-social {
+  display: inline-block;
+  border: 2px solid black;
+  margin-right: 10px;
+  font-size: 2.6rem;
+}
+
 :host {
   display: block;
 }
 
-@media (min-width: 992px) {
-  .btn-group {
-    display: none;
+::slotted(a[slot="social-items"]) {
+  @extend %nav-link-social;
+}
+
+.social-items {
+  text-align: center;
+  width: 100%;
+
+  a.social-item {
+    @extend %nav-link-social;
   }
 }

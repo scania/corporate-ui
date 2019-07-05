@@ -23,10 +23,6 @@
 ::slotted(a[slot="social-items"]) {
   @extend %nav-link-social;
 }
-::slotted(a[slot="social-items"] c-icon) {
-  line-height: 0;
-  padding: 8px;
-}
 
 .social-items {
   text-align: center;

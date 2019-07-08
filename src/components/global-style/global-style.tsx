@@ -2,9 +2,6 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import 'bootstrap';
-import 'jquery';
-
 @Component({
   tag: 'c-global-style',
   styleUrl: 'global-style.scss',
@@ -29,7 +26,14 @@ export class GlobalStyle {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
+  async loadLibs() {
+    await import('jquery');
+    await import('bootstrap');
+  }
+
   componentWillLoad() {
+    this.loadLibs();
+
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);

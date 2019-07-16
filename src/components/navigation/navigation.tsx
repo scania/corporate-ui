@@ -1,7 +1,8 @@
 import {
-  Component, Prop, State, Element, Watch,
+  Component, Prop, State, Element, Watch, Listen,
 } from '@stencil/core';
 
+import Stickyfill from 'stickyfilljs';
 import { actions } from '../../store';
 
 @Component({
@@ -36,6 +37,8 @@ export class Navigation {
 
   @State() navigationExpanded: string;
 
+  @State() stuckState: boolean;
+
   @State() isSub: boolean;
 
   @State() tagName: string;
@@ -43,6 +46,8 @@ export class Navigation {
   @State() currentTheme: object;
 
   @State() parentEl: any;
+
+  @State() navWidth: any;
 
   @Element() el: HTMLElement;
 
@@ -62,6 +67,22 @@ export class Navigation {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
+  @Listen('window:scroll')
+  handleScroll() {
+    let isStick = false;
+    try {
+      isStick = this.el.getBoundingClientRect().top <= 0;
+    } catch (e) { console.log(e); }
+
+    if (isStick) {
+      if (!this.isSub) this.toggleSticky(true);
+    } else if (!this.isSub) this.toggleSticky(false);
+  }
+
+  toggleSticky(val) {
+    this.store.dispatch({ type: actions.STICKY, stuck: val });
+  }
+
   toggleNavigation(open) {
     this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
@@ -79,6 +100,7 @@ export class Navigation {
 
     this.store.subscribe(() => {
       this.navigationOpen = this.store.getState().navigation.open;
+      this.stuckState = this.store.getState().navigation.stuck;
       this.navigationExpanded = this.store.getState().navigation.expanded;
 
       this.setTheme();
@@ -109,6 +131,19 @@ export class Navigation {
       node.classList.add('parent');
       node.onclick = (event) => this.open(event);
     }
+
+    Stickyfill.addOne(this.el);
+  }
+
+  componentDidUpdate() {
+    // fallback of sticky on IE
+    Stickyfill.refreshAll();
+    // if(!document.head.attachShadow) {
+    // setTimeout(() => {
+    //   this.navWidth = this.el.querySelector('.navbar').clientWidth;
+    //   this.el.style.width = `${this.navWidth}px`;
+    // }, 100);
+    // }
   }
 
   parse(items) {
@@ -144,12 +179,13 @@ export class Navigation {
   hostData() {
     return {
       open: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
+      stuck: this.stuckState ? 'true' : 'false',
     };
   }
 
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>

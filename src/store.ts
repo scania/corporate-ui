@@ -5,6 +5,7 @@ export const actions = {
   ADD_THEME: 'ADD_THEME',
   TOGGLE_NAVIGATION: 'TOGGLE_NAVIGATION',
   TOGGLE_SUB_NAVIGATION: 'TOGGLE_SUB_NAVIGATION',
+  STICKY: 'STICKY',
 };
 
 export const store = createStore(reducers());
@@ -27,12 +28,14 @@ function themes(state = { }, action) {
   }
 }
 
-function navigation(state = { open: true, expanded: '' }, action) {
+function navigation(state = { open: true, expanded: '', stuck: false }, action) {
   switch (action.type) {
     case actions.TOGGLE_NAVIGATION:
       return { ...state, open: action.open };
     case actions.TOGGLE_SUB_NAVIGATION:
       return { ...state, expanded: action.expanded };
+    case actions.STICKY:
+      return { ...state, stuck: action.stuck };
     default:
       return state;
   }

@@ -2,7 +2,6 @@ import {
   Component, Prop, State, Element, Watch, Listen,
 } from '@stencil/core';
 
-import Stickyfill from 'stickyfilljs';
 import { actions } from '../../store';
 
 @Component({
@@ -37,8 +36,6 @@ export class Navigation {
 
   @State() navigationExpanded: string;
 
-  @State() stuckState: boolean;
-
   @State() isSub: boolean;
 
   @State() tagName: string;
@@ -48,6 +45,8 @@ export class Navigation {
   @State() parentEl: any;
 
   @State() navWidth: any;
+
+  @State() scrollPos = 0;
 
   @Element() el: HTMLElement;
 
@@ -70,17 +69,18 @@ export class Navigation {
   @Listen('window:scroll')
   handleScroll() {
     let isStick = false;
+    // try catch is used to avoid error in IE with getBoundingClientRect
     try {
       isStick = this.el.getBoundingClientRect().top <= 0;
     } catch (e) { console.log(e); }
 
-    if (isStick) {
-      if (!this.isSub) this.toggleSticky(true);
-    } else if (!this.isSub) this.toggleSticky(false);
-  }
+    if (!this.isSub) {
+      isStick ? this.el.setAttribute('stuck', 'true') : this.el.removeAttribute('stuck');
+    }
 
-  toggleSticky(val) {
-    this.store.dispatch({ type: actions.STICKY, stuck: val });
+    if (!document.head.attachShadow) {
+      (window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos && this.el.removeAttribute('stuck');
+    }
   }
 
   toggleNavigation(open) {
@@ -100,7 +100,6 @@ export class Navigation {
 
     this.store.subscribe(() => {
       this.navigationOpen = this.store.getState().navigation.open;
-      this.stuckState = this.store.getState().navigation.stuck;
       this.navigationExpanded = this.store.getState().navigation.expanded;
 
       this.setTheme();
@@ -108,7 +107,7 @@ export class Navigation {
   }
 
   componentDidLoad() {
-    // To make sure navigation is always show from start
+    // To make sure navigation is always shown from start
     this.toggleNavigation(true);
 
     if (!this.el) return;
@@ -131,19 +130,19 @@ export class Navigation {
       node.classList.add('parent');
       node.onclick = (event) => this.open(event);
     }
-
-    Stickyfill.addOne(this.el);
   }
 
   componentDidUpdate() {
     // fallback of sticky on IE
-    Stickyfill.refreshAll();
-    // if(!document.head.attachShadow) {
-    // setTimeout(() => {
-    //   this.navWidth = this.el.querySelector('.navbar').clientWidth;
-    //   this.el.style.width = `${this.navWidth}px`;
-    // }, 100);
-    // }
+    if (!document.head.attachShadow) {
+      setTimeout(() => {
+        this.navWidth = this.el.querySelector('.navbar').clientWidth;
+        this.el.style.width = `${this.navWidth}px`;
+        try {
+          this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
+        } catch (e) { console.log(e); }
+      }, 100);
+    }
   }
 
   parse(items) {
@@ -179,7 +178,6 @@ export class Navigation {
   hostData() {
     return {
       open: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
-      stuck: this.stuckState ? 'true' : 'false',
     };
   }
 
@@ -217,6 +215,8 @@ export class Navigation {
             <slot name="secondary-items" />
           </nav>
         </div>
+
+        <a class='navbar-symbol'></a>
       </nav>,
 
       <slot name="sub" />,

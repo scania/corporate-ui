@@ -32,8 +32,6 @@ export class Header {
 
   @State() navigationOpen: Boolean;
 
-  @State() stuckState: boolean;
-
   @State() tagName: string;
 
   @State() currentTheme: object;
@@ -67,7 +65,6 @@ export class Header {
       this.setTheme();
 
       this.navigationOpen = this.store.getState().navigation.open;
-      this.stuckState = this.store.getState().navigation.stuck;
     });
   }
 
@@ -87,17 +84,18 @@ export class Header {
     ].join(' ');
   }
 
-  hostData() {
-    return {
-      stuck: this.stuckState ? 'true' : 'false',
-    };
-  }
-
   render() {
     return [
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
+
+        <button
+          class='navbar-toggler collapsed'
+          type='button'
+          onClick={() => this.toggleNavigation(!this.navigationOpen) }>
+          <span class='navbar-toggler-icon'></span>
+        </button>
 
         <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>

@@ -28,14 +28,12 @@ function themes(state = { }, action) {
   }
 }
 
-function navigation(state = { open: true, expanded: '', stuck: false }, action) {
+function navigation(state = { open: true, expanded: '' }, action) {
   switch (action.type) {
     case actions.TOGGLE_NAVIGATION:
       return { ...state, open: action.open };
     case actions.TOGGLE_SUB_NAVIGATION:
       return { ...state, expanded: action.expanded };
-    case actions.STICKY:
-      return { ...state, stuck: action.stuck };
     default:
       return state;
   }

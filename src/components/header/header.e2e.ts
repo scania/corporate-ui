@@ -41,19 +41,4 @@ describe('c-header', () => {
     const example = await page.find('c-header a[slot=items]');
     expect(example).toBeTruthy();
   });
-
-  it('should render a navigation', async () => {
-    await page.setContent(`
-      <c-header>
-        <c-navigation slot="navigation">
-          <a href="/home">home</a>
-        <c-navigation>
-      </c-header>`);
-
-    const template = await page.find(`${root} slot[name=navigation]`);
-    expect(template).toBeTruthy();
-
-    const example = await page.find('c-header c-navigation[slot=navigation]');
-    expect(example).toBeTruthy();
-  });
 });

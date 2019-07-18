@@ -44,7 +44,7 @@ describe('navigation', () => {
     `);
 
     // ensure ml-auto class is rendered
-    const linkSecondary = await page.findAll(`${root} .navbar-collapse:last-child a`);
+    const linkSecondary = await page.findAll(`${root} .navbar-collapse:last-of-type a`);
     nodes = '';
     linkSecondary.forEach(node => nodes += node.outerHTML);
 

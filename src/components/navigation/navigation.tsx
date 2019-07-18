@@ -79,7 +79,9 @@ export class Navigation {
     }
 
     if (!document.head.attachShadow) {
-      (window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos && this.el.removeAttribute('stuck');
+      if (this.el != null) {
+        if ((window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos) this.el.removeAttribute('stuck');
+      }
     }
   }
 
@@ -119,6 +121,8 @@ export class Navigation {
 
     if (!document.head.attachShadow) {
       [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('nav'));
+      this.navWidth = this.el.querySelector('.navbar').clientWidth;
+      this.el.style.width = `${this.navWidth}px`;
     } else {
       this.parentEl = this.el;
     }
@@ -136,8 +140,6 @@ export class Navigation {
     // fallback of sticky on IE
     if (!document.head.attachShadow) {
       setTimeout(() => {
-        this.navWidth = this.el.querySelector('.navbar').clientWidth;
-        this.el.style.width = `${this.navWidth}px`;
         try {
           this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
         } catch (e) { console.log(e); }

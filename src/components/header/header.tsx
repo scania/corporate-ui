@@ -2,7 +2,6 @@ import {
   Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-// import Stickyfill from 'stickyfilljs';
 import { actions } from '../../store';
 
 @Component({

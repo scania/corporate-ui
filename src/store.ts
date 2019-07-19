@@ -5,7 +5,6 @@ export const actions = {
   ADD_THEME: 'ADD_THEME',
   TOGGLE_NAVIGATION: 'TOGGLE_NAVIGATION',
   TOGGLE_SUB_NAVIGATION: 'TOGGLE_SUB_NAVIGATION',
-  STICKY: 'STICKY',
 };
 
 export const store = createStore(reducers());

@@ -46,7 +46,11 @@ export class Navigation {
 
   @State() navWidth: any;
 
+  @State() navHeight = 0 ;
+
   @State() scrollPos = 0;
+
+  @State() isIE: boolean;
 
   @Element() el: HTMLElement;
 
@@ -78,11 +82,18 @@ export class Navigation {
       isStick ? this.el.setAttribute('stuck', 'true') : this.el.removeAttribute('stuck');
     }
 
-    if (!document.head.attachShadow) {
+    if (this.isIE) {
       if (this.el != null) {
         if ((window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos) this.el.removeAttribute('stuck');
       }
     }
+  }
+
+  @Listen('window:resize')
+  onResize() {
+    this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
+    this.navWidth = document.querySelector('c-header').clientWidth;
+    console.log(this.navHeight);
   }
 
   toggleNavigation(open) {
@@ -117,12 +128,12 @@ export class Navigation {
     this.tagName = this.el.nodeName.toLowerCase();
     this.isSub = this.el.getAttribute('slot') === 'sub';
 
+    this.isIE = !document.head.attachShadow;
+
     const items = this.el.querySelectorAll('c-navigation[target]');
 
-    if (!document.head.attachShadow) {
+    if (this.isIE) {
       [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('nav'));
-      this.navWidth = this.el.querySelector('.navbar').clientWidth;
-      this.el.style.width = `${this.navWidth}px`;
     } else {
       this.parentEl = this.el;
     }
@@ -137,12 +148,15 @@ export class Navigation {
   }
 
   componentDidUpdate() {
+    this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
+    console.log('did update', this.navHeight);
     // fallback of sticky on IE
-    if (!document.head.attachShadow) {
+    if (this.isIE) {
       setTimeout(() => {
         try {
           this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
         } catch (e) { console.log(e); }
+        this.navWidth = this.el.querySelector('.navbar').clientWidth;
       }, 100);
     }
   }
@@ -184,7 +198,12 @@ export class Navigation {
   }
 
   render() {
+    if (this.isIE) {
+      this.el.style.width = `${this.navWidth}px`;
+      this.el.style.marginBottom = `${this.navHeight}px`;
+    }
     return [
+      <style { ...{ innerHTML: `:host { --navHeight: ${this.navHeight}px;}` } }></style>,
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class={`navbar navbar-expand-lg ${this.orientation}`}>

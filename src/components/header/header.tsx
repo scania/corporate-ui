@@ -37,6 +37,8 @@ export class Header {
 
   @State() height = 0;
 
+  @State() hasNav : boolean;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -65,6 +67,8 @@ export class Header {
 
       this.navigationOpen = this.store.getState().navigation.open;
     });
+
+    this.hasNav = !!document.querySelector('c-navigation');
   }
 
   componentDidLoad() {
@@ -88,13 +92,16 @@ export class Header {
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
+        {
+          this.hasNav
+            ? <button
+            class='navbar-toggler collapsed'
+            type='button'
+            onClick={() => this.toggleNavigation(!this.navigationOpen) }>
+            <span class='navbar-toggler-icon'></span>
+          </button> : ''
+        }
 
-        <button
-          class='navbar-toggler collapsed'
-          type='button'
-          onClick={() => this.toggleNavigation(!this.navigationOpen) }>
-          <span class='navbar-toggler-icon'></span>
-        </button>
 
         <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>

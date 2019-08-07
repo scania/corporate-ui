@@ -93,7 +93,6 @@ export class Navigation {
   onResize() {
     this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
     this.navWidth = document.querySelector('c-header').clientWidth;
-    console.log(this.navHeight);
   }
 
   toggleNavigation(open) {
@@ -149,7 +148,6 @@ export class Navigation {
 
   componentDidUpdate() {
     this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
-    console.log('did update', this.navHeight);
     // fallback of sticky on IE
     if (this.isIE) {
       setTimeout(() => {

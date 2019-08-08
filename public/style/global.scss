@@ -50,8 +50,10 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   }
   figure,
   c-code-sample {
-    background-color: #e8e8e8;
-    padding: 80px 40px;
+    overflow: hidden;
+    border-width: 80px 40px;
+    border-color: #e8e8e8;
+    border-style: solid;
   }
   figure {
     margin: 0 0 20px;
@@ -181,6 +183,19 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@media (min-width: 992px) {
+  .container-fluid {
+    figure,
+    c-code-sample {
+      overflow: visible;
+
+      c-navigation {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 

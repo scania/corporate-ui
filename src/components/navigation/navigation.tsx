@@ -92,7 +92,7 @@ export class Navigation {
   @Listen('window:resize')
   onResize() {
     this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
-    this.navWidth = document.querySelector('c-header').clientWidth;
+    if (document.querySelector('c-header')) this.navWidth = document.querySelector('c-header').clientWidth;
   }
 
   toggleNavigation(open) {

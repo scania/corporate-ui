@@ -12,25 +12,6 @@ legend {
   border: 0;
 }
 
-input[placeholder],
-textarea[placeholder] {
-  color: #94999d;
-
-  // Do not group these rules
-  &::-webkit-input-placeholder {
-    color: inherit;
-  }
-  &:-moz-placeholder {
-    color: inherit;
-  }
-  &::-moz-placeholder {
-    color: inherit;
-  }
-  &:-ms-input-placeholder {
-    color: inherit;
-  }
-}
-
 .form-group {
 
   label {
@@ -77,6 +58,22 @@ textarea[placeholder] {
     background: #f6f9fa;
   }
 
+  //placeholders for different browsers
+  &::placeholder {
+    color: @main-font-color-placeholder;
+  }
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: @main-font-color-placeholder;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: @main-font-color-placeholder;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: @main-font-color-placeholder;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: @main-font-color-placeholder;
+  }
 
   select& {
     cursor: pointer;

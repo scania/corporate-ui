@@ -49,7 +49,8 @@
       min-height: 42px;
       padding: 0px;
       margin: 0;
-      border: 1px solid #e2e2e2;
+      border: 1px solid;
+      border-color: @input-border-color;
       border-radius: @input-border-radius;
       width: 100%;
       font-size: 1.4rem;
@@ -130,7 +131,7 @@
   .select2-choice {
     border: none;
     white-space: nowrap;
-    border-radius: 0px;
+    border-radius: @input-border-radius;
     background: #f5f5f5;
     background-image: none;
     overflow: auto;
@@ -187,14 +188,14 @@
   background: #fff;
   color: #000;
   border: 1px solid #f5f5f5;
-  border-radius: 0px;
+  border-radius: @input-border-radius;
   box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
 
   &.select2-drop-above {
     margin-top: 1px;
     border-top: 1px solid #aaa;
     border-bottom: 0;
-    border-radius: 0px;
+    border-radius: @input-border-radius;
     -webkit-box-shadow: none;
     box-shadow: none;
 
@@ -247,6 +248,7 @@
   background-repeat: no-repeat;
   background-size: 28px;
   background-position: 8px center;
+  border-radius: @input-border-radius;
 
   input {
     min-height: 26px;
@@ -277,20 +279,22 @@
 
   &::-webkit-scrollbar {
     width: 13px;
-    height: 6px;
+    height: 6px;;
+    border-radius: 2px;
   }
   &::-webkit-scrollbar-track {
     background: #ffffff;
     background-clip: content-box;
+    border-radius: @input-border-radius;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 60px;
-    background: #f5f5f5;
+    background: #ebebeb;
     border: 3px solid #ffffff;
     height: 5px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: #f5f5f5;
+    background: #ebebeb;
   }
 
   .select2-result-label {
@@ -356,7 +360,7 @@
       height: 42px;
       width: 100%;
       line-height: unset;
-      border: 1px solid #e2e2e2;
+      border: 1px solid #94999d;
       border-radius: @input-border-radius;
       background: #fff;
 
@@ -384,7 +388,6 @@
 
   .select2-choices {
 
-    
     .select2-search-choice {
       padding: 5px 0 5px;
       margin: 4px 0 5px;
@@ -504,8 +507,8 @@ header.c-page-header {
         margin: 4px 5px 5px 5px;
         background-color: #f0f0f0;
         white-space: nowrap;
-        
       }
+
       .select2-search-field {
         background-color: #FFFFFF;
       }
@@ -538,8 +541,6 @@ header.c-page-header {
 @media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-resolution: 2dppx) {
 
   .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close {
-    
     background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMi4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGFnZXJfMTMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTYgMjU2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+Cjxwb2x5Z29uIHN0eWxlPSJmaWxsOiMwNDFFNDI7IiBwb2ludHM9IjE4Ny41MzUsNzUuNTU2IDE4MC40NjUsNjguNDgzIDEyNy45OTIsMTIwLjk0NCA3NS41MzIsNjguNDcyIDY4LjQ2LDc1LjU0MiAxMjAuOTIsMTI4LjAxNCAKCTY4LjQ0OCwxODAuNDc1IDc1LjUxOSwxODcuNTQ3IDEyNy45OTEsMTM1LjA4NiAxODAuNDUxLDE4Ny41NTkgMTg3LjUyMywxODAuNDg4IDEzNS4wNjMsMTI4LjAxNiAiLz4KPC9zdmc+Cg==')!important;
-    
   }
 }

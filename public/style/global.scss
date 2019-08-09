@@ -23,7 +23,7 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
     padding-left: 90px; /* From container */
     padding-right: 90px; /* From container */
 
-    /* TODO: This is needed for ie - due to incorrct conversion of ::slotted() in c-content */
+    /* TODO: This is needed for ie - due to incorrct conversion of ::slotted() in .container-fluid */
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
@@ -53,6 +53,7 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
     overflow: hidden;
     border-width: 80px 40px;
     border-color: #e8e8e8;
+    background: #e8e8e8;
     border-style: solid;
   }
   figure {
@@ -115,7 +116,7 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   //   padding-left: 80px;
   //   padding-right: 80px;
   // }
-  c-content > section {
+  .container-fluid > section {
     display: flex; /* From row */
     flex-wrap: wrap; /* From row */
   }
@@ -191,10 +192,9 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
     figure,
     c-code-sample {
       overflow: visible;
-
-      c-navigation {
-        margin-bottom: 0;
-      }
+    }
+    figure > c-navigation {
+      margin-bottom: 0px;
     }
   }
 }
@@ -202,7 +202,7 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
-  c-content {
+  .container-fluid {
 
     summary {
       display: inline-block;
@@ -233,12 +233,19 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   .sc-c-navigation.sc-c-navigation-s > div:not(.show) .dropdown-menu {
     display: none;
   }
+  @media (min-width: 992px) {
+    .container-fluid {
+      c-navigation {
+        margin-bottom: 0px!important;
+      }
+    }
+  }
 }
 
 /* Edge 12+ CSS styles go here */
 @supports (-ms-ime-align: auto) {
 
-  c-content {
+  .container-fluid {
 
     summary {
       display: inline-block;

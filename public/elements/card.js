@@ -18,7 +18,7 @@ export default {
       content: `
       <div class="card" style="width: 18rem;">
         <svg class="card-img-top">
-          <rect width="150px" height="150px" fill="#868e96"></rect>
+          <rect width="100%" height="150px" fill="#868e96"></rect>
         </svg>
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -57,7 +57,7 @@ export default {
       content: `
       <div class="card" style="width: 18rem;">
         <svg class="card-img-top">
-          <rect width="150px" height="150px" fill="#868e96"></rect>
+          <rect width="100%" height="150px" fill="#868e96"></rect>
         </svg>
         <div class="card-body">
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -93,7 +93,7 @@ export default {
       content: `
       <div class="card" style="width: 18rem;">
         <svg class="card-img-top">
-          <rect width="150px" height="150px" fill="#868e96"></rect>
+          <rect width="100%" height="150px" fill="#868e96"></rect>
         </svg>
         <div class="card-body">
           <h5 class="card-title">Card title</h5>

@@ -9,6 +9,9 @@ import {
 import readme from '../readme.md';
 import docs from '../.data/docs.json';
 
+const elements = {};
+importAll(require.context('./elements/', true, /\.js$/), elements);
+
 const components = {};
 importAll(require.context('./components/', true, /\.js$/), components);
 
@@ -30,13 +33,13 @@ storiesOf('Info', module)
   );
 
 // Render component overview
-storiesOf('Components', module)
+storiesOf('Web Components', module)
   .addDecorator(withLinks)
   .add(
     'Overview',
     () => renderOverview({
       title: 'Overview',
-      kind: 'Components',
+      kind: 'Web Components',
       description: 'Select a component to see examples and get more information.',
       items: Object.keys(components).map(key => components[key].default),
     }),
@@ -49,7 +52,34 @@ Object.entries(components).map(entry => {
   const doc = docs.components.find(item => item.tag === name);
   const item = { ...module.default, name, doc };
 
-  storiesOf('Components', module)
+  storiesOf('Web Components', module)
+    .addDecorator(withLinks)
+    .add(
+      item.title,
+      () => (item.method || renderItems)(item),
+    );
+});
+// Render elements overview
+storiesOf('UI Elements', module)
+  .addDecorator(withLinks)
+  .add(
+    'Overview',
+    () => renderOverview({
+      title: 'Overview',
+      kind: 'UI Elements',
+      description: 'Select a page to see the UI element and get more information.',
+      items: Object.keys(elements).map(key => elements[key].default),
+    }),
+  );
+
+// Render elements stories
+Object.entries(elements).map(entry => {
+  const [file, module] = entry;
+  const name = basename(file, '.js');
+  const doc = docs.components.find(item => item.tag === name);
+  const item = { ...module.default, name, doc };
+
+  storiesOf('UI Elements', module)
     .addDecorator(withLinks)
     .add(
       item.title,

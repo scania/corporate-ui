@@ -1,7 +1,83 @@
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { renderItem } from '../helpers';
+
+// We use this component for data binding purposes
+class Icons extends React.Component {
+  constructor() {
+    super();
+
+    this.state = { icons: {} };
+  }
+
+  setItems() {
+    const icons = this.props.store.getState().icon.items;
+    if (this.state.icons !== icons) {
+      this.setState({ icons });
+    }
+  }
+
+  componentWillMount() {
+    this.setItems();
+
+    this.props.store.subscribe(() => this.setItems());
+  }
+
+  render() {
+    return Object.keys(this.state.icons).map(icon => (
+      <div className="icon" key={icon}>
+        <c-icon name={icon} />
+        {icon}
+      </div>
+    ));
+  }
+}
+
+class IconList extends HTMLElement {
+  constructor() {
+    // Always call super first in constructor
+    super();
+
+    this.root = this.attachShadow({ mode: 'open' });
+    this.root.innerHTML = `
+      <style>
+        .icons {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .icon {
+          max-width: 16.666667%;
+          margin-bottom: 30px;
+          text-align: center;
+          width: 100%;
+        }
+        c-icon {
+          font-size: 3rem;
+          color: #041e42;
+          width: 100%;
+        }
+      </style>
+
+      <div class="icons"></div>
+    `;
+  }
+
+  renderItems(data) {
+    ReactDOM.render(<Icons { ...data } />, this.root.querySelector('.icons'));
+  }
+
+  connectedCallback() {
+    if (window.CorporateUi && CorporateUi.storeReady) {
+      return this.renderItems(window.CorporateUi);
+    }
+
+    document.addEventListener('storeReady', event => this.renderItems(event.detail));
+  }
+}
+
+customElements.define('icon-list', IconList);
 
 export default {
   title: 'Icons page',
@@ -14,16 +90,6 @@ export default {
       .sample {
         margin-bottom: 50px;
       }
-      .icon {
-        max-width: 16.666667%;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-      c-icon {
-        font-size: 3rem;
-        color: #041e42;
-        width: 100%;
-      }
     </style>
 
     <div class="sample">
@@ -33,20 +99,7 @@ export default {
     </div>
 
     <h2>Solid icons</h2>
-
-    ${Object.values(fas).map(renderIcon).join('')}
-
-    <h2>Brand icons</h2>
-
-    ${Object.values(fab).map(renderIcon).join('')}
+    <icon-list />
   `,
 };
-
-function renderIcon(icon) {
-  return `
-    <div class="icon">
-      <c-icon name="${icon.iconName}"></c-icon>
-      ${icon.iconName}
-    </div>
-  `;
-}
+/* eslint-enable no-unused-vars */

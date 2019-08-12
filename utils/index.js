@@ -42,17 +42,31 @@ function findComponent(name) {
   return val;
 }
 
-function addTheme(theme) {
+function addTheme(_theme) {
+  const { store, actions, storeReady } = window.CorporateUi || {};
+
+  if (storeReady) {
+    return init(_theme, { detail: { store, actions } });
+  }
+
   // TODO: Maybe this event listener should be accesable from the theme itself?
-  document.addEventListener('storeReady', event => {
-    const store = event.detail.store;
-    const actions = event.detail.actions;
+  document.addEventListener('storeReady', event => init(_theme, event));
+
+  function init(theme, event) {
     const favicons = theme.favicons;
+    const items = theme.icons;
     const name = Object.keys(theme.default)[0];
 
     theme = document.head.attachShadow ? theme.default : theme.ie;
     theme[name].favicons = favicons;
 
-    store.dispatch({ type: actions.ADD_THEME, theme });
-  });
+    [
+      { type: 'ADD_THEME', theme },
+      { type: 'REMOVE_ICONS' },
+      { type: 'ADD_ICONS', items },
+    ].map(item => {
+      item.type = event.detail.actions[item.type];
+      event.detail.store.dispatch(item);
+    });
+  }
 }

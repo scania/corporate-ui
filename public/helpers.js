@@ -84,7 +84,7 @@ export function renderItem(page) {
 
 export function renderItems(page) {
   const description = typeof page.description === 'string' ? [page.description] : page.description;
-
+  console.log(page.customClass);
   return renderMain({
     ...page,
     content: `
@@ -97,7 +97,7 @@ export function renderItems(page) {
       ` : ''}
 
       ${page.items ? page.items.map(item => `
-        <section class="component">
+        <section class="component ${page.customClass ? page.customClass : ''}">
           <h4>${item.title}</h4>
 
           ${item.description ? `
@@ -105,7 +105,7 @@ export function renderItems(page) {
           ` : ''}
 
           ${item.content ? `
-          <div>
+          <div class="${item.customClass ? item.customClass : ''}">
             <figure>${item.content}</figure>
 
             <details>

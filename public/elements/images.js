@@ -1,7 +1,9 @@
 export default {
   title: 'Images',
   preview: `
-  <img src="https://via.placeholder.com/800x100" class="img-fluid" alt="Responsive image">
+  <svg class="img-thumbnail" width="200" height="200">
+    <rect width="100%" height="100%" fill="#868e96"></rect>
+  </svg>
   `,
   items: [
     {

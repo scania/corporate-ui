@@ -163,6 +163,32 @@ c-content {
   }
 }
 
+.bg-white {
+  figure {
+    margin: 0;
+    padding: 40px 0;
+    background: #fff;
+  }
+}
+
+.border-example {
+  figure {
+    svg {
+      margin-right: 10px;
+    }
+    [class^=border]{
+      display: inline-block;
+      width: 5rem;
+      height: 5rem;
+      margin: .25rem;
+      background-color: #f5f5f5;
+    }
+    .border-style {
+      border: 1px solid #dee2e6;
+    }
+  }
+}
+
 .text-center {
   text-align: center;
 }

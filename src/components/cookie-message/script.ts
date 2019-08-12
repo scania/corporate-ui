@@ -4,12 +4,7 @@ Polymer({
     name: String,
     text: String,
     expire: Number,
-    path: String,
-    lang: {
-      type: String,
-      value: 'en-gb',
-      observer: '_langSupport'
-    }
+    path: String
   },
   ready: function(){
     /* Sets Cookie using https://github.com/js-cookie/js-cookie/tree/v2.2.0 */
@@ -45,9 +40,5 @@ Polymer({
   },
   _CookieRemove(Cookie) {
     Cookie.parentNode.removeChild(Cookie);
-  },
-  _langSupport: function(lang, string){
-    // Sets the cookie to specific language to modal
-    return lang == string;
   }
 });

@@ -39,7 +39,12 @@ function generatePage(story) {
     const [file, module] = entry;
     const name = basename(file, '.js');
     const doc = docs.components.find(item => item.tag === name);
-    const item = { ...module.default, name, doc };
+    const item = {
+      ...module.default,
+      name,
+      doc,
+      kind: story.kind,
+    };
 
     storiesOf(story.kind, module)
       .addDecorator(withLinks)
@@ -77,7 +82,6 @@ generatePage({
 generatePage({
   source: utilities,
   kind: 'Utilities',
-  customClass: 'bg-white',
 });
 
 generatePage({

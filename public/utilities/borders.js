@@ -1,6 +1,5 @@
 export default {
   title: 'Border',
-  customClass: 'border-example',
   preview: `
   <span class="border border-success"></span>
   <span class="border border-danger"></span>
@@ -20,13 +19,12 @@ export default {
     },
     {
       title: 'Substractive',
-      customClass: 'border-solid',
       content: `
-      <span class="border-0"></span>
-      <span class="border-top-0"></span>
-      <span class="border-right-0"></span>
-      <span class="border-bottom-0"></span>
-      <span class="border-left-0"></span>
+      <span class="border border-0"></span>
+      <span class="border border-top-0"></span>
+      <span class="border border-right-0"></span>
+      <span class="border border-bottom-0"></span>
+      <span class="border border-left-0"></span>
       `,
     },
     {

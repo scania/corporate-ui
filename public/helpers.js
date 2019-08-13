@@ -1,6 +1,6 @@
 export function renderMain(page) {
   return `
-    <c-content>
+    <c-content class="${titleToClass(page.kind)} ${titleToClass(page.title)}-wrapper">
       <header>
         <h4>${page.title}</h4>
       </header>
@@ -14,7 +14,7 @@ export function renderProperties(props) {
   return ` 
     <h4>Properties</h4>
     <div>
-      <table>
+      <table class="properties-info">
         <thead>
           <tr>
             <th>Name</th>
@@ -84,7 +84,7 @@ export function renderItem(page) {
 
 export function renderItems(page) {
   const description = typeof page.description === 'string' ? [page.description] : page.description;
-  console.log(page.customClass);
+
   return renderMain({
     ...page,
     content: `
@@ -97,7 +97,7 @@ export function renderItems(page) {
       ` : ''}
 
       ${page.items ? page.items.map(item => `
-        <section class="component ${page.customClass ? page.customClass : ''}">
+        <section class="component">
           <h4>${item.title}</h4>
 
           ${item.description ? `
@@ -105,7 +105,7 @@ export function renderItems(page) {
           ` : ''}
 
           ${item.content ? `
-          <div class="${item.customClass ? item.customClass : ''}">
+          <div>
             <figure>${item.content}</figure>
 
             <details>
@@ -127,4 +127,8 @@ export function renderItems(page) {
 
 export function importAll(req, cache) {
   return req.keys().forEach(key => cache[key] = req(key));
+}
+
+function titleToClass(name) {
+  return name ? name.toLowerCase().split(' ').join('-') : '';
 }

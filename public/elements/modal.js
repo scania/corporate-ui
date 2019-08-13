@@ -1,7 +1,7 @@
 export default {
   title: 'Modal',
   preview: `
-  <div class="modal" tabindex="-1" role="dialog">
+  <div id="modalExample" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -25,7 +25,7 @@ export default {
     {
       title: 'Basic use',
       content: `
-      <div class="modal" tabindex="-1" role="dialog">
+      <div id="modalExample" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

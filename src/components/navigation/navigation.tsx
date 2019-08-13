@@ -30,6 +30,9 @@ export class Navigation {
   /** Used to dynamically connect current node to a parent item in mobile mode interaction */
   @Prop() target: string;
 
+  /** Option to disable sticky feature */
+  @Prop() sticky = true;
+
   @State() store: any;
 
   @State() navigationOpen: boolean;
@@ -74,25 +77,27 @@ export class Navigation {
   handleScroll() {
     let isStick = false;
     // try catch is used to avoid error in IE with getBoundingClientRect
-    try {
-      isStick = this.el.getBoundingClientRect().top <= 0;
-    } catch (e) { console.log(e); }
+    if (this.sticky) {
+      try {
+        isStick = this.el.getBoundingClientRect().top <= 0;
+      } catch (e) { console.log(e); }
 
-    if (!this.isSub) {
-      isStick ? this.el.setAttribute('stuck', 'true') : this.el.removeAttribute('stuck');
-    }
+      if (!this.isSub) {
+        isStick ? this.el.setAttribute('stuck', 'true') : this.el.removeAttribute('stuck');
+      }
 
-    if (this.isIE) {
-      if (this.el != null) {
-        if ((window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos) this.el.removeAttribute('stuck');
+      if (this.isIE) {
+        if (this.el != null) {
+          if ((window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos) this.el.removeAttribute('stuck');
+        }
       }
     }
   }
 
   @Listen('window:resize')
   onResize() {
-    this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
-    if (document.querySelector('c-header')) this.navWidth = document.querySelector('c-header').clientWidth;
+    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
+    this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
   }
 
   toggleNavigation(open) {
@@ -147,14 +152,14 @@ export class Navigation {
   }
 
   componentDidUpdate() {
-    this.navHeight = !this.isSub && window.innerWidth > 992 ? this.el.clientHeight * -1 : 0;
+    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
     // fallback of sticky on IE
     if (this.isIE) {
       setTimeout(() => {
         try {
           this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
         } catch (e) { console.log(e); }
-        this.navWidth = this.el.querySelector('.navbar').clientWidth;
+        if (this.el.querySelector('.navbar')) this.navWidth = this.el.querySelector('.navbar').clientWidth;
       }, 100);
     }
   }

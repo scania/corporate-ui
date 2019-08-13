@@ -194,7 +194,7 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
       overflow: visible;
     }
     figure > c-navigation {
-      margin-bottom: 0px;
+      margin-bottom: 0px!important;
     }
   }
 }
@@ -232,13 +232,6 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   // TODO: Temporary component fix
   .sc-c-navigation.sc-c-navigation-s > div:not(.show) .dropdown-menu {
     display: none;
-  }
-  @media (min-width: 992px) {
-    .container-fluid {
-      c-navigation {
-        margin-bottom: 0px!important;
-      }
-    }
   }
 }
 

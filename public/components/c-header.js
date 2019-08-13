@@ -35,7 +35,7 @@ export default {
   items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'>
 </c-header>
 <c-navigation
-    slot="navigation"
+    sticky="false"
     primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'
     secondary-items='[{ "text": "user", "href": "/user" }, { "text": "more", "href": "/more" }]'></c-navigation>
       `,
@@ -50,7 +50,7 @@ export default {
   site-name='Name'
   items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'>
 </c-header>
-<c-navigation slot="navigation">
+<c-navigation sticky="false">
   <a href="/" slot="primary-items" active>home</a>
   <a href="/about" slot="primary-items">about</a>
   <a href="/user" slot="secondary-items">user</a>
@@ -69,7 +69,7 @@ export default {
   <a href="/" slot="items">global</a>
   <a href="/" slot="items">scania</a>
 </c-header>
-<c-navigation slot="navigation">
+<c-navigation sticky="false">
   <a href="/" slot="primary-items" active>home</a>
   <a href="/about" slot="primary-items">about</a>
   <a href="/user" slot="secondary-items">user</a>
@@ -88,7 +88,7 @@ export default {
   <a href="/" slot="items">scania</a>
 </c-header>
 
-<c-navigation slot="navigation">
+<c-navigation sticky="false">
   <a href='/home' slot='primary-items'>home</a>
   <a href='/about' slot='primary-items' active=''>about</a>
   <a href='/more' slot='secondary-items'>more</a>

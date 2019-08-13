@@ -36,7 +36,7 @@ export class Content {
 
   @Listen('window:resize')
   onResize() {
-    this.navHeight = this.navEl && window.innerWidth > 992 ? this.navEl.clientHeight : 0;
+    this.navHeight = this.navEl ? this.navEl.clientHeight : 0;
   }
 
   componentWillLoad() {
@@ -53,7 +53,7 @@ export class Content {
   }
 
   componentDidUpdate() {
-    this.navHeight = this.navEl && window.innerWidth > 992 ? this.navEl.clientHeight : 0;
+    this.navHeight = this.navEl ? this.navEl.clientHeight : 0;
   }
 
   render() {

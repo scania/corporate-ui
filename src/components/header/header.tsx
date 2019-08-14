@@ -52,6 +52,13 @@ export class Header {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
+  @Watch('navigationOpen')
+  setBodyClass() {
+    setTimeout(() => {
+      this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
+    }, 350);
+  }
+
   toggleNavigation(open) {
     this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
@@ -106,7 +113,7 @@ export class Header {
         <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>
 
-        <div class='collapse navbar-collapse'>
+        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav ml-auto'>
             { this.items.map((item: any) => {
               item.class = this.combineClasses(item.class);

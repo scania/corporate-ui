@@ -201,7 +201,7 @@ export class Navigation {
   }
 
   render() {
-    if (this.isIE) {
+    if (this.isIE && window.innerWidth > 992) {
       this.el.style.width = `${this.navWidth}px`;
       this.el.style.marginBottom = `${this.navHeight}px`;
     }
@@ -209,8 +209,7 @@ export class Navigation {
       <style { ...{ innerHTML: `:host { --navHeight: ${this.navHeight}px;}` } }></style>,
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
-      <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
-        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
+      <nav class={`navbar navbar-expand-lg ${this.orientation} ${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav'>
             { this.isSub
               ? [
@@ -227,10 +226,8 @@ export class Navigation {
 
             <slot name="primary-items" />
           </nav>
-        </div>
 
-        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
-          <nav class='navbar-nav ml-auto'>
+          <nav class={`navbar-nav ${this.orientation !== 'vertical' ? 'ml-auto' : ''}`}>
             { this.secondaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
@@ -238,7 +235,6 @@ export class Navigation {
 
             <slot name="secondary-items" />
           </nav>
-        </div>
 
         <a class='navbar-symbol'></a>
       </nav>,

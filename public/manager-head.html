@@ -5,7 +5,7 @@
   .Pane1.vertical {
     background-color: #494949;
     color: #bfbfbf;
-    min-width: 230px;
+    min-width: 280px;
   }
   .Pane1.vertical a {
     color: white;
@@ -80,6 +80,7 @@
     height: 20px;
     border: 0;
     outline: 0;
+    white-space: nowrap;
   }
   .header .trigger:after {
     content: "";
@@ -101,7 +102,7 @@
 </style>
 
 <script>
-  window.addEventListener('DOMContentLoaded', (event) => {
+  window.addEventListener('DOMContentLoaded', function(event) {
     var link = document.querySelector('a[href="https://github.com/storybooks/storybook"]');
     var button = document.createElement('button');
     var list = document.createElement('ul');
@@ -133,11 +134,11 @@
       button.innerHTML = data.current;
       list.innerHTML = links.join('');
       link.href = '/';
-    }, 2000);
+    }, 3000);
   });
 
   function renderItem(item) {
-    var url = `https://d1kybmg72qo0dt.cloudfront.net/build/global/releases/${item.name}/www/`;
-    return `<li class="dropdown-item"><a href="${url}" target="_blank">${item.name}</a></li>`;
+    var url = 'https://d1kybmg72qo0dt.cloudfront.net/build/global/releases/' + item.name + '/www/';
+    return '<li class="dropdown-item"><a href="' + url + '" target="_blank">' + item.name + '</a></li>';
   }
 </script>

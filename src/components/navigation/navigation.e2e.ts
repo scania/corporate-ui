@@ -33,7 +33,7 @@ describe('navigation', () => {
     expect(navbarNav).toHaveLength(2);
 
     // find a element for primary items
-    const linkPrimary = await page.findAll(`${root} .navbar-collapse:first-child a`);
+    const linkPrimary = await page.findAll(`${root} .navbar-nav:first-child a`);
     let nodes = '';
     linkPrimary.forEach(node => nodes += node.outerHTML);
 
@@ -44,7 +44,7 @@ describe('navigation', () => {
     `);
 
     // ensure ml-auto class is rendered
-    const linkSecondary = await page.findAll(`${root} .navbar-collapse:last-child a`);
+    const linkSecondary = await page.findAll(`${root} .navbar-nav:last-of-type a`);
     nodes = '';
     linkSecondary.forEach(node => nodes += node.outerHTML);
 

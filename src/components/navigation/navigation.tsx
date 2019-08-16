@@ -159,7 +159,7 @@ export class Navigation {
         try {
           this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
         } catch (e) { console.log(e); }
-        if (this.el.querySelector('.navbar')) this.navWidth = this.el.querySelector('.navbar').clientWidth;
+        this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
       }, 100);
     }
   }
@@ -201,7 +201,7 @@ export class Navigation {
   }
 
   render() {
-    if (this.isIE && window.innerWidth > 992) {
+    if (this.isIE) {
       this.el.style.width = `${this.navWidth}px`;
       this.el.style.marginBottom = `${this.navHeight}px`;
     }

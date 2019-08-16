@@ -52,15 +52,11 @@ export class Header {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
-  @Watch('navigationOpen')
-  setBodyClass() {
+  toggleNavigation(open) {
+    this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
     setTimeout(() => {
       this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
     }, 350);
-  }
-
-  toggleNavigation(open) {
-    this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
   }
 
   componentWillLoad() {

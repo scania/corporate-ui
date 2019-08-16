@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'document-register-element';
 
 import { renderItem } from '../helpers';
 
@@ -36,12 +37,22 @@ class Icons extends React.Component {
 }
 
 class IconList extends HTMLElement {
-  constructor() {
-    // Always call super first in constructor
-    super();
+  connectedCallback() {
+    this.innerHTML = this.renderTemplate();
 
-    this.root = this.attachShadow({ mode: 'open' });
-    this.root.innerHTML = `
+    if (window.CorporateUi && CorporateUi.storeReady) {
+      return this.renderItems(window.CorporateUi);
+    }
+
+    document.addEventListener('storeReady', event => this.renderItems(event.detail));
+  }
+
+  renderItems(data) {
+    ReactDOM.render(<Icons { ...data } />, this.querySelector('.icons'));
+  }
+
+  renderTemplate() {
+    return `
       <style>
         .icons {
           display: flex;
@@ -62,18 +73,6 @@ class IconList extends HTMLElement {
 
       <div class="icons"></div>
     `;
-  }
-
-  renderItems(data) {
-    ReactDOM.render(<Icons { ...data } />, this.root.querySelector('.icons'));
-  }
-
-  connectedCallback() {
-    if (window.CorporateUi && CorporateUi.storeReady) {
-      return this.renderItems(window.CorporateUi);
-    }
-
-    document.addEventListener('storeReady', event => this.renderItems(event.detail));
   }
 }
 
@@ -98,7 +97,7 @@ export default {
       </c-code-sample>
     </div>
 
-    <h2>Solid icons</h2>
+    <h2>Icon list</h2>
     <icon-list />
   `,
 };

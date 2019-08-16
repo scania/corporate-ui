@@ -51,13 +51,13 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   figure,
   c-code-sample {
     overflow: hidden;
-    border-width: 80px 40px;
-    border-color: #e8e8e8;
     background: #e8e8e8;
-    border-style: solid;
   }
   figure {
     margin: 0 0 20px;
+    border-width: 80px 40px;
+    border-color: #e8e8e8;
+    border-style: solid;
   }
   c-code-sample {
     padding: 40px;

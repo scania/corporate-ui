@@ -1,7 +1,14 @@
 export default {
   title: 'Navigation',
   description: [
-    'The navigation has a desktop mode and a mobile mode where the break point is at 992px viewport width. Check out the header component to see the changes in mobile view. The navigation is highly customizable as it can host both primary and secondary items. You can also set the orientation to horisontal or vertical. If not set, the default is horisontal.',
+    'To see how to structure header and navigation component in one page, click the button below.',
+    `<a
+    data-sb-kind="Templates"
+    data-sb-story="Header Showcase" 
+    class="btn btn-lg btn-primary"
+    style="color:#fff;">Go to page with header and navigation</a>
+    `,
+    'The navigation has a desktop mode and a mobile mode where the break point is at 992px viewport width. The navigation is highly customizable as it can host both primary and secondary items.',
     'You can populate navigation links in two ways: JSON objects or providing it in a slot. See examples below to see how it works with different ways of populating navigation links.',
   ],
   preview: `

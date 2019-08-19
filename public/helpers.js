@@ -1,12 +1,12 @@
 export function renderMain(page) {
   return `
-    <c-content class="${titleToClass(page.kind)} ${titleToClass(page.title)}-wrapper">
+    <div class="container-fluid ${titleToClass(page.kind)} ${titleToClass(page.title)}-wrapper">
       <header>
         <h4>${page.title}</h4>
       </header>
 
       ${page.content}
-    </c-content>
+    </div>
   `;
 }
 

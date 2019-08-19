@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element, Watch,
+  Component, Prop, State, Element, Watch, Listen,
 } from '@stencil/core';
 
 import { actions } from '../../store';
@@ -30,6 +30,9 @@ export class Navigation {
   /** Used to dynamically connect current node to a parent item in mobile mode interaction */
   @Prop() target: string;
 
+  /** Option to disable sticky feature */
+  @Prop() sticky = true;
+
   @State() store: any;
 
   @State() navigationOpen: boolean;
@@ -43,6 +46,14 @@ export class Navigation {
   @State() currentTheme: object;
 
   @State() parentEl: any;
+
+  @State() navWidth: any;
+
+  @State() navHeight = 0 ;
+
+  @State() scrollPos = 0;
+
+  @State() isIE: boolean;
 
   @Element() el: HTMLElement;
 
@@ -60,6 +71,33 @@ export class Navigation {
   setTheme(name = undefined) {
     this.theme = name || this.store.getState().theme.name;
     this.currentTheme = this.store.getState().themes[this.theme];
+  }
+
+  @Listen('window:scroll')
+  handleScroll() {
+    let isStick = false;
+    // try catch is used to avoid error in IE with getBoundingClientRect
+    if (this.sticky) {
+      try {
+        isStick = this.el.getBoundingClientRect().top <= 0;
+      } catch (e) { console.log(e); }
+
+      if (!this.isSub) {
+        isStick ? this.el.setAttribute('stuck', 'true') : this.el.removeAttribute('stuck');
+      }
+
+      if (this.isIE) {
+        if (this.el != null) {
+          if ((window.pageYOffset || document.documentElement.scrollTop) <= this.scrollPos) this.el.removeAttribute('stuck');
+        }
+      }
+    }
+  }
+
+  @Listen('window:resize')
+  onResize() {
+    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
+    this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
   }
 
   toggleNavigation(open) {
@@ -86,7 +124,7 @@ export class Navigation {
   }
 
   componentDidLoad() {
-    // To make sure navigation is always show from start
+    // To make sure navigation is always shown from start
     this.toggleNavigation(true);
 
     if (!this.el) return;
@@ -94,9 +132,11 @@ export class Navigation {
     this.tagName = this.el.nodeName.toLowerCase();
     this.isSub = this.el.getAttribute('slot') === 'sub';
 
+    this.isIE = !document.head.attachShadow;
+
     const items = this.el.querySelectorAll('c-navigation[target]');
 
-    if (!document.head.attachShadow) {
+    if (this.isIE) {
       [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('nav'));
     } else {
       this.parentEl = this.el;
@@ -108,6 +148,19 @@ export class Navigation {
       const node: HTMLAnchorElement = this.parentEl.querySelector(`a[href="${target}"]`);
       node.classList.add('parent');
       node.onclick = (event) => this.open(event);
+    }
+  }
+
+  componentDidUpdate() {
+    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
+    // fallback of sticky on IE
+    if (this.isIE) {
+      setTimeout(() => {
+        try {
+          this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
+        } catch (e) { console.log(e); }
+        if (this.el.querySelector('.navbar')) this.navWidth = this.el.querySelector('.navbar').clientWidth;
+      }, 100);
     }
   }
 
@@ -148,11 +201,15 @@ export class Navigation {
   }
 
   render() {
+    if (this.isIE && window.innerWidth > 992) {
+      this.el.style.width = `${this.navWidth}px`;
+      this.el.style.marginBottom = `${this.navHeight}px`;
+    }
     return [
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      <style { ...{ innerHTML: `:host { --navHeight: ${this.navHeight}px;}` } }></style>,
+      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
-      <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
-        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
+      <nav class={`navbar navbar-expand-lg ${this.orientation} ${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav'>
             { this.isSub
               ? [
@@ -169,10 +226,8 @@ export class Navigation {
 
             <slot name="primary-items" />
           </nav>
-        </div>
 
-        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
-          <nav class='navbar-nav ml-auto'>
+          <nav class={`navbar-nav ${this.orientation !== 'vertical' ? 'ml-auto' : ''}`}>
             { this.secondaryItems.map((item: any) => {
               item.class = this.combineClasses(item.class);
               return <a { ...item }></a>;
@@ -180,7 +235,8 @@ export class Navigation {
 
             <slot name="secondary-items" />
           </nav>
-        </div>
+
+        <a class='navbar-symbol'></a>
       </nav>,
 
       <slot name="sub" />,

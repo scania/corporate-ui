@@ -1,10 +1,8 @@
 import {
-  Component, Prop, State, Element, Watch, Listen,
+  Component, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import Stickyfill from 'stickyfilljs';
 import { actions } from '../../store';
-
 
 @Component({
   tag: 'c-header',
@@ -33,15 +31,13 @@ export class Header {
 
   @State() navigationOpen: Boolean;
 
-  @State() navigationSlot = [];
-
   @State() tagName: string;
 
   @State() currentTheme: object;
 
   @State() height = 0;
 
-  @State() nav : any;
+  @State() hasNav : boolean;
 
   @Element() el: HTMLElement;
 
@@ -56,17 +52,11 @@ export class Header {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
-  @Listen('window:scroll')
-  handleScroll() {
-    const stickyPos = this.el.getBoundingClientRect();
-
-    if (stickyPos.top <= (this.height * -1)) {
-      this.el.setAttribute('stuck', 'true');
-      if (this.nav) this.nav.setAttribute('stuck', 'true');
-    } else {
-      this.el.removeAttribute('stuck');
-      if (this.nav) this.nav.removeAttribute('stuck');
-    }
+  @Watch('navigationOpen')
+  setBodyClass() {
+    setTimeout(() => {
+      this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
+    }, 350);
   }
 
   toggleNavigation(open) {
@@ -84,6 +74,8 @@ export class Header {
 
       this.navigationOpen = this.store.getState().navigation.open;
     });
+
+    this.hasNav = !!document.querySelector('c-navigation');
   }
 
   componentDidLoad() {
@@ -93,29 +85,6 @@ export class Header {
     if (!this.el) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
-
-    const elem = document.head.attachShadow ? this.el.shadowRoot.querySelector('slot[name=navigation') : this.el.querySelector('c-navigation');
-
-    if (elem) {
-      elem.addEventListener('slotchange', e => this.getNavSlotItems(e.target));
-      this.getNavSlotItems(elem);
-    }
-    Stickyfill.addOne(this.el);
-    this.nav = this.el.querySelector('c-navigation');
-  }
-
-  componentDidUpdate() {
-    setTimeout(() => {
-      this.height = (this.el.shadowRoot || this.el).querySelector('.navbar-default').clientHeight;
-      this.el.style.top = `${(this.height * -1)}px`;
-      Stickyfill.refreshAll();
-    }, 100);
-  }
-
-
-  getNavSlotItems(node) {
-    // node.children is not supported in IE
-    this.navigationSlot = document.head.attachShadow ? node.assignedNodes() || node.children : node.childNodes;
   }
 
   combineClasses(classes) {
@@ -127,24 +96,24 @@ export class Header {
 
   render() {
     return [
-
-      <style { ...{ innerHTML: `:host { --stickyMargin: ${this.height * -1}px;}` } }></style>,
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
-        {this.navigationSlot.length
-          ? <button
+        {
+          this.hasNav
+            ? <button
             class='navbar-toggler collapsed'
             type='button'
             onClick={() => this.toggleNavigation(!this.navigationOpen) }>
             <span class='navbar-toggler-icon'></span>
-          </button>
-          : ''}
+          </button> : ''
+        }
+
 
         <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>
 
-        <div class='collapse navbar-collapse'>
+        <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>
           <nav class='navbar-nav ml-auto'>
             { this.items.map((item: any) => {
               item.class = this.combineClasses(item.class);
@@ -157,8 +126,6 @@ export class Header {
       </nav>,
 
       <a href={ this.siteUrl } class='navbar-symbol'></a>,
-
-      <slot name="navigation" />,
     ];
   }
 }

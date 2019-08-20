@@ -1,7 +1,7 @@
 $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 40 40' xml:space='preserve' height='10' width='10' fill='currentColor'%3E%3Cg%3E%3Cpath d='m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z'/%3E%3C/g%3E%3C/svg%3E");
 
 // The commented rules should be put in the global theme and extend from bootstrap
-c-content {
+.container-fluid {
   padding-left: 20px; /* From container-fluid */
   padding-right: 20px; /* From container-fluid */
 
@@ -23,7 +23,7 @@ c-content {
     padding-left: 90px; /* From container */
     padding-right: 90px; /* From container */
 
-    /* TODO: This is needed for ie - due to incorrct conversion of ::slotted() in c-content */
+    /* TODO: This is needed for ie - due to incorrct conversion of ::slotted() in .container-fluid */
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
@@ -50,8 +50,11 @@ c-content {
   }
   figure,
   c-code-sample {
-    background-color: #e8e8e8;
-    padding: 80px 40px;
+    overflow: hidden;
+    border-width: 80px 40px;
+    border-color: #e8e8e8;
+    background: #e8e8e8;
+    border-style: solid;
   }
   figure {
     margin: 0 0 20px;
@@ -113,7 +116,7 @@ c-content {
   //   padding-left: 80px;
   //   padding-right: 80px;
   // }
-  c-content > section {
+  .container-fluid > section {
     display: flex; /* From row */
     flex-wrap: wrap; /* From row */
   }
@@ -184,10 +187,22 @@ c-content {
   }
 }
 
+@media (min-width: 992px) {
+  .container-fluid {
+    figure,
+    c-code-sample {
+      overflow: visible;
+    }
+    figure > c-navigation {
+      margin-bottom: 0px!important;
+    }
+  }
+}
+
 /* IE10+ CSS styles go here */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
-  c-content {
+  .container-fluid {
 
     summary {
       display: inline-block;
@@ -223,7 +238,7 @@ c-content {
 /* Edge 12+ CSS styles go here */
 @supports (-ms-ime-align: auto) {
 
-  c-content {
+  .container-fluid {
 
     summary {
       display: inline-block;

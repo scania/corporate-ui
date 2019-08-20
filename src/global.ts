@@ -1,3 +1,6 @@
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
 import { store, actions } from './store';
 
 
@@ -20,6 +23,15 @@ import { store, actions } from './store';
 
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
+const icons = {};
+
+Object.values({ ...fas, ...fab }).map(item => {
+  // TODO: Would like to combine these two rows somehow...
+  const [width, height, attrs, unicode, definition] = item.icon;
+  icons[item.iconName] = {
+    width, height, attrs, unicode, definition,
+  };
+});
 
 // When running tests Context is already declared
 /* eslint-disable block-scoped-var, vars-on-top, no-var */
@@ -31,5 +43,9 @@ if (!Context) {
 
 Context.store = store;
 
+store.dispatch({ type: actions.ADD_ICONS, items: icons });
+
 document.dispatchEvent(event);
+
+(<any>window).CorporateUi.storeReady = true;
 /* eslint-enable block-scoped-var, vars-on-top, no-var */

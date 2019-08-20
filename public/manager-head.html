@@ -62,16 +62,17 @@
     border-radius: 2px;
     margin: 0;
     padding: 5px 25px 5px 10px;
-    list-style-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 40 40' xml:space='preserve' height='10' width='10' fill='white'%3E%3Cg%3E%3Cpath d='m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z'/%3E%3C/g%3E%3C/svg%3E");
-    direction: rtl;
     text-align: left;
   }
   .header .dropdown-menu .dropdown-item a {
-    text-transform: capitalize;
     text-decoration: none;
     line-height: 2;
     display: block;
     margin-right: -15px;
+  }
+  .header .dropdown-menu .dropdown-item.active a {
+    font-weight: bold;
+    background-color: #444444;
   }
   .header .trigger {
     border-radius: 18px;
@@ -116,7 +117,9 @@
       if(attr.indexOf('{') === -1) return;
 
       var data = JSON.parse(attr);
-      var links = data.releases.map(renderItem);
+      var links = data.releases.map(function(item) {
+        return renderItem(item, data.current);
+      });
 
       list.classList.add('dropdown-menu');
       button.classList.add('trigger');
@@ -137,8 +140,9 @@
     }, 3000);
   });
 
-  function renderItem(item) {
+  function renderItem(item, current) {
     var url = 'https://d1kybmg72qo0dt.cloudfront.net/build/global/releases/' + item.name + '/www/';
-    return '<li class="dropdown-item"><a href="' + url + '" target="_blank">' + item.name + '</a></li>';
+    var active = item.name === current ? ' active' : '';
+    return '<li class="dropdown-item' + active + '"><a href="' + url + '" target="_blank">' + item.name + '</a></li>';
   }
 </script>

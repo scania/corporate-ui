@@ -30,7 +30,8 @@ config();
 // then we need to solve cleaning of outputDir when running watches
 const build = series(components, copy, pack);
 const release = series(cleanAll, build, generateReleases, staticServer);
-const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
+// If you want to test the release setup for release toggler you can add 'generateReleases' in the start series
+const start = series(cleanAll, build, /* generateReleases, */ managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname, '/node_modules/@storybook/core');
 const configDir = join(__dirname, '/public'); // storybook config folder;

@@ -166,9 +166,9 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
   }
 }
 
-.progress-wrapper,
-.border-wrapper {
+.utilities, .ui-elements {
   figure {
+    border-width: 0;
     margin: 0;
     padding: 40px 0;
     background: #fff;

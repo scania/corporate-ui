@@ -1,6 +1,6 @@
 export function renderMain(page) {
   return `
-    <div class="container-fluid">
+    <div class="container-fluid ${titleToClass(page.kind)} ${titleToClass(page.title)}-wrapper">
       <header>
         <h4>${page.title}</h4>
       </header>
@@ -14,7 +14,7 @@ export function renderProperties(props) {
   return ` 
     <h4>Properties</h4>
     <div>
-      <table>
+      <table class="properties-info">
         <thead>
           <tr>
             <th>Name</th>
@@ -127,4 +127,8 @@ export function renderItems(page) {
 
 export function importAll(req, cache) {
   return req.keys().forEach(key => cache[key] = req(key));
+}
+
+function titleToClass(name) {
+  return name ? name.toLowerCase().split(' ').join('-') : '';
 }

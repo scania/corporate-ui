@@ -33,12 +33,16 @@ export class Theme {
   @State() favicons: string[];
 
   @Watch('name')
-  setTheme(name) {
+  setName(name) {
+    this.setTheme(name);
+
+    this.store.dispatch({ type: actions.SET_THEME, name });
+  }
+
+  setTheme(name = undefined) {
     this.name = name || this.store.getState().theme.name;
     this.currentTheme = this.store.getState().themes[this.name];
     this.favicons = this.currentTheme ? this.currentTheme.favicons : undefined;
-
-    this.store.dispatch({ type: actions.SET_THEME, name: this.name });
   }
 
   renderFavicon() {
@@ -56,7 +60,9 @@ export class Theme {
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
-    this.setTheme(this.name);
+    this.setName(this.name);
+
+    this.store.subscribe(() => this.setTheme());
 
     (window as any).CorporateUi = { ...(window as any).CorporateUi, version };
     document.documentElement.setAttribute('corporate-ui-version', version);

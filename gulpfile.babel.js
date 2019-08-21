@@ -1,6 +1,7 @@
 import {
   series, watch, src, dest,
 } from 'gulp';
+import { writeFile } from 'fs';
 import { exec } from 'child_process';
 import { stripIndents } from 'common-tags';
 import { join } from 'path';
@@ -12,17 +13,25 @@ import cors from 'cors';
 import boxen from 'boxen';
 import webpack from 'webpack-stream';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import fetch from 'node-fetch';
+import fetch2 from 'fetch-with-proxy';
+import { config } from 'dotenv';
+
+import 'babel-polyfill';
 
 import packageFile from './package.json';
 import { getManagerHeadHtml, getPreviewBodyHtml, getPreviewHeadHtml } from './utils/storybook_template';
 
 const browserSync = create();
 
+config();
+
 // TODO: Would be nice to be able to have cleanAll in build but
 // then we need to solve cleaning of outputDir when running watches
 const build = series(components, copy, pack);
-const release = series(cleanAll, build, staticServer);
-const start = series(cleanAll, build, managerStream, webpackStream, server, watches, sbWatch);
+const release = series(cleanAll, build, generateReleases, staticServer);
+// If you want to test the release setup for release toggler you can add 'generateReleases' in the start series
+const start = series(cleanAll, build, /* generateReleases, */ managerStream, webpackStream, server, watches, sbWatch);
 
 const serverPath = join(__dirname, '/node_modules/@storybook/core');
 const configDir = join(__dirname, '/public'); // storybook config folder;
@@ -91,6 +100,49 @@ function pack(cb) {
 
   console.log('Project successfully packed.');
   cb();
+}
+
+async function getReleases() {
+  let response;
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      query: `
+        {
+          repository(owner:"scania", name:"corporate-ui-dev") {
+            releases(last:100) {
+              nodes {
+                name: tagName
+                date: publishedAt
+              }
+            }
+          }
+        }
+      `,
+    }),
+    headers: {
+      'Content-Type': 'application/graphql',
+      Authorization: `Bearer ${process.env.GH_TOKEN}`,
+    },
+  };
+
+  // Try without proxy settings else try with
+  try {
+    response = await fetch('https://api.github.com/graphql', options);
+  } catch (error) {
+    response = await fetch2('https://api.github.com/graphql', options);
+  }
+
+  const { data } = await response.json();
+
+  return data.repository.releases.nodes;
+}
+
+async function generateReleases(cb) {
+  const releases = await getReleases();
+  const json = JSON.stringify({ current: packageFile.version, releases }, null, 4);
+
+  writeFile(`${dist}/releases.json`, json, 'utf8', cb);
 }
 
 // watch stencil

@@ -1,44 +1,33 @@
 $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 40 40' xml:space='preserve' height='10' width='10' fill='currentColor'%3E%3Cg%3E%3Cpath d='m23.3 20l-13.1-13.6c-0.3-0.3-0.3-0.9 0-1.2l2.4-2.4c0.3-0.3 0.9-0.4 1.2-0.1l16 16.7c0.1 0.1 0.2 0.4 0.2 0.6s-0.1 0.5-0.2 0.6l-16 16.7c-0.3 0.3-0.9 0.3-1.2 0l-2.4-2.5c-0.3-0.3-0.3-0.9 0-1.2z'/%3E%3C/g%3E%3C/svg%3E");
 
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+#root > header {
+  background: black;
+  padding-top: 20px;
+
+  h4 {
+    color: white;
+  }
+}
+
 // The commented rules should be put in the global theme and extend from bootstrap
 .container-fluid {
-  padding-left: 20px; /* From container-fluid */
-  padding-right: 20px; /* From container-fluid */
 
-  > header,
   > section {
-    margin-left: -20px; /* From row */
-    margin-right: -20px; /* From row */
-    display: flex; /* From row */
-    flex-wrap: wrap; /* From row */
-
-    > * {
-      width: 100%; /* From column */
-      padding-left: 20px; /* From column */
-      padding-right: 20px; /* From column */
-      box-sizing: border-box; /* From global * */
-    }
-  }
-  > section {
-    padding-left: 90px; /* From container */
-    padding-right: 90px; /* From container */
-
     /* TODO: This is needed for ie - due to incorrct conversion of ::slotted() in .container-fluid */
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-  > header {
-    background: black;
-    padding-top: 20px;
-
-    h4 {
-      color: white;
-    }
   }
   table.properties-info {
     width: 100%;
     text-align: left;
     border-collapse: collapse;
+
     thead {
       background-color: black;
       color: white;
@@ -102,29 +91,11 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
       }
     }
   }
-
-  // c-row {
-  //   margin-right: -35px;
-  //   margin-left: -35px;
-  // }
-  // c-column {
-  //   margin-bottom: 50px;
-  //   padding-left: 35px;
-  //   padding-right: 35px;
-  // }
-  // section c-container {
-  //   padding-left: 80px;
-  //   padding-right: 80px;
-  // }
-  .container-fluid > section {
-    display: flex; /* From row */
-    flex-wrap: wrap; /* From row */
-  }
 }
 
 .overview {
 
-  c-card {
+  .card {
     -webkit-transition: opacity 200ms linear;
     -ms-transition: opacity 200ms linear;
     transition: opacity 200ms linear;
@@ -133,28 +104,34 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
     border-radius: 0;
     cursor: pointer;
     min-height: 200px;
-    width: 25%; /* From column */
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     &:before {
       content: "";
-      display: block;
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 10000;
     }
     &:hover {
       opacity: 1;
     }
 
-    .component {
-      transform: translateY(-50%);
-      position: relative;
-      top: 50%;
+    .card-body {
+      background-color: #e8e8e8;
+      display: flex;
       zoom: 40%;
+
+      > * {
+        flex: 1;
+        align-self: center;
+        margin-bottom: 0; // Used for navigation margin override
+      }
+    }
+    .card-footer {
+      background-color: transparent;
+      border-top: none;
     }
   }
 

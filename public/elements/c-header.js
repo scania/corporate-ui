@@ -1,5 +1,5 @@
 export default {
-  title: 'Header',
+  title: 'c-header',
   description: [
     'A header display a logotype, site name, short-name, item links, and a symbol. The site name will be displayed on the right hand side of the logotype on desktop mode. Short name will be placed at the top centered in mobile mode. You can add one or several link items to the header that will be displayed at the right side of the header. This location is also used for language selectors and user menus.',
     'There are two ways to populate link items, by adding JSON objects to item attribute, or by having it in slot="items". See examples below to understand different ways of displaying header component.',
@@ -7,7 +7,7 @@ export default {
   ],
   preview: '<c-header></c-header>',
   items: [
-    {
+    /* {
       title: 'Items as data',
       content: `
 <c-header
@@ -15,7 +15,7 @@ export default {
   short-name='App'
   items='[{ "text": "global", "href": "/" }, { "text": "scania", "href": "/" }]'></c-header>
       `,
-    },
+    }, */
     {
       title: 'Items in slot',
       content: `
@@ -26,7 +26,7 @@ export default {
 </c-header>
       `,
     },
-    {
+    /* {
       title: 'With navigation and items as data',
       description: 'This header setup shows the usage of a navigation inside the header.',
       content: `
@@ -42,7 +42,7 @@ export default {
     },
     {
       title: 'With navigation and items in slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
+      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation.
                     Notice that in this example we provide a link element and no global style for a link is available.
                     But providing that makes it possible to style, like we do in this example`,
       content: `
@@ -57,7 +57,7 @@ export default {
   <a href="/more" slot="secondary-items">more</a>
 </c-navigation>
       `,
-    },
+    }, */
     {
       title: 'Items in slot plus navigation and items in slots',
       description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 

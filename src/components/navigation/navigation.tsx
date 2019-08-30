@@ -96,8 +96,8 @@ export class Navigation {
 
   @Listen('window:resize')
   onResize() {
-    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
     this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
+    if (window.innerWidth < 992) this.el.removeAttribute('style');
   }
 
   toggleNavigation(open) {
@@ -121,6 +121,8 @@ export class Navigation {
 
       this.setTheme();
     });
+
+    this.isSub = this.el.getAttribute('slot') === 'sub';
   }
 
   componentDidLoad() {
@@ -130,14 +132,13 @@ export class Navigation {
     if (!this.el) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
-    this.isSub = this.el.getAttribute('slot') === 'sub';
 
     this.isIE = !document.head.attachShadow;
 
     const items = this.el.querySelectorAll('c-navigation[target]');
 
     if (this.isIE) {
-      [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('nav'));
+      [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('.navbar-container'));
     } else {
       this.parentEl = this.el;
     }
@@ -152,7 +153,7 @@ export class Navigation {
   }
 
   componentDidUpdate() {
-    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
+    if (!this.isSub) this.navHeight = (this.el.shadowRoot || this.el).querySelector('.navbar-container').clientHeight;
     // fallback of sticky on IE
     if (this.isIE) {
       setTimeout(() => {
@@ -201,45 +202,47 @@ export class Navigation {
   }
 
   render() {
-    if (this.isIE) {
+    if (this.isIE && window.innerWidth > 992) {
       this.el.style.width = `${this.navWidth}px`;
-      this.el.style.marginBottom = `${this.navHeight}px`;
     }
+
+    if (!this.isSub && window.innerWidth > 992) this.el.style.height = `${this.navHeight}px`;
     return [
-      <style { ...{ innerHTML: `:host { --navHeight: ${this.navHeight}px;}` } }></style>,
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
-      <nav class={`navbar navbar-expand-lg ${this.orientation} ${this.navigationOpen ? ' show' : ''}`}>
-          <nav class='navbar-nav'>
-            { this.isSub
-              ? [
-                this.caption ? <strong class="nav-item caption">{ this.caption }</strong> : '',
-                  <a href="#close" class="nav-item nav-link toggle-sub" onClick={(event) => this.open(event)}>{ this.caption || 'Back' }</a>,
-              ]
-              : ''
-            }
+      <div class={`navbar-container ${this.navigationOpen ? ' show' : ''}`}>
+        <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
+            <nav class='navbar-nav'>
+              { this.isSub
+                ? [
+                  this.caption ? <strong class="nav-item caption">{ this.caption }</strong> : '',
+                    <a href="#close" class="nav-item nav-link toggle-sub" onClick={(event) => this.open(event)}>{ this.caption || 'Back' }</a>,
+                ]
+                : ''
+              }
 
-            { this.primaryItems.map((item: any) => {
-              item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>;
-            }) }
+              { this.primaryItems.map((item: any) => {
+                item.class = this.combineClasses(item.class);
+                return <a { ...item }></a>;
+              }) }
 
-            <slot name="primary-items" />
-          </nav>
+              <slot name="primary-items" />
+            </nav>
 
-          <nav class={`navbar-nav ${this.orientation !== 'vertical' ? 'ml-auto' : ''}`}>
-            { this.secondaryItems.map((item: any) => {
-              item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>;
-            }) }
+            <nav class={`navbar-nav ${this.orientation !== 'vertical' ? 'ml-auto' : ''}`}>
+              { this.secondaryItems.map((item: any) => {
+                item.class = this.combineClasses(item.class);
+                return <a { ...item }></a>;
+              }) }
 
-            <slot name="secondary-items" />
-          </nav>
+              <slot name="secondary-items" />
+            </nav>
 
-        <a class='navbar-symbol'></a>
-      </nav>,
+          <a class='navbar-symbol'></a>
+        </nav>
 
-      <slot name="sub" />,
+        <slot name="sub" />
+      </div>,
     ];
   }
 }

@@ -122,7 +122,7 @@ export class Navigation {
       this.setTheme();
     });
 
-    this.isSub = this.el.getAttribute('slot') === 'sub';
+    if (this.el) this.isSub = this.el.getAttribute('slot') === 'sub';
   }
 
   componentDidLoad() {

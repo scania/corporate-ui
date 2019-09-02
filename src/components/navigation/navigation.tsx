@@ -134,22 +134,6 @@ export class Navigation {
     this.tagName = this.el.nodeName.toLowerCase();
 
     this.isIE = !document.head.attachShadow;
-
-    const items = this.el.querySelectorAll('c-navigation[target]');
-
-    if (this.isIE) {
-      [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('.navbar-container'));
-    } else {
-      this.parentEl = this.el;
-    }
-
-    for (let i = 0; i < items.length; i += 1) {
-      const item = items[i];
-      const target = item.getAttribute('target');
-      const node: HTMLAnchorElement = this.parentEl.querySelector(`a[href="${target}"]`);
-      node.classList.add('parent');
-      node.onclick = (event) => this.open(event);
-    }
   }
 
   componentDidUpdate() {
@@ -162,6 +146,14 @@ export class Navigation {
         } catch (e) { console.log(e); }
         this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
       }, 100);
+    }
+
+    const items: NodeListOf<HTMLAnchorElement> = this.el.querySelectorAll('a[class*="parent"]');
+
+
+    for (let i = 0; i < items.length; i += 1) {
+      const item = items[i];
+      if (item) item.onclick = (event) => this.open(event);
     }
   }
 
@@ -184,15 +176,9 @@ export class Navigation {
       return;
     }
 
-    if (node) {
-      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-      this.toggleSubNavigation(target);
-    }
-
-    if (target === '#close') {
-      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-      this.toggleSubNavigation('');
-    }
+    if (node || target === '#close') event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+    if (node) this.toggleSubNavigation(target);
+    if (target === '#close') this.toggleSubNavigation('');
   }
 
   hostData() {

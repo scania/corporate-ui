@@ -69,41 +69,6 @@ export default {
       `,
     },
     {
-      title: 'Dark table',
-      content: `
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-      `,
-    },
-    {
       title: 'Table head options',
       content: `
       <table class="table">
@@ -357,13 +322,6 @@ export default {
             <td>Cell</td>
             <td>Cell</td>
           </tr>
-          <tr>
-            <th scope="row">Default</th>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-
-          
           <tr class="table-primary">
             <th scope="row">Primary</th>
             <td>Cell</td>
@@ -391,16 +349,6 @@ export default {
           </tr>
           <tr class="table-info">
             <th scope="row">Info</th>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-          <tr class="table-light">
-            <th scope="row">Light</th>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-          <tr class="table-dark">
-            <th scope="row">Dark</th>
             <td>Cell</td>
             <td>Cell</td>
           </tr>
@@ -461,11 +409,43 @@ export default {
               <th scope="col">Heading</th>
               <th scope="col">Heading</th>
               <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
+              <th scope="col">Heading</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
               <td>Cell</td>
               <td>Cell</td>
               <td>Cell</td>
@@ -487,9 +467,41 @@ export default {
               <td>Cell</td>
               <td>Cell</td>
               <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
             </tr>
             <tr>
               <th scope="row">3</th>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
               <td>Cell</td>
               <td>Cell</td>
               <td>Cell</td>

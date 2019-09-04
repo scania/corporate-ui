@@ -11,7 +11,7 @@ export default {
   </c-header>
   <c-navigation>
     <a href='/home' slot='primary-items'>home</a>
-    <a href='/about' class="parent" slot='primary-items' active=''>about</a>
+    <a href='/about' class="parent active" slot='primary-items'>about</a>
     <a href='/first' class="parent" slot='primary-items'>first</a>
     <a href='/second' slot='primary-items'>second</a>
     <a href='/third' slot='primary-items'>third</a>

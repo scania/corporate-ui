@@ -80,10 +80,10 @@ export default {
       content: `
 <c-navigation sticky="false">
   <a href="/home" slot="primary-items">home</a>
-  <a href="/about" slot="primary-items" active>about</a>
-  <a href="/profile" slot="primary-items">profile</a>
-  <a href="/abc" slot="primary-items">abc</a>
-  <a href="/xyz" slot="primary-items">xyz</a>
+  <a href="/about" class="parent" slot="primary-items" active>about</a>
+  <a href="/profile" class="parent" slot="primary-items">profile</a>
+  <a href="/abc" class="parent" slot="primary-items">abc</a>
+  <a href="/xyz" class="parent" slot="primary-items">xyz</a>
   <a href="/more" slot="secondary-items">more</a>
 
   <c-navigation slot="sub" caption="About" target="/about" active>

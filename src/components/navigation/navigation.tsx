@@ -49,8 +49,6 @@ export class Navigation {
 
   @State() navWidth: any;
 
-  @State() navHeight = 0 ;
-
   @State() scrollPos = 0;
 
   @State() isIE: boolean;
@@ -137,7 +135,6 @@ export class Navigation {
   }
 
   componentDidUpdate() {
-    if (!this.isSub) this.navHeight = (this.el.shadowRoot || this.el).querySelector('.navbar-container').clientHeight;
     // fallback of sticky on IE
     if (this.isIE) {
       setTimeout(() => {
@@ -148,9 +145,8 @@ export class Navigation {
       }, 100);
     }
 
-    const items: NodeListOf<HTMLAnchorElement> = this.el.querySelectorAll('a[class*="parent"]');
-
-
+    // handle click behavior on mobile navigation
+    const items: NodeListOf<HTMLAnchorElement> = this.el.querySelectorAll('a');
     for (let i = 0; i < items.length; i += 1) {
       const item = items[i];
       if (item) item.onclick = (event) => this.open(event);
@@ -168,22 +164,31 @@ export class Navigation {
     ].join(' ');
   }
 
-  open(event) {
-    const target = event.target.getAttribute('href');
-    const node = this.el.querySelector(`c-navigation[target="${target}"]`);
+  open(ev) {
+    const parent = (ev || ev[0]).target.className.includes('parent');
+    const dropdown = (ev || ev[0]).target.className.includes('dropdown');
+    const target = ev.target.getAttribute('href');
+    const node = this.el.querySelector(`c-navigation[target="${target}"]`) || this.el.querySelector('c-navigation');
 
     if (window.innerWidth > 992) {
       return;
     }
 
-    if (node || target === '#close') event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-    if (node) this.toggleSubNavigation(target);
-    if (target === '#close') this.toggleSubNavigation('');
+    if ((parent && node) || dropdown) {
+      ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+      if (!dropdown) this.toggleSubNavigation(target);
+    } else if (target === '#close') {
+      ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+      // TODO: Refactore toggle state in store into one object ( {open, expand} )
+      this.toggleSubNavigation('');
+    } else {
+      this.toggleNavigation(false);
+    }
   }
 
   hostData() {
     return {
-      open: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
+      expand: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
     };
   }
 
@@ -192,11 +197,10 @@ export class Navigation {
       this.el.style.width = `${this.navWidth}px`;
     }
 
-    if (!this.isSub && window.innerWidth > 992) this.el.style.height = `${this.navHeight}px`;
     return [
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
-      <div class={`navbar-container ${this.navigationOpen ? ' show' : ''}`}>
+      <div class={`navbar-container ${this.navigationOpen ? ' open' : ''}`}>
         <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
             <nav class='navbar-nav'>
               { this.isSub

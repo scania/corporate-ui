@@ -65,6 +65,56 @@ export default {
             </body>
           </c-code-sample>
         </p>
+
+        <h2>Some table and content </h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>Mark</td>
+              <td>Lorem ipsum dolor sit amet</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>June</td>
+              <td>Consectetur adipiscing elit</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>Augusta</td>
+              <td>Sed do eiusmod tempor incididunt</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Some articles</h2>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Vestibulum rhoncus est pellentesque elit ullamcorper. Sed tempus urna et pharetra. Tristique magna sit amet purus gravida quis blandit turpis. Facilisi cras fermentum odio eu. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Ridiculus mus mauris vitae ultricies leo integer. Lacus luctus accumsan tortor posuere ac ut. Justo eget magna fermentum iaculis eu non. Vel facilisis volutpat est velit egestas. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Urna cursus eget nunc scelerisque viverra mauris in.
+          </p>
+          <p>
+            Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam. Orci a scelerisque purus semper eget duis at tellus at. Ornare suspendisse sed nisi lacus sed viverra. Urna et pharetra pharetra massa massa ultricies mi. Aliquet sagittis id consectetur purus. Sed turpis tincidunt id aliquet risus feugiat. Dictum varius duis at consectetur lorem donec massa sapien faucibus. Sagittis orci a scelerisque purus semper eget duis at tellus. Egestas diam in arcu cursus. Et netus et malesuada fames ac. Sit amet nisl suscipit adipiscing bibendum est ultricies integer.
+          </p>
+          <p>
+            Placerat vestibulum lectus mauris ultrices eros. Et tortor consequat id porta. Volutpat odio facilisis mauris sit amet massa. Nam aliquam sem et tortor. Placerat orci nulla pellentesque dignissim enim sit amet. Sem fringilla ut morbi tincidunt. Cras ornare arcu dui vivamus arcu felis bibendum ut. Arcu bibendum at varius vel pharetra vel. Libero nunc consequat interdum varius sit. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Pulvinar mattis nunc sed blandit libero volutpat sed. Congue quisque egestas diam in arcu. At erat pellentesque adipiscing commodo elit at imperdiet. Ut faucibus pulvinar elementum integer enim. Dignissim suspendisse in est ante in nibh mauris cursus mattis.
+          </p>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Vestibulum rhoncus est pellentesque elit ullamcorper. Sed tempus urna et pharetra. Tristique magna sit amet purus gravida quis blandit turpis. Facilisi cras fermentum odio eu. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Ridiculus mus mauris vitae ultricies leo integer. Lacus luctus accumsan tortor posuere ac ut. Justo eget magna fermentum iaculis eu non. Vel facilisis volutpat est velit egestas. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Urna cursus eget nunc scelerisque viverra mauris in.
+          </p>
+          <p>
+            Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam. Orci a scelerisque purus semper eget duis at tellus at. Ornare suspendisse sed nisi lacus sed viverra. Urna et pharetra pharetra massa massa ultricies mi. Aliquet sagittis id consectetur purus. Sed turpis tincidunt id aliquet risus feugiat. Dictum varius duis at consectetur lorem donec massa sapien faucibus. Sagittis orci a scelerisque purus semper eget duis at tellus. Egestas diam in arcu cursus. Et netus et malesuada fames ac. Sit amet nisl suscipit adipiscing bibendum est ultricies integer.
+          </p>
         
         </section>
     </c-content>

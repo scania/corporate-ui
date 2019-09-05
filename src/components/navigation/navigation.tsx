@@ -35,9 +35,9 @@ export class Navigation {
 
   @State() store: any;
 
-  @State() navigationOpen: boolean;
+  @State() navigationOpen: boolean = true;
 
-  @State() navigationExpanded: string;
+  @State() navigationExpanded: string = undefined;
 
   @State() isSub: boolean;
 
@@ -124,14 +124,15 @@ export class Navigation {
   }
 
   componentDidLoad() {
-    // To make sure navigation is always shown from start
-    this.toggleNavigation(true);
-
     if (!this.el) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
 
     this.isIE = !document.head.attachShadow;
+
+    this.toggleSubNavigation(undefined);
+
+    if (!document.querySelector('c-header')) this.toggleNavigation(true);
   }
 
   componentDidUpdate() {
@@ -188,7 +189,7 @@ export class Navigation {
 
   hostData() {
     return {
-      expand: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
+      expand: (this.target && this.target === this.navigationExpanded) || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
     };
   }
 

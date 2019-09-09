@@ -66,6 +66,22 @@ To apply the styling, you need to add a theme package and use `c-theme` componen
 - Start the local setup by running `npm start`
 - Open your browser and go to [http://localhost:1337](http://localhost:1337)
 
+To work on the Scania theme styling, here is how to setup the environment : 
+
+- Clone and install `scania-theme` project (see instructions [here](https://github.com/scania/scania-theme))
+- Create a global symlink for `scania-theme` project with `npm link`. A symlink, short for symbolic link, is a shortcut that points to another directory or file on your system.
+- Tell `corporate-ui-dev` to use the global symlink with `npm link scania-theme`.
+
+```shell
+cd /path/to/scania-theme
+npm link
+npm start
+
+cd path/to/corporate-ui-dev
+npm link scania-theme
+npm start
+```
+
 ## Requirements
 
 **NodeJS: use 8.15 or newer stable version of node**

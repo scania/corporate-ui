@@ -9,10 +9,11 @@ $vector: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/20
 
 #root > header {
   background: black;
-  padding-top: 20px;
+  padding: 20px;
 
   h4 {
     color: white;
+    margin: 0;
   }
 }
 

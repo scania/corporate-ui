@@ -2,7 +2,13 @@ export default {
   title: 'Navigation',
   description: [
     'To see how to structure header and navigation component in one page, click the button below.',
-    `<a
+    `
+    <style>
+    body.nav-show {
+      overflow: auto;
+    }
+    </style>
+    <a
     data-sb-kind="Templates"
     data-sb-story="Header Showcase" 
     class="btn btn-lg btn-primary"

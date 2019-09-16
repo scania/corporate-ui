@@ -32,7 +32,7 @@ function themes(state = { }, action) {
   }
 }
 
-function navigation(state = { open: true, expanded: '' }, action) {
+function navigation(state = { open: true, expanded: undefined }, action) {
   switch (action.type) {
     case actions.TOGGLE_NAVIGATION:
       return { ...state, open: action.open };

@@ -34,6 +34,7 @@ function generatePage(story) {
         items: Object.keys(story.source).map(key => story.source[key].default),
       }),
     );
+
   // Render stories
   Object.entries(story.source).map(entry => {
     const [file, module] = entry;
@@ -70,13 +71,13 @@ storiesOf('Info', module)
   );
 
 generatePage({
-  source: components,
-  kind: 'Web Components',
+  source: elements,
+  kind: 'Elements',
 });
 
 generatePage({
-  source: elements,
-  kind: 'UI Elements',
+  source: components,
+  kind: 'Components',
 });
 
 generatePage({

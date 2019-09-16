@@ -31,8 +31,8 @@ export default {
       <a href='/about3' slot='secondary-items'>First 3</a>
     </c-navigation>
   </c-navigation>
-    <c-content>
-        <section>
+  <c-content>
+    <section>
         <h1>How to use header and navigation</h1>
         <p>Header and navigation component can be rendered under <code>body</code> element, for example :</p>
         <p>
@@ -116,7 +116,21 @@ export default {
             Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam. Orci a scelerisque purus semper eget duis at tellus at. Ornare suspendisse sed nisi lacus sed viverra. Urna et pharetra pharetra massa massa ultricies mi. Aliquet sagittis id consectetur purus. Sed turpis tincidunt id aliquet risus feugiat. Dictum varius duis at consectetur lorem donec massa sapien faucibus. Sagittis orci a scelerisque purus semper eget duis at tellus. Egestas diam in arcu cursus. Et netus et malesuada fames ac. Sit amet nisl suscipit adipiscing bibendum est ultricies integer.
           </p>
         
-        </section>
-    </c-content>
+    </section>
+  </c-content>
+  <c-footer>
+    <a href="/" slot="social-items">
+      <c-icon name="youtube" />
+    </a>
+    <a href="/" slot="social-items">
+      <c-icon name="twitter" />
+    </a>
+    <a href="/" target="_blank" slot="social-items">
+      <c-icon name="linkedin" />
+    </a>
+
+    <a href="/" slot="items">global</a>
+    <a href="/" slot="items">scania</a>
+  </c-footer>
   `,
 };

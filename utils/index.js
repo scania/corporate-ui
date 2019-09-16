@@ -54,7 +54,8 @@ function addTheme(_theme) {
 
   function init(theme, event) {
     const favicons = theme.favicons;
-    const items = theme.icons;
+    const icons = theme.icons;
+    const colors = theme.colors;
     const name = Object.keys(theme.default)[0];
 
     theme = document.head.attachShadow ? theme.default : theme.ie;
@@ -63,7 +64,8 @@ function addTheme(_theme) {
     [
       { type: 'ADD_THEME', theme },
       { type: 'REMOVE_ICONS' },
-      { type: 'ADD_ICONS', items },
+      { type: 'ADD_ICONS', items: icons },
+      { type: 'ADD_COLORS', items: colors },
     ].map(item => {
       item.type = event.detail.actions[item.type];
       event.detail.store.dispatch(item);

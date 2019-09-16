@@ -1,5 +1,5 @@
 export default {
-  title: 'Navigation',
+  title: 'c-navigation',
   description: [
     'To see how to structure header and navigation component in one page, click the button below.',
     `
@@ -18,39 +18,37 @@ export default {
     'You can populate navigation links in two ways: JSON objects or providing it in a slot. See examples below to see how it works with different ways of populating navigation links.',
   ],
   preview: `
-    <c-navigation sticky="false">
+    <c-navigation>
       <a href="/" slot="primary-items" active>home</a>
       <a href="/about" slot="primary-items">about</a>
       <a href="/user" slot="secondary-items">user</a>
     </c-navigation>
   `,
   items: [
-    {
+    /* {
       title: 'Items as data',
       content: `
 <c-navigation
-  sticky="false"
   theme="scania"
   primary-items='[{ "text": "home", "href": "/home", "class": "active" }, { "text": "about", "href": "/about" }]'
   secondary-items='[{ "text": "user", "href": "/user" }, { "text": "more", "href": "/more" }]'></c-navigation>
       `,
-    },
+    }, */
     {
       title: 'Items in slots',
       content: `
-<c-navigation sticky="false">
+<c-navigation>
   <a href="/" slot="primary-items" active>home</a>
   <a href="/about" slot="primary-items">about</a>
   <a href="/user" slot="secondary-items">user</a>
 </c-navigation>
       `,
     },
-    {
+    /* {
       title: 'Items both as data and in slots displayed in vertical orientation',
       description: 'This navigation setup shows the usage of orientation vertical',
       content: `
 <c-navigation
-  sticky="false"
   orientation="vertical"
   primary-items='[{ "text": "about", "href": "/about" }]'
   secondary-items='[{ "text": "more", "href": "/more" }]'>
@@ -58,12 +56,12 @@ export default {
   <a href="/user" slot="secondary-items">user</a>
 </c-navigation>
       `,
-    },
+    }, */
     {
       title: 'Items in slots with a dropdown item',
       description: 'This navigation setup shows the usage of a toggable dropdown',
       content: `
-<c-navigation sticky="false">
+<c-navigation>
   <a href="/" slot="primary-items" active>home</a>
 
   <div class="dropdown" slot="secondary-items">
@@ -84,7 +82,7 @@ export default {
                     Notice that in this example we provide a link element and no global style for a link is available.
                     But providing that makes it possible to style, like we do in this example`,
       content: `
-<c-navigation sticky="false">
+<c-navigation>
   <a href="/home" slot="primary-items">home</a>
   <a href="/about" class="parent" slot="primary-items" active>about</a>
   <a href="/profile" class="parent" slot="primary-items">profile</a>

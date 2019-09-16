@@ -7,6 +7,7 @@ export const actions = {
   TOGGLE_SUB_NAVIGATION: 'TOGGLE_SUB_NAVIGATION',
   ADD_ICONS: 'ADD_ICONS',
   REMOVE_ICONS: 'REMOVE_ICONS',
+  ADD_COLORS: 'ADD_COLORS',
 };
 
 export const store = createStore(reducers());
@@ -53,11 +54,21 @@ function icon(state = { items: {} }, action) {
   }
 }
 
+function color(state = { items: {} }, action) {
+  switch (action.type) {
+    case actions.ADD_COLORS:
+      return { ...state, items: { ...state.items, ...action.items } };
+    default:
+      return state;
+  }
+}
+
 function reducers() {
   return combineReducers({
     theme,
     themes,
     navigation,
     icon,
+    color,
   });
 }

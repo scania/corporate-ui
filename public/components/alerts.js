@@ -10,12 +10,6 @@ export default {
     {
       title: 'Basic alerts',
       content: `
-      <div class="alert alert-primary" role="alert">
-        A simple primary alert—check it out!
-      </div>
-      <div class="alert alert-secondary" role="alert">
-        A simple secondary alert—check it out!
-      </div>
       <div class="alert alert-success" role="alert">
         A simple success alert—check it out!
       </div>
@@ -28,12 +22,6 @@ export default {
       <div class="alert alert-info" role="alert">
         A simple info alert—check it out!
       </div>
-      <div class="alert alert-light" role="alert">
-        A simple light alert—check it out!
-      </div>
-      <div class="alert alert-dark" role="alert">
-        A simple dark alert—check it out!
-      </div>
       `,
     },
     {
@@ -44,6 +32,7 @@ export default {
         <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
         <hr>
         <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        <p>When you want to have a link if would look link <a href="#">this</a></p>
       </div>
       `,
     },

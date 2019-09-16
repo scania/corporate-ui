@@ -21,6 +21,39 @@ importAll(require.context('./templates/', true, /\.js$/), templates);
 const utilities = {};
 importAll(require.context('./utilities/', true, /\.js$/), utilities);
 
+const filteredItems = [
+  'badge',
+  'breadcrumb',
+  'card',
+  'carousel',
+  'code',
+  'figures',
+  'images',
+  'input-group',
+  'jumbotron',
+  'list-group',
+  'media-object',
+  'navs',
+  'pagination',
+  'popovers',
+  'progress',
+  'spinners',
+  'toasts',
+  'tooltips',
+  'borders',
+  'close-icon',
+  'display',
+  'embed',
+  'flex',
+  'float',
+  'image-replacement',
+  'position',
+  'shadows',
+  'sizing',
+  'text',
+  'vertical-alignment',
+];
+
 function generatePage(story) {
   // Render overview
   storiesOf(story.kind, module)
@@ -31,29 +64,33 @@ function generatePage(story) {
         title: 'Overview',
         kind: story.kind,
         description: 'Select a page to see examples and get more information.',
-        items: Object.keys(story.source).map(key => story.source[key].default),
+        items: Object.keys(story.source)
+          .filter(file => filteredItems.indexOf(basename(file, '.js')) === -1)
+          .map(key => story.source[key].default),
       }),
     );
 
   // Render stories
-  Object.entries(story.source).map(entry => {
-    const [file, module] = entry;
-    const name = basename(file, '.js');
-    const doc = docs.components.find(item => item.tag === name);
-    const item = {
-      ...module.default,
-      name,
-      doc,
-      kind: story.kind,
-    };
+  Object.entries(story.source)
+    .filter(([file]) => filteredItems.indexOf(basename(file, '.js')) === -1)
+    .map(entry => {
+      const [file, module] = entry;
+      const name = basename(file, '.js');
+      const doc = docs.components.find(item => item.tag === name);
+      const item = {
+        ...module.default,
+        name,
+        doc,
+        kind: story.kind,
+      };
 
-    storiesOf(story.kind, module)
-      .addDecorator(withLinks)
-      .add(
-        item.title,
-        () => (item.method || renderItems)(item),
-      );
-  });
+      storiesOf(story.kind, module)
+        .addDecorator(withLinks)
+        .add(
+          item.title,
+          () => (item.method || renderItems)(item),
+        );
+    });
 }
 
 // Render Info page

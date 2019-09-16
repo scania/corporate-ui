@@ -1,5 +1,5 @@
 export default {
-  title: 'Header Showcase',
+  title: 'Fullpage Example',
   preview: '<c-header></c-header>',
   method: () => `
   <c-header

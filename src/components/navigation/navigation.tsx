@@ -35,9 +35,9 @@ export class Navigation {
 
   @State() store: any;
 
-  @State() navigationOpen: boolean;
+  @State() navigationOpen: boolean = true;
 
-  @State() navigationExpanded: string;
+  @State() navigationExpanded: string = undefined;
 
   @State() isSub: boolean;
 
@@ -48,8 +48,6 @@ export class Navigation {
   @State() parentEl: any;
 
   @State() navWidth: any;
-
-  @State() navHeight = 0 ;
 
   @State() scrollPos = 0;
 
@@ -96,8 +94,8 @@ export class Navigation {
 
   @Listen('window:resize')
   onResize() {
-    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
     this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
+    if (window.innerWidth < 992) this.el.removeAttribute('style');
   }
 
   toggleNavigation(open) {
@@ -121,46 +119,38 @@ export class Navigation {
 
       this.setTheme();
     });
+
+    if (this.el) this.isSub = this.el.getAttribute('slot') === 'sub';
   }
 
   componentDidLoad() {
-    // To make sure navigation is always shown from start
-    this.toggleNavigation(true);
-
     if (!this.el) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
-    this.isSub = this.el.getAttribute('slot') === 'sub';
 
     this.isIE = !document.head.attachShadow;
 
-    const items = this.el.querySelectorAll('c-navigation[target]');
+    this.toggleSubNavigation(undefined);
 
-    if (this.isIE) {
-      [this.parentEl] = Array.from(this.el.children).filter(e => e.matches('nav'));
-    } else {
-      this.parentEl = this.el;
-    }
-
-    for (let i = 0; i < items.length; i += 1) {
-      const item = items[i];
-      const target = item.getAttribute('target');
-      const node: HTMLAnchorElement = this.parentEl.querySelector(`a[href="${target}"]`);
-      node.classList.add('parent');
-      node.onclick = (event) => this.open(event);
-    }
+    if (!document.querySelector('c-header')) this.toggleNavigation(true);
   }
 
   componentDidUpdate() {
-    this.navHeight = !this.isSub ? this.el.clientHeight * -1 : 0;
     // fallback of sticky on IE
     if (this.isIE) {
       setTimeout(() => {
         try {
           this.scrollPos = this.scrollPos === 0 ? this.el.getBoundingClientRect().top : this.scrollPos;
         } catch (e) { console.log(e); }
-        if (this.el.querySelector('.navbar')) this.navWidth = this.el.querySelector('.navbar').clientWidth;
+        this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
       }, 100);
+    }
+
+    // handle click behavior on mobile navigation
+    const items: NodeListOf<HTMLAnchorElement> = this.el.querySelectorAll('a');
+    for (let i = 0; i < items.length; i += 1) {
+      const item = items[i];
+      if (item) item.onclick = (event) => this.open(event);
     }
   }
 
@@ -175,71 +165,75 @@ export class Navigation {
     ].join(' ');
   }
 
-  open(event) {
-    const target = event.target.getAttribute('href');
-    const node = this.el.querySelector(`c-navigation[target="${target}"]`);
+  open(ev) {
+    const parent = (ev || ev[0]).target.className.includes('parent');
+    const dropdown = (ev || ev[0]).target.className.includes('dropdown');
+    const target = ev.target.getAttribute('href');
+    const node = this.el.querySelector(`c-navigation[target="${target}"]`) || this.el.querySelector('c-navigation');
 
     if (window.innerWidth > 992) {
       return;
     }
 
-    if (node) {
-      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-      this.toggleSubNavigation(target);
-    }
-
-    if (target === '#close') {
-      event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+    if ((parent && node) || dropdown) {
+      ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+      if (!dropdown) this.toggleSubNavigation(target);
+    } else if (target === '#close') {
+      ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+      // TODO: Refactore toggle state in store into one object ( {open, expand} )
       this.toggleSubNavigation('');
+    } else {
+      this.toggleNavigation(false);
     }
   }
 
   hostData() {
     return {
-      open: this.target === this.navigationExpanded || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
+      expand: (this.target && this.target === this.navigationExpanded) || (!this.isSub && this.navigationExpanded) ? 'true' : 'false',
     };
   }
 
   render() {
     if (this.isIE && window.innerWidth > 992) {
       this.el.style.width = `${this.navWidth}px`;
-      this.el.style.marginBottom = `${this.navHeight}px`;
     }
+
     return [
-      <style { ...{ innerHTML: `:host { --navHeight: ${this.navHeight}px;}` } }></style>,
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
-      <nav class={`navbar navbar-expand-lg ${this.orientation} ${this.navigationOpen ? ' show' : ''}`}>
-          <nav class='navbar-nav'>
-            { this.isSub
-              ? [
-                this.caption ? <strong class="nav-item caption">{ this.caption }</strong> : '',
-                  <a href="#close" class="nav-item nav-link toggle-sub" onClick={(event) => this.open(event)}>{ this.caption || 'Back' }</a>,
-              ]
-              : ''
-            }
+      <div class={`navbar-container ${this.navigationOpen ? ' open' : ''}`}>
+        <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
+            <nav class='navbar-nav'>
+              { this.isSub
+                ? [
+                  this.caption ? <strong class="nav-item caption">{ this.caption }</strong> : '',
+                    <a href="#close" class="nav-item nav-link toggle-sub" onClick={(event) => this.open(event)}>{ this.caption || 'Back' }</a>,
+                ]
+                : ''
+              }
 
-            { this.primaryItems.map((item: any) => {
-              item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>;
-            }) }
+              { this.primaryItems.map((item: any) => {
+                item.class = this.combineClasses(item.class);
+                return <a { ...item }></a>;
+              }) }
 
-            <slot name="primary-items" />
-          </nav>
+              <slot name="primary-items" />
+            </nav>
 
-          <nav class={`navbar-nav ${this.orientation !== 'vertical' ? 'ml-auto' : ''}`}>
-            { this.secondaryItems.map((item: any) => {
-              item.class = this.combineClasses(item.class);
-              return <a { ...item }></a>;
-            }) }
+            <nav class={`navbar-nav ${this.orientation !== 'vertical' ? 'ml-auto' : ''}`}>
+              { this.secondaryItems.map((item: any) => {
+                item.class = this.combineClasses(item.class);
+                return <a { ...item }></a>;
+              }) }
 
-            <slot name="secondary-items" />
-          </nav>
+              <slot name="secondary-items" />
+            </nav>
 
-        <a class='navbar-symbol'></a>
-      </nav>,
+          <a class='navbar-symbol'></a>
+        </nav>
 
-      <slot name="sub" />,
+        <slot name="sub" />
+      </div>,
     ];
   }
 }

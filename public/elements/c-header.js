@@ -17,10 +17,11 @@ export default {
       `,
     }, */
     {
-      title: 'Items in slot',
+      title: 'Basic use',
       content: `
 <c-header
-  site-name='Name'>
+  site-name='Application'
+  short-name='App'>
   <a href="/" slot="items">global</a>
   <a href="/" slot="items">scania</a>
 </c-header>
@@ -58,48 +59,48 @@ export default {
 </c-navigation>
       `,
     }, */
-    {
-      title: 'Items in slot plus navigation and items in slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation. 
-                    Notice that in this example we provide a link element and no global style for a link is available.
-                    But providing that makes it possible to style, like we do in this example`,
-      content: `
-<c-header
-  site-name='Name'>
-  <a href="/" slot="items">global</a>
-  <a href="/" slot="items">scania</a>
-</c-header>
-<c-navigation sticky="false">
-  <a href="/" slot="primary-items" active>home</a>
-  <a href="/about" slot="primary-items">about</a>
-  <a href="/user" slot="secondary-items">user</a>
-</c-navigation>
-      `,
-    },
-    {
-      title: 'Items in slot and with multiple levels of nested slots',
-      description: `This navigation setup shows the usage of a navigation inside the header with nested items 
-                    as well as sub level in the navigation.`,
-      content: `
-<c-header
-  site-name='Application'
-  short-name='App'>
-  <a href="/" slot="items">global</a>
-  <a href="/" slot="items">scania</a>
-</c-header>
+    //     {
+    //       title: 'Items in slot plus navigation and items in slots',
+    //       description: `This navigation setup shows the usage of a navigation inside the header with nested items in the navigation.
+    //                     Notice that in this example we provide a link element and no global style for a link is available.
+    //                     But providing that makes it possible to style, like we do in this example`,
+    //       content: `
+    // <c-header
+    //   site-name='Name'>
+    //   <a href="/" slot="items">global</a>
+    //   <a href="/" slot="items">scania</a>
+    // </c-header>
+    // <c-navigation sticky="false">
+    //   <a href="/" slot="primary-items" active>home</a>
+    //   <a href="/about" slot="primary-items">about</a>
+    //   <a href="/user" slot="secondary-items">user</a>
+    // </c-navigation>
+    //       `,
+    //     },
+    //     {
+    //       title: 'Items in slot and with multiple levels of nested slots',
+    //       description: `This navigation setup shows the usage of a navigation inside the header with nested items
+    //                     as well as sub level in the navigation.`,
+    //       content: `
+    // <c-header
+    //   site-name='Application'
+    //   short-name='App'>
+    //   <a href="/" slot="items">global</a>
+    //   <a href="/" slot="items">scania</a>
+    // </c-header>
 
-<c-navigation sticky="false">
-  <a href='/home' slot='primary-items'>home</a>
-  <a href='/about' slot='primary-items' active=''>about</a>
-  <a href='/more' slot='secondary-items'>more</a>
+    // <c-navigation sticky="false">
+    //   <a href='/home' slot='primary-items'>home</a>
+    //   <a href='/about' slot='primary-items' active=''>about</a>
+    //   <a href='/more' slot='secondary-items'>more</a>
 
-  <c-navigation slot='sub' target='/about' active=''>
-    <a href='/about' slot='primary-items' active=''>About 1</a>
-    <a href='/about2' slot='primary-items'>About 2</a>
-    <a href='/about3' slot='secondary-items'>About 3</a>
-  </c-navigation>
-</c-navigation>
-      `,
-    },
+    //   <c-navigation slot='sub' target='/about' active=''>
+    //     <a href='/about' slot='primary-items' active=''>About 1</a>
+    //     <a href='/about2' slot='primary-items'>About 2</a>
+    //     <a href='/about3' slot='secondary-items'>About 3</a>
+    //   </c-navigation>
+    // </c-navigation>
+    //       `,
+    //     },
   ],
 };

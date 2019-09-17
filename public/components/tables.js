@@ -1,7 +1,7 @@
 export default {
   title: 'Tables',
   preview: `
-  <table class="table">
+  <table class="table bg-white">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -356,42 +356,42 @@ export default {
       </table>
       `,
     },
-    {
-      title: 'Captions',
-      content: `
-      <table class="table">
-        <caption>List of users</caption>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-      `,
-    },
+    // {
+    //   title: 'Captions',
+    //   content: `
+    //   <table class="table">
+    //     <caption>List of users</caption>
+    //     <thead>
+    //       <tr>
+    //         <th scope="col">#</th>
+    //         <th scope="col">First</th>
+    //         <th scope="col">Last</th>
+    //         <th scope="col">Handle</th>
+    //       </tr>
+    //     </thead>
+    //     <tbody>
+    //       <tr>
+    //         <th scope="row">1</th>
+    //         <td>Mark</td>
+    //         <td>Otto</td>
+    //         <td>@mdo</td>
+    //       </tr>
+    //       <tr>
+    //         <th scope="row">2</th>
+    //         <td>Jacob</td>
+    //         <td>Thornton</td>
+    //         <td>@fat</td>
+    //       </tr>
+    //       <tr>
+    //         <th scope="row">3</th>
+    //         <td>Larry</td>
+    //         <td>the Bird</td>
+    //         <td>@twitter</td>
+    //       </tr>
+    //     </tbody>
+    //   </table>
+    //   `,
+    // },
     {
       title: 'Responsive table',
       content: `
@@ -517,66 +517,66 @@ export default {
       </div>
       `,
     },
-    {
-      title: 'Breakpoint specific',
-      content: `
-      <div class="table-responsive-lg">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      `,
-    },
+    // {
+    //   title: 'Breakpoint specific',
+    //   content: `
+    //   <div class="table-responsive-lg">
+    //     <table class="table">
+    //       <thead>
+    //         <tr>
+    //           <th scope="col">#</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //           <th scope="col">Heading</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         <tr>
+    //           <th scope="row">1</th>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //         </tr>
+    //         <tr>
+    //           <th scope="row">2</th>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //         </tr>
+    //         <tr>
+    //           <th scope="row">3</th>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //           <td>Cell</td>
+    //         </tr>
+    //       </tbody>
+    //     </table>
+    //   </div>
+    //   `,
+    // },
   ],
 };

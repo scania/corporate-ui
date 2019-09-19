@@ -79,7 +79,7 @@ class IconList extends HTMLElement {
 customElements.define('icon-list', IconList);
 
 export default {
-  title: 'Icons page',
+  title: 'Icons',
   description: `The following icons are provided as part of the icon component and can be used
                 like in the example but with chosen icon name.`,
   preview: '<c-icon name="car"></c-icon>',

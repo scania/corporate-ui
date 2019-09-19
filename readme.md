@@ -42,9 +42,9 @@ npm i corporate-ui-dev
 Import component as a module with `defineCustomElements` function.
 
 ```js
-import { defineCustomElements } from 'corporate-ui-dev/dist/define';
+import { defineCustomElements } from 'corporate-ui-dev';
 
-defineCustomElements(['c-theme','c-footer', 'c-content']);
+defineCustomElements(['c-theme', 'c-footer', 'c-content']);
 // to import all components pass an 'all' value
 // defineCustomElements('all');
 ```

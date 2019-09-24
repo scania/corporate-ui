@@ -201,6 +201,17 @@ figure .form-control + .form-control {
 }
 
 
+figure {
+  .dropdown-example {
+   height: 100px;
+    .dropdown-menu {
+      position: static;
+      display: block;
+    }
+  }
+}
+
+
 .description{
   margin-bottom: 15px;
 }

@@ -299,5 +299,42 @@ export default {
       </div>
       `,
     },
+    // {
+    //   title: 'Menu item',
+    //   content: `
+    //   <div class="dropdown-example">
+    //     <div class="dropdown-menu">
+    //       <span class="dropdown-item-text">Dropdown item text</span>
+    //       <a class="dropdown-item" href="#">Action</a>
+    //       <a class="dropdown-item" href="#">Another action</a>
+    //       <a class="dropdown-item" href="#">Something else here</a>
+    //     </div>
+    //   </div>
+    //   `,
+    // },
+    // {
+    //   title: 'Active state',
+    //   content: `
+    //   <div class="dropdown-example">
+    //     <div class="dropdown-menu">
+    //       <a class="dropdown-item" href="#">Regular link</a>
+    //       <a class="dropdown-item active" href="#">Active link</a>
+    //       <a class="dropdown-item" href="#">Another link</a>
+    //     </div>
+    //   </div>
+    //   `,
+    // },
+    // {
+    //   title: 'Disabled state',
+    //   content: `
+    //   <div class="dropdown-example">
+    //     <div class="dropdown-menu">
+    //       <a class="dropdown-item" href="#">Regular link</a>
+    //       <a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">Disabled link</a>
+    //       <a class="dropdown-item" href="#">Another link</a>
+    //     </div>
+    //   </div>
+    //   `,
+    // },
   ],
 };

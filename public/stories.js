@@ -22,7 +22,6 @@ const utilities = {};
 importAll(require.context('./utilities/', true, /\.js$/), utilities);
 
 const filteredItems = [
-  'badge',
   'breadcrumb',
   'card',
   'carousel',

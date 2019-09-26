@@ -35,7 +35,6 @@ const filteredItems = [
   'navs',
   'pagination',
   'popovers',
-  'progress',
   'spinners',
   'toasts',
   'tooltips',

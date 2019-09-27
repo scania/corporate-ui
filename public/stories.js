@@ -29,7 +29,6 @@ const filteredItems = [
   'code',
   'figures',
   'images',
-  'input-group',
   'jumbotron',
   'list-group',
   'media-object',

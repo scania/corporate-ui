@@ -32,7 +32,6 @@ const filteredItems = [
   'jumbotron',
   'list-group',
   'media-object',
-  'navs',
   'pagination',
   'popovers',
   'progress',

@@ -37,7 +37,9 @@ export class Header {
 
   @State() height = 0;
 
-  @State() hasNav : boolean;
+  @State() hasNav: boolean;
+
+  @State() visible: boolean = false;
 
   @Element() el: HTMLElement;
 
@@ -59,6 +61,18 @@ export class Header {
     }, 350);
   }
 
+  delayRender() {
+    setTimeout(() => {
+      if (!this.theme) {
+        this.visible = true;
+      }
+
+      if (this.currentTheme) {
+        this.visible = true;
+      }
+    });
+  }
+
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
@@ -67,6 +81,7 @@ export class Header {
 
     this.store.subscribe(() => {
       this.setTheme();
+      this.delayRender();
 
       this.navigationOpen = this.store.getState().navigation.open;
     });
@@ -92,9 +107,9 @@ export class Header {
 
   render() {
     return [
-      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
-      <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
+      this.visible ? <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {
           this.hasNav
             ? <button
@@ -104,7 +119,6 @@ export class Header {
             <span class='navbar-toggler-icon'></span>
           </button> : ''
         }
-
 
         <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>
@@ -119,7 +133,7 @@ export class Header {
             <slot name="items" />
           </nav>
         </div>
-      </nav>,
+      </nav> : '',
 
       <a href={ this.siteUrl } class='navbar-symbol'></a>,
     ];

@@ -59,34 +59,6 @@ body[data-env]:before {
   text-transform: uppercase;
 }
 
-body[data-env=dev]:before,
-body[data-env=proj]:before,
-body[data-env=demo]:before,
-body[data-env=proto]:before,
-body[data-env=development]:before,
-body[data-env^=beta]:before {
-  background-color: var(--info-02);
-  color: var(--info-04);
-  border-color: var(--info-03);
-}
-
-body[data-env=sys]:before {
-  background-color: var(--success-02);
-  color: var(--success-04);
-  border-color: var(--success-03);
-}
-
-body[data-env=acc]:before,
-body[data-env=pre]:before {
-  background-color: var(--warning-02);
-  color: var(--warning-04);
-  border-color: var(--warning-03);
-}
-
-body[data-env=proto]:before {
-  font-size: 10px;
-}
-
 body[data-env=""]:before,
 body[data-env=prod]:before,
 body[data-env=production]:before,

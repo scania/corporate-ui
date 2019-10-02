@@ -29,6 +29,7 @@ const filteredItems = [
   'images',
   'jumbotron',
   'media-object',
+  'pagination',
   'popovers',
   'spinners',
   'toasts',

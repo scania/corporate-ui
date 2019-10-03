@@ -68,38 +68,38 @@ export default {
       </nav>
       `,
     },
-    {
-      title: 'Sizing',
-      content: `
-      <!-- Large sizing example --!>
-      <nav aria-label="...">
-        <ul class="pagination pagination-lg">
-          <li class="page-item active" aria-current="page">
-            <span class="page-link">
-              1
-              <span class="sr-only">(current)</span>
-            </span>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-        </ul>
-      </nav>
+    // {
+    //   title: 'Sizing',
+    //   content: `
+    //   <!-- Large sizing example --!>
+    //   <nav aria-label="...">
+    //     <ul class="pagination pagination-lg">
+    //       <li class="page-item active" aria-current="page">
+    //         <span class="page-link">
+    //           1
+    //           <span class="sr-only">(current)</span>
+    //         </span>
+    //       </li>
+    //       <li class="page-item"><a class="page-link" href="#">2</a></li>
+    //       <li class="page-item"><a class="page-link" href="#">3</a></li>
+    //     </ul>
+    //   </nav>
 
-      <!-- Small sizing example --!>
-      <nav aria-label="...">
-        <ul class="pagination pagination-sm">
-          <li class="page-item active" aria-current="page">
-            <span class="page-link">
-              1
-              <span class="sr-only">(current)</span>
-            </span>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-        </ul>
-      </nav>
-      `,
-    },
+    //   <!-- Small sizing example --!>
+    //   <nav aria-label="...">
+    //     <ul class="pagination pagination-sm">
+    //       <li class="page-item active" aria-current="page">
+    //         <span class="page-link">
+    //           1
+    //           <span class="sr-only">(current)</span>
+    //         </span>
+    //       </li>
+    //       <li class="page-item"><a class="page-link" href="#">2</a></li>
+    //       <li class="page-item"><a class="page-link" href="#">3</a></li>
+    //     </ul>
+    //   </nav>
+    //   `,
+    // },
     {
       title: 'Center alignments',
       content: `

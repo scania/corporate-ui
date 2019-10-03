@@ -38,6 +38,37 @@
     'Liberation Mono', 'Courier New', monospace;
 }
 
+// data environment
+body[data-env]:before {
+  background-color: #ddd;
+  border: 2px solid #fafafa;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 52px 50px 2px;
+  content: attr(data-env);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1170;
+  -ms-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -moz-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -webkit-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  -o-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  text-transform: uppercase;
+}
+
+body[data-env=""]:before,
+body[data-env=prod]:before,
+body[data-env=production]:before,
+body[data-env=hidden]:before {
+  display:none;
+}
+
+body[data-env=development]:before {
+  content: "dev";
+}
 
 // Copied from bootstrap mixin grid framework and modified to support prefix and sufix
 // @mixin make-grid-columns(

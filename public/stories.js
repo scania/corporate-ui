@@ -22,21 +22,13 @@ const utilities = {};
 importAll(require.context('./utilities/', true, /\.js$/), utilities);
 
 const filteredItems = [
-  'badge',
-  'breadcrumb',
-  'card',
   'carousel',
   'code',
   'figures',
   'images',
-  'input-group',
   'jumbotron',
-  'list-group',
   'media-object',
-  'navs',
-  'pagination',
   'popovers',
-  'progress',
   'spinners',
   'toasts',
   'tooltips',

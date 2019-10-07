@@ -11,6 +11,11 @@ The repository is a place for all Front End Developers to join the UI Developeme
 
 We're contributing, and are following, the coding standards available at https://github.com/scania/coding-conventions.
 
+## Report an issue
+
+- [Report bug](https://github.com/scania/corporate-ui-dev/issues/new/choose)
+- [Request feature](https://github.com/scania/corporate-ui-dev/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
+
 ## Opening a pull request
 
 1. [Fork the repository](https://guides.github.com/activities/forking/) and clone it locally

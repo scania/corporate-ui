@@ -49,6 +49,11 @@ export default {
       <button type="button" class="btn btn-secondary btn-lg">Large button</button>
       <button type="button" class="btn btn-primary btn-sm">Small button</button>
       <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+      `,
+    },
+    {
+      title: 'Block',
+      content: `
       <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
       <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
       `,

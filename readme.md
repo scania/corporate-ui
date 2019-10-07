@@ -97,7 +97,7 @@ npm start
 
 ## Learn more
 
-Corporate-UI 4 alpha: [What's new?](https://github.com/scania/corporate-ui-dev/releases/)
+Corporate-UI 4 Beta: [What's new?](https://github.com/scania/corporate-ui-dev/releases/)
 
 ### Focus area
 

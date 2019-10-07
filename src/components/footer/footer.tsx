@@ -32,8 +32,6 @@ export class Footer {
 
   @State() currentTheme: object;
 
-  @State() visible: boolean = false;
-
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -52,18 +50,6 @@ export class Footer {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
-  delayRender() {
-    setTimeout(() => {
-      if (!this.theme) {
-        this.visible = true;
-      }
-
-      if (this.currentTheme) {
-        this.visible = true;
-      }
-    });
-  }
-
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
@@ -73,7 +59,6 @@ export class Footer {
 
     this.store.subscribe(() => {
       this.setTheme();
-      this.delayRender();
     });
   }
 
@@ -97,7 +82,7 @@ export class Footer {
     return [
       this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
-      this.visible ? <nav class='navbar navbar-expand-lg navbar-default'>
+      <nav class='navbar navbar-expand-lg navbar-default'>
         <strong class='navbar-brand'></strong>
 
         <nav class='social-items'>
@@ -124,7 +109,7 @@ export class Footer {
           {this.text}
           <slot name='text' />
         </p>
-      </nav> : '',
+      </nav>,
     ];
   }
 }

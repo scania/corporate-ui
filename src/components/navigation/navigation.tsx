@@ -53,8 +53,6 @@ export class Navigation {
 
   @State() isIE: boolean;
 
-  @State() visible: boolean = false;
-
   @Element() el: HTMLElement;
 
   @Watch('primaryItems')
@@ -108,18 +106,6 @@ export class Navigation {
     this.store.dispatch({ type: actions.TOGGLE_SUB_NAVIGATION, expanded });
   }
 
-  delayRender() {
-    setTimeout(() => {
-      if (!this.theme) {
-        this.visible = true;
-      }
-
-      if (this.currentTheme) {
-        this.visible = true;
-      }
-    });
-  }
-
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
@@ -132,7 +118,6 @@ export class Navigation {
       this.navigationExpanded = this.store.getState().navigation.expanded;
 
       this.setTheme();
-      this.delayRender();
     });
 
     if (this.el) this.isSub = this.el.getAttribute('slot') === 'sub';
@@ -216,7 +201,7 @@ export class Navigation {
     return [
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
 
-      this.visible ? <div class={`navbar-container ${this.navigationOpen ? ' open' : ''}`}>
+      <div class={`navbar-container ${this.navigationOpen ? ' open' : ''}`}>
         <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
             <nav class='navbar-nav'>
               { this.isSub
@@ -248,7 +233,7 @@ export class Navigation {
         </nav>
 
         <slot name="sub" />
-      </div> : '',
+      </div>,
     ];
   }
 }

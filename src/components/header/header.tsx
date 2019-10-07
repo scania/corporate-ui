@@ -39,8 +39,6 @@ export class Header {
 
   @State() hasNav: boolean;
 
-  @State() visible: boolean = false;
-
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -61,18 +59,6 @@ export class Header {
     }, 350);
   }
 
-  delayRender() {
-    setTimeout(() => {
-      if (!this.theme) {
-        this.visible = true;
-      }
-
-      if (this.currentTheme) {
-        this.visible = true;
-      }
-    });
-  }
-
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
@@ -81,7 +67,6 @@ export class Header {
 
     this.store.subscribe(() => {
       this.setTheme();
-      this.delayRender();
 
       this.navigationOpen = this.store.getState().navigation.open;
     });
@@ -109,7 +94,7 @@ export class Header {
     return [
       this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
-      this.visible ? <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
+      <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {
           this.hasNav
             ? <button
@@ -133,7 +118,7 @@ export class Header {
             <slot name="items" />
           </nav>
         </div>
-      </nav> : '',
+      </nav>,
 
       <a href={ this.siteUrl } class='navbar-symbol'></a>,
     ];

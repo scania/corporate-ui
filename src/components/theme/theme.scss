@@ -36,6 +36,11 @@
     'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
+}
+
+:host([name]) {
+  // This is used to set deafult display value for components
+  // We do this to make sure there are no FOUC when using a theme
   --display: none;
 }
 

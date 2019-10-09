@@ -57,9 +57,7 @@ export class Footer {
     this.setItems(this.items);
     this.setSocialItems(this.socialItems);
 
-    this.store.subscribe(() => {
-      this.setTheme();
-    });
+    this.store.subscribe(() => this.setTheme());
   }
 
   componentDidLoad() {

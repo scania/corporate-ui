@@ -199,7 +199,7 @@ export class Navigation {
     }
 
     return [
-      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <div class={`navbar-container ${this.navigationOpen ? ' open' : ''}`}>
         <nav class={`navbar navbar-expand-lg ${this.orientation}`}>

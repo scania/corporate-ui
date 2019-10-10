@@ -346,34 +346,79 @@ export default {
     //   </form>
     //   `,
     // },
-    // {
-    //   title: 'Disabled forms',
-    //   content: `
-    //   <form>
-    //     <fieldset disabled>
-    //       <div class="form-group">
-    //         <label for="disabledTextInput">Disabled input</label>
-    //         <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-    //       </div>
-    //       <div class="form-group">
-    //         <label for="disabledSelect">Disabled select menu</label>
-    //         <select id="disabledSelect" class="form-control">
-    //           <option>Disabled select</option>
-    //         </select>
-    //       </div>
-    //       <div class="form-group">
-    //         <div class="form-check">
-    //           <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
-    //           <label class="form-check-label" for="disabledFieldsetCheck">
-    //             Can't check this
-    //           </label>
-    //         </div>
-    //       </div>
-    //       <button type="submit" class="btn btn-primary">Submit</button>
-    //     </fieldset>
-    //   </form>
-    //   `,
-    // },
+    {
+      title: 'Disabled forms',
+      content: `
+      <form>
+        <fieldset disabled>
+          <div class="form-group">
+            <label for="disabledTextInput">Disabled input</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+          </div>
+          <div class="form-group">
+            <label for="disabledSelect">Disabled select menu</label>
+            <select id="disabledSelect" class="form-control">
+              <option>Disabled select</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
+              <label class="form-check-label" for="disabledFieldsetCheck">
+                Can't check this
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+      </form>
+      `,
+    },
+    {
+      title: 'Custom checkbox',
+      content: `
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div>
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+  <label class="custom-control-label" for="customCheck2">Checked custom checkbox</label>
+</div>
+      `,
+    },
+    {
+      title: 'Custom radio buttons',
+      content: `
+<div class="custom-control custom-radio">
+  <input type="radio" id="sbRadio-1" name="sbRadio01" class="custom-control-input" value="option1">
+  <label class="custom-control-label" for="sbRadio-1">Toggle this custom radio</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="sbRadio-2" name="sbRadio01" class="custom-control-input" value="option2">
+  <label class="custom-control-label" for="sbRadio-2">Or toggle this other custom radio</label>
+</div>
+      `,
+    },
+    {
+      title: 'Disabled custom checkbox and radio buttons',
+      content: `
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheckDisabled1" disabled>
+  <label class="custom-control-label" for="customCheckDisabled1">Check this custom checkbox</label>
+</div>
+
+<div class="custom-control custom-radio">
+  <input type="radio" name="radioDisabled" id="customRadioDisabled2" class="custom-control-input" disabled>
+  <label class="custom-control-label" for="customRadioDisabled2">Toggle this custom radio</label>
+</div>
+
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheckDisabled3" checked disabled>
+  <label class="custom-control-label" for="customCheckDisabled3">Checked disabled checkbox</label>
+</div>
+      `,
+    },
     {
       title: 'Validation visual cues',
       content: `

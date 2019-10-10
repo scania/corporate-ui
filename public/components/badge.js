@@ -1,14 +1,12 @@
 export default {
   title: 'Badge',
+  //TODO: Badge light,dark and secondary removed for now
   preview: `
     <span class="badge badge-pill badge-primary">Primary</span>
-    <span class="badge badge-pill badge-secondary">Secondary</span>
     <span class="badge badge-pill badge-success">Success</span>
     <span class="badge badge-pill badge-danger">Danger</span>
     <span class="badge badge-pill badge-warning">Warning</span>
     <span class="badge badge-pill badge-info">Info</span>
-    <span class="badge badge-pill badge-light">Light</span>
-    <span class="badge badge-pill badge-dark">Dark</span>
   `,
   items: [
     // {
@@ -45,15 +43,13 @@ export default {
     // },
     {
       title: 'Pill badges',
+      //TODO: Badge dark,light secondary removed for now
       content: `
       <span class="badge badge-pill badge-primary">Primary</span>
-      <span class="badge badge-pill badge-secondary">Secondary</span>
       <span class="badge badge-pill badge-success">Success</span>
       <span class="badge badge-pill badge-danger">Danger</span>
       <span class="badge badge-pill badge-warning">Warning</span>
       <span class="badge badge-pill badge-info">Info</span>
-      <span class="badge badge-pill badge-light">Light</span>
-      <span class="badge badge-pill badge-dark">Dark</span>
       `,
     },
     // {

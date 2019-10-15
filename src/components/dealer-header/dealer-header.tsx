@@ -7,7 +7,7 @@ import {
   styleUrl: 'dealer-header.scss',
   shadow: true,
 })
-export class HelloWorld {
+export class DealerHeader {
   /** Dealer name */
   @Prop() dealerName: string;
 
@@ -49,6 +49,7 @@ export class HelloWorld {
   }
 
   componentDidLoad() {
+    if (!this.el) return;
     this.tagName = this.el.nodeName.toLowerCase();
   }
 

@@ -9,10 +9,10 @@ import {
 })
 export class DealerHeader {
   /** Dealer name */
-  @Prop() dealerName: string;
+  @Prop() siteName: string;
 
-  /** A link to dealer logotype image */
-  @Prop() dealerLogo: string;
+  /** A placeholder for dealer logo image */
+  @Prop() logo: string;
 
   /** Short name that will appear in smaller screen size */
   @Prop() shortName: string;
@@ -57,10 +57,10 @@ export class DealerHeader {
     return [
       this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
-      <c-header site-name={this.dealerName} short-name={this.shortName} site-url={this.siteUrl} variation='dealer'>
-        {this.dealerLogo
-          ? <img src={this.dealerLogo} alt={this.dealerName} slot='brand-logo'/>
-          : <strong class='navbar-title' slot='brand-logo'>{ this.dealerName }</strong>
+      <c-header site-name={this.siteName} short-name={this.shortName} site-url={this.siteUrl} variation='dealer'>
+        {this.logo
+          ? <img src={this.logo} alt={this.siteName} slot='brand-logo'/>
+          : <strong class='navbar-title' slot='brand-logo'>{ this.siteName }</strong>
         }
         <slot name='items' slot='items' />
       </c-header>,

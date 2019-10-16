@@ -12,7 +12,7 @@ describe('c-dealer-header', () => {
 
   it('is rendered', async () => {
     await page.setContent(`
-      <c-dealer-header dealer-name="${dealerName}"></c-dealer-header>`);
+      <c-dealer-header site-name="${dealerName}"></c-dealer-header>`);
 
     const component = await page.find('c-dealer-header');
     expect(component).toHaveClass('hydrated');
@@ -24,7 +24,7 @@ describe('c-dealer-header', () => {
 
   it('should render application title', async () => {
     await page.setContent(`
-      <c-dealer-header dealer-name="${dealerName}"></c-dealer-header>`);
+      <c-dealer-header site-name="${dealerName}"></c-dealer-header>`);
 
     const title = await page.find(`${root} strong`);
     expect(title).toEqualHtml(`<strong class="navbar-title" slot="brand-logo">${dealerName}</a>`);
@@ -32,7 +32,7 @@ describe('c-dealer-header', () => {
 
   it('should render application logo', async () => {
     await page.setContent(`
-      <c-dealer-header dealer-logo="${dealerLogo}"></c-dealer-header>`);
+      <c-dealer-header logo="${dealerLogo}"></c-dealer-header>`);
 
     const brandLogo = await page.find(`${root} img`);
     expect(brandLogo).toEqualHtml(`<img slot="brand-logo" src="${dealerLogo}">`);

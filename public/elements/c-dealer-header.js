@@ -6,7 +6,7 @@ export default {
       title: 'Basic use',
       content: `
 <c-dealer-header
-dealer-name="Bilmetro" short-name="Bilmetro"  dealer-url="/" >
+site-name="Bilmetro" short-name="Bilmetro" site-url="/" >
   <a href="/" slot="items">Configurator</a>
 </c-dealer-header>
       `,
@@ -15,7 +15,7 @@ dealer-name="Bilmetro" short-name="Bilmetro"  dealer-url="/" >
       title: 'With dealer logo',
       content: `
 <c-dealer-header
-dealer-name="Bilmetro" short-name="Bilmetro"  dealer-url="/" dealer-logo="https://scania.github.io/corporate-ui-docs/images/bilmetro-logo.png">
+site-name="Bilmetro" short-name="Bilmetro" site-url="/" logo="https://scania.github.io/corporate-ui-docs/images/bilmetro-logo.png">
   <a href="/" slot="items">Configurator</a>
 </c-dealer-header>
       `,

@@ -59,7 +59,7 @@ addTheme(scania);
 
 ## Developing components
 
-### Prerequisites
+#### 1. Prerequisites
 
 - Download and install node.js: https://nodejs.org/en/
   
@@ -67,7 +67,7 @@ addTheme(scania);
 
 - If you're behind a firewall, CONFIGURE THE PROXY
 
-### Getting the code
+#### 2. Getting the code
 
 - Clone the Corporate UI Dev repo and install package dependencies: 
 ```shell
@@ -76,7 +76,7 @@ cd path/to/corporate-ui-dev
 npm i
 ```
 
-### Sync with theme project
+#### 3. Sync with theme project
 
 - Clone scania-theme repo and install package dependencies: 
 ```shell
@@ -100,10 +100,14 @@ npm link scania-theme
 npm start
 ```
 
-### Running demo
+#### 4. Running demo
 
 - Start the local setup by running `npm start`
 - Open your browser and go to [http://localhost:1337](http://localhost:1337)
+
+#### 5. Running test
+
+Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. To test locally run `npm test`
 
 ## Contributing
 

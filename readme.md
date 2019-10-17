@@ -17,10 +17,12 @@ In this repository we're developing the next generation components for Corporate
 ## Wiki
 
 [Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
-- Project focus and structure
-- Upgrade from version 3 to 4
-- Components status
-- Browser support, and more. 
+- [Developing components](https://github.com/scania/corporate-ui-dev/wiki/Developing-components)
+- [Project focus and structure](https://github.com/scania/corporate-ui-dev/wiki/Project-focus-and-structure)
+- [Upgrade from version 3 to 4](https://github.com/scania/corporate-ui-dev/wiki/Upgrade-from-version-3.x-to-4.x)
+- [Components status](https://github.com/scania/corporate-ui-dev/wiki/Component-status)
+- [Browser support](https://github.com/scania/corporate-ui-dev/wiki/Browser-Support)
+- and more. 
 
 
 ## Quick start
@@ -56,58 +58,6 @@ addTheme(scania);
 // to import all components pass an 'all' value
 // defineCustomElements('all');
 ```
-
-## Developing components
-
-#### 1. Prerequisites
-
-- Download and install node.js: https://nodejs.org/en/
-  
-  **NodeJS: use 8.15 or newer stable version of node**
-
-- If you're behind a firewall, CONFIGURE THE PROXY
-
-#### 2. Getting the code
-
-- Clone the Corporate UI Dev repo and install package dependencies: 
-```shell
-git clone https://github.com/scania/corporate-ui-dev.git
-cd path/to/corporate-ui-dev
-npm i
-```
-
-#### 3. Sync with theme project
-
-- Clone scania-theme repo and install package dependencies: 
-```shell
-git clone https://github.com/scania/scania-theme.git
-cd /path/to/scania-theme
-npm i
-```
-- Create a global symlink for `scania-theme` project. A symlink, short for symbolic link, is a shortcut that points to another directory or file on your syste. Go to scania-theme folder and do `npm link`
-- Start the local scania-theme setup by running `npm start`
-- Tell `corporate-ui-dev` to use the global symlink with `npm link scania-theme`
-
-[Read more about Scania theme](https://github.com/scania/scania-theme)
-
-```shell
-cd /path/to/scania-theme
-npm link
-npm start
-
-cd path/to/corporate-ui-dev
-npm link scania-theme
-npm start
-```
-
-#### 4. Running demo
-
-- Start the local setup by running `npm start`
-- Open your browser and go to [http://localhost:1337](http://localhost:1337)
-
-#### 5. Running test
-
-Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. To test locally run `npm test`
 
 ## Contributing
 

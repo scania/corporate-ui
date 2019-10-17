@@ -14,6 +14,14 @@ In this repository we're developing the next generation components for Corporate
 
 [Simple HTML ↗](https://codepen.io/corporate-ui/pen/OYmqpr) | [Angular ↗](https://github.com/scania/corporate-ui-angular) | [React ↗](https://github.com/scania/corporate-ui-react) | [Vue ↗](https://github.com/scania/corporate-ui-vue)
 
+## Wiki
+
+[Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
+- Project focus and structure
+- Upgrade from version 3 to 4
+- Components status
+- Browser support, and more. 
+
 
 ## Quick start
 
@@ -96,13 +104,6 @@ npm start
 
 - Start the local setup by running `npm start`
 - Open your browser and go to [http://localhost:1337](http://localhost:1337)
-
-## Wiki
-
-[Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
-- Project focus and structure
-- Components status
-- Browser support, and more. 
 
 ## Contributing
 

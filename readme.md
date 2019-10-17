@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.com/scania/corporate-ui-dev.svg?branch=master)](https://travis-ci.com/scania/corporate-ui-dev)
+[![npm version](http://img.shields.io/npm/v/corporate-ui-dev.svg?style=flat&color=1081C2)](https://npmjs.org/package/corporate-ui-dev)
+[![Github release](https://img.shields.io/github/v/tag/scania/corporate-ui-dev.svg?label=release&color=1081C2)](https://github.com/scania/corporate-ui-dev/releases)
+[![Components library](https://img.shields.io/badge/Components%20library-master-f4871a.svg)](https://d1kybmg72qo0dt.cloudfront.net/build/global/branch/master/www/index.html?selectedKind=Info&selectedStory=Corporate%20UI&full=0&addons=0&stories=1&panelRight=0)
 [![Join Slack](https://img.shields.io/badge/slack-join-%23dd3072.svg)](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/license/scania/corporate-ui-dev.svg?style=flat)
@@ -7,20 +10,10 @@
 
 In this repository we're developing the next generation components for Corporate UI. We're improving a lot of our findings that we've done implementing the current production version of the library: https://github.com/scania/corporate-ui
 
-## Table of contents
+**Demo page**
 
-- [Quick start](#quick-start)
-- [Styling](#styling)
-- [Setup local environment](#setup-local-environment)
-- [Wiki](#wiki)
-- [Learn more](#learn-more)
-  - [Focus area](#focus-area)
-  - [Purpose](#purpose)
-  - [Tech stack](#tech-stack)
-  - [Testing](#testing)
-- [Contributing](#contributing)
-- [Community](#community)
-- [License](#license)
+[Simple HTML ↗](https://codepen.io/corporate-ui/pen/OYmqpr) | [Angular ↗](https://github.com/scania/corporate-ui-angular) | [React ↗](https://github.com/scania/corporate-ui-react) | [Vue ↗](https://github.com/scania/corporate-ui-vue)
+
 
 ## Quick start
 
@@ -28,49 +21,66 @@ Several options to add corporate-ui in the project:
 
 1. Add via CDN, link to the script by adding the following to the `<head></head>`.
 
-```html
+Make sure to include scania-theme script BEFORE the corporate-ui script.
+
+```
+<script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
 <script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
 ```
-Replace the version number with the [available releases](https://github.com/scania/corporate-ui-dev/releases)
+Replace `x` with available releases.
 
 2. Install corporate-ui via NPM package by running the command below.
 
 ```
 npm i corporate-ui-dev
+npm i scania-theme
 ```
 
 Import component as a module with `defineCustomElements` function.
 
 ```js
-import { defineCustomElements } from 'corporate-ui-dev';
+import { defineCustomElements, addTheme } from 'corporate-ui-dev';
+import { theme as scania } from 'scania-theme'; 
 
 defineCustomElements(['c-theme', 'c-footer', 'c-content']);
+addTheme(scania);
+
 // to import all components pass an 'all' value
 // defineCustomElements('all');
 ```
 
-See project examples for [Angular](https://github.com/scania/corporate-ui-angular) and [React](https://github.com/scania/corporate-ui-react).
+## Developing components
 
-## Styling
+### Prerequisites
 
-A major change in the new setup is the configuration for styling. It enables the possibility to implement different brands styling with the use of `c-theme` component. The styling is now available as a separate package. All assets such as favicons, fonts, logotype, and wordmarks, now are added in the theme and are available in the theme package. 
-
-To apply the styling, you need to add a theme package and use `c-theme` component. Check out [Scania theme repository](https://github.com/scania/scania-theme/) for detail documentation.
-
-## Setup local environment
-
-- Clone the Corporate UI Dev repo: `git clone https://github.com/scania/corporate-ui-dev.git`
 - Download and install node.js: https://nodejs.org/en/
+  
+  **NodeJS: use 8.15 or newer stable version of node**
+
 - If you're behind a firewall, CONFIGURE THE PROXY
-- From the corporate-ui-dev folder, run `npm i` to install package dependencies
-- Start the local setup by running `npm start`
-- Open your browser and go to [http://localhost:1337](http://localhost:1337)
 
-To work on the Scania theme styling, here is how to setup the environment : 
+### Getting the code
 
-- Clone and install `scania-theme` project (see instructions [here](https://github.com/scania/scania-theme))
-- Create a global symlink for `scania-theme` project with `npm link`. A symlink, short for symbolic link, is a shortcut that points to another directory or file on your system.
-- Tell `corporate-ui-dev` to use the global symlink with `npm link scania-theme`.
+- Clone the Corporate UI Dev repo and install package dependencies: 
+```shell
+git clone https://github.com/scania/corporate-ui-dev.git
+cd path/to/corporate-ui-dev
+npm i
+```
+
+### Sync with theme project
+
+- Clone scania-theme repo and install package dependencies: 
+```shell
+git clone https://github.com/scania/scania-theme.git
+cd /path/to/scania-theme
+npm i
+```
+- Create a global symlink for `scania-theme` project. A symlink, short for symbolic link, is a shortcut that points to another directory or file on your syste. Go to scania-theme folder and do `npm link`
+- Start the local scania-theme setup by running `npm start`
+- Tell `corporate-ui-dev` to use the global symlink with `npm link scania-theme`
+
+[Read more about Scania theme](https://github.com/scania/scania-theme)
 
 ```shell
 cd /path/to/scania-theme
@@ -82,42 +92,17 @@ npm link scania-theme
 npm start
 ```
 
-## Requirements
+### Running demo
 
-**NodeJS: use 8.15 or newer stable version of node**
+- Start the local setup by running `npm start`
+- Open your browser and go to [http://localhost:1337](http://localhost:1337)
 
 ## Wiki
 
 [Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
-- Project examples in HTML, Angular, and React
-- Project structure
-- Components library
+- Project focus and structure
 - Components status
 - Browser support, and more. 
-
-## Learn more
-
-Corporate-UI 4 Beta: [What's new?](https://github.com/scania/corporate-ui-dev/releases/)
-
-### Focus area
-
-Focus is right now set on getting a solid architecture in place. Any of the basic components that you'll be able to view in this repository is not finalized when it comes to design and CSS values.
-
-### Purpose
-
-Corporate UI is a library for using and building web components as custom elements. Custom elements enables developers to in a really easy way apply branding guidelines and apply interaction patterns without having to build them all from scratch.
-
-### Tech stack
-
-Corporate UI outputs browser native code such as JavaScript, CSS and HTML. Although, behind the scenes a variety of tools are used. The technical infrastructure currently includes; Bootstrap, Sass, StencilJS, Redux, TSX, Travis, NPM, Gulp, esLint, Prettier, Jest, Puppeteer, Webpack and Storybook.
-
-### Testing
-
-Testing the components is done using the Stencil testing setup that includes unit test and End-to-End test. Both tests use Jest as the JavaScript testing solution. The browser environment for end-to-end testing is done using Puppeteer.
-
-To test locally:
-
-`npm test`
 
 ## Contributing
 

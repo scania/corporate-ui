@@ -27,6 +27,9 @@ export class Header {
   /** Short name will be displayed in the top-centered of the header on mobile mode */
   @Prop() shortName: string;
 
+  /** Variation to header */
+  @Prop({ reflectToAttr: true }) variation: string;
+
   @State() store: any;
 
   @State() navigationOpen: Boolean;
@@ -105,8 +108,10 @@ export class Header {
           </button> : ''
         }
 
+        <a href={ this.siteUrl } class='navbar-brand collapse'>
+          <slot name="brand-logo"/>
+        </a>
 
-        <a href={ this.siteUrl } class='navbar-brand collapse'></a>
         <strong class='navbar-title'>{ this.siteName }</strong>
 
         <div class={`collapse navbar-collapse${this.navigationOpen ? ' show' : ''}`}>

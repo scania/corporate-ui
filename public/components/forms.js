@@ -87,7 +87,142 @@ export default {
     {
       title: 'Readonly',
       content: `
-<input class="form-control" type="text" placeholder="Readonly input here..." value="Text goes here" readonly>
+<input class="form-control" type="text" placeholder="Readonly input here..." value="Readonly input goes here" readonly>
+      `,
+    },
+    {
+      title: 'Form groups',
+      content: `
+<form>
+  <div class="form-group">
+    <label for="formGroupExampleInput">Example label</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Another label</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+  </div>
+</form>
+      `,
+    },
+    {
+      title: 'Disabled forms',
+      content: `
+<form>
+  <fieldset disabled>
+    <div class="form-group">
+      <label for="disabledTextInput">Disabled input</label>
+      <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+    </div>
+    <div class="form-group">
+      <label for="disabledSelect">Disabled select menu</label>
+      <select id="disabledSelect" class="form-control">
+        <option>Disabled select</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
+        <label class="form-check-label" for="disabledFieldsetCheck">
+          Can't check this
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+      `,
+    },
+    {
+      title: 'Custom checkbox',
+      content: `
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div>
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+  <label class="custom-control-label" for="customCheck2">Checked custom checkbox</label>
+</div>
+      `,
+    },
+    {
+      title: 'Custom radio buttons',
+      content: `
+<div class="custom-control custom-radio">
+  <input type="radio" id="sbRadio-1" name="sbRadio01" class="custom-control-input" value="option1">
+  <label class="custom-control-label" for="sbRadio-1">Toggle this custom radio</label>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" id="sbRadio-2" name="sbRadio01" class="custom-control-input" value="option2">
+  <label class="custom-control-label" for="sbRadio-2">Or toggle this other custom radio</label>
+</div>
+      `,
+    },
+    {
+      title: 'Disabled custom checkbox and radio buttons',
+      content: `
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheckDisabled1" disabled>
+  <label class="custom-control-label" for="customCheckDisabled1">Check this custom checkbox</label>
+</div>
+
+<div class="custom-control custom-radio">
+  <input type="radio" name="radioDisabled" id="customRadioDisabled2" class="custom-control-input" disabled>
+  <label class="custom-control-label" for="customRadioDisabled2">Toggle this custom radio</label>
+</div>
+
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheckDisabled3" checked disabled>
+  <label class="custom-control-label" for="customCheckDisabled3">Checked disabled checkbox</label>
+</div>
+      `,
+    },
+    {
+      title: 'Validation visual cues',
+      content: `
+<form>
+  <div class="form-row">
+    <div class="col-md-6 mb-5">
+      <label for="validationServer01">First name</label>
+      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-6 mb-5">
+      <label for="validationServer02">Last name</label>
+      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationServer03">City</label>
+      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer04">State</label>
+      <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer05">Zip</label>
+      <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
       `,
     },
     // {
@@ -173,21 +308,6 @@ export default {
     //   </div>
     //   `,
     // },
-    {
-      title: 'Form groups',
-      content: `
-      <form>
-        <div class="form-group">
-          <label for="formGroupExampleInput">Example label</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-        </div>
-        <div class="form-group">
-          <label for="formGroupExampleInput2">Another label</label>
-          <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-        </div>
-      </form>
-      `,
-    },
     // {
     //   title: 'Form grid',
     //   content: `
@@ -346,80 +466,5 @@ export default {
     //   </form>
     //   `,
     // },
-    // {
-    //   title: 'Disabled forms',
-    //   content: `
-    //   <form>
-    //     <fieldset disabled>
-    //       <div class="form-group">
-    //         <label for="disabledTextInput">Disabled input</label>
-    //         <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
-    //       </div>
-    //       <div class="form-group">
-    //         <label for="disabledSelect">Disabled select menu</label>
-    //         <select id="disabledSelect" class="form-control">
-    //           <option>Disabled select</option>
-    //         </select>
-    //       </div>
-    //       <div class="form-group">
-    //         <div class="form-check">
-    //           <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
-    //           <label class="form-check-label" for="disabledFieldsetCheck">
-    //             Can't check this
-    //           </label>
-    //         </div>
-    //       </div>
-    //       <button type="submit" class="btn btn-primary">Submit</button>
-    //     </fieldset>
-    //   </form>
-    //   `,
-    // },
-    {
-      title: 'Validation visual cues',
-      content: `
-      <form>
-        <div class="form-row">
-          <div class="col-md-6 mb-5">
-            <label for="validationServer01">First name</label>
-            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-          <div class="col-md-6 mb-5">
-            <label for="validationServer02">Last name</label>
-            <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-6 mb-3">
-            <label for="validationServer03">City</label>
-            <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
-            <div class="invalid-feedback">
-              Please provide a valid city.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationServer04">State</label>
-            <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
-            <div class="invalid-feedback">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="validationServer05">Zip</label>
-            <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
-            <div class="invalid-feedback">
-              Please provide a valid zip.
-            </div>
-          </div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </form>
-      `,
-    },
   ],
 };

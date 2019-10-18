@@ -27,7 +27,6 @@ const filteredItems = [
   'figures',
   'images',
   'jumbotron',
-  'media-object',
   'popovers',
   'spinners',
   'toasts',

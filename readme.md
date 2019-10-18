@@ -14,6 +14,7 @@ In this repository we're developing the next generation components for Corporate
 
 [Simple HTML ↗](https://codepen.io/corporate-ui/pen/OYmqpr) | [Angular ↗](https://github.com/scania/corporate-ui-angular) | [React ↗](https://github.com/scania/corporate-ui-react) | [Vue ↗](https://github.com/scania/corporate-ui-vue)
 
+
 ## Wiki
 
 [Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
@@ -31,33 +32,64 @@ Several options to add corporate-ui in the project:
 
 1. Add via CDN, link to the script by adding the following to the `<head></head>`.
 
-Make sure to include scania-theme script BEFORE the corporate-ui script.
-
-```
-<script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
-<script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
-```
-Replace `x` with available releases.
+   ```
+   <script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
+   ```
+   Replace `x` with [available releases](https://github.com/scania/corporate-ui-dev/releases).
 
 2. Install corporate-ui via NPM package by running the command below.
 
-```
-npm i corporate-ui-dev
-npm i scania-theme
-```
+   ```
+   npm i corporate-ui-dev
+   ```
 
-Import component as a module with `defineCustomElements` function.
+   Import component as a module with `defineCustomElements` function.
 
-```js
-import { defineCustomElements, addTheme } from 'corporate-ui-dev';
-import { theme as scania } from 'scania-theme'; 
+   ```js
+   import { defineCustomElements } from 'corporate-ui-dev';
 
-defineCustomElements(['c-theme', 'c-footer', 'c-content']);
-addTheme(scania);
+   defineCustomElements(['c-theme', 'c-footer', 'c-content']);
 
-// to import all components pass an 'all' value
-// defineCustomElements('all');
-```
+   // to import all components pass an 'all' value
+   // defineCustomElements('all');
+   ```
+   
+   See all available components in the [components library](https://d1kybmg72qo0dt.cloudfront.net/build/global/branch/master/www/index.html).
+
+## Styling
+
+To apply the styling, you need to add a theme package and use c-theme component. Check out [Scania theme repository](https://github.com/scania/scania-theme/) for detail documentation.
+
+1. CDN link
+
+   Make sure to include scania-theme script BEFORE the corporate-ui script.
+   ```html
+   <script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
+   <script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
+   ```
+   
+2. NPM package
+   
+   Install scania-theme package by running the command below.
+   ```shell
+   npm i scania-theme
+   ```
+   
+   Import theme in the project and use it with `addTheme` function from corporate-ui.
+   ```js
+   import { defineCustomElements, addTheme } from 'corporate-ui-dev'; 
+   import { theme as scania } from 'scania-theme'; 
+
+   defineCustomElements('all'); 
+   addTheme(scania);
+   ```
+3. Add theme to project
+
+   Initialize the theme with the `c-theme` component. Set `global` attribute to true in order to enable bootstrap styling.
+   
+   ```html
+   <c-theme name="scania" global="true"></c-theme>
+   ```
 
 ## Contributing
 

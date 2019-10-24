@@ -27,7 +27,8 @@ export class GlobalStyle {
   }
 
   async loadLibs() {
-    await import('jquery');
+    const jquery = await import('jquery');
+    window.CorporateUi.$ = jquery.default;
     await import('bootstrap');
   }
 

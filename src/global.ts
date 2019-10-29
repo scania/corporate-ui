@@ -24,6 +24,7 @@ import { store, actions } from './store';
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
+const defaultTheme = { default: { icons: {} } };
 
 Object.values({ ...fas, ...fab }).map(item => {
   // TODO: Would like to combine these two rows somehow...
@@ -32,6 +33,8 @@ Object.values({ ...fas, ...fab }).map(item => {
     width, height, attrs, unicode, definition,
   };
 });
+
+defaultTheme.default.icons = icons;
 
 // When running tests Context is already declared
 /* eslint-disable block-scoped-var, vars-on-top, no-var */
@@ -43,7 +46,7 @@ if (!Context) {
 
 Context.store = store;
 
-store.dispatch({ type: actions.ADD_ICONS, items: icons });
+store.dispatch({ type: actions.ADD_THEME, theme: defaultTheme });
 
 document.dispatchEvent(event);
 

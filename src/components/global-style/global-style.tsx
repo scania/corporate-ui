@@ -28,7 +28,9 @@ export class GlobalStyle {
 
   async loadLibs() {
     const jquery = await import('jquery');
-    window.CorporateUi.$ = jquery.default;
+    /* eslint-disable dot-notation */
+    window['CorporateUi'].$ = jquery.default;
+    /* eslint-enable dot-notation */
     await import('bootstrap');
   }
 

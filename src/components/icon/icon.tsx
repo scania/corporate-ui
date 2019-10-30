@@ -27,6 +27,7 @@ export class Icon {
   @Watch('theme')
   setTheme() {
     this.theme = this.store.getState().theme.current;
+    this.setIcon();
   }
 
   @Watch('name')
@@ -46,9 +47,8 @@ export class Icon {
     this.setIcon();
 
     this.store.subscribe(() => {
+      this.theme = this.store.getState().theme.current;
       this.currentTheme = this.store.getState().theme[this.theme];
-
-      this.setIcon();
     });
   }
 

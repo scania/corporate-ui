@@ -24,7 +24,7 @@ import { store, actions } from './store';
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
-const defaultTheme = { default: { icons: {} } };
+const defaultTheme = { default: { icons: {}, components: {}, colors: {} } };
 
 Object.values({ ...fas, ...fab }).map(item => {
   // TODO: Would like to combine these two rows somehow...

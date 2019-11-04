@@ -1,96 +1,128 @@
 <div class$="wrapper {{view}}">
   <section>
-    <h2 class="text-center">{{headline}}</h2>
-    <p class="text-center mt-4">{{description}}
-      <button class="sign-up-link btn-link btn-info btn-text" on-click="setView" data-target="register">Create an account.</button>
+    <h2 class="text-center">{{loginSelectHeadline}}</h2>
+    <p class="text-center mt-4">{{loginSelectDescription}}</p>
+    <content select="[slot=login-select]"></content>
+  </section>
+
+  <section>
+    <h2 class="text-center">{{loginHeadline}}</h2>
+    <p class="text-center mt-4">
+      {{loginDescriptionRegister}}
+      <template is="dom-if" if="{{register}}">
+        <button
+          class="sign-up-link btn-link btn-info btn-text"
+          on-click="setView"
+          data-target="register">{{toRegister}}</button>
+      </template>
     </p>
-    <form action="login">
-      <content select="form-field">
-        <form-field type="text" name="username" label="Username"></form-field>
-        <form-field type="password" name="password" label="Password"></form-field>
+    <form action="{{loginAction}}" method="post">
+      <content select="[slot=login]">
+        <form-field type="text" name="username" label="Username" required="true"></form-field>
+        <form-field type="password" name="password" label="Password" required="true"></form-field>
       </content>
 
       <!-- Should show a notification component here instead -->
-      <template is="dom-if" if="{{showMessage}}">
-        <div class$="alert alert-{{messageType}}">{{message}}</div>
+      <template is="dom-if" if="{{showLoginMessage}}">
+        <div class$="alert alert-warning">{{loginMessage}}</div>
       </template>
 
-      <button type="submit" class="btn btn-success btn-lg btn-block">Log in</button>
-
-      <!-- <content select="button"></content> -->
-      <!-- <button type="button" class="btn btn-link" on-click="forgotpassword">Forgot your password</button> -->
+      <button
+        type="submit"
+        class="btn btn-success btn-lg btn-block">Log in</button>
     </form>
-    <p class="text-center mt-5">Have you
-      <button class="btn-link btn-info btn-text" on-click="setView" data-target="recover">forgotten your password?</button>
-    </p>
-    <p class="help-block text-center mt-5">This portal uses cookies. By logging in, you are allowing cookies to be saved on your computer.</p>
+    <template is="dom-if" if="{{recover}}">
+      <p class="text-center mt-5">
+        {{loginDescriptionRecover}}
+        <button
+          class="btn-link btn-info btn-text"
+          on-click="setView"
+          data-target="recover">{{toRecover}}</button>
+      </p>
+    </template>
+    <p class="text-center mt-5">{{cookieMessage}}</p>
   </section>
 
-<!-- Registration page Start-->
   <section>
-    <h2 class="text-center">Sign up for Scania Developer Portal</h2>
-    <p class="text-center mt-4">Once the account has been created and verified, you will be able to access all Scania's API.</p>
-    <!-- Registration form -->
-    <form action="register">
-      <div class="row">
-        <div class="form-group col-sm-6">
-          <label class="btn-block">First name
-            <input type="text" class="form-control" name="fname" autofocus>
-          </label>
+    <h2 class="text-center">{{registerHeadline}}</h2>
+    <p class="text-center mt-4">{{registerDescription}}</p>
+    <form action="register" method="post">
+      <content select="[slot=register]">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <form-field type="text" name="fname" label="First name"></form-field>
+          </div>
+          <div class="form-group col-sm-6">
+            <form-field type="text" name="lname" label="Last name"></form-field>
+          </div>
         </div>
-        <div class="form-group col-sm-6">
-          <label class="btn-block">Last name
-            <input type="text" class="form-control" name="lname">
-          </label>
+        <div class="form-group">
+          <form-field type="text" name="email" label="Email address" required="true"></form-field>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="btn-block">Email address
-          <input type="email" class="form-control" name="email">
-        </label>
-      </div>
-      <div class="form-group">
-        <form-field type="password" name="password" label="Password"></form-field>
-      </div>
+        <div class="form-group">
+          <form-field type="password" name="password" label="Password" required="true"></form-field>
+        </div>
+      </content>
       <!-- Should be triggered from submit on form later on -->
-      <button type="submit" class="reg-form-submit btn btn-lg btn-block btn-success mt-5">Sign up</button>
+      <button
+        type="submit"
+        class="reg-form-submit btn btn-lg btn-block btn-success mt-5">Sign up</button>
     </form>
-    <p class="text-center mt-5">By signing up you agree to
-      <a href="#" class="regconf-form-link btn-link btn-info">terms and conditions.</a>
-    </p>
+    <template is="dom-if" if="{{terms}}">
+      <p class="text-center mt-5">
+        {{termsMessage}}
+        <a href="#" class="regconf-form-link btn-link btn-info">{{toTerms}}</a>
+      </p>
+    </template>
   </section>
-<!-- Registration page End -->
+
   <section>
     <h2 class="text-center">Your user account has been created and needs to be activated.</h2>
-    <!--Header end -->
     <p class="text-center mt-4">To activate your user account, please follow the link that has been sent to the following address</p>
-    <p class="text-center"><strong>Scania@scania.com</strong></p>
+    <p class="text-center">
+      <strong>Scania@scania.com</strong>
+    </p>
     <!--!!! Add script to collect used address-->
     <p class="text-center mt-5">If you do not receive this email, please check your spam filter or re-register.</p>
-    <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
+    <button
+      type="button"
+      class="reg-go-signin btn btn-lg btn-block btn-primary mt-5"
+      on-click="setView"
+      data-target="login">Back to login</button>
   </section>
 
   <section>
-    <h2 class="text-center">Password recovery</h2>
-    <p class="text-center mt-4">Enter your email to recover your password.</p>
-    <form action="recover">
+    <h2 class="text-center">{{recoverHeadline}}</h2>
+    <p class="text-center mt-4">{{recoverDescription}}</p>
+    <form action="{{recoverAction}}" method="post">
       <div class="form-group">
-        <label class="btn-block">Email address
-          <input type="email" class="form-control" name="email">
-        </label>
+        <content select="[slot=recover]">
+          <form-field type="email" name="email" label="Email address" required="true"></form-field>
+        </content>
       </div>
       <!-- Should be triggered from submit on form later on -->
-      <button type="submit" class="reg-form-submit btn btn-lg btn-block btn-warning mt-5">Recover password</button>
-      <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5 ml-0" on-click="setView" data-target="login">Back to startpage</button>
+      <button
+        type="submit"
+        class="reg-form-submit btn btn-lg btn-block btn-warning mt-5">Recover password</button>
+      <button
+        type="button"
+        class="reg-go-signin btn btn-lg btn-block btn-primary mt-5 ml-0"
+        on-click="setView"
+        data-target="login">Back to login</button>
     </form>
   </section>
 
   <section>
-    <h2 class="text-center">Password recovery</h2>
-    <!--Header end -->
-    <p class="text-center mt-4">Your password have been reset and sent to your email.</p>
-    <p class="text-center"><strong>Scania@scania.com</strong></p>
-    <button type="button" class="reg-go-signin btn btn-lg btn-block btn-primary mt-5" on-click="setView" data-target="login">Back to startpage</button>
+    <h2 class="text-center">{{recoveredHeadline}}</h2>
+    <p class="text-center mt-4">{{recoveredDescription}}</p>
+    <p class="text-center">
+      <strong>{{email}}</strong>
+    </p>
+    <button
+      type="button"
+      class="reg-go-signin btn btn-lg btn-block btn-primary mt-5"
+      on-click="setView"
+      data-target="login">Back to startpage</button>
   </section>
 </div>
 

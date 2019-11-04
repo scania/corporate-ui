@@ -11,7 +11,7 @@
   </template>
 
   <template is="dom-if" if="{{fieldType('input')}}">
-    <input type="{{type}}" name="{{name}}" class="form-control">
+    <input type="{{type}}" name="{{name}}" class="form-control" required$="[[required]]">
   </template>
 
   <template is="dom-if" if="{{fieldType('radio')}}">

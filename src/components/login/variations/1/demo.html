@@ -1,5 +1,7 @@
 
-  <c-login headline="Welcome to Scania" description="To log in to the resource you requested, please select your account type and submit your username and password in the form.">
+  <c-login login-headline="Welcome to Scania" login-description="To log in to the resource you requested, please select your account type and submit your username and password in the form.">
+    <select-item headline="Service one" description="You can choose this service if you want" slot="login-select"></select-item>
+
     <form-field type="text" name="username" label="Username"></form-field>
     <form-field type="password" name="password" label="Password"></form-field>
   </c-login>

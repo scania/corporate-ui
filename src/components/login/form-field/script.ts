@@ -1,11 +1,11 @@
 Polymer({
   is: name,
   properties: {
+    variation: 0,
     id: String,
     fullbleed: {
       value: true
     },
-    variation: 0,
     type: {
       type: String,
       value: 'text'
@@ -15,6 +15,9 @@ Polymer({
     },
     label: {
       type: String
+    },
+    required: {
+      type: Boolean
     }
   },
   attached: function() {

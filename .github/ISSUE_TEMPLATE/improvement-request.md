@@ -1,13 +1,14 @@
 ---
 name: Improvement request
 about: Use this option when you have defined an existing area that can be improved.
-  Please attach relevant research documentation so that your issue can be handled
-  at the UX Management Group.
 title: Improvement - "Add title"
 labels: Improvement
 assignees: ''
 
 ---
+
+**Describe current situation**
+_Describe what the current situation and what problem it is causing for this improvement_
 
 **Describe the improvement**
 _A clear and concise description of what kind of improvement you have in mind._

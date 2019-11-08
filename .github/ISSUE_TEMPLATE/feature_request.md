@@ -10,7 +10,7 @@ assignees: ''
 ---
 
 **What is your feature request?**
-_A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]_
+_A clear and concise description of what the feature is. Ex. I'm always frustrated when [...]_
 
 **Describe the solution you'd like**
 _A clear and concise description of what you want to happen._

@@ -7,47 +7,47 @@ assignees: ''
 
 ---
 
-**Describe the bug**
+**Describe the bug**  
 _A clear and concise description of what the bug is._
 
-**To Reproduce**
+**To Reproduce**   
 _Steps to reproduce the behavior:_  
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+**Expected behavior**  
 _A clear and concise description of what you expected to happen._
 
-**Screenshots**
+**Screenshots**  
 _If applicable, add screenshots to help explain your problem._
 
-**Version of Corporate-ui**
+**Version of Corporate-ui**  
  _E.g 4.0.0-alpha.1_
 
 
-**Framework and version**
+**Framework and version**  
 _If you use any specific framework please provide information_
 - Framework: [e.g Angular]
 - Version: [ e.g 6 ]
 
-**Application link**
+**Application link**  
 _Provide link if possible_  
 - [https://example.com](/)
 
-**Desktop information:**
+**Desktop information:**  
 _Please complete the following information_
  - Browser [e.g. chrome, safari]
  - Version [e.g. 76]
  - OS: [e.g. Windows 10]
 
-**Smartphone information**
+**Smartphone information**  
 _Please complete the following information_
  - Device: [e.g. iPhone6]
  - OS: [e.g. iOS 8.1]
  - Browser [e.g. safari]
  - Version [e.g. 11]
 
-**Additional context**  
+**Additional context**   
 _Add any other context about the problem here._

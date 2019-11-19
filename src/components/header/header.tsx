@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element, Watch,
+  Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
 
 import { actions } from '../../store';
@@ -57,6 +57,7 @@ export class Header {
 
   toggleNavigation(open) {
     this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
+
     setTimeout(() => {
       this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
     }, 350);
@@ -75,13 +76,11 @@ export class Header {
     });
 
     this.hasNav = !!document.querySelector('c-navigation');
-  }
 
-  componentDidLoad() {
     // To make sure navigation is always hidden from start
     this.toggleNavigation(false);
 
-    if (!this.el) return;
+    if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
   }

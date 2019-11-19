@@ -1,6 +1,6 @@
-import { store } from '../../store';
+// import { store } from '../../store';
 import { Footer } from './footer';
-import { applyTheme } from '../../unittest';
+import { applyTheme } from '../../global.spec';
 
 const component = new Footer();
 
@@ -8,8 +8,7 @@ describe('footer', (function () {
   const items = [{ text: 'contact us' }];
   const socialItems = [{ icon: 'youtube' }];
 
-  this.ContextStore = store;
-  this.componentWillLoad();
+  applyTheme.call(this);
 
   it('is initiated', () => {
     expect(this).toBeTruthy();
@@ -38,6 +37,4 @@ describe('footer', (function () {
     // check if functionality to generate link items work
     expect(this.socialItems).toEqual(socialItems);
   });
-
-  applyTheme(Footer);
 }).bind(component));

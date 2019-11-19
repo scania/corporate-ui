@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element, Watch,
+  Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
 
 @Component({
@@ -58,11 +58,14 @@ export class Footer {
     this.setSocialItems(this.socialItems);
 
     this.store.subscribe(() => this.setTheme());
+
+    if (!(this.el && this.el.nodeName)) return;
+
+    this.tagName = this.el.nodeName.toLowerCase();
   }
 
   componentDidLoad() {
     this.initialSlot = this.el.innerHTML;
-    this.tagName = this.el.nodeName.toLowerCase();
   }
 
   parse(items) {

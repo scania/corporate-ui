@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Watch, Element,
+  Component, h, Prop, State, Watch, Element,
 } from '@stencil/core';
 
 @Component({
@@ -42,10 +42,8 @@ export class Icon {
 
       this.setIcon();
     });
-  }
 
-  componentDidLoad() {
-    if (!this.el) return;
+    if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
   }

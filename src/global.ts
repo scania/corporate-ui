@@ -33,19 +33,10 @@ Object.values({ ...fas, ...fab }).map(item => {
   };
 });
 
-// When running tests Context is already declared
-/* eslint-disable block-scoped-var, vars-on-top, no-var */
-if (!Context) {
-  var Context: any = {};
-}
-
 (<any>window).CorporateUi = { ...(<any>window).CorporateUi, ...detail };
-
-Context.store = store;
 
 store.dispatch({ type: actions.ADD_ICONS, items: icons });
 
 document.dispatchEvent(event);
 
 (<any>window).CorporateUi.storeReady = true;
-/* eslint-enable block-scoped-var, vars-on-top, no-var */

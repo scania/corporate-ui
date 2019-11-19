@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element, Watch, Listen,
+  Component, h, Prop, State, Element, Watch, Listen,
 } from '@stencil/core';
 
 import { actions } from '../../store';
@@ -71,7 +71,7 @@ export class Navigation {
     this.currentTheme = this.store.getState().themes[this.theme];
   }
 
-  @Listen('window:scroll')
+  @Listen('scroll', { target: 'window' })
   handleScroll() {
     let isStick = false;
     // try catch is used to avoid error in IE with getBoundingClientRect
@@ -92,7 +92,7 @@ export class Navigation {
     }
   }
 
-  @Listen('window:resize')
+  @Listen('resize', { target: 'window' })
   onResize() {
     this.navWidth = (document.querySelector('c-header') || {} as any).clientWidth;
     if (window.innerWidth < 992) this.el.removeAttribute('style');
@@ -120,16 +120,15 @@ export class Navigation {
       this.setTheme();
     });
 
-    if (this.el) this.isSub = this.el.getAttribute('slot') === 'sub';
+    if (!(this.el && this.el.nodeName)) return;
+
+    this.tagName = this.el.nodeName.toLowerCase();
+    this.isSub = this.el.getAttribute('slot') === 'sub';
+
+    this.isIE = !document.head.attachShadow;
   }
 
   componentDidLoad() {
-    if (!this.el) return;
-
-    this.tagName = this.el.nodeName.toLowerCase();
-
-    this.isIE = !document.head.attachShadow;
-
     this.toggleSubNavigation(undefined);
 
     if (!document.querySelector('c-header')) this.toggleNavigation(true);

@@ -3,10 +3,6 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 /* eslint-enable no-unused-vars */
 
-const sassOpts: object = {
-  includePaths: ['node_modules'],
-};
-
 export const config: Config = {
   namespace: 'corporate-ui',
   globalScript: 'src/global.ts',
@@ -32,9 +28,11 @@ export const config: Config = {
     },
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/'],
+    testPathIgnorePatterns: ['/node_modules/', 'global.spec'],
   },
   plugins: [
-    sass(sassOpts),
+    sass({
+      includePaths: ['node_modules'],
+    }),
   ],
 };

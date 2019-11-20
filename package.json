@@ -6,8 +6,8 @@
     "type": "git",
     "url": "git+https://github.com/scania/corporate-ui-dev.git"
   },
-  "module": ".build/collection/helpers/index.js",
-  "main": ".build/collection/helpers/index.js",
+  "module": ".build/collection/index.js",
+  "main": ".build/collection/index.js",
   "collection": ".build/collection/collection-manifest.json",
   "files": [
     ".build"

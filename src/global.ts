@@ -24,8 +24,10 @@ import { store, actions } from './store';
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
+const fa_icons = { ...fas, ...fab };
 
-Object.values({ ...fas, ...fab }).map(item => {
+Object.keys(fa_icons).map(key => {
+  const item = fa_icons[key];
   // TODO: Would like to combine these two rows somehow...
   const [width, height, attrs, unicode, definition] = item.icon;
   icons[item.iconName] = {

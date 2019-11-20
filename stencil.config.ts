@@ -18,14 +18,6 @@ export const config: Config = {
       dir: '.www',
       serviceWorker: null, // disable service workers
     },
-    {
-      type: 'docs-json',
-      file: '.data/docs.json',
-    },
-    {
-      type: 'stats',
-      file: '.data/stats.json',
-    },
   ],
   testing: {
     testPathIgnorePatterns: ['/node_modules/', 'global.spec'],

@@ -62,9 +62,7 @@ export class Footer {
     if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
-  }
 
-  componentDidLoad() {
     this.initialSlot = this.el.innerHTML;
   }
 

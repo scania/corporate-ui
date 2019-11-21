@@ -2,12 +2,9 @@
 import { applyPolyfills, defineCustomElements as dce } from '../loader';
 export { defineCustomElements, addTheme };
 
-function defineCustomElements(comps=[]){
-  return applyPolyfills().then(() => {
-    dce(window);
-  });
+function defineCustomElements(components=[]) {
+  return applyPolyfills().then(() => dce(window));
 }
-
 
 function addTheme(_theme) {
   const { store, actions, storeReady } = window.CorporateUi || {};

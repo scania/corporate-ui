@@ -11,7 +11,9 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      dir: '.build',
+      copy: [
+        { src: '../.build/index.js', dest: 'index.js' }
+      ]
     },
     {
       type: 'www',

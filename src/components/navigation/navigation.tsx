@@ -126,12 +126,9 @@ export class Navigation {
     this.isSub = this.el.getAttribute('slot') === 'sub';
 
     this.isIE = !document.head.attachShadow;
-  }
 
-  componentDidLoad() {
     this.toggleSubNavigation(undefined);
-
-    if (!document.querySelector('c-header')) this.toggleNavigation(true);
+    this.toggleNavigation(true);
   }
 
   componentDidUpdate() {

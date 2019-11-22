@@ -8,6 +8,7 @@ export const config: Config = {
   globalScript: 'src/global.ts',
   enableCache: false,
   hashFileNames: false,
+  devMode: true,  
   outputTargets: [
     {
       type: 'dist',

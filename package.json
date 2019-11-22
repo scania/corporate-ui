@@ -15,7 +15,7 @@
   "scripts": {
     "start": "npm run babel && npm run stencil:watch",
     "build": "npm run babel && npm run stencil",
-    "babel": "if not exist .build mkdir .build && babel src/helpers/index.js --out-file .build/index.js",
+    "babel": "mkdirp .build && babel src/helpers/index.js --out-file .build/index.js",
     "stencil": "stencil build --docs-json .data/docs.json",
     "stencil:watch": "stencil build --docs-json .data/docs.json --dev --esm --es5 --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -52,6 +52,7 @@
     "jest": "24.9.0",
     "jest-cli": "24.9.0",
     "jquery": "3.4.1",
+    "mkdirp": "^0.5.1",
     "popper.js": "1.15.0",
     "puppeteer": "1.19.0",
     "redux": "4.0.4"

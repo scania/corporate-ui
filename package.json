@@ -13,11 +13,10 @@
     "dist"
   ],
   "scripts": {
-    "start": "npm run babel && npm run stencil:watch",
-    "build": "npm run babel && npm run stencil",
+    "start": "npm run build -- --watch",
+    "build": "npm run babel && npm run stencil --",
     "babel": "if not exist .build mkdir .build && babel src/helpers/index.js --out-file .build/index.js",
-    "stencil": "stencil build --docs-json .data/docs.json",
-    "stencil:watch": "stencil build --docs-json .data/docs.json --dev --esm --es5 --watch",
+    "stencil": "stencil build --docs-json .data/docs.json --esm --es5",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "npm run lint -- --fix",
     "lint-debug": "npm run lint -- --debug",

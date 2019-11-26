@@ -12,6 +12,7 @@
 
 @import '../../components.scss';
 
+// TODO: Change this to render as a mixin instead
 %expandCollapse {
   content: "";
   display: inline-block;

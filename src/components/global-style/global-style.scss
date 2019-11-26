@@ -25,20 +25,20 @@ $Interaction-types: primary, secondary, success, info, warning, danger, light, d
 
       &,
       &:hover {
-        background-color: var(--#{$type});
-        border-color: var(--#{$type});
+        background-color: Var(--#{$type});
+        border-color: Var(--#{$type});
       }
     }
   }
   &-link {
-    color: var(--link-color);
+    color: Var(--link-color);
   }
   &-light {
 
     &,
     &:hover {
-      color: var(--dark);
-      border-color: var(--dark);
+      color: Var(--dark);
+      border-color: Var(--dark);
     }
   }
 }

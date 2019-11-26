@@ -69,7 +69,7 @@ body[data-env=""]:before,
 body[data-env=prod]:before,
 body[data-env=production]:before,
 body[data-env=hidden]:before {
-  display:none;
+  display: none;
 }
 
 body[data-env=development]:before {

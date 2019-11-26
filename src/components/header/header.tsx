@@ -40,7 +40,7 @@ export class Header {
 
   @State() height = 0;
 
-  @State() hasNav : boolean;
+  @State() hasNav: boolean;
 
   @Element() el: HTMLElement;
 
@@ -94,7 +94,7 @@ export class Header {
 
   render() {
     return [
-      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {
@@ -108,7 +108,7 @@ export class Header {
         }
 
         <a href={ this.siteUrl } class='navbar-brand collapse'>
-          <slot name="brand-logo"/>
+          <slot name="brand-logo" />
         </a>
 
         <strong class='navbar-title'>{ this.siteName }</strong>

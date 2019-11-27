@@ -36,7 +36,7 @@ export class Header {
 
   @State() tagName: string;
 
-  @State() currentTheme: object;
+  @State() currentTheme = { components: [] };
 
   @State() height = 0;
 
@@ -51,8 +51,8 @@ export class Header {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.theme];
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
   }
 
   toggleNavigation(open) {
@@ -95,7 +95,7 @@ export class Header {
 
   render() {
     return [
-      this.currentTheme ? <style id="themeStyle">{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style id="themeStyle">{ this.currentTheme.components[this.tagName] }</style> : '',
 
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {

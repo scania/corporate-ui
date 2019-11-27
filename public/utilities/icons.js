@@ -14,7 +14,10 @@ class Icons extends React.Component {
   }
 
   setItems() {
-    const icons = this.props.store.getState().icon.items;
+    const theme = this.props.store.getState().theme;
+    const currentTheme = theme.current;
+    const icons = theme.items[currentTheme].icons;
+
     if (this.state.icons !== icons) {
       this.setState({ icons });
     }

@@ -18,13 +18,21 @@ export class Icon {
 
   @State() tagName: string;
 
-  @State() currentTheme: object;
+  @State() theme: string;
+
+  @State() currentTheme = { icons: { }, components: [] };
 
   @Element() el: any;
 
+  @Watch('theme')
+  setTheme() {
+    this.theme = this.store.getState().theme.current;
+    this.setIcon();
+  }
+
   @Watch('name')
   setIcon(name = this.name) {
-    const items = this.store.getState().icon.items;
+    const items = this.store.getState().theme.items[this.theme].icons;
 
     // TODO: We should have the default icon being a simple
     // square instead of first icon in the collection
@@ -33,14 +41,14 @@ export class Icon {
 
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
-    this.currentTheme = this.store.getState().themes[this.store.getState().theme.name];
+    this.theme = this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme[this.theme];
 
     this.setIcon();
 
     this.store.subscribe(() => {
-      this.currentTheme = this.store.getState().themes[this.store.getState().theme.name];
-
-      this.setIcon();
+      this.theme = this.store.getState().theme.current;
+      this.currentTheme = this.store.getState().theme[this.theme];
     });
   }
 
@@ -52,7 +60,7 @@ export class Icon {
 
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
       <svg xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${this.icon.width} ${this.icon.height}`}>
         <path fill='currentColor' d={this.icon.definition} />
       </svg>,

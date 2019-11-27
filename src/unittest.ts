@@ -21,13 +21,13 @@ export const applyTheme = (Component) => {
     // this.theme = theme;
 
     it('should support theming', () => {
-      expect(store.getState().theme.name).toBe(theme);
+      expect(store.getState().theme.current).toBe(theme);
       expect(this.theme).toBe(theme);
 
       this.setTheme(newTheme);
 
       expect(this.theme).toBe(newTheme);
-      expect(store.getState().theme.name).not.toBe(newTheme);
+      expect(store.getState().theme.current).not.toBe(newTheme);
     });
   }).call(component);
 };

@@ -5,28 +5,16 @@ export const actions = {
   ADD_THEME: 'ADD_THEME',
   TOGGLE_NAVIGATION: 'TOGGLE_NAVIGATION',
   TOGGLE_SUB_NAVIGATION: 'TOGGLE_SUB_NAVIGATION',
-  ADD_ICONS: 'ADD_ICONS',
-  REMOVE_ICONS: 'REMOVE_ICONS',
-  ADD_COLORS: 'ADD_COLORS',
 };
 
 export const store = createStore(reducers());
 
-// TODO: theme and themes should be merged and be restructure
-// Something like: theme: { items: {}, current: '' }
-function theme(state = { name: '' }, action) {
+function theme(state = { current: 'default', items: {} }, action) {
   switch (action.type) {
     case actions.SET_THEME:
-      return { ...state, name: action.name };
-    default:
-      return state;
-  }
-}
-
-function themes(state = { }, action) {
-  switch (action.type) {
+      return { ...state, current: action.current };
     case actions.ADD_THEME:
-      return { ...state, ...action.theme };
+      return { ...state, items: { ...state.items, ...action.theme } };
     default:
       return state;
   }
@@ -43,32 +31,9 @@ function navigation(state = { open: true, expanded: undefined }, action) {
   }
 }
 
-function icon(state = { items: {} }, action) {
-  switch (action.type) {
-    case actions.ADD_ICONS:
-      return { ...state, items: { ...state.items, ...action.items } };
-    case actions.REMOVE_ICONS:
-      return { ...state, items: { } };
-    default:
-      return state;
-  }
-}
-
-function color(state = { items: {} }, action) {
-  switch (action.type) {
-    case actions.ADD_COLORS:
-      return { ...state, items: { ...state.items, ...action.items } };
-    default:
-      return state;
-  }
-}
-
 function reducers() {
   return combineReducers({
     theme,
-    themes,
     navigation,
-    icon,
-    color,
   });
 }

@@ -16,14 +16,14 @@ export class GlobalStyle {
 
   @State() tagName: string;
 
-  @State() currentTheme: object;
+  @State() currentTheme = { components: [] };
 
   @Element() el: HTMLElement;
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.theme];
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
   }
 
   async loadLibs() {
@@ -49,6 +49,6 @@ export class GlobalStyle {
   }
 
   render() {
-    return this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '';
+    return this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '';
   }
 }

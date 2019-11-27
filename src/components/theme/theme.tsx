@@ -28,7 +28,7 @@ export class Theme {
 
   @State() tagName: string;
 
-  @State() currentTheme = { favicons: [] };
+  @State() currentTheme = { favicons: [], components: [] };
 
   @State() favicons: string[];
 
@@ -36,12 +36,12 @@ export class Theme {
   setName(name) {
     this.setTheme(name);
 
-    this.store.dispatch({ type: actions.SET_THEME, name });
+    this.store.dispatch({ type: actions.SET_THEME, current: name });
   }
 
   setTheme(name = undefined) {
-    this.name = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.name];
+    this.name = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.name];
     this.favicons = this.currentTheme ? this.currentTheme.favicons : undefined;
   }
 
@@ -78,7 +78,7 @@ export class Theme {
     }
 
     return [
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
       this.global ? <c-global-style></c-global-style> : '',
     ];
   }

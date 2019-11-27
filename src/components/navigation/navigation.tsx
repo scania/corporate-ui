@@ -43,7 +43,7 @@ export class Navigation {
 
   @State() tagName: string;
 
-  @State() currentTheme: object;
+  @State() currentTheme = { components: [] };
 
   @State() parentEl: any;
 
@@ -67,8 +67,8 @@ export class Navigation {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.theme];
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
   }
 
   @Listen('scroll', { target: 'window' })
@@ -195,7 +195,7 @@ export class Navigation {
     }
 
     return [
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style id="themeStyle">{ this.currentTheme.components[this.tagName] }</style> : '',
 
       <div class={`navbar-container ${this.navigationOpen ? ' open' : ''}`}>
         <nav class={`navbar navbar-expand-lg ${this.orientation}`}>

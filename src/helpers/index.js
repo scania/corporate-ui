@@ -17,19 +17,11 @@ function addTheme(_theme) {
   document.addEventListener('storeReady', event => init(_theme, event));
 
   function init(theme, event) {
-    const favicons = theme.favicons;
-    const icons = theme.icons;
-    const colors = theme.colors;
-    const name = Object.keys(theme.default)[0];
-
-    theme = document.head.attachShadow ? theme.default : theme.ie;
-    theme[name].favicons = favicons;
+    const name = Object.keys(theme)[0];
+    theme[name].components = document.head.attachShadow ? theme[name].components.default : theme[name].components.ie;
 
     [
       { type: 'ADD_THEME', theme },
-      { type: 'REMOVE_ICONS' },
-      { type: 'ADD_ICONS', items: icons },
-      { type: 'ADD_COLORS', items: colors },
     ].map(item => {
       item.type = event.detail.actions[item.type];
       event.detail.store.dispatch(item);

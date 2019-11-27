@@ -25,6 +25,7 @@ const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
 const fa_icons = { ...fas, ...fab };
+const defaultTheme = { default: { icons: {}, components: {}, colors: {} } };
 
 Object.keys(fa_icons).map(key => {
   const item = fa_icons[key];
@@ -35,9 +36,11 @@ Object.keys(fa_icons).map(key => {
   };
 });
 
+defaultTheme.default.icons = icons;
+
 (<any>window).CorporateUi = { ...(<any>window).CorporateUi, ...detail };
 
-store.dispatch({ type: actions.ADD_ICONS, items: icons });
+store.dispatch({ type: actions.ADD_THEME, theme: defaultTheme });
 
 document.dispatchEvent(event);
 

@@ -24,7 +24,7 @@ export class DealerHeader {
 
   @Prop({ context: 'store' }) ContextStore: any;
 
-  @State() currentTheme: object;
+  @State() currentTheme = { components: [] };
 
   @State() store: any;
 
@@ -34,8 +34,8 @@ export class DealerHeader {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.name;
-    this.currentTheme = this.store.getState().themes[this.theme];
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
   }
 
   componentWillLoad() {
@@ -54,7 +54,7 @@ export class DealerHeader {
 
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme[this.tagName] }</style> : '',
+      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
 
       <c-header site-name={this.siteName} short-name={this.shortName} site-url={this.siteUrl} variation='dealer'>
         {this.logo

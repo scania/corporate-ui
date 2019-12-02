@@ -60,7 +60,7 @@ Several options to add corporate-ui in the project:
    Replace `x` with [available releases](https://github.com/scania/corporate-ui-dev/releases).
 </details>   
 
-See all available components in the [components library]().
+See all available components in the [components library](https://scania.github.io/corporate-ui-site/info/corporateui).
    
 
 ## Styling

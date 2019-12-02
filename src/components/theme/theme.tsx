@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {
-  Component, Prop, Element, State, Watch,
+  Component, h, Prop, Element, State, Watch,
 } from '@stencil/core';
 /* eslint-enable no-unused-vars */
 
@@ -66,9 +66,9 @@ export class Theme {
 
     (window as any).CorporateUi = { ...(window as any).CorporateUi, version };
     document.documentElement.setAttribute('corporate-ui-version', version);
-  }
 
-  componentDidLoad() {
+    if (!(this.el && this.el.nodeName)) return;
+
     this.tagName = this.el.nodeName.toLowerCase();
   }
 

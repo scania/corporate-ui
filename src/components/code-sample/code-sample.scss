@@ -1,15 +1,18 @@
-@import 'node_modules/highlight.js/styles/github-gist';
+@import 'node_modules/highlight.js/styles/github';
 
 :host {
   display: block;
-  .slot{
+
+  .slot {
     display: none;
   }
 }
 
-pre, pre code {
+pre,
+pre code {
   white-space: pre-wrap;
   margin: 0;
+  color: grey;
 }
 
 // Line break on attributes doesnt work for multi line examples

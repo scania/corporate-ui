@@ -1,5 +1,5 @@
 import {
-  Component, Element, Prop, State, Watch,
+  Component, h, Element, Prop, State, Watch,
 } from '@stencil/core';
 
 @Component({
@@ -46,10 +46,9 @@ export class DealerHeader {
     this.store.subscribe(() => {
       this.setTheme();
     });
-  }
 
-  componentDidLoad() {
-    if (!this.el) return;
+    if (!(this.el && this.el.nodeName)) return;
+
     this.tagName = this.el.nodeName.toLowerCase();
   }
 

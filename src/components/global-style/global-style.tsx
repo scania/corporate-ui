@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element, Watch,
+  Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
 
 @Component({
@@ -42,9 +42,9 @@ export class GlobalStyle {
     this.setTheme(this.theme);
 
     this.store.subscribe(() => this.setTheme());
-  }
 
-  componentDidLoad() {
+    if (!(this.el && this.el.nodeName)) return;
+
     this.tagName = this.el.nodeName.toLowerCase();
   }
 

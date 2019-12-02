@@ -1,6 +1,6 @@
-import { store } from '../../store';
+// import { store } from '../../store';
 import { Navigation } from './navigation';
-import { applyTheme } from '../../unittest';
+import { applyTheme } from '../../global.spec';
 
 const component = new Navigation();
 
@@ -8,9 +8,7 @@ describe('navigation', (function () {
   const primaryItems = [{ text: 'home' }];
   const secondaryItems = [{ text: 'user' }];
 
-  this.ContextStore = store;
-  this.componentWillLoad();
-  this.componentDidLoad();
+  applyTheme.call(this);
 
   it('is initiated', () => {
     expect(this).toBeTruthy();
@@ -55,6 +53,4 @@ describe('navigation', (function () {
     // assert expanded status
     expect(this.navigationExpanded).toBe(false);
   });
-
-  applyTheme(Navigation);
 }).bind(component));

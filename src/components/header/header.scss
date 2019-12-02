@@ -11,10 +11,6 @@
 
 @import '../../components.scss';
 
-:host {
-  display: block;
-}
-
 ::slotted(c-navigation),
 c-navigation {
   width: 100%;

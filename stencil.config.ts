@@ -3,38 +3,31 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 /* eslint-enable no-unused-vars */
 
-const sassOpts: object = {
-  includePaths: ['node_modules'],
-};
-
 export const config: Config = {
   namespace: 'corporate-ui',
   globalScript: 'src/global.ts',
   enableCache: false,
   hashFileNames: false,
+  devMode: true,  
   outputTargets: [
     {
       type: 'dist',
-      dir: '.build',
+      copy: [
+        { src: '../.build/index.js', dest: 'index.js' }
+      ]
     },
     {
       type: 'www',
       dir: '.www',
       serviceWorker: null, // disable service workers
     },
-    {
-      type: 'docs-json',
-      file: '.data/docs.json',
-    },
-    {
-      type: 'stats',
-      file: '.data/stats.json',
-    },
   ],
   testing: {
-    testPathIgnorePatterns: ['/node_modules/'],
+    testPathIgnorePatterns: ['/node_modules/', 'global.spec'],
   },
   plugins: [
-    sass(sassOpts),
+    sass({
+      includePaths: ['node_modules'],
+    }),
   ],
 };

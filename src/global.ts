@@ -24,9 +24,11 @@ import { store, actions } from './store';
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
+const fa_icons = { ...fas, ...fab };
 const defaultTheme = { default: { icons: {}, components: {}, colors: {} } };
 
-Object.values({ ...fas, ...fab }).map(item => {
+Object.keys(fa_icons).map(key => {
+  const item = fa_icons[key];
   // TODO: Would like to combine these two rows somehow...
   const [width, height, attrs, unicode, definition] = item.icon;
   icons[item.iconName] = {
@@ -36,19 +38,10 @@ Object.values({ ...fas, ...fab }).map(item => {
 
 defaultTheme.default.icons = icons;
 
-// When running tests Context is already declared
-/* eslint-disable block-scoped-var, vars-on-top, no-var */
-if (!Context) {
-  var Context: any = {};
-}
-
 (<any>window).CorporateUi = { ...(<any>window).CorporateUi, ...detail };
-
-Context.store = store;
 
 store.dispatch({ type: actions.ADD_THEME, theme: defaultTheme });
 
 document.dispatchEvent(event);
 
 (<any>window).CorporateUi.storeReady = true;
-/* eslint-enable block-scoped-var, vars-on-top, no-var */

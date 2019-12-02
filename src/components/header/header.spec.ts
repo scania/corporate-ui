@@ -1,15 +1,13 @@
-import { store } from '../../store';
-import { applyTheme } from '../../unittest';
+// import { store } from '../../store';
+import { applyTheme } from '../../global.spec';
 import { Header } from './header';
 
 const component = new Header();
 
 describe('header', (function () {
   const items = [{ text: 'global' }];
-
-  this.ContextStore = store;
-  this.componentWillLoad();
-  this.componentDidLoad();
+  
+  applyTheme.call(this);
 
   it('is initiated', () => {
     expect(this).toBeTruthy();
@@ -30,6 +28,4 @@ describe('header', (function () {
 
     expect(this.navigationOpen).toBe(true);
   });
-
-  applyTheme(Header);
 }).bind(component));

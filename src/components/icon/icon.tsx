@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Watch, Element,
+  Component, h, Prop, State, Watch, Element,
 } from '@stencil/core';
 
 @Component({
@@ -50,10 +50,8 @@ export class Icon {
       this.theme = this.store.getState().theme.current;
       this.currentTheme = this.store.getState().theme[this.theme];
     });
-  }
 
-  componentDidLoad() {
-    if (!this.el) return;
+    if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
   }

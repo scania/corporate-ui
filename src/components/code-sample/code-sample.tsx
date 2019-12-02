@@ -1,5 +1,5 @@
 import {
-  Component, Prop, State, Element,
+  Component, h, Prop, State, Element,
 } from '@stencil/core';
 
 import hljs from 'highlight.js';

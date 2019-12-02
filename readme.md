@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/scania/corporate-ui-dev.svg?branch=master)](https://travis-ci.com/scania/corporate-ui-dev)
 [![npm version](http://img.shields.io/npm/v/corporate-ui-dev.svg?style=flat&color=1081C2)](https://npmjs.org/package/corporate-ui-dev)
 [![Github release](https://img.shields.io/github/v/tag/scania/corporate-ui-dev.svg?label=release&color=1081C2)](https://github.com/scania/corporate-ui-dev/releases)
-[![Components library](https://img.shields.io/badge/Components%20library-master-f4871a.svg)](https://scania.github.io/corporate-ui-site/info/corporateui)
+[![Components library](https://img.shields.io/badge/Components%20library-master-f4871a.svg)](https://scania.github.io/corporate-ui-site/)
 [![Join Slack](https://img.shields.io/badge/slack-join-%23dd3072.svg)](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/license/scania/corporate-ui-dev.svg?style=flat)
@@ -31,15 +31,16 @@ In this repository we're developing the next generation components for Corporate
 Several options to add corporate-ui in the project: 
 <details open>
 <summary><strong>NPM</strong></summary>
+   <br/>
    
    Install corporate-ui via NPM package by running the command below.
-
+   
    ```
    npm i corporate-ui-dev
    ```
 
    Import component as a module with `defineCustomElements` function.
-
+   
    ```js
    import { defineCustomElements } from 'corporate-ui-dev';
 
@@ -49,8 +50,9 @@ Several options to add corporate-ui in the project:
   
 <details>
 <summary><strong>CDN</strong></summary>
+   <br/>
    
-   Add link to the script by adding the following to the `<head></head>`
+   Add link to the script by adding the following to the head
    
    **SUBJECT TO CHANGE!**
    
@@ -60,7 +62,7 @@ Several options to add corporate-ui in the project:
    Replace `x` with [available releases](https://github.com/scania/corporate-ui-dev/releases).
 </details>   
 
-See all available components in the [components library](https://scania.github.io/corporate-ui-site/info/corporateui).
+See all available components in the [components library](https://scania.github.io/corporate-ui-site/).
    
 
 ## Styling
@@ -69,9 +71,10 @@ To apply the styling, you need to add a theme package and use c-theme component.
 
 <details open>
    <summary>
-      NPM
+      <strong>NPM</strong>
    </summary>
    <br/>
+   
    Install scania-theme package by running the command below.
    
    ```shell
@@ -79,6 +82,7 @@ To apply the styling, you need to add a theme package and use c-theme component.
    ```
    
    Import theme in the project and use it with `addTheme` function from corporate-ui.
+   
    ```js
    import { defineCustomElements, addTheme } from 'corporate-ui-dev'; 
    import { theme as scania } from 'scania-theme'; 
@@ -91,7 +95,7 @@ To apply the styling, you need to add a theme package and use c-theme component.
 
 <details>
    <summary>
-      CDN
+      <strong>CDN</strong>
    </summary>
    <br/>
    

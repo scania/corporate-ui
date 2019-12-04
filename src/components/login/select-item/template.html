@@ -1,0 +1,13 @@
+<template is="dom-if" if="{{href}}">
+  <a href$="{{href}}">
+    <template is="dom-if" if="{{icon}}">
+      <span class$="icon-{{icon}}"></span>
+    </template>
+    <div class="info">
+      <strong>{{headline}}</strong>
+      <template is="dom-if" if="{{description}}">
+        <p>{{description}}</p>
+      </template>
+    </div>
+  </a>
+</template>

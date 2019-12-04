@@ -1,51 +1,109 @@
 Polymer({
   is: name,
   properties: {
-    headline: {
-      type: String,
-      value: 'Log in to application'
-    },
-    description: {
-      type: String,
-      value: "Haven't registered yet?"
-    },
     variation: 0,
+    loginSelectHeadline: {
+        type: String,
+        value: 'Log in to application'
+    },
+    loginSelectDescription: {
+        type: String,
+        value: 'Choose a login service.'
+    },
+    loginHeadline: {
+        type: String,
+        value: 'Log in to application'
+    },
+    loginDescriptionRegister: {
+        type: String,
+        value: "Haven't registered yet?"
+    },
+    loginDescriptionRecover: {
+        type: String,
+        value: "Have you"
+    },
+    registerHeadline: {
+        type: String,
+        value: 'Sign up for Scania Developer Portal'
+    },
+    registerDescription: {
+        type: String,
+        value: "Once the account has been created and verified, you will be able to access all Scania's API."
+    },
+    recoverHeadline: {
+        type: String,
+        value: "Password recovery"
+    },
+    recoverDescription: {
+        type: String,
+        value: "Enter your email to recover your password."
+    },
+    recoveredHeadline: {
+        type: String,
+        value: "Password recovery"
+    },
+    recoveredDescription: {
+        type: String,
+        value: "Your password have been reset and sent to your email."
+    },
+    toRegister: {
+        type: String,
+        value: 'Create an account.'
+    },
+    toRecover: {
+        type: String,
+        value: 'forgotten your password?'
+    },
+    cookieMessage: {
+        type: String,
+        value: 'This portal uses cookies. By logging in, you are allowing cookies to be saved on your computer.'
+    },
+    termsMessage: {
+        type: String,
+        value: 'By signing up you agree to'
+    },
+    toTerms: {
+        type: String,
+        value: 'terms and conditions.'
+    },
+    loginAction: {
+        type: String,
+        value: 'login'
+    },
     // Should be moved to a notification component
-    message: {
-      type: String
+    loginMessage: {
+        type: String
     },
-    messageType: {
-      type: String
+    register: {
+        type: Boolean
     },
-    showMessage: {
-      type: Boolean,
-      value: false
+    terms: {
+        type: Boolean
+    },
+    recover: {
+        type: Boolean
+    },
+    showLoginMessage: {
+        type: Boolean
     },
     view: {
-      type: String,
-      value: 'login'
+        type: String,
+        value: 'login'
+    },
+    mainImage: {
+        type: String,
+        value: 'https://static.scania.com/resources/images/background-images/login-image.jpg',
+        observer: 'setMainImage'
     }
-  },
-  ready: function() {
-    var forms = this.querySelectorAll('form');
-    for(var i=0; i<forms.length; i++) {
-      forms[i].addEventListener('submit', this.action.bind(this));
-    }
-
-  },
-  action: function(event) {
-    event.preventDefault();
-    var action = ( event.target.action || '' ).split('/').pop(),
-        data = new FormData(event.target),
-        detail = { callback: this.currentView.bind(this), target: action + 'Confirm', data: data },
-        _event = new CustomEvent(action, { detail: detail });
-
-    document.dispatchEvent(_event);
   },
   currentView: function(prop) {
     this.view = prop.target;
   },
   setView: function(event) {
     this.currentView(event.target.dataset);
+  },
+  setMainImage: function (path) {
+      this.customStyle['--main-image'] = 'url(' + path + ')';
+      this.updateStyles();
   }
 });

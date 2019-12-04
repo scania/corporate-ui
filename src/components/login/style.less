@@ -10,7 +10,7 @@
   }
   .sideimage {
     flex-grow: 1;
-    background-image: url('https://d31jnweo1ynb8u.cloudfront.net/resources/images/background-images/login-image.jpg');
+    background-image: var(--main-image);
     background-position: center;
     background-size: cover;
   }
@@ -19,25 +19,34 @@
     background: #fff;
     padding: 30px;
   }
-  .login section:nth-child(1) { display: block; }
-  .register section:nth-child(2) { display: block; }
-  .registerConfirm section:nth-child(3) { display: block; }
-  .recover section:nth-child(4) { display: block; }
-  .recoverConfirm section:nth-child(5) { display: block; }
+  .loginSelect section:nth-child(1) { display: block; }
+  .login section:nth-child(2) { display: block; }
+  .register section:nth-child(3) { display: block; }
+  .registerConfirm section:nth-child(4) { display: block; }
+  .recover section:nth-child(5) { display: block; }
+  .recoverConfirm section:nth-child(6) { display: block; }
+}
+
+::content {
+
+  select-item + select-item {
+    margin-top: -1px;
+  }
+}
+
+h2 {
+  font-family: "Scania Sans Semi Condensed" !important;
+}
+c-main-content {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.app .btn-link.btn-info {
+ outline: none;
 }
 .btn-text {
   font-size: 1.4rem;
   padding-left: 0px;
   padding-right: 0px;
-}
-
-h2 {
-    font-family: "Scania Sans Semi Condensed" !important;
-}
-c-main-content {
-     display: flex !important;
-     flex-direction: column;
-}
-.app .btn-link.btn-info {
- outline: none;
 }

@@ -27,7 +27,7 @@
     }
     primary-items,
     secondary-items {
-      
+
       > nav-item > a {
         // Fixes issue where content could overflow its container.
         // Making a horizontal scrollbar get displayed when a
@@ -278,7 +278,7 @@
       }
       primary-items,
       secondary-items {
-        
+
         > nav-item {
           display: flex;
           flex-direction: column;
@@ -313,6 +313,7 @@
         box-shadow: none;
         border: 0;
         padding: 0;
+        max-height: none;
 
         a {
           &:extend(.navbar-nav > li > a);

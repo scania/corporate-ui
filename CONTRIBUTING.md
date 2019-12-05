@@ -13,8 +13,8 @@ We're contributing, and are following, the coding standards available at https:/
 
 ## Report an issue
 
-- [Report bug](https://github.com/scania/corporate-ui-dev/issues/new/choose)
-- [Request feature](https://github.com/scania/corporate-ui-dev/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
+- [Report bug](https://github.com/scania/corporate-ui/issues/new/choose)
+- [Request feature](https://github.com/scania/corporate-ui/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
 
 ## Opening a pull request
 
@@ -22,17 +22,17 @@ We're contributing, and are following, the coding standards available at https:/
    
    ```
    # Clone your fork of the repo 
-   git clone https://github.com/<your-github-username>/corporate-ui-dev.git
+   git clone https://github.com/<your-github-username>/corporate-ui.git
    ```
    
 2. Sync your local to the original “upstream” repository by adding it as a remote. Pull in changes from “upstream” often so that you stay up to date so that when you submit your pull request, merge conflicts will be less likely. Read more [here](https://help.github.com/en/articles/syncing-a-fork). 
 
    ```
    # Navigate to the newly cloned repo
-   cd corporate-ui-dev
+   cd corporate-ui
    
    # Connect to the original "upstream" repo
-   git remote add upstream https://github.com/scania/corporate-ui-dev.git
+   git remote add upstream https://github.com/scania/corporate-ui.git
    ```
    
 3. Create a branch for your edit. To pass travis build process, only create a branch name under one of these labels:
@@ -46,6 +46,6 @@ We're contributing, and are following, the coding standards available at https:/
    
    `git checkout -b <branch-name>`
 
-4. Refers to [any relevant issues](https://github.com/scania/corporate-ui-dev/issues) in the pull request. For example, write `Fixes #xxx` in the commit message to refers to a specific issue.
+4. Refers to [any relevant issues](https://github.com/scania/corporate-ui/issues) in the pull request. For example, write `Fixes #xxx` in the commit message to refers to a specific issue.
 
 5. Open a pull request and write clear title and description in the pull request interface. In the right side of the screen, assign yourself in the pull request and add the correct label. You can also add a reviewer from Corporate ui team.

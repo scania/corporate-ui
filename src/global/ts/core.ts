@@ -55,7 +55,7 @@ function addMetaAndHeaderSpecs() {
       99% { visibility: hidden; }\
       100% { visibility: visible; }\
     }\
-    html.loading { height: 100%; opacity: 0; animation: 2s show; animation-fill-mode: forwards; visibility: hidden; }\
+    html.loading { height: 100%; opacity: 0; visibility: hidden; }\
     html.loading:before { background-color: #fff; }\
     c-corporate-header, c-corporate-footer, c-main-navigation, c-main-content { display: none; }\
   '));

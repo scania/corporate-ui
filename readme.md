@@ -13,7 +13,7 @@
 [Simple HTML ↗](https://codepen.io/corporate-ui/pen/OYmqpr) | [Angular ↗](https://github.com/scania/corporate-ui-angular) | [React ↗](https://github.com/scania/corporate-ui-react) | [Vue ↗](https://github.com/scania/corporate-ui-vue)
 
 
-## Technical documentation
+**Technical documentation**
 
 Check out [components library](https://scania.github.io/corporate-ui-site/) for **migration guidelines**, **component status**, and technical documentation.
 

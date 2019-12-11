@@ -66,11 +66,12 @@ We're contributing, and are following, the coding standards available at https:/
 
 ### Getting the code
 
-- Clone the Corporate UI Dev repo and install package dependencies: 
+- Clone the Corporate UI repo and install package dependencies: 
 ```shell
-git clone https://github.com/scania/corporate-ui-dev.git
-cd corporate-ui-dev
+git clone https://github.com/scania/corporate-ui.git
+cd corporate-ui
 npm i
+npm start
 ```
 
 - Clone scania theme and install all dependencies:
@@ -91,16 +92,16 @@ npm i
 ```
 2. Create npm links of **Corporate Ui** and **Scania theme**
 ```shell
-cd ../corporate-ui-dev
+cd ../corporate-ui
 npm link
 cd ../scania-theme
 npm link
 ```
 
-3. Add links to **Corporate Ui** and **Scania theme**
+3. Add links to **Corporate Ui** and **Scania theme** in corporate-ui-site
 ```shell
 cd corporate-ui-site
-npm link corporate-ui-dev
+npm link corporate-ui
 npm link scania-theme
 ```
 

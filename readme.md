@@ -13,15 +13,9 @@
 [Simple HTML ↗](https://codepen.io/corporate-ui/pen/OYmqpr) | [Angular ↗](https://github.com/scania/corporate-ui-angular) | [React ↗](https://github.com/scania/corporate-ui-react) | [Vue ↗](https://github.com/scania/corporate-ui-vue)
 
 
-## Wiki
+**Technical documentation**
 
-[Github wiki](https://github.com/scania/corporate-ui-dev/wiki) includes: 
-- [Developing components](https://github.com/scania/corporate-ui-dev/wiki/Developing-components)
-- [Project focus and structure](https://github.com/scania/corporate-ui-dev/wiki/Project-focus-and-structure)
-- [Upgrade from version 3 to 4](https://github.com/scania/corporate-ui-dev/wiki/Upgrade-from-version-3.x-to-4.x)
-- [Components status](https://github.com/scania/corporate-ui-dev/wiki/Component-status)
-- [Browser support](https://github.com/scania/corporate-ui-dev/wiki/Browser-Support)
-- and more. 
+Check out [components library](https://scania.github.io/corporate-ui-site/) for **migration guidelines**, **component status**, and technical documentation.
 
 
 ## Quick start
@@ -63,61 +57,25 @@ See all available components in the [components library](https://scania.github.i
 
 ## Styling
 
-To apply the styling, you need to add a theme package and use c-theme component. Check out [Scania theme repository](https://github.com/scania/scania-theme/) for detail documentation.
+To apply Scania styles, you need to add a theme package and use `c-theme` component. Check out [Scania theme repository](https://github.com/scania/scania-theme/) for detail documentation.
 
-<details open>
-   <summary>
-      <strong>NPM</strong>
-   </summary>
-   <br/>
 
-   Install scania-theme package by running the command below.
+## Browser support
 
-   ```shell
-   npm i scania-theme
-   ```
+- Chrome (and all Chromium based browsers)
+- Firefox
+- IE 11+
+- Edge
+- Safari
 
-   Import theme in the project and use it with `addTheme` function from corporate-ui.
-
-   ```js
-   import { defineCustomElements, addTheme } from 'corporate-ui';
-   import { theme as scania } from 'scania-theme';
-
-   defineCustomElements();
-   addTheme(scania);
-   ```
-
-</details>
-
-<details>
-   <summary>
-      <strong>CDN</strong>
-   </summary>
-   <br/>
-
-   Make sure to include scania-theme script BEFORE the corporate-ui script.
-
-   ```html
-   <script src="https://static.scania.com/build/global/themes/scania/1.x/scania-theme.js"></script>
-   <script src="https://static.scania.com/build/global/4.x/corporate-ui/corporate-ui.js"></script>
-   ```
-
-</details>
-
-**Add theme to project**
-
-   Initialize the theme with the `c-theme` component. Set `global` attribute to true in order to enable bootstrap styling.
-
-   ```html
-   <c-theme name="scania" global="true"></c-theme>
-   ```
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/scania/corporate-ui/blob/master/CONTRIBUTING.md) for the directions to create a pull request and coding standard.
+Please read through our [contributing guidelines](https://github.com/scania/corporate-ui/blob/master/CONTRIBUTING.md) for the directions to **develop components**, **create a pull request** and **coding standard**.
 
 - [Report bug](https://github.com/scania/corporate-ui/issues/new/choose)
 - [Request feature](https://github.com/scania/corporate-ui/issues/new?assignees=&labels=Feature&template=feature_request.md&title=Feature+-+%22title+text%22)
+
 
 ## Community
 

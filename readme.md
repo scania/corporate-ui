@@ -52,10 +52,8 @@ Several options to add corporate-ui in the project:
 
    Add link to the script by adding the following to the head
 
-   **SUBJECT TO CHANGE!**
-
    ```
-   <script src="https://static.scania.com/build/global/4.x/corporate-ui/corporate-ui.js"></script>
+   <script src="https://static.scania.com/build/global/4.x/corporate-ui.js"></script>
    ```
    Replace `x` with [available releases](https://github.com/scania/corporate-ui/releases).
 </details>

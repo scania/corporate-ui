@@ -24,7 +24,8 @@
     "lint-debug": "npm run lint -- --debug",
     "test": "stencil test --spec --verbose",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "publish": "npm run build && npm publish"
   },
   "husky": {
     "hooks": {

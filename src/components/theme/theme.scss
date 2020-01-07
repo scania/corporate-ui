@@ -38,12 +38,6 @@
     'Liberation Mono', 'Courier New', monospace;
 }
 
-:host([name]) {
-  // This is used to set deafult display value for components
-  // We do this to make sure there are no FOUC when using a theme
-  --display: none;
-}
-
 // data environment
 body[data-env]:before {
   background-color: #ddd;

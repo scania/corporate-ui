@@ -1,7 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-/* eslint-enable no-unused-vars */
+
+import fs from 'fs';
+import dotenvPlugin from 'rollup-plugin-dotenv';
+
+const fb = () => ({});
+const dep = fs.existsSync('./.env') ? dotenvPlugin : fb;
 
 export const config: Config = {
   namespace: 'corporate-ui',
@@ -30,5 +34,6 @@ export const config: Config = {
     sass({
       includePaths: ['node_modules'],
     }),
+    dep()
   ],
 };

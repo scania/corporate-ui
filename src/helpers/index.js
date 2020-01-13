@@ -35,7 +35,7 @@ function fixFouc() {
   const elm = document.createElement('style');
   const style = document.createTextNode('body { visibility: hidden; }');
 
-  document.head.appendChild(elm);
+  document.head.insertBefore(elm, document.head.firstChild);
   elm.appendChild(style);
 
   document.addEventListener('DOMContentLoaded', () => {

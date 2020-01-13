@@ -13,7 +13,7 @@ $Interaction-types: primary, secondary, success, info, warning, danger, light, d
 }
 
 // Used after bootstrap style has rendered for FOUC reasons
-body {
+html body {
   visibility: visible;
 }
 

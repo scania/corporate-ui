@@ -53,6 +53,7 @@
     "jest": "24.9.0",
     "jest-cli": "24.9.0",
     "jquery": "3.4.1",
+    "js-cookie": "2.2.1",
     "mkdirp": "^0.5.1",
     "popper.js": "1.15.0",
     "puppeteer": "1.19.0",

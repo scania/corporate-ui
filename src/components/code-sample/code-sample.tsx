@@ -21,6 +21,9 @@ export class Field {
   @Element() el: HTMLElement;
 
   componentWillLoad() {
+    // FIXME: Would be better to make the code-sample component not initiating
+    // the component but only render the html as text
+
     const parsed = this.el.innerHTML
       .replace(/"/g, "'")
       .replace(/&quot;/g, '"')

@@ -2,9 +2,8 @@ import {
   Component, h, Prop, State, Element, Watch
 } from '@stencil/core';
 
+import JsCookie from 'js-cookie';
 import Tab from 'bootstrap/js/src/tab';
-
-import Cookies from 'js-cookie';
 
 @Component({
   tag: 'c-cookie',
@@ -17,7 +16,17 @@ export class Cookie {
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
+  @Prop() open;
+
   @Prop() headline = 'Confidentiality agreement';
+
+  @Prop() modalButtonPrimary = 'Save preferences';
+
+  @Prop() modalButtonSecondary = 'Cancel';
+
+  @Prop() mainButtonPrimary = 'Accept';
+
+  @Prop() mainButtonSecondary = 'Cookie settings';
 
   @State() store: any;
 
@@ -35,12 +44,25 @@ export class Cookie {
 
   @State() text;
 
+  @State() modal;
+
+  @State() active;
+
+  @State() cookie = JsCookie.get('ConfidentialityAgreement');
+
+  @State() modalConfig = { backdrop: 'static' };
+
   @Element() el;
 
   @Watch('theme')
   setTheme(name = undefined) {
     this.theme = name || this.store.getState().theme.current;
     this.currentTheme = this.store.getState().theme.items[this.theme];
+  }
+
+  @Watch('items')
+  banana() {
+    console.log(1, this.items);
   }
 
   @Watch('tab')
@@ -51,7 +73,7 @@ export class Cookie {
 
       // We use a timeout here to make sure the dynamic tab-content have time to get added
       setTimeout(() => {
-        const target = this.el.shadowRoot.querySelector(el.getAttribute('href'));
+        const target = (this.el.shadowRoot || this.el).querySelector(el.getAttribute('href'));
 
         el.onclick = (event) => {
           event.preventDefault();
@@ -64,30 +86,47 @@ export class Cookie {
     }
   }
 
+  async loadLibs() {
+    const jsCookie = await import('js-cookie');
+    window['CorporateUi'].Cookie = jsCookie.default;
+  }
+
   save(event) {
     event.preventDefault();
 
-    const formData = new FormData(this.form);
     let object = {};
 
     if(this.all) {
-      this.items.filter(item => item.toggable).forEach(value => object[value.id] = 'true');
-    } else {
-      formData.forEach((value, key) => object[key] = value);
+      this.items.forEach(item => item.attributes.checked = true);
     }
 
-    // TODO: It would be better to change the items value and let
-    // the interface rerender and then get the data from formData
-    // but for some reason the template is not rerendered correctly
-    // if(this.all) {
-    //   this.items.forEach(item => item.attributes.checked = true);
-    // }
-    // formData.forEach((value, key) => object[key] = value);
+    this.items.filter(item => item.toggable).forEach(item =>
+      object[item.type || item.id] = item.attributes.checked.toString()
+    );
 
-    Cookies.set('ConfidentialityAgreement', JSON.stringify(object));
+    const content = JSON.stringify(object);
+
+    setTimeout(() => {
+      this.open = false, 200
+      this.cookie = content;
+    });
+
+    JsCookie.set('ConfidentialityAgreement', content);
+  }
+
+  check(item, index) {
+    // TODO: Maybe we can improve this later on
+    const items = [ ...this.items ];
+    item.attributes.checked = !item.attributes.checked;
+    items.splice(index, 1);
+    items.splice(index, 0, item);
+    this.items = items;
+    console.log(2, this.items);
   }
 
   componentWillLoad() {
+    this.loadLibs();
+
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);
@@ -100,92 +139,138 @@ export class Cookie {
   }
 
   componentDidLoad() {
+    // TODO: Maybe we can solve this in a better way later
+    if(this.el.parentNode.nodeName === 'C-CODE-SAMPLE') return;
+
     // TODO: It would make sense to create a tab and tab-item component.
     // That can be used instead of this hacky way
+    let items = this.el.shadowRoot.querySelectorAll('[slot="config"]');
 
-    const slotted = this.el.shadowRoot.querySelector('slot[name="config"]');
-    const items = slotted.assignedNodes().filter((node) => { return node.nodeName !== '#text'; });
-
-    this.items = Array.from(items).map((item:any) => ({
-      content: item.outerHTML,
-      id: item.getAttribute('text').match(/[a-z]+/gi)
-        .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()).join(''),
-      type: item.getAttribute('type'),
-      text: item.getAttribute('text'),
-      toggable: item.getAttribute('toggable') !== 'false',
-      attributes: {
-        disabled: item.getAttribute('mandatory') === 'true',
-        checked: item.getAttribute('checked') === 'true'
-      }
-    }));
-
-    // TODO: If a cookie exists then read its value and use its values as preset
-    // if(Cookies.get('ConfidentialityAgreement')) {}
-
-    // TODO: Maybe we can solve this in a better way later
-    if(this.el.parentNode.nodeName !== 'C-CODE-SAMPLE' && !Cookies.get('ConfidentialityAgreement')) {
-      // this.openDialog(this.open);
+    // This is used by browsers with support for shadowdom
+    if(document.head.attachShadow) {
+      const slotted = this.el.shadowRoot.querySelector('slot[name="config"]');
+      items = slotted.assignedNodes().filter((node:any) => { return node.nodeName !== '#text'; })
     }
+
+    this.cookie = JsCookie.get('ConfidentialityAgreement');
+    const cookieObj = this.cookie ? JSON.parse(this.cookie) : {};
+
+    this.items = Array.from(items).map((item:any) => {
+      const id = item.getAttribute('text').match(/[a-z]+/gi)
+        .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()).join('');
+
+      return {
+        id,
+        content: item.outerHTML,
+        type: item.getAttribute('type'),
+        intro: item.getAttribute('intro'),
+        text: item.getAttribute('text'),
+        toggable: item.getAttribute('toggable') !== 'false',
+        attributes: {
+          disabled: item.getAttribute('mandatory') === 'true',
+          checked: cookieObj[item.getAttribute('type')] === 'true' ||
+                    cookieObj[id] === 'true' ||
+                    item.getAttribute('checked') === 'true'
+        }
+      }
+    });
   }
 
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
-
-      <c-modal>
+      <form onSubmit={event => this.save(event)} ref={el => this.form = el} onReset={() => this.open = false}>
         <slot name="config" />
 
-        <h2 class="modal-title" slot="header">{this.headline}</h2>
+        <c-modal open={this.open} config={this.modalConfig}>
+          { this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '' }
 
-        <div class="row h-100">
-          <div class="col-3 h-100">
-            <nav class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              {this.items.map((item, index) => (
-                <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' active' : '')} data-toggle="pill" ref={el => this.tab = el}>
-                  {item.text}
+          <h2 slot="header">{this.headline}</h2>
 
-                  {item.toggable ?
-                    <div class="custom-control custom-switch" onClick={event => event.stopPropagation()}>
-                      <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" { ... { ...item.attributes } } />
-                      <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
+          <main>
+            <div class={"row h-100 flex-sm-fill" + (this.active ? ' active': '')}>
+              <div class="col-6 col-sm-3 h-100 navigation">
+                {this.items.length ?
+                  <div class="d-sm-none mb-5">
+                    <h3>{this.items[0].text}</h3>
+                    <article innerHTML={this.items[0].intro} />
+                  </div>
+                : ''}
+
+                <nav class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  {this.items.map((item, index) => (
+                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' d-none d-sm-block active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
+                      {item.text}
+
+                      {item.toggable ?
+                        item.attributes.disabled ?
+                          <input type="checkbox" name={item.type || item.id} checked={this.items[index].attributes.checked} value="true" hidden />
+                        :
+                          <div class="custom-control custom-switch" onClick={event => event.stopPropagation()}>
+                            <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onInput={() => this.check(item, index)} { ... { ...item.attributes } } />
+                            <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
+                          </div>
+                      : ''}
+
+                    </a>
+                  ))}
+
+                  <slot name="link" />
+                </nav>
+              </div>
+              <div class="col-6 col-sm-9 content">
+                <div class="tab-content">
+                  <a href="" class="btn btn-link btn-block d-sm-none btn-back" onClick={(event) => { event.preventDefault(); this.active = false }}>&lt; Cookie policy</a>
+                  {this.items.map((item, index) => (
+                    <div class={'tab-pane fade' + (index === 0 ? ' show active' : '')} id={'v-pills-' + index} role="tabpanel" aria-labelledby={'v-pills-' + index + '-tab'}>
+                      <h3>{item.text}</h3>
+                      <article innerHTML={item.content} />
+
+                      {!item.attributes.disabled ?
+                        <div class="custom-control custom-switch d-sm-none" onClick={event => event.stopPropagation()}>
+                          <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onInput={() => this.check(item, index)} { ... { ...item.attributes } } />
+                          <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
+                        </div>
+                      : <span class="badge badge-pill badge-primary">{item.attributes.checked ? 'Active' : ''}</span> }
+
+                      {/* {item.toggable ?
+                        <div class="custom-control custom-switch pt-4 pb-4">
+                          <input type="checkbox" class="custom-control-input" { ... { ...item.attributes } } />
+                          <label class="custom-control-label" onClick={() => {this.items[index].attributes.checked = false; console.log(this.items[index])}}></label>
+                        </div>
+                      : ''} */}
                     </div>
-                  : ''}
-
-                  {item.toggable && item.attributes.disabled ?
-                    <input type="checkbox" name={item.type || item.id} checked={item.attributes.checked} value="true" hidden />
-                  : ''}
-                </a>
-              ))}
-
-              <slot name="link" />
-            </nav>
-          </div>
-          <div class="col-9 content">
-            <div class="tab-content">
-              {this.items.map((item, index) => (
-                <div class={'tab-pane fade' + (index === 0 ? ' show active' : '')} id={'v-pills-' + index} role="tabpanel" aria-labelledby={'v-pills-' + index + '-tab'}>
-                  <h3>{item.text}</h3>
-                  <article innerHTML={item.content} />
-
-                  {/* {item.toggable ?
-                    <div class="custom-control custom-switch pt-4 pb-4">
-                      <input type="checkbox" class="custom-control-input" { ... { ...item.attributes } } />
-                      <label class="custom-control-label" onClick={() => {this.items[index].attributes.checked = false; console.log(this.items[index])}}></label>
-                    </div>
-                  : ''} */}
+                  ))}
                 </div>
-              ))}
+              </div>
+            </div>
+          </main>
+
+          <button type="reset" class="btn btn-secondary" slot="footer">{this.modalButtonSecondary}</button>
+          <button type="submit" class="btn btn-primary" slot="footer">{this.modalButtonPrimary}</button>
+        </c-modal>
+      </form>,
+
+      !this.cookie ?
+        <footer>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <slot name="main" />
+              </div>
+              <div class="col-sm-12 col-md-auto btn-container btn-container">
+                <div class="row">
+                  <div class="col col-sm-auto">
+                    <button class="btn btn-block btn-outline-light" onClick={() => this.open = true}>{this.mainButtonSecondary}</button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-block btn-outline-light" onClick={event => this.save(event)}>{this.mainButtonPrimary}</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <button type="submit" class="btn btn-sm btn-secondary" onClick={() => this.all = true} slot="footer">Approve all</button>
-        <button type="submit" class="btn btn-sm btn-primary" slot="footer">Save preferences</button>
-      </c-modal>,
-
-      <footer>
-        <slot name="main" />
-      </footer>
+        </footer>
+      : ''
     ]
   }
 }

@@ -28,11 +28,7 @@ export class GlobalStyle {
 
   async loadLibs() {
     const jquery = await import('jquery');
-    const jsCookie = await import('js-cookie');
-    /* eslint-disable dot-notation */
     window['CorporateUi'].$ = jquery.default;
-    window['CorporateUi'].Cookie = jsCookie.default;
-    /* eslint-enable dot-notation */
     await import('bootstrap');
 
     const event = new CustomEvent('bsReady', { detail: { jquery: jquery.default } });

@@ -1,0 +1,81 @@
+// Required
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+// Optional
+@import 'node_modules/bootstrap/scss/reboot';
+@import 'node_modules/bootstrap/scss/modal';
+@import 'node_modules/bootstrap/scss/close';
+
+:host {
+  @extend .modal;
+}
+
+::slotted(h2) {
+  @extend .modal-title;
+}
+::slotted(button) {
+  margin-left: 5px !important;
+}
+
+.modal {
+
+  &-dialog {
+    max-width: 1060px;
+  }
+  &-header,
+  &-body,
+  &-footer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border: 0;
+  }
+  &-header {
+    padding-top: 3rem;
+  }
+  &-body {
+    display: flex;
+    overflow-y: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  &-footer {
+    padding-bottom: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+
+  .modal {
+
+    &-content {
+      min-height: 60vh;
+      max-height: 90vh;
+    }
+  }
+}
+
+// TODO: Should we reverse these rules so it follows mobile first
+@media (max-width: 991px) {
+
+  ::slotted(button) {
+    flex: 0 0 100%;
+  }
+
+  .modal {
+
+    &-dialog {
+      height: 100vh;
+      margin: 0;
+    }
+    &-content {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+    }
+    &-footer {
+      flex-wrap: wrap;
+    }
+  }
+}

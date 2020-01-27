@@ -58,7 +58,8 @@
     "popper.js": "1.15.0",
     "puppeteer": "1.19.0",
     "redux": "4.0.4",
-    "renamer": "1.1.4"
+    "renamer": "1.1.4",
+    "rollup-plugin-dotenv": "0.2.0"
   },
   "license": "MIT"
 }

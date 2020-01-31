@@ -21,6 +21,8 @@ export class Modal {
 
   @Prop() open;
 
+  @Prop() close: boolean = true;
+
   @State() store: any;
 
   @State() tagName: string;
@@ -32,6 +34,8 @@ export class Modal {
   @State() modal;
 
   @State() dialog;
+
+  @State() setScrollbar;
 
   @State() all = false;
 
@@ -53,6 +57,17 @@ export class Modal {
 
     // We need to manually do this here because of no access to 'transitionComplete()'
     this.modal._isTransitioning = false;
+  }
+
+  @Watch('config')
+  configureModal(config) {
+    this.modal = new BsModal(this.el, config);
+
+    this.setScrollbar = this.setScrollbar || this.modal._setScrollbar;
+
+    // We should not set this based on config.backdrop but instead use inline value
+    this.modal._setScrollbar = this.config.backdrop ? this.setScrollbar : () => {};
+    // this.modal._setScrollbar = this.el.classList.contains('inline') ? () => {} : this.setScrollbar;
   }
 
   appendStyle(state) {
@@ -87,7 +102,7 @@ export class Modal {
 
     this.tagName = this.el.nodeName.toLowerCase();
 
-    this.modal = new BsModal(this.el, this.config);
+    this.configureModal(this.config);
 
     this.appendStyle(this.store.getState().theme.global);
   }
@@ -105,7 +120,7 @@ export class Modal {
           <div class="modal-content">
             <div class="modal-header">
               <slot name="header" />
-              { this.config.backdrop !== 'static' ?
+              { this.close ?
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

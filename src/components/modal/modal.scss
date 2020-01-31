@@ -11,6 +11,19 @@
 :host {
   @extend .modal;
 }
+:host(.inline) {
+  position: static;
+
+  .modal-dialog {
+    min-height: 0;
+    max-width: none;
+    margin: 0;
+
+    &:before {
+      height: auto;
+    }
+  }
+}
 
 ::slotted(h2) {
   @extend .modal-title;
@@ -60,7 +73,7 @@
 @media (max-width: 991px) {
 
   ::slotted(button) {
-    flex: 0 0 100%;
+    width: 100%;
   }
 
   .modal {

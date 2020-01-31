@@ -28,6 +28,8 @@ export class Cookie {
 
   @Prop() mainButtonSecondary = 'Cookie settings';
 
+  @Prop() inline: boolean;
+
   @State() store: any;
 
   @State() tagName: string;
@@ -37,8 +39,6 @@ export class Cookie {
   @State() items: Array<any> = [];
 
   @State() tab;
-
-  @State() form;
 
   @State() all = false;
 
@@ -50,7 +50,7 @@ export class Cookie {
 
   @State() cookie = JsCookie.get('ConfidentialityAgreement');
 
-  @State() modalConfig = { backdrop: 'static' };
+  @State() modalConfig:any = { backdrop: 'static' };
 
   @Element() el;
 
@@ -60,9 +60,10 @@ export class Cookie {
     this.currentTheme = this.store.getState().theme.items[this.theme];
   }
 
-  @Watch('items')
-  banana() {
-    console.log(1, this.items);
+  @Watch('inline')
+  configureBackdrop(inline) {
+    // this.modalConfig.backdrop = inline ? 'static' : !inline;
+    this.modalConfig = { ...this.modalConfig, backdrop: inline ? !inline : 'static' };
   }
 
   @Watch('tab')
@@ -101,7 +102,7 @@ export class Cookie {
     }
 
     this.items.filter(item => item.toggable).forEach(item =>
-      object[item.type || item.id] = item.attributes.checked.toString()
+      object[item.type || item.id] = item.attributes.checked
     );
 
     const content = JSON.stringify(object);
@@ -112,6 +113,9 @@ export class Cookie {
     });
 
     JsCookie.set('ConfidentialityAgreement', content);
+
+    const customEvent = new CustomEvent('cookieSaved', { detail: { cookie: object }, bubbles: true });
+    this.el.dispatchEvent(customEvent);
   }
 
   check(item, index) {
@@ -121,7 +125,6 @@ export class Cookie {
     items.splice(index, 1);
     items.splice(index, 0, item);
     this.items = items;
-    console.log(2, this.items);
   }
 
   componentWillLoad() {
@@ -130,6 +133,8 @@ export class Cookie {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);
+
+    this.configureBackdrop(this.inline);
 
     this.store.subscribe(() => this.setTheme());
 
@@ -178,19 +183,19 @@ export class Cookie {
 
   render() {
     return [
-      <form onSubmit={event => this.save(event)} ref={el => this.form = el} onReset={() => this.open = false}>
+      <form onSubmit={event => this.save(event)} onReset={(event) => { event.preventDefault(); this.open = false }}>
         <slot name="config" />
 
-        <c-modal open={this.open} config={this.modalConfig}>
+        <c-modal open={this.open} config={this.modalConfig} close={false} class={this.inline ? 'inline' : ''}>
           { this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '' }
 
           <h2 slot="header">{this.headline}</h2>
 
           <main>
             <div class={"row h-100 flex-sm-fill" + (this.active ? ' active': '')}>
-              <div class="col-6 col-sm-3 h-100 navigation">
+              <div class="col-6 col-lg-3 h-100 navigation">
                 {this.items.length ?
-                  <div class="d-sm-none mb-5">
+                  <div class="d-lg-none mb-5 pl-4 pr-4">
                     <h3>{this.items[0].text}</h3>
                     <article innerHTML={this.items[0].intro} />
                   </div>
@@ -198,7 +203,7 @@ export class Cookie {
 
                 <nav class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   {this.items.map((item, index) => (
-                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' d-none d-sm-block active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
+                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' d-none d-lg-block active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
                       {item.text}
 
                       {item.toggable ?
@@ -217,9 +222,10 @@ export class Cookie {
                   <slot name="link" />
                 </nav>
               </div>
-              <div class="col-6 col-sm-9 content">
+              <div class="col-6 col-lg-9 content">
                 <div class="tab-content">
-                  <a href="" class="btn btn-link btn-block d-sm-none btn-back" onClick={(event) => { event.preventDefault(); this.active = false }}>&lt; Cookie policy</a>
+                  <a href="" class="btn btn-link btn-block d-lg-none btn-back" onClick={(event) => { event.preventDefault(); this.active = false }}>&lt; Cookie policy</a>
+
                   {this.items.map((item, index) => (
                     <div class={'tab-pane fade' + (index === 0 ? ' show active' : '')} id={'v-pills-' + index} role="tabpanel" aria-labelledby={'v-pills-' + index + '-tab'}>
                       <h3>{item.text}</h3>
@@ -251,19 +257,19 @@ export class Cookie {
       </form>,
 
       !this.cookie ?
-        <footer>
+        <footer class={this.inline ? 'inline' : ''}>
           <div class="container">
             <div class="row">
               <div class="col">
                 <slot name="main" />
               </div>
-              <div class="col-sm-12 col-md-auto btn-container btn-container">
+              <div class="col-sm-12 col-md-auto mt-4 mb-4 btn-container">
                 <div class="row">
-                  <div class="col col-sm-auto">
+                  <div class="col col-md-auto">
                     <button class="btn btn-block btn-outline-light" onClick={() => this.open = true}>{this.mainButtonSecondary}</button>
                   </div>
-                  <div class="col">
-                    <button class="btn btn-block btn-outline-light" onClick={event => this.save(event)}>{this.mainButtonPrimary}</button>
+                  <div class="col col-md-auto">
+                    <button class="btn btn-block btn-outline-light" onClick={event => { this.all = true; this.save(event) }}>{this.mainButtonPrimary}</button>
                   </div>
                 </div>
               </div>

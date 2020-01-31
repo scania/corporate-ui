@@ -32,6 +32,9 @@
 slot[name=config] {
   display: none;
 }
+main {
+  flex: 1;
+}
 footer {
   display: flex;
   position: fixed;
@@ -45,8 +48,15 @@ footer {
   color: $light;
   color: Var(--light);
   align-items: center;
+
+  &.inline {
+    position: static;
+  }
 }
 
+.row {
+  flex: 1;
+}
 .content {
   display: flex;
   height: 100%;
@@ -72,7 +82,7 @@ footer {
   main {
     min-width: 100%;
     overflow: hidden;
-    margin: 0 -15px;
+    margin: 0 -30px;
 
     > .row {
       flex: none;
@@ -80,10 +90,22 @@ footer {
       margin: 0;
     }
   }
+  footer {
+    height: auto;
+    padding: 15px;
+  }
   button[slot=footer] {
     margin-top: 5px;
   }
 
+  .list-group {
+    margin: 0 -15px;
+
+    &-item {
+      border-left: 0;
+      border-right: 0;
+    }
+  }
   .tab {
 
     &-content {

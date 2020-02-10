@@ -39,6 +39,11 @@ export class Theme {
     this.store.dispatch({ type: actions.SET_THEME, current: name });
   }
 
+  @Watch('global')
+  setGlobal(global) {
+    this.store.dispatch({ type: actions.SET_GLOBAL, global });
+  }
+
   setTheme(name = undefined) {
     this.name = name || this.store.getState().theme.current;
     this.currentTheme = this.store.getState().theme.items[this.name];
@@ -61,6 +66,7 @@ export class Theme {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setName(this.name);
+    this.setGlobal(this.global);
 
     this.store.subscribe(() => this.setTheme());
 
@@ -79,7 +85,7 @@ export class Theme {
 
     return [
       this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
-      this.global ? <c-global-style></c-global-style> : '',
+      this.global ? <c-global-style></c-global-style> : <style { ... { innerHTML: 'html body { visibility: visible }' } }></style>,
     ];
   }
 }

@@ -29,7 +29,8 @@
   padding: 1.7rem;
 }
 
-slot[name=config] {
+slot[name=config],
+::slotted([slot=config]) {
   display: none;
 }
 main {
@@ -42,13 +43,21 @@ footer {
   left: 0;
   right: 0;
   z-index: 1040;
-  height: 33vh;
+  min-height: 33vh;
+  padding: 15px;
   background-color: $dark;
   background-color: Var(--dark);
   color: $light;
   color: Var(--light);
   align-items: center;
 
+  // Notice that the folowing ruleset is used for IE to make align-items work with min-height
+  // More info: https://github.com/philipwalton/flexbugs/issues/231#issuecomment-362790042
+  &:before {
+    content: '';
+    min-height: inherit;
+    font-size: 0;
+  }
   &.inline {
     position: static;
   }
@@ -81,7 +90,7 @@ footer {
 
   main {
     min-width: 100%;
-    overflow: hidden;
+    overflow: hidden auto;
     margin: 0 -30px;
 
     > .row {

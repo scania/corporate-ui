@@ -36,6 +36,8 @@ export class Cookie {
 
   @State() currentTheme = { components: [] };
 
+  @State() style: Array<CSSStyleSheet>;
+
   @State() items: Array<any> = [];
 
   @State() tab;
@@ -112,7 +114,7 @@ export class Cookie {
       this.cookie = content;
     });
 
-    JsCookie.set('ConfidentialityAgreement', content);
+    JsCookie.set('ConfidentialityAgreement', content, { sameSite: 'lax' });
 
     const customEvent = new CustomEvent('cookieSaved', { detail: { cookie: object }, bubbles: true });
     this.el.dispatchEvent(customEvent);
@@ -127,6 +129,28 @@ export class Cookie {
     this.items = items;
   }
 
+  themeStyle() {
+    const css = this.currentTheme ? this.currentTheme.components[this.tagName] : '';
+    let style;
+
+    if(!this.style) return;
+
+    // This is used by browsers with support for shadowdom
+    if(document.head.attachShadow) {
+      style = new CSSStyleSheet();
+      style.replaceSync(css);
+      // TODO: We should not take first index we should all except the previous style
+      this.el.shadowRoot.adoptedStyleSheets = [ this.el.shadowRoot.adoptedStyleSheets[0], style ];
+    } else {
+      style = this.el.querySelector('style') || document.createElement('style');
+      // style.appendChild(document.createTextNode(css));
+      style.innerHTML = css;
+      if(this.el.firstChild.tagName !== 'STYLE') {
+        this.el.insertBefore(style, this.el.firstChild);
+      }
+    }
+  }
+
   componentWillLoad() {
     this.loadLibs();
 
@@ -136,7 +160,10 @@ export class Cookie {
 
     this.configureBackdrop(this.inline);
 
-    this.store.subscribe(() => this.setTheme());
+    this.store.subscribe(() => {
+      this.setTheme();
+      this.themeStyle();
+    });
 
     if (!(this.el && this.el.nodeName)) return;
 
@@ -146,6 +173,10 @@ export class Cookie {
   componentDidLoad() {
     // TODO: Maybe we can solve this in a better way later
     if(this.el.parentNode.nodeName === 'C-CODE-SAMPLE') return;
+
+    this.style = this.el.shadowRoot.adoptedStyleSheets || [];
+
+    this.themeStyle();
 
     // TODO: It would make sense to create a tab and tab-item component.
     // That can be used instead of this hacky way
@@ -187,8 +218,6 @@ export class Cookie {
         <slot name="config" />
 
         <c-modal open={this.open} config={this.modalConfig} close={false} class={this.inline ? 'inline' : ''}>
-          { this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '' }
-
           <h2 slot="header">{this.headline}</h2>
 
           <main>
@@ -232,7 +261,7 @@ export class Cookie {
                       <article innerHTML={item.content} />
 
                       {!item.attributes.disabled ?
-                        <div class="custom-control custom-switch d-sm-none" onClick={event => event.stopPropagation()}>
+                        <div class="custom-control custom-switch d-lg-none" onClick={event => event.stopPropagation()}>
                           <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onInput={() => this.check(item, index)} { ... { ...item.attributes } } />
                           <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
                         </div>

@@ -3,7 +3,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 
 import { store, actions } from './store';
 
-
 // Polyfill for CustomEvent
 (function () {
   if (typeof (<any>window).CustomEvent === 'function') return false;

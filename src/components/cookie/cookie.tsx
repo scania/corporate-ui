@@ -16,7 +16,7 @@ export class Cookie {
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
-  @Prop() open;
+  @Prop() open: boolean;
 
   @Prop() headline = 'Confidentiality agreement';
 
@@ -110,9 +110,9 @@ export class Cookie {
     const content = JSON.stringify(object);
 
     setTimeout(() => {
-      this.open = false, 200
+      this.open = false;
       this.cookie = content;
-    });
+    }, 200);
 
     JsCookie.set('ConfidentialityAgreement', content, { sameSite: 'lax' });
 
@@ -136,17 +136,26 @@ export class Cookie {
     if(!this.style) return;
 
     // This is used by browsers with support for shadowdom
-    if(document.head.attachShadow) {
+    if(this.el.shadowRoot.adoptedStyleSheets) {
       style = new CSSStyleSheet();
       style.replaceSync(css);
       // TODO: We should not take first index we should all except the previous style
       this.el.shadowRoot.adoptedStyleSheets = [ this.el.shadowRoot.adoptedStyleSheets[0], style ];
     } else {
-      style = this.el.querySelector('style') || document.createElement('style');
+      const node = this.el.shadowRoot || this.el;
+      style = this.el.querySelector('#themeStyle') || document.createElement('style');
       // style.appendChild(document.createTextNode(css));
-      style.innerHTML = css;
-      if(this.el.firstChild.tagName !== 'STYLE') {
-        this.el.insertBefore(style, this.el.firstChild);
+      // style.innerHTML = css;
+      style.id = 'themeStyle';
+
+      if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+
+      if(!node.querySelector('#themeStyle')) {
+        node.insertBefore(style, node.firstChild.nextSibling);
       }
     }
   }
@@ -204,8 +213,8 @@ export class Cookie {
         toggable: item.getAttribute('toggable') !== 'false',
         attributes: {
           disabled: item.getAttribute('mandatory') === 'true',
-          checked: cookieObj[item.getAttribute('type')] === 'true' ||
-                    cookieObj[id] === 'true' ||
+          checked: cookieObj[item.getAttribute('type')] === true ||
+                    cookieObj[id] === true ||
                     item.getAttribute('checked') === 'true'
         }
       }
@@ -240,7 +249,7 @@ export class Cookie {
                           <input type="checkbox" name={item.type || item.id} checked={this.items[index].attributes.checked} value="true" hidden />
                         :
                           <div class="custom-control custom-switch" onClick={event => event.stopPropagation()}>
-                            <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onInput={() => this.check(item, index)} { ... { ...item.attributes } } />
+                            <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onChange={() => this.check(item, index)} { ... { ...item.attributes } } />
                             <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
                           </div>
                       : ''}
@@ -289,15 +298,15 @@ export class Cookie {
         <footer class={this.inline ? 'inline' : ''}>
           <div class="container">
             <div class="row">
-              <div class="col">
+              <div class="col main">
                 <slot name="main" />
               </div>
-              <div class="col-sm-12 col-md-auto mt-4 mb-4 btn-container">
+              <div class="col-sm-12 col-lg-auto mt-4 mb-4 btn-container">
                 <div class="row">
-                  <div class="col col-md-auto">
+                  <div class="col col-lg-auto">
                     <button class="btn btn-block btn-outline-light" onClick={() => this.open = true}>{this.mainButtonSecondary}</button>
                   </div>
-                  <div class="col col-md-auto">
+                  <div class="col col-lg-auto">
                     <button class="btn btn-block btn-outline-light" onClick={event => { this.all = true; this.save(event) }}>{this.mainButtonPrimary}</button>
                   </div>
                 </div>
@@ -305,7 +314,10 @@ export class Cookie {
             </div>
           </div>
         </footer>
-      : ''
+      :
+        <div class="d-none">
+          <slot name="main" />
+        </div>
     ]
   }
 }

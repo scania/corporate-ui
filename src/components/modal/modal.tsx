@@ -19,7 +19,7 @@ export class Modal {
 
   @Prop() event;
 
-  @Prop() open;
+  @Prop() open: boolean;
 
   @Prop() close: boolean = true;
 

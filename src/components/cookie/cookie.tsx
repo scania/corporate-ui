@@ -241,7 +241,7 @@ export class Cookie {
 
                 <nav class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   {this.items.map((item, index) => (
-                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' d-none d-lg-block active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
+                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' d-lg-block active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
                       {item.text}
 
                       {item.toggable ?

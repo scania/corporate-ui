@@ -232,7 +232,7 @@ export class Cookie {
           <main>
             <div class={"row h-100 flex-sm-fill" + (this.active ? ' active': '')}>
               <div class="col-6 col-lg-3 h-100 navigation">
-                {this.items.length ?
+                {this.items.length && this.items[0].intro ?
                   <div class="d-lg-none mb-5 pl-4 pr-4">
                     <h3>{this.items[0].text}</h3>
                     <article innerHTML={this.items[0].intro} />

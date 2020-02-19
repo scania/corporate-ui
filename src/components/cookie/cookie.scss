@@ -90,7 +90,9 @@ footer {
 
   main {
     min-width: 100%;
-    overflow: hidden auto;
+    // overflow: hidden auto; // two value shorthand can't be used in safari mobile
+    overflow-y: auto;
+    overflow-x: hidden;
     margin: 0 -30px;
 
     > .row {

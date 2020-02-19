@@ -79,7 +79,9 @@
   .modal {
 
     &-dialog {
-      height: 100vh;
+      //TODO: Fix for Safari in IOS
+      height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+      height: calc(var(--vh, 1vh) * 100);
       margin: 0;
     }
     &-content {
@@ -89,6 +91,7 @@
     }
     &-footer {
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
   }
 }

@@ -29,6 +29,8 @@ export class Modal {
 
   @State() currentTheme = { components: [] };
 
+  @State() style: Array<CSSStyleSheet>;
+
   @State() items: Array<any> = [];
 
   @State() modal;
@@ -73,18 +75,6 @@ export class Modal {
   appendStyle(state) {
     if(state !== false) return;
 
-    /*FIXME: Temp solution for IOS Safari modal height https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-     First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    Then we set the value in the --vh custom property to the root of the document
-    */
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    window.addEventListener('resize', () => {
-      // We execute the same script as before
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    });
-
     const css = `
       .modal-backdrop {
         position: fixed;
@@ -103,12 +93,46 @@ export class Modal {
     style.appendChild(document.createTextNode(css));
   }
 
+  themeStyle() {
+    const css = this.currentTheme ? this.currentTheme.components[this.tagName] : '';
+    let style;
+
+    if(!this.style) return;
+
+    // This is used by browsers with support for shadowdom
+    if(this.el.shadowRoot.adoptedStyleSheets) {
+      style = new CSSStyleSheet();
+      style.replaceSync(css);
+      // TODO: We should not take first index we should all except the previous style
+      this.el.shadowRoot.adoptedStyleSheets = [ this.el.shadowRoot.adoptedStyleSheets[0], style ];
+    } else {
+      const node = this.el.shadowRoot || this.el;
+      style = this.el.querySelector('#themeStyle') || document.createElement('style');
+      // style.appendChild(document.createTextNode(css));
+      // style.innerHTML = css;
+      style.id = 'themeStyle';
+
+      if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+
+      if(!node.querySelector('#themeStyle')) {
+        node.insertBefore(style, node.firstChild.nextSibling);
+      }
+    }
+  }
+
   componentWillLoad() {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
 
     this.setTheme(this.theme);
 
-    this.store.subscribe(() => this.setTheme());
+    this.store.subscribe(() => {
+      this.setTheme();
+      this.themeStyle();
+    });
 
     if (!(this.el && this.el.nodeName)) return;
 
@@ -120,15 +144,18 @@ export class Modal {
   }
 
   componentDidLoad() {
+
+    this.style = this.el.shadowRoot.adoptedStyleSheets || [];
+
+    this.themeStyle();
+
     this.openDialog(this.open);
   }
 
   render() {
     return (
       <Host class="fade" tabindex="-1" role="dialog" aria-modal="true">
-        { this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '' }
-
-        <div class="modal-dialog modal-dialog-centered" role="document" ref={el => this.dialog = el}>
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document" ref={el => this.dialog = el}>
           <div class="modal-content">
             <div class="modal-header">
               <slot name="header" />

@@ -20,6 +20,10 @@ export class Cookie {
 
   @Prop() headline = 'Confidentiality agreement';
 
+  @Prop() introHeadline;
+
+  @Prop() introText;
+
   @Prop() modalButtonPrimary = 'Save preferences';
 
   @Prop() modalButtonSecondary = 'Cancel';
@@ -232,24 +236,26 @@ export class Cookie {
           <main>
             <div class={"row h-100 flex-sm-fill" + (this.active ? ' active': '')}>
               <div class="col-6 col-lg-3 h-100 navigation">
-                {this.items.length && this.items[0].intro ?
+                {this.introHeadline || this.introText ?
                   <div class="d-lg-none mb-5 pl-4 pr-4">
-                    <h3>{this.items[0].text}</h3>
-                    <article innerHTML={this.items[0].intro} />
+                    <h4>{this.introHeadline}</h4>
+                    <article innerHTML={this.introText} />
                   </div>
                 : ''}
 
                 <nav class="list-group" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   {this.items.map((item, index) => (
-                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' d-lg-block active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
-                      {item.text}
+                    <a href={'#v-pills-' + index} class={'list-group-item list-group-item-action' + (index === 0 ? ' active' : '')} data-toggle="pill" ref={el => this.tab = el} onClick={() => this.active = true}>
+                      <c-icon name='scania-angle-down' class="d-lg-none"></c-icon>
+
+                      <span class="ml-3 mr-auto">{item.text}</span>
 
                       {item.toggable ?
                         item.attributes.disabled ?
                           <input type="checkbox" name={item.type || item.id} checked={this.items[index].attributes.checked} value="true" hidden />
                         :
                           <div class="custom-control custom-switch" onClick={event => event.stopPropagation()}>
-                            <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onChange={() => this.check(item, index)} { ... { ...item.attributes } } />
+                            <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input d-none" onChange={() => this.check(item, index)} { ... { ...item.attributes } } />
                             <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
                           </div>
                       : ''}
@@ -262,7 +268,10 @@ export class Cookie {
               </div>
               <div class="col-6 col-lg-9 content">
                 <div class="tab-content">
-                  <a href="" class="btn btn-link btn-block d-lg-none btn-back" onClick={(event) => { event.preventDefault(); this.active = false }}>&lt; Cookie policy</a>
+                  <a href="" class="d-lg-none mb-5 btn-back" onClick={(event) => { event.preventDefault(); this.active = false }}>
+                    <c-icon name='scania-angle-down'></c-icon>
+                    <span class="ml-2">{this.headline}</span>
+                  </a>
 
                   {this.items.map((item, index) => (
                     <div class={'tab-pane fade' + (index === 0 ? ' show active' : '')} id={'v-pills-' + index} role="tabpanel" aria-labelledby={'v-pills-' + index + '-tab'}>

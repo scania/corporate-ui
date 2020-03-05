@@ -14,22 +14,37 @@
 :host(.inline) {
   position: static;
 
-  .modal-dialog {
-    min-height: 0;
-    max-width: none;
-    margin: 0;
+  .modal {
 
-    &:before {
-      height: auto;
+    &-dialog {
+      min-height: 0;
+      max-width: none;
+      margin: 0;
+
+      &:before {
+        height: auto;
+      }
+    }
+    &-content {
+      min-height: 0;
     }
   }
 }
 
-::slotted(h2) {
-  @extend .modal-title;
+slot[name=header] {
+  display: block;
+
+  &::slotted(*) {
+    @extend .modal-title;
+
+    margin-bottom: 0 !important; // Maybe we shouldnt force this?
+  }
 }
-::slotted(button) {
-  margin-left: 5px !important;
+// This is used for IE (We should make a mixin for this later on)
+[slot=header] {
+  @extend .modal-title;
+
+  margin-bottom: 0 !important; // Maybe we shouldnt force this?
 }
 
 .modal {
@@ -37,35 +52,16 @@
   &-dialog {
     max-width: 1060px;
   }
-  &-header,
-  &-body,
-  &-footer {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    border: 0;
-  }
-  &-header {
-    padding-top: 3rem;
-  }
   &-body {
     display: flex;
     overflow-y: auto;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  &-footer {
-    padding-bottom: 3rem;
   }
 }
 
 @media (min-width: 992px) {
 
-  .modal {
-
-    &-content {
-      min-height: 60vh;
-      max-height: 90vh;
-    }
+  ::slotted(button) {
+    margin-left: 5px !important;
   }
 }
 
@@ -79,19 +75,18 @@
   .modal {
 
     &-dialog {
-      //TODO: Fix for Safari in IOS
-      height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-      height: calc(var(--vh, 1vh) * 100);
       margin: 0;
-    }
-    &-content {
-      height: 100%;
-      border: 0;
-      border-radius: 0;
+      max-height: 100%;
+
+      &.modal-dialog-scrollable {
+
+        .modal-content {
+          overflow: auto;
+        }
+      }
     }
     &-footer {
       flex-wrap: wrap;
-      margin-bottom: 20px;
     }
   }
 }

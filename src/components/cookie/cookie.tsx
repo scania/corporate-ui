@@ -24,6 +24,8 @@ export class Cookie {
 
   @Prop() introText;
 
+  @Prop() activeText = 'Active';
+
   @Prop() modalButtonPrimary = 'Save preferences';
 
   @Prop() modalButtonSecondary = 'Cancel';
@@ -205,7 +207,7 @@ export class Cookie {
     const cookieObj = this.cookie ? JSON.parse(this.cookie) : {};
 
     this.items = Array.from(items).map((item:any) => {
-      const id = item.getAttribute('text').match(/[a-z]+/gi)
+      const id = (item.getAttribute('text').split(' ') || [ Math.random().toString(36).substring(7) ])
         .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()).join('');
 
       return {
@@ -283,7 +285,7 @@ export class Cookie {
                           <input type="checkbox" name={item.type || item.id} id={item.type || item.id} value="true" class="custom-control-input" onInput={() => this.check(item, index)} { ... { ...item.attributes } } />
                           <label class="custom-control-label" { ... { for: item.type || item.id } }></label>
                         </div>
-                      : <span class="badge badge-pill badge-primary">{item.attributes.checked ? 'Active' : ''}</span> }
+                      : <span class="badge badge-pill badge-primary">{item.attributes.checked ? this.activeText : ''}</span> }
 
                       {/* {item.toggable ?
                         <div class="custom-control custom-switch pt-4 pb-4">

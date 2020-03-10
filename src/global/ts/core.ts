@@ -132,13 +132,12 @@ function setGlobals() {
   window['corporate_elm'] = document.querySelector('[src*="corporate-ui"]');
 
   var scriptUrl = window['corporate_elm'].src,
-      port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '',
-      localhost = helpers.urlInfo(scriptUrl).hostname === 'localhost' || helpers.urlInfo(scriptUrl).hostname.match(/rd[0-9]+/g) !== null;
+      port = helpers.urlInfo(scriptUrl).port ? ':' + helpers.urlInfo(scriptUrl).port : '';
 
   window['cui_path'] = helpers.urlInfo(scriptUrl).href.substring(0, helpers.urlInfo(scriptUrl).href.lastIndexOf('/')+1);
 
   window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
-  window['static_root'] = (localhost ? 'http://' : 'https://') + helpers.urlInfo(scriptUrl).hostname + port;
+  window['static_root'] = (wv.props ? JSON.parse(wv.props)['--root'] : undefined) || helpers.urlInfo(scriptUrl).origin;
   window['version_root'] = (window['static_root'] + helpers.urlInfo(scriptUrl).pathname).replace('/js/corporate-ui.js', '');
   window['protocol'] = helpers.urlInfo(scriptUrl).protocol;
   window['environment'] = helpers.urlInfo(scriptUrl).pathname.split('/')[1];
@@ -246,7 +245,7 @@ function polymerInject(cb=function(){}) {
 function baseComponents(references) {
   // Adds support for Promise if non exist
   if (typeof(window['Promise']) === 'undefined') {
-    return helpers.importScript(window['static_root'] + '/vendors/components/pure-js/es6-promise/4.1.0/dist/es6-promise.js', function() {
+    return helpers.importScript(window['version_root'] + '/../../es6-promise/dist/es6-promise.js', function() {
       window['Promise'] = window['ES6Promise'];
       baseComponents(references);
     }, window['corporate_elm']);
@@ -283,16 +282,16 @@ function baseComponents(references) {
 }
 
 function appendExternals() {
-  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation', 'cookie-message', 'fullscreen', 'main-hero' ];
+  window['preLoadedComponents'] = ['corporate-header', 'corporate-footer', 'main-navigation', 'fullscreen', 'main-hero' ];
 
   // Adds support for webcomponents if non exist
   if (!('import' in document.createElement('link'))) {
-    helpers.importScript(window['static_root'] + '/vendors/frameworks/webcomponents.js/0.7.24/webcomponents-lite.js', null, window['corporate_elm']);
+    helpers.importScript(window['version_root'] + '/../../webcomponents.js/webcomponents-lite.js', null, window['corporate_elm']);
   }
 
   // Adds Polymer and then extend it with some extra corporate specific handling
   if (window['params'].polymer !== 'false') {
-    helpers.importLink(window['static_root'] + '/vendors/frameworks/polymer/1.4.0/polymer.html', 'import', function() {
+    helpers.importLink(window['version_root'] + '/../../Polymer/polymer.html', 'import', function() {
       polymerInject(function() {
         baseComponents(window['params'].preload === 'false' ? [] : undefined);
       })
@@ -301,7 +300,7 @@ function appendExternals() {
   }
 
   if (window['params'].css !== 'custom') {
-    var bsnUrl = window['static_root'] + '/vendors/frameworks/bootstrap.native/2.0.21/dist/bootstrap-native.js';
+    var bsnUrl = window['version_root'] + '/../../bootstrap.native/dist/bootstrap-native.js';
     if(window['define']) {
       window['requirejs']([bsnUrl], function(bsn) {
         Object['assign'](window, bsn);
@@ -310,7 +309,7 @@ function appendExternals() {
     } else {
       helpers.importScript(bsnUrl, bsHandler, window['corporate_elm']);
     }
-    helpers.importLink(window['static_root'] + '/vendors/frameworks/bootstrap/3.2.0/dist/css/bootstrap-org.css', 'stylesheet', null, window['corporate_elm']);
+    helpers.importLink(window['version_root'] + '/../../bootstrap/dist/css/bootstrap.css', 'stylesheet', null, window['corporate_elm']);
     helpers.importLink(window['version_root'] + '/css/corporate-ui.css', 'stylesheet', null, window['corporate_elm']);
   }
 }

@@ -1,10 +1,3 @@
-<template is="dom-if" if="{{isPassword(type)}}">
-  <button type="button" name="show-hide" class="btn-link btn-info pull-right">
-    <span>Show</span>
-    <i class="icon-eye-open"></i>
-  </button>
-</template>
-
 <label class="form-group">
   <template is="dom-if" if="{{labelExist(label)}}">
     {{label}}
@@ -26,5 +19,12 @@
     <select name="{{name}}" class="form-control">
       <content></content>
     </select>
+  </template>
+
+  <template is="dom-if" if="{{isPassword(type)}}">
+    <button type="button" name="show-hide" class="btn-link btn-info toggler">
+      <span>{{showHide}}</span>
+      <i class="icon-eye-open"></i>
+    </button>
   </template>
 </label>

@@ -6,7 +6,7 @@
   </section>
 
   <section>
-    <h2 class="text-center">{{loginHeadline}}</h2>
+    <h2 class="text-center">[[loginHeadline]]</h2>
     <p class="text-center mt-4">
       {{loginDescriptionRegister}}
       <template is="dom-if" if="{{register}}">
@@ -18,18 +18,15 @@
     </p>
     <form action="{{loginAction}}" method="post">
       <content select="[slot=login]">
-        <form-field type="text" name="username" label="Username" required="true"></form-field>
-        <form-field type="password" name="password" label="Password" required="true"></form-field>
+        <form-field type="text" name="username" label="{{loginUsername}}" required="true"></form-field>
+        <form-field type="password" name="password" label="{{loginPassword}}" required="true" show-text="{{showPassword}}" hide-text="{{hidePassword}}"></form-field>
       </content>
 
-      <!-- Should show a notification component here instead -->
-      <template is="dom-if" if="{{showLoginMessage}}">
-        <div class$="alert alert-warning">{{loginMessage}}</div>
-      </template>
+      <content select="[slot=login-message]"></content>
 
       <button
         type="submit"
-        class="btn btn-success btn-lg btn-block">Log in</button>
+        class="btn btn-success btn-lg btn-block">{{loginButton}}</button>
     </form>
     <template is="dom-if" if="{{recover}}">
       <p class="text-center mt-5">
@@ -50,23 +47,22 @@
       <content select="[slot=register]">
         <div class="row">
           <div class="form-group col-sm-6">
-            <form-field type="text" name="fname" label="First name"></form-field>
+            <form-field type="text" name="fname" label="{{registerFName}}"></form-field>
           </div>
           <div class="form-group col-sm-6">
-            <form-field type="text" name="lname" label="Last name"></form-field>
+            <form-field type="text" name="lname" label="{{registerLName}}"></form-field>
           </div>
         </div>
         <div class="form-group">
-          <form-field type="text" name="email" label="Email address" required="true"></form-field>
+          <form-field type="text" name="email" label="{{registerEmail}}" required="true"></form-field>
         </div>
         <div class="form-group">
-          <form-field type="password" name="password" label="Password" required="true"></form-field>
+          <form-field type="password" name="password" label="{{registerPassword}}" required="true" show-text="{{showPassword}}" hide-text="{{hidePassword}}"></form-field>
         </div>
       </content>
-      <!-- Should be triggered from submit on form later on -->
       <button
         type="submit"
-        class="reg-form-submit btn btn-lg btn-block btn-success mt-5">Sign up</button>
+        class="reg-form-submit btn btn-lg btn-block btn-success mt-5">{{registerButton}}</button>
     </form>
     <template is="dom-if" if="{{terms}}">
       <p class="text-center mt-5">
@@ -77,18 +73,17 @@
   </section>
 
   <section>
-    <h2 class="text-center">Your user account has been created and needs to be activated.</h2>
-    <p class="text-center mt-4">To activate your user account, please follow the link that has been sent to the following address</p>
+    <h2 class="text-center">{{registeredHeadline}}</h2>
+    <p class="text-center mt-4">{{registeredDescriptionEmail}}</p>
     <p class="text-center">
-      <strong>Scania@scania.com</strong>
+      <strong>{{registeredEmail}}</strong>
     </p>
-    <!--!!! Add script to collect used address-->
-    <p class="text-center mt-5">If you do not receive this email, please check your spam filter or re-register.</p>
+    <p class="text-center mt-5">{{registeredDescription}}</p>
     <button
       type="button"
       class="reg-go-signin btn btn-lg btn-block btn-primary mt-5"
       on-click="setView"
-      data-target="login">Back to login</button>
+      data-target="login">{{backButton}}</button>
   </section>
 
   <section>
@@ -97,18 +92,17 @@
     <form action="{{recoverAction}}" method="post">
       <div class="form-group">
         <content select="[slot=recover]">
-          <form-field type="email" name="email" label="Email address" required="true"></form-field>
+          <form-field type="email" name="email" label="{{recoverEmail}}" required="true"></form-field>
         </content>
       </div>
-      <!-- Should be triggered from submit on form later on -->
       <button
         type="submit"
-        class="reg-form-submit btn btn-lg btn-block btn-warning mt-5">Recover password</button>
+        class="reg-form-submit btn btn-lg btn-block btn-primary mt-5">{{recoverButton}}</button>
       <button
         type="button"
-        class="reg-go-signin btn btn-lg btn-block btn-primary mt-5 ml-0"
+        class="reg-go-signin btn btn-lg btn-block btn-default mt-5 ml-0"
         on-click="setView"
-        data-target="login">Back to login</button>
+        data-target="login">{{backButton}}</button>
     </form>
   </section>
 
@@ -122,7 +116,7 @@
       type="button"
       class="reg-go-signin btn btn-lg btn-block btn-primary mt-5"
       on-click="setView"
-      data-target="login">Back to startpage</button>
+      data-target="login">{{backButton}}</button>
   </section>
 </div>
 

@@ -1,13 +1,17 @@
 {
   "name": "corporate-ui",
-  "version": "3.5.5",
+  "version": "3.5.6-1",
   "description": "<h1>The Corporate UI Framework</h1>\r <p>In this repository you'll find all components described in <a href=\"https://www.scania.com/ux-library/developer\">the UX Library</a>.</p>\r <p>The repository is a place for all Front End Developers to join the UI Developement at Scania. It is us togheter that develop and maintain this repository.</p> \r <ul>\r \t<li>Something broken in a existing component? Help fixing it!</li>\r \t<li>Found a component that needs to be extended? Get on and improve it!</li>\r \t<li>Missing out on a component? Develop it!</li>\r </ul>",
   "main": "gulpfile.js",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "Polymer": "1.4.0",
     "bootstrap": "3.2.0",
     "bootstrap.native": "2.0.21",
     "choices.js": "3.0.4",
+    "js-cookie": "2.2.0",
     "webcomponents.js": "0.7.24"
   },
   "devDependencies": {
@@ -32,7 +36,6 @@
     "jquery": "3.0.0",
     "jquery-ui": "1.12.1",
     "jquery.hotkeys": "0.1.0",
-    "js-cookie": "2.2.0",
     "less": "2.7.2",
     "merge-stream": "1.0.1",
     "moment": "2.19.3",
@@ -51,6 +54,7 @@
   "scripts": {
     "prepare": "gulp build",
     "build": "gulp build",
+    "build:static": "gulp build --root=https://static.scania.com",
     "start": "gulp",
     "test": "gulp test"
   },

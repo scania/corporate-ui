@@ -86,6 +86,8 @@ function ts() {
     })
   });
 
+  var props = getProps();
+
   // We pipe webpack instead of typescript to bundle our modules
   var stream1 = webpack({
     watch: false,
@@ -110,7 +112,8 @@ function ts() {
       // export components array to the view
       webpackVariables: `{
         'components': '${JSON.stringify(_components)}',
-        'version': '${package.version}'
+        'version': '${package.version}',
+        'props': '${JSON.stringify(props)}'
       }`
     }
   })
@@ -216,7 +219,8 @@ function fullComponent() {
           name = path.dirname(file.path).substring(index),
           isVariation = !isNaN( parseFloat(name) ),
           isSubComponent = file.path.split('tmp')[1].split(path.sep).length > 4,
-          prefix = 'c-';
+          prefix = 'c-',
+          props = getProps();
 
       if (isVariation) {
         var parentPath = path.dirname(file.path).split(path.sep + 'variations')[0],
@@ -232,7 +236,7 @@ function fullComponent() {
         }
       }
 
-      return { name: prefix + name || 'test' };
+      return { name: prefix + name || 'test', root: props['--root'] || '' };
     }))
     .pipe(jade({ pretty: true }))
     .pipe(rename(function(_path) {
@@ -247,6 +251,16 @@ function fullComponent() {
 function cleanComponent() {
   return del('tmp')
 }
+function getProps() {
+  var props = {};
+  process.argv.filter(function(item) {
+    if(item.indexOf('--') > -1) {
+      var entries = item.split('=');
+      props[entries[0]] = entries[1]
+    }
+  });
+  return props;
+}
 function test(done) {
   /* We will have some tests here later on */
   done()
@@ -254,7 +268,7 @@ function test(done) {
 function server() {
   var app = express();
 
-  app.set('port', process.env.PORT || 1337)
+  app.set('port', process.env.PORT || 7331)
   app.set('host', process.env.COMPUTERNAME || '0.0.0.0')
 
   app.use(function(req, res, next) {

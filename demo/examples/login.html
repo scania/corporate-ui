@@ -80,9 +80,11 @@
   <link rel="import" href="../../../components/login/login.html">
 </head>
 <body class="scania app">
-  <c-corporate-header></c-corporate-header>
+  <c-corporate-header site-name="Login"></c-corporate-header>
   <c-main-content>
-    <c-login>
+    <c-login
+      view="loginSelect"
+      recover="true">
       <select-item headline="Headline" description="Description goes here" href="#" slot="login-select"></select-item>
       <form-field type="text" name="username" label="Username"></form-field>
       <form-field type="password" name="password" label="Password"></form-field>
@@ -96,5 +98,30 @@
     </div>
   </c-main-content>
   <c-corporate-footer></c-corporate-footer>
+  <script>
+    init();
+
+    function init() {
+      var view = getUrlVars().view;
+
+      document.querySelector('c-login').viewAction = action;
+      if(!view) return;
+      document.querySelector('c-login').view = view;
+    }
+
+    function action(e) {
+      console.log(e);
+      window.location = window.location.origin
+                      + window.location.pathname
+                      + (window.location.search.replace(/view=\w+/, 'view=' + e.target));
+    }
+    function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+        vars[key] = value;
+      });
+      return vars;
+    }
+  </script>
 </body>
 </html>

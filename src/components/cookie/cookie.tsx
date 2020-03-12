@@ -18,6 +18,8 @@ export class Cookie {
 
   @Prop() open: boolean;
 
+  @Prop() options = { expires: 365, sameSite: 'lax' };
+
   @Prop() headline = 'Confidentiality agreement';
 
   @Prop() introHeadline;
@@ -120,7 +122,7 @@ export class Cookie {
       this.cookie = content;
     }, 200);
 
-    JsCookie.set('ConfidentialityAgreement', content, { sameSite: 'lax' });
+    JsCookie.set('ConfidentialityAgreement', content, this.options);
 
     const customEvent = new CustomEvent('cookieSaved', { detail: { cookie: object }, bubbles: true });
     this.el.dispatchEvent(customEvent);

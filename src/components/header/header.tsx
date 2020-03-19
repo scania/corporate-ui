@@ -3,6 +3,7 @@ import {
 } from '@stencil/core';
 
 import { actions } from '../../store';
+import { themeStyle } from '../../helpers/themeStyle.js';
 
 @Component({
   tag: 'c-header',
@@ -42,6 +43,8 @@ export class Header {
 
   @State() hasNav: boolean;
 
+  @State() style: Array<CSSStyleSheet>;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -71,7 +74,7 @@ export class Header {
 
     this.store.subscribe(() => {
       this.setTheme();
-
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
       this.navigationOpen = this.store.getState().navigation.open;
     });
 
@@ -85,6 +88,12 @@ export class Header {
     this.tagName = this.el.nodeName.toLowerCase();
   }
 
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
+  }
+
   combineClasses(classes) {
     return [
       ...(classes || '').split(' '),
@@ -94,8 +103,6 @@ export class Header {
 
   render() {
     return [
-      this.currentTheme ? <style id="themeStyle">{ this.currentTheme.components[this.tagName] }</style> : '',
-
       <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {
           this.hasNav

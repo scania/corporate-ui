@@ -1,6 +1,7 @@
 import {
   Component, h, Element, Prop, State, Watch,
 } from '@stencil/core';
+import { themeStyle } from '../../helpers/themeStyle.js';
 
 @Component({
   tag: 'c-dealer-header',
@@ -30,6 +31,8 @@ export class DealerHeader {
 
   @State() tagName: string;
 
+  @State() style: Array<CSSStyleSheet>;
+
   @Element() el: HTMLElement;
 
   @Watch('theme')
@@ -45,6 +48,7 @@ export class DealerHeader {
 
     this.store.subscribe(() => {
       this.setTheme();
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
     });
 
     if (!(this.el && this.el.nodeName)) return;
@@ -52,10 +56,14 @@ export class DealerHeader {
     this.tagName = this.el.nodeName.toLowerCase();
   }
 
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
+  }
+
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
-
       <c-header site-name={this.siteName} short-name={this.shortName} site-url={this.siteUrl} variation='dealer'>
         {this.logo
           ? <img src={this.logo} alt={this.siteName} slot='brand-logo'/>

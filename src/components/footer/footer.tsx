@@ -1,6 +1,7 @@
 import {
   Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
+import { themeStyle } from '../../helpers/themeStyle.js';
 
 @Component({
   tag: 'c-footer',
@@ -32,6 +33,8 @@ export class Footer {
 
   @State() currentTheme = { components: [] };
 
+  @State() style: Array<CSSStyleSheet>;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -57,13 +60,22 @@ export class Footer {
     this.setItems(this.items);
     this.setSocialItems(this.socialItems);
 
-    this.store.subscribe(() => this.setTheme());
+    this.store.subscribe(() => {
+      this.setTheme();
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
+    });
 
     if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
 
     this.initialSlot = this.el.innerHTML;
+  }
+
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
   }
 
   parse(items) {
@@ -79,8 +91,6 @@ export class Footer {
 
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
-
       <nav class='navbar navbar-expand-lg navbar-default'>
         <strong class='navbar-brand'></strong>
 

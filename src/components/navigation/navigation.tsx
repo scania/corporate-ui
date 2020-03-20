@@ -1,7 +1,7 @@
 import {
   Component, h, Prop, State, Element, Watch, Listen,
 } from '@stencil/core';
-import { themeStyle } from '../../helpers/themeStyle.js';
+import { themeStyle } from '../../helpers/themeStyle';
 
 import { actions } from '../../store';
 

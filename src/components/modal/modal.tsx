@@ -3,7 +3,7 @@ import {
 } from '@stencil/core';
 
 import BsModal from 'bootstrap/js/src/modal';
-import { themeStyle } from '../../helpers/themeStyle.js';
+import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
   tag: 'c-modal',

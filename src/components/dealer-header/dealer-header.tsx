@@ -1,7 +1,7 @@
 import {
   Component, h, Element, Prop, State, Watch,
 } from '@stencil/core';
-import { themeStyle } from '../../helpers/themeStyle.js';
+import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
   tag: 'c-dealer-header',

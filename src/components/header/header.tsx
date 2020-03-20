@@ -3,7 +3,7 @@ import {
 } from '@stencil/core';
 
 import { actions } from '../../store';
-import { themeStyle } from '../../helpers/themeStyle.js';
+import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
   tag: 'c-header',
@@ -60,7 +60,6 @@ export class Header {
 
   toggleNavigation(open) {
     this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
-
     setTimeout(() => {
       this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
     }, 350);
@@ -74,8 +73,9 @@ export class Header {
 
     this.store.subscribe(() => {
       this.setTheme();
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
       this.navigationOpen = this.store.getState().navigation.open;
+
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el)
     });
 
     this.hasNav = !!document.querySelector('c-navigation');
@@ -103,7 +103,7 @@ export class Header {
 
   render() {
     return [
-      <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
+    <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {
           this.hasNav
             ? <button

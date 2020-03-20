@@ -1,6 +1,7 @@
 import {
   Component, h, Prop, State, Element, Watch
 } from '@stencil/core';
+import { themeStyle } from '../../helpers/themeStyle';
 
 import JsCookie from 'js-cookie';
 import Tab from 'bootstrap/js/src/tab';
@@ -137,37 +138,6 @@ export class Cookie {
     this.items = items;
   }
 
-  themeStyle() {
-    const css = this.currentTheme ? this.currentTheme.components[this.tagName] : '';
-    let style;
-
-    if(!this.style) return;
-
-    // This is used by browsers with support for shadowdom
-    if(this.el.shadowRoot.adoptedStyleSheets) {
-      style = new CSSStyleSheet();
-      style.replaceSync(css);
-      // TODO: We should not take first index we should all except the previous style
-      this.el.shadowRoot.adoptedStyleSheets = [ this.el.shadowRoot.adoptedStyleSheets[0], style ];
-    } else {
-      const node = this.el.shadowRoot || this.el;
-      style = this.el.querySelector('#themeStyle') || document.createElement('style');
-      // style.appendChild(document.createTextNode(css));
-      // style.innerHTML = css;
-      style.id = 'themeStyle';
-
-      if (style.styleSheet) {
-        style.styleSheet.cssText = css;
-      } else {
-        style.appendChild(document.createTextNode(css));
-      }
-
-      if(!node.querySelector('#themeStyle')) {
-        node.insertBefore(style, node.firstChild.nextSibling);
-      }
-    }
-  }
-
   componentWillLoad() {
     this.loadLibs();
 
@@ -179,7 +149,7 @@ export class Cookie {
 
     this.store.subscribe(() => {
       this.setTheme();
-      this.themeStyle();
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
     });
 
     if (!(this.el && this.el.nodeName)) return;
@@ -193,7 +163,7 @@ export class Cookie {
 
     this.style = this.el.shadowRoot.adoptedStyleSheets || [];
 
-    this.themeStyle();
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
 
     // TODO: It would make sense to create a tab and tab-item component.
     // That can be used instead of this hacky way

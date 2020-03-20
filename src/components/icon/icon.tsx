@@ -1,6 +1,7 @@
 import {
   Component, h, Prop, State, Watch, Element,
 } from '@stencil/core';
+import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
   tag: 'c-icon',
@@ -21,6 +22,8 @@ export class Icon {
   @State() theme: string;
 
   @State() currentTheme = { icons: { }, components: [] };
+
+  @State() style: Array<CSSStyleSheet>;
 
   @Element() el: any;
 
@@ -49,6 +52,8 @@ export class Icon {
     this.store.subscribe(() => {
       this.theme = this.store.getState().theme.current;
       this.currentTheme = this.store.getState().theme[this.theme];
+
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
     });
 
     if (!(this.el && this.el.nodeName)) return;
@@ -56,9 +61,14 @@ export class Icon {
     this.tagName = this.el.nodeName.toLowerCase();
   }
 
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
+  }
+
   render() {
     return [
-      this.currentTheme ? <style>{ this.currentTheme.components[this.tagName] }</style> : '',
       <svg xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${this.icon.width} ${this.icon.height}`}>
         <path fill='currentColor' d={this.icon.definition} />
       </svg>,

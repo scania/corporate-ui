@@ -1,6 +1,7 @@
 import {
   Component, h, Prop, State, Element, Watch, Listen,
 } from '@stencil/core';
+import { themeStyle } from '../../helpers/themeStyle';
 
 import { actions } from '../../store';
 
@@ -52,6 +53,8 @@ export class Navigation {
   @State() scrollPos = 0;
 
   @State() isIE: boolean;
+
+  @State() style: Array<CSSStyleSheet>;
 
   @Element() el: HTMLElement;
 
@@ -118,6 +121,8 @@ export class Navigation {
       this.navigationExpanded = this.store.getState().navigation.expanded;
 
       this.setTheme();
+
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
     });
 
     if (!(this.el && this.el.nodeName)) return;
@@ -148,6 +153,12 @@ export class Navigation {
       const item = items[i];
       if (item) item.onclick = (event) => this.open(event);
     }
+  }
+
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
   }
 
   parse(items) {

@@ -1,4 +1,6 @@
-@import 'node_modules/highlight.js/styles/github';
+@import 'node_modules/highlight.js/styles/vs2015';
+
+//TODO: Might wanna move this component into site instead?
 
 :host {
   display: block;
@@ -9,11 +11,16 @@
   display: none !important;
 }
 
+pre {
+  padding: 40px;
+  background-color: var(--black);
+  background-color: #2D2926; //FIXME: Fallback for IE
+}
+
 pre,
 pre code {
   white-space: pre-wrap;
   margin: 0;
-  color: grey;
 }
 
 // Line break on attributes doesnt work for multi line examples

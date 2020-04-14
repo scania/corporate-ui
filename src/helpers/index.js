@@ -2,7 +2,9 @@
 import { applyPolyfills, defineCustomElements as dce } from '../loader';
 export { defineCustomElements, addTheme };
 
-function defineCustomElements(components=[]) {
+function defineCustomElements() {
+  fixFouc();
+
   return applyPolyfills().then(() => dce(window));
 }
 
@@ -27,4 +29,22 @@ function addTheme(_theme) {
       event.detail.store.dispatch(item);
     });
   }
+}
+
+function fixFouc() {
+  const elm = document.createElement('style');
+  const style = document.createTextNode('body { visibility: hidden; }');
+
+  document.head.insertBefore(elm, document.head.firstChild);
+  elm.appendChild(style);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // This timeout is to make sure that IE has time to load
+    setTimeout(() => {
+      if(document.querySelector('c-theme')) return;
+
+      // Used in case a theme element is not rendered
+      style.nodeValue = 'body { visibility: visible; }';
+    });
+  })
 }

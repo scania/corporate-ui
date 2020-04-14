@@ -2,10 +2,11 @@
 
 :host {
   display: block;
+}
 
-  .slot {
-    display: none;
-  }
+::slotted(*:not(pre)) {
+  // We have important here because slotted rules have lowest prio
+  display: none !important;
 }
 
 pre,

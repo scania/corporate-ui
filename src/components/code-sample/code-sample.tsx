@@ -2,7 +2,11 @@ import {
   Component, h, Prop, State, Element,
 } from '@stencil/core';
 
-import hljs from 'highlight.js';
+// import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/highlight';
+import js from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
 
 @Component({
   tag: 'c-code-sample',
@@ -17,8 +21,10 @@ export class Field {
   @Element() el: HTMLElement;
 
   componentWillLoad() {
-    const parsed = this.el.innerHTML.replace(/"/g, "'")
-      .replace(/&quot;/g, '"');
+    const parsed = this.el.innerHTML
+      .replace(/"/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/<!---->/g, "");
 
     if (!document.head.attachShadow) {
       hljs.configure({
@@ -27,17 +33,19 @@ export class Field {
       });
     }
 
+    hljs.registerLanguage('js', js);
+    hljs.registerLanguage('html', xml);
+    hljs.registerLanguage('css', css);
+
     this.code = hljs.highlight(this.type, parsed, false).value;
   }
 
   render() {
     return [
-      // need to keep render the slot to make it easy to hide it in IE
-      <div class='slot'><slot/></div>,
+      <slot />,
       <pre>
-        <code class={this.type} { ... { innerHTML: this.code } }>
-        </code>
-      </pre>,
+        <code class={this.type} { ... { innerHTML: this.code } }></code>
+      </pre>
     ];
   }
 }

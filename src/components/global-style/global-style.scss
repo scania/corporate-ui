@@ -12,6 +12,11 @@ $Interaction-types: primary, secondary, success, info, warning, danger, light, d
   }
 }
 
+// Used after bootstrap style has rendered for FOUC reasons
+html body {
+  visibility: visible;
+}
+
 .btn {
 
   @include list-to-string($Interaction-types, "&-") {

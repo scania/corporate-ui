@@ -3,6 +3,7 @@ import {
 } from '@stencil/core';
 
 import { actions } from '../../store';
+import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
   tag: 'c-header',
@@ -42,6 +43,8 @@ export class Header {
 
   @State() hasNav: boolean;
 
+  @State() style: Array<CSSStyleSheet>;
+
   @Element() el: HTMLElement;
 
   @Watch('items')
@@ -57,7 +60,6 @@ export class Header {
 
   toggleNavigation(open) {
     this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
-
     setTimeout(() => {
       this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
     }, 350);
@@ -71,8 +73,9 @@ export class Header {
 
     this.store.subscribe(() => {
       this.setTheme();
-
       this.navigationOpen = this.store.getState().navigation.open;
+
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el)
     });
 
     this.hasNav = !!document.querySelector('c-navigation');
@@ -85,6 +88,12 @@ export class Header {
     this.tagName = this.el.nodeName.toLowerCase();
   }
 
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
+  }
+
   combineClasses(classes) {
     return [
       ...(classes || '').split(' '),
@@ -94,9 +103,7 @@ export class Header {
 
   render() {
     return [
-      this.currentTheme ? <style id="themeStyle">{ this.currentTheme.components[this.tagName] }</style> : '',
-
-      <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
+    <nav class='navbar navbar-expand-lg navbar-default' short-name={this.shortName}>
         {
           this.hasNav
             ? <button

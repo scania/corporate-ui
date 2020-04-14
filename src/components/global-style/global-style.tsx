@@ -28,10 +28,11 @@ export class GlobalStyle {
 
   async loadLibs() {
     const jquery = await import('jquery');
-    /* eslint-disable dot-notation */
     window['CorporateUi'].$ = jquery.default;
-    /* eslint-enable dot-notation */
     await import('bootstrap');
+
+    const event = new CustomEvent('bsReady', { detail: { jquery: jquery.default } });
+    document.dispatchEvent(event);
   }
 
   componentWillLoad() {

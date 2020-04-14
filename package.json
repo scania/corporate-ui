@@ -25,7 +25,7 @@
     "test": "stencil test --spec --verbose",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "publish": "npm run build && npm publish"
+    "prepublishOnly":"npm run build"
   },
   "husky": {
     "hooks": {

@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.com/scania/corporate-ui.svg?branch=master)](https://travis-ci.com/scania/corporate-ui)
 [![npm version](http://img.shields.io/npm/v/corporate-ui.svg?style=flat&color=1081C2)](https://npmjs.org/package/corporate-ui)
 [![Github release](https://img.shields.io/github/v/tag/scania/corporate-ui.svg?label=release&color=1081C2)](https://github.com/scania/corporate-ui/releases)
-[![Components library](https://img.shields.io/badge/Components%20library-master-f4871a.svg)](https://scania.github.io/corporate-ui-site/)
 [![Join Slack](https://img.shields.io/badge/slack-join-%23dd3072.svg)](https://join.slack.com/t/corporate-ui/shared_invite/enQtNTI4NzMzOTQ3NTg4LTI1OGNhZGE2OTY0NzUwYzExMTJmMTQ2NjcxOTdkMjc0NDhlM2JlYTEyODY2ODJjYzUxNmYxNzhhMTQ5MDhmOWQ)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/license/scania/corporate-ui.svg?style=flat)
+[![Available components](https://img.shields.io/badge/Available%20components-digitaldesign.scania.com-orange)](https://digitaldesign.scania.com/components)
 
 # Corporate UI
 
@@ -15,7 +15,7 @@
 
 **Technical documentation**
 
-Check out [components library](https://scania.github.io/corporate-ui-site/) for **migration guidelines**, **component status**, and technical documentation.
+Check out [Scania Digital Design System](https://digitaldesign.scania.com/) for **migration guidelines**, **component status**, and technical documentation.
 
 
 ## Quick start
@@ -52,7 +52,7 @@ Several options to add corporate-ui in the project:
    Replace `x` with [available releases](https://github.com/scania/corporate-ui/releases).
 </details>
 
-See all available components in the [components library](https://scania.github.io/corporate-ui-site/).
+See all available components in the [Scania Digital Design System](https://digitaldesign.scania.com/components).
 
 
 ## Styling

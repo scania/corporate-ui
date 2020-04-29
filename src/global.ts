@@ -1,6 +1,3 @@
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-
 import { store, actions } from './store';
 
 // Polyfill for CustomEvent
@@ -23,7 +20,7 @@ import { store, actions } from './store';
 const detail = { store, actions };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
-const fa_icons = { ...fas, ...fab };
+const fa_icons = {};
 const defaultTheme = { default: { icons: {}, components: {}, colors: {} } };
 
 Object.keys(fa_icons).map(key => {

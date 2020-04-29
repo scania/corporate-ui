@@ -39,9 +39,6 @@
     ]
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "5.11.2",
-    "@fortawesome/free-brands-svg-icons": "5.11.2",
-    "@fortawesome/free-solid-svg-icons": "5.11.2",
     "@stencil/core": "1.8.1",
     "@stencil/router": "1.0.1",
     "@stencil/sass": "1.0.1",

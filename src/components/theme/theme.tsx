@@ -79,6 +79,9 @@ export class Theme {
   }
 
   render() {
+    if(this.currentTheme['version']!==undefined) {
+      document.documentElement.setAttribute(`${this.name}-theme-version`, `${this.currentTheme['version']}`);
+    }
     if (this.favicons && this.favicons) {
       this.renderFavicon();
     }

@@ -15,10 +15,12 @@ pre {
   padding: 40px;
   background-color: var(--black);
   background-color: #2D2926; //FIXME: Fallback for IE
+  color: #FAFAFA; //Fallback for IE, due to highligh.js not working
 }
 
 pre,
 pre code {
+  font-size: 1.3rem;
   white-space: pre-wrap;
   margin: 0;
 }

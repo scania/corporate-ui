@@ -3,6 +3,7 @@ import {
 } from '@stencil/core';
 
 // import hljs from 'highlight.js';
+// Highlight JS is not supported in IE 11, fallback provided in the code-sample.scss
 import hljs from 'highlight.js/lib/highlight';
 import js from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';

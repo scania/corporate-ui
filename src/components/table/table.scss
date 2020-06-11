@@ -1,32 +1,6 @@
 :host {
     display: block;
   }
-  .pointer {
-    cursor: pointer !important;
-  }
-  .sort-desc {
-    transform: rotate(180deg);
-    /* background-color: yellow; */
-  }
-  
-  .sort-desc:hover {
-    cursor: pointer !important;
-    background-color: white;
-    color: #041e42;
-  }
-  
-  .sort-asc:hover {
-    cursor: pointer !important;
-    background-color: white;
-    color: #041e42;
-  }
-  
-  .sort-active {
-    cursor: pointer !important;
-    background-color: white;
-    color: #041e42;
-  }
-  
   .input-icon-filter {
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDE0IDE0Ij48ZGVmcz48c3R5bGU+LmF7ZmlsbDojOTc5OTliO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iYSIgZD0iTTEzLjEyNCwwSC44NzZBLjg3Ni44NzYsMCwwLDAsLjI1NywxLjQ5NEw1LjI1LDYuNDg3djUuMTA2YS44NzUuODc1LDAsMCwwLC4zLjY1OUw3LjMsMTMuNzgzYS44NzUuODc1LDAsMCwwLDEuNDUxLS42NThWNi40ODdsNC45OTMtNC45OTRBLjg3Ni44NzYsMCwwLDAsMTMuMTI0LDBaTTcuODc1LDYuMTI1djdsLTEuNzUtMS41MzFWNi4xMjVMLjg3NS44NzVoMTIuMjVaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwKSIvPjwvc3ZnPg==") no-repeat !important;
     background-position: center !important;

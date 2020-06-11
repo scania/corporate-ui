@@ -208,7 +208,6 @@ export class TableComponent {
   /* Makes the callback for the developer */
   private callbackDropdown(event: string, rowIndex: number)
   {
-    debugger;
     let obj = this.content[rowIndex];
 
     if(event === "edit")
@@ -223,7 +222,7 @@ export class TableComponent {
   render() {
       if(!this.isArray) {
         return <div>
-            <h1>Wrong header/content format. Please contact Customer Support</h1>
+            <h1>Wrong header/content format. Please check documentation on https://digitaldesign.scania.com/components</h1>
         </div>
       }
 

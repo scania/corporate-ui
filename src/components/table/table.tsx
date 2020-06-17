@@ -73,7 +73,6 @@ export class TableComponent {
     this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
     
     themeStyle(this.currentTheme, this.tagName, this.style, this.el)
-    console.log(1, this.style);
   }
 
   /* Filter the content that will show on the table */
@@ -142,7 +141,7 @@ export class TableComponent {
 
     for (const key of keys) {
       const inputId = "search" + key;
-      let inputValue = ((this.el.shadowRoot || this.el).getElementById(inputId) as HTMLInputElement).value;
+      let inputValue = ((this.el.shadowRoot || this.el).querySelector('#'+inputId) as HTMLInputElement).value;
       
       if(inputValue)
       {
@@ -222,17 +221,11 @@ export class TableComponent {
   private setDropDown(rowIndex: number): HTMLElement {
     if(this.hasEdit || this.hasDelete)
       return <td class="text-right">
-        <div class="dropdown">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Action
-          </button>
-          <div class='dropdown-menu dropdown-menu-right'>
-            { this.hasEdit && <a class="dropdown-item" onClick={ () => this.callbackDropdown("edit", rowIndex) }>Edit</a> }
-            { this.hasEdit && this.hasDelete? <div class="dropdown-divider"></div> : "" }
-            { this.hasDelete && <a class="dropdown-item text-danger" onClick={ () => this.callbackDropdown("delete", rowIndex) }>Delete</a> }
-
-          </div>
-        </div>
+        <c-dropdown buttonType="primary" menuAlignment="dropdown-menu-right">
+          <span slot="dropdown-title">Action</span>          
+          { this.hasEdit && <a slot="dropdown-item" class="dropdown-item" onClick={ () => this.callbackDropdown("edit", rowIndex) }>Edit</a> }
+          { this.hasDelete && <a slot="dropdown-item" class="dropdown-item text-danger" onClick={ () => this.callbackDropdown("delete", rowIndex) }>Delete</a> }
+        </c-dropdown>
       </td>
   }
   

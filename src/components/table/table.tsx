@@ -1,9 +1,11 @@
-import { Component, Prop, h, State, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, State, Watch, Event, EventEmitter, Element } from '@stencil/core';
 import { Header } from './table.model';
+import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
   tag: 'c-table',
-  styleUrl: 'table.scss'
+  styleUrl: 'table.scss',
+  shadow: true
 })
 export class TableComponent {
   /* Array that is responsible to set which data will show on the table */
@@ -25,9 +27,23 @@ export class TableComponent {
   @State() filteredData = [];
   @State() isArray = true;
 
+  @Prop({ context: 'store' }) ContextStore: any;
+  @State() store: any;
+  @State() tagName: string;
+  @State() theme: string;
+  @State() currentTheme = { icons: { }, components: [] };
+  @State() style: Array<CSSStyleSheet>;
+  @Element() el: any;
+
   @Watch('content')
   onChangeContent() {
     this.filterContent();
+  }
+
+  @Watch('theme')
+  setTheme(name = undefined) {
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
   }
 
   componentWillLoad() {
@@ -37,6 +53,26 @@ export class TableComponent {
     }
 
     this.filterContent();
+
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
+    this.theme = this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme[this.theme];
+
+    this.store.subscribe(() => {
+      this.setTheme();
+
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
+    });
+
+    if (!(this.el && this.el.nodeName)) return;
+
+    this.tagName = this.el.nodeName.toLowerCase();
+  }
+
+  componentDidLoad() {
+    this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
+    
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
   }
 
   /* Filter the content that will show on the table */
@@ -69,7 +105,7 @@ export class TableComponent {
     /* Needs to reset the Prop to make the changes */
     this.filteredData = [...this.filteredData];
 
-    const input = document.getElementById(direction + key);
+    const input = (this.el.shadowRoot || this.el).querySelector('#' + direction + key);
 
     /* If clicks on an active button, just remove the active */
     if(input.classList.contains("sort-active")) {
@@ -86,7 +122,7 @@ export class TableComponent {
     }
     
     /* Disable other sort-active class and set the active the current selected */
-    let actives = document.querySelectorAll(".sort-active");
+    let actives = (this.el.shadowRoot || this.el).querySelectorAll(".sort-active");
     [].forEach.call(actives, function(active) {
       active.classList.remove("sort-active");
     });
@@ -105,7 +141,7 @@ export class TableComponent {
 
     for (const key of keys) {
       const inputId = "search" + key;
-      let inputValue = (document.getElementById(inputId) as HTMLInputElement).value;
+      let inputValue = ((this.el.shadowRoot || this.el).querySelector('#'+inputId) as HTMLInputElement).value;
       
       if(inputValue)
       {
@@ -144,26 +180,20 @@ export class TableComponent {
     return <tr>
       { (this.header.map((a) =>
         <th>
-          <div class="col-lg-12">
-            <div class="row">
-              <div class="d-flex pr-5 bd-highlight">
-              <p class="mt-1">{a.description}</p>
+          <div class="table-title">
+            <div>{a.description}</div>
+            <div>
+              <div onClick={() => this.sortData(a.key, "desc")}>
+                <c-icon class="sort-desc" id={"desc" + a.key} name="scania-angle-down"></c-icon>
               </div>
-              <div>
-                <div class="row" onClick={() => this.sortData(a.key, "desc")}>
-                  <c-icon class="sort-desc" id={"desc" + a.key} name="scania-angle-down"></c-icon>
-                </div>
-                <div class="row" onClick={() => this.sortData(a.key, "asc")}>
-                  <c-icon class="sort-asc" id={"asc" + a.key} name="scania-angle-down"></c-icon>
-                </div>
+              <div onClick={() => this.sortData(a.key, "asc")}>
+                <c-icon class="sort-asc" id={"asc" + a.key} name="scania-angle-down"></c-icon>
               </div>
             </div>
-            <div class="row">
-              <div class="input-field col-md-12 pl-0">
-                <input id={"search" + a.key} onKeyUp={() => this.searchColumn()} type="text" class="form-control" />
-                <div id={"icon" + a.key} class="input-icon-filter"></div>
-              </div>
-            </div>
+          </div>
+          <div class="input-field">
+            <input id={"search" + a.key} onKeyUp={() => this.searchColumn()} type="text" class="form-control" />
+            <div id={"icon" + a.key} class="input-icon-filter"></div>
           </div>
         </th>
     ))}
@@ -191,17 +221,11 @@ export class TableComponent {
   private setDropDown(rowIndex: number): HTMLElement {
     if(this.hasEdit || this.hasDelete)
       return <td class="text-right">
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Action
-          </button>
-          <div class='dropdown-menu dropdown-menu-right'>
-            { this.hasEdit && <a class="dropdown-item" onClick={ () => this.callbackDropdown("edit", rowIndex) }>Edit</a> }
-            { this.hasEdit && this.hasDelete? <div class="dropdown-divider"></div> : "" }
-            { this.hasDelete && <a class="dropdown-item text-danger" onClick={ () => this.callbackDropdown("delete", rowIndex) }>Delete</a> }
-
-          </div>
-        </div>
+        <c-dropdown buttonType="primary" menuAlignment="dropdown-menu-right">
+          <span slot="dropdown-title">Action</span>          
+          { this.hasEdit && <a slot="dropdown-item" class="dropdown-item" onClick={ () => this.callbackDropdown("edit", rowIndex) }>Edit</a> }
+          { this.hasDelete && <a slot="dropdown-item" class="dropdown-item text-danger" onClick={ () => this.callbackDropdown("delete", rowIndex) }>Delete</a> }
+        </c-dropdown>
       </td>
   }
   

@@ -45,7 +45,7 @@ export class Dropdown {
   handleClick(ev) {
     const target = ev ? ev.composedPath()[0] : window.event.target[0];
 
-    if(this.node === target) {
+    if(this.node === target || target.getAttribute('slot') === 'dropdown-title') {
       const status = this.el.classList.contains('active') ? 'active' : 'inactive';
       this.toggle(status);
     } else {
@@ -99,8 +99,15 @@ export class Dropdown {
           dropdown
           ${this.direction ? this.direction : ''}
         `}>
-          <button class={`btn btn-${this.buttonType} dropdown-toggle`} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={(ev)=>this.handleClick(ev)} ref={(node) => this.node = node}>
-            <slot name="dropdown-title"></slot>
+          <button 
+          class={`btn btn-${this.buttonType} dropdown-toggle`} 
+          type="button" id="dropdownMenuButton" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false" 
+          onClick={(ev)=>this.handleClick(ev)} 
+          ref={(node) => this.node = node}>
+            <slot name="dropdown-title" data-toggle="dropdown"></slot>
           </button>
           <div class={`
             dropdown-menu

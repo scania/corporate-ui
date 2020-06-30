@@ -137,7 +137,7 @@ function setGlobals() {
   window['cui_path'] = helpers.urlInfo(scriptUrl).href.substring(0, helpers.urlInfo(scriptUrl).href.lastIndexOf('/')+1);
 
   window['corporate_ui_params'] = helpers.urlInfo(scriptUrl).search.substring(1);
-  window['static_root'] = (wv.props ? JSON.parse(wv.props)['--root'] : undefined) || helpers.urlInfo(scriptUrl).origin;
+  window['static_root'] = (wv.props ? JSON.parse(wv.props)['--root'] : undefined) || helpers.urlInfo(scriptUrl).protocol + '//' + helpers.urlInfo(scriptUrl).host;
   window['version_root'] = (window['static_root'] + helpers.urlInfo(scriptUrl).pathname).replace('/js/corporate-ui.js', '');
   window['protocol'] = helpers.urlInfo(scriptUrl).protocol;
   window['environment'] = helpers.urlInfo(scriptUrl).pathname.split('/')[1];

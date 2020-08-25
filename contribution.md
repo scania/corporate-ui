@@ -2,9 +2,20 @@
 
   This is a tutorial how to setup a project with Corporate-UI components with Scania-theme styling.
 
-  Corporate UI is a toolbox with **UI components** that makes it easier to use reusable and modular components for your application.
+  Corporate UI is a toolbox with **UI components** that makes it easier to use reusable and modular components for your application. For example Header or a footer are two components, but also buttons and dropdowns are also included.
 
-  Scania-Theme is a packages to contains the Scania specific styling for everyone of those components in Corporate UI toolbox.
+  Scania-Theme is a packages to contains the Scania specific styling for everyone of those components in Corporate UI toolbox. Every component has a unique styling with Scania look and feel.
+
+
+## Components
+
+ Header,footer or a button are all components in our Design System, the difference between them is how they technically are made.
+
+ `<c-header></c-header>` is a web component, while a `<button> Click Me </button>` is a regular HTML element that already exist in the HTML Standard. One thing easy thing to look at is the dash, for example "c-header", that indicates it is a web-component.
+
+ A web component can be used in the same way as a regular element in the HTML standard. Difference is what is under the hood. You can read more about it here https://developer.mozilla.org/en-US/docs/Web/Web_Components
+
+ All web-components in Scania digital design system have namespace with  `<c-nameOfComponent>`
 
 ## Audience
 
@@ -29,6 +40,7 @@ We have setup a few example repositories for react, angular and vue
   Example component:
 
   ```javascript
+
     import { Component, Prop, h } from '@stencil/core';
 
     @Component({
@@ -47,6 +59,7 @@ We have setup a few example repositories for react, angular and vue
         );
       }
     }
+
   ```
 
 ## Prerequisties
@@ -150,7 +163,7 @@ When you are done with install all the npm packages, it is time to build Corpora
 
   _*Warnings(warn) might apprear, often it isn't anything causing problems_
 
-## Npm link Corporate-UI and Scania-Theme
+## Npm link for Corporate-UI and Scania-Theme
 
   When you have built Corporate-UI and Scania-Theme it is time to make is possible to use it locally in your own application. These step might look a bit confusing, but you will need to do this. This will create a symlink with your corporate-ui and scania-theme folders instead of using the npm version that you will install. This will make it possible to work locally with corporate-ui and scania-theme
 
@@ -164,6 +177,8 @@ When you are done with install all the npm packages, it is time to build Corpora
   > npm i corporate-ui
   > npm i scania-theme
   ```
+
+  SCREENSHOT of packages file
 
   2. Go to your corporate-ui folder and create a symlink of corporate-ui
   ```bash
@@ -191,28 +206,295 @@ When you are done with install all the npm packages, it is time to build Corpora
 
 ## How to use Corporate-ui and Scania-theme
 
-To able to use corporate-ui in your application you need to add 
-
-1. Corporate-Ui
- 
+You need to import ` { addTheme, defineCustomElements } ` from Corporate-Ui package and ` { theme } ` from Scania-theme package after you haver installed them (See section Installing npm packages).
 
 
-## Issues that might appear
+### React
 
-1. **If you can't clone (Timeout, access for example)**
+  1. In React you can go to src/index.js and import the packages Corporate-Ui and Scania-theme.
+
+ ```Javascript
+
+  import { addTheme, defineCustomElements } from 'corporate-ui'
+  import { theme } from 'scania-theme'
+
+ ```
+
+ 2. You need to call `defineCustomElements()`
+
+ ```Javascript
+  defineCustomElements();
+ ```
+
+ 3. After that you need to call `addTheme()` , this function takes one parameter, which is the theme from Scania-theme packages that you imported in step 1.
+
+ ```Javascript
+  addTheme(theme)
+ ```
+
+
+### Angular
+
+1.  In Angular, go to **main-ts**(or some other appropriate place), and import the packages Corporate-Ui and Scania-theme.
+
+  ```Javascript
+    import { AppModule } from './app/app.module';
+    import { environment } from './environments/environment';
+    //Import for Corporate-Ui and Scania-theme
+    import { defineCustomElements, addTheme } from 'corporate-ui'
+    import { theme } from 'scania-theme'
+  ```
+
+2. Angular doesn't recognize what a stencil component is, so what you need to do to solve this is to add `CUSTOM_ELEMENTS_SCHEMA` inside app.module.ts
+
+  ```Javascript
+    import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
+    @NgModule({
+      declarations: [
+        AppComponent,
+      ],
+      imports: [
+        BrowserModule
+      ],
+      providers: [],
+      bootstrap: [AppComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA] // Add the Schema
+    })
+
+  ```
+
+3. Inside **main.ts**, You need to call `defineCustomElements()`
+
+  ```Javascript
+    defineCustomElements();
+  ```
+
+4. After that you need to call `addTheme()` , this function takes one parameter, which is the theme from Scania-theme packages that you imported in step 1.
+
+  ```Javascript
+    addTheme(theme)
+  ```
+
+
+### Vue
+
+1. In Vue, go to **main.js** and import the packages Corporate-Ui and Scania-theme
+
+  ```Javascript
+    import Vue from 'vue'
+    import App from './App.vue'
+    //Import Corporate-Ui and Scania-theme
+    import { addTheme, defineCustomElements } from 'corporate-ui'
+    import { theme } from 'scania-theme'
+
+  ```
+
+  2. In the **main.js** you also need to tell the application to ignore custom-element tags such as `<c-header>` by adding this line. Otherwise a warning will be thrown in the console.
+
+  ```Javascript
+  //Ignore all components custom-elements named c-*
+  Vue.config.ignoredElements = [/c-\w*/];
+  ```
+
+  3. You need to call `defineCustomElements()`
+
+  ```Javascript
+    defineCustomElements();
+  ```
+
+  4. After that you need to call `addTheme()` , this function takes one parameter, which is the theme from Scania-theme packages that you imported in step 1.
+
+  ```Javascript
+    addTheme(theme)
+  ```
+
+## Add theming
+
+  When former step (How to use Corporate-Ui and Scania-Theme) is done, you can start adding theme to get the styling. Try and add `<c-theme>` component high up in the hierarchy of your application. for example app.js in react. If it works you should see fonts and so on change.
+
+ ```Javascript
+  // React example
+    function App() {
+      return (
+        <div className="App">
+
+          // Add Theme like this for the styling
+          <c-theme name="scania" global="true"></c-theme>
+
+        </div>
+      );
+    }
+
+  ```
+
+
+## Add header,content and footer
+
+After theme is added(Add theming) is done, you can add components `<c-header>`,`<c-content>` and `<c-footer>` in that order. After that you should see the header and footer. Content component will push down the footer below the content.
+
+  ```Javascript
+    // React example
+    function App() {
+      return (
+        <div className="App">
+          <c-theme name="scania" global="true"></c-theme>
+          // Add Header,content and footer component
+          <c-header></c-header>
+          <c-content>
+              // Application content
+          </c-content>
+          <c-footer></c-footer>
+        </div>
+      );
+    }
+
+  ```
+
+---
+
+## Creating a new component
+
+
+### Component (Corporate UI)
+
+  Before you start develop a component, don't forget to link Corporate-Ui and Scania, follow the steps in Npm link section
+
+  1. To create a new component you need to go your forked **Corporate-Ui** folder and go to `/src/components/`. Don't forget to create a npm link with both Corporate-Ui and Scania-theme. Create a new folder inside `/src/components/` with the name of the component.
+
+  2. Create a new file called the same as your component, make it a **.tsx** file
+
+  3. Go to the your components .tsx file and import the core function for component called `Components` and `h` 
+
+  ```Javascript
+    import { Component, h } from '@stencil/core';
+  ```
+
+  4. Now it is time to name your component, add the following line below the import. The `tag` property is where you need the component you are creating. We have rule when naming, you need to use a "c-" before the component name.
+
+  ```Javascript
+  @Component({
+    tag:'c-new-component' // Name of the component <c-new-component>
+  })
+  ```
+  5. Next step is to add the class for the component. Create a class and export it.
+
+  ```Javascript
+    export class NewComponent {
+        //Component
+    }
+  ```
+
+  6. Inside the class add the `render()` function, this is where you return your elements HTML structure. Inside the `render()` you return a tree structure of your component. You **need** to have the html nested inside a parent element on highest level, and you can't have two on the highest level.
+
+   ```Javascript
+    export class NewComponent {
+      // Add Render()
+      render() {
+        return(
+          // Add your HTML inside the return
+          <div>
+              Cool Component!
+          </div>
+        )
+      }
+    }
+  ```
+
+  7. Add your Component in your application
+
+  ```HTML
+    <section>
+      <h3>A Title of the page React</h3>
+      <!--  Add your new component here-->
+      <c-new-component></c-new-component>
+      <!-- Your application content goes here -->
+    </section>
+  ```
+
+
+  8.
+
+  9. Inside the `@Component` decorator you need to add another property called `shadow: true`. This will make the component isolated and not effected by the reset of the global styling.
+
+  ```Javascript
+    @Component({
+      tag:'c-new-component',
+      shadow: true
+    })
+  ```
+
+
+  10. How to add properties,states or watches you can look at the stencil documentation. Here is an example of a hello world component.
+
+  ```Javascript
+    import { Component, h, Prop } from '@stencil/core';
+
+    @Component({
+      tag: 'c-hello-world',
+      styleUrl: 'hello-world.scss',
+      shadow: true,
+    })
+    export class HelloWorld {
+      @Prop() text: string = 'Hello World';
+
+      render() {
+        return (
+          <div>
+            <h2>{this.text} component</h2>
+          </div>
+        );
+      }
+    }
+  ```
+
+  If you have done everything correctly you should see the component in Action without any specific styling, otherwise check of errors or see if everything is imported and linked correctly. You can see the "Problems that might appear" section
+
+
+### Styling a component (Scania Theme)
+
+  To be able to the Scania UI styling(Colors,fonts...) you need to use Scania-theme and add styling.
+
+
+1. create file scss in element folder
+2. add states,props, elements in the js file
+3. watchers
+4. Willload
+
+---
+
+## Problems that might appear
+
+* **If you can't clone (Timeout, access for example)**
     - Check so the URL is correct
     - Are you behind a firewall, configure proxy (4xx error, unable to access)
-2. **Errors install packages with** `npm install`
+* **Errors install packages with** `npm install`
     - Using recommended Node version. `node -v`
     - Using recommended NPM version. `npm -v`
     - Are you behind a firewall, configure proxy (4xx error, unable to access)
-3. **Error in creating a link locally with** `npm link` 
-    - Are you behind a firewall, configure proxy (4xx error, unable to access)
+    - Check which version of those packages you are trying to download, if it exist on npm
+* **Error in creating a link locally with** `npm link`
     - Correct packages name on the npm link
-    - 
+    - Have you cloned Corporate Ui and/or Scania-Theme
+* **Missing component or styling**
+    - Do you have **Scania-theme installed**
+    - Are you using `<c-theme></c-theme>` component
+    - Check so styling isn't overriden by anything
+    - You created npm link with scania-theme and corporate-ui
+    - Call `defineCustomElements()` and `addTheme()` from Corporate-Ui package
+    - Some version of corporate-ui and scania-theme isn't compatible together
+    - Have you set global attribute to true on `<c-theme global=true>`
+    - Have you set the name attribute to scania(or if you have your own theme) `<c-theme name='scania'>`
+    - Is everything you are using in the component compatible with the browser, you can check [caniuse.com](caniuse.com)
+    - Are you using correct version of Corporate-Ui or Scania-theme, some versions might not contain what you are looking for
 
 
 
 
 Notes:
-- Namespace
+- Namespace c-component
+- Mention more about defineCustomElements(KS problem with dropdown)
+- Angular, react and Vue gudies
+- polyfill mention
+- Add anchors
+- Npm reason to use

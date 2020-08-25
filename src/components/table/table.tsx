@@ -57,6 +57,7 @@ export class TableComponent {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
     this.theme = this.store.getState().theme.current;
     this.currentTheme = this.store.getState().theme[this.theme];
+    this.setTheme(this.theme);
 
     this.store.subscribe(() => {
       this.setTheme();

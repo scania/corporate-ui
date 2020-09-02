@@ -1,17 +1,17 @@
-# Developing a component
+# Setup for Corporate-UI and Scania-Theme
 
   This is a tutorial how to setup a project with Corporate-UI components with Scania-theme styling.
 
-  Corporate UI is a toolbox with **UI components** that makes it easier to use reusable and modular components for your application. For example Header or a footer are two components, but also buttons and dropdowns are also included.
+  Corporate UI is a toolbox with **UI components** that makes it easier to use reusable and modular components for your application. For examples, header, footer, buttons, and dropdowns.
 
-  Scania-Theme is a packages to contains the Scania specific styling for everyone of those components in Corporate UI toolbox. Every component has a unique styling with Scania look and feel.
+  Scania-theme is a package that contains Scania specific styling for everyone of those components in Corporate UI toolbox. Every component has a unique styling with Scania look and feel.
 
 
 ## Components
 
- Header,footer or a button are all components in our Design System, the difference between them is how they technically are made.
+ Header,footer or a button are all components in our Design System, the difference between them is how they technically made.
 
- `<c-header></c-header>` is a web component, while a `<button> Click Me </button>` is a regular HTML element that already exist in the HTML Standard. One thing easy thing to look at is the dash, for example "c-header", that indicates it is a web-component.
+ `<c-header></c-header>` is a web component, while a `<button> Click Me </button>` is a regular HTML element that already exist in the HTML Standard. One easy thing to differentiate between those is by looking at the dash in the element name, for example "c-header", that indicates it is a web-component.
 
  A web component can be used in the same way as a regular element in the HTML standard. Difference is what is under the hood. You can read more about it here https://developer.mozilla.org/en-US/docs/Web/Web_Components
 
@@ -19,7 +19,7 @@
 
 ## Audience
 
-This is for developers working with web application and have knowledge about web development. Components are avaliable for **react**,**angular** and **vue**
+This is for developers working with web application and have knowledge about web development. Components are available for **react**,**angular** and **vue**
 
 We have setup a few example repositories for react, angular and vue
  - [React]()
@@ -29,7 +29,7 @@ We have setup a few example repositories for react, angular and vue
 
  ## Stencil
 
- To be able to create a component in Corporate-Ui you need to understand what tool we are using to make it happened. We are using a **Web Component compiler** called [StencilJS](https://stenciljs.com/docs/introduction). This is the core for our components and how we build them. You can more in detail in their documentation.
+ To be able to create a component in Corporate-Ui you need to understand what tool we are using to make it happened. We are using a **Web Component compiler** called [StencilJS](https://stenciljs.com/docs/introduction). This is the core for our components and how we build them. You can read more in Stencil documentation.
 
  StencilJS contains features like:
 
@@ -87,6 +87,8 @@ We have setup a few example repositories for react, angular and vue
   ```
 
   If you come across any problems during this installation guide or feel something needs to be more clear, please contact us our report a issue in our [github]()
+
+---
 
 ## Fork
 
@@ -413,29 +415,37 @@ After theme is added(Add theming) is done, you can add components `<c-header>`,`
   ```
 
 
-  8.
+  8. For the default (non-scania) styling you need to add a another file called `new-component.scss`. This file will contain all non related styling that might come with the component. This styling will follow the component even if you don't use the scania-theme. Keep this file in the same folder as your component `src/components/"new-component"/`. For example a component that should have a dropdown function might be able to use bootstraps global dropdown css. That should be in this file then.
+
+  ```Javascript
+    @Component({
+      tag:'c-new-component',
+      styleUrl: 'new-component.scss'
+      })
+  ```
 
   9. Inside the `@Component` decorator you need to add another property called `shadow: true`. This will make the component isolated and not effected by the reset of the global styling.
 
   ```Javascript
     @Component({
       tag:'c-new-component',
+      styleUrl: 'new-component.scss',
       shadow: true
     })
   ```
 
-
   10. How to add properties,states or watches you can look at the stencil documentation. Here is an example of a hello world component.
 
   ```Javascript
+    // Example component
     import { Component, h, Prop } from '@stencil/core';
 
     @Component({
-      tag: 'c-hello-world',
-      styleUrl: 'hello-world.scss',
+      tag: 'c-new-component',
+      styleUrl: 'new-component.scss',
       shadow: true,
     })
-    export class HelloWorld {
+    export class NewComponent {
       @Prop() text: string = 'Hello World';
 
       render() {
@@ -451,15 +461,171 @@ After theme is added(Add theming) is done, you can add components `<c-header>`,`
   If you have done everything correctly you should see the component in Action without any specific styling, otherwise check of errors or see if everything is imported and linked correctly. You can see the "Problems that might appear" section
 
 
-### Styling a component (Scania Theme)
+### Styling a component
 
-  To be able to the Scania UI styling(Colors,fonts...) you need to use Scania-theme and add styling.
+  To be able to the Scania UI styling(Colors,fonts...) you need to use Scania-theme and add styling from there.
 
 
-1. create file scss in element folder
-2. add states,props, elements in the js file
-3. watchers
-4. Willload
+  1. You need **two files for the styling**. Both inside Corporate Ui and Scania Theme
+
+  - You will need one file `components/new-component/new-component.scss`(contains default styling) in corporate-ui
+  - one `src/styles/elements/c-new-component.scss`(contains scania specific styling) in scania-theme.
+
+  2. Go to `components/new-component/new-component.scss` inside corporate-ui. You can add any default styling that this component should contain. When you have added styling you just rebuild corporate-ui that you have linked and it should you the new styling.
+
+  ```SCSS
+   // Example
+    :host {
+      color: red;
+    }
+  ```
+
+  3. To use boostrap styling you need to add the basic foundation, like bootstrap variables. Some of these are required. You can also import styling for example button and so on.
+
+  ```SCSS
+    // Required
+    @import 'node_modules/bootstrap/scss/functions';
+    @import 'node_modules/bootstrap/scss/variables';
+    @import 'node_modules/bootstrap/scss/mixins';
+    @import 'node_modules/bootstrap/scss/transitions';
+
+    // Optional (example)
+    @import 'node_modules/bootstrap/scss/reboot';
+    @import 'node_modules/bootstrap/scss/buttons';
+
+
+    @import '../../components.scss'; //Setting box-model
+
+    :host {
+      color: red;
+    }
+  ```
+
+  4. Go to `src/styles/elements/c-new-component.scss` in scania-theme. Inside this file you will add everything scania related, like colors, fonts ,buttons or any other elements that you might use in your component. 
+
+  Look at the `styles/variables.scss` to see which colors, font-size and other styling that exist.
+
+  ```SCSS
+    //Example
+    @import '../variables'; // Scania variables
+    @import '../components/button'; //Scania button
+    @import '../utilities/typography'; //Scania font styling
+
+
+    :host {
+      // You need to add both css variables and scss variables to support IE( https://caniuse.com/#feat=css-variables )
+      font-family: $font-family-base;
+      font-size: $font-size-base;
+
+      color: $primary; // You need to add both for IE suport
+      color: Var(--primary);
+
+      margin: 2rem;
+      padding: 3rem;
+    }
+  ```
+5. Before you can use your scss file that you created in scania-theme, you need to add some properties and methods that a required. Go to your components tsx file, `new-component.tsx`. This props and state are create to handle how we add the styling for the component, so it doesn't leak out to other parts of the application. For example if you only want to use the component and not the reset of the styling that is applied with `<c-theme name='name' global='false'>`. 
+
+ ```Javascript
+  //Example
+
+  export class NewComponent {
+    // Add this before the render method
+    @Prop({ context: 'store' }) ContextStore: any;
+
+    @Prop({ mutable: true }) theme: string;
+
+    @State() store: any;
+
+    @State() tagName: string;
+
+    @State() currentTheme = { components: [] };
+
+    @State() style: Array<CSSStyleSheet>;
+
+    @Element() el;
+
+ ```
+
+
+6. When you have add the correct props, states and element, you can add a watcher for the theme property.
+
+```Javascript
+ @Watch('theme')
+  setTheme(name = undefined) {
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
+  }
+```
+
+7.  You need to import a helper function called `themeStyle`
+
+
+```Javascript
+import { themeStyle } from '../../helpers/themeStyle';
+```
+
+
+8. Before the render function you need to add method `componentWillLoad()` and `componentDidLoad() `. This will set the theme for your component.
+
+```Javascript
+  componentWillLoad() {
+    this.store = this.ContextStore || (window as any).CorporateUi.store;
+
+    this.setTheme(this.theme);
+
+    this.store.subscribe(() => {
+      this.setTheme();
+
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
+    });
+
+    if (!(this.el && this.el.nodeName)) return;
+
+    this.tagName = this.el.nodeName.toLowerCase();
+  }
+
+  componentDidLoad() {
+
+    this.style = this.el.shadowRoot.adoptedStyleSheets || [];
+
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
+
+  }
+```
+
+
+9. Example using Button primary
+
+  ```JSX
+   return[
+      <div>
+        <h1>Cool Headline</h1>
+        <button class="btn btn-primary">Click Me!</button>
+        <p>Awesome text</p>
+      </div>
+    ]
+  ```
+
+  10. Application example in angular, you should see two primary buttons, one inside the component and one outside using the same styling from scania-theme.
+
+   ```HTML
+      <c-theme name='scania' global='true'></c-theme>
+      <c-header></c-header>
+      <c-content>
+        <section>
+          <button class="btn btn-primary">Accept</button>
+          <c-new-component></c-new-component>
+          <!-- Your application content goes here -->
+        </section>
+      </c-content>
+      <c-footer></c-footer>
+   ```
+
+
+  Screenshot added
+
+If you have added everything above, you should see a button with the scania primary color from scania-theme.
 
 ---
 
@@ -487,14 +653,3 @@ After theme is added(Add theming) is done, you can add components `<c-header>`,`
     - Have you set the name attribute to scania(or if you have your own theme) `<c-theme name='scania'>`
     - Is everything you are using in the component compatible with the browser, you can check [caniuse.com](caniuse.com)
     - Are you using correct version of Corporate-Ui or Scania-theme, some versions might not contain what you are looking for
-
-
-
-
-Notes:
-- Namespace c-component
-- Mention more about defineCustomElements(KS problem with dropdown)
-- Angular, react and Vue gudies
-- polyfill mention
-- Add anchors
-- Npm reason to use

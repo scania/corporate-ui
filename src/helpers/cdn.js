@@ -16,7 +16,6 @@
 })(document);
 
 function fixFouc() {
-  console.log('fouc')
   var elm = document.createElement('style');
   var style = document.createTextNode('body { visibility: hidden; }');
 

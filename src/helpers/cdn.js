@@ -11,5 +11,27 @@
   scriptElm = doc.createElement('script');
   scriptElm.src = url + '/corporate-ui.js';
 
+  fixFouc();
   doc.head.insertBefore(scriptElm, parentScript[0]);
 })(document);
+
+function fixFouc() {
+  var elm = document.createElement('style');
+  var style = document.createTextNode('body { visibility: hidden; }');
+
+  document.head.insertBefore(elm, document.head.firstChild);
+  elm.appendChild(style);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // This timeout is to make sure that IE has time to load
+    setTimeout(function () {
+      if (document.querySelector('c-theme')) return;
+
+      // Used in case a theme element is not rendered
+      style.nodeValue = 'body { visibility: visible; }';
+    });
+  });
+}
+
+
+

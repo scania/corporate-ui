@@ -141,12 +141,14 @@ export class TableComponent {
 
     for (const key of keys) {
       const inputId = "search" + key;
-      let inputValue = ((this.el.shadowRoot || this.el).querySelector('#'+inputId) as HTMLInputElement).value;
+      let inputValue = ((this.el.shadowRoot || this.el).querySelector('#' + inputId) as HTMLInputElement).value;
       
       if(inputValue)
       {
-        document.getElementById("iconFilter" + key).style.display = "none";
-        document.getElementById("iconCross" + key).style.display = "inline";
+        var iconFilter = (this.el.shadowRoot || this.el).querySelector("#iconFilter" + key);
+        var iconCross = (this.el.shadowRoot || this.el).querySelector("#iconCross" + key);
+        iconFilter.style.display = "none";
+        iconCross.style.display = "inline";
 
         /* Gets all values from column */
         const column = items.map(cl => cl[key])
@@ -165,8 +167,10 @@ export class TableComponent {
       }
       else {
         /* Shows icons */
-        document.getElementById("iconFilter" + key).style.display = "inline";
-        document.getElementById("iconCross" + key).style.display = "none";
+        var iconFilter = (this.el.shadowRoot || this.el).querySelector("#iconFilter" + key);
+        var iconCross = (this.el.shadowRoot || this.el).querySelector("#iconCross" + key);
+        iconFilter.style.display = "inline";
+        iconCross.style.display = "none";
       }
     }
 
@@ -183,14 +187,15 @@ export class TableComponent {
   }
 
   private clearInputField(key) {
-    (document.getElementById("search" + key) as HTMLInputElement).value = "";
+    var inputSearch = (this.el.shadowRoot || this.el).querySelector("#search" + key);
+    inputSearch.value = "";
     this.removeSortActive();
     this.searchColumn();
   }
 
   /* Remove all sort-active class */
   private removeSortActive() {
-    let actives = document.querySelectorAll(".sort-active");
+    let actives = (this.el.shadowRoot || this.el).querySelectorAll(".sort-active");
     [].forEach.call(actives, function(active) {
       active.classList.remove("sort-active");
     });

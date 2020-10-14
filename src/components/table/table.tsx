@@ -71,12 +71,21 @@ export class TableComponent {
     if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
+
+    this.header.map(item => {
+      item.key = this.removeDot(item.key);
+    })
   }
 
   componentDidLoad() {
     this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
     
     themeStyle(this.currentTheme, this.tagName, this.style, this.el)
+  }
+
+  private removeDot(key){
+    const newKey = key.replace(/\./g,'-');
+    return newKey;
   }
 
   /* Filter the content that will show on the table */

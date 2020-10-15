@@ -15,16 +15,16 @@ export class TableComponent {
   @Prop() content = [];
 
   /* Sets the class for the table */
-  @Prop() tblClass = "";
+  @Prop() tblClass: string;
   
   /* Events to set edit and delete callbacks */
-  @Prop() hasEdit: Boolean;
+  @Prop() hasEdit: boolean;
   @Event() optEdit: EventEmitter;
-  @Prop() hasDelete: Boolean;
+  @Prop() hasDelete: boolean;
   @Event() optDelete: EventEmitter;
-  @Prop() hasHover: Boolean;
+  @Prop() hasHover: boolean;
   @Event() optHover: EventEmitter;
-  @Prop() descrCustomLink: String;
+  @Prop() descrCustomLink: string;
   @Event() optCustomLink: EventEmitter;
 
   @State() data = [];

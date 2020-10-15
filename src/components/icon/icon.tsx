@@ -28,13 +28,23 @@ export class Icon {
   @Element() el: any;
 
   @Watch('theme')
-  setTheme() {
-    this.theme = this.store.getState().theme.current;
+  setTheme(name = undefined) {
+    this.theme = name || this.store.getState().theme.current;
+    this.currentTheme = this.store.getState().theme.items[this.theme];
+
+    // If no theme is used then we return;
+    if(!name) return;
+    // Only setIcons when there is a theme
     this.setIcon();
   }
 
   @Watch('name')
   setIcon(name = this.name) {
+
+    if(!this.store.getState().theme.items[this.theme]) {
+      console.warn('No icons in this packages');
+      return;
+    }
     const items = this.store.getState().theme.items[this.theme].icons;
 
     // TODO: We should have the default icon being a simple
@@ -46,8 +56,6 @@ export class Icon {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
     this.theme = this.store.getState().theme.current;
     this.currentTheme = this.store.getState().theme[this.theme];
-
-    this.setIcon();
 
     this.store.subscribe(() => {
       this.theme = this.store.getState().theme.current;
@@ -69,8 +77,8 @@ export class Icon {
 
   render() {
     return [
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${this.icon.width} ${this.icon.height}`}>
-        <path fill='currentColor' d={this.icon.definition} />
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox={`0 0 ${this.icon ? this.icon.width : '0'} ${this.icon ? this.icon.height : '0'}`}>
+        <path fill='currentColor' d={this.icon ? this.icon.definition : ''} />
       </svg>,
     ];
   }

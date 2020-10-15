@@ -61,6 +61,7 @@ export class TableComponent {
     this.store = this.ContextStore || (window as any).CorporateUi.store;
     this.theme = this.store.getState().theme.current;
     this.currentTheme = this.store.getState().theme[this.theme];
+    this.setTheme(this.theme);
 
     this.store.subscribe(() => {
       this.setTheme();
@@ -94,12 +95,12 @@ export class TableComponent {
     var keys = Object.keys({...this.content[0]});
 
     /* needs clone the array this way to no mutate the content Prop */
-    this.data = this.content.map((item) => Object.assign({}, item));
+    this.data = this.content.map((item) => Object.assign({}, this.flattenObject(item)));
     
     keys = keys.filter(function(val) {
       return props.indexOf(val) == -1;
     });
-    
+
     for (const key of keys) { 
       this.data.forEach(function(v){ delete v[key] });
     }
@@ -118,7 +119,7 @@ export class TableComponent {
     /* Needs to reset the Prop to make the changes */
     this.filteredData = [...this.filteredData];
 
-    const input = (this.el.shadowRoot || this.el).querySelector('#' + direction + key);
+    const input = (this.el.shadowRoot || this.el).getElementById(direction + key);
 
     /* If clicks on an active button, just remove the active */
     if(input.classList.contains("sort-active")) {
@@ -150,6 +151,7 @@ export class TableComponent {
 
     for (const key of keys) {
       const inputId = "search" + key;
+
       let inputValue = ((this.el.shadowRoot || this.el).querySelector('#' + inputId) as HTMLInputElement).value;
       
       if(inputValue)
@@ -293,6 +295,29 @@ export class TableComponent {
       }
     }
   }
+
+  /* Flatten objects in order to match it's keys by path */
+  /* Eg: { "address": { "city": "Sydney" } } becomes { "address.city": "Sydney" }*/
+  private flattenObject(obj) {
+    let toReturn = {};
+
+    for (var i in obj) {
+      if (!obj.hasOwnProperty(i)) continue;
+
+      if ((typeof obj[i]) == 'object' && obj[i] !== null) {
+        var flatObject = this.flattenObject(obj[i]);
+        for (var x in flatObject) {
+          if (!flatObject.hasOwnProperty(x)) continue;
+
+          toReturn[i + '.' + x] = flatObject[x];
+        }
+      } else {
+        toReturn[i] = obj[i];
+      }
+    }
+    return toReturn;
+  }
+
   
   //
 

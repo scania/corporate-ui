@@ -79,10 +79,13 @@ export class Theme {
   }
 
   render() {
-    if(this.currentTheme['version']!==undefined) {
-      document.documentElement.setAttribute(`${this.name}-theme-version`, `${this.currentTheme['version']}`);
+    if(this.currentTheme!==undefined && this.currentTheme['version']!==undefined) {
+      document.documentElement.setAttribute(`theme`, `${this.name}-theme v${this.currentTheme['version']}`);
+    } else {
+      document.documentElement.setAttribute(`theme`,'-')
     }
-    if (this.favicons && this.favicons) {
+
+    if (this.favicons) {
       this.renderFavicon();
     }
 

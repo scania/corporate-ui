@@ -4,6 +4,7 @@ import {
 
 import BsDropdown from 'bootstrap/js/src/dropdown';
 import { themeStyle } from '../../helpers/themeStyle';
+import store from '../../store_new';
 
 @Component({
   tag: 'c-dropdown',
@@ -11,8 +12,6 @@ import { themeStyle } from '../../helpers/themeStyle';
   shadow: true,
 })
 export class Dropdown {
-  @Prop({ context: 'store' }) ContextStore: any;
-
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
@@ -55,8 +54,8 @@ export class Dropdown {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme.items[this.theme];
+    this.theme = name || this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme.items[this.theme];
   }
 
   toggle(status){
@@ -70,15 +69,9 @@ export class Dropdown {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUi.store;
+    this.store = store;
 
     this.setTheme(this.theme);
-
-    this.store.subscribe(() => {
-      this.setTheme();
-      
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
-    });
 
     if (!(this.el && this.el.nodeName)) return;
 

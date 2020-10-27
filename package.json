@@ -1,6 +1,6 @@
 {
   "name": "corporate-ui",
-  "version": "4.1.2",
+  "version": "4.1.2-1",
   "description": "In this repository we're developing the next generation components for Corporate UI",
   "repository": {
     "type": "git",
@@ -39,9 +39,10 @@
     ]
   },
   "devDependencies": {
-    "@stencil/core": "1.8.1",
+    "@stencil/core": "2.1.0",
     "@stencil/router": "1.0.1",
-    "@stencil/sass": "1.0.1",
+    "@stencil/sass": "1.3.2",
+    "@stencil/store": "^1.3.0",
     "@types/jest": "24.0.23",
     "@types/puppeteer": "1.19.0",
     "babel-cli": "^6.26.0",

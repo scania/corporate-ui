@@ -1,7 +1,9 @@
 import {
   Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
+
 import { themeStyle } from '../../helpers/themeStyle';
+import store from '../../store_new';
 
 @Component({
   tag: 'c-footer',
@@ -9,8 +11,6 @@ import { themeStyle } from '../../helpers/themeStyle';
   shadow: true,
 })
 export class Footer {
-  @Prop({ context: 'store' }) ContextStore: any;
-
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
@@ -49,21 +49,16 @@ export class Footer {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme.items[this.theme];
+    this.theme = name || this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme.items[this.theme];
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUi.store;
+    this.store = store
 
     this.setTheme(this.theme);
     this.setItems(this.items);
     this.setSocialItems(this.socialItems);
-
-    this.store.subscribe(() => {
-      this.setTheme();
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
-    });
 
     if (!(this.el && this.el.nodeName)) return;
 

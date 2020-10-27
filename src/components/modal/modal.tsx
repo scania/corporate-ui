@@ -4,6 +4,7 @@ import {
 
 import BsModal from 'bootstrap/js/src/modal';
 import { themeStyle } from '../../helpers/themeStyle';
+import store from '../../store_new';
 
 @Component({
   tag: 'c-modal',
@@ -11,17 +12,18 @@ import { themeStyle } from '../../helpers/themeStyle';
   shadow: true,
 })
 export class Modal {
-  @Prop({ context: 'store' }) ContextStore: any;
-
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
+  /** Bootstrap modal config */
   @Prop() config;
 
   @Prop() event;
 
+  /** Set to true to open modal */
   @Prop() open: boolean;
 
+  /** Add close icon in modal */
   @Prop() close: boolean = true;
 
   @State() store: any;
@@ -46,8 +48,8 @@ export class Modal {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme.items[this.theme];
+    this.theme = name || this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme.items[this.theme];
   }
 
   @Watch('open')
@@ -95,15 +97,9 @@ export class Modal {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUi.store;
+    this.store = store;
 
     this.setTheme(this.theme);
-
-    this.store.subscribe(() => {
-      this.setTheme();
-      
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
-    });
 
     if (!(this.el && this.el.nodeName)) return;
 
@@ -111,7 +107,7 @@ export class Modal {
 
     this.configureModal(this.config);
 
-    this.appendStyle(this.store.getState().theme.global);
+    this.appendStyle(this.store.state.theme.global);
   }
 
   componentDidLoad() {

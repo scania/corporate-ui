@@ -1,4 +1,5 @@
-import { store, actions } from './store';
+// import { store, actions } from './store';
+import store from './store_new';
 
 // Polyfill for CustomEvent
 (function () {
@@ -17,7 +18,7 @@ import { store, actions } from './store';
 }());
 
 
-const detail = { store, actions };
+const detail = { store };
 const event = new CustomEvent('storeReady', { detail });
 const icons = {};
 const fa_icons = {};
@@ -36,7 +37,8 @@ defaultTheme.default.icons = icons;
 
 (<any>window).CorporateUi = { ...(<any>window).CorporateUi, ...detail };
 
-store.dispatch({ type: actions.ADD_THEME, theme: defaultTheme });
+// store.dispatch({ type: actions.ADD_THEME, theme: defaultTheme });
+store.state.theme.items = defaultTheme;
 
 document.dispatchEvent(event);
 

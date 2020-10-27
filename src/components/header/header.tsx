@@ -2,7 +2,7 @@ import {
   Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import { actions } from '../../store';
+import store from '../../store_new';
 import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
@@ -11,8 +11,6 @@ import { themeStyle } from '../../helpers/themeStyle';
   shadow: true,
 })
 export class Header {
-  @Prop({ context: 'store' }) ContextStore: any;
-
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
@@ -29,7 +27,7 @@ export class Header {
   @Prop() shortName: string;
 
   /** Variation to header */
-  @Prop({ reflectToAttr: true }) variation: string;
+  @Prop({ reflect: true }) variation: string;
 
   @State() store: any;
 
@@ -54,29 +52,27 @@ export class Header {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme.items[this.theme];
+    this.theme = name || this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme.items[this.theme];
   }
 
   toggleNavigation(open) {
-    this.store.dispatch({ type: actions.TOGGLE_NAVIGATION, open });
+    this.store.state.navigation = {open: open, expanded: this.store.state.navigation.expanded};
+    this.navigationOpen = this.store.state.navigation.open;
+
     setTimeout(() => {
       this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
     }, 350);
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUi.store;
+    this.store = store;
 
     this.setTheme(this.theme);
     this.setItems(this.items);
 
-    this.store.subscribe(() => {
-      this.setTheme();
-      this.navigationOpen = this.store.getState().navigation.open;
-
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el)
-    });
+    this.setTheme();
+    this.navigationOpen = this.store.state.navigation.open;
 
     this.hasNav = !!document.querySelector('c-navigation');
 
@@ -86,6 +82,7 @@ export class Header {
     if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
+    // themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
   componentDidLoad() {

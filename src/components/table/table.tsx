@@ -1,6 +1,7 @@
 import { Component, Prop, h, State, Watch, Event, EventEmitter, Element } from '@stencil/core';
 import { Header } from './table.model';
 import { themeStyle } from '../../helpers/themeStyle';
+import store from '../../store_new';
 
 @Component({
   tag: 'c-table',
@@ -31,7 +32,6 @@ export class TableComponent {
   @State() filteredData = [];
   @State() isArray = true;
 
-  @Prop({ context: 'store' }) ContextStore: any;
   @State() store: any;
   @State() tagName: string;
   @State() theme: string;
@@ -46,8 +46,8 @@ export class TableComponent {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme.items[this.theme];
+    this.theme = name || this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme.items[this.theme];
   }
 
   componentWillLoad() {
@@ -58,16 +58,10 @@ export class TableComponent {
 
     this.filterContent();
 
-    this.store = this.ContextStore || (window as any).CorporateUi.store;
-    this.theme = this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme[this.theme];
+    this.store = store;
+    this.theme = this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme[this.theme];
     this.setTheme(this.theme);
-
-    this.store.subscribe(() => {
-      this.setTheme();
-
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
-    });
 
     if (!(this.el && this.el.nodeName)) return;
 

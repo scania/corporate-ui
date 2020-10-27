@@ -7,14 +7,15 @@ import {
 // Typescript does not support loading of resources outside of "src"
 // So instead of a relative path we do this hack.
 import { version } from '@stencil/../../package.json';
-import { actions } from '../../store';
+// import { actions } from '../../store';
+import store from '../../store_new'
 
 @Component({
   tag: 'c-theme',
   styleUrl: 'theme.scss',
 })
 export class Theme {
-  @Prop({ context: 'store' }) ContextStore: any;
+  // @Prop({ context: 'store' }) ContextStore: any;
 
   /** Set the brand name that will set the theme styling for the page. */
   @Prop({ mutable: true }) name: string;
@@ -36,17 +37,19 @@ export class Theme {
   setName(name) {
     this.setTheme(name);
 
-    this.store.dispatch({ type: actions.SET_THEME, current: name });
+    // this.store.dispatch({ type: actions.SET_THEME, current: name });
+    this.store.state.theme.current = name;
   }
 
   @Watch('global')
   setGlobal(global) {
-    this.store.dispatch({ type: actions.SET_GLOBAL, global });
+    // this.store.dispatch({ type: actions.SET_GLOBAL, global });
+    this.store.state.theme.global = global;
   }
 
   setTheme(name = undefined) {
-    this.name = name || this.store.getState().theme.current;
-    this.currentTheme = this.store.getState().theme.items[this.name];
+    this.name = name || this.store.state.theme.current;
+    this.currentTheme = this.store.state.theme.items[this.name];
     this.favicons = this.currentTheme ? this.currentTheme.favicons : undefined;
   }
 
@@ -63,12 +66,13 @@ export class Theme {
   }
 
   componentWillLoad() {
-    this.store = this.ContextStore || (window as any).CorporateUi.store;
+    this.store = store;
 
     this.setName(this.name);
     this.setGlobal(this.global);
 
-    this.store.subscribe(() => this.setTheme());
+    // this.store.subscribe(() => this.setTheme());
+    this.setTheme();
 
     (window as any).CorporateUi = { ...(window as any).CorporateUi, version };
     document.documentElement.setAttribute('corporate-ui-version', version);

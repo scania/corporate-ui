@@ -16,10 +16,10 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      copy: [
-        { src: '../.build/index.js', dest: 'index.js' },
-        { src: 'helpers/cdn.js', dest: '../corporate-ui-dev.js', warn:true },
-      ]
+      // copy: [
+      //   { src: '../.build/index.js', dest: 'index.js' },
+      //   { src: 'helpers/cdn.js', dest: '../corporate-ui-dev.js', warn:true },
+      // ]
     },
     {
       type: 'www',

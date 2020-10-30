@@ -51,10 +51,17 @@ export class Footer {
   setTheme(name = undefined) {
     this.theme = name || this.store.state.theme.current;
     this.currentTheme = this.store.state.theme.items[this.theme];
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
+  updateTheme = (function(theme){
+    this.theme = theme.current;
+  }).bind(this);
+
   componentWillLoad() {
-    this.store = store
+    this.store = store;
+
+    store.onChange('theme', this.updateTheme)
 
     this.setTheme(this.theme);
     this.setItems(this.items);
@@ -70,7 +77,7 @@ export class Footer {
   componentDidLoad() {
     this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
 
-    themeStyle(this.currentTheme, this.tagName, this.style, this.el)
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
   parse(items) {
@@ -113,7 +120,7 @@ export class Footer {
           {this.text}
           <slot name='text' />
         </p>
-      </nav>,
+      </nav>
     ];
   }
 }

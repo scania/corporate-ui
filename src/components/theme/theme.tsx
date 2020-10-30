@@ -38,7 +38,15 @@ export class Theme {
     this.setTheme(name);
 
     // this.store.dispatch({ type: actions.SET_THEME, current: name });
-    this.store.state.theme.current = name;
+    // this.store.state.theme.current = name;
+    const newValue = {
+      current : name,
+      global : store.state.theme.global,
+      items : store.state.theme.items
+    }
+    store.state.theme = newValue;
+    
+    // store.set('theme', {...store.state.theme, current: name})
   }
 
   @Watch('global')
@@ -73,6 +81,7 @@ export class Theme {
 
     // this.store.subscribe(() => this.setTheme());
     this.setTheme();
+    store.use();
 
     (window as any).CorporateUi = { ...(window as any).CorporateUi, version };
     document.documentElement.setAttribute('corporate-ui-version', version);

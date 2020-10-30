@@ -15,7 +15,7 @@
   "scripts": {
     "start": "npm run build -- --watch",
     "build": "npm run babel && npm run stencil --",
-    "stencil": "stencil build --docs-json dist/data/docs.json --esm --es5 && npm run rename && npm run renameDev",
+    "stencil": "stencil build --docs-json dist/data/docs.json",
     "babel": "mkdirp .build && babel src/helpers/index.js --out-file .build/index.js",
     "rename": "renamer -f \"/^corporate-ui.js$/\" -r \"corporate-ui-stencil.js\" \"dist/*\"",
     "renameDev": "renamer -f \"/^corporate-ui-dev.js$/\" -r \"corporate-ui.js\" \"dist/*\"",

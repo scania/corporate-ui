@@ -54,6 +54,7 @@ export class Header {
   setTheme(name = undefined) {
     this.theme = name || this.store.state.theme.current;
     this.currentTheme = this.store.state.theme.items[this.theme];
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
   toggleNavigation(open) {

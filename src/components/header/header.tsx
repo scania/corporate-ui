@@ -29,7 +29,7 @@ export class Header {
   /** Variation to header */
   @Prop({ reflect: true }) variation: string;
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() navigationOpen: Boolean;
 
@@ -52,14 +52,17 @@ export class Header {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
-    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
+    this.theme = name || this.store.theme.current;
+    if(this.store.theme.items) {
+      this.currentTheme = this.store.theme.items[this.theme];
+      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
+    }
   }
 
   toggleNavigation(open) {
-    this.store.state.navigation = {open: open, expanded: this.store.state.navigation.expanded};
-    this.navigationOpen = this.store.state.navigation.open;
+    this.store.navigation.open = open;
+    store.set('navigation', this.store.navigation);
+    this.navigationOpen = this.store.navigation.open;
 
     setTimeout(() => {
       this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
@@ -67,13 +70,14 @@ export class Header {
   }
 
   componentWillLoad() {
-    this.store = store;
+    // IE11 does not support stencil store state proxy objects, so these 2 lines are required
+    this.store.theme = store.get('theme');
+    this.store.navigation = store.get('navigation');
 
     this.setTheme(this.theme);
     this.setItems(this.items);
 
-    this.setTheme();
-    this.navigationOpen = this.store.state.navigation.open;
+    this.navigationOpen = this.store.navigation.open;
 
     this.hasNav = !!document.querySelector('c-navigation');
 

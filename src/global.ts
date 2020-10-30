@@ -37,8 +37,11 @@ defaultTheme.default.icons = icons;
 
 (<any>window).CorporateUi = { ...(<any>window).CorporateUi, ...detail };
 
-// store.dispatch({ type: actions.ADD_THEME, theme: defaultTheme });
-store.state.theme.items = defaultTheme;
+const newValue = store.get('theme');
+
+newValue.items['default'] = defaultTheme.default;
+
+store.set('theme', newValue);
 
 document.dispatchEvent(event);
 

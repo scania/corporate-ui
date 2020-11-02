@@ -23,7 +23,7 @@ export class Footer {
   /** Add social media icons */
   @Prop({ mutable: true }) socialItems: any;
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() show = false;
 
@@ -49,19 +49,18 @@ export class Footer {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
     themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
-  updateTheme = (function(theme){
-    this.theme = theme.current;
-  }).bind(this);
 
   componentWillLoad() {
-    this.store = store;
-
-    store.onChange('theme', this.updateTheme)
+    this.store.theme = store.get('theme');
+    
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+    }).bind(this)});
 
     this.setTheme(this.theme);
     this.setItems(this.items);
@@ -76,7 +75,6 @@ export class Footer {
 
   componentDidLoad() {
     this.style = this.el.shadowRoot['adoptedStyleSheets'] || [];
-
     themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 

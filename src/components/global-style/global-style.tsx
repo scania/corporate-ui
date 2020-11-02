@@ -1,7 +1,7 @@
 import {
   Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-global-style',
@@ -11,7 +11,7 @@ export class GlobalStyle {
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() tagName: string;
 
@@ -21,8 +21,8 @@ export class GlobalStyle {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
   }
 
   async loadLibs() {
@@ -36,8 +36,11 @@ export class GlobalStyle {
 
   componentWillLoad() {
     this.loadLibs();
+    this.store.theme = store.get('theme');
 
-    this.store = store;
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+    }).bind(this)});
 
     this.setTheme(this.theme);
 

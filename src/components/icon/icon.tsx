@@ -3,7 +3,7 @@ import {
 } from '@stencil/core';
 
 import { themeStyle } from '../../helpers/themeStyle';
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-icon',
@@ -13,7 +13,7 @@ import store from '../../store_new';
 export class Icon {
   @Prop() name = 'question';
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() icon: any;
 
@@ -29,23 +29,24 @@ export class Icon {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
 
     // If no theme is used then we return;
     if(!name) return;
     // Only setIcons when there is a theme
     this.setIcon();
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
   @Watch('name')
   setIcon(name = this.name) {
 
-    if(!this.store.state.theme.items[this.theme]) {
+    if(!this.store.theme.items[this.theme]) {
       console.warn('No icons in this packages');
       return;
     }
-    const items = this.store.state.theme.items[this.theme].icons;
+    const items = this.store.theme.items[this.theme].icons;
 
     // TODO: We should have the default icon being a simple
     // square instead of first icon in the collection
@@ -53,9 +54,13 @@ export class Icon {
   }
 
   componentWillLoad() {
-    this.store = store;
-    this.theme = this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme[this.theme];
+    this.store.theme = store.state.theme;
+    this.theme = this.store.theme.current;
+    this.currentTheme = this.store.theme[this.theme];
+
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+    }).bind(this)});
 
     if (!(this.el && this.el.nodeName)) return;
 

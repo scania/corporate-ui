@@ -7,8 +7,8 @@ import {
 // Typescript does not support loading of resources outside of "src"
 // So instead of a relative path we do this hack.
 import { version } from '@stencil/../../package.json';
-// import { actions } from '../../store';
-import store from '../../store_new'
+
+import store from '../../store'
 
 @Component({
   tag: 'c-theme',
@@ -35,14 +35,23 @@ export class Theme {
 
   @Watch('name')
   setName(name) {
-    this.store.theme.current = name;
-    store.set('theme', this.store.theme);
+    const newValue = {
+      current : name,
+      global : store.state.theme.global,
+      items : store.state.theme.items
+    }
+    
+    store.set('theme', newValue);
   }
     
   @Watch('global')
   setGlobal(global) {
-    this.store.theme.global = global;
-    store.set('theme', this.store.theme);
+    const newValue = {
+      current : store.state.theme.current,
+      global : global,
+      items : store.state.theme.items
+    }
+    store.set('theme', newValue);
   }
 
   setTheme(name = undefined) {

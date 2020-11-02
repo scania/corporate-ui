@@ -4,7 +4,7 @@ import {
 
 import BsModal from 'bootstrap/js/src/modal';
 import { themeStyle } from '../../helpers/themeStyle';
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-modal',
@@ -26,7 +26,7 @@ export class Modal {
   /** Add close icon in modal */
   @Prop() close: boolean = true;
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() tagName: string;
 
@@ -48,8 +48,8 @@ export class Modal {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
     themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
@@ -98,7 +98,11 @@ export class Modal {
   }
 
   componentWillLoad() {
-    this.store = store;
+    this.store.theme = store.get('theme');
+
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+    }).bind(this)});
 
     this.setTheme(this.theme);
 
@@ -108,7 +112,7 @@ export class Modal {
 
     this.configureModal(this.config);
 
-    this.appendStyle(this.store.state.theme.global);
+    this.appendStyle(this.store.theme.global);
   }
 
   componentDidLoad() {

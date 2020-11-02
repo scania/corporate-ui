@@ -2,7 +2,7 @@ import {
   Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-content',
@@ -16,7 +16,7 @@ export class Content {
   /** This property is in experimental state */
   @Prop() router: boolean;
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() tagName: string;
 
@@ -26,12 +26,16 @@ export class Content {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
   }
 
   componentWillLoad() {
-    this.store = store;
+    this.store.theme = store.get('theme');
+
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+    }).bind(this)});
 
     this.setTheme(this.theme);
 

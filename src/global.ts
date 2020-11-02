@@ -1,5 +1,4 @@
-// import { store, actions } from './store';
-import store from './store_new';
+import store from './store';
 
 // Polyfill for CustomEvent
 (function () {

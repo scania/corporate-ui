@@ -29,7 +29,7 @@ export const config: Config = {
       esmLoaderPath: 'loader',
       copy: [
         { src: '../.build/index.js', dest: 'index.js' },
-        // { src: 'helpers/cdn.js', dest: '../corporate-ui-dev.js', warn:true },
+        { src: 'helpers/cdn.js', dest: '../corporate-ui.js', warn:true },
       ]
     },
     {

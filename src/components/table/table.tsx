@@ -1,7 +1,7 @@
 import { Component, Prop, h, State, Watch, Event, EventEmitter, Element } from '@stencil/core';
 import { Header } from './table.model';
 import { themeStyle } from '../../helpers/themeStyle';
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-table',
@@ -32,7 +32,7 @@ export class TableComponent {
   @State() filteredData = [];
   @State() isArray = true;
 
-  @State() store: any;
+  @State() store = store.state;
   @State() tagName: string;
   @State() theme: string;
   @State() currentTheme = { icons: { }, components: [] };
@@ -46,8 +46,8 @@ export class TableComponent {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
     themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
@@ -59,9 +59,12 @@ export class TableComponent {
 
     this.filterContent();
 
-    this.store = store;
-    this.theme = this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme[this.theme];
+    this.store.theme = store.get('theme');
+
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+    }).bind(this)});
+    
     this.setTheme(this.theme);
 
     if (!(this.el && this.el.nodeName)) return;

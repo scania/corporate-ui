@@ -3,7 +3,7 @@ import {
 } from '@stencil/core';
 import { themeStyle } from '../../helpers/themeStyle';
 
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-navigation',
@@ -11,8 +11,6 @@ import store from '../../store_new';
   shadow: true,
 })
 export class Navigation {
-  // @Prop({ context: 'store' }) ContextStore: any;
-
   /** Per default, this will inherit the value from c-theme name property */
   @Prop({ mutable: true }) theme: string;
 
@@ -34,7 +32,7 @@ export class Navigation {
   /** Option to disable sticky feature */
   @Prop() sticky = true;
 
-  @State() store: any;
+  @State() store = store.state;
 
   @State() isSub: boolean;
 
@@ -66,8 +64,8 @@ export class Navigation {
 
   @Watch('theme')
   setTheme(name = undefined) {
-    this.theme = name || this.store.state.theme.current;
-    this.currentTheme = this.store.state.theme.items[this.theme];
+    this.theme = name || this.store.theme.current;
+    this.currentTheme = this.store.theme.items[this.theme];
     themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
@@ -99,15 +97,20 @@ export class Navigation {
   }
 
   toggleNavigation(open) {
-    this.store.state.navigation = {open: open, expanded: this.store.state.navigation.expanded};
+    this.store.navigation = {open: open, expanded: this.store.navigation.expanded};
   }
 
   toggleSubNavigation(expanded) {
-    this.store.state.navigation = {open: this.store.state.navigation.open, expanded: expanded};
+    this.store.navigation = {open: this.store.navigation.open, expanded: expanded};
   }
 
   componentWillLoad() {
-    this.store = store;
+    this.store = store.state;
+
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.get('theme').current;
+      if(value === 'navigation') this.store.navigation = store.get('navigation');
+    }).bind(this)});
 
     this.setTheme(this.theme);
     this.setPrimaryItems(this.primaryItems);
@@ -183,7 +186,7 @@ export class Navigation {
 
   hostData() {
     return {
-      expand: (this.target && this.target === this.store.state.navigation.expanded) || (!this.isSub && this.store.state.navigation.expanded) ? 'true' : 'false',
+      expand: (this.target && this.target === this.store.navigation.expanded) || (!this.isSub && this.store.navigation.expanded) ? 'true' : 'false',
     };
   }
 
@@ -195,7 +198,7 @@ export class Navigation {
     return [
       this.currentTheme ? <style id="themeStyle">{ this.currentTheme.components[this.tagName] }</style> : '',
 
-      <div class={`navbar-container ${this.store.state.navigation.open ? ' open' : ''}`}>
+      <div class={`navbar-container ${this.store.navigation.open ? ' open' : ''}`}>
         <nav class={`navbar navbar-expand-lg ${this.orientation}`}>
             <nav class='navbar-nav'>
               { this.isSub

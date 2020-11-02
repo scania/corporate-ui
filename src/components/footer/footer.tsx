@@ -3,7 +3,7 @@ import {
 } from '@stencil/core';
 
 import { themeStyle } from '../../helpers/themeStyle';
-import store from '../../store_new';
+import store from '../../store';
 
 @Component({
   tag: 'c-footer',

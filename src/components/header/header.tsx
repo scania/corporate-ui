@@ -2,7 +2,7 @@ import {
   Component, h, Prop, State, Element, Watch,
 } from '@stencil/core';
 
-import store from '../../store_new';
+import store from '../../store';
 import { themeStyle } from '../../helpers/themeStyle';
 
 @Component({
@@ -53,26 +53,35 @@ export class Header {
   @Watch('theme')
   setTheme(name = undefined) {
     this.theme = name || this.store.theme.current;
-    if(this.store.theme.items) {
-      this.currentTheme = this.store.theme.items[this.theme];
-      themeStyle(this.currentTheme, this.tagName, this.style, this.el);
-    }
+    this.currentTheme = this.store.theme.items[this.theme];
+    themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
   toggleNavigation(open) {
-    this.store.navigation.open = open;
-    store.set('navigation', this.store.navigation);
+    const newValue = {
+      open: open,
+      expanded: this.store.navigation.expanded
+    }
+    
+    store.set('navigation', newValue);
+    
     this.navigationOpen = this.store.navigation.open;
+  }
 
-    setTimeout(() => {
-      this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
-    }, 350);
+  @Watch('navigationOpen')
+  addBodyClass() {
+    this.navigationOpen ? document.body.classList.add('nav-show') : document.body.classList.remove('nav-show');
   }
 
   componentWillLoad() {
     // IE11 does not support stencil store state proxy objects, so these 2 lines are required
     this.store.theme = store.get('theme');
     this.store.navigation = store.get('navigation');
+
+    store.use({set: (function(value){
+      if(value === 'theme') this.theme = store.state.theme.current;
+      if(value === 'navigation') this.navigationOpen = store.state.navigation.open;
+    }).bind(this)});
 
     this.setTheme(this.theme);
     this.setItems(this.items);
@@ -87,7 +96,6 @@ export class Header {
     if (!(this.el && this.el.nodeName)) return;
 
     this.tagName = this.el.nodeName.toLowerCase();
-    // themeStyle(this.currentTheme, this.tagName, this.style, this.el);
   }
 
   componentDidLoad() {

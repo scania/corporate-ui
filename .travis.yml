@@ -1,8 +1,8 @@
 #Xenial for upgraded pip -v
-dist: xenial
-language: python
-python:
-  - "3.6"
+# dist: xenial
+# language: python
+# python:
+#   - "3.6"
 
 # Whitelist branch
 branches:

@@ -5,7 +5,7 @@
 #   - "3.6"
 language: node_js
 node_js:
-  - node
+  - lts/*
 
 # Whitelist branch
 branches:

@@ -4,14 +4,16 @@ import { Theme } from './components/theme/theme';
 (<any>window).CorporateUi = {};
 
 export function applyTheme() {
+  beforeEach(() => {
+    store.dispose();
+    const themeComponent = new Theme();
+    themeComponent.name = theme;
+    themeComponent.componentWillLoad();
+  });
   // const component = new Component();
 
   const theme = 'scania';
   const newTheme = 'man';
-
-  const themeComponent = new Theme();
-  themeComponent.name = theme;
-  themeComponent.componentWillLoad();
 
   describe('theme', () => {
     this.componentWillLoad();

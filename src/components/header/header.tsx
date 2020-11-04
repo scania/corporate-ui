@@ -21,7 +21,7 @@ export class Header {
   @Prop() siteUrl = '/';
 
   /** Header links that will be placed in the top right part of the header */
-  @Prop({ mutable: true }) items: any;
+  @Prop({ mutable: true }) items: any = [];
 
   /** Short name will be displayed in the top-centered of the header on mobile mode */
   @Prop() shortName: string;
@@ -31,7 +31,7 @@ export class Header {
 
   @State() store = store.state;
 
-  @State() navigationOpen: Boolean;
+  @State() navigationOpen: Boolean = false;
 
   @State() tagName: string;
 

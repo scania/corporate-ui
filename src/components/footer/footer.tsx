@@ -18,10 +18,10 @@ export class Footer {
   @Prop() text = 'Copyright © Scania 2019';
 
   /** Set footer links */
-  @Prop({ mutable: true }) items: any;
+  @Prop({ mutable: true }) items: any = [];
 
   /** Add social media icons */
-  @Prop({ mutable: true }) socialItems: any;
+  @Prop({ mutable: true }) socialItems: any = [];
 
   @State() store = store.state;
 

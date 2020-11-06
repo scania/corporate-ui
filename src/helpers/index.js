@@ -21,15 +21,14 @@ function addTheme(_theme) {
   function init(theme, event) {
     const name = Object.keys(theme)[0];
     const store = event.detail.store;
-    theme[name].components = document.head.attachShadow ? theme[name].components.default : theme[name].components.ie;
-    store.state.theme.items[name] = theme[name];
+    // need to get store theme through get API to make it work in IE
+    const storeTheme = store.get('theme');
 
-    const newValue = {
-      current : store.state.theme.current,
-      global : store.state.theme.global,
-      items : store.state.theme.items
-    }
-    store.state.theme = newValue;
+    theme[name].components = document.head.attachShadow ? theme[name].components.default : theme[name].components.ie;
+    
+    storeTheme.items[name] = theme[name];
+
+    store.set('theme', storeTheme);
     
   }
 }

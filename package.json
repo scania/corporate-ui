@@ -37,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@stencil/core": "2.2.0",
+    "@stencil/core": "2.3.0",
     "@stencil/router": "1.0.1",
     "@stencil/sass": "1.3.2",
     "@stencil/store": "^1.3.0",

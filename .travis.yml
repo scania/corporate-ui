@@ -1,8 +1,11 @@
 #Xenial for upgraded pip -v
-dist: xenial
-language: python
-python:
-  - "3.6"
+# dist: xenial
+# language: python
+# python:
+#   - "3.6"
+language: node_js
+node_js:
+  - lts/*
 
 # Whitelist branch
 branches:

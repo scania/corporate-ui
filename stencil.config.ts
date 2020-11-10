@@ -40,6 +40,10 @@ export const config: Config = {
       dir: '.www',
       serviceWorker: null, // disable service workers
     },
+    {
+      type: 'docs-json',
+      file: 'dist/collection/custom-elements.json'
+    }
   ],
   testing: {
     testPathIgnorePatterns: ['/node_modules/', 'global.spec'],

@@ -23,7 +23,9 @@
     "test": "stencil test --spec --verbose",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
   },
   "husky": {
     "hooks": {
@@ -37,13 +39,24 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-syntax-jsx": "^7.12.1",
+    "@babel/plugin-transform-react-jsx": "^7.12.5",
     "@stencil/core": "2.3.0",
     "@stencil/router": "1.0.1",
     "@stencil/sass": "1.3.2",
     "@stencil/store": "^1.3.0",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-controls": "^6.0.28",
+    "@storybook/addon-docs": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/addon-notes": "^5.3.21",
+    "@storybook/web-components": "^6.0.28",
     "@types/jest": "^26.0.14",
     "@types/puppeteer": "^5.4.0",
     "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
     "babel-preset-es2015": "^6.24.1",
     "bootstrap": "4.3.1",
     "highlight.js": "9.16.2",
@@ -51,11 +64,16 @@
     "jest-cli": "^26.6.2",
     "jquery": "3.4.1",
     "js-cookie": "2.2.1",
+    "jsx-dom": "^6.4.23",
+    "lit-html": "^1.3.0",
     "mkdirp": "^0.5.1",
     "popper.js": "1.15.0",
     "puppeteer": "1.19.0",
+    "react-is": "^17.0.1",
     "redux": "4.0.4",
-    "rollup-plugin-dotenv": "0.2.0"
+    "rollup-plugin-dotenv": "0.2.0",
+    "scania-theme": "^1.1.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

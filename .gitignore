@@ -3,6 +3,7 @@
 .build/
 .www/
 .data/
+src/**/**.md
 
 # Compiled theme
 src/themes.built/

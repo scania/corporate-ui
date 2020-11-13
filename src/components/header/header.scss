@@ -16,6 +16,10 @@ c-navigation {
   width: 100%;
 }
 
+.navbar {
+  overflow: inherit;
+}
+
 .navbar-toggler-icon {
   background-image: $navbar-light-toggler-icon-bg;
 }

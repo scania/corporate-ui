@@ -1,7 +1,7 @@
 
-:warning:
 
-## We have moved our repositories to another organisation called [scania-digital-design-system](https://github.com/scania-digital-design-system/)
+
+## :warning: We have moved our repositories to another organisation called [scania-digital-design-system](https://github.com/scania-digital-design-system/)
 
 Visit [digitaldesign.scania.com](https://digitaldesign.scania.com/) for more information about SDDS
 
